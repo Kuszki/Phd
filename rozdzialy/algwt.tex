@@ -1,0 +1,498 @@
+\chapter{Algorytm transformacji falkowej}
+
+Algorytm transformacji falkowej oznaczany skrótem \enquote{WT} (ang. \enquote{Wavelet Transform}) jest przekształceniem umożliwiającym analizę sygnału w dziedzinie skala-czas \cite{wallen_handbook}. Skala w przypadku algorytmu transformacji falkowej stanowi wybrany zakres częstotliwości składowych (harmonicznych) analizowanego sygnału. Jest to podobna cecha, jak w przypadku algorytmu \enquote{STFT} (ang. \enquote{Short-time Fourier transform}) \cite{durak_sftp}, będącego modyfikacją transformacji Fouriera. W ogólnej formie algorytm ciągłej transformacji falkowej (\enquote{CWT} -- ang. \enquote{Continous Wavelet Transform}) opisać można równaniem \cite{lord_guide, wallen_handbook}:
+\begin{equation}
+w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} { x(t) \psi \left( \frac{t-b}{a} \right) } dt \label{eqn_cwt},
+\end{equation}
+gdzie $w$ jest wyznaczonym współczynnikiem transformacji falkowej, $a$ parametrem skali, $b$ parametrem przesunięcia w czasie, natomiast $\psi$ równaniem falki-matki.
+
+Parametr skali określa zakres częstotliwości -- im większa wartość tego parametru, tym falka staje się bardziej \enquote{rozciągnięta}, przez co odpowiada niższym częstotliwością sygnału ($a > 1$); w przypadku niskich wartości parametru skali ($a < 1$) falka staje się co raz bardziej \enquote{zwarta}, co odpowiada wyższym zakresom częstotliwości. Parametr przesunięcia w czasie określa okno pomiarowe dla wybranego współczynnika. Wybór równania falki-matki zależy od charakteru przetwarzanego sygnału oraz pożądanych właściwości falki. Literatura opisuje bardzo wiele różnych falek wraz z obszarami ich zastosowań \cite{wallen_handbook, akujuobi_applications}.
+
+Główny podział falek pod katem ich właściwości obejmuje kilka najważniejszych cech charakterystycznych dla danej rodziny: ortogonalność, symetrię i biortogonalność. Ortogonalność oznacza, że dla wybranych parametrów skali i przesunięcia w czasie kolejne falki powstałe na bazie falki-matki będą wobec siebie ortogonalne. Jest to cecha w większości przypadków wymagana i pożądana. Symetria w przypadku falki-matki jest cenną cechą głównie w przypadku przetwarzania obrazów -- nie wszystkie rodziny falek posiadają tą cechę, stąd wiele prac skupiało się na \enquote{udoskonalaniu} istniejących rodzin pod katem wprowadzenia symetrii. Biortogonalność natomiast oznacza, że w celu rekonstrukcji sygnału należy zastosować odpowiednią dla użytej falki-matki powiązaną z nią falkę.
+
+Ze względu na swoje właściwości, algorytmy transformacji falkowej są wykorzystywane w wielu dziedzinach \cite{akujuobi_applications}, przy czym w zależności od właściwości analizowanego sygnału stosuje się odpowiednią w danym przypadku falkę-matkę. W medycynie transformacja falkowa wykorzystywana jest między innymi do analizy sygnału EEG \cite{ocak_medicine} orak EKG, a także wielu innych aplikacjach \cite{unser_medicine}. Transformacja falkowa znajduje również zastosowanie w przetwarzaniu obrazu oraz dźwięku \cite{kotteri_imagecomp}, głównie ze względu na możliwość zastosowania jej w algorytmach kompresji danych \cite{reddy_compression}. Ze względu na możliwości analizy sygnału zarówno w skali częstotliwości, jak i czasu, algorytmy transformacji falkowej znajdują swoje zastosowanie w analizie drgań sejsmicznych \cite{anping_seismic}. Analiza falkowa stosowana jest również w mechanice, gdzie istnieje możliwość oszacowania stanu zużycia elementów mechanicznych maszyny na podstawie wielkości wyjściowych algorytmu transformacji falkowej \cite{yan_mechanics}. Jednym z istotnych zastosowań jest także redukcja szumu w sygnale pomiarowym \cite{auth_denoise}, gdzie wykorzystywane są w dużej mierze falki podwójnej gęstości \enquote{dden} \cite{vimala_ddendenoise}. Mnogość zastosowań omawianych algorytmów jest zatem bardzo duża. Ze względu na fakt, że stanowią one istotną część toru pomiarowego, ich właściwości metrologiczne nie mogą być pomijane podczas analizy metrologicznej.
+
+\section{Algorytm ciągłej transformacji falkowej}
+
+Algorytm ciągłej transformacji falkowej może być stosowany w celu detekcji, czy i w jakim czasie widmo sygnału zawierało wybrane harmoniczne \cite{anping_seismic}. W tym przypadku istnieje możliwość wyznaczenia dowolnej liczby współczynników transformacji, gdzie ich liczba zależy od wymaganej rozdzielczości w skali czasu i częstotliwości \cite{wallen_handbook}. W przypadku tej wersji algorytmu rozdzielczość w dziedzinie czasu jest zwykle stała i nie zmienia się dla kolejnych skal częstotliwości. Rysunek \ref{fig_cobe_time} przedstawia przykładowy sygnał powiązany z przebiegiem trzęsienia ziemi w dziedzinie czasu, natomiast rysunek \ref{fig_cobe_cwt} przedstawia jego widmo uzyskane za pomocą algorytmu ciągłej transformacji falkowej. Na podstawie widma sygnału można określić w jakim czasie miało miejsce badane zjawisko, wiedząc jaka częstotliwość sygnału jest związana z tym zjawiskiem. Przerywana linia na wykresie widma oznacza obszar, dla którego wyniki nie są miarodajne -- w ich przypadku okno pomiarowe nie obejmowało wszystkich potrzebnych wielkości wejściowych.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/cobe_time}
+\caption{Przebieg czasowy trzęsienia ziemi o sile 7.3 stopnia zarejestrowany w miejscowości Kobe w Japonii 17 stycznia 1995 roku \label{fig_cobe_time}}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/cobe_cwt}
+\caption{Widmo czasowo-częstotliwościowe trzęsienia ziemi w Kobe z 17 stycznia 1995 roku przy zastosowaniu falki Morsa dla $\gamma = 3$ \label{fig_cobe_cwt}}
+\end{center}
+\end{figure}
+
+Algorytm ciągłej transformacji falkowej wymaga zastosowania opisanej ciągłym w dziedzinie czasu oraz częstotliwości równaniem falki-matki, natomiast nie wymaga aby określona była funkcja skalująca, której rola i znaczenie zostaną opisane w dalszej części pracy. Bazy stosowane w przypadku algorytmu ciągłej transformacji falkowej mogą być opisane zarówno w dziedzinie liczb rzeczywistych, jak i zespolonych. Ze względu na możliwość stosowania dowolnych wartości parametru skali i czasu, kolejne pochodne falki-matki nie są wobec siebie ortogonalne, co w praktyce oznacza że wyznaczane są w tym przypadku nadmiarowe współczynniki transformacji.
+
+\section{Algorytm dyskretnej transformacji falkowej}
+
+W praktyce wyznaczenie wszystkich współczynników algorytmu ciągłej transformacji falkowej jest niemożliwe. Wprowadzając ograniczenie możliwych wartości parametrów skali i czasu użytych w równaniu \eqref{eqn_cwt}, w którym $a = 2^k$, $b = n2^k$ oraz $k, n \in \mathbb{N}$, uzyskuje się zależność opisującą algorytm dyskretnej transformacji falkowej (\enquote{DWT} -- ang. \enquote{Discrete Wavelet Transform}) \cite{wallen_handbook}. Termin \enquote{dyskretna} oznacza zatem ograniczony (dyskretny) zbiór możliwych wartości skali i przesunięcia w czasie.
+
+Modyfikacja fragmentu równania \eqref{eqn_cwt} wprowadzająca opisywane założenie dyskretyzacji parametrów skali i czasu oraz założenie początkowych wartości parametrów skali i czasu, gdzie $a_0 = 2$ oraz $b_0 = 1$, pozwala uzyskać zależność opisującą kolejne falki stworzone na bazie falki-matki dla dyskretnych wartości parametru numeru skali i przesunięcia w czasie:
+\begin{equation}
+\psi_{m,n}(t) = \frac{1}{\sqrt{2^m}} \psi \left( \frac{t-2n^m}{2^m} \right) \label{eqn_dwt_wavelet},
+\end{equation}
+gdzie $m$ jest numerem skali, a $n$ numerem przesunięcia w czasie (numerem okna pomiarowego). Tak opisana falka jest zwykle ortogonalna oraz musi posiadać znormalizowaną energię, a zatem zapisać można:
+\begin{equation}
+\int _{-\infty} ^{\infty} \psi_{m,n}(t) \psi_{m',n'} dt =
+\begin{cases}
+	1 & $d $ m = m' $ oraz $ n = n' \\
+	0 & $w pozostałych przypadkach$
+\end{cases}
+\label{eqn_dwt_orthogonal}.
+\end{equation}
+W praktyce oznacza to, że nie ma możliwości opisu dowolnej stworzonej na podstawie równania \eqref{eqn_dwt} falki pochodnej za pomocą podobnej falki o innym numerze skali lub czasu.
+
+Podstawiając falkę opisaną równaniem \eqref{eqn_dwt_wavelet} do równania \eqref{eqn_cwt} otrzymuje się zależność opisującą dyskretną transformację falkową:
+\begin{equation}
+w_{m,n} = \frac{1}{\sqrt{2^m}} \int _{-\infty} ^{\infty} { x(t) \psi \left( \frac{t-2n^m}{2^m} \right) } dt \label{eqn_dwt}.
+\end{equation}
+Cechą algorytmu dyskretnej transformacji falkowej jest dynamiczna zależność rozdzielczości dziedziny czasu w funkcji skali. Dla niskich wartości parametru skali (wysokich częstotliwości sygnału) rozdzielczość w dziedzinie czasu jest większa w porównaniu z rozdzielczością dla skali wyższych (niższych zakresów częstotliwości). Jako, że sygnał o wyższej częstotliwości zmienia się bardziej dynamicznie, niż w przypadku sygnału o niższej częstotliwości, takie podejście jest bardzo korzystne. Umożliwia ono redukcję liczby współczynników transformacji (wielkości wyjściowych algorytmu), przy jednoczesnym zachowaniu optymalnej rozdzielczości w dziedzinie czasu oraz zapewnieniu możliwości rekonstrukcji oryginalnego przebiegu sygnału na podstawie uzyskanych współczynników transformacji.
+
+Ze względu na fakt, że falka-matka dla zadanej skali stanowi filtr pasmowo-przepustowy, przy czym zwiększanie skali powoduje przesunięcie charakterystyki filtru w kierunku niższych częstotliwości, w celu wyodrębnienia wszystkich częstotliwości z przetwarzanego sygnału należy wyznaczyć wartości współczynników transformacji dla nieskończonej liczby skal -- w innym wypadku wszystkie niskie zakresy częstotliwości nie zostaną przetworzone. Naturalnie nie jest to w praktyce możliwe. Aby rozwiązać problem analizy niskich częstotliwości przetwarzanego sygnału, stosuje się tzw. \enquote{funkcję skalującą} nazywaną również \enquote{falką-ojcem}. Funkcja ta, w przeciwieństwie do falki-matki, stanowi filtr dolno-przepustowy i zastępuje określony przedział niskich skal falki-matki -- w ten sposób eliminuje się potrzebę wyznaczania nieskończonej liczby współczynników transformacji przy jednoczesnej możliwości przetworzenia całego widma sygnału. Funkcja skalująca jest ściśle powiązana z falką-matką i jest oznaczana w literaturze jako $\phi(t)$ \cite{wallen_handbook}. Można w tym miejscu zauważyć, że aby dana rodzina falek mogła zostać wykorzystana przez algorytm dyskretnej transformacji falkowej, musi być dla niej określona odpowiednia funkcja skalująca.
+
+Stosując podobne założenia, jak w równaniu \eqref{eqn_dwt_wavelet}, otrzymuje się równanie funkcji skalującej dla dyskretnej wartości numeru skali i przesunięcia w czasie:
+\begin{equation}
+\phi_{m,n}(t) = \frac{1}{\sqrt{2^m}} \phi \left( \frac{t-2n^m}{2^m} \right) dt \label{eqn_dwt_scalefun},
+\end{equation}
+Przy czym funkcję skalującą dla $m = n = 0$ nazywa się w literaturze \enquote{falką-ojcem} \cite{akujuobi_applications}. Właściwością funkcji skalującej jest spełnianie przez nią założenia odnośnie ograniczonej mocy, które jest opisane w postaci:
+\begin{equation}
+\int _{-\infty} ^{\infty} \phi_{0,0}(t) dt = 1 \label{eqn_dwt_fatherwav},
+\end{equation}
+a także ortogonalność względem samej siebie dla dowolnych różnych wartości parametru numeru przesunięcia w czasie. Warto zaznaczyć, że w przypadku zmiany parametru numeru skali kolejne wersje funkcji skalującej nie są wobec siebie ortogonalne. W praktyce jednak nie ma to znaczenia, ponieważ współczynniki transformacji zależne od funkcji skalującej wyznacza się tylko dla jednej wartości parametru numeru skali oraz dla wszystkich dostępnych wartości parametru numeru przesunięcia w czasie. Opisywane zależności będą związane aproksymacją przetwarzanego sygnału.
+
+Omawianą funkcję skalującą można przedstawić również w postaci sumy iloczynów współczynników skalowania oraz wartości przeskalowanej i przesuniętej w czasie funkcji skalującej, co opisuje następującą zależność:
+\begin{equation}
+\phi(t) = \sum _{k} ^{N_k-1} c_k \phi(2t - k) \label{eqn_dwt_scalefunrek},
+\end{equation}
+gdzie $k$ jest dowolną liczbą całkowitą powiązaną ze współczynnikiem skalowania $c_k$. Dodatkowo wszystkie współczynniki $c_k$ muszą spełniać założenia:
+\begin{equation}
+\sum _{k} ^{N_k-1} c_k = 2 \label{eqn_dwt_scalefunsum}.
+\end{equation}
+Należy również zaznaczyć, że w celu zachowania warunku wzajemnej ortogonalności opisywanej rodziny falek, spełnione musi zostać dodatkowe założenie odnośnie wzajemnej relacji pomiędzy kolejnymi wartościami współczynników skalowania, w którym przyjmuje się że:
+\begin{equation}
+\sum _{k} ^{N_k-1} c_k c_{k+2k'} =
+\begin{cases}
+	2 & $gdy$ ~ k' = 0 \\
+	0 & $w pozostałych przypadkach$
+\end{cases}
+\label{eqn_dwt_scalemulort}.
+\end{equation}
+Powyższe założenia zapewniają ortogonalność stworzonych falek w stosunku do funkcji skalującej oraz brak nadmiarowych współczynników wyjściowych algorytmu dyskretnej transformacji falkowej. Tworzone na opisanych zasadach falki posiadają skończoną liczbę niezerowych współczynników skalujących $c_k$, przy czym rząd falki $N_r$ określa liczbę tych współczynników równą $N_k = 2 N_r$. Manipulując odpowiednio znakiem i kolejnością współczynników skalujących istnieje możliwość opisu falki-matki za pomocą równania \cite{wallen_handbook}:
+\begin{equation}
+\psi(t) = \sum _{k} ^{N_k-1} (-1)^k c_{N_k-k-1} \phi(2t - k) \label{eqn_dwt_waveletfunrek}.
+\end{equation}
+Ostatecznie przedstawić można rekursywne zależności opisujące funkcję skalującą i funkcję falki dla dowolnego numeru skali i numeru przesunięcia czasowego za pomocą równań:
+\begin{gather}
+\psi_{m+1,n}(t) = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} c_{k} \psi_{m,2n+k}(t) \label{eqn_dwt_fatherrek}, \\
+\phi_{m+1,n}(t) = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} b_{k} \psi_{m,2n+k}(t) \label{eqn_dwt_matherrek},
+\end{gather}
+przy czym parametr $b_{k}$ przedstawić można jako rekombinacje współczynników skalujących w postaci równania:
+\begin{equation}
+b_{k} = (-1)^k c_{N_k-k-1} \label{eqn_dwt_bk}.
+\end{equation}
+
+Dekompozycja sygnału w przypadku algorytmu dyskretnej transformacji falkowej odbywa się w ten sposób, że sygnał wejściowy podawany jest na wejścia pary filtrów -- górno i dolno przepustowego. Wyjście filtru dolno przepustowego stanowi aproksymacje sygnału, natomiast wyjście filtru górno przepustowego stanowią detale sygnału. Ze względu na fakt, że opisywana operacja dostarcza dwa razy więcej próbek wyjściowych, niż zawierał oryginalny sygnał, co druga próbka wyjściowa jest usuwana w procesie decymacji. Opisywane działanie rozdziela widmo sygnału na dwie części: detale sygnału związane z wysokimi częstotliwościami oraz aproksymacje sygnału powiązaną z niskimi zakresami częstotliwości. Filtr dolno-przepustowy odpowiada charakterystyce funkcji skalującej, natomiast filtr górno-przepustowy charakterystyce falki-matki. Filtr górno-przepustowy jest więc faktycznie filtrem pasmowo-rzepustowym, natomiast ze względu na wartość parametru skali jego częstotliwość środkowa odpowiada częstotliwości Nyquista dla przetwarzanego sygnału -- stąd też można w uproszczeniu nazwać go filtrem górno-przepustowym. Proces dekompozycji sygnału może zostać powtórzony dla aproksymacji sygnału wielokrotnie, zapewniając większą rozdzielczość w dziedzinie częstotliwości kosztem mniejszej rozdzielczości w dziedzinie czasu. Przebieg procesu dekompozycji sygnału dla trzech iteracji opisywanego procesu przedstawiono na rysunku \ref{fig_dwt_decomposition}.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/dwt_dekompozycja}
+\caption{Proces dekompozycji sygnału za pomocą algorytmu Mallata \label{fig_dwt_decomposition}}
+\end{center}
+\end{figure}
+
+W celu rekonstrukcji sygnału należy zastosować odpowiedni bank filtrów, który w parze z bankiem filtrów wejściowych stanowi system zwany kwadraturowymi filtrami lustrzanymi \cite{johnston_filter}. Na wejście opisywanego filtru podać należy współczynniki uzyskane wcześniej na drodze dekompozycji sygnału wykonanej za pomocą lustrzanego filtru. Przebieg procesu rekonstrukcji sygnału dla trzech iteracji opisywanego procesu przedstawiono na rysunku \ref{fig_dwt_reconstruction}.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/dwt_rekonstrukcja}
+\caption{Proces rekonstrukcji sygnału za pomocą algorytmu Mallata \label{fig_dwt_reconstruction}}
+\end{center}
+\end{figure}
+
+Na rysunkach \ref{fig_dwt_decomposition} oraz \ref{fig_dwt_reconstruction} \enquote{strzałką w górę} oznaczono uzupełnianie brakujących wielkości wejściowych współczynnikami o wartości zero. Działanie to wynika z faktu, że liczba wielkości wejściowych jest mniejsza, niż wymagana do wyznaczenia. \enquote{Strzałką w dół} oznaczono natomiast proces decymacji, czyli odrzucania co drugiej wielkości wyjściowej. Pominięcie tego procesu spowodowałoby, że wielkości wyjściowych byłoby dwa razy więcej, niż jest to wymagane w celu rekonstrukcji sygnału. Symbol \enquote{S} na rysunkach oznacza wielkości wyjściowe związane z detalami sygnału, a symbol \enquote{T} wielkości wyjściowe związane z aproksymacją sygnału. Indeks dolny jest związany z numerem iteracji procesu dekompozycji. Opisywany algorytm w literaturze nosi nazwę \enquote{Algorytm Malata} lub \enquote{FWT} (ang. \enquote{Fast Wavelet Transform}) i został opracowany w 1988 roku przez Stéphane Mallata \cite{lujian_mallat}.
+
+Pominiecie procesu decymacji powoduje powstanie nadmiarowych wielkości wyjściowych algorytmu i jest praktykowane w przypadku algorytmu \enquote{UWT} (ang. \enquote{Undecimated Wavelet Transform}). W przypadku tej odmiany algorytmu transformacji falkowej, dla każdego poziomu dekompozycji wyznaczanych jest tyle wielkości wyjściowych, ile wielkości wejściowych zawierał przetwarzany sygnał. Praktyczna realizacja algorytmu niedecymowanej transformacji falkowej jest bardzo podobna do realizacji algorytmu ciągłej transformacji falkowej. Algorytmy dyskretnej transformacji falkowej w klasycznym przypadku posiadają identyczną liczbę próbek wielkości wyjściowych i wejściowych. Istnieją jednak przypadki, w których liczba wielkości wyjściowych jest większa od liczby wielkości wyjściowych -- np. w przypadku falek podwójnej gęstości \cite{selenick_ddenusage}. Różnica ta wynika z modyfikacji procesu dekompozycji sygnału w przypadku falek podwójnej gęstości.
+
+Zgodnie z przedstawionymi wcześniej zależnościami, omawiany proces dekompozycji sygnału można opisać również rekurencyjnie za pomocą równań \cite{wallen_handbook}:
+\begin{gather}
+S_{m+1,n} = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} c_{k} S_{m,2n+k} \label{eqn_dwt_aproxrek}, \\
+T_{m+1,n} = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} b_{k} S_{m,2n+k} \label{eqn_dwt_detailrek},
+\end{gather}
+natomiast proces rekonstrukcji sygnału opisać można za pomocą równania:
+\begin{equation}
+S_{m-1,n} = \frac{1}{\sqrt{2}} \left( \sum _{k} ^{N_k-1} c_{n-2k} S_{m,k} + \sum _{k} ^{N_k-1} b_{n-2k} T_{m,k} \right) \label{eqn_dwt_reconrek},
+\end{equation}
+gdzie $S_{0,i}$ jest $i$-tą próbką przetwarzanego sygnału, $S_{m+1,n}$ aproksymacjami, a $T_{m+1,n}$ detalami sygnału dla zadanego numeru skali i przesunięcia w czasie. Współczynniki $c_i$ oraz $b_i$ są niezerowe tylko dla $i$ należących do przedziału $<0;N_k-1>$ -- poza tym przedziałem są one równe zero.
+
+Wartości i liczba współczynników $c$ oraz $b$ zależy od zastosowanej rodziny falek i jej rzędu. W przypadku, gdy w wektorze wielkości wejściowych nie istnieje element o zadanym indeksie (tj. zachodzi $S_{m,i}$ lub $T_{m,i}$ dla $i \ge N$) należy przyjąć w obliczeniach wartość dla indeksu $i' = i \text{ mod } N$ gdzie \enquote{mod} jest resztą z dzielenia wyrazu po lewej stronie operatora przez wyraz z prawej strony operatora. W ten sam sposób postępować należy w przypadku procesu rekonstrukcji sygnału.
+
+Ze względu na fakt, że ciągła transformacja falkowa jest w praktyce niemożliwa w realizacji, natomiast proces decymacji nie jest zwykle pomijany ze względu na brak potrzeby wyznaczania nadmiarowej liczby współczynników, dalsza część pracy poświęcona będzie algorytmowi dyskretnej transformacji falkowej. Przedstawiany w pracy sposób analizy właściwości metrologicznych będzie jednak jednolity dla rzeczywistych implementacji omawianych algorytmów.
+
+\section{Bank filtrów algorytmu}
+
+Zależnie od wymaganych kryteriów podczas stosowania algorytmów transformacji falkowej wybiera się odpowiednią do analizowanego sygnału falkę-matkę. Wybór falki-matki ma ogromny wpływ na proces dekompozycji sygnału, ponieważ to właśnie od niej zależą parametry banku filtrów, na którego wejście podawany jest przetwarzany przez algorytm sygnał. W przypadku algorytmów ciągłej transformacji falkowej istnieje możliwość zastosowania dowolnie dużej liczby kombinacji wartości parametru skali i przesunięcia w czasie, przez co dekompozycja sygnału jest bardziej dokładna.
+
+Na rysunkach \ref{fig_demo_db}, \ref{fig_demo_spline} oraz \ref{fig_demo_dden} zaprezentowano przykładowe banki filtrów, gdzie na osi poziomej przedstawiono częstotliwość znormalizowaną do połowy częstotliwości próbkowania (częstotliwości Nyquista), a na osi pionowej znormalizowane do jedności wzmocnienie. Wzmocnienie zostało znormalizowane z osobna dla każdego poziomu dekompozycji w celu uczytelnienia wykresów i możliwości ich łatwiejszego porównywania. Kolorem niebieskim oznaczono na rysunkach charakterystyki filtru dolno-przepustowego powstałego na bazie funkcji skalującej. Pozostałe filtry powstały na bazie odpowiednio przeskalowanej falki-matki. Należy zauważyć, że w przypadku dyskretnej wersji algorytmu transformacji falkowej, w praktyce liczba etapów procesu dekompozycji jest ograniczona -- wraz ze zwiększaniem tej liczby maleje rozdzielczość w skali czasu dla aproksymacji sygnału, aż do chwili gdy aproksymacje sygnału stanowi jedna wielkość wyjściowa \cite{wallen_handbook}.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/bank_db_demo}
+\caption{Banki filtrów dla falki \enquote{Daubechies} \label{fig_demo_db}}
+\end{center}
+\end{figure}
+
+Na podstawie wykresu zauważyć można, że dla kolejnych parametrów skali pasmo przenoszenia filtru jest o połowę mniejsze w stosunku do pasma przenoszenia filtru poprzedniej skali. Zgodnie z przedstawionymi charakterystykami, kolejne etapy dekompozycji sygnału przenoszą zatem fragment widma analizowanego sygnału zgodnie z charakterystyką zastosowanej falki-matki. Zależnie od właściwości falki-matki zbudowane na jej podstawie filtry mogą być mniej lub bardziej selektywne (wykazywać inną stromość charakterystyki filtru), czy też wykazywać cechy filtrów grzebieniowych (mogą przenosić kilka zakresów częstotliwości). Im bardziej skomplikowany będzie kształt falki i wyższy będzie jej rząd, tym zwykle bardziej selektywny będzie filtr stworzony na jej bazie. Wzrost liczby iteracji dekompozycji sygnału wprowadza kolejne filtry o węższym niż dla mniejszej liczby iteracji paśmie przenoszenia. Z analizy przedstawionych rysunków wynika, że w przypadku wszystkich przedstawionych rodzin falek, wzrost rzędu falki powoduje wzrost selektywności kolejnych filtrów. Część z przedstawionych falek zapewnia filtry podobne do filtrów grzebieniowych -- pasmo przenoszenia tych filtrów składa się z kilku przedziałów częstotliwości.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/bank_spline_demo}
+\caption{Banki filtrów dla falki \enquote{Spline} \label{fig_demo_spline}}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/bank_dden_demo}
+\caption{Banki filtrów dla falki \enquote{podwójnej gęstości} \label{fig_demo_dden}}
+\end{center}
+\end{figure}
+
+Przedstawiona na osi pionowej maksymalna wartość wzmocnienia w funkcji częstotliwości sygnału może być w rzeczywistości większa od jedności. W praktyce każdy z fragmentów banku filtrów traktować można jako pasmowo-przepustowy filtr i opisywać za pomocą modelu filtru o skończonej odpowiedzi impulsowej (\enquote{FIR}). Z punktu widzenia pojedynczej wielkości wyjściowej, algorytm transformacji falkowej może być zatem rozumiany jako odpowiednio zaprojektowany filtr, który z sygnału wejściowego przenosi na wyjście wybrane harmoniczne sygnału wejściowego z odpowiednim wzmocnieniem i przesunięciem fazowym.
+
+Przedstawione cechy banku filtrów będą bardzo istotne w dalszym etapie pracy w szczególności do określania, w jaki sposób algorytm przenosi błędy opisane w pracy jako dynamiczne. Należy zauważyć, że skoro kolejne filtry w banku odpowiadają kolejnym etapom dekompozycji sygnału, to w większości przypadków właściwości metrologiczne będą jednakowe dla wszystkich wielkości wyjściowych powiązanych z identycznym etapem dekompozycji sygnału.
+
+W pewnych przypadkach wypadkowe właściwości toru pomiarowego mogą ulec zmianie, jeżeli wprowadzona zostanie dodatkowa modyfikacja wielkości wejściowych algorytmu transformacji falkowej (np. wprowadzone zostanie okno pomiarowe lub dodatkowy algorytm filtru). Należy w takim przypadku analizować właściwości metrologiczne każdej wielkości wyjściowej z osobna, a nie jak w klasycznym przypadku analizować je dla danego etapu dekompozycji. Taką modyfikację można również rozpatrywać w sposób identyczny, jak zmianę parametrów banku filtrów.
+
+\section{Macierzowa postać algorytmu}
+
+Ze względu na bardzo dużą liczbę opisanych w literaturze falek \cite{akujuobi_applications}, ich unikatowe właściwości oraz możliwość zmiany parametrów procesu dekompozycji sygnału, metody analityczne określenia właściwości metrologicznych dla wybranej kombinacji parametrów okazują się czasochłonne i niepraktyczne \cite{yan_uncertainty, wilczok_uncertainty, peretto_uncertainty, sarrafi_uncertainty}. Część opisywanych w literaturze falek obejmuje falki: \enquote{Daubechies} \cite{vonesch_dbbasics}, \enquote{Haara} \cite{stankovic_haar}, \enquote{Coiflet} \cite{wei_coiflet}, \enquote{Biortogonalne} \cite{sweldens_bior}, \enquote{Morleta} \cite{cohen_morlet}, \enquote{Meksykańskiej czapki} \cite{singh_mexican}, \enquote{Spline} \cite{averbuch_spline, wang_splinebasics}. Każdą falkę oraz przypisaną do niej funkcję skalującą opisują odpowiednie równania, przy czym nie zawsze są one zadane w postaci jawnej -- w wielu przypadkach rodzina falek opisana jest przez zbiór zależności określających wymagane przez nią założenia, co jeszcze bardziej komplikuje proces analizy tych algorytmów \cite{rowe_dbmath}.
+
+Podczas projektowania toru pomiarowego często istnieje potrzeba zmiany parametrów algorytmu transformacji falkowej, co pociąga za sobą konieczność przeprowadzenia powtórnej analizy jego właściwości metrologicznych. Wszystkie te czynniki sprawiają, że analiza ta jest najczęściej pomijana w pracach opisujących aplikacje omawianych algorytmów. Z opisywanych właściwości algorytmów transformacji falkowej wynika potrzeba przedstawienia uniwersalnej metody umożliwiającej analizę właściwości metrologicznych tych algorytmów. Metoda ta musi być przystępna w aplikacji oraz musi zakładać, że projektant toru pomiarowego nie jest ekspertem w dziedzinie transformacji falkowej, a jedynie użytkownikiem tej transformacji. Co więcej, ewentualna zmiana parametrów zastosowanego algorytmu nie może być kłopotliwa z punktu widzenia określenia nowych właściwości metrologicznych analizowanego algorytmu.
+
+Problem skomplikowanej analizy algorytmów transformacji falkowej, podobnie jak w przypadku innych algorytmów przetwarzających ciągi danych, uprościć można przedstawiając analizowany algorytm w postaci macierzowej. Wektor wielkości wyjściowych algorytmu jest wtedy równy iloczynowi macierzy transformacji i wektora wielkości wejściowych zgodnie z równaniem \eqref{eqn_alg_out_mat}. Przedstawienie algorytmu transformacji falkowej w formie macierzowej umożliwi stworzenie jednolitego i uniwersalnego opisu działania tego algorytmu oraz w znaczącym stopniu ułatwi jego analizę w kolejnych rozdziałach pracy. Zwykle projektant toru pomiarowego nie jest ekspertem w dziedzinie falek -- jest on ekspertem w dziedzinie analizowanego zjawiska, a transformacja falkowa jest dla niego jedynie narzędziem, umożliwiającym jego analizę. Stąd w większości przypadków osoba ta stosuje gotowe biblioteki, zaimplementowane np. dla środowisk \enquote{Matlab}, \enquote{GNU Octave} czy \enquote{PyWavelets} \cite{lee_pywavelets, misiti_matlabwav}.
+
+W celu identyfikacji wartości współczynników macierzy transformacji należy zastosować metodę opisaną w poprzednim rozdziale pracy lub wyznaczyć go analitycznie, jak zostanie to przedstawione w dalszej cześć rozdziału. Opisany wcześniej algorytm identyfikacji macierzy transformacji może być z łatwością zaimplementowany w środowiskach, które implementują algorytmy transformacji falkowej, przez co projektant toru pomiarowego z łatwością jest w stanie go zastosować. Ewentualna zmiana parametrów algorytmu transformacji falkowej (zmiana liczby wielkości wejściowych, liczby iteracji procesu dekompozycji, czy wybór innej falki-matki) skutkować będzie jedynie koniecznością ponownej identyfikacji wartości współczynników macierzy transformacji. W odróżnieniu od metod analitycznych nie zachodzi tutaj potrzeba stosowania skomplikowanych funkcjonałów w celu analizy zastosowanego algorytmu.
+
+Poza opisanym algorytmem identyfikacji współczynników macierzy transformacji, bazującym na gotowej implementacji omawianego algorytmu, istnieje możliwość ich wyznaczenia przy użyciu zależności przedstawionych we wcześniejszej części rozdziału opisującej właściwości algorytmu dyskretnej transformacji falkowej. Proces ten jest jednak skomplikowany i uzależniony od założeń związanych z opisem zastosowanej falki-matki i jej funkcji skalującej. Poniżej zostanie przedstawiony przykład wyznaczania wartości macierzy transformacji w przypadku zastosowania falki \enquote{db2} dla dwóch iteracji procesu dekompozycji sygnału oraz ośmiu próbek wejściowych sygnału. Macierz transformacji będzie miała zatem wymiary ośmiu wierszy i ośmiu kolumn, natomiast wektor próbek wejściowych oraz wektor próbek wyjściowych będą zawierały po osiem elementów.
+
+Rodzina falek \enquote{Daubechies} (w skrócie \enquote{db}) została opisana przez Ingrid Daubechies \cite{vonesch_dbbasics}, cechuje się ortogonalnością, natomiast nie wykazuje cech symetrii. Poza założeniami opisanymi w poprzednim podrozdziale rodzina ta spełnia dodatkowe założenie odnośnie relacji pomiędzy kolejnymi współczynnikami skalującymi:
+\begin{equation}
+\sum _{k} ^{N_k-1} (-1)^{k} c_{k} k^{m} = 0 \label{eqn_db_musthave},
+\end{equation}
+gdzie $m$ jest liczbą całkowitą z przedziału $<0;\frac{N_k}{2}-1>$.
+
+W przypadku falek \enquote{db} oraz ich pochodnych, rząd falki wynosi $\frac{N_k}{2}$. Falka \enquote{db2}, będąca falką drugiego rzędu, posiada cztery niezerowe współczynniki skalujące. W literaturze spotkać się można również z oznaczeniem \enquote{D4} dla omawianej falki, gdzie zamiast rzędu falki wskazana jest liczba niezerowych współczynników skalujących. Falka \enquote{Daubechies} rzędu pierwszego jest opisana identycznymi zależnościami, jak falka Hara. Z falek \enquote{Daubechies} wywodzą się kolejne rodziny: \enquote{Symleth} oraz \enquote{Coiflet}, które uzupełniają ją o kolejne cechy -- w szczególności symetrię, istotną podczas przetwarzania i analizy obrazów.
+
+Jako, że falka \enquote{db2} posiada cztery niezerowe współczynniki skalujące oznaczone jako $c_0, c_1, c_2, c_3$, to zgodnie z równaniem \eqref{eqn_dwt_scalefunrek} oraz równaniem \eqref{eqn_dwt_waveletfunrek}, zapisać można równanie falki-matki i funkcji skalującej w postaci:
+\begin{gather}
+\phi(t) = c_0 \phi(2t) + c_1 \phi(2t - 1) + c_2 \phi(2t - 2) + c_3 \phi(2t - 3) \label{eqn_db2_scalefunrek}, \\
+\psi(t) = c_3 \phi(2t) - c_2 \phi(2t - 1) + c_1 \phi(2t - 2) - c_0 \phi(2t - 3) \label{eqn_db2_waveletfunrek}.
+\end{gather}
+
+Uwzględniając założenia przedstawione w poprzedniej części rozdziału oraz te wskazane powyżej, zapisać można układ równań wiążący wszystkie przedstawione zależności w postaci:
+\begin{equation}
+\begin{cases}
+	c_0 + c_1 + c_2 + c_3 = 2         & $na podstawie właściwości \eqref{eqn_dwt_scalefunsum}$ \\
+	c_0^2 + c_1^2 + c_2^2 + c_3^2 = 2 & $na podstawie właściwości \eqref{eqn_dwt_scalemulort}$ \\
+	c_0 - c_1 + c_2 - c_3 = 0         & $na podstawie \eqref{eqn_db_musthave} dla $ m = 0 \\
+	- 1 c_1 + 2 c_2 - 3 c_3 = 0       & $na podstawie \eqref{eqn_db_musthave} dla $ m = 1
+\end{cases}
+\label{eqn_db2_system},
+\end{equation}
+oraz wskazać jego rozwiązanie, które determinuje następujące wartości kolejnych współczynników skalujących:
+\begin{equation}
+c_0 = \frac{1 + \sqrt{3}}{4}, c_1 = \frac{3 + \sqrt{3}}{4}, c_2 = \frac{3 - \sqrt{3}}{4}, c_3 = \frac{1 - \sqrt{3}}{4} \label{eqn_db2_coefs}.
+\end{equation}
+
+Zgodnie z założeniami odnośnie długości wektora wielkości wejściowych oraz liczby poziomów dekompozycji zauważyć można, że wektor wielkości wyjściowych zawierać będzie dwie próbki związane z aproksymacją sygnału dla skali $m = 2$, dwie próbki związane z detalami sygnału dla skali $m = 2$ oraz cztery próbki związane z detalami dla skali $m = 1$. Oznaczając wektor wielkości wejściowych analizowanego algorytmu jako:
+\begin{equation}
+\mathbf{x} = \left[ S_{0,0} ~ S_{0,1} ~ S_{0,2} ~ S_{0,3} ~ S_{0,4} ~ S_{0,5} ~ S_{0,6} ~ S_{0,7} \right] \label{eqn_db2_invect},
+\end{equation}
+wektor wielkości wyjściowych można opisać w postaci:
+\begin{equation}
+\mathbf{X} = \left[ S_{2,0} ~ S_{2,1} ~ T_{2,0} ~ T_{2,1} ~ T_{1,0} ~ T_{1,1} ~ T_{1,2} ~ T_{1,3} \right] \label{eqn_db2_outvect},
+\end{equation}
+a następnie zgodnie z równaniem \eqref{eqn_dwt_aproxrek} oraz \eqref{eqn_dwt_detailrek} opisać można kolejne wymienione w równaniu \eqref{eqn_db2_outvect} wielkości wyjściowe za pomocą zależności:
+\begin{gather}
+S_{2,0} = \frac{1}{\sqrt{2}} \left( c_0 S_{1,0} + c_1 S_{1,1} + c_2 S_{1,2} + c_3 S_{1,3} \right) \label{eqn_db2_outvect_s_2_0}, \\
+S_{2,1} = \frac{1}{\sqrt{2}} \left( c_0 S_{1,2} + c_1 S_{1,3} + c_2 S_{1,4} + c_3 S_{1,5} \right) \label{eqn_db2_outvect_s_2_1}, \\
+T_{2,0} = \frac{1}{\sqrt{2}} \left( c_3 S_{1,0} - c_2 S_{1,1} + c_1 S_{1,2} - c_0 S_{1,3} \right) \label{eqn_db2_outvect_t_2_0}, \\
+T_{2,1} = \frac{1}{\sqrt{2}} \left( c_3 S_{1,2} - c_2 S_{1,3} + c_1 S_{1,4} - c_0 S_{1,5} \right) \label{eqn_db2_outvect_t_2_1}, \\
+T_{1,0} = \frac{1}{\sqrt{2}} \left( c_3 S_{0,0} - c_2 S_{0,1} + c_1 S_{0,2} - c_0 S_{0,3} \right) \label{eqn_db2_outvect_t_1_0}, \\
+T_{1,1} = \frac{1}{\sqrt{2}} \left( c_3 S_{0,2} - c_2 S_{0,3} + c_1 S_{0,4} - c_0 S_{0,5} \right) \label{eqn_db2_outvect_t_1_1}, \\
+T_{1,2} = \frac{1}{\sqrt{2}} \left( c_3 S_{0,4} - c_2 S_{0,5} + c_1 S_{0,6} - c_0 S_{0,7} \right) \label{eqn_db2_outvect_t_1_2}, \\
+T_{1,3} = \frac{1}{\sqrt{2}} \left( c_3 S_{0,6} - c_2 S_{0,7} + c_1 S_{0,0} - c_0 S_{0,1} \right) \label{eqn_db2_outvect_t_1_3},
+\end{gather}
+gdzie $S_{m,n}$ oznaczono aproksymacje, natomiast $T_{m,n}$ detale sygnału dla zadanego numeru skali i numeru przesunięcia w czasie. Po przekształceniu otrzymuje się równania:
+\begin{gather}
+\begin{split}
+S_{2,0}  = ~
+	& \frac{1}{\sqrt{2}} \frac{c_0}{\sqrt{2}} \left( c_0 S_{0,0} + c_1 S_{0,1} + c_2 S_{0,2} + c_3 S_{0,3} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_1}{\sqrt{2}} \left( c_0 S_{0,2} + c_1 S_{0,3} + c_2 S_{0,4} + c_3 S_{0,5} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_2}{\sqrt{2}} \left( c_0 S_{0,4} + c_1 S_{0,5} + c_2 S_{0,6} + c_3 S_{0,7} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_3}{\sqrt{2}} \left( c_0 S_{0,6} + c_1 S_{0,7} + c_2 S_{0,0} + c_3 S_{0,1} \right)
+\end{split}
+\label{eqn_db2_outvect_s_2_0_rek}, \\
+\begin{split}
+S_{2,1}  = ~
+	& \frac{1}{\sqrt{2}} \frac{c_0}{\sqrt{2}} \left( c_0 S_{0,4} + c_1 S_{0,5} + c_2 S_{0,6} + c_3 S_{0,7} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_1}{\sqrt{2}} \left( c_0 S_{0,6} + c_1 S_{0,7} + c_2 S_{0,0} + c_3 S_{0,1} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_2}{\sqrt{2}} \left( c_0 S_{0,0} + c_1 S_{0,1} + c_2 S_{0,2} + c_3 S_{0,3} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_3}{\sqrt{2}} \left( c_0 S_{0,2} + c_1 S_{0,3} + c_2 S_{0,4} + c_3 S_{0,5} \right)
+\end{split}
+\label{eqn_db2_outvect_s_2_1_rek}, \\
+\begin{split}
+T_{2,0}  = ~
+	& \frac{1}{\sqrt{2}} \frac{c_3}{\sqrt{2}} \left( c_0 S_{0,0} + c_1 S_{0,1} + c_2 S_{0,2} + c_3 S_{0,3} \right) - \\
+	& \frac{1}{\sqrt{2}} \frac{c_2}{\sqrt{2}} \left( c_0 S_{0,2} + c_1 S_{0,3} + c_2 S_{0,4} + c_3 S_{0,5} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_1}{\sqrt{2}} \left( c_0 S_{0,4} + c_1 S_{0,5} + c_2 S_{0,6} + c_3 S_{0,7} \right) - \\
+	& \frac{1}{\sqrt{2}} \frac{c_0}{\sqrt{2}} \left( c_0 S_{0,6} + c_1 S_{0,7} + c_2 S_{0,0} + c_3 S_{0,1} \right)
+\end{split}
+\label{eqn_db2_outvect_t_2_0_rek}, \\
+\begin{split}
+T_{2,1}  = ~
+	& \frac{1}{\sqrt{2}} \frac{c_3}{\sqrt{2}} \left( c_0 S_{0,4} + c_1 S_{0,5} + c_2 S_{0,6} + c_3 S_{0,7} \right) - \\
+	& \frac{1}{\sqrt{2}} \frac{c_2}{\sqrt{2}} \left( c_0 S_{0,6} + c_1 S_{0,7} + c_2 S_{0,0} + c_3 S_{0,1} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_1}{\sqrt{2}} \left( c_0 S_{0,0} + c_1 S_{0,1} + c_2 S_{0,2} + c_3 S_{0,3} \right) - \\
+	& \frac{1}{\sqrt{2}} \frac{c_0}{\sqrt{2}} \left( c_0 S_{0,2} + c_1 S_{0,3} + c_2 S_{0,4} + c_3 S_{0,5} \right)
+\end{split}
+\label{eqn_db2_outvect_t_2_1_rek}.
+\end{gather}
+Grupując odpowiednie wyrazy w zależnościach od \eqref{eqn_db2_outvect_s_2_0_rek} do \eqref{eqn_db2_outvect_t_2_1_rek}, a następnie podstawiając $S_{0,i} = x_{i} = x(i)$, otrzymuje się:
+\begin{gather}
+\begin{split}
+S_{2,0} = ~
+	& \frac{c_0^2 + c_2 c_3}{2} x_0 + \frac{c_0 c_1 + c_3^2}{2} x_1 + \frac{c_0 c_2 + c_0 c_1}{2} x_2 + \frac{c_0 c_3 + c_1^2}{2} x_3 + \\
+	& \frac{c_1 c_2 + c_0 c_2}{2} x_4 + \frac{c_1 c_3 + c_1 c_2}{2} x_5 + \frac{c_2^2 + c_0 c_3}{2} x_6 + \frac{c_2 c_3 + c_1 c_3}{2} x_7
+\end{split}
+\label{eqn_db2_outvect_s_2_0_full}, \\
+\begin{split}
+S_{2,1} = ~
+	& \frac{c_1 c_2 + c_0 c_2}{2} x_0 + \frac{c_1 c_3 + c_1 c_2}{2} x_1 + \frac{c_2^2 + c_0 c_3}{2} x_2 + \frac{c_2 c_3 + c_1 c_3}{2} x_3 + \\
+	& \frac{c_0^2 + c_2 c_3}{2} x_4 + \frac{c_0 c_1 + c_3^2}{2} x_5 + \frac{c_0 c_2 + c_0 c_1}{2} x_6 + \frac{c_0 c_3 + c_1^2}{2} x_7
+\end{split}
+\label{eqn_db2_outvect_s_2_1_full}, \\
+\begin{split}
+T_{2,0} = ~
+	& \frac{c_0 c_3 - c_0 c_2}{2} x_0 + \frac{c_1 c_3 - c_0 c_3}{2} x_1 + \frac{c_2 c_3 - c_0 c_2}{2} x_2 + \frac{c_3^2 - c_1 c_2}{2} x_3 + \\
+	& \frac{c_0 c_1 - c_2^2}{2} x_4 + \frac{c_1^2 - c_2 c_3}{2} x_5 + \frac{c_1 c_2 - c_0^2}{2} x_6 + \frac{c_1 c_3 - c_0 c_1}{2} x_7
+\end{split}
+\label{eqn_db2_outvect_t_2_0_full}, \\
+\begin{split}
+T_{2,1} = ~
+	& \frac{c_0 c_1 - c_2^2}{2} x_0 + \frac{c_1^2 - c_2 c_3}{2} x_1 + \frac{c_1 c_2 - c_0^2}{2} x_2 + \frac{c_1 c_3 - c_0 c_1}{2} x_3 + \\
+	& \frac{c_0 c_3 - c_0 c_2}{2} x_4 + \frac{c_1 c_3 - c_0 c_3}{2} x_5 + \frac{c_2 c_3 - c_0 c_2}{2} x_6 + \frac{c_3^2 - c_1 c_2}{2} x_7
+\end{split}
+\label{eqn_db2_outvect_t_2_1_full}, \\
+T_{1,0} = \frac{c_3}{\sqrt{2}} x_0 + \frac{- c_2}{\sqrt{2}} x_1 + \frac{c_1}{\sqrt{2}} x_2 + \frac{- c_0}{\sqrt{2}} x_3 + \frac{0}{\sqrt{2}} x_4 + \frac{0}{\sqrt{2}} x_5 + \frac{0}{\sqrt{2}} x_6 + \frac{0}{\sqrt{2}} x_7 \label{eqn_db2_outvect_t_1_0_full}, \\
+T_{1,1} = \frac{0}{\sqrt{2}} x_0 + \frac{0}{\sqrt{2}} x_1 + \frac{c_3}{\sqrt{2}} x_2 + \frac{- c_2}{\sqrt{2}} x_3 + \frac{c_1}{\sqrt{2}} x_4 + \frac{- c_0}{\sqrt{2}} x_5 + \frac{0}{\sqrt{2}} x_6 + \frac{0}{\sqrt{2}} x_7 \label{eqn_db2_outvect_t_1_1_full}, \\
+T_{1,2} = \frac{0}{\sqrt{2}} x_0 + \frac{0}{\sqrt{2}} x_1 + \frac{0}{\sqrt{2}} x_2 + \frac{0}{\sqrt{2}} x_3 + \frac{c_3}{\sqrt{2}} x_4 + \frac{- c_2}{\sqrt{2}} x_5 + \frac{c_1}{\sqrt{2}} x_6 + \frac{- c_0}{\sqrt{2}} x_7 \label{eqn_db2_outvect_t_1_2_full}, \\
+T_{1,3} = \frac{c_1}{\sqrt{2}} x_0 + \frac{- c_0}{\sqrt{2}} x_1 + \frac{0}{\sqrt{2}} x_2 + \frac{0}{\sqrt{2}} x_3 + \frac{0}{\sqrt{2}} x_4 + \frac{0}{\sqrt{2}} x_5 + \frac{c_3}{\sqrt{2}} x_6 + \frac{- c_2}{\sqrt{2}} x_7 \label{eqn_db2_outvect_t_1_3_full}.
+\end{gather}
+Następnie, uwzględniając w równaniu \eqref{eqn_alg_out_mat} kolejność elementów wektora wielkości wyjściowych zgodną z założoną w równaniu \eqref{eqn_db2_outvect}, zapisać można:
+\begin{gather}
+S_{2,0} = a_{0,0} x_0 + a_{0,1} x_1 + a_{0,2} x_2 + a_{0,3} x_3 + a_{0,4} x_4 + a_{0,5} x_5 + a_{0,6} x_6 + a_{0,7} x_7 \label{eqn_db2_outvect_s_2_0_row}, \\
+S_{2,1} = a_{1,0} x_0 + a_{1,1} x_1 + a_{1,2} x_2 + a_{1,3} x_3 + a_{1,4} x_4 + a_{1,5} x_5 + a_{1,6} x_6 + a_{1,7} x_7 \label{eqn_db2_outvect_s_2_1_row}, \\
+T_{2,0} = a_{2,0} x_0 + a_{2,1} x_1 + a_{2,2} x_2 + a_{2,3} x_3 + a_{2,4} x_4 + a_{2,5} x_5 + a_{2,6} x_6 + a_{2,7} x_7 \label{eqn_db2_outvect_t_2_0_row}, \\
+T_{2,1} = a_{3,0} x_0 + a_{3,1} x_1 + a_{3,2} x_2 + a_{3,3} x_3 + a_{3,4} x_4 + a_{3,5} x_5 + a_{3,6} x_6 + a_{3,7} x_7 \label{eqn_db2_outvect_t_2_1_row}, \\
+T_{1,0} = a_{4,0} x_0 + a_{4,1} x_1 + a_{4,2} x_2 + a_{4,3} x_3 + a_{4,4} x_4 + a_{4,5} x_5 + a_{4,6} x_6 + a_{4,7} x_7 \label{eqn_db2_outvect_t_1_0_row}, \\
+T_{1,1} = a_{5,0} x_0 + a_{5,1} x_1 + a_{5,2} x_2 + a_{5,3} x_3 + a_{5,4} x_4 + a_{5,5} x_5 + a_{5,6} x_6 + a_{5,7} x_7 \label{eqn_db2_outvect_t_1_1_row}, \\
+T_{1,2} = a_{6,0} x_0 + a_{6,1} x_1 + a_{6,2} x_2 + a_{6,3} x_3 + a_{6,4} x_4 + a_{6,5} x_5 + a_{6,6} x_6 + a_{6,7} x_7 \label{eqn_db2_outvect_t_1_2_row}, \\
+T_{1,3} = a_{7,0} x_0 + a_{7,1} x_1 + a_{7,2} x_2 + a_{7,3} x_3 + a_{7,4} x_4 + a_{7,5} x_5 + a_{7,6} x_6 + a_{7,7} x_7 \label{eqn_db2_outvect_t_1_3_row}.
+\end{gather}
+
+Powyższe zależności pozwalają wyznaczyć wartości współczynników macierzy transformacji dla analizowanego algorytmu dyskretnej transformacji falkowej. Po podstawieniu wartości zgodnie z zależnością \eqref{eqn_db2_coefs} oraz biorąc pod uwagę równania od \eqref{eqn_db2_outvect_s_2_0_row} do \eqref{eqn_db2_outvect_t_1_3_row} macierz transformacji przyjmuje postać:
+\begin{equation}
+\mathbf{A} = \\
+\begin{bmatrix}
+\frac{5 - \sqrt{3}}{16} & \frac{5 + \sqrt{3}}{16} & \frac{3 + 3 \sqrt{3}}{16} & \frac{5 + 3 \sqrt{3}}{16} & \frac{3 + \sqrt{3}}{16} & \frac{3 - \sqrt{3}}{16} & \frac{5 - 3 \sqrt{3}}{16} & \frac{3 - 3 \sqrt{3}}{16} \\
+\frac{3 + \sqrt{3}}{16} & \frac{3 - \sqrt{3}}{16} & \frac{5 - 3 \sqrt{3}}{16} & \frac{3 - 3 \sqrt{3}}{16} & \frac{5 - \sqrt{3}}{16} & \frac{5 + \sqrt{3}}{16} & \frac{3 + 3 \sqrt{3}}{16} & \frac{5 + 3 \sqrt{3}}{16} \\
+- \frac{1 + \sqrt{3}}{16} & \frac{1 - \sqrt{3}}{16} & \frac{3 - 3 \sqrt{3}}{16} & - \frac{1 + \sqrt{3}}{16} & - \frac{3 - 5 \sqrt{3}}{16} & \frac{3 + 5 \sqrt{3}}{16} & \frac{1 - \sqrt{3}}{16} & - \frac{3 + 3 \sqrt{3}}{16} \\
+- \frac{3 - 5 \sqrt{3}}{16} & \frac{3 + 5 \sqrt{3}}{16} & \frac{1 - \sqrt{3}}{16} & - \frac{3 + 3 \sqrt{3}}{16} & - \frac{1 + \sqrt{3}}{16} & \frac{1 - \sqrt{3}}{16} & \frac{3 - 3 \sqrt{3}}{16} & - \frac{1 + \sqrt{3}}{16} \\
+\frac{1 - \sqrt{3}}{4 \sqrt{2}} & - \frac{3 - \sqrt{3}}{4 \sqrt{2}} & \frac{3 + \sqrt{3}}{4 \sqrt{2}} & - \frac{1 + \sqrt{3}}{4 \sqrt{2}} & 0 & 0 & 0 & 0 \\
+0 & 0 & \frac{1 - \sqrt{3}}{4 \sqrt{2}} & - \frac{3 - \sqrt{3}}{4 \sqrt{2}} & \frac{3 + \sqrt{3}}{4 \sqrt{2}} & - \frac{1 + \sqrt{3}}{4 \sqrt{2}} & 0 & 0 \\
+0 & 0 & 0 & 0 & \frac{1 - \sqrt{3}}{4 \sqrt{2}} & - \frac{3 - \sqrt{3}}{4 \sqrt{2}} & \frac{3 + \sqrt{3}}{4 \sqrt{2}} & - \frac{1 + \sqrt{3}}{4 \sqrt{2}} \\
+\frac{3 + \sqrt{3}}{4 \sqrt{2}} & - \frac{1 + \sqrt{3}}{4 \sqrt{2}} & 0 & 0 & 0 & 0 & \frac{1 - \sqrt{3}}{4 \sqrt{2}} & - \frac{3 - \sqrt{3}}{4 \sqrt{2}}
+\end{bmatrix}
+\label{eqn_db2_2_8_matrix}.
+\end{equation}
+W analogiczny sposób wyznaczyć można wartości elementów macierzy transformacji dla innej liczby wielkości wejściowych algorytmu oraz dowolnej liczby poziomów dekompozycji. W przypadku zastosowania innych rodzin falek należy zastosować odpowiednie dla nich założenia i na ich podstawie wyznaczyć kolejne wielkości niezbędne do określenia wartości elementów identyfikowanej macierzy.
+
+\section{Przenoszenie błędów przez algorytm}
+
+Jako, że algorytm transformacji falkowej przedstawić można w formie macierzowej, istnieje możliwość analizy jego właściwości metrologicznych zgodnie z metodą przedstawioną w poprzednim rozdziale pracy. Należy zauważyć, że parametry macierzy transformacji wynikające z charakterystyki zastosowanej falki-matki są kluczowym czynnikiem mającym wpływ na związek pomiędzy wariancją błędu analizowanej wielkości wyjściowej, a wariancją błędu wielkości wejściowych. Zgodnie z centralnym twierdzeniem granicznym, bez względu na rozkład błędów losowych wielkości wejściowych algorytmu, kształt rozkładu błędu losowego będzie zbliżony do rozkładu normalnego \cite{jcgm_guide}. Powyższe założenie jest prawdziwe wtedy, gdy algorytm przetwarza wielokrotnie błędy losowe o tych samych parametrach.
+
+Analizując macierz transformacji przedstawioną w równaniu \eqref{eqn_db2_2_8_matrix} zauważyć można, że jest ona podzielona z punktu widzenia wierszy na kilka charakterystycznych obszarów, gdzie liczba obszarów zależna jest od liczby iteracji procesu dekompozycji sygnału. Każdy z obszarów odpowiada kolejnemu wyjściu algorytmu dekompozycji sygnału, przedstawionemu na rysunku \ref{fig_dwt_decomposition}. W obrębie danego obszaru zakres wartości współczynników macierzy nie ulega zmianie, przy czym pozycje poszczególnych wartości są przesunięte o dwie kolumny w prawo w stosunku do wiersza poprzedniego. Zjawisko to wynika z przesunięcia okna pomiarowego (zmiany parametru przesunięcia falki), a wartość dwa wynika z przeprowadzenia procesu decymacji (do druga wartość jest odrzucana). Z punktu widzenia analizy metrologicznej zauważyć można, że wielkości wyjściowe związane z tym samym parametrem skali mogą być analizowane równocześnie, gdyż odpowiada im filtr o tych samych parametrach, przez co wartości określone równaniami od \eqref{eqn_alg_trans_stat} do \eqref{eqn_alg_trans_phi} będą identyczne.
+
+W przypadku falek z rodziny \enquote{Daubechies}, a także ich pochodnych \enquote{Symleth} oraz \enquote{Coiflets}, niezależnie od liczby poziomów dekompozycji, wartość współczynnika $A_{r,i}$ dla wszystkich wielkości wyjściowych każdorazowo wynosić będzie jeden, natomiast wartość współczynnika $A_{s,i}$ dla aproksymacji sygnału wynosić będzie dwa. Zależności te wynikają bezpośrednio z równań \eqref{eqn_dwt_scalefunsum} oraz \eqref{eqn_db_musthave} \cite{vonesch_dbbasics, wei_coiflet}. Nie oznacza to jednak, że dalsza analiza może zostać pominięta, a algorytm transformacji falkowej nie ma wpływu na przenoszone błędy wielkości wejściowych, ponieważ wciąż istnieje potrzeba analizy pozostałych rodzajów błędów. Ze względu na fakt, że tylko jedna grupa wielkości wyjściowych, związana z aproksymacją sygnału, stanowić będzie filtr dolno-przepustowy, dla pozostałych grup wielkości wyjściowych wartość współczynnika $A_{s,i}$ będzie zwykle zerowa. Wynika to z faktu, że błędy statyczne stanowią składową stałą sygnału, a zatem nie będą przenoszone przez filtry inne, niż dolno-przepustowe.
+
+\section{Błędy własne algorytmu}
+
+Na podstawie przykładowej macierzy transformacji przedstawionej w równaniu \eqref{eqn_db2_2_8_matrix}, którą opisano we wcześniejszej części rozdziału, zauważyć można że wszystkie niezerowe wartości elementów tej macierzy są niewymierne. Niewymierność ta jest pierwszym powodem powstawania błędu własnego zaokrągleń, którym obarczone będą wyznaczane numerycznie wielkości wyjściowe algorytmu dyskretnej transformacji falkowej. Kolejnym źródłem błędów będą zaokrąglenia wynikające z ograniczonej precyzji liczb, przeprowadzane podczas wykonywania operacji mnożenia i dodawania. Błędy te, zgodnie ze wcześniej wprowadzonym podziałem, zaliczyć można do błędów statycznych ponieważ ich wartość nie zmienia się w czasie dla kolejnych iteracji algorytmu przy tych samych danych wejściowych.
+
+Parametry rozkładu błędów własnych algorytmu wyznaczyć można eksperymentalnie metodą Monte-Carlo, podając na wejście algorytmu wektor wielkości wejściowych, w którym kolejne wartości będą liczbami losowymi z zakresu przetwarzanych przez algorytm wartości wielkości wejściowych. Schemat ideowy przeprowadzanego eksperymentu przedstawia rysunek \ref{fig_schemat_dwt_ew}, przy czym symbolem $e_{X,z}$ oznaczono błędy własne zaokrągleń algorytmu, symbolem $i$ indeks wielkości wejściowej, natomiast symbolem $j$ indeks wielkości wyjściowej algorytmu. Rozkład podawanych na wejście algorytmu wartości powinien być zbliżony do rzeczywistego rozkładu wartości wielkości wejściowych, przy czym w omawianym eksperymencie zakłada się, że algorytm przetwarzać będzie wielkości wejściowe $x(i)$ o wartościach z zakresu $<-1;1>$ oraz że uzyskanie każdej z wartości na wejściu algorytmu jest jednakowo prawdopodobne. Zgodnie z przyjętą metodologią, błąd własny algorytmu będzie zatem równy różnicy pomiędzy wartością $\tilde{X}(j)$ wyznaczoną przez rzeczywisty algorytm, a wartością $\dot{X}(j)$ wyznaczoną na podstawie równań \eqref{eqn_dwt_aproxrek} oraz \eqref{eqn_dwt_detailrek}. Powtarzając eksperyment wielokrotnie uzyskuje się histogram błędów własnych, na podstawie którego odczytać można parametry tego rozkładu. W omawianym eksperymencie przyjęto liczbę powtórzeń równą sto tysięcy.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/schemat_dwt_ew}
+\caption{Schemat ideowy eksperymentu mającego na celu wyznaczenie parametrów rozkładu błędów własnych analizowanego algorytmu \label{fig_schemat_dwt_ew}}
+\end{center}
+\end{figure}
+
+Jako, że przeprowadzenie opisywanego eksperymentu jest w zasadzie niemożliwe w rzeczywistych warunkach, ponieważ wszystkie operacje związane z jego przeprowadzeniem są w rzeczywistości również obarczone błędami numerycznymi, to podczas eksperymentu przyjmuje się za wartości prawidłowe $\dot{X}(j)$ wartości wyznaczone przy użyciu liczb rzeczywistych o długości słowa równej 128-bitów. Parametry rozkładu błędów własnych algorytmu będą zatem wyznaczane dla słów o długości 32-bitów oraz 16-bitów, ponieważ te we współczesnych mikrokontrolerach stosowane są najczęściej. Do przeprowadzenia eksperymentu zastosowano program komputerowy przetłumaczony na kod maszynowy kompilatorem \enquote{GNU GCC}. Wybór wskazanego kompilatora podyktowany był faktem, że jest on również stosowany do generowania kodu maszynowego dla mikrokontrolerów rodziny \enquote{ARM}.
+
+Poniżej, w tabelach od \ref{tab_varnum_db2_2_f16} do \ref{tab_varnum_spline4_4_5_f32}, zamieszczono wyniki eksperymentu dla wybranych parametrów algorytmu dyskretnej transformacji falkowej, przy czym tabele \ref{tab_varnum_db2_2_f16} oraz \ref{tab_varnum_db2_2_f32} zawierają wyniki dla wyznaczonej we wcześniejszej cześć rozdziału przykładowej macierzy transformacji opisanej równaniem \eqref{eqn_db2_2_8_matrix} oraz uwzględniają zmianę zakresu wartości wielkości wejściowych algorytmu. Rysunek \ref{fig_dwt_rerror_coif5} przedstawia zależność wariancji błędów własnych algorytmu od liczby wielkości wejściowych dla wybranych parametrów falki \enquote{coif5} oraz liczby poziomów dekompozycji sygnału, przy czym na rysunku wskazano wariancję błędu zaokrągleń dla ostatniej skali detali sygnału. Rysunek \ref{fig_dwt_rhist_coif5} przedstawia histogramy dla wybranych parametrów eksperymentu przy zastosowaniu falki \enquote{coif5}, przy czym podczas wyznaczania niepewności rozszerzonej przyjęto poziom ufności $\alpha = 95\%$.
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Wariancja błędu zaokrągleń kolejnych wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy dwóch iteracjach procesu dekompozycji, dla liczb o długości 16-bitów, w zależności od zakresu wielkości wejściowych \label{tab_varnum_db2_2_f16}}
+\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\multirow{2}{*}{$X$} & \multicolumn{6}{ c |}{\textbf{Zakres wielkości wejściowych algorytmu}} \\ \cline{2-7}
+& $<-1;1>$ & $<-2;2>$ & $<-3;3>$ & $<0;2>$ & $<0;4>$ & $<3;9>$ \\ \hline
+$S_{2,0}$ & \num{1.03e-7} & \num{4.12e-7} & \num{9.74e-7} & \num{7.08e-7} & \num{2.83e-6} & \num{2.16e-5} \\ \hline
+$S_{2,1}$ & \num{1.11e-7} & \num{4.43e-7} & \num{1.01e-6} & \num{9.55e-7} & \num{3.82e-6} & \num{2.75e-5} \\ \hline
+$T_{2,0}$ & \num{1.31e-7} & \num{5.24e-7} & \num{1.21e-6} & \num{2.87e-7} & \num{1.15e-6} & \num{7.06e-6} \\ \hline
+$T_{2,1}$ & \num{1.07e-7} & \num{4.29e-7} & \num{9.73e-7} & \num{3.36e-7} & \num{1.34e-6} & \num{9.30e-6} \\ \hline
+$T_{1,0}$ & \num{7.09e-8} & \num{2.85e-7} & \num{6.99e-7} & \num{1.65e-7} & \num{3.56e-7} & \num{4.29e-6} \\ \hline
+$T_{1,1}$ & \num{5.83e-8} & \num{2.33e-7} & \num{5.87e-7} & \num{1.49e-7} & \num{5.95e-7} & \num{4.05e-6} \\ \hline
+$T_{1,2}$ & \num{5.84e-8} & \num{2.34e-7} & \num{5.85e-7} & \num{1.49e-7} & \num{5.97e-7} & \num{4.05e-6} \\ \hline
+$T_{1,3}$ & \num{5.53e-8} & \num{2.21e-7} & \num{5.41e-7} & \num{1.78e-7} & \num{7.08e-7} & \num{5.26e-6} \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Wariancja błędu zaokrągleń kolejnych wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy dwóch iteracjach procesu dekompozycji, dla liczb o długości 32-bitów, w zależności od zakresu wielkości wejściowych \label{tab_varnum_db2_2_f32}}
+\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\multirow{2}{*}{$X$} & \multicolumn{6}{ c |}{\textbf{Zakres wielkości wejściowych algorytmu}} \\ \cline{2-7}
+& $<-1;1>$ & $<-2;2>$ & $<-3;3>$ & $<0;2>$ & $<0;4>$ & $<3;9>$ \\ \hline
+$S_{2,0}$ & \num{1.40e-15} & \num{5.57e-15} & \num{1.30e-14} & \num{9.29e-15} & \num{3.71e-14} & \num{2.78e-13} \\ \hline
+$S_{2,1}$ & \num{1.40e-15} & \num{5.61e-15} & \num{1.29e-14} & \num{1.25e-14} & \num{5.00e-14} & \num{3.54e-13} \\ \hline
+$T_{2,0}$ & \num{1.71e-15} & \num{6.83e-15} & \num{1.58e-14} & \num{3.33e-15} & \num{1.33e-14} & \num{7.78e-14} \\ \hline
+$T_{2,1}$ & \num{1.39e-15} & \num{5.56e-15} & \num{1.29e-14} & \num{4.27e-15} & \num{1.71e-14} & \num{1.16e-13} \\ \hline
+$T_{1,0}$ & \num{8.28e-16} & \num{3.54e-15} & \num{8.38e-15} & \num{1.70e-15} & \num{6.84e-15} & \num{4.25e-14} \\ \hline
+$T_{1,1}$ & \num{6.82e-16} & \num{2.72e-15} & \num{6.67e-15} & \num{1.46e-15} & \num{5.84e-15} & \num{4.02e-14} \\ \hline
+$T_{1,2}$ & \num{6.82e-16} & \num{2.72e-15} & \num{6.66e-15} & \num{1.47e-15} & \num{5.86e-15} & \num{4.02e-14} \\ \hline
+$T_{1,3}$ & \num{6.68e-16} & \num{2.67e-15} & \num{6.48e-15} & \num{2.02e-15} & \num{8.10e-15} & \num{6.15e-14} \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/dwt_rerror_coif5}
+\caption{Zależność wariancji błędu zaokrągleń od liczby iteracji procesu dekompozycji sygnału oraz liczby wielkości wejściowych dla falki \enquote{coif5} i długości słowa 32-bitów \label{fig_dwt_rerror_coif5}}
+\end{center}
+\end{figure}
+
+Ze względu na fakt, że dla każdego poziomu dekompozycji wartości współczynników macierzy transformacji są jedynie przesunięte względem poprzedniego wiersza o dwie kolumny, można przyjąć że wariancja błędu zaokrągleń będzie z zadowalającym przybliżeniem stała dla tego samego numeru skali. Cecha ta została potwierdzona podczas przeprowadzania eksperymentu, co zaobserwować można analizując wartości w tabelach \ref{tab_varnum_db2_2_f16} oraz \ref{tab_varnum_db2_2_f32}. Przeprowadzone badania wykazały, że wariancja błędu zaokrągleń jest niemal identyczna dla tego samego numeru skali, poza pierwszą i ostatnią wielkością wyjściową dla tej skali. W przypadku pierwszej i ostatniej wielkości dla tego samego numeru skali zauważyć można największe różnice w kolejności wartości współczynników macierzy transformacji i z tego najpewniej wynika opisywana niewielka różnica w wartości wariancji błędu zaokrągleń.
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 16-bitów, w zależności od liczby wielkości wejściowych \label{tab_varnum_db2_5_f16}}
+\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
+& $S_5$ & $T_5$ & $T_4$ & $T_3$ & $T_2$ & $T_1$ \\ \hline
+\textbf{64}   & \num{4.91e-7} & \num{5.31e-7} & \num{3.94e-7} & \num{2.09e-7} & \num{1.23e-7} & \num{5.86e-8} \\ \hline
+\textbf{128}  & \num{7.51e-7} & \num{7.08e-7} & \num{3.87e-7} & \num{2.07e-7} & \num{1.22e-7} & \num{5.85e-8} \\ \hline
+\textbf{256}  & \num{8.59e-7} & \num{6.99e-7} & \num{3.85e-7} & \num{2.05e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
+\textbf{512}  & \num{9.19e-7} & \num{6.89e-7} & \num{3.81e-7} & \num{2.04e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
+\textbf{1024} & \num{9.47e-7} & \num{6.85e-7} & \num{3.80e-7} & \num{2.04e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
+\textbf{2048} & \num{9.58e-7} & \num{6.84e-7} & \num{3.80e-7} & \num{2.04e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
+\textbf{4096} & \num{9.66e-7} & \num{6.83e-7} & \num{3.80e-7} & \num{2.04e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 32-bitów, w zależności od liczby wielkości wejściowych \label{tab_varnum_db2_5_f32}}
+\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
+& $S_5$ & $T_5$ & $T_4$ & $T_3$ & $T_2$ & $T_1$ \\ \hline
+\textbf{64}   & \num{6.83e-15} & \num{7.93e-15} & \num{5.42e-15} & \num{2.86e-15} & \num{1.62e-15} & \num{7.12e-16} \\ \hline
+\textbf{128}  & \num{1.15e-14} & \num{1.02e-14} & \num{5.39e-15} & \num{2.79e-15} & \num{1.58e-15} & \num{6.98e-16} \\ \hline
+\textbf{256}  & \num{1.34e-14} & \num{1.03e-14} & \num{5.30e-15} & \num{2.76e-15} & \num{1.56e-15} & \num{6.90e-16} \\ \hline
+\textbf{512}  & \num{1.44e-14} & \num{1.03e-14} & \num{5.25e-15} & \num{2.73e-15} & \num{1.55e-15} & \num{6.85e-16} \\ \hline
+\textbf{1024} & \num{1.49e-14} & \num{1.03e-14} & \num{5.23e-15} & \num{2.72e-15} & \num{1.55e-15} & \num{6.84e-16} \\ \hline
+\textbf{2048} & \num{1.51e-14} & \num{1.03e-14} & \num{5.22e-15} & \num{2.72e-15} & \num{1.55e-15} & \num{6.84e-16} \\ \hline
+\textbf{4096} & \num{1.52e-14} & \num{1.03e-14} & \num{5.22e-15} & \num{2.72e-15} & \num{1.55e-15} & \num{6.84e-16} \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Na podstawie rysunku \ref{fig_dwt_rerror_coif5} zauważyć można liniowy wzrost wariancji błędów zaokrągleń w funkcji liczby wielkości wejściowych, przy czym wzrost ten ustaje gdy przestaje zmieniać się liczba operacji arytmetycznych, tj. dla takiej liczby wielkości wejściowych, która jest równa liczbie niezerowych współczynników skalujących dla analizowanego poziomu dekompozycji sygnału. W przypadku tej samej liczby wielkości wejściowych wariancja błędu rośnie wraz ze wzrostem liczby iteracji procesu dekompozycji sygnału, ponieważ zwiększa się liczba niezerowych współczynników skalujących, a z nią liczba operacji arytmetycznych. Można zatem stwierdzić, że wariancja błędu zaokrągleń związana jest w bezpośrednio z liczbą przeprowadzanych operacji arytmetycznych, która wynika z liczby niezerowych współczynników skalujących odpowiedniej dla wybranej falki oraz liczby wielkości wejściowych algorytmu.
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{spline2:4} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 16-bitów, w zależności od liczby wielkości wejściowych \label{tab_varnum_spline4_4_5_f16}}
+\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
+& $S_5$ & $T_5$ & $T_4$ & $T_3$ & $T_2$ & $T_1$ \\ \hline
+\textbf{64}   & \num{1.07e-6} & \num{1.02e-6} & \num{8.94e-7} & \num{5.05e-7} & \num{1.83e-7} & \num{4.76e-8} \\ \hline
+\textbf{128}  & \num{1.75e-6} & \num{1.59e-6} & \num{9.22e-7} & \num{4.96e-7} & \num{1.80e-7} & \num{4.64e-8} \\ \hline
+\textbf{256}  & \num{2.61e-6} & \num{1.67e-6} & \num{9.11e-7} & \num{4.91e-7} & \num{1.77e-7} & \num{4.58e-8} \\ \hline
+\textbf{512}  & \num{2.60e-6} & \num{1.69e-6} & \num{9.05e-7} & \num{4.89e-7} & \num{1.76e-7} & \num{4.55e-8} \\ \hline
+\textbf{1024} & \num{2.58e-6} & \num{1.71e-6} & \num{9.02e-7} & \num{4.88e-7} & \num{1.75e-7} & \num{4.53e-8} \\ \hline
+\textbf{2048} & \num{2.58e-6} & \num{1.71e-6} & \num{9.00e-7} & \num{4.87e-7} & \num{1.75e-7} & \num{4.53e-8} \\ \hline
+\textbf{4096} & \num{2.58e-6} & \num{1.72e-6} & \num{9.00e-7} & \num{4.87e-7} & \num{1.75e-7} & \num{4.53e-8} \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{spline2:4} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 32-bitów, w zależności od liczby wielkości wejściowych \label{tab_varnum_spline4_4_5_f32}}
+\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
+& $S_5$ & $T_5$ & $T_4$ & $T_3$ & $T_2$ & $T_1$ \\ \hline
+\textbf{64}   & \num{1.51e-14} & \num{1.44e-14} & \num{1.26e-14} & \num{6.54e-15} & \num{2.33e-15} & \num{5.44e-16} \\ \hline
+\textbf{128}  & \num{2.52e-14} & \num{2.37e-14} & \num{1.45e-14} & \num{6.50e-15} & \num{2.27e-15} & \num{5.29e-16} \\ \hline
+\textbf{256}  & \num{4.72e-14} & \num{2.91e-14} & \num{1.45e-14} & \num{6.40e-15} & \num{2.24e-15} & \num{5.22e-16} \\ \hline
+\textbf{512}  & \num{4.72e-14} & \num{2.98e-14} & \num{1.44e-14} & \num{6.36e-15} & \num{2.23e-15} & \num{5.17e-16} \\ \hline
+\textbf{1024} & \num{4.71e-14} & \num{3.01e-14} & \num{1.43e-14} & \num{6.35e-15} & \num{2.22e-15} & \num{5.16e-16} \\ \hline
+\textbf{2048} & \num{4.72e-14} & \num{3.03e-14} & \num{1.43e-14} & \num{6.35e-15} & \num{2.22e-15} & \num{5.16e-16} \\ \hline
+\textbf{4096} & \num{4.72e-14} & \num{3.04e-14} & \num{1.43e-14} & \num{6.35e-15} & \num{2.22e-15} & \num{5.16e-16} \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Stosowanie liczb rzeczywistych o długości słowa 16-bitów pozwala zmniejszyć czas obliczeń oraz rozmiar wymaganej pamięci w stosunku do analogicznego przypadku wykorzystującego liczby o długości słowa 32-bitów. Wariant ten wprowadza jednak znacznie większe błędy związane z zaokrągleniami ze względu na ograniczoną precyzję. Należy zatem tak dobrać długość słowa, aby błąd zaokrągleń był możliwie mały w stosunku do pozostałych błędów obecnych w przetwarzanym sygnale, przez co w efekcie nie wpływał on znacznie na błąd wypadkowy. Ze względu na fakt, że zakres wielkości wejściowych algorytmu transformacji falkowej również wpływa na wprowadzany błąd zaokrągleń, należy brać ten czynnik pod uwagę podczas analizy projektowanego toru pomiarowego. Należy zatem tak dobrać warunki eksperymentu, aby w jak największym stopniu były one zbieżne z warunkami rzeczywistymi. Analizując przedstawione wyniki zauważyć można, że wraz ze wzrostem zakresu wielkości wejściowych wariancja błędu zaokrągleń wzrasta. Zależność ta wynika bezpośrednio z właściwości stosowanej powszechnie metody zapisu liczb zmiennoprzecinkowych. Analizując przedstawione histogramy zauważyć można, że kształt rozkładu błędów własnych algorytmu jest zbliżony do kształtu rozkładu normalnego, natomiast dla poziomu ufności $\alpha = 95\%$ współczynnik kształtu wynosi około $2.17$. Wobec tego nie można podczas analizy właściwości metrologicznych przyjąć uproszczenia, w którym rozkład błędów zaokrągleń traktowany będzie jak rozkład normalny.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/hist_numerr_coif5}
+\caption{Histogramy błędu własnego zaokrągleń dla falki \enquote{coif5} przy sześciu iteracjach procesu dekompozycji, dla $N$ wielkości wejściowych, przy długości słowa równej \textbf{a)}, \textbf{b)}~16-bitów, \textbf{c)}, \textbf{d)}~32-bitów \label{fig_dwt_rhist_coif5}}
+\end{center}
+\end{figure}
+
+\section{Implementacja okna pomiarowego}
+
+Identycznie, jak w przypadku innych algorytmów przetwarzających ciągi wielkości wejściowych, dla algorytmu transformacji falkowej stosować można wybrane okno pomiarowe. Wprowadzenie okna pomiarowego oznaczonego jako $w(n)$ można przedstawić za pomocą modyfikacji równania \eqref{eqn_alg_out_single} jako:
+\begin{equation}
+X(i) = a_{i, 0} w(0) x(0) + a_{i, 1} w(1) x(1) + \hdots + a_{i, N-1} w(N-1) x(N-1) \label{eqn_wt_singlewindow}.
+\end{equation}
+Na podstawie przedstawionego równania zauważyć można, że wprowadzenie okna pomiarowego opisać można za pomocą modyfikacji współczynników macierzy transformacji algorytmu zgodnie z zależnością:
+\begin{equation}
+a_{i,j}^{'} = w(j) \cdot a_{i,j} \label{eqn_wt_windowmod},
+\end{equation}
+gdzie $a_{i,j}^{'}$ stanowi nową wartość współczynnika macierzy transformacji algorytmu. Użyta funkcja $w(n)$ powinna być opisana dla wartości $n$ w przedziale $<0;N-1>$. Wybrane okna pomiarowe opisane w literaturze \cite{oppenheim_dsp} to okna: trójkątne \eqref{eqn_wnd_triang}, Gaussa \eqref{eqn_wnd_gauss}, Hamminga \eqref{eqn_wnd_hamming} oraz Hanna \eqref{eqn_wnd_hann}. W dalszej części pracy stosowane będzie okno prostokątne, w którym $w(n) = 1$ o ile nie zostanie zaznaczony fakt stosowania innego okna pomiarowego. Wpływ parametrów okna pomiarowego na przenoszenie błędów losowych przez algorytmy dyskretnej transformacji falkowej przedstawiono w pracy \cite{auth_window}. Wymienione funkcje okien przedstawiają równania:
+\begin{gather}
+w_{\text{tr}}(n) = 1 - \left| \frac{n - \frac{N-1}{2}}{\frac{N}{2}} \right| \label{eqn_wnd_triang}, \\
+w_{\text{ga}}(n) = \exp \left(-\frac{1}{2} \cdot \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{(N-1)}{2}} \right)^2 \right) \label{eqn_wnd_gauss}, \\
+w_{\text{hm}}(n) =  0.5384 - 0.4616 \cos \left( \frac{2 \pi n}{N} \right) \label{eqn_wnd_hamming}, \\
+w_{\text{hn}}(n) = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eqn_wnd_hann}, 
+\end{gather}
+
+Implementacja okna pomiarowego, z punktu widzenia przedstawionych w pracy założeń, mogłaby również zostać opisana jako zastosowanie dodatkowego algorytmu. Algorytm ten przetwarzałby $N$ wielkości wejściowych na $M$ wielkości wyjściowych, gdzie $N = M$. Macierz transformacji omawianego algorytmu byłaby macierzą diagonalną, przy czym wartości kolejnych współczynników odpowiadałyby wyznaczonym wagom dla $i$-tej wielkości okna. Z praktycznego punktu widzenia zaproponowana metoda modyfikacji wartości współczynników transformacji algorytmu transformacji falkowej wydaje się jednak bardziej optymalna. Na tej samej zasadzie istnieje możliwość implementacji innych modyfikacji, np. wprowadzenia dodatkowego filtru.
+

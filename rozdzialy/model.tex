@@ -1,0 +1,558 @@
+\chapter{Model błędu wyniku pomiaru}
+
+Aby określić w jakim stopniu analizowany tor pomiarowy spełnia powierzone mu zadanie pomiarowe należy ilościowo przedstawić przedział, w którym z określonym prawdopodobieństwem będą znajdowały się wartości wielkości wyjściowych tego toru pomiarowego \cite{jcgm_guide}. Należy zatem zdefiniować w jaki sposób rozumiana jest idealna wartość wielkości wyjściowej, a następnie zdefiniować różnicę pomiędzy rzeczywistą i idealną wartością wielkości wyjściowej nazywaną w dalszej części pracy błędem wielkości wyjściowej. Zakładając, że proces uzyskiwania wartości wielkości wyjściowej będzie powtarzany wielokrotnie, opisaną różnicę można analizować probabilistycznie, przedstawiając jej parametry za pomocą funkcji gęstości prawdopodobieństwa. W przypadku, gdy analizowany tor pomiarowy dostarcza na wyjściu wiele wielkości wyjściowych, każdą z nich należy analizować osobno. Istnieją jednak przypadki, w których analiza może odbywać się zbiorczo dla pewnej grupy wielkości wyjściowych, wykazującej identyczne właściwości metrologiczne.
+
+Analizując tor pomiarowy przedstawiony na rysunku \ref{fig_chain_demo} zauważyć można, że w pierwszej fazie przetwarzania wielkości wejściowej $s(t)$ wielkość ta jest ciągła w dziedzinie czasu. Wielkość wyjściowa $y(t)$ części analogowej jest efektem przetwarzania wielkości wyjściowej $s(t)$ zgodnie z charakterystyką tej części, przy czym jej właściwości mogą zależeć od widma przetwarzanego sygnału. Aby ujednolicić analizę cześć analogowej, jej właściwości należy zatem rozpatrywać nie w dziedzinie czasu, a w dziedzinie częstotliwości. Właściwości analogowej część toru pomiarowego, zależne od częstotliwości przetwarzanego przez nią sygnału, mogą być zatem opisane za pomocą transmitancji $G(j\omega)$. Analogicznie postąpić można w przypadku cyfrowej cześć toru pomiarowego. Właściwości części cyfrowej, uzależnione od widma przetwarzanego przez nią sygnału, opisać można za pomocą transmitancji $H(z)$. Każda z omawianych części, poza odpowiednio wyrażona transmitancją, charakteryzuje się związaną z nią funkcją przetwarzania oznaczoną symbolem $f(x)$. Funkcja ta opisuje w jaki sposób element wyznacza wartość wielkości wyjściowej na podstawie wartości wielkości wejściowej. Pomiędzy częściami analogową i cyfrową znajduje się przetwornik analogowo-cyfrowy. Schemat ideowy dla omawianego przypadku z punktu widzenia pojedynczej wielkości wyjściowej toru pomiarowego przedstawiono na rysunku \ref{fig_chain_trans}.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/schemat_trans}
+\caption{Schemat blokowy toru pomiarowego z punktu widzenia pojedynczej wielkości wyjściowej \label{fig_chain_trans}}
+\end{center}
+\end{figure}
+
+Przedstawiony na rysunku \ref{fig_chain_trans} przypadek zakłada, że przetwarzanie analogowo-cyfrowe przebiega w sposób idealny, tj. wprowadza do przetwarzanego sygnału jedynie błąd związany z procesem kwantowania wartości wielkości wejściowych. Założenie to będzie oczywiście nieprawidłowe w rzeczywistym torze pomiarowym, dlatego sam przetwornik analogowo-cyfrowy również należy opisać za pomocą przedstawionego na rysunku \ref{fig_chain_trans} modelu o parametrach odpowiednich dla analizowanego przetwornika. Naturalnie, tor pomiarowy składać się może z wielu elementów połączonych ze sobą szeregowo, które odpowiednio przetwarzać będą sygnał ciągły w czasie lub przetwarzać będą jego dyskretną reprezentacje. Należy zatem przedstawiać rzeczywisty tor pomiarowy jako połączenie kolejnych elementów o odpowiednich dla nich parametrach lub za pomocą modelu opisującego wypadkowe parametry wszystkich analizowanych części tego toru. W przypadku, gdy dla analizowanego fragmentu toru pomiarowego jego właściwości nie są istotne z punktu analizy metrologicznej, właściwości te można pominąć.
+
+Analizując właściwości metrologiczne elementów toru pomiarowego należy dokonać podziału ich cech ze względu na rolę w przetwarzaniu przez nie sygnału wejściowego. Część cech będzie bowiem użyteczna z punktu widzenia roli toru pomiarowego (np. wzmocnienie sygnału, filtracja sygnału), przy czym te same cechy mogą okazać się problematyczne i wprowadzać będą one do wielkości wyjściowej niepożądane z punktu widzenia realizowanego zadania błędy (np. filtracja sygnału, gdy nie jest pożądana, będzie ten sygnał tłumić i przesuwać w fazie). Każdy z fragmentów toru pomiarowego, zgodnie ze swoimi właściwościami, wprowadzać będzie do sygnału wyjściowego błędy własne oraz przenosić będzie na wyjście obecne w sygnale wejściowym błędy. Jak wcześniej wspomniano, nie wszystkie właściwości analizowanego elementu toru pomiarowego będą odpowiedzialne za wprowadzanie do wielkości wyjściowych błędów -- jeśli ich działanie jest pożądane, to przyjmuje się że realizują powierzone im zadanie przetwarzania sygnału. Dla przykładu, jeśli elementem toru pomiarowego jest wzmacniacz, to jego zadaniem jest wprowadzenie stałego wzmocnienia wielkości wejściowych niezależnie od widma sygnału wejściowego. Jeśli zatem element ten wprowadzi inne wzmocnienie, niż oczekiwane, lub też wpłynie on na widmo przetwarzanego sygnału, działanie to zostanie rozpatrzone jako niepożądane, a jego skutki zostaną opisane jako wprowadzenie błędu własnego do wielkości wyjściowej. Z drugiej strony, jeśli analizowanym elementem byłby filtr, to wprowadzenie tłumienia byłoby działaniem pożądanym i nie zostałoby opisane jako wprowadzenie błędu własnego do przetwarzanego sygnału -- chyba, że wprowadzone tłumienie posiadałoby parametry inne, niż oczekiwane. Należy zatem analizować właściwości kolejnych fragmentów toru pomiarowego w taki sposób, aby ocenić ich działanie pod kątem powierzonego im zadania przetworzenia wielkości wejściowych, a następnie określić, które ich cechy są pożądane, a które nie.
+
+Ze względu na charakter, właściwości każdego z fragmentów toru pomiarowego podzielić można na dwie najważniejsze grupy:
+\begin{description}
+\item [Właściwości statyczne] w przypadku, gdy właściwości te nie są związane z widmem przetwarzanego sygnału wejściowego.
+\item [Właściwości dynamiczne] w przypadku gdy właściwości te są bezpośrednio związane z widmem przetwarzanego sygnału.
+\end{description}
+
+Jako, że wybrane właściwości kolejnych fragmentów toru pomiarowego będą zależały od widma przetwarzanego sygnału, w dalszej cześć rozdziału przyjmuje się założenie, że niezakłócony błędami przetwarzany sygnał wejściowy $s(t)$ opisać można w postaci sumy kolejnych harmonicznych tego sygnału równaniem:
+\begin{equation}
+\dot{s}(t) = \sum _{i = 0} ^{\infty} \dot{s}(t, \omega_{s,i}) \label{eqn_in_cont_sum},
+\end{equation}
+przy czym $\omega_{s,i}$ jest pulsacją $i$-tej harmonicznej opisywanego sygnału oraz:
+\begin{gather}
+\dot{s}(t, \omega) = E_{s,o}(\omega) \sin \left( \omega t + \varphi_{s,o}(\omega) \right) \label{eqn_in_cont_omega_ideal}, \\
+\tilde{s}(t, \omega) = \dot{s}(t, \omega) + E_{s,e}(\omega) \sin \left( \omega t + \varphi_{s,e}(\omega) \right) \label{eqn_in_cont_omega_real}, \\
+\tilde{s}(t) = e_{s,r}(t) + \sum _{i = 0} ^{\infty} \tilde{s}(t, \omega_{s,i}) \label{eqn_in_cont_sum_real},
+\end{gather}
+gdzie $E_{s,o}(\omega)$ jest amplitudą oraz $\varphi_{s,o}(\omega)$ przesunięciem w fazie wybranej harmonicznej sygnału, $E_{s,e}$ amplitudą oraz $ \varphi_{s,e}$ przesunięciem w fazie analizowanej harmonicznej przebiegu błędu zawartego w sygnale, natomiast $e_{s,r}$ jest błędem losowym. W opisie sygnału pominięto jawny opis składowej stałej sygnału, jako że zastąpić go można harmoniczną o indeksie $i = 0$, gdzie $\omega_{0} = 0$ oraz $\varphi_{0} = \pi$.
+
+Na podstawie równania \eqref{eqn_in_cont_omega_real} wyróżnić można trzy grupy błędów, przy czym zaproponowany podział wynika z charakteru ich realizacji i obejmuje:
+\begin{description}
+\item [Błędy statyczne] dla których kolejne realizacje w obrębie pojedynczego okna pomiarowego nie zmieniają się lub zmieniają się nieznacznie.
+\item [Błędy dynamiczne] dla których kolejne realizacje można opisać w sposób deterministyczny, jako sumę kolejnych harmonicznych tego błędu.
+\item [Błędy losowe] dla których kolejne realizacje będą wynikały z reguł probabilistycznych, a zatem ich opis deterministyczny nie będzie możliwy.
+\end{description}
+
+Analizując przedstawione powyżej założenia oraz biorąc pod uwagę równania od \eqref{eqn_in_cont_sum} do \eqref{eqn_in_cont_sum_real}, wyróżnione błędy deterministyczne opisać można za pomocą równań:
+\begin{gather}
+e_{s,s}(t) = E_{s,e}(\omega_{s,0}) \sin \left( \omega_{s,0} t + \varphi_{s,e}(\omega_{s,0}) \right) = E_{s,e}(0) \label{eqn_in_cont_err_stat}, \\
+e_{s,d}(t) = \sum _{i = 1} ^{\infty} E_{s,e}(\omega_{s,i}) \sin \left( \omega_{s,i} t + \varphi_{s,e}(\omega_{s,i}) \right) \label{eqn_in_cont_err_dyn},
+\end{gather}
+gdzie symbolem $e_{s,s}$ oznaczono błąd statyczny, natomiast symbolem $e_{s,d}$ błąd dynamiczny zawarty w sygnale $s(t)$. Błąd wypadkowy $e_{s,\Sigma}$ zawarty w sygnale $s(t)$ można zatem wyrazić w postaci sumy wszystkich wymienionych błędów:
+\begin{equation}
+e_{s,\Sigma}(t) = e_{s,s}(t) + e_{s,d}(t) + e_{s,r}(t) \label{eqn_in_cont_err_sum}.
+\end{equation}
+
+\section{Błędy w części analogowej toru pomiarowego}
+
+Aby ujednolicić analizę pojedynczego fragmentu części analogowej toru pomiarowego, element ten można przedstawić za pomocą transmitancji operatorowej odpowiadającej właściwościom dynamicznym, przy czym wzmocnienie tej części będzie równe jedności, oraz opisać właściwości statyczne w postaci odpowiedniej dla analizowanego obiektu funkcji przetwarzania. Na rysunku \ref{fig_chain_cont} przedstawiono schemat fragmentu toru pomiarowego zbudowany w opisywany sposób. W dalszej części podrozdziału zakłada się, że analizowany fragment toru pomiarowego przetwarza ciągły w czasie sygnał $s(t)$, opisany we wstępie rozdziału równaniami od \eqref{eqn_in_cont_sum} do \eqref{eqn_in_cont_sum_real}, na sygnał $y(t)$. Dodatkowo przyjmuje się, że funkcja $f_{y}(x)$ stanowi równanie przetwarzania opisywanego obiektu, natomiast transmitancja obiektu jest wyrażona jako $G_{u}(j\omega)$, przy czym jej wzmocnienie jest równe jedności, a jej charakter jest liniowy i nie zależny w żaden sposób od czasu.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/schemat_ciagly}
+\caption{Schemat blokowy pojedynczego fragmentu części analogowej toru pomiarowego \label{fig_chain_cont}}
+\end{center}
+\end{figure}
+
+Błędy obecne w sygnale wyjściowym $y(t)$ podzielić można, podobnie jak we wprowadzeniu do rozdziału, na statyczne, dynamiczne i losowe. Podział ten natomiast należy rozszerzyć pod kątem genezy błędu, przy czym wyróżnione zostaną w tym przypadku błędy własne oraz propagowane. Błędy własne to takie, które analizowany obiekt wprowadza do sygnału wyjściowego. Błędy propagowane są natomiast błędami zawartymi w sygnale wejściowym, przetworzonymi przez obiekt zgodnie z jego charakterystyką, a następnie przeniesionymi na wyjście tego obiektu. Suma błędów własnych i propagowanych dla danej grupy błędów stanowi błąd wypadkowy.
+
+W pierwszej kolejności omówiony zostanie wpływ transmitancji $G_{u}(j\omega)$ analizowanego obiektu na błędy zawarte w wielkości wejściowej oraz jej rola we wprowadzaniu błędów własnych. W przypadku błędów statycznych, zgodnie z wprowadzonymi założeniami, transmitancja ta nie ma żadnego wpływu na obecne w sygnale wejściowym błędy statyczne oraz nie wprowadza własnego błędu statycznego. Można zatem zapisać, że:
+\begin{gather}
+e_{u,sw}(t) = 0 \label{eqn_mid_cont_err_stat_self}, \\
+e_{u,sp}(t) = E_{s,s}(0) \label{eqn_mid_cont_err_stat_prop},
+\end{gather}
+gdzie $e_{u,sw}$ jest błędem własnym, a $e_{u,sp}$ błędem przenoszonym przez fragment obiektu związany z jego właściwościami dynamicznymi.
+
+Na podstawie transmitancji widmowej $G_{u}(j\omega)$ obiektu wyznaczyć można wzmocnienie $K_{u}(\omega)$ tego obiektu w funkcji pulsacji równe:
+\begin{equation}
+K_{u}(\omega) = \left| G_{u}(j\omega) \right| = \sqrt{\left( \Re \left( G_{u}(j\omega) \right) \right)^2 + \left( \Im \left( G_{u}(j\omega) \right) \right)^2} \label{eqn_mid_cont_amp},
+\end{equation}
+oraz przesunięcie w fazie $\varphi_{u}(\omega)$ dla wybranej harmonicznej sygnału wejściowego dane zależnością:
+\begin{equation}
+\varphi_{u}(\omega) = \arctan \left( \frac{\Im (G_{u}(j\omega))}{\Re (G_{u}(j\omega))} \right) \label{eqn_mid_cont_phi}.
+\end{equation}
+Znajomość tych parametrów będzie niezbędna do opisu błędów dynamicznych własnych oraz propagowanych dla części związanej z transmitancją obiektu. Można zauważyć, że bezpośrednia znajomość transmitancji widmowej obiektu nie jest konieczna, jeśli znane są przebiegi przedstawionych parametrów w funkcji częstotliwości.
+
+Wprowadzanie przez analizowany obiekt błędów dynamicznych wynika z faktu, że rzeczywista transmitancja $\tilde{G}_{u}(j\omega)$ odbiega od transmitancji idealnej $\dot{G}_{u}(j\omega)$. Powoduje to, że obiekt ten wprowadza inne tłumienie i przesunięcie w fazie do kolejnych harmonicznych sygnału, niż wymagane dla realizowanego przez niego zadania pomiarowego. Rozpatrując pojedynczą harmoniczną sygnału $u(t)$, można opisać idealny przebieg tej harmonicznej w postaci równania:
+\begin{equation}
+\dot{u}(t,\omega) = \dot{K}_{u}(\omega) E_{s,o}(\omega) \sin \left( \omega t + \varphi_{s,o}(\omega) + \dot{\varphi}_{u}(\omega) \right) \label{eqn_mid_cont_omega_ideal},
+\end{equation}
+natomiast ten sam przebieg zakłócony błędami własnym i propagowanymi, wynikającymi z transmitancji obiektu, wyrazić można w postaci równania:
+\begin{equation}
+\begin{split}
+\tilde{u}(t,\omega) = ~
+& \tilde{K}_{u}(\omega) E_{s,o}(\omega) \sin \left( \omega t + \varphi_{s,o}(\omega) + \tilde{\varphi}_{u}(\omega) \right) + \\
+& \tilde{K}_{u}(\omega) E_{s,e}(\omega) \sin \left( \omega t + \varphi_{s,e}(\omega) + \tilde{\varphi}_{u}(\omega) \right)
+\end{split}
+\label{eqn_mid_cont_omega_real},
+\end{equation}
+Wobec powyższych zależności, wprowadzany do sygnału $u(t)$ błąd dynamiczny własny $e_{u,dw}$ opisać można równaniem:
+\begin{equation}
+\begin{split}
+e_{u,dw}(t) = ~
+& \sum _{i = 1} ^{\infty} \tilde{K}_{u}(\omega_{s,i}) E_{s,o}(\omega_{s,i}) \sin \left( \omega_{s,i} t + \varphi_{s,o}(\omega_{s,i}) + \tilde{\varphi}_{u}(\omega_{s,i}) \right) - \\
+& \sum _{i = 1} ^{\infty} \dot{K}_{u}(\omega_{s,i}) E_{s,o}(\omega_{s,i}) \sin \left( \omega_{s,i} t + \varphi_{s,o}(\omega_{s,i}) + \dot{\varphi}_{u}(\omega_{s,i}) \right)
+\end{split}
+\label{eqn_mid_cont_err_dyn_self}.
+\end{equation}
+Poza wprowadzaniem do sygnału $u(t)$ błędu dynamicznego własnego, analizowany fragment obiektu przenosi z wejścia na wyjście błędy zawarte w sygnale wejściowym odpowiednio tłumiąc je i przesuwając w fazie:
+\begin{equation}
+e_{u,dp}(t) = \sum _{i = 1} ^{\infty} \tilde{K}_{u}(\omega_{s,i}) E_{s,e}(\omega_{s,i}) \sin \left( \omega_{s,i} t + \varphi_{s,e}(\omega_{s,i}) + \tilde{\varphi}_{u}(\omega_{s,i}) \right) \label{eqn_mid_cont_err_dyn_prop},
+\end{equation}
+przy czym $e_{u,dp}$ jest błędem dynamicznym analizowanego obiektu, propagowanym z wejścia na wyjście fragmentu reprezentującego właściwości dynamiczne tego obiektu.
+
+Ostatnią grupą błędów dla analizowanego fragmentu obiektu stanowią błędy losowe. Błędów tych nie sposób opisać równaniem deterministycznym, a zatem opis ich właściwości sprowadzać się będzie do wskazania prawdopodobieństwa uzyskania wybranych wartości kolejnych realizacji tych błędów. W dalszej cześć podrozdziału przyjęte zostanie założenie, że $\sigma_{s,r}^{2}$ jest wariancją, a $\sigma_{s,r}$ odchyleniem standardowym błędu losowego zawartego w przetwarzanym sygnale wejściowym, oraz że kolejne wartości realizacji tego błędu nie są ze sobą skorelowane. Dodatkowo przyjmuje się, że widmowa gęstość mocy analizowanego błędu jest stała i wynosi $\sigma_{s,r}^{2}$. Wobec powyższych założeń zauważyć można, że wpływ transmitancji $G_{u}(j\omega)$ na sygnał błędu losowego zaowocuje pojawieniem się korelacji pomiędzy kolejnymi realizacjami błędu wyjściowego, co w efekcie spowoduje, że wyjściowy sygnał błędu będzie mógł być zyskać opis deterministyczny \cite{bibbona_filter, benassi_filter}.
+
+Przedstawione zjawisko znacznie utrudnia analizę błędów losowych, jako że błędy w opisywanych okolicznościach należałoby analizować jak błędy dynamiczne. Zważywszy, że w praktyce każdy element toru pomiarowego posiada transmitancję różną od $G(j\omega) = \text{const}$, w zasadzie na jego wyjściu nigdy nie otrzymuje się sygnału błędu o przedstawionych w poprzednim akapicie założeniach. Aby umożliwić analizę dla błędów losowych, w przypadku gdy są one przetwarzane przez rzeczywisty obiekt, zaproponowana zostanie metoda pozwalająca na oszacowanie wariancji tych błędów uwzględniająca transmitancje obiektu oraz wariancję błędu na wejściu obiektu. Szacowaną wartość wariancji $\sigma_{u,rp}^{2}$ błędu losowego na wyjściu obiektu opisać można równaniem:
+\begin{equation}
+\sigma_{u,rp}^{2} = \frac{1}{a - b} \int _{b} ^{a} \tilde{K}_{u}(\omega)^{2} \sigma_{s,r}^{2} d\omega  \label{eqn_mid_cont_var_rand},
+\end{equation}
+przy czym $<a;b>$ jest zakresem częstotliwości, dla którego szacowana jest wariancja przenoszonego błędu losowego. W przypadku wystąpienia błędów losowych własnych również należy wskazać ich wariancję, opisaną jako $\sigma_{u,rw}^{2}$.
+
+Ostatecznie, sumując wszystkie błędy wielkości wyjściowej analizowanej części właściwości dynamicznych obiektu, otrzymuje się zależność określającą błąd wypadkowy $e_{u,\Sigma}$ opisaną równaniem:
+\begin{equation}
+e_{u,\Sigma}(t) = e_{u,sp}(t) + e_{u,dw}(t) + e_{u,rw}(t) + e_{u,dp}(t) + e_{u,rp}(t) \label{eqn_mid_cont_err_sum_all}.
+\end{equation}
+Uwzględniając równanie przetwarzania $f_{y}$ analizowanego obiektu zapisać można równanie przedstawiające idealną wielkość wyjściową obiektu jako:
+\begin{equation}
+\dot{y}(t) = \dot{f}_{y} \left( \dot{s}(t) \right) \label{eqn_out_cont_ideal_all},
+\end{equation}
+natomiast, przy uwzględnieniu równania \eqref{eqn_mid_cont_err_sum_all}, wielkość obarczoną omówionymi błędami zapisać można w postaci:
+\begin{equation}
+\tilde{y}(t) = \tilde{f}_{y} \left( \dot{s}(t) + e_{u,\Sigma}(t) \right) = \dot{y}(t) + e_{y,\Sigma}(t) \label{eqn_out_cont_real_all}.
+\end{equation}
+Wypadkowy błąd wielkości wyjściowej analizowanego obiektu przedstawia zatem zależność:
+\begin{equation}
+e_{y,\Sigma}(t) = \tilde{f}_{y} \left( \dot{s}(t) + e_{u,\Sigma}(t) \right) - \dot{f}_{y} \left( \dot{s}(t) \right) + f_{z}(z_{1}, \hdots, z_{N}) \label{eqn_out_cont_err_sum_all},
+\end{equation}
+przy czym $\tilde{f}_{y}$ jest rzeczywistym, $\dot{f}_{y}$ idealnym równaniem przetwarzania analizowanego obiektu, natomiast $f_{z}(\mathbf{z})$ funkcją uwzględniającą wybrane wielkości zakłócające.
+
+Przypadek ogólny, przedstawiony w równaniach od \eqref{eqn_out_cont_ideal_all} do \eqref{eqn_out_cont_err_sum_all}, jest w praktyce trudny do analizowania. Nie gwarantuje on bowiem możliwości analizy każdego błędu cząstkowego z osobna i nie będzie szczegółowo analizowany w niniejszej pracy. Dla przypadków, w których funkcja przetwarzania $f_{y}$ jest addytywna, tj. spełnia założenie $f_{y}(a + b) = f_{y}(a) + f_{y}(b)$, gdzie $a$ oraz $b$ należą do dziedziny tej funkcji, opisywaną analizę można przeprowadzić z osobna dla każdego rodzaju błędów. Przedstawione założenie jest w praktyce często spełniane, ponieważ funkcja przetwarzania reprezentuje zwykle czułość obiektu w przypadku obiektów o charakterze liniowym, a zatem jest ona funkcją liniową wyrażoną w postaci równania $f(x) = ax$, gdzie współczynnik $a$ jest czułością obiektu. W dalszej części podrozdziału zostanie przyjęte powyższe założenie dotyczące addytywności funkcji $f_{y}$, a następnie przedstawione zostaną zależności wynikające z tego założenia.
+
+W przypadku, gdy funkcja przetwarzania nie jest idealna lub gdy istnieją pewne wielkości zakłócające niebrane pod uwagę podczas pomiaru (np. wpływ ciśnienia, temperatury itp.), natomiast nie zmieniają się one w trakcie wykonywania pomiarów, wyróżnić można dodatkowy wprowadzany błąd własny. Jeśli błąd ten nie będzie zależny od widma sygnału wejściowego, to sklasyfikować go można jako błąd statyczny i opisać symbolem $e_{y,sw}$. Przebieg tego błędu określa równanie:
+\begin{equation}
+e_{y,sw}(t) = \tilde{f}_{y} \left( E_{s,o}(0) \right) - \dot{f}_{y} \left( E_{s,o}(0) \right) + f_{z}(z_{1}, \hdots, z_{N}) \label{eqn_out_cont_err_stat_self},
+\end{equation}
+gdzie $\tilde{f}_{y}(x)$ jest rzeczywistą, a $\dot{f}_{y}(x)$ idealną funkcją przetwarzania analizowanego obiektu. Pozostałe błędy, przy założeniu addytywności funkcji przetwarzania, opisać można za pomocą równań:
+\begin{gather}
+e_{y,sp}(t) = \tilde{f}_{y} \left( e_{u,sp}(t) \right) \label{eqn_out_cont_err_stat_prop}, \\
+e_{y,dw}(t) = \tilde{f}_{y} \left( e_{u,dw}(t) \right) \label{eqn_out_cont_err_dyn_prop}, \\
+e_{y,dp}(t) = \tilde{f}_{y} \left( e_{u,dp}(t) \right) \label{eqn_out_cont_err_dyn_self}, \\
+e_{y,rw}(t) = \tilde{f}_{y} \left( e_{u,rw}(t) \right) \label{eqn_out_cont_err_rand_self}, \\
+e_{y,rp}(t) = \tilde{f}_{y} \left( e_{u,rp}(t) \right) \label{eqn_out_cont_err_rand_prop},
+\end{gather}
+przy czym kolejno $e_{y,sp}$ jest błędem statycznym propagowanym, $e_{y,dw}$ błędem dynamicznym własnym, $e_{y,dp}$ błędem dynamicznym propagowanym oraz $e_{y,rp}$ błędem losowym propagowanym wielkości wyjściowej obiektu. Wobec powyższych równań i przyjętych założeń, równanie \eqref{eqn_out_cont_err_sum_all} przyjmuje postać:
+\begin{equation}
+e_{y,\Sigma}(t) = e_{y,sw}(t) + e_{y,sp}(t) + e_{y,dw}(t) + e_{y,dp}(t) + e_{y,rw}(t) + e_{y,rp}(t) \label{eqn_out_cont_err_sum_add}.
+\end{equation}
+
+Analizując przedstawione powyżej równania zauważyć można kluczowy wpływ funkcji przetwarzania $f_{y}$ obiektu na wprowadzane i przenoszone błędy. W przypadku nieliniowej charakterystyki przetwarzania obiektu, dla kolejnych harmonicznych przetwarzanego sygnału oraz harmonicznych błędu mogą pojawić się dodatkowe, wprowadzane przez funkcję przetwarzania harmoniczne. Dla liniowej funkcji przetwarzania rolę tej funkcji zastąpić można wzmocnieniem zawartym w transmitancji analizowanego obiektu i pominąć jej udział w dalszych rozważaniach.
+
+Podsumowując przedstawione zależności zauważyć można, że przedstawiona dla błędów statycznych analiza jest szczególnym przypadkiem analizy dla błędów dynamicznych, w którym analizowany fragment toru pomiarowego przetwarza sygnał stały lub na tyle wolno-zmienny, że jego właściwości dynamiczne nie mają żadnego wpływu na przetwarzany sygnał. W przypadku propagowanych przez obiekt błędów dynamicznych, jeśli transmitancja analizowanego obiektu nie wpływa znacząco na ich widmo, to są one przenoszone zgodnie z charakterystyką statyczną obiektu. Dodatkowo, w przypadku gdy transmitancja obiektu nie wpływa w żaden sposób na widmo przetwarzanego sygnału, obiekt nie będzie wprowadzał do sygnału wyjściowego błędów dynamicznych własnych.
+
+\section{Błędy przetwornika analogowo-cyfrowego}
+
+Pomiędzy częściami analogową i cyfrową w torze pomiarowym znajduje się przetwornik, który przekształca ciągły sygnał wejściowy na jego dyskretną reprezentację. Można zatem stwierdzić, że element ten zaokrągla przetwarzaną wartość sygnału wejściowego do najbliższej wartości będącej wielokrotnością liczby naturalnej $n_{q}$ oraz stałej wartości kwantu $q$. Wartość kwantu zależy od zakresu wartości wielkości wejściowych analizowanego przetwornika oraz od liczby dostępnych wartości wielkości wyjściowej, nazywanej rozdzielczością przetwornika $N_{q}$. Rozdzielczość przetwornika jest zwykle równa $2^{n}$ gdzie $n$ jest liczbą naturalną równą liczbie bitów słowa wyjściowego $n_{q}$ tego przetwornika. Oznaczając przedział wartości wielkości wejściowych przetwornika jako $<a;b>$ wartość kwantu wynosi odpowiednio $q = \frac{b - a}{N_{q}}$.
+
+Opisując funkcję przetwarzania $f_{AC}$, z uwzględnieniem korekcji błędu systematycznego, idealnego układu kwantyzatora równaniem w postaci \cite{jakubiec_system}:
+\begin{equation}
+f_{AC}(x) = n_{q}(x) = \left\lfloor \frac{x}{q} + 0.5 \right\rfloor \label{eqn_adc_function},
+\end{equation}
+gdzie $\lfloor x \rfloor$ oznacza część całkowitą liczby $x$,  a następnie opisując wskazanie analizowanego przetwornika w jednostce wielkości wyjściowej jako:
+\begin{equation}
+\breve{u}_{AC}(x) = q f_{AC}(x) = q \left\lfloor \frac{x}{q} + 0.5 \right\rfloor \label{eqn_adc_output},
+\end{equation}
+błąd kwantowania $e_{AC,q}$ opisać można równaniem w postaci \cite{jakubiec_system}:
+\begin{equation}
+e_{AC,q}(x) = x - \breve{u}_{AC}(x) = x - q \left\lfloor \frac{x}{q} + 0.5 \right\rfloor \label{eqn_adc_qerror},
+\end{equation}
+przy czym dla błędu kwantowania oraz wartości kwantu omawianego układu zachodzi zależność, którą opisuje następujące równanie:
+\begin{equation}
+-\frac{q}{2} \le e_{AC,q}(x) \le \frac{q}{2} \label{eqn_adc_qerrrange}.
+\end{equation}
+
+Zakładając, że wszystkie możliwe wartości wielkości wejściowej są jednakowo prawdopodobne do uzyskania na wejściu analizowanego układu, rozkład błędów kwantowania będzie rozkładem jednostajnym, symetrycznym względem osi rzędnych, w przedziale $<-\frac{q}{2};\frac{q}{2}>$ \cite{jakubiec_system, sienkowski_kwant}.
+
+Należy zauważyć, że rzeczywisty przetwornik analogowo-cyfrowy wprowadzać będzie do sygnału wyjściowego dodatkowe błędy związane między innymi z nieliniowością charakterystyki przetwarzania, przesunięciem charakterystyki przetwarzania, niedoskonałością źródła napięcia referencyjnego, czy impedancją wejściową układu próbkująco-pamiętającego. Dodatkowo, błędy na wyjściu takiego przetwornika mogą być skorelowane z wielkością wejściową oraz szumem zawartym w tej wielkości, przy czym zwykle korelacja ta jest pomijalnie mała, co przedstawiają badania zawarte w pracy \cite{sienkowski_adc}.
+
+Analizę właściwości wybranych przetworników cyfrowo-analogowych przedstawiają szczegółowo prace między innymi: \cite{jakubiec_system, sienkowski_adc, sienkowski_kwant, arpaia_deltasigma}. Należy zatem określić budżet niepewności dla zastosowanego w torze pomiarowym przetwornika, zgodnie z jego charakterystyką i uwzględnieniem związanych z nim właściwości. Ostatecznie błąd wypadkowy $e_{AC,\Sigma}$ przetwornika analogowo-cyfrowego dla $i$-tej wielkości wyjściowej opisać można równaniem:
+\begin{equation}
+e_{AC,\Sigma}(i) = e_{AC,s}(i) + e_{AC,d}(i) + e_{AC,r}(i) \label{eqn_adc_outerr},
+\end{equation}
+gdzie $e_{AC,s}$ jest wypadkowym błędem statycznym będącym sumą błędu statycznego własnego $e_{AC,sw}$ i propagowanego $e_{AC,sp}$, $e_{AC,d}$ wypadkowym błędem dynamicznym stanowiącym sumę błędu dynamicznego własnego $e_{AC,dw}$ i propagowanego $e_{AC,dp}$, natomiast $e_{AC,r}$ jest wypadkowym błędem losowym.
+
+Jako, że charakter błędu kwantowania nie pozwala na deterministyczny opis przebiegu tego błędu dla kolejnych wielkości wejściowych przetwornika, to błąd ten ostatecznie wliczyć można do wypadkowego błędu losowego:
+\begin{equation}
+e_{AC,r}(i) = e_{AC,rp}(i) + e_{AC,rw}(i) + e_{AC,q}(i) \label{eqn_adc_rerr},
+\end{equation}
+przy czym $e_{AC,rp}$ stanowi błąd losowy propagowany, a $e_{AC,rw}$ błąd losowy własny. Obecność błędu losowego własnego wynikać może np. z obecności szumu w przebiegu napięcia referencyjnego.
+
+\section{Błędy w części cyfrowej toru pomiarowego}
+
+W przypadku części cyfrowej wybranego fragmentu toru pomiarowego opis właściwości metrologicznych może być wykonany w sposób podobny, jak w przypadku części analogowej. Transmitancję $G(j\omega)$ należy zastąpić odpowiednią dla opisu dyskretnych elementów transmitancją $H(z)$, a ciągłą zmienną $t$ reprezentującą czas należy zastąpić wyrażeniem $kT_{p}$, gdzie $k$ jest liczbą naturalną oznaczającą numer próbki sygnału, natomiast $T_{p}$ okresem próbkowania. Schemat ideowy cyfrowej części toru pomiarowego przedstawiono na rysunku \ref{fig_chain_disc}. Przykładem omawianego rodzaju obiektu może być filtr cyfrowy lub inny algorytm jednopunktowy realizujący odtwarzanie statyczne bądź dynamiczne.
+
+W dalszej cześć podrozdziału przyjęte zostanie założenie, że analizowana cześć toru pomiarowego przetwarza dyskretne próbki sygnału wejściowego $x(i)$ na próbki sygnału wyjściowego $X(i)$, gdzie $i$ jest numerem próbki. Dodatkowo zakłada się, że wskazanie $\hat{x}(i)$ jest równe wskazaniu $\tilde{f}_{AC} \left( \hat{y}(kT) \right)$ dla $i = k$, oraz że transmitancja $G_{v}(j\omega)$ jest transmitancją obiektu w dziedzinie pulsacji, która odpowiada dyskretnej, liniowej oraz niezmiennej w czasie, transmitancji $H_{v}(z)$ tego obiektu.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/schemat_dyskretny}
+\caption{Schemat blokowy pojedynczego fragmentu części cyfrowej toru pomiarowego \label{fig_chain_disc}}
+\end{center}
+\end{figure}
+
+Opisując wielkość wejściową $x(i)$ w sposób analogiczny, jak w przypadku opisu wielkości wejściowej dla części analogowej toru pomiarowego, dla przyjętych powyżej założeń otrzymuje się równanie:
+\begin{equation}
+\dot{x}(i) = \sum _{j = 0} ^{\infty} \dot{x}(i, \omega_{x,j}) \label{eqn_in_disc_sum},
+\end{equation}
+przy czym $\omega_{s,j}$ jest pulsacją $j$-tej harmonicznej opisywanego sygnału. Przyjmując, że $\dot{x}(i, \omega)$ jest idealnym, natomiast $\tilde{x}(i, \omega)$ zakłóconym błędami przebiegiem wybranej harmonicznej sygnału $x(i)$ otrzymuje się zależności:
+\begin{gather}
+\dot{x}(i, \omega) = E_{x,o}(\omega) \sin \left( \omega iT_{p} + \varphi_{s,o}(\omega) \right) \label{eqn_in_disc_omega_ideal}, \\
+\tilde{x}(i, \omega) = \dot{x}(i, \omega) + E_{x,e}(\omega) \sin \left( \omega iT_{p} + \varphi_{x,e}(\omega) \right) \label{eqn_in_disc_omega_real}, \\
+\tilde{x}(i) = e_{x,r}(i) + \sum _{j = 0} ^{\infty} \tilde{x}(i, \omega_{x,j}) \label{eqn_in_disc_sum_real},
+\end{gather}
+gdzie $E_{x,o}(\omega)$ jest amplitudą oraz $\varphi_{x,o}(\omega)$ przesunięciem w fazie wybranej harmonicznej sygnału, $E_{x,e}$ amplitudą oraz $ \varphi_{x,e}$ przesunięciem w fazie analizowanej harmonicznej błędu dynamicznego zawartego w sygnale, natomiast $e_{x,r}$ jest błędem losowym. Wobec powyższych, zakłóconą błędami wielkość wejściową $x(i)$ analizowanej cześć toru pomiarowego opisać można równaniem:
+\begin{equation}
+\tilde{x}(i) = \dot{x}(i) + e_{x,s}(i) + e_{x,d}(i) + e_{x,r}(i) \label{eqn_in_disc_real},
+\end{equation}
+gdzie $e_{x,s}$ jest błędem statycznym, $e_{x,d}$ błędem dynamicznym, natomiast $e_{x,r}$ błędem losowym wielkości wejściowej obiektu oraz:
+\begin{gather}
+e_{x,s}(i) = E_{x,e}(\omega_{s,0}) \sin \left( \omega_{s,0} iT_{p} + \varphi_{x,e}(\omega_{x,0}) \right) = E_{x,e}(0) \label{eqn_in_disc_err_stat}, \\
+e_{x,d}(i) = \sum _{i = 1} ^{\infty} E_{x,e}(\omega_{x,i}) \sin \left( \omega_{x,i} iT_{p} + \varphi_{x,e}(\omega_{x,i}) \right) \label{eqn_in_disc_err_dyn}.
+\end{gather}
+Błąd wypadkowy $e_{x,\Sigma}$ zawarty w sygnale $x(i)$ można zatem wyrazić w postaci sumy wszystkich wymienionych błędów cząstkowych jako:
+\begin{equation}
+e_{x,\Sigma}(i) = e_{x,s}(i) + e_{x,d}(i) + e_{x,r}(i) \label{eqn_in_disc_err_sum}.
+\end{equation}
+
+Podobnie jak w przypadku opisu części analogowej, w pierwszej kolejności omówiony zostanie wpływ transmitancji $H_{v}(z)$ na przetwarzany sygnał $x(i)$. Sygnał wyjściowy omawianego fragmentu oznaczono symbolem $v(i)$. Analogicznie, jak w przypadku analogowej części toru pomiarowego, właściwości dynamiczne dla przyjętych założeń nie wpływają na zawarte w sygnale wejściowym błędy statyczne oraz nie wprowadzają statycznych błędów własnych do sygnału $v(i)$. Równania \eqref{eqn_mid_cont_err_stat_self} oraz \eqref{eqn_mid_cont_err_stat_prop} przyjmują zatem postać:
+\begin{gather}
+e_{v,sw}(i) = 0 \label{eqn_mid_disc_err_stat_self}, \\
+e_{v,sp}(i) = E_{x,s}(0) \label{eqn_mid_disc_err_stat_prop},
+\end{gather}
+gdzie $e_{u,sw}$ jest błędem statycznym własnym, a $e_{u,sp}$ błędem statycznym przenoszonym przez fragment obiektu związany z jego właściwościami dynamicznymi.
+Parametry związane z transmitancją obiektu, stanowiące odpowiednik równań \eqref{eqn_mid_cont_amp} oraz \eqref{eqn_mid_cont_phi} w analizowanym przypadku opisać można jako:
+\begin{gather}
+K_{v}(\omega) = \left| G_{v}(j\omega) \right| = \sqrt{\left( \Re \left( G_{v}(j\omega) \right) \right)^2 + \left( \Im \left( G_{v}(j\omega) \right) \right)^2} \label{eqn_mid_disc_amp}, \\
+\varphi_{v}(\omega) = \arctan \left( \frac{\Im (G_{v}(j\omega))}{\Re (G_{v}(j\omega))} \right) \label{eqn_mid_disc_phi},
+\end{gather}
+gdzie $K_{u}(\omega)$ oznaczono wzmocnienie oraz $\varphi_{u}(\omega)$ przesunięcie w fazie pojedynczej harmonicznej sygnału. Pojedynczą harmoniczną wielkości wyjściowej $v(i)$ omawianego fragmentu dla przypadku idealnego opisać można zatem jako:
+\begin{equation}
+\dot{v}(i,\omega) = \dot{K}_{v}(\omega) E_{x,o}(\omega) \sin \left( \omega iT_{p} + \varphi_{x,o}(\omega) + \dot{\varphi}_{v}(\omega) \right) \label{eqn_mid_disc_omega_ideal},
+\end{equation}
+natomiast ten sam przebieg zakłócony błędami własnym i propagowanymi, wynikającymi z transmitancji obiektu, wyrazić można w postaci równania:
+\begin{equation}
+\begin{split}
+\tilde{v}(i,\omega) = ~
+& \tilde{K}_{v}(\omega) E_{x,o}(\omega) \sin \left( \omega iT_{p} + \varphi_{x,o}(\omega) + \tilde{\varphi}_{v}(\omega) \right) + \\
+& \tilde{K}_{v}(\omega) E_{x,e}(\omega) \sin \left( \omega iT_{p} + \varphi_{x,e}(\omega) + \tilde{\varphi}_{v}(\omega) \right)
+\end{split}
+\label{eqn_mid_disc_omega_real}.
+\end{equation}
+
+Na podstawie przedstawionych zależności określających właściwości dynamiczne analizowanego obiektu, w sposób analogiczny jak w równaniach \eqref{eqn_mid_cont_err_dyn_self} oraz \eqref{eqn_mid_cont_err_dyn_prop}, wprowadzany do sygnału $v(t)$ błąd dynamiczny własny $e_{v,dw}$ opisać można zależnością przedstawioną równaniem:
+\begin{equation}
+\begin{split}
+e_{v,dw}(t) = ~
+& \sum _{j = 1} ^{\infty} \tilde{K}_{v}(\omega_{x,j}) E_{x,o}(\omega_{x,j}) \sin \left( \omega_{x,j} t + \varphi_{x,o}(\omega_{x,j}) + \tilde{\varphi}_{v}(\omega_{s,i}) \right) - \\
+& \sum _{j = 1} ^{\infty} \dot{K}_{v}(\omega_{x,j}) E_{x,o}(\omega_{x,j}) \sin \left( \omega_{x,j} t + \varphi_{x,o}(\omega_{x,j}) + \dot{\varphi}_{v}(\omega_{s,i}) \right)
+\end{split}
+\label{eqn_mid_disc_err_dyn_self},
+\end{equation}
+natomiast propagowany przez analizowany fragment części cyfrowej błąd dynamiczny $e_{v,dp}$ przedstawić można za pomocą równania:
+\begin{equation}
+e_{v,dp}(i) = \sum _{j = 1} ^{\infty} \tilde{K}_{v}(\omega_{x,j}) E_{x,e}(\omega_{x,j}) \sin \left( \omega_{x,j} iT_{p} + \varphi_{x,e}(\omega_{x,j}) + \tilde{\varphi}_{v}(\omega_{x,j}) \right) \label{eqn_mid_disc_err_dyn_prop}.
+\end{equation}
+Wariancja $\sigma_{v,rp}^{2}$ propagowanego błędu losowego może natomiast zostać oszacowana zgodnie z metodologią zaproponowaną w równaniu \eqref{eqn_mid_cont_var_rand} i opisana zależnością:
+\begin{equation}
+\sigma_{v,rp}^{2} = \frac{1}{a - b} \int _{b} ^{a} \tilde{K}_{v}(\omega)^{2} \sigma_{x,r}^{2} d\omega  \label{eqn_mid_disc_var_rand}.
+\end{equation}
+Ze względu na fakt, że operacje wyznaczania wielkości wyjściowych dla omawianej części toru pomiarowego związane będą z operacjami numerycznymi, wielkości wyjściowe tej części będą również obarczone związanym z nimi błędem zaokrągleń. Charakter tego błędu będzie niedeterministyczny, a zatem traktować go należy jak błąd losowy i oszacować należy jego wariancję oznaczoną jako $\sigma_{v,rw}^{2}$.
+
+W kolejnej części analizowanego fragmentu toru pomiarowego sygnał $v(i)$ przetwarzany jest zgodnie z charakterystyką funkcji przetwarzania $f_{X}$. W zależności od charakteru funkcji przetwarzania, funkcja ta może modyfikować widmo przetwarzanego sygnału, podobnie jak miało to miejsce w części analogowej. Można zatem w ogólnym przypadku zapisać zależność określającą błąd wypadkowy $e_{v,\Sigma}$ sygnału $v(i)$ w postaci sumy kolejnych błędów cząstkowych:
+\begin{equation}
+e_{v,\Sigma}(v) = e_{v,sp}(i) + e_{v,dw}(i) + e_{v,rw}(i) + e_{v,dp}(i) + e_{v,rp}(i) \label{eqn_mid_disc_err_sum_all}.
+\end{equation}
+Następnie, uwzględniając równanie przetwarzania analizowanego obiektu, zapisać można równanie przedstawiające idealną wielkość wyjściową $X(i)$ obiektu jako:
+\begin{equation}
+\dot{X}(i) = \dot{f}_{X} \left( \dot{x}(i) \right) \label{eqn_out_disc_ideal_all},
+\end{equation}
+natomiast przy uwzględnieniu równania \eqref{eqn_mid_disc_err_sum_all}, wielkość tą obarczoną wyróżnionymi błędami zapisać można w postaci:
+\begin{equation}
+\tilde{X}(i) = \tilde{f}_{X} \left( \dot{x}(i) + e_{v,\Sigma}(i) \right) = \dot{X}(i) + e_{X,\Sigma}(i) \label{eqn_out_disc_real_all},
+\end{equation}
+gdzie wypadkowy błąd $e_{X,\Sigma}$ wielkości wyjściowej analizowanego obiektu przedstawia następująca zależność:
+\begin{equation}
+e_{X,\Sigma}(i) = \tilde{f}_{X} \left( \dot{x}(i) + e_{v,\Sigma}(t) \right) - \dot{f}_{X} \left( \dot{x}(i) \right) + f_{z}(z_{1}, \hdots, z_{N}) \label{eqn_out_disc_err_sum_all},
+\end{equation}
+przy czym $\tilde{f}_{X}$ jest rzeczywistym oraz $\dot{f}_{X}$ idealnym równaniem przetwarzania analizowanego obiektu, natomiast $f_{z}(\mathbf{z})$ funkcją uwzględniającą wielkości zakłócające.
+
+Dalsze rozważania przeprowadzane będą przy założeniu, że analizowana funkcja przetwarzania jest addytywna, tj. $f_{X}(a + b) = f_{X}(a) + f_{X}(b)$ gdzie $a$ oraz $b$ należą do dziedziny tej funkcji. Wobec przyjętego założenia, wszystkie opisane powyżej błędy analizować można oddzielnie, analogiczne jak w przypadku równań od \eqref{eqn_out_cont_err_stat_self} do \eqref{eqn_out_cont_err_sum_add}:
+\begin{gather}
+e_{X,sw}(i) = \tilde{f}_{X} \left( E_{v,o}(0) \right) - \dot{f}_{X} \left( E_{v,o}(0) \right) + f_{z}(z_{1}, \hdots, z_{N}) \label{eqn_out_disc_err_stat_self}, \\
+e_{X,sp}(i) = \tilde{f}_{X} \left( e_{v,sp}(i) \right) \label{eqn_out_disc_err_stat_prop}, \\
+e_{X,dw}(i) = \tilde{f}_{X} \left( e_{v,dw}(i) \right) \label{eqn_out_disc_err_dyn_prop}, \\
+e_{X,dp}(i) = \tilde{f}_{X} \left( e_{v,dp}(i) \right) \label{eqn_out_disc_err_dyn_self}, \\
+e_{X,rw}(i) = \tilde{f}_{X} \left( e_{v,rw}(i) \right) \label{eqn_out_disc_err_rand_self}, \\
+e_{X,rp}(i) = \tilde{f}_{X} \left( e_{v,rp}(i) \right) \label{eqn_out_disc_err_rand_prop},
+\end{gather}
+przy czym $e_{X,sp}$ jest błędem statycznym własnym, $e_{X,sp}$ statycznym propagowanym, $e_{X,dw}$ dynamicznym własnym, $e_{X,dp}$ dynamicznym propagowanym, $e_{X,rw}$ losowym własnym oraz $e_{X,rp}$ losowym propagowanym wielkości wyjściowej obiektu. Równanie \eqref{eqn_out_cont_err_sum_all} przyjmuje wtedy postać:
+\begin{equation}
+e_{X,\Sigma}(i) = e_{X,sw}(i) + e_{X,sp}(i) + e_{X,dw}(i) + e_{X,dp}(i) + e_{X,rw}(i) + e_{X,rp}(i) \label{eqn_out_disc_err_sum_add}.
+\end{equation}
+
+\section{Opis błędu w kategoriach probabilistycznych}
+
+W poprzednich częściach rozdziału przedstawiono związki pomiędzy kolejnymi błędami wybranych cześć toru pomiarowego. Powtarzając proces uzyskiwania wartości wielkości wyjściowej każdego z omówionych fragmentów, a następnie porównując uzyskaną wartość wskazania do wartości odpowiadającej idealnej realizacji procesu pomiaru, uzyskać można określony rozrzut wartości błędu obarczającego kolejne wskazania oraz określić można jego populację. Na podstawie wymienionych parametrów błąd ten opisać można w kategoriach probabilistycznych, przez co poza wartością wskazania określić można z zadanym prawdopodobieństwem przedział, w jakim powinna znajdować się prawdziwa wartość tego wskazania \cite{jcgm_guide}.
+
+W przypadku, gdy analizowana wielkość obarczona jest błędami pochodzącymi z różnych źródeł, wyznaczyć należy wariancję błędu wypadkowego wynikającą ze złożenia tych błędów \cite{wymyslo_range}. Podczas obliczeń należy brać pod uwagę ewentualne korelacje pomiędzy składanymi błędami, wynikające z łączących je zależności. Należy również zaznaczyć, że wariancje kolejnych błędów cząstkowych powinny być wyznaczane dla warunków, które w jak największym stopniu odpowiadać będą rzeczywistym warunkom pomiarów. Zakładając zatem, że analizowana wielkość jest zakłócona błędami cząstkowymi oznaczonymi jako $e_{0}, e_{1}, \hdots, e_{N-1}$, których wariancje wynoszą kolejno $\sigma_{0}^{2}, \sigma_{1}^{2}, \hdots, \sigma_{N-1}^{2}$, natomiast kolejne współczynniki korelacji \cite{jcgm_guide} oznaczone są symbolem $r_{i,j}$, wariancję wypadkową oznaczyć można jako:
+\begin{equation}
+\sigma_{\Sigma}^{2} =
+\begin{bmatrix}
+\sigma_{0} \\ \sigma_{1} \\ \vdots \\ \sigma_{N-1}
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1         & r_{0,1} & \cdots & r_{0,N-1} \\
+r_{1,0}   & 1       &        & r_{1,N-1} \\
+\vdots    &         & \ddots & \vdots    \\
+r_{N-1,0} & \cdots  & \cdots & 1
+\end{bmatrix}
+\begin{bmatrix}
+\sigma_{0} \\ \sigma_{1} \\ \vdots \\ \sigma_{N-1}
+\end{bmatrix}
+\label{eqn_var_matrix},
+\end{equation}
+przy czym symbolem $T$ oznaczono operację transpozycji macierzy, natomiast wartości współczynników korelacji wyznaczane są zgodnie z zależnością:
+\begin{equation}
+r_{i,j} = \frac{\sigma_{i,j}^{2} - \sigma_{i}^{2} - \sigma_{j}^{2}}{2 \sigma_{i} \sigma_{j}} \label{eqn_var_corr},
+\end{equation}
+gdzie $\sigma_{i,j}^{2}$ jest wariancją błędu wypadkowego dla sumy błędów $i$-tego i $j$-tego. W szczególnym przypadku, gdy składane błędy nie są ze sobą skorelowane (tj. $r_{i,j} = 0$ dla $i \ne j$), zależność \eqref{eqn_var_matrix} uprościć można do postaci:
+\begin{equation}
+\sigma_{\Sigma}^{2} = \sum _{i = 0} ^{N-1} \sigma_{0}^2 \label{eqn_var_sum}.
+\end{equation}
+
+Nieco inną metodologię przyjmuje się, gdy składane błędy $e_{0}, e_{1}, \hdots, e_{N-1}$ opisać można w sposób deterministyczny. Sytuacja ta dotyczyć będzie błędów dynamicznych, których przebieg kolejnych harmonicznych jest sinusoidalnie zmienny. Opisując przebieg $i$-tej harmonicznej sygnału błędu w postaci równania:
+\begin{equation}
+e_{i}(t) = E_{i} \sin(\omega t + \varphi_{i}) \label{eqn_dyn_harm},
+\end{equation}
+gdzie $E_{i}$ jest amplitudą oraz $\varphi_{i}$ przesunięciem w fazie dla $i$-tej harmonicznej przebiegu błędu, natomiast $\omega$ jest pulsacją, wspólną dla wszystkich składanych przebiegów błędów, odchylenie standardowe dla opisywanych błędów obliczyć można zgodnie z zależnością:
+\begin{equation}
+\sigma_{i} = \frac{E_{i}}{\sqrt{2}} \label{eqn_dyn_std},
+\end{equation}
+natomiast kolejne współczynniki korelacji przyjmują w tym przypadku wartości \cite{jakubiec_system}:
+\begin{equation}
+r_{i,j} = \cos(\varphi_{j} - \varphi_{i}) \label{eqn_dyn_corr}.
+\end{equation}
+Wyznaczone wartości należy podstawić do równania \eqref{eqn_var_matrix} w celu wyznaczenia wariancji składanych błędów dynamicznych. Przedstawiony sposób pozwala na wyznaczenie wariancji dowolnej liczby przebiegów sinusoidalnie zmiennych sygnałów błędów o znanych fazach, natomiast metoda ta nie daje bezpośredniej informacji o fazie błędu wypadkowego. W niektórych przypadkach wiedza ta jest konieczna, np. gdy w dalszym etapie analizy rozpatrywane będą kolejne harmoniczne sygnału błędu. Problem ten można rozwiązać przechodząc na rachunek wektorowy, zapisując kolejne wektory błędów opisanych równaniem \eqref{eqn_dyn_harm} w postaci:
+\begin{equation}
+\mathbf{e}_{i} = 
+\begin{bmatrix} 
+e_{i,a} & e_{i,b} 
+\end{bmatrix} 
+=
+\begin{bmatrix} 
+E_{i} \cos(\varphi_{i}) & E_{i} \sin(\varphi_{i})
+\end{bmatrix} 
+\label{eqn_dyn_vect},
+\end{equation}
+oraz wektor wypadkowy, będący sumą opisywanych wektorów jako:
+\begin{equation}
+\mathbf{e}_{\Sigma} = 
+\begin{bmatrix} 
+e_{\Sigma,a} & e_{\Sigma,b} 
+\end{bmatrix}
+=
+\begin{bmatrix} 
+\sum _{i = 0} ^{N-1} e_{i,a} & \sum _{i = 0} ^{N-1} e_{i,b}
+\end{bmatrix}
+\label{eqn_dyn_vect_sum},
+\end{equation}
+gdzie $N$ oznacza liczbę składanych błędów dynamicznych. W takim przypadku amplituda błędu wypadkowego oraz jego faza określone są przez równania:
+\begin{gather}
+E_{\Sigma} = \sqrt{e_{\Sigma,a}^2 + e_{\Sigma,b}^2} \label{eqn_dyn_vect_amp}, \\
+\varphi_{\Sigma} = \arctan \left( \frac{e_{\Sigma,b}}{e_{\Sigma,a}} \right) \label{eqn_dyn_vect_phi}.
+\end{gather}
+
+Ostatnią sytuacją związaną z błędami dynamicznymi, która wymaga komentarza, jest przypadek gdzie istnieje kilka błędów dynamicznych opisanych równaniem \eqref{eqn_dyn_harm}, natomiast przebiegi te cechują się inną wartością pulsacji. W przypadku, gdy należy wyznaczyć wariancję błędu dynamicznego złożonego z $N$ błędów cząstkowych o różnych pulsacjach i przesunięciach w fazie, należy skorzystać z równania:
+\begin{equation}
+\sigma_{\Sigma}^{2} = \lim _{T \to \infty} \frac{1}{2T} \int _{-T} ^{T} \sum _{i = 0} ^{N -1} \left( E_{i} \sin(\omega_{i} t + \varphi_{i}) \right)^{2} dt \label{eqn_dyn_multi},
+\end{equation}
+gdzie $\omega_{i}$ jest pulsacją, $\varphi_{i}$ przesunięciem w fazie, natomiast $E_{i}$ amplitudą $i$-tej harmonicznej błędu dynamicznego. Jako, że przebiegi kolejnych harmonicznych są opisane za pomocą funkcji okresowych, to w praktyce granicę gdzie $T \to \infty$ zastąpić można wartością $T$ będącą najmniejszą wspólną wielokrotnością okresu wszystkich składanych harmonicznych błędu dynamicznego. Cecha ta pozwala na numeryczne wyznaczenie wartości przedstawionego równania, jednakże w przypadku dużej liczby błędów składowych, znacznie lepszą alternatywę stanowić może metoda Monte-Carlo \cite{roj_annuncertainty, janssen_montecarlo}. Dla przypadków, gdzie kolejne wartości pulsacji różnią się od siebie znacząco (ich stosunek nie zawiera się w przedziale $<\frac{1}{3};\frac{5}{3}>$), lub ich pulsacje są kolejnymi wielokrotnościami liczby naturalnej i pewnej pulsacji, założyć można że przebiegi te są liniowo niezależne i nie są ze sobą skorelowane -- należy wtedy zastosować przypadek opisany równaniem \eqref{eqn_var_sum}, dotyczący braku korelacji.
+
+Wyznaczenie wartości wariancji $\sigma_{\Sigma}^{2}$ błędu wypadkowego pozwala wyznaczyć niepewność standardową. W wielu przypadkach jednak niepewność standardowa może okazać się niewystarczająca i wymagane będzie wyznaczenie wartości niepewności rozszerzonej. Na tym etapie napotkać można problem związany z zależnością niepewności rozszerzonej od kształtu rozkładu błędu, który do tej pory nie był w pracy rozważany. Rozkłady błędów składowych będą cechowały się kształtem zależnym od charakteru tego błędu -- błędy związane z szumami oraz błędy zaokrągleń będą miały kształt zbliżony do kształtu rozkładu normalnego, rozkład błędu kwantowania będzie rozkładem jednostajnym, natomiast błędy dynamiczne cechować się będą rozkładem dwumodalnym (w kształcie litery \enquote{U}). W przypadku, gdy nie będzie można wyróżnić żadnego błędu dominującego, przy czym wystąpi wiele źródeł błędów od siebie niezależnych, to zgodnie z centralnym twierdzeniem granicznym, błąd wypadkowy będzie błędem o rozkładzie zbliżonym do normalnego \cite{jcgm_guide}. Opisywane założenie w wielu przypadkach będzie prawdziwe.
+
+W ogólnym przypadku zależność opisującą niepewność rozszerzoną, wyznaczoną na podstawie odchylenia standardowego $\sigma_{\Sigma}$ błędu wypadkowego, przedstawić można za pomocą równania \cite{jcgm_guide}:
+\begin{equation}
+U_{\Sigma} = c_{\Sigma} \sigma_{\Sigma} \label{eqn_unc_sum},
+\end{equation}
+w którym $c_{\Sigma}$ jest współczynnikiem rozszerzenia wynikającym z kształtu rozkładu błędu wypadkowego. Jeżeli spełnione jest założenie odnośnie braku błędu dominującego i istnieniu wielu źródeł błędów, to dla poziomu ufności $\alpha = 95\%$ wartość tego współczynnika wynosi $1.96$ \cite{jcgm_guide}, co odpowiada wartości współczynnika rozszerzenia dla rozkładu normalnego. Proces składania niepewności rozszerzonych przebiega bardzo podobnie, jak w przypadku składania wariancji błędów cząstkowych. Dla każdego z błędów składowych należy w tej sytuacji wyznaczyć niepewność rozszerzoną dla jednakowego poziomu ufności, a następnie wyznaczyć macierz współczynników koherencji, podobną do macierzy korelacji przedstawionej w równaniu \eqref{eqn_var_matrix}. Oznaczając cząstkową niepewność rozszerzoną związaną z $i$-tym błędem cząstkowym symbolem $U_{i}$, kolejne wartości $h_{i,j}$ macierzy koherencji dla $N$ błędów cząstkowych opisuje następujące równanie \cite{jakubiec_reductive}:
+\begin{equation}
+h_{i,j} = \frac{U_{i,j}^{2} - U_{i}^{2} - U_{j}^{2}}{2 U_{i} U_{j}} \cdot \frac{U_{i}^{2} + U_{j}^{2}}{\sum _{k = 0} ^{N-1} U_{k}^{2}} \label{eqn_unc_coher},
+\end{equation}
+przy czym $U_{i,j}$ jest niepewnością rozszerzoną dla tego samego poziomu ufności, otrzymaną po złożeniu niepewności o parametrach $U_{i}$ z niepewnością o parametrach $U_{j}$. Wyznaczona z równania \eqref{eqn_unc_coher} wartość jest wypadkową współczynnika kształtu i współczynnika korelacji, przy czym $h_{i,j} = 1$ dla $i = j$. Wartości współczynników koherencji wyznacza się dla par rozkładów o zadanym współczynniku kształtu metodą analityczną lub metodą Monte-Carlo \cite{jakubiec_arithmetic}, przy czym równanie \eqref{eqn_unc_coher} zakłada również korektę wynikającą z centralnego twierdzenia granicznego \cite{jakubiec_system}. Znajomość wartości współczynników macierzy koherencji oraz wartości niepewności rozszerzonych dla kolejnych błędów cząstkowych umożliwia wyznaczenie niepewności wypadkowej w sposób zbliżony do przedstawionego w równaniu \eqref{eqn_var_matrix}, który opisać można następującą zależnością \cite{jakubiec_reductive}:
+\begin{equation}
+U_{\Sigma} = \sqrt{
+\begin{bmatrix}
+U_{0} \\ U_{1} \\ \vdots \\ U_{N-1}
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1         & h_{0,1} & \cdots & h_{0,N-1} \\
+h_{1,0}   & 1       &        & h_{1,N-1} \\
+\vdots    &         & \ddots & \vdots    \\
+h_{N-1,0} & \cdots  & \cdots & 1
+\end{bmatrix}
+\begin{bmatrix}
+U_{0} \\ U_{1} \\ \vdots \\ U_{N-1}
+\end{bmatrix}}
+\label{eqn_unc_matrix}.
+\end{equation}
+
+Analizując przedstawione zależności zauważyć można, że sposób przedstawienia niedokładności wyniku pomiaru zależeć będzie w dużej mierze od potrzeb projektanta toru pomiarowego oraz od specyfiki zakłócających proces pomiaru błędów. Opis wykorzystujący wariancję błędów wydaje się bardziej przystępny, gdyż wariancja może być utożsamiana z mocą sygnału. Opis wykorzystujący niepewność rozszerzoną będzie jednak bardziej precyzyjny, natomiast wymaga większego zaangażowania w proces wyznaczania ostatecznej wartości tej niepewności. W odpowiednich okolicznościach, jeżeli spełnione są warunki związane z centralnym twierdzeniem granicznym, opis bazujący na wariancji błędu może być w łatwy sposób przeniesiony na opis związany z niepewnością rozszerzoną. Podczas wyznaczania wypadkowej wartości niepewności rozszerzonej należy zastosować metodę \enquote{Redukcyjnej arytmetyki interwałowej}, opisaną szerzej w \cite{jakubiec_reductive, jakubiec_arithmetic, batko_uncertainty}. Wyznaczone wartości niepewności rozszerzonej mogą w niewielkim stopniu odbiegać od wartości rzeczywistych, co opisano w \cite{jakubiec_arithmetic, jakubiec_model}.
+
+\section{Algorytm jako fragment toru pomiarowego}
+
+Podczas opisu właściwości cyfrowej części toru pomiarowego przedstawiono przypadek, w którym analizowany obiekt przetwarzał kolejne próbki sygnału wejściowego na próbki sygnału wyjściowego zgodnie z odpowiadającą mu transmitancją i funkcją przetwarzania. Algorytmy stosowane w torach pomiarowych mogą generować wiele wielkości wyjściowych, pobierając przy tym w oknie pomiarowym określoną liczbę próbek wielkości wejściowych. W przypadku, gdy wyjście analizowanego obiektu stanowi $M$ próbek wielkości wyjściowych wyznaczanych na podstawie $N$ próbek wielkości wejściowych, a funkcja przetwarzania tego obiektu jest liniowa, działanie obiektu przedstawić można w ogólnej postaci jako \cite{jakubiec_algorithms, jakubiec_single}:
+\begin{equation}
+\begin{bmatrix}
+X(0)        \\
+X(1)        \\
+\vdots      \\
+X(M-1)
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{0, 0}   &   a_{0, 1} &   \cdots   &   a_{0, N-1}      \\
+a_{1, 0}   &   \ddots   &            &   a_{1, N-1}      \\
+\vdots     &            &   \ddots   &   \vdots          \\
+a_{M-1, 0} &   \cdots   &   \cdots   &   a_{M-1, N-1}
+\end{bmatrix}
+\begin{bmatrix}
+x(0)        \\
+x(1)        \\
+\vdots      \\
+x(N-1)
+\end{bmatrix}
+\label{eqn_alg_out_mat},
+\end{equation}
+gdzie $a_{i,j}$ to kolejne współczynniki macierzy transformacji. Równanie \eqref{eqn_alg_out_mat} można przedstawić również w postaci iloczynu:
+\begin{equation}
+\mathbf{X} = \mathbf{A} \cdot \mathbf{x} \label{eqn_alg_out_mul},
+\end{equation}
+gdzie $\mathbf{X}$ jest wektorem wielkości wyjściowych, $\mathbf{A}$ macierzą transformacji oraz $\mathbf{x}$ wektorem wielkości wejściowych \cite{jakubiec_algorithms}. Wobec przedstawionych zależności, pojedynczą wielkość wyjściową algorytmu przedstawić można w postaci:
+\begin{equation}
+X(i) = a_{i, 0} x(0) + a_{i, 1} x(1) + \hdots + a_{i, N-1} x(N-1) \label{eqn_alg_out_single}.
+\end{equation}
+Na podstawie przedstawionych zależności zauważyć można, że analizowany obiekt stanowi w zasadzie zbiór filtrów o skończonej odpowiedzi impulsowej \enquote{FIR}. Przedstawione metody analizy będą zatem przypominały metody analizy opisywanego typu filtru \cite{mehrnia_fir}.
+
+W praktyce wartości współczynników macierzy transformacji opisanej równaniem \eqref{eqn_alg_out_mat} mogą nie być znane przez projektanta toru pomiarowego. Ich znajomość jest jednak konieczna w celu przeprowadzenia analizy metrologicznej zastosowanego algorytmu. Najczęściej projektant toru pomiarowego stosuje gotowy algorytm, zaimplementowany np. w środowisku \enquote{GNU Octave} lub dostarczany mu jako zewnętrzną bibliotekę. W takim przypadku należy przeprowadzić proces identyfikacji wartości współczynników macierzy, który przedstawiony zostanie w dalszej części rozdziału. Innym przypadkiem jest sytuacja, w której z punktu widzenia analizy metrologicznej macierzowy opis algorytmu jest korzystny, a wartości współczynników mogą być wyznaczone za pomocą odpowiednich funkcjonałów. Ostatnim przypadkiem jest sytuacja, w której znana jest transmitancja $H(z)$ dla kolejnych wielkości wyjściowych. Wtedy wyznaczenie wartości współczynników macierzy transformacji odbywać się będzie poprzez przekształcenie tej transmitancji na postać zgodną z równaniem \eqref{eqn_alg_out_single}. Należy jednak zauważyć, że nie we wszystkich przypadkach przedstawione metody znajdują zastosowanie.
+
+W przypadku, gdy dysponuje się gotową implementacją algorytmu, w celu identyfikacji współczynników macierzy transformacji należy podawać na wejście algorytmu wektor wielkości wejściowych, którego wszystkie elementy poza wybranym mają wartość zero. Wartość jednego elementu należy ustawić na jeden, a następnie za pomocą identyfikowanego algorytmu wyznaczyć należy wektor wielkości wyjściowych. Wyznaczony wektor stanowi kolumnę identyfikowanej macierzy transformacji, przy czym numer kolumny jest równy indeksowi elementu, który w wektorze wielkości wejściowych posiadał wartość jeden. W celu wyznaczenia wszystkich wartości macierzy transformacji należy powtórzyć powyższą czynność dla wektorów wartości wejściowych algorytmu zgodnie z zależnością \cite{jakubiec_algorithms}:
+\begin{equation}
+x(n) =
+\begin{cases}
+	1 & $gdy$ ~ n = i \\
+	0 & $gdy$ ~ n \neq i
+\end{cases}
+\label{eqn_wt_ident},
+\end{equation}
+dla $i$ w przedziale $<0;N-1>$, gdzie $i$ jest indeksem identyfikowanej kolumny macierzy transformacji. Niezależnie od struktury numerycznej analizowanego obiektu opisana metoda jest uniwersalna, przy czym wymaga ona, aby identyfikowany algorytm spełniał założenia przedstawione na początku podrozdziału.
+
+Aby ustalić związek pomiędzy błędami wielkości wejściowych, a błędami wielkości wyjściowych analizowanego algorytmu należy przeanalizować proces wyznaczania wartości pojedynczej wielkości wyjściowej tego algorytmu. Wobec tego, jeżeli wielkości wejściowe algorytmu są obarczone błędami o charakterze addytywnym zgodnie z zależnością:
+\begin{equation}
+\tilde{x}(i) = \dot{x}(i) + e_{x,\Sigma}(i) = \dot{x}(i) + e_{x,s}(i) + e_{x,d}(i) + e_{x,r}(i) \label{eqn_alg_inputval},
+\end{equation}
+gdzie $e_{x,s}$ oznacza błąd statyczny, $e_{x,d}$ błąd dynamiczny oraz $e_{x,r}$ błąd losowy wielkości wejściowej, to istnieje możliwość osobnej analizy wyniku algorytmu dla idealnych wartości wielkości wejściowych oraz dla związanych z nimi błędów. Błąd wielkości wyjściowej przenoszony z wejścia na wyjście algorytmu można zatem opisać, zgodnie z równaniem \eqref{eqn_alg_out_single}, jako kombinację liniową współczynników transformacji algorytmu oraz błędów wielkości wejściowych:
+\begin{equation}
+e_{X,p}(i) = a_{i, 0} e_{x,\Sigma}(0) + a_{i, 1} e_{x,\Sigma}(1) + \hdots + a_{i, N-1} e_{x,\Sigma}(N-1) \label{eqn_alg_outerr}.
+\end{equation}
+
+Dla błędów o charakterze statycznym, ze względu na fakt że realizacja tych błędów jest niezmienna w obrębie okna pomiarowego, równanie \eqref{eqn_alg_outerr} można uprościć i zapisać w postaci:
+\begin{equation}
+e_{X,s}(i) = a_{i, 0} e_{x,s} + a_{i, 1} e_{x,s} + \hdots + a_{i, N-1} e_{x,s} = e_{x,s} \sum _{j = 0} ^{N-1} a_{i, j} \label{eqn_alg_outerr_stat},
+\end{equation}
+gdzie $e_{x,s}$ jest błędem statycznym wielkości wejściowej, natomiast $e_{X,s}$ błędem statycznym wielkości wyjściowej algorytmu. Powtarzając pomiar wielokrotnie, dla różnych pozycji okna pomiarowego, realizacje błędu statycznego mogą przyjmować różne wartości. W takim przypadku wyjściowy błąd statyczny również można rozpatrywać w kategoriach probabilistycznych, a jego wariancję opisać można równaniem uwzględniającym wariancję wejściowego błędu statycznego:
+\begin{equation}
+\sigma_{X,s}^{2}(i) = \sigma_{x,s}^{2} \left( a_{i, 0} + a_{i, 1} + \hdots + a_{i, N-1} \right)^{2} = \sigma_{x,s}^{2} \left( \sum _{j = 0} ^{N-1} a_{i, j} \right)^{2} \label{eqn_alg_outvar_stat}.
+\end{equation}
+Należy zauważyć, że kształt rozkładu wyjściowego błędu statycznego będzie identyczny, jak kształt rozkładu statycznego błędu wejściowego.
+
+Dla błędów o charakterze dynamicznym należy przeprowadzić analizę zgodnie z metodologią przedstawioną w poprzedniej części rozdziału, wykorzystując znajomość transmitancji $H(z)$ odpowiedniej dla analizowanej wielkości wyjściowej algorytmu. Identycznie, jak w przypadku równania \eqref{eqn_mid_disc_err_dyn_prop}, wyznaczyć należy wypadkowe amplitudy oraz przesunięcia w fazie kolejnych harmonicznych błędu dynamicznego, a następnie złożyć je zgodnie z zależnością \eqref{eqn_dyn_multi}. Transmitancja $H(z)$ dla $i$-tej wielkości wyjściowej może zostać wyznaczona na podstawie wartości współczynników $i$-tego wiersza macierzy transformacji algorytmu jako:
+\begin{equation}
+H_{i}(z) = a_{i, 0} + a_{i, 1} z^{-1} + \hdots + a_{i, N-1} z^{-N+1} = \sum _{k = 0} ^{N-1} a_{i, k} z^{-k} \label{eqn_alg_trans_single}.
+\end{equation}
+W omawianym przypadku przyjmuje się, że algorytm posiada idealną transmitancję, a ewentualne rozbieżności nie mają wpływu na widmo przenoszonego sygnału. Dodatkowe informacje związane z tym zagadnieniem zostaną przedstawione w dalszej części podrozdziału.
+
+W przypadku błędów o charakterze losowym, wykonując algorytm wielokrotnie, uzyskać można zależność wiążącą wariancję błędu na wyjściu algorytmu z wariancją błędów wielkości wejściowych. Zakładając, że wszystkie wielkości wejściowe algorytmu pochodzą z tej samej cześć toru pomiarowego, a zatem ich parametry statystyczne są identyczne, oraz że kolejne błędy wielkości wejściowych nie są ze sobą skorelowane, zależność tą opisać można jako:
+\begin{equation}
+\sigma_{r}^{2}(i) = a_{i, 0}^{2} \sigma_{x,r}^{2} + a_{i, 1}^{2} \sigma_{x,r}^{2} + \hdots + a_{i, N-1}^{2} \sigma_{x,r}^{2} = \sigma_{x,r}^{2} \sum _{j=0} ^{N-1} {a_{i, j}^{2}} \label{eqn_alg_outvar_rand}.
+\end{equation}
+
+Poza przenoszeniem przez algorytm błędów zawartych w wielkościach wejściowych na jego wyjście, algorytm wprowadza do wielkości wyjściowych błędy własne. Błędy te wynikają niedokładności wyznaczenia współczynników algorytmu oraz z przeprowadzanych podczas obliczeń zaokrągleń. Ich wartości będą zatem uzależnione od wielu czynników, a ich analiza powinna odbywać się indywidualnie dla zaimplementowanego algorytmu. Zakładając, że wyznaczanie wartości $i$-tej wielkości wyjściowej algorytmu odbywać się będzie wielokrotnie, błędy własne opisywać można w kategorii probabilistycznej za pomocą związanej z nimi wariancji $\sigma_{X,z}^{2}(i)$. Ze względu na fakt, że liczba operacji mnożenia i dodawania, odpowiedzialnych za powstawanie omawianej grupy błędów będzie duża ($N$ mnożeń oraz $N$ dodawań) błąd ten będzie miał rozkład zbliżony do normalnego \cite{jcgm_guide}. W przypadku, gdy na etapie identyfikacji wartości macierzy współczynników uzyskano wartości obarczone błędami, należy rozszerzyć analizę o przedstawienie konsekwencji tego zjawiska. W takim przypadku należy przeanalizować wprowadzany do wielkości wyjściowych statyczny błąd własny oraz wykonać analizę dla błędów własnych dynamicznych, analogicznie jak opisano równaniem \eqref{eqn_mid_disc_err_dyn_self}. Omawiany przypadek nie będzie rozpatrywany w pracy, ponieważ identyfikując wartości macierzy transformacji za pomocą przedstawionego algorytmu lub wyznaczając ich wartości przy użyciu odpowiednich funkcjonałów, wprowadzany błąd wynikać będzie głównie z zaokrągleń i będzie można analizować go równolegle z wprowadzanym losowym błędem $e_{X,z}$. Omawianą analizę przedstawia szczegółowo praca \cite{jakubiec_system}.
+
+Wobec powyższych założeń, w celu wyznaczenia wariancji $\sigma_{X,\Sigma}^{2}(i)$ wypadkowego błędu $e_{X,\Sigma}(i)$ dla $i$-tej wielkości wyjściowej analizowanego algorytmu należy wykorzystać zależność \eqref{eqn_var_matrix}, przy czym przyjmuje ona w tym przypadku postać:
+\begin{equation}
+\sigma_{X,\Sigma}^{2}(i) =
+\begin{bmatrix}
+\sigma_{X,s}(i) \\ \sigma_{X,d}(i) \\ \sigma_{X,r}(i) \\ \sigma_{X,z}(i)
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1         & r_{d,s} & r_{r,s} & r_{z,s} \\
+r_{s,d}   & 1       & r_{r,d} & r_{z,d} \\
+r_{s,r}   & r_{d,r} & 1       & r_{z,r} \\
+r_{s,z}   & r_{d,z} & r_{r,z} & 1
+\end{bmatrix}
+\begin{bmatrix}
+\sigma_{X,s}(i) \\ \sigma_{X,d}(i) \\ \sigma_{X,r}(i) \\ \sigma_{X,z}(i)
+\end{bmatrix}
+\label{eqn_alg_outvar_mat},
+\end{equation}
+gdzie $r_{i,j}$ stanowi współczynnik macierzy korelacji dla wybranych błędów cząstkowych analizowanego algorytmu. Wyznaczenie niepewności rozszerzonej może być przeprowadzone zgodnie z zależnością \eqref{eqn_unc_matrix}, przekształconą do postaci:
+\begin{equation}
+U_{X,\Sigma}(i) = \sqrt{
+\begin{bmatrix}
+U_{X,s}(i) \\ U_{X,d}(i) \\ U_{X,r}(i) \\ U_{X,z}(i)
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1         & h_{d,s} & h_{r,s} & h_{z,s} \\
+h_{s,d}   & 1       & h_{r,d} & h_{z,d} \\
+h_{s,r}   & h_{d,r} & 1       & h_{z,r} \\
+h_{s,z}   & h_{d,z} & h_{r,z} & 1
+\end{bmatrix}
+\begin{bmatrix}
+U_{X,s}(i) \\ U_{X,d}(i) \\ U_{X,r}(i) \\ U_{X,z}(i)
+\end{bmatrix}}
+\label{eqn_alg_outunc_mat},
+\end{equation}
+przy czym $h_{i,j}$ oznacza współczynnik koherencji wyznaczany na podstawie \eqref{eqn_unc_coher}. Na podstawie równań \eqref{eqn_alg_outvar_stat} oraz \eqref{eqn_alg_outvar_rand} wprowadzić można dodatkowe wielkości przedstawione następującymi zależnościami:
+\begin{gather}
+A_{s,i} = \sum _{j = 0} ^{N-1} a_{i, j} \label{eqn_alg_trans_stat}, \\
+A_{r,i} = \sqrt{\sum _{j = 0} ^{N-1} a_{i, j}^{2}} \label{eqn_alg_trans_rand}, 
+\end{gather}
+gdzie $A_{s,i}$ jest współczynnikiem przenoszenia dla błędów statycznych, natomiast jest $A_{r,i}$ współczynnikiem przenoszenia dla błędów losowych $i$-tej wielkości wyjściowej analizowanego algorytmu. Wyznaczenie wartości opisanych współczynników umożliwi wyznaczenie wariancji kolejnych błędów losowych oraz statycznych, a dodatkowo będzie stanowiło informacje, w jaki sposób analizowany algorytm przenosi z wejścia na wyjście określony rodzaj błędu. Można zauważyć, że dla niskich wartości współczynnika przenoszenia (tj. $A_{i} < 1$) kolejne błędy wielkości wejściowych będą tłumione (wariancja błędu wielkości wyjściowej będzie mniejsza, niż wariancja błędów wielkości wejściowych). Odwrotna sytuacja będzie miała miejsce w przypadku dużych wartości współczynnika (tj. $A_{i} > 1$).
+
+W przypadku analizy błędów dynamicznych, na podstawie równania \eqref{eqn_alg_trans_single} po podstawieniu $z = e^{j\omega}$, wyznaczyć można adekwatne dla równań \eqref{eqn_mid_disc_amp} oraz \eqref{eqn_mid_disc_phi} zależności opisujące wzmocnienie $K_{X,i}(\omega_{n})$ oraz przesunięcie w fazie $\varphi_{X,i}(\omega_{n})$ przetwarzanych harmonicznych sygnału w funkcji pulsacji znormalizowanej $\omega_{n}$ dla $i$-tej wielkości wyjściowej algorytmu w postaci:
+\begin{gather}
+G_{X,i}(\omega_{n}) = \sum _{k = 0} ^{N-1} a_{i,k} e^{-j k \omega_{n}} \label{eqn_alg_trans_norm}, \\
+K_{X,i}(\omega_{n}) = \left| G_{X,i}(\omega_{n}) \right| = \sqrt{\left( \Re \left( G_{X,i}(\omega_{n}) \right) \right)^2 + \left( \Im \left( G_{X,i}(\omega_{n}) \right) \right)^2} \label{eqn_alg_trans_amp}, \\
+\varphi_{X,i}(\omega_{n}) = \arctan \left( \frac{\Im (G_{X,i}(\omega_{n}))}{\Re (G_{X,i}(\omega_{n}))} \right) \label{eqn_alg_trans_phi},
+\end{gather}
+przy czym pulsacja znormalizowana, oznaczona symbolem $\omega_{n}$, odnosi się do pulsacji próbkowania i jest określona przez następującą zależność:
+\begin{equation}
+\omega_{n} = 2 \frac{\omega}{\omega_{s}} \label{eqn_puls_norm},
+\end{equation}
+gdzie $\omega$ jest analizowaną pulsacją, natomiast $\omega_{s}$ pulsacją próbkowania równą $\frac{2 \pi}{T_{p}}$ dla okresu próbkowania $T_{p}$. Prawidłowa wartość pulsacji znormalizowanej mieści się zatem w zakresie $<0;\pi>$, co odpowiada zakresowi od zera do pulsacji Nyquista dla przyjętego okresu próbkowania.
+
+\section{Podsumowanie przedstawionych zależności}
+
+W poprzednich częściach rozdziału przedstawiono modele kolejnych fragmentów toru pomiarowego, które opisywały związki pomiędzy błędami na wejściu i wyjściu analizowanego obiektu, a także wskazywały rolę tego obiektu we wprowadzaniu do sygnału wyjściowego błędów własnych. Zaproponowany model wprowadzał podział na statyczne i dynamiczne właściwości obiektu, które opisywane były transmitancją i funkcją przetwarzania obiektu. Opisane zaproponowanym modelem fragmenty toru pomiarowego, które zostały ze sobą połączone kaskadowo oraz cechują się addytywną funkcją przetwarzania, opisać można modelem wypadkowym oraz z osobna analizować zawarte w nim błędy cząstkowe. Zaproponowana metoda wyznaczania niepewności wypadkowej bazuje na określeniu związków pomiędzy kolejnymi niepewnościami składowymi, a następnie wykorzystuje redukcyjną arytmetykę interwałową do wyznaczenia niepewności wypadkowej. Zaproponowany opis uwzględnia ewentualne korelacje pomiędzy kolejnymi grupami błędów, a w przypadku braku tych korelacji wymaga jedynie określenia związków pomiędzy kształtem rozkładu kolejnych składanych błędów \cite{jakubiec_reductive, batko_uncertainty}.
+
+Przedstawiony model oceny dokładności wyniku pomiaru zakłada, że obecne w sygnale pomiarowym błędy cechują się symetrycznymi rozkładami o zerowej wartości oczekiwanej. W przypadku, gdy wartość oczekiwana realizacji błędu jest niezerowa, błąd ten posiada składową systematyczną, którą należy skorygować w ostatecznym wyniku pomiaru. Jeżeli nie jest spełnione założenie odnośnie symetrii rozkładów składanych błędów, to do określenia rozkładu błędu wynikowego należy stosować metodę analityczną bazującą na wyznaczeniu splotu składanych funkcji gęstości prawdopodobieństwa lub wykorzystać metodę Monte-Carlo, która jest zwykle bardziej przystępna i optymalna ze względu na mniejszy stopień skomplikowania \cite{janssen_montecarlo, roj_annuncertainty}.
+
+Przeprowadzone rozważania nie poruszały problemu opóźnień w systemach pomiarowo-sterujących, a zatem nie brano w nich pod uwagę błędów związanych z opóźnieniami. Tematyka ta nie będzie poruszana w dalszych częściach pracy. Warto jednak zauważyć, że zaproponowany model błędu może być z łatwością dopasowany do możliwości analizy właściwości i wpływu tych błędów na niedokładność wielkości wyjściowych. Należy wtedy uwzględnić w modelu dodatkowy składnik błędu, który definiować można zgodnie z metodą zaproponowaną w \cite{wymyslo_delay, jakubiec_system}. Z punktu widzenia zaproponowanego modelu, zjawisko to opisać można jako dodatkowe przesunięcie w fazie składowych przetwarzanego sygnału, będące iloczynem pulsacji analizowanej harmonicznej i wartości realizacji błędu opóźnienia.
+

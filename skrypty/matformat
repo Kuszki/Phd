@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for i in $@
+do
+	cat "$i" | grep -v '#' | grep -v '^$' > "$i.temp"
+	mv "$i.temp" "$i"
+done
+
