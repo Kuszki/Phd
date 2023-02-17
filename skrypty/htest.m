@@ -6,7 +6,26 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
-num = 1e6;
+num = 5e6;
+u = linspace(1, 10, 30);
+c = "nust";
+
+for i = 1 : length(c)
+  for j = 1 : length(c)
+    src = sprintf("h_%s_%s = h;", c(i), c(j));
+    fun = @(x) get_two_coher(1, x, c(i), c(j), 'u', num);
+
+    h = pararrayfun(nproc, fun, u);
+
+
+    plot(u, h);
+    eval(src);
+  end
+end
+
+save("-z", "../archiwa/coher.txt.gzip", "u", "h_*");
+
+return
 
 W = [ 3.38 3.33 6.67 1.77 11.0 10.95 ];
 R = [ ...
