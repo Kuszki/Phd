@@ -12,6 +12,7 @@ dim = "-r300";
 fcolor = "#333333";
 ecolor = "#333333";
 nbins = 300;
+nstd = 0;
 xran = [0 5.5];
 
 set(h, "paperunits", "centimeters")
@@ -28,7 +29,7 @@ set(0, "defaulttextcolor", "black")
 load("../archiwa/simulation_a_static.txt.gzip")
 errs = errs * 1000;
 
-[u, c, s, w] = get_uncertainty(errs, 0.95, 10)
+[u, c, s, w] = get_uncertainty(errs, 0.95, nstd)
 
 subplot(2, 2, 1)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
@@ -36,13 +37,13 @@ title(sprintf("a) \\rm\\it U{ =\\rm %0.2f mV}, c{ =\\rm %1.2f}\n", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-ylim([0 0.85])
+ylim([0 0.8])
 grid on
 
 load("../archiwa/simulation_a_dynamic.txt.gzip")
 errs = errs * 1000;
 
-[u, c, s, w] = get_uncertainty(errs, 0.95, 10)
+[u, c, s, w] = get_uncertainty(errs, 0.95, nstd)
 
 subplot(2, 2, 2)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
@@ -50,13 +51,13 @@ title(sprintf("b) \\rm\\it U{ =\\rm %0.2f mV}, c{ =\\rm %1.2f}\n", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-ylim([0 0.85])
+ylim([0 0.9])
 grid on
 
 load("../archiwa/simulation_a_random.txt.gzip")
 errs = errs * 1000;
 
-[u, c, s, w] = get_uncertainty(errs, 0.95, 10)
+[u, c, s, w] = get_uncertainty(errs, 0.95, nstd)
 
 subplot(2, 2, 3)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
@@ -64,13 +65,13 @@ title(sprintf("c) \\rm\\it U{ =\\rm %0.2f mV}, c{ =\\rm %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-ylim([0 1.2])
+ylim([0 1.3])
 grid on
 
 load("../archiwa/simulation_a_summary.txt.gzip")
 errs = errs * 1000;
 
-[u, c, s, w] = get_uncertainty(errs, 0.95, 10)
+[u, c, s, w] = get_uncertainty(errs, 0.95, nstd)
 
 subplot(2, 2, 4)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
@@ -78,7 +79,7 @@ title(sprintf("d) \\rm\\it U{ =\\rm %0.2f mV}, c{ =\\rm %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-ylim([0 1.2])
+ylim([0 1.0])
 grid on
 
 print("../obrazki/hist_part_a.svg", "-svgconvert", dim);

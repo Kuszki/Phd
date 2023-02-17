@@ -19,7 +19,7 @@ nsam = 8;
 num = get_fwt_levels(nsam, ndec, 'midd')(1);
 
 # output settings
-calc_in_uc = 0;
+calc_in_uc = 1;
 show_prog = 1;
 
 # sampling params
@@ -160,8 +160,14 @@ tic; for i = 1 : iters_a
 
 end; toc;
 
+errs = (errs / amp_b);
+
 if calc_in_uc
-  [u_in, c_in, s_in, w_in] = get_uncertainty(errs, 0.95, 10)
+  [u_in, c_in, s_in, w_in] = get_uncertainty(errs, 0.95);
+  u_in = u_in * 1000
+  c_in
+  s_in = s_in * 1000
+  w_in = w_in * 1000000
 else
   w_in = var(errs/amp_b)
   s_in = sqrt(w_in)
