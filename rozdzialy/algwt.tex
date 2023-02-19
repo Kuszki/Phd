@@ -491,7 +491,7 @@ gdzie $a_{i,j}^{'}$ stanowi nową wartość współczynnika macierzy transformac
 w_{\text{tr}}(n) = 1 - \left| \frac{n - \frac{N-1}{2}}{\frac{N}{2}} \right| \label{eqn_wnd_triang}, \\
 w_{\text{ga}}(n) = \exp \left(-\frac{1}{2} \cdot \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{(N-1)}{2}} \right)^2 \right) \label{eqn_wnd_gauss}, \\
 w_{\text{hm}}(n) =  0.5384 - 0.4616 \cos \left( \frac{2 \pi n}{N} \right) \label{eqn_wnd_hamming}, \\
-w_{\text{hn}}(n) = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eqn_wnd_hann}, 
+w_{\text{hn}}(n) = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eqn_wnd_hann},
 \end{gather}
 
 Implementacja okna pomiarowego, z punktu widzenia przedstawionych w pracy założeń, mogłaby również zostać opisana jako zastosowanie dodatkowego algorytmu. Algorytm ten przetwarzałby $N$ wielkości wejściowych na $M$ wielkości wyjściowych, gdzie $N = M$. Macierz transformacji omawianego algorytmu byłaby macierzą diagonalną, przy czym wartości kolejnych współczynników odpowiadałyby wyznaczonym wagom dla $i$-tej wielkości okna. Z praktycznego punktu widzenia zaproponowana metoda modyfikacji wartości współczynników transformacji algorytmu transformacji falkowej wydaje się jednak bardziej optymalna. Na tej samej zasadzie istnieje możliwość implementacji innych modyfikacji, np. wprowadzenia dodatkowego filtru.

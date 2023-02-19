@@ -25,7 +25,7 @@ przy czym $f_{1} = \qty{1}{kHz}$, natomiast $\sigma_{s,r}^{2} = \frac{2}{3} \cdo
 \caption{Parametry kolejnych harmonicznych przetwarzanego sygnału niezakłóconego błędami przyjęte w przeprowadzanym eksperymencie symulacyjnym \label{tab_sym_in_params_ideal}}
 \begin{tabular}[c]{| c | c | S | c |} \hline
 \textbf{Lp. $i$} & \textbf{Pulsacja $\omega_{s,i}$, rad/s} & \textbf{Amplituda $E_{s,o}(\omega_{s,i})$} & \textbf{Faza $\varphi_{s,o}(\omega_{s,i})$, rad} \\ \hline
-1 & $1000  \cdot 2\pi$ &  0.6 & $0$       \\ \hline 
+1 & $1000  \cdot 2\pi$ &  0.6 & $0$       \\ \hline
 2 & $5000  \cdot 2\pi$ & -0.3 & $\pi / 8$ \\ \hline
 3 & $15000 \cdot 2\pi$ &  0.1 & $\pi / 6$ \\ \hline
 \end{tabular}
@@ -77,7 +77,7 @@ a zatem równania \eqref{eqn_mid_cont_amp} oraz \eqref{eqn_mid_cont_phi} przyjmu
 przy czym dla idealnej transmitancji $\dot{G}_{a}(j\omega)$ parametry te wynoszą kolejno:
 \begin{gather}
 \dot{K}_{a}(\omega) = 1 \label{eqn_sym_parta_amp_ideal}, \\
-\dot{\varphi}_{a}(\omega) = 0  \label{eqn_sym_parta_phi_ideal}, 
+\dot{\varphi}_{a}(\omega) = 0  \label{eqn_sym_parta_phi_ideal},
 \end{gather}
 co oznacza, że w sytuacji idealnej wzmocnienie układu jest niezależnie od częstotliwości sygnału i równe jedności oraz że obiekt ten nie wprowadza żadnego przesunięcia w fazie przetwarzanego sygnału -- co odbiega od analizowanej sytuacji rzeczywistej.
 
@@ -127,8 +127,8 @@ Kolejne składowe dla wymienionych wcześniej harmonicznych sygnału błędu dyn
 
 Przedstawiając składowe równania \eqref{eqn_sym_parta_dyn_self_example_harm} za pomocą wektorów, zgodnie z równaniem \eqref{eqn_dyn_vect}, a następnie sumując opisane składniki zgodnie z równaniem \eqref{eqn_dyn_vect_sum}, wyznaczyć można parametry błędu wypadkowego opisane równaniami \eqref{eqn_dyn_vect_amp} oraz \eqref{eqn_dyn_vect_phi}, przy czym w rozpatrywanym przypadku przyjmują one postać:
 \begin{gather}
-\mathbf{e}_{\Sigma,1} = 
-\begin{bmatrix} 
+\mathbf{e}_{\Sigma,1} =
+\begin{bmatrix}
 0.6 \cos(\num{-3.13e-3}) + 0.6 \cos(\pi) & 0.6 \sin(\num{-3.13e-3}) + 0.6 \sin(\pi)
 \end{bmatrix}
 \label{eqn_sym_parta_dyn_self_example_sum}, \\
@@ -174,18 +174,18 @@ U_{a,s} = U_{a,sw} = \qty{3.49}{mV} \label{eqn_sym_parta_uncert_stat}, \\
 Dla błędów losowego i dynamicznego, wypadkowa niepewność rozszerzona wyznaczana jest zgodnie z zależnością \eqref{eqn_unc_matrix}, przy czym:
 \begin{gather}
 \begin{split}
-U_{a,r} = ~ 
+U_{a,r} = ~
 & \sqrt{
 \begin{bmatrix}
 U_{a,rw} \\ U_{a,rp}
 \end{bmatrix}^{T}
 \begin{bmatrix}
 1           & h_{a,rw,rp} \\
-h_{a,rw,rp} & 1       
+h_{a,rw,rp} & 1
 \end{bmatrix}
 \begin{bmatrix}
 U_{a,rw} \\ U_{a,rp}
-\end{bmatrix}} = ~ \\ 
+\end{bmatrix}} = ~ \\
 & \sqrt{
 \begin{bmatrix}
 3.01 \\ 5.06
@@ -200,7 +200,7 @@ U_{a,rw} \\ U_{a,rp}
 \end{split}
 \label{eqn_sym_parta_uncert_rand}, \\
 \begin{split}
-U_{a,d} = ~ 
+U_{a,d} = ~
 & \sqrt{
 \begin{bmatrix}
 U_{a,dw,1} \\ U_{a,dw,2} \\ U_{a,dw,3}
@@ -212,7 +212,7 @@ h_{a,dw,3,1} & h_{a,dw,3,1} & 1                 \\
 \end{bmatrix}
 \begin{bmatrix}
 U_{a,dw,1} \\ U_{a,dw,2} \\ U_{a,dw,3}
-\end{bmatrix}} = ~ \\ 
+\end{bmatrix}} = ~ \\
 & \sqrt{
 \begin{bmatrix}
 1.87 \\ 4.68 \\ 4.67
@@ -238,7 +238,7 @@ Dla przedstawionych sygnałów błędu oszacować można na podstawie równania 
 c_{a,s} = c_{a,sw} = c_{t} = 1.90 \label{eqn_sym_parta_factor_sta}, \\
 c_{a,r} = \frac{U_{a,r}}{\sigma_{a,r}} = \frac{\qty{6.19}{mV}}{\qty{3.16}{mV}} = 1.96 \label{eqn_sym_parta_factor_rand}, \\
 c_{a,d} = \frac{U_{a,d}}{\sigma_{a,d}} = \frac{\qty{8.73}{mV}}{\qty{4.87}{mV}} = 1.79 \label{eqn_sym_parta_factor_dyn}.
-\end{gather} 
+\end{gather}
 
 Ostatnim krokiem analizy jest wyznaczenie wypadkowych parametrów wyjściowego sygnału błędu. Proces ten przeprowadzić można zarówno korzystając z opisanego tabelą \ref{tab_sym_parta_params_unc_list} budżetu niepewności, jak i na podstawie parametrów wyznaczonych za pomocą równać od \eqref{eqn_sym_parta_uncert_stat} do \eqref{eqn_sym_parta_var_dyn}. W pierwszej kolejności przedstawiona zostanie metoda wykorzystująca budżet niepewności. Wypadkową niepewność rozszerzoną wyznaczyć można zapisując równanie \eqref{eqn_unc_matrix} w postaci:
 \begin{equation}
@@ -254,7 +254,7 @@ U_{a,sw} & U_{a,rw} & U_{a,rp} & U_{a,dw,1} & U_{a,dw,2} & U_{a,dw,3}
 \end{equation}
 natomiast macierz współczynników koherencji $\mathbf{h}_{a}$ opisana jest następująco:
 \begin{equation}
-\mathbf{h}_{a} = 
+\mathbf{h}_{a} =
 \begin{bmatrix}
 1             & h_{a,sw,rw}   & h_{a,sw,rp}   & h_{a,sw,dw,1} & h_{a,sw,dw,2} & h_{a,sw,dw,3} \\
 h_{a,rw,sw}   & 1             & h_{a,rw,pw}   & h_{a,rw,dw,1} & h_{a,rw,dw,2} & h_{a,rw,dw,3} \\
@@ -340,5 +340,7 @@ Wobec przedstawionych rozważań i przeprowadzonego eksperymentu można stwierdz
 
 
 \section{Podsumowanie przeprowadzonego eksperymentu}
-\end{comment}
 
+
+
+\end{comment}
