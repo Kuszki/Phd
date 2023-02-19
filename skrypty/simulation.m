@@ -117,14 +117,14 @@ tic; for i = 1 : iters_a
 
   # inject signal noise
   ys = y;
-  ys = y + gen_randn(ns, var_r_s, 'w');
+#  ys = y + gen_randn(ns, var_r_s, 'w');
 
   # perform converter part tasks
   ya = ys;
-  ya = ya + f_tm_a(temp(i));
-  ya = ya + gen_randu(ns, var_r_a, 'w');
+#  ya = ya + f_tm_a(temp(i));
+#  ya = ya + gen_randu(ns, var_r_a, 'w');
   ya = ya ...
-       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
+#       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
        + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
        + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
   ;
@@ -163,7 +163,7 @@ end; toc;
 errs = (errs / amp_b);
 
 if calc_in_uc
-  [u_in, c_in, s_in, w_in] = get_uncertainty(errs, 0.95);
+  [u_in, c_in, s_in, w_in] = get_uncertainty(errs);
   u_in = u_in * 1000
   c_in
   s_in = s_in * 1000

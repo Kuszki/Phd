@@ -6,26 +6,26 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
-num = 5e6;
-u = linspace(1, 10, 30);
-c = "nust";
+num = 5e2;
+#u = linspace(1, 10, 30);
+#c = "nust";
 
-for i = 1 : length(c)
-  for j = 1 : length(c)
-    src = sprintf("h_%s_%s = h;", c(i), c(j));
-    fun = @(x) get_two_coher(1, x, c(i), c(j), 'u', num);
-
-    h = pararrayfun(nproc, fun, u);
-
-
-    plot(u, h);
-    eval(src);
-  end
-end
-
-save("-z", "../archiwa/coher.txt.gzip", "u", "h_*");
-
-return
+#for i = 1 : length(c)
+#  for j = 1 : length(c)
+#    src = sprintf("h_%s_%s = h;", c(i), c(j));
+#    fun = @(x) get_two_coher(1, x, c(i), c(j), 'u', num);
+#
+#    h = pararrayfun(nproc, fun, u);
+#
+#
+#    plot(u, h);
+#    eval(src);
+#  end
+#end
+#
+#save("-z", "../archiwa/coher.txt.gzip", "u", "h_*");
+#
+#return
 
 W = [ 3.38 3.33 6.67 1.77 11.0 10.95 ];
 R = [ ...
@@ -36,20 +36,24 @@ R = [ ...
   gen_rands(num, W(5), 'w'); ...
   gen_rands(num, W(6), 'w'); ...
 ];
-A = zeros(1, num);
 
-for i = 1 : length(W)
+len = length(W);
+coh = zeros(len, len);
+k = zeros(len, len);
+h = zeros(len, len);
+
+for i = 1 : len
   U(i) = get_uncertainty(R(i,:));
   A = A + R(i,:);
 end
 
-for i = 1 : length(W)
-  for j = 1 : length(W)
+for i = 1 : len
+  for j = 1 : len
     if i == j
       coh(i,j) = 1;
       h(i,j) = 1;
       k(i,j) = 1;
-    else
+    elseif coh(i,j) == 0
 
       uc = get_uncertainty(R(j,:) + R(i,:));
 
@@ -64,3 +68,4 @@ end
 
 U1 = sqrt(U*coh*transpose(U))
 U2 = get_uncertainty(A)
+100*(U1-U2)/U2

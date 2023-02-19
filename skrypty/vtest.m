@@ -20,7 +20,7 @@ end
 plot(shf, out);
 
 ylabel("Corelation factor");
-xlabel("Frequency ratio \\frac{f_{i}}{f_{j}}");
+xlabel("Frequency ratio {f_{i}} / {f_{j}}");
 xlim([min(shf) max(shf)]);
 grid on;
 
