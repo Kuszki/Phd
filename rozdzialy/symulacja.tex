@@ -18,7 +18,7 @@ W dalszej części rozdziału omówione zostaną kolejne elementy toru pomiarowe
 \dot{s}(t) = \frac{6}{10} \sin(2 \pi f_{1} t) - \frac{3}{10} \sin(10 \pi f_{1} t + \frac{\pi}{8}) + \frac{1}{10} \sin(30 \pi f_{1} t + \frac{\pi}{6}) \label{eqn_sym_in_ideal}, \\
 \tilde{s}(t) = \dot{s}(t) + e_{s,r}(t) \label{eqn_sym_in_real},
 \end{gather}
-przy czym $f_{1} = \qty{1}{kHz}$, natomiast $\sigma_{s,r}^{2} = \frac{2}{3} 10^{-5}$. Parametry kolejnych harmonicznych przetwarzanego sygnału zostały zestawione w tabeli \ref{tab_sym_in_params_ideal}. Przetwarzany sygnał będzie próbkowany ze stałą częstotliwością $f_{s} = \qty{48}{kHz}$. Do wyznaczenia wektora wielkości wyjściowych algorytmu dyskretnej transformacji falkowej koniecznych będzie $N = 8$ próbek wielkości wejściowych tego algorytmu, na podstawie których wyznaczonych zostanie $M = 8$ próbek wielkości wyjściowych toru pomiarowego.
+przy czym $f_{1} = \qty{1}{kHz}$, natomiast $\sigma_{s,r}^{2} = \frac{2}{3} \cdot 10^{-5}$. Parametry kolejnych harmonicznych przetwarzanego sygnału zostały zestawione w tabeli \ref{tab_sym_in_params_ideal}. Przetwarzany sygnał będzie próbkowany ze stałą częstotliwością $f_{s} = \qty{48}{kHz}$. Do wyznaczenia wektora wielkości wyjściowych algorytmu dyskretnej transformacji falkowej koniecznych będzie $N = 8$ próbek wielkości wejściowych tego algorytmu, na podstawie których wyznaczonych zostanie $M = 8$ próbek wielkości wyjściowych toru pomiarowego.
 
 \begin{table}[htb!]
 \begin{center}
@@ -45,7 +45,7 @@ przy czym błędy cząstkowe zawarte w błędzie wypadkowym $e_{a,\Sigma}$ zosta
 
 Opisywane w założeniach eksperymentu zmiany temperatury otoczenia będą bardzo niewielkie w obrębie pojedynczej serii pomiarowej. Można zatem przyjąć, że błąd wynikający z wpływu temperatury na wartość wielkości wyjściowej analizowanego obiektu będzie stały w obrębie okna pomiarowego, a zatem kwalifikowany on będzie jako błąd statyczny. W eksperymencie zakłada się, że dryf temperaturowy związany z błędem statycznym własnym jest określony następującym równaniem:
 \begin{equation}
-e_{a,sw} = f_{a,z}(\vartheta) = \frac{3}{2} (\vartheta - \qty{20}{\degreeCelsius}) ~\unit{\frac{mV}{K}} \label{eqn_sym_parta_stat_err},
+e_{a,sw}(t) = f_{a,z}(\vartheta(t)) = \frac{3}{2} (\vartheta(t) - \qty{20}{\degreeCelsius}) ~\unit{\frac{mV}{K}} \label{eqn_sym_parta_stat_err},
 \end{equation}
 gdzie $\vartheta$ jest rzeczywistą temperaturą otoczenia wyrażoną w stopniach Celsjusza. Można zatem określić wariancję oraz niepewność rozszerzoną omawianego błędu zależnościami:
 \begin{gather}
@@ -58,9 +58,9 @@ Funkcja przetwarzania obiektu, wynikająca z przedstawionych we wstępie do podr
 \begin{equation}
 \dot{f}_{a}(x) = x \label{eqn_sym_parta_statfun},
 \end{equation}
-natomiast przyjmuje się, że rzeczywista funkcja przetwarzania $\tilde{f}_{a}(x)$, uwzględniająca nieliniowość zastosowanego przetwornika, nie jest znana. Zakłada się jednak, że błąd wynikający z nieliniowości charakterystyki przyjmuje wartość z przedziału $<-\sqrt{10};\sqrt{10}>\unit{mV}$, a dodatkowo uzyskanie każdej z wartości jest jednakowo prawdopodobne. Wobec powyższych, jeżeli pomiar będzie przeprowadzany wielokrotnie, można rozważany błąd opisywać w kategoriach probabilistycznych, wliczając jego udział do puli błędów losowych. Wariancję oraz niepewność rozszerzoną, związane z omawianym błędem, wyrazić można w postaci:
+natomiast przyjmuje się, że rzeczywista funkcja przetwarzania $\tilde{f}_{a}(x)$, uwzględniająca nieliniowość zastosowanego przetwornika, nie jest znana. Zakłada się jednak, że błąd wynikający z nieliniowości charakterystyki przyjmuje wartość z przedziału $<-\sqrt{10};\sqrt{10}>\unit{mV}$, a dodatkowo uzyskanie każdej z wartości jest jednakowo prawdopodobne. Wobec powyższych, jeżeli pomiar będzie przeprowadzany wielokrotnie, można rozważany błąd opisywać w kategoriach probabilistycznych, wliczając jego udział do puli błędów losowych. Wariancję oraz niepewność rozszerzoną, związane z omawianym błędem losowym własnym $e_{a,rw}(t)$, wyrazić można w postaci:
 \begin{gather}
-\sigma_{a,rw}^{2} = \frac{\left( \left( \sqrt{10} \cdot 10^{-3} \right) - \left( \sqrt{10} \cdot 10^{-3} \right) \right)^{2}}{12} = 3 \frac{1}{3} ~\unit{\micro V} \label{eqn_sym_parta_rand_self_var}, \\
+\sigma_{a,rw}^{2} = \frac{\left( \left( \sqrt{10} \cdot 10^{-3} \right) + \left( \sqrt{10} \cdot 10^{-3} \right) \right)^{2}}{12} = 3 \frac{1}{3} ~\unit{\micro V} \label{eqn_sym_parta_rand_self_var}, \\
 U_{a,rw} = c_{u} \sigma_{a,rw} = \frac{1.65 \sqrt{30}}{3} ~\unit{mV} \label{eqn_sym_parta_rand_self_unc},
 \end{gather}
 przy czym $c_{u}$ jest współczynnikiem rozszerzenia dla rozkładu jednostajnego i przy poziomie ufności $\alpha = 95\%$ wynosi $1.65$ \cite{jcgm_guide}.
@@ -164,48 +164,149 @@ ${a,dw,3}$     & 4.67  &  10.95  &                              &               
 \end{center}
 \end{table}
 
-Na podstawie przedstawionych dotychczas zależności określono budżet niepewności dla analizowanego fragmentu toru pomiarowego, który zestawiono w tabeli \ref{tab_sym_parta_params_unc_list}. Należy zauważyć, że kolejne błędy cząstkowe w opisywanym przypadku nie są ze sobą skorelowane. Ostatnim krokiem analizy pozostaje zatem określenie wypadkowej wartości niepewności rozszerzonej dla analizowanego fragmentu toru pomiarowego. Do wyznaczenia wariancji błędu wypadkowego zastosować można równanie \eqref{eqn_var_sum}, które w analizowanym przypadku przyjmuje postać:
+Na podstawie przedstawionych dotychczas zależności określono budżet niepewności dla analizowanego fragmentu toru pomiarowego, który zestawiono w tabeli \ref{tab_sym_parta_params_unc_list}. Należy zauważyć, że kolejne błędy cząstkowe w opisywanym przypadku nie są ze sobą skorelowane. Ostatnim krokiem analizy pozostaje zatem określenie wypadkowej wartości niepewności rozszerzonej dla analizowanego fragmentu toru pomiarowego. Na obecnym etapie analizy wyznaczanie niepewności wypadkowej nie jest konieczne i nie będzie wykorzystywane w dalszym procesie analizy -- przeprowadzenie tej operacji jest w tym przypadku uzasadnione potrzebą weryfikacji skuteczności proponowanej metody. Zastosowane w obliczeniach współczynniki koherencji wyznaczono metodą Monte-Carlo, zgodnie z metodą opisaną w \cite{jakubiec_arithmetic, batko_uncertainty} na podstawie zależności \eqref{eqn_unc_coher}.
+
+W pierwszej kolejności wyznaczone zostaną wypadkowe niepewności rozszerzone i wypadkowe wariancje z uwzględnieniem na wprowadzone kategorie błędów. W przypadku błędu statycznego, ze względu na istnienie tylko jednego źródła tego błędu, parametry wypadkowe będą identyczne, jak parametry błędu statycznego własnego. Można zatem zapisać, że:
+\begin{gather}
+U_{a,s} = U_{a,sw} = \qty{3.49}{mV} \label{eqn_sym_parta_uncert_stat}, \\
+\sigma_{a,s}^{2} = \sigma_{a,sw}^{2} = \qty{3.38}{\micro V} \label{eqn_sym_parta_var_stat}.
+\end{gather}
+Dla błędów losowego i dynamicznego, wypadkowa niepewność rozszerzona wyznaczana jest zgodnie z zależnością \eqref{eqn_unc_matrix}, przy czym:
+\begin{gather}
+\begin{split}
+U_{a,r} = ~ 
+& \sqrt{
+\begin{bmatrix}
+U_{a,rw} \\ U_{a,rp}
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1           & h_{a,rw,rp} \\
+h_{a,rw,rp} & 1       
+\end{bmatrix}
+\begin{bmatrix}
+U_{a,rw} \\ U_{a,rp}
+\end{bmatrix}} = ~ \\ 
+& \sqrt{
+\begin{bmatrix}
+3.01 \\ 5.06
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1     & 0.120 \\
+0.120 & 1
+\end{bmatrix}
+\begin{bmatrix}
+3.01 \\ 5.06
+\end{bmatrix}} = \qty{6.19}{mV}
+\end{split}
+\label{eqn_sym_parta_uncert_rand}, \\
+\begin{split}
+U_{a,d} = ~ 
+& \sqrt{
+\begin{bmatrix}
+U_{a,dw,1} \\ U_{a,dw,2} \\ U_{a,dw,3}
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1            & h_{a,dw,1,2} & h_{a,dw,1,3} \\
+h_{a,dw,2,1} & 1            & h_{a,dw,2,3} \\
+h_{a,dw,3,1} & h_{a,dw,3,1} & 1                 \\
+\end{bmatrix}
+\begin{bmatrix}
+U_{a,dw,1} \\ U_{a,dw,2} \\ U_{a,dw,3}
+\end{bmatrix}} = ~ \\ 
+& \sqrt{
+\begin{bmatrix}
+1.87 \\ 4.68 \\ 4.67
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1     & 0.359 & 0.358 \\
+0.359 & 1     & 0.376 \\
+0.358 & 0.376 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1.87 \\ 4.68 \\ 4.67
+\end{bmatrix}} = \qty{8.73}{mV}
+\end{split}
+\label{eqn_sym_parta_uncert_dyn}.
+\end{gather}
+Wypadkowa wariancja, ze względu na brak korelacji kolejnych źródeł błędów, wyznaczana jest zgodnie z zależnością \eqref{eqn_var_sum}, a zatem:
+\begin{gather}
+\sigma_{a,r}^{2} = \sigma_{a,rw}^{2} + \sigma_{a,rp}^{2} = \qty{10.00}{\micro V} \label{eqn_sym_parta_var_rand}, \\
+\sigma_{a,d}^{2} = \sigma_{a,dw,1}^{2} + \sigma_{a,dw,2}^{2} + \sigma_{a,dw,3}^{2} = \qty{23.72}{\micro V} \label{eqn_sym_parta_var_dyn}.
+\end{gather}
+Dla przedstawionych sygnałów błędu oszacować można na podstawie równania \eqref{eqn_unc_sum} współczynniki rozszerzenia, przy czym:
+\begin{gather}
+c_{a,s} = c_{a,sw} = c_{t} = 1.90 \label{eqn_sym_parta_factor_sta}, \\
+c_{a,r} = \frac{U_{a,r}}{\sigma_{a,r}} = \frac{\qty{6.19}{mV}}{\qty{3.16}{mV}} = 1.96 \label{eqn_sym_parta_factor_rand}, \\
+c_{a,d} = \frac{U_{a,d}}{\sigma_{a,d}} = \frac{\qty{8.73}{mV}}{\qty{4.87}{mV}} = 1.79 \label{eqn_sym_parta_factor_dyn}.
+\end{gather} 
+
+Ostatnim krokiem analizy jest wyznaczenie wypadkowych parametrów wyjściowego sygnału błędu. Proces ten przeprowadzić można zarówno korzystając z opisanego tabelą \ref{tab_sym_parta_params_unc_list} budżetu niepewności, jak i na podstawie parametrów wyznaczonych za pomocą równać od \eqref{eqn_sym_parta_uncert_stat} do \eqref{eqn_sym_parta_var_dyn}. W pierwszej kolejności przedstawiona zostanie metoda wykorzystująca budżet niepewności. Wypadkową niepewność rozszerzoną wyznaczyć można zapisując równanie \eqref{eqn_unc_matrix} w postaci:
 \begin{equation}
-\sigma_{a,\Sigma}^{2} = \sigma_{a,sw}^{2} + \sigma_{a,rw}^{2} + \sigma_{a,rp}^{2} + \sigma_{a,dw,1}^{2} + \sigma_{a,dw,2}^{2} + \sigma_{a,dw,3}^{2} = \qty{37.1}{\micro V} \label{eqn_sym_parta_var_sum}.
+U_{a,\Sigma} = \sqrt{\mathbf{U}_{a}^{T} \cdot \mathbf{h}_{a} \cdot \mathbf{U}_{a}} \label{eqn_sym_parta_uncert_sum},
 \end{equation}
-Uwzględniając przedstawione dotychczas zależności wypadkową niepewność rozszerzoną obliczyć można zgodnie z równaniem \eqref{eqn_unc_matrix}, które przyjmuje w tym przypadku postać:
-\begin{equation}
-U_{a,\Sigma} = \sqrt{\mathbf{U}_{a}^{T} \cdot \mathbf{h}_{a} \cdot \mathbf{U}_{a}} = \qty{12.33}{mV} \label{eqn_sym_parta_uncert_sum},
-\end{equation}
-gdzie wektor niepewności cząstkowych $\mathbf{U}_{a}$ przyjmuje zgodnie z tabelą \ref{tab_sym_parta_params_unc_list} następujące wartości:
+gdzie wektor niepewności cząstkowych $\mathbf{U}_{a}$ przyjmuje postać:
 \begin{equation}
 \mathbf{U}_{a}^{T} =
 \begin{bmatrix}
-3.49 & 3.01 & 5.06 & 1.87 & 4.68 & 4.67
+U_{a,sw} & U_{a,rw} & U_{a,rp} & U_{a,dw,1} & U_{a,dw,2} & U_{a,dw,3}
 \end{bmatrix}
 \label{eqn_sym_parta_uncert_vector},
 \end{equation}
-natomiast wyznaczone na podstawie równania \eqref{eqn_unc_coher} wartości macierzy koherencji $\mathbf{h}_{a}$ są równe:
+natomiast macierz współczynników koherencji $\mathbf{h}_{a}$ opisana jest następująco:
 \begin{equation}
 \mathbf{h}_{a} = 
 \begin{bmatrix}
-1.000 & 0.039 & 0.001 & 0.046 & 0.134 & 0.132 \\
-0.039 & 1.000 & 0.065 & 0.065 & 0.174 & 0.174 \\
-0.001 & 0.065 & 1.000 & 0.053 & 0.137 & 0.147 \\
-0.046 & 0.065 & 0.053 & 1.000 & 0.184 & 0.184 \\
-0.134 & 0.174 & 0.137 & 0.184 & 1.000 & 0.331 \\
-0.132 & 0.174 & 0.147 & 0.184 & 0.331 & 1.000 \\
+1             & h_{a,sw,rw}   & h_{a,sw,rp}   & h_{a,sw,dw,1} & h_{a,sw,dw,2} & h_{a,sw,dw,3} \\
+h_{a,rw,sw}   & 1             & h_{a,rw,pw}   & h_{a,rw,dw,1} & h_{a,rw,dw,2} & h_{a,rw,dw,3} \\
+h_{a,rp,sw}   & h_{a,rp,rw}   & 1             & h_{a,rp,dw,1} & h_{a,rp,dw,2} & h_{a,rp,dw,3} \\
+h_{a,dw,1,sw} & h_{a,dw,1,rw} & h_{a,dw,1,rp} & 1             & h_{a,dw,1,2}  & h_{a,dw,1,3}  \\
+h_{a,dw,2,sw} & h_{a,dw,2,rw} & h_{a,dw,2,rp} & h_{a,dw,2,1}  & 1             & h_{a,dw,2,3}  \\
+h_{a,dw,3,sw} & h_{a,dw,3,rw} & h_{a,dw,3,rp} & h_{a,dw,3,1}  & h_{a,dw,3,2}  & 1             \\
 \end{bmatrix}
 \label{eqn_sym_parta_uncert_coher},
 \end{equation}
-przy czym przykładowo dla pary oznaczonej indeksami $a,sw$ oraz $a,rw$ równanie \eqref{eqn_unc_coher} przyjmuje postać:
+przy czym przykładowo, dla pary błędów statycznego własnego oraz losowego własnego, wartość współczynnika koherencji jest obliczana zgodnie z równaniem \eqref{eqn_unc_coher}:
 \begin{equation}
 \begin{split}
-h_{a,sw;a,rw} = ~
+h_{a,sw,rw} = ~
 & \frac{(\num{4.99e-3})^{2} - (\num{3.49e-3})^{2} - (\num{3.01e-3})^{2}}{2 \cdot \num{3.49e-3} \cdot \num{3.01e-3}} \cdot \\
 & \frac{(\num{3.49e-3})^{2} + (\num{3.01e-3})^{2}}{\num{9.41e-5}} = 0.039
 \end{split}
 \label{eqn_sym_parta_coher_sw_rw}.
 \end{equation}
-Do wyznaczenia niepewności wypadkowej dwóch analizowanych rozkładów zastosowano metodę Monte-Carlo zgodnie z metodologią zaproponowaną w pracach \cite{jakubiec_system, jakubiec_arithmetic, batko_uncertainty}. Współczynnik kształtu rozkładu błędu wypadkowego może zostać oszacowany zgodnie z równaniem:
+Po podstawieniu do równania \eqref{eqn_sym_parta_uncert_sum} wartości z tabeli \ref{tab_sym_parta_params_unc_list} oraz opisanych w równaniu \eqref{eqn_sym_parta_uncert_coher} współczynników koherencji otrzymuje się:
+\begin{equation}
+U_{a,\Sigma} = \sqrt{
+\begin{bmatrix}
+3.49 \\ 3.01 \\ 5.06 \\ 1.87 \\ 4.68 \\ 4.67
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1    & 0.04 & 0.00 & 0.05 & 0.13 & 0.13 \\
+0.04 & 1    & 0.07 & 0.07 & 0.17 & 0.17 \\
+0.00 & 0.07 & 1    & 0.05 & 0.14 & 0.15 \\
+0.05 & 0.07 & 0.05 & 1    & 0.18 & 0.18 \\
+0.13 & 0.17 & 0.14 & 0.18 & 1    & 0.33 \\
+0.13 & 0.17 & 0.15 & 0.18 & 0.33 & 1    \\
+\end{bmatrix}
+\begin{bmatrix}
+3.49 \\ 3.01 \\ 5.06 \\ 1.87 \\ 4.68 \\ 4.67
+\end{bmatrix}} = \qty{12.33}{mV}
+\label{eqn_sym_parta_uncert_value_a},
+\end{equation}
+Do wyznaczenia wariancji błędu wypadkowego zastosować można równanie \eqref{eqn_var_sum}, które w analizowanym przypadku przyjmuje postać:
+\begin{equation}
+\sigma_{a,\Sigma}^{2} = \sigma_{a,sw}^{2} + \sigma_{a,rw}^{2} + \sigma_{a,rp}^{2} + \sigma_{a,dw,1}^{2} + \sigma_{a,dw,2}^{2} + \sigma_{a,dw,3}^{2} = \qty{37.1}{\micro V} \label{eqn_sym_parta_var_sum}.
+\end{equation}
+Współczynnik kształtu rozkładu błędu wypadkowego może zostać oszacowany zgodnie z równaniem \eqref{eqn_unc_sum} i wynosi w analizowanym przypadku:
 \begin{equation}
 c_{a,\Sigma} = \frac{U_{a,\Sigma}}{\sigma_{a,\Sigma}} = \frac{\qty{12.33}{mV}}{\qty{6.09}{mV}} = 2.02 \label{eqn_sym_parta_uncert_factor}.
 \end{equation}
+
+Drugim sposobem na wyznaczenie parametrów wypadkowego sygnału błędu jest wykorzystanie wartości wyznaczonych w równaniach od od \eqref{eqn_sym_parta_uncert_stat} do \eqref{eqn_sym_parta_var_dyn}. Metoda ta jest kłopotliwa, ponieważ nie wszystkie rozkłady błędów cząstkowych posiadają standardowy kształt. Sytuacja ta znacznie utrudnia wyznaczenie wartości współczynników koherencji, jako że trudno będzie w symulacji uzyskać odpowiedni kształt rozkładu błędu. Ze względu na to, że wszystkie składowe sygnału błędu cechują się niepewnością rozszerzoną o tym samym rzędzie wielkości, niepewność wypadkową oszacować można korzystając z centralnego twierdzenia granicznego \cite{jcgm_guide}. W tym celu wyznaczyć należy odchylenie standardowe błędu wynikowego, a następnie zakładając normalny rozkład tego błędu wyznaczyć niepewność rozszerzoną zgodnie z równaniem \eqref{eqn_unc_sum} przyjmując współczynnik rozszerzenia $c_{a,\Sigma} = c_{n} = 1.96$. Wobec powyższego zapisać można następującą zależność:
+\begin{equation}
+U_{a,\Sigma} = c_{a,\Sigma} \sqrt{\sigma_{a,s}^{2} + \sigma_{a,r}^{2} + \sigma_{a,d}^{2}} = 1.96 \sqrt{\qty{37.1}{\micro V}} = \qty{11.94}{mV} \label{eqn_sym_parta_uncert_value_b},
+\end{equation}
+przy czym wyznaczona wartość jest zbliżona do wyznaczonej za pomocą równania \eqref{eqn_sym_parta_uncert_sum}.
 
 W celu weryfikacji poprawności zaproponowanej metody i przedstawionego modelu błędu przeprowadzono eksperyment stosując metodę Monte-Carlo. W ramach eksperymentu wykonano sto tysięcy powtórzeń wyznaczenia wielkości wyjściowej analizowanego obiektu. Każdorazowo losowano z przedziału $<-2 \pi f_{1};2 \pi f_{1}>\unit{rad}$ fazę początkową sygnału wejściowego, przy czym wylosowanie każdej w możliwych wartości było jednakowo prawdopodobne. Następnie błąd wypadkowy analizowanego obiektu wyznaczano zgodnie z równaniem:
 \begin{equation}
@@ -220,11 +321,11 @@ po czym na podstawie uzyskanych wartości realizacji błędu opracowano histogra
 \end{center}
 \end{figure}
 
-Wyznaczona na drodze eksperymentu niepewność $U_{a,\Sigma}$ wyniosła \qty{11.56}{mV}, przy czym współczynnik rozszerzenia $c_{a,\Sigma}$ wynosił $1.90$. Wartość niepewności oszacowana na podstawie równania \eqref{eqn_sym_parta_uncert_sum} jest zatem około 6\% większa od wartości uzyskanej na drodze eksperymentu, co wynika z niedoskonałości przyjętej metody wyznaczania niepewności wypadkowej \cite{jakubiec_system}. Podobna rozbieżność dotyczy oszacowanej wartości współczynnika rozszerzenia. Uzyskana wartość wypadkowa wariancji błędu wielkości wyjściowej wyniosła \qty{37.0}{\micro V}, co pokrywa się z wartością wyznaczoną w równaniu \eqref{eqn_sym_parta_var_sum}.
+Wyznaczona na drodze eksperymentu niepewność $U_{a,\Sigma}$ wyniosła \qty{11.72}{mV}, przy czym współczynnik rozszerzenia $c_{a,\Sigma}$ wyniósł $1.93$. Wartość niepewności oszacowana na podstawie równania \eqref{eqn_sym_parta_uncert_value_a} jest zatem około 5\% większa od wartości uzyskanej na drodze eksperymentu, co wynika z niedoskonałości przyjętej metody wyznaczania niepewności wypadkowej \cite{jakubiec_system}. W przypadku wartości oszacowanej na podstawie równania \eqref{eqn_sym_parta_uncert_value_b} rozbieżność jest nieco mniejsza i wynosi około 2\%, co dowodzi że w analizowanym przypadku spełnione zostały założenia związane z centralnym twierdzeniem granicznym, a przyjęte uproszczenia okazały się nie mieć znaczącego wpływu na wynik obliczeń. Podobna sytuacja ma miejsce w przypadku oszacowanej wartości współczynnika rozszerzenia. Uzyskana wartość wypadkowa wariancji błędu wielkości wyjściowej wyniosła każdorazowo \qty{37.0}{\micro V}, co pokrywa się z wartością wyznaczoną w równaniu \eqref{eqn_sym_parta_var_sum} oraz tą wyznaczaną w równaniu \eqref{eqn_sym_parta_uncert_value_b}. Wyznaczone w równaniach od \eqref{eqn_sym_parta_uncert_stat} do \eqref{eqn_sym_parta_var_dyn} parametry dla składowych błędu statycznego, dynamicznego i losowego również pokrywają się z tymi wyznaczonymi na drodze przeprowadzonego eksperymentu.
 
-Wobec przedstawionych rozważań i przeprowadzonego eksperymentu można stwierdzić, że zaproponowany model błędu odpowiednio opisuje związki pomiędzy kolejnymi błędami, zachodzące w analizowanym obiekcie. Analizując przedstawiony budżet niepewności oraz związane z nim histogramy zauważyć można, że w analizowanym przypadku nie występuje żaden błąd dominujący. W przypadku błędu statycznego błąd ten ma identyczny rozkład, jak rozkład skorelowanej z nim temperatury. Rozkład błędu dynamicznego wynika ze splotu jego sześciu harmonicznych, o przedstawionych w tabeli \ref{tab_sym_parta_params_dyn_list} parametrach. 
+Zaproponowana w pracy \cite{jakubiec_system} metoda wyznaczania niepewności wypadkowej, mimo uwzględniania założeń wynikających z centralnego twierdzenia granicznego, zgodnie z uwagami zawartymi w jej opisie, zapewnia wyniki zawyżone o kilka procent w stosunku do wartości uzyskiwanych symulacyjne. Jako, że omawiane rozbieżności są niewielkie oraz ich znak jest dodatni, uzyskiwane wyniki można uznać za prawidłowe. Wadą przedstawionej metody jest jednak konieczność wyznaczania współczynników koherencji, których wartości zależą zarówno od kształtu splatanych rozkładów, jak i od ich wariancji. Wada ta powoduje, że dla rozkładów o niestandardowym kształcie jej obszar zastosowań staje się ograniczony. Jak wykazały przeprowadzone eksperymenty i obliczenia, splatając kilka rozkładów cechujących się wartością niepewności rozszerzonej tego samego rzędu, obliczenia można uprościć zakładając kształt rozkładu wynikowego zbliżony do kształtu rozkładu normalnego.
 
-Zaproponowana w pracy \cite{jakubiec_system} metoda wyznaczania niepewności wypadkowej, mimo uwzględniania założeń wynikających z centralnego twierdzenia granicznego, zgodnie z uwagami zawartymi w jej opisie, zapewnia wyniki zawyżone o kilka procent w stosunku do wartości uzyskiwanych symulacyjne. Jako, że omawiane rozbieżności są niewielkie oraz ich znak jest dodatni, są one akceptowane.
+Wobec przedstawionych rozważań i przeprowadzonego eksperymentu można stwierdzić, że zaproponowany model błędu odpowiednio opisuje związki pomiędzy kolejnymi błędami, zachodzące w analizowanym obiekcie. Z punktu widzenia analizy całości toru pomiarowego przeprowadzony proces wyznaczania parametrów wypadkowych w przypadku grupy błędów dynamicznych oraz wyznaczanie parametrów wypadkowego błędu wielkości wyjściowej był bezzasadny i został przeprowadzony jedynie w celu weryfikacji zaproponowanej metody obliczeń. Jako, że kolejne fragmenty toro pomiarowego posiadają nieidealne właściwości dynamiczne, będą one wpływać na widmo sygnału wyjściowego błędu dynamicznego analizowanego fragmentu toru pomiarowego. W przypadku pozostałych grup błędów wyznaczenie ich parametrów wypadkowych pozwoli uprościć dalszą analizę ze względu na fakt, że cechują się one typowymi kształtami rozkładów -- w innym przypadku dalsze wyznaczanie wartości współczynników koherencji byłoby problematyczne, co pokazano w omówionym przykładzie.
 
 \begin{comment}
 \section{Analiza wzmacniacza pomiarowego}
