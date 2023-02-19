@@ -6,7 +6,7 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
-num = 5e2;
+num = 5e6;
 #u = linspace(1, 10, 30);
 #c = "nust";
 
@@ -36,6 +36,7 @@ R = [ ...
   gen_rands(num, W(5), 'w'); ...
   gen_rands(num, W(6), 'w'); ...
 ];
+A = zeros(1, num);
 
 len = length(W);
 coh = zeros(len, len);
@@ -49,18 +50,15 @@ end
 
 for i = 1 : len
   for j = 1 : len
-    if i == j
-      coh(i,j) = 1;
-      h(i,j) = 1;
-      k(i,j) = 1;
+    if i == j; coh(i,j) = h(i,j) = k(i,j) = 1;
     elseif coh(i,j) == 0
 
       uc = get_uncertainty(R(j,:) + R(i,:));
 
-      h(i,j) = (uc^2 - U(i)^2 - U(j)^2)/(2*U(i)*U(j));
-      k(i,j) = (U(i)^2 + U(j)^2)/sum(U .^ 2);
+      h(i,j) = h(j,i) = (uc^2 - U(i)^2 - U(j)^2)/(2*U(i)*U(j));
+      k(i,j) = k(j,i) = (U(i)^2 + U(j)^2)/sum(U .^ 2);
 
-      coh(i,j) = h(i,j) * k(i,j);
+      coh(i,j) = coh(j,i) = h(i,j) * k(i,j);
 
     end
   end
