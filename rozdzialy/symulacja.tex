@@ -310,7 +310,7 @@ przy czym wyznaczona wartość jest zbliżona do wyznaczonej za pomocą równani
 
 W celu weryfikacji poprawności zaproponowanej metody i przedstawionego modelu błędu przeprowadzono eksperyment stosując metodę Monte-Carlo. W ramach eksperymentu wykonano sto tysięcy powtórzeń wyznaczenia wielkości wyjściowej analizowanego obiektu. Każdorazowo losowano z przedziału $<-2 \pi f_{1};2 \pi f_{1}>\unit{rad}$ fazę początkową sygnału wejściowego, przy czym wylosowanie każdej w możliwych wartości było jednakowo prawdopodobne. Następnie błąd wypadkowy analizowanego obiektu wyznaczano zgodnie z równaniem:
 \begin{equation}
-e_{a,\Sigma}(t) = e_{a,sw}(t) + e_{a,rw}(t) +e_{a,rp}(t) + e_{a,dw}(t) \label{eqn_sym_parta_error_sum},
+e_{a,\Sigma}(t) = e_{a,sw}(t) + e_{a,rw}(t) + e_{a,rp}(t) + e_{a,dw}(t) \label{eqn_sym_parta_error_sum},
 \end{equation}
 po czym na podstawie uzyskanych wartości realizacji błędu opracowano histogram, który posłużył do identyfikacji parametrów jego rozkładu. Rysunek \ref{fig_symul_parta_hist} przedstawia uzyskane podczas przeprowadzania eksperymentu histogramy uwzględniając podział na błędy statyczne, dynamiczne oraz losowe, a także przedstawia on rozkład błędu wypadkowego.
 
@@ -327,11 +327,89 @@ Zaproponowana w pracy \cite{jakubiec_system} metoda wyznaczania niepewności wyp
 
 Wobec przedstawionych rozważań i przeprowadzonego eksperymentu można stwierdzić, że zaproponowany model błędu odpowiednio opisuje związki pomiędzy kolejnymi błędami, zachodzące w analizowanym obiekcie. Z punktu widzenia analizy całości toru pomiarowego przeprowadzony proces wyznaczania parametrów wypadkowych w przypadku grupy błędów dynamicznych oraz wyznaczanie parametrów wypadkowego błędu wielkości wyjściowej był bezzasadny i został przeprowadzony jedynie w celu weryfikacji zaproponowanej metody obliczeń. Jako, że kolejne fragmenty toro pomiarowego posiadają nieidealne właściwości dynamiczne, będą one wpływać na widmo sygnału wyjściowego błędu dynamicznego analizowanego fragmentu toru pomiarowego. W przypadku pozostałych grup błędów wyznaczenie ich parametrów wypadkowych pozwoli uprościć dalszą analizę ze względu na fakt, że cechują się one typowymi kształtami rozkładów -- w innym przypadku dalsze wyznaczanie wartości współczynników koherencji byłoby problematyczne, co pokazano w omówionym przykładzie.
 
-\begin{comment}
 \section{Analiza wzmacniacza pomiarowego}
 
+Kolejną część toru pomiarowego stanowi wzmacniacz operacyjny, którego zadaniem jest dopasowanie poziomu sygnału napięciowego $y_{a}(t)$, reprezentującego mierzoną wielkość fizyczną $s(t)$, do zakresu napięcia wejściowego przetwornika analogowo-cyfrowego. Realizacje tego elementu stanowi wzmacniacz operacyjny w konfiguracji nieodwracającej, co dodatkowo pozytywnie wpływa na zwiększenie impedancji wejściowej tego elementu oraz zmniejszenie jego impedancji wyjściowej. Zakładane wzmocnienie układu wynosi $\qty{3.3}{V \per V}$, natomiast jego funkcję przetwarzania $\dot{f}_{b}(x)$ opisuje addytywna funkcja liniowa, przy czym:
+\begin{equation}
+\dot{f}_{b}(x) = 3.3 \cdot x \label{eqn_sym_partb_function}.
+\end{equation}
+Dodatkowo przyjmuje się, że nieliniowość przedstawionej charakterystyki statycznej wzmacniacza jest pomijalnie mała. Analizowany układ charakteryzować się będzie częstotliwością graniczną równą $f_{b,g} = \qty{650}{kHz}$, stąd opisać można jego transmitancje i związane z nią parametry równaniami:
+\begin{equation}
+\tilde{G}_{b}(j\omega) = \frac{1}{1 + j \frac{\omega}{2 \pi f_{b,g}}} = \frac{1}{\frac{\omega^{2}}{4 \pi^{2} f_{b,g}^{2}} + 1} - j \frac{\omega}{2 \pi f_{b,g} \left( \frac{\omega^{2}}{4 \pi^{2} f_{b,g}^{2}} + 1 \right) } \label{eqn_sym_partb_trans},
+\end{equation}
+a zatem równania \eqref{eqn_mid_cont_amp} oraz \eqref{eqn_mid_cont_phi} przyjmują postać:
+\begin{gather}
+\tilde{K}_{b}(\omega) = \left( \frac{\omega^{2}}{4 \pi^{2} f_{b,g}^{2}} + 1 \right)^{-\frac{1}{2}} \label{eqn_sym_partb_amp_real}, \\
+\tilde{\varphi}_{b}(\omega) = \arctan \left( -\frac{\omega}{2 \pi f_{b,g}} \right) \label{eqn_sym_partb_phi_real},
+\end{gather}
+przy czym dla idealnej transmitancji $\dot{G}_{b}(j\omega)$ parametry te wynoszą kolejno:
+\begin{gather}
+\dot{K}_{b}(\omega) = 1 \label{eqn_sym_partb_amp_ideal}, \\
+\dot{\varphi}_{b}(\omega) = 0  \label{eqn_sym_partb_phi_ideal}.
+\end{gather}
+Temperatura otoczenia wpływać będzie na dryf zera, zgodnie z poniższą zależnością:
+\begin{equation}
+f_{b,z}(\vartheta(t)) = \frac{7}{2} (\vartheta(t) - \qty{20}{\degreeCelsius}) ~\unit{\frac{mV}{K}} \label{eqn_sym_partb_temp_err}.
+\end{equation}
 
+Można zatem, podobnie jak w ramach poprzedniego fragmentu toru pomiarowego, opisać właściwości analizowanego obiektu stosując zaproponowany w pracy model:
+\begin{gather}
+\dot{y}_{b}(t) = f_{b} \left( \dot{y}_{a}(t) \right) = 3.3 \cdot \dot{y}_{a}(t) \label{eqn_sym_partb_out_ideal}, \\
+\tilde{y}_{b}(t) = \dot{y}_{b}(t) + e_{b,\Sigma}(t) \label{eqn_sym_partb_out_real},
+\end{gather}
+Na wypadkowy błąd $e_{b,\Sigma}(t)$ składać się będą błędy zawarte w przetwarzanym sygnale $y_{a}(t)$ przenoszone przez analizowany element oraz błędy własne, które wprowadzane będą przez analizowany wzmacniacz pomiarowy. 
 
+Pierwszą omawianą grupą błędów będą błędy własne, wprowadzane przez analizowany obiekt. Błąd statyczny własny, wynikający z dryfu zera spowodowanego temperaturą otoczenia, opisać można równaniem:
+\begin{equation}
+e_{b,sw}(t) = f_{b,z}(\vartheta(t)) \label{eqn_sym_partb_err_sw},
+\end{equation}
+natomiast błąd dynamiczny własny, wynikający z nieidealnej transmitancji obiektu, dla pojedynczej harmonicznej o pulsacji $\omega$ opisuje równanie:
+\begin{equation}
+\begin{split}
+e_{b,dw}(t,\omega) = ~
+& \dot{f}_{b} \left( \tilde{K}_{b}(\omega) E_{a,o}(\omega) \sin \left( \omega t + \varphi_{a,o}(\omega) + \tilde{\varphi}_{b}(\omega) \right) \right)- \\
+& \dot{f}_{b} \left(\dot{K}_{b}(\omega) E_{a,o}(\omega) \sin \left( \omega t + \varphi_{a,o}(\omega) + \dot{\varphi}_{b}(\omega) \right) \right) = \\
+& \dot{f}_{b} \left(\tilde{K}_{b}(\omega) E_{s,o}(\omega) \sin \left( \omega t + \varphi_{s,o}(\omega) + \tilde{\varphi}_{b}(\omega) \right) \right) - \\
+& \dot{f}_{b} \left(\dot{K}_{b}(\omega) E_{s,o}(\omega) \sin \left( \omega t + \varphi_{s,o}(\omega) + \dot{\varphi}_{b}(\omega) \right) \right)
+\end{split}
+\label{eqn_sym_partb_dyn_self_err},
+\end{equation}
+wynikające z zależności \eqref{eqn_mid_cont_err_dyn_self} oraz \eqref{eqn_out_cont_err_dyn_prop}, przy czym wypadkowy błąd dynamiczny własny jest określony w postaci sumy kolejnych harmonicznych sygnału błędu dynamicznego własnego i może zostać opisany w postaci:
+\begin{equation}
+e_{b,dw}(t) = \sum _{i = 1} ^{\infty} e_{b,dw}(t,\omega_{a,i}) \label{eqn_sym_partb_dyn_self_sum}.
+\end{equation}
+
+Drugą grupę błędów stanowią błędy propagowane, przenoszone z wejścia na wyjście obiektu. Błędy statyczny $e_{a,sw}(t)$, związany z dryfem zera przetwornika pomiarowego, oraz losowy $e_{a,rw}$, związany z nieliniowością charakterystyki zastosowanego przetwornika pomiarowego, będą przenoszone zgodnie z następującymi zależnościami:
+\begin{gather}
+e_{b,sp}(t) = \dot{f}_{b} \left( e_{a,sw}(t) \right) = 3.3 \cdot e_{a,sw}(t) \label{eqn_sym_partb_stat_prop_err}, \\
+e_{b,rp,1}(t) = \dot{f}_{b} \left( e_{a,rw}(t) \right) = 3.3 \cdot e_{a,rw}(t) \label{eqn_sym_partb_rand_prop_err_1}.
+\end{gather}
+Błąd losowy $e_{b,rp,2}$ związany z szumem obecnym w sygnale pomiarowym, z którym związany jest błąd $e_{a,rp,2}$, należy analizować zgodnie z zależnościami \eqref{eqn_mid_cont_var_rand} oraz \eqref{eqn_out_cont_err_rand_prop}. Podobnie, jak w przypadku analizowanego przetwornika pomiarowego, w zakresie częstotliwości próbkowania transmitancja obiektu nie będzie miała wpływu na widmo przetwarzanego sygnału szumu. Można zatem zapisać równanie opisujące przebieg omawianego błędu na wyjściu obiektu:
+\begin{equation}
+e_{b,rp,2}(t) = \dot{f}_{b} \left( e_{a,rp}(t) \right) = 3.3 \cdot e_{a,rp}(t) \label{eqn_sym_partb_rand_prop_err_2},
+\end{equation}
+oraz wskazać zależność opisującą sumaryczny błąd losowy propagowany analizowanego obiektu daną równaniem:
+\begin{equation}
+e_{b,rp}(t) = e_{b,rp,1}(t) + e_{b,rp,2}(t) = 3.3 \left( e_{a,rp}(t) + e_{a,rw}(t) \right) \label{eqn_sym_partb_rand_prop_err},
+\end{equation}
+Propagacja błędów dynamicznych $e_{a,dw}$ zawartych w przetwarzanym sygnale analizowana będzie z osobna dla każdej harmonicznej błędu dynamicznego, których parametry zestawiono w tabeli \ref{tab_sym_parta_params_dyn_summary}. Harmoniczne te, zgodnie z charakterystyką dynamiczną analizowanego wzmacniacza, będą odpowiednio tłumione i przesuwane w fazie, a następnie zgodnie z jego charakterystyką statyczną zostaną wzmocnione. Przedstawione zależności, zgodnie z równaniami \eqref{eqn_mid_cont_err_dyn_prop} oraz \eqref{eqn_out_cont_err_dyn_prop} przyjmują postać:
+\begin{gather}
+e_{b,dp}(t,\omega) = \dot{f}_{b} \left( \tilde{K}_{b}(\omega) E_{a,e}(\omega) \sin \left( \omega t + \varphi_{a,e}(\omega) + \tilde{\varphi}_{b}(\omega) \right) \right) \label{eqn_sym_partb_dyn_prop_err},\\
+e_{b,dp}(t) = \sum _{i = 1} ^{\infty} e_{b,dp}(t,\omega_{a,i}) \label{eqn_sym_partb_dyn_prop_sum}.
+\end{gather}
+
+Na podstawie przedstawionych zależności, zgodnie z równaniem \eqref{eqn_out_cont_err_sum_add}, opisać można wypadkowy błąd wielkości wyjściowej analizowanego wzmacniacza pomiarowego w postaci równania:
+\begin{equation}
+e_{b,\Sigma}(t) = e_{b,sw}(t) + e_{b,sp}(t) + e_{b,rp}(t) + e_{b,dw}(t) + e_{b,dp}(t) \label{eqn_sym_partb_error_sum}.
+\end{equation}
+
+Kolejny etap analizy sprowadza się do wyznaczenia parametrów opisanych sygnałów błędów. Jako, że proces pomiaru powtarzany będzie wielokrotnie, należy dla wskazanych sygnałów określić ich parametry w kategorii probabilistycznej, uwzględniając zachodzące pomiędzy nimi związki. W przypadku błędów dynamicznych należy, analogicznie jak w przypadku przedstawionej analizy przetwornika pomiarowego, wyznaczyć wypadkowe amplitudy i przesunięcia w fazie kolejnych harmonicznych sygnału błędu. W analizowanym przypadku każda wypadkowa harmoniczna sygnału błędu dynamicznego złożona będzie z trzech składników -- dwóch wynikających z równania \eqref{eqn_sym_partb_dyn_self_err} oraz jednej wynikającej z równania \eqref{eqn_sym_partb_dyn_prop_err}. Parametry wypadkowe należy wyznaczyć zgodnie z metodą opisaną w równaniach od \eqref{eqn_dyn_vect} do \eqref{eqn_dyn_vect_phi}. W przypadku pozostałych błędów składowych należy określić ich wariancję uwzględniając funkcję przetwarzania obiektu, przy czym w przypadku liniowej i addytywnej funkcji przetwarzania zapisać można zależność:
+\begin{equation}
+\sigma^{2} = f(\sigma)^{2} \label{eqn_var_function},
+\end{equation}
+przy czym zauważyć należy, że kształt rozkładu przetwarzanej wielkości nie ulega zmianie. Wyznaczone parametry wypadkowe sygnału błędu dynamicznego $e_{b,d}$ zestawiono w tabeli TODO, natomiast tabela TDOD przedstawia budżet niepewności wielkości wyjściowej analizowanego wzmacniacza pomiarowego.
+
+\begin{comment}
 \section{Analiza przetwornika analogowo-cyfrowego}
 
 
