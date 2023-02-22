@@ -8,6 +8,7 @@ pkg load parallel
 addpath("~/Projekty/Octave-FWT-Utils")
 
 dim = "-r300";
+part = "b";
 
 fcolor = "#333333";
 ecolor = "#333333";
@@ -26,7 +27,7 @@ set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
-load("../archiwa/simulation_a_static.txt.gzip")
+load(sprintf("../archiwa/simulation_%s_static.txt.gzip", part))
 errs = errs * 1000;
 
 [u, c, s, w] = get_uncertainty(errs, 0.95, nstd)
@@ -40,7 +41,7 @@ xlabel("Wartość błędu, mV");
 ylim([0 0.8])
 grid on
 
-load("../archiwa/simulation_a_dynamic.txt.gzip")
+load(sprintf("../archiwa/simulation_%s_dynamic.txt.gzip", part))
 errs = errs * 1000;
 
 [u, c, s, w] = get_uncertainty(errs, 0.95, nstd)
@@ -54,7 +55,7 @@ xlabel("Wartość błędu, mV");
 ylim([0 0.9])
 grid on
 
-load("../archiwa/simulation_a_random.txt.gzip")
+load(sprintf("../archiwa/simulation_%s_random.txt.gzip", part))
 errs = errs * 1000;
 
 [u, c, s, w] = get_uncertainty(errs, 0.95, nstd)
@@ -65,10 +66,10 @@ title(sprintf("c) \\rm\\it U{ =\\rm %0.2f mV}, c{ =\\rm %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-ylim([0 1.3])
+ylim([0 1.2])
 grid on
 
-load("../archiwa/simulation_a_summary.txt.gzip")
+load(sprintf("../archiwa/simulation_%s_summary.txt.gzip", part))
 errs = errs * 1000;
 
 [u, c, s, w] = get_uncertainty(errs, 0.95, nstd)
@@ -79,8 +80,8 @@ title(sprintf("d) \\rm\\it U{ =\\rm %0.2f mV}, c{ =\\rm %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-ylim([0 1.0])
+ylim([0 0.9])
 grid on
 
-print("../obrazki/hist_part_a.svg", "-svgconvert", dim);
+print(sprintf("../obrazki/hist_part_%s.svg", part), "-svgconvert", dim);
 

@@ -133,7 +133,7 @@ Przedstawiając składowe równania \eqref{eqn_sym_parta_dyn_self_example_harm} 
 \end{bmatrix}
 \label{eqn_sym_parta_dyn_self_example_sum}, \\
 E_{\Sigma,1} = \sqrt{(\num{-5.86e-6})^2 + (\num{-1.88e-3})^2} = \qty{1.88}{mV} \label{eqn_sym_parta_dyn_self_example_amp}, \\
-\varphi_{\Sigma,1} = \arctan \left( \frac{\num{-1.88e-3}}{\num{-5.86e-6}} \right) = \qty{1.57}{rad} \label{eqn_sym_parta_dyn_self_example_phi}.
+\varphi_{\Sigma,1} = \arctan \left( \frac{\num{-1.88e-3}}{\num{-5.86e-6}} \right) = \qty{-1.57}{rad} \label{eqn_sym_parta_dyn_self_example_phi}.
 \end{gather}
 Dla pozostałych harmonicznych należy opisane powyżej wartości wyznaczyć w sposób analogiczny, przy czym omawiane wyniki zestawiono w tabeli \ref{tab_sym_parta_params_dyn_summary}. Przedstawione wartości umożliwiają wyznaczenie na podstawie równania \eqref{eqn_dyn_std} odchylenia standardowego kolejnych składowych błędu oraz na podstawie równania \eqref{eqn_unc_sum} niepewności rozszerzonej, przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla poziomu ufności $\alpha = 95\%$ wynosi $1.42$.
 
@@ -142,9 +142,9 @@ Dla pozostałych harmonicznych należy opisane powyżej wartości wyznaczyć w s
 \caption{Parametry kolejnych harmonicznych błędu dynamicznego własnego analizowanego w eksperymencie symulacyjnym przetwornika pomiarowego \label{tab_sym_parta_params_dyn_summary}}
 \begin{tabular}[c]{| c | c | S | S |} \hline
 \textbf{Lp. $j$} & \textbf{Pulsacja $\omega_{a,j}$, rad/s} & \textbf{Amplituda $E_{a,e}(\omega_{a,j})$, mV} & \textbf{Faza $\varphi_{a,e}(\omega_{a,j})$, rad} \\ \hline
-1 & $1000  \cdot 2\pi$  &  1.88  & 1.57   \\ \hline
-2 & $5000  \cdot 2\pi$  &  4.69  & -1.19  \\ \hline
-3 & $15000 \cdot 2\pi$  &  4.68  & -1.09  \\ \hline
+1 & $1000  \cdot 2\pi$  &  1.88  & -1.57  \\ \hline
+2 & $5000  \cdot 2\pi$  &  4.69  &  1.96  \\ \hline
+3 & $15000 \cdot 2\pi$  &  4.68  & -1.07  \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -155,7 +155,7 @@ Dla pozostałych harmonicznych należy opisane powyżej wartości wyznaczyć w s
 \begin{tabular}[c]{| c | S | S | c | c |} \hline
 \textbf{Symbol} & \textbf{$U_{95\%}$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Kształt rozkładu} & \textbf{Źródło błędu} \\ \hline
 ${a,sw}$       & 3.49  &  3.38   & trójkątny                    & dryf temperaturowy                         \\ \hline
-${a,rw}$       & 3.01  &  3.33   & jednostajny                  & nieliniowość charakterystyki               \\ \hline
+${a,rw}$       & 3.01  &  3.33   & jednostajny                  & nieliniowość obiektu                       \\ \hline
 ${a,rp}$       & 5.06  &  6.67   & normalny                     & szum wielkości wejściowej                  \\ \hline
 ${a,dw,1}$     & 1.87  &  1.77   & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja wzmacniacza} \\ \cline{1-3}
 ${a,dw,2}$     & 4.68  &  11.00  &                              &                                            \\ \cline{1-3}
@@ -405,9 +405,73 @@ e_{b,\Sigma}(t) = e_{b,sw}(t) + e_{b,sp}(t) + e_{b,rp}(t) + e_{b,dw}(t) + e_{b,d
 
 Kolejny etap analizy sprowadza się do wyznaczenia parametrów opisanych sygnałów błędów. Jako, że proces pomiaru powtarzany będzie wielokrotnie, należy dla wskazanych sygnałów określić ich parametry w kategorii probabilistycznej, uwzględniając zachodzące pomiędzy nimi związki. W przypadku błędów dynamicznych należy, analogicznie jak w przypadku przedstawionej analizy przetwornika pomiarowego, wyznaczyć wypadkowe amplitudy i przesunięcia w fazie kolejnych harmonicznych sygnału błędu. W analizowanym przypadku każda wypadkowa harmoniczna sygnału błędu dynamicznego złożona będzie z trzech składników -- dwóch wynikających z równania \eqref{eqn_sym_partb_dyn_self_err} oraz jednej wynikającej z równania \eqref{eqn_sym_partb_dyn_prop_err}. Parametry wypadkowe należy wyznaczyć zgodnie z metodą opisaną w równaniach od \eqref{eqn_dyn_vect} do \eqref{eqn_dyn_vect_phi}. W przypadku pozostałych błędów składowych należy określić ich wariancję uwzględniając funkcję przetwarzania obiektu, przy czym w przypadku liniowej i addytywnej funkcji przetwarzania zapisać można zależność:
 \begin{equation}
-\sigma^{2} = f(\sigma)^{2} \label{eqn_var_function},
+\sigma_{wy}^{2} = f(\sigma)_{we}^{2} \label{eqn_var_function},
 \end{equation}
-przy czym zauważyć należy, że kształt rozkładu przetwarzanej wielkości nie ulega zmianie. Wyznaczone parametry wypadkowe sygnału błędu dynamicznego $e_{b,d}$ zestawiono w tabeli TODO, natomiast tabela TDOD przedstawia budżet niepewności wielkości wyjściowej analizowanego wzmacniacza pomiarowego.
+gdzie $\sigma_{wy}^{2}$ jest wariancją na wyjściu funkcji przetwarzania $f(x)$, a $\sigma_{we}^{2}$ wariancją na wejściu. Dodatkowo zauważyć należy, że kształt rozkładu przetwarzanej wielkości nie ulega zmianie. Wyznaczone analogicznie do przykładu opisanego w równaniach od \eqref{eqn_sym_parta_dyn_self_example_sum} do \eqref{eqn_sym_parta_dyn_self_example_phi} parametry wypadkowe sygnału błędu dynamicznego $e_{b,d}$ zestawiono w tabeli \ref{tab_sym_partb_params_dyn_summary}, natomiast tabela \ref{tab_sym_partb_params_unc_list} przedstawia budżet niepewności wielkości wyjściowej analizowanego wzmacniacza pomiarowego z uwzględnieniem podziału na błędy własne i propagowane.
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Parametry wypadkowe kolejnych harmonicznych błędu dynamicznego analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego \label{tab_sym_partb_params_dyn_summary}}
+\begin{tabular}[c]{| c | c | S | S |} \hline
+\textbf{Lp. $j$} & \textbf{Pulsacja $\omega_{b,j}$, rad/s} & \textbf{Amplituda $E_{b,e}(\omega_{b,j})$, mV} & \textbf{Faza $\varphi_{b,e}(\omega_{b,j})$, rad} \\ \hline
+1 & $1000  \cdot 2\pi$  &   9.23  & -1.57  \\ \hline
+2 & $5000  \cdot 2\pi$  &  23.08  &  1.96  \\ \hline
+3 & $15000 \cdot 2\pi$  &  23.07  & -1.07  \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego, gdzie (a) oznacza przetwornik pomiarowy oraz (b) oznacza wzmacniacz pomiarowy \label{tab_sym_partb_params_unc_list}}
+\begin{tabular}[c]{| c | S | S | c | c |} \hline
+\textbf{Symbol} & \textbf{$U_{95\%}$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Kształt rozkładu} & \textbf{Źródło błędu} \\ \hline
+${b,sw}$       & 11.52 &  36.75  & trójkątny                    & dryf temperaturowy (a)                     \\ \hline
+${b,sp}$       & 8.15  &  18.38  & trójkątny                    & dryf temperaturowy (b)                     \\ \hline
+${b,rp,1}$     & 9.93  &  36.26  & jednostajny                  & nieliniowość obiektu (a)                   \\ \hline
+${b,rp,2}$     & 16.70 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
+${b,dp,1}$     & 6.21  &  19.14  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-3}
+${b,dp,2}$     & 15.53 &  119.62 &                              &                                            \\ \cline{1-3}
+${b,dp,3}$     & 15.52 &  119.44 &                              &                                            \\ \hline
+${b,dw,1}$     & 3.06  &  4.64   & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (b)}         \\ \cline{1-3}
+${b,dw,2}$     & 7.65  &  29.00  &                              &                                            \\ \cline{1-3}
+${b,dw,3}$     & 7.65  &  28.99  &                              &                                            \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Ostatnim krokiem analizy pozostaje określenie związków pomiędzy składowymi budżetu niepewności zestawionymi w tabeli \ref{tab_sym_partb_params_unc_list}. Należy zauważyć, że składowe związane z dryfem temperaturowym przetwornika pomiarowego oraz dryfem temperaturowym wzmacniacza zależą od tej samej wielkości fizycznej -- temperatury otoczenia. Oznacza to, że należy określić korelacje pomiędzy omawianymi wielkościami zgodnie z zależnością \eqref{eqn_var_corr} i uwzględnić ją w równaniu \eqref{eqn_var_matrix} w celu określenia wypadkowej wariancji składanych sygnałów błędu. Wyznaczony współczynnik korelacji pomiędzy opisywanymi błędami statycznymi wynosi:
+\begin{equation}
+r_{b,sw,sp} = \frac{\sigma_{b,sw,sp}^{2} - \sigma_{b,sw}^{2} - \sigma_{b,sp}^{2}}{2 \sigma_{b,sw} \sigma_{b,sp}} = \frac{\num{1.07e-4} - \num{3.68e-5} - \num{1.84e-5}}{2 \cdot \num{1.92e-2} \cdot \num{4.29e-3}} = 0.31 \label{eqn_sym_partb_stat_corr},
+\end{equation}
+przy czym w celu wyznaczenia wypadkowej wartości wariancji $\sigma_{b,sw,sp}^{2}$ przeprowadzono eksperyment metodą Monte-Carlo. Ze względu na fakt, że analizowane sygnały błędu statycznego zależą liniowo w pełni od tej samej wielkości fizycznej, rozkład błędu wypadkowego cechować się będzie kształtem identycznym, jak rozkład omawianej wielkości fizycznej. W przypadku kolejnych harmonicznych błędu dynamicznego własnego oraz propagowanego zauważyć można, że przesunięcia fazowe przebiegów tych harmonicznych są pomijalnie małe -- ich rząd wielkości wynosi \qty{1e-3}{rad}. Można zatem przyjąć, że współczynniki korelacji składanych sygnałów będą zbliżone do zera, co pozwoli zastosować uproszczone równanie \eqref{eqn_var_sum} do określenia wypadkowej wariancji tych przebiegów. Założenia te potwierdzają wyniki zestawione w tabeli \ref{tab_sym_partb_params_dyn_summary}.
+
+Korzystając zależności przedstawionych równaniami od \eqref{eqn_sym_parta_uncert_stat} do \eqref{eqn_sym_parta_var_dyn}, równania \eqref{eqn_var_function} oraz zestawionych w tabeli \ref{tab_sym_partb_params_unc_list} wartości, wyznaczono budżet niepewności uwzględniający podział na kategorie błędów, przy czym ze względu na konieczność przeprowadzania dalszej analizy w dziedzinie pulsacji, nie wyznaczano wypadkowych parametrów błędu dynamicznego. Wyznaczone wartości przedstawia tabela \ref{tab_sym_partb_params_unc_sum}, która zostanie wykorzystana w dalszym etapie analizy toru pomiarowego. 
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego z uwzględnieniem podziału na błędy statyczne, dynamiczne oraz losowe \label{tab_sym_partb_params_unc_sum}}
+\begin{tabular}[c]{| c | S | S | c | c |} \hline
+\textbf{Symbol} & \textbf{$U_{95\%}$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Kształt rozkładu} & \textbf{Źródło błędu} \\ \hline
+${b,s}$        & 19.66 &  107.01 & trójkątny                    & dryf temperaturowy                         \\ \hline
+${b,r}$        & 20.45 &  108.90 & normalny                     & szum i nieliniowość                        \\ \hline
+${b,d,1}$      & 6.21  &  19.14  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja}             \\ \cline{1-3}
+${b,d,2}$      & 15.53 &  119.62 &                              &                                            \\ \cline{1-3}
+${b,d,3}$      & 15.52 &  119.44 &                              &                                            \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+W celu weryfikacji poprawności zastosowanego modelu błędu oraz przeprowadzonych obliczeń wykonano eksperyment metodą Monte-Carlo, polegający na wyznaczeniu sto tysięcy razy wartości wielkości wyjściowej analizowanego wzmacniacza pomiarowego. Podczas eksperymentu fazę sygnału wejściowego $s(t)$ losowano z przedziału $<-2 \pi f_{1};2 \pi f_{1}>\unit{rad}$, przy czym wylosowanie każdej w możliwych wartości było jednakowo prawdopodobne. Uzyskiwaną wartość wielkości wyjściowej porównywano z wartością otrzymaną dla idealnej realizacji analizowanego fragmentu toru pomiarowego (tj. takiej, w której nie występowały żadne źródła błędów), a następnie na podstawie równania \eqref{eqn_sym_partb_error_sum} wyznaczano realizację błędu wielkości wyjściowej $y_{b}(t)$. Wyznaczone wartości zostały użyte do sporządzenia histogramu, na podstawie którego określono parametry rozkładu błędu analizowanej wielkości wyjściowej. Eksperyment wykonano uwzględniając wszystkie źródła błędu oraz uwzględniając źródła związane z kolejnymi kategoriami błędów. Uzyskane na drodze eksperymentu histogramy przedstawia rysunek \ref{fig_symul_partb_hist}.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/hist_part_b}
+\caption{Histogramy błędów \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego, wielkości wyjściowej zastosowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego \label{fig_symul_partb_hist}}
+\end{center}
+\end{figure}
+
+Analizując wyniki eksperymentu zauważyć można, że uzyskane wyniki dla błędów losowego oraz statycznego są zbliżone do tych przedstawionych w tabeli \ref{tab_sym_partb_params_unc_sum}. Pozwala to zakładać, że podobnie jak w przypadku analizy właściwości przetwornika pomiarowego, przyjęty model błędu oraz stosowane zależności poprawnie określają związki pomiędzy wskazanymi błędami i umożliwiają poprawne oszacowanie ich parametrów.
 
 \begin{comment}
 \section{Analiza przetwornika analogowo-cyfrowego}
