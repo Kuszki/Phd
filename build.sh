@@ -30,5 +30,5 @@ done
 
 [ $REMOVE == true ] && rm budowa/*
 [ $CONVERT == true ] && inkscape -D obrazki/*.svg --export-type pdf
-[ $BUILD == true ] && latexmk -output-directory=budowa -pdflua thesis.tex
+[ $BUILD == true ] && latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
 

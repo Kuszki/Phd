@@ -6,6 +6,7 @@
 \RequirePackage[backend = biber, style = alphabetic, sorting = nyt]{biblatex}
 \RequirePackage[unicode = true, hidelinks]{hyperref}
 
+\RequirePackage[noheader, nopdfinfo]{gitver}
 \RequirePackage[autostyle]{csquotes}
 \RequirePackage[chapter]{tocbibind}
 \RequirePackage[section]{placeins}
@@ -81,7 +82,7 @@
 \fancyhead[EL]{\nouppercase{\small\leftmark}}
 \fancyhead[OR]{\nouppercase{\small\@title}}
 
-\fancyhead[ER]{\nouppercase{\small Wersja robocza z \@date}}
+\fancyhead[ER]{\nouppercase{\small Wersja \gitVer{} z \@date}}
 
 \def\maketitle
 {
