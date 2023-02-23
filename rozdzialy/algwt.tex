@@ -213,13 +213,21 @@ oraz wskazać jego rozwiązanie, które determinuje następujące wartości kole
 c_0 = \frac{1 + \sqrt{3}}{4}, c_1 = \frac{3 + \sqrt{3}}{4}, c_2 = \frac{3 - \sqrt{3}}{4}, c_3 = \frac{1 - \sqrt{3}}{4} \label{eqn_db2_coefs}.
 \end{equation}
 
-Zgodnie z założeniami odnośnie długości wektora wielkości wejściowych oraz liczby poziomów dekompozycji zauważyć można, że wektor wielkości wyjściowych zawierać będzie dwie próbki związane z aproksymacją sygnału dla skali $m = 2$, dwie próbki związane z detalami sygnału dla skali $m = 2$ oraz cztery próbki związane z detalami dla skali $m = 1$. Oznaczając wektor wielkości wejściowych analizowanego algorytmu jako:
+Zgodnie z założeniami odnośnie długości wektora wielkości wejściowych oraz liczby poziomów dekompozycji zauważyć można, że wektor wielkości wyjściowych zawierać będzie dwie próbki związane z aproksymacją sygnału dla skali $m = 2$, dwie próbki związane z detalami sygnału dla skali $m = 2$ oraz cztery próbki związane z detalami dla skali $m = 1$. Oznaczając wektor wielkości wejściowych jako:
 \begin{equation}
-\mathbf{x} = \left[ S_{0,0} ~ S_{0,1} ~ S_{0,2} ~ S_{0,3} ~ S_{0,4} ~ S_{0,5} ~ S_{0,6} ~ S_{0,7} \right] \label{eqn_db2_invect},
+\mathbf{x}^{T} =
+\begin{bmatrix}
+S_{0,0} & S_{0,1} & S_{0,2} & S_{0,3} & S_{0,4} & S_{0,5} & S_{0,6} & S_{0,7}
+\end{bmatrix}
+\label{eqn_db2_invect},
 \end{equation}
 wektor wielkości wyjściowych można opisać w postaci:
 \begin{equation}
-\mathbf{X} = \left[ S_{2,0} ~ S_{2,1} ~ T_{2,0} ~ T_{2,1} ~ T_{1,0} ~ T_{1,1} ~ T_{1,2} ~ T_{1,3} \right] \label{eqn_db2_outvect},
+\mathbf{X}^{T} =
+\begin{bmatrix}
+S_{2,0} & S_{2,1} & T_{2,0} & T_{2,1} & T_{1,0} & T_{1,1} & T_{1,2} & T_{1,3}
+\end{bmatrix}
+\label{eqn_db2_outvect},
 \end{equation}
 a następnie zgodnie z równaniem \eqref{eqn_dwt_aproxrek} oraz \eqref{eqn_dwt_detailrek} opisać można kolejne wymienione w równaniu \eqref{eqn_db2_outvect} wielkości wyjściowe za pomocą zależności:
 \begin{gather}
