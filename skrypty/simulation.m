@@ -9,8 +9,8 @@ pkg load signal;
 addpath("~/Projekty/Octave-FWT-Utils");
 
 # iterations params
-iters_a = 10e4;
-iters_b = 1e0;
+iters_a = 1e4;#2e4;
+iters_b = 1e1;#5e1;
 
 # wavelet params
 wname = 'db2';
@@ -46,12 +46,11 @@ t_diff = 3;
 var_s_t = (3*t_diff^2)/(18);
 var_r_s = 2e-5/3;
 var_r_a = 1e-5/3;
-var_r_c = 5e-5/2;
 
 # adc settings
 nq = 256;
-vp = 3;
-vn = 0;
+vp =  3.0;
+vn = -3.0;
 aq = (vp - vn) / nq;
 
 # timing evals
@@ -92,7 +91,7 @@ elen_m = iters_a * iters_b;
 elen_v = iters_a * ns;
 
 temp = gen_randt(iters_a, var_s_t, 'w') + t_exp;
-phi = rand(1, iters_a) * T0;
+phi = (rand(1, iters_a) - 0.5) * T0 * 10;
 
 out_E = zeros(elen_m, nsam);
 errs = zeros(1, elen_v);
@@ -121,42 +120,41 @@ tic; for i = 1 : iters_a
 
   # perform converter part tasks
   ya = ys;
-  ya = ya + f_tm_a(temp(i));
+#  ya = ya + f_tm_a(temp(i));
   ya = ya + gen_randu(ns, var_r_a, 'w');
   ya = ya ...
-       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
-       + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
-       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
+#       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
+#       + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
+#       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
   ;
 
   # perform amplifier part tasks
   yb = ya;
   yb = yb ...
-       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
-       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
-       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
+#       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
+#       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
+#       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
   ;
   yb = amp_b * yb;
-  yb = yb + f_tm_b(temp(i));
+#  yb = yb + f_tm_b(temp(i));
 
   # perform adc tasks
   yc = yb;
-#  yc = f_adc(yc);
-#  yc = yc + gen_randu(ns, var_r_c, 'w');
+  yc = f_adc(yc);
 
   # calc input error
   errs(ns*(i-1)+1:ns*i) = yc - yi;
 
-  for j = 1 : nsam : ns
-
-    part_I = yi(j:j+nsam-1);
-    part_T = yc(j:j+nsam-1);
-
-    out_E(curr,:) = A*transpose(part_T - part_I);
-
-    curr = curr + 1;
-
-  end
+#  for j = 1 : nsam : ns
+#
+#    part_I = yi(j:j+nsam-1);
+#    part_T = yc(j:j+nsam-1);
+#
+#    out_E(curr,:) = A*transpose(part_T - part_I);
+#
+#    curr = curr + 1;
+#
+#  end
 
 end; toc;
 

@@ -11,7 +11,7 @@ Przykładowy tor pomiarowy składać się będzie z przetwornika pomiarowego, kt
 \end{center}
 \end{figure}
 
-Podczas eksperymentu przyjmuje się, że przetwarzany sygnał pomiarowy będzie obarczony błędem związanym z szumem, o stałej widmowej gęstości mocy i rozkładzie normalnym. Przetwornik pomiarowy, zastosowany w celu przetworzenia analizowanego sygnału wejściowego na postać napięciową, posiadać będzie pewną częstotliwość graniczną, a jego charakterystyka nie będzie idealnie liniowa. Zastosowany wzmacniacz pomiarowy również cechować się będzie pewną częstotliwością graniczną, natomiast zakłada się, że nieliniowość jego charakterystyki będzie pomijalnie mała. Temperatura otoczenia wpływać będzie na dryf zera przetwornika pomiarowego oraz wzmacniacza, przy czym temperatura ta nie będzie mierzona, zatem jej wpływ na wyniki pomiaru nie będzie korygowany. Zastosowany przetwornik analogowo-cyfrowy wprowadzać będzie błąd związany z kwantowaniem oraz błąd związany z rozrzutem kwantów. Algorytm transformacji falkowej wprowadzać będzie do wielkości wyjściowych błąd własny związany z zaokrągleniami.
+Podczas eksperymentu przyjmuje się, że przetwarzany sygnał pomiarowy będzie obarczony błędem związanym z szumem, o stałej widmowej gęstości mocy i rozkładzie normalnym. Przetwornik pomiarowy, zastosowany w celu przetworzenia analizowanego sygnału wejściowego na postać napięciową, posiadać będzie pewną częstotliwość graniczną, a jego charakterystyka nie będzie idealnie liniowa. Zastosowany wzmacniacz pomiarowy również cechować się będzie pewną częstotliwością graniczną, natomiast zakłada się, że nieliniowość jego charakterystyki będzie pomijalnie mała. Temperatura otoczenia wpływać będzie na dryf zera przetwornika pomiarowego oraz wzmacniacza, przy czym temperatura ta nie będzie mierzona, zatem jej wpływ na wyniki pomiaru nie będzie korygowany. Zastosowany przetwornik analogowo-cyfrowy wprowadzać będzie błąd związany z kwantowaniem przetwarzanej wielkości. Algorytm transformacji falkowej wprowadzać będzie do wielkości wyjściowych błąd własny związany z zaokrągleniami.
 
 W dalszej części rozdziału omówione zostaną kolejne elementy toru pomiarowego, ich wpływ na przetwarzany sygnał oraz relacje pomiędzy błędami na wejściu i wyjściu tych fragmentów. Przedstawione zostaną również szczegółowe założenia odnośnie właściwości opisanych we wprowadzeniu fragmentów toru pomiarowego. Dla przeprowadzonego eksperymentu przyjmuje się, że przetwarzany sygnał $s(t)$ określony jest w postaci:
 \begin{gather}
@@ -430,10 +430,10 @@ ${b,sw}$       & 11.52 &  36.75  & trójkątny                    & dryf tempera
 ${b,sp}$       & 8.15  &  18.38  & trójkątny                    & dryf temperaturowy (b)                     \\ \hline
 ${b,rp,1}$     & 9.93  &  36.26  & jednostajny                  & nieliniowość obiektu (a)                   \\ \hline
 ${b,rp,2}$     & 16.70 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
-${b,dp,1}$     & 6.21  &  19.14  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-3}
+${b,dp,1}$     & 6.21  &  19.14  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-3}
 ${b,dp,2}$     & 15.53 &  119.62 &                              &                                            \\ \cline{1-3}
-${b,dp,3}$     & 15.52 &  119.44 &                              &                                            \\ \hline
-${b,dw,1}$     & 3.06  &  4.64   & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (b)}         \\ \cline{1-3}
+${b,dp,3}$     & 15.52 &  119.44 &                              &                                            \\ \cline{1-3} \cline{5-5}
+${b,dw,1}$     & 3.06  &  4.64   &                              & \multirow{3}{*}{transmitancja (b)}         \\ \cline{1-3}
 ${b,dw,2}$     & 7.65  &  29.00  &                              &                                            \\ \cline{1-3}
 ${b,dw,3}$     & 7.65  &  28.99  &                              &                                            \\ \hline
 \end{tabular}
@@ -471,13 +471,85 @@ W celu weryfikacji poprawności zastosowanego modelu błędu oraz przeprowadzony
 \end{center}
 \end{figure}
 
-Analizując wyniki eksperymentu zauważyć można, że uzyskane wyniki dla błędów losowego oraz statycznego są zbliżone do tych przedstawionych w tabeli \ref{tab_sym_partb_params_unc_sum}. Pozwala to zakładać, że podobnie jak w przypadku analizy właściwości przetwornika pomiarowego, przyjęty model błędu oraz stosowane zależności poprawnie określają związki pomiędzy wskazanymi błędami i umożliwiają poprawne oszacowanie ich parametrów.
+Analizując wyniki eksperymentu zauważyć można, że uzyskane wyniki dla błędów losowego oraz statycznego są zbliżone do tych przedstawionych w tabeli \ref{tab_sym_partc_params_unc_sum}. Pozwala to zakładać, że podobnie jak w przypadku analizy właściwości przetwornika pomiarowego, przyjęty model błędu oraz stosowane zależności poprawnie określają związki pomiędzy wskazanymi błędami i umożliwiają poprawne oszacowanie ich parametrów. Na etapie przeprowadzonej analizy nie wyznaczano wypadkowych parametrów błędu dynamicznego oraz całkowitego błędu wypadkowego -- dane te, jak pokazano na obecnym przykładzie, nie są użyteczne podczas analizy kolejnych fragmentów toru pomiarowego, przy czym ich wyznaczenie wymaga pewnego nakładu obliczeń.
 
-\begin{comment}
 \section{Analiza przetwornika analogowo-cyfrowego}
 
+Kolejnym elementem wchodzącym w skład analizowanego toru pomiarowego jest przetwornik analogowo-cyfrowy. W eksperymencie zakłada się, że element jest realizowany przy użyciu $8$-bitowego przetwornika wagowego o zakresie napięcia wejściowego z przedziału $<-3;3>\unit{V}$. Wobec powyższych liczba dostępnych wartości wielkości wyjściowej tego przetwornika wynosi $N_{q} = 256$, natomiast wartość kwantu jest równa $q = \frac{\qty{3}{V} - (\qty{-3}{V})}{256} = \qty{23.44}{mV}$. Zakładając, że wielkością wyjściową $x_{c}(n)$ analizowanego przetwornika będzie dyskretna reprezentacja wielkości wejściowej $y_{b}(t)$, zapisać można następujące zależności:
+\begin{gather}
+\dot{x}_{c}(n) = \dot{y}_{b}(nT_{p}) \label{eqn_sym_partc_out_ideal}, \\
+\tilde{x}_{c}(n) = \tilde{y}_{b}(nT_{p}) + e_{c,q}(\tilde{y}_{b}(nT_{p})) = \dot{x}_{c}(n) + e_{c,\Sigma}(n) \label{eqn_sym_partc_out_real}, \\
+e_{c,\Sigma}(n) = e_{b,\Sigma}(nT_{p}) + e_{c,q}(\tilde{y}_{b}(nT_{p})) \label{eqn_sym_partc_error_sum},
+\end{gather}
+gdzie $T_{p}$ jest okresem próbkowania równym $\frac{1}{\qty{48}{kHz}} = \qty{20.8(3)}{\micro s}$.
+Na podstawie zależności danych równaniami od \eqref{eqn_adc_function} do \eqref{eqn_adc_qerrrange} zapisać można nierówność określającą przedział, w jakim znajdować się będzie błąd kwantowania $e_{c,q}(x)$ jako:
+\begin{equation}
+\qty{-11.72}{mV} \le e_{c,q}(x) \le \qty{11.72}{mV} \label{eqn_sym_partc_error_quant}.
+\end{equation}
 
+Analizując równanie \eqref{eqn_sym_partc_out_real} zauważyć można, że realizacja błędu kwantowania zależna jest od wartości przetwarzanej wielkości wejściowej analizowanego przetwornika. Jednakże, jak wykazano w pracach \cite{sienkowski_kwant, sienkowski_adc}, zależność tą można pominąć. Przy założeniu, że uzyskanie na wejściu przetwornika dowolnej wartości z zakresu wartości wielkości wejściowej jest jednakowo prawdopodobne oraz że podczas pomiaru wielkość ta będzie się zmieniać, powtarzając proces pomiaru wielokrotnie, z punktu widzenia pojedynczego okna pomiarowego błąd kwantowania $e_{c,q}(x)$ rozpatrywać można w kategoriach probabilistycznych jako losową realizację wielkości z zakresu opisanego równaniem \eqref{eqn_sym_partc_error_quant} o rozkładzie jednostajnym \cite{jakubiec_system}. Takie podejście umożliwia zastosowanie zaproponowanego w pracy modelu błędu, podczas gdy analiza zakładająca funkcję przetwarzania omawianego obiektu daną w postaci równania \eqref{eqn_adc_output} byłaby skomplikowana. Wobec powyższych założeń wariancja $\sigma_{c,q}^{2}$ oraz niepewność rozszerzona $U_{c,q}$ związane z błędem kwantowania $e_{c,q}(x)$ mogą być opisane przez następujące zależności:
+\begin{gather}
+\sigma_{c,q}^{2} = \frac{(2q)^{2}}{12} = \frac{(2 \cdot \qty{23.44e-3})^{2}}{12} = \qty{45.78}{\micro V} \label{eqn_sym_partc_var_quant}, \\
+U_{c,q} = c_{u} \sigma_{c,q} = 1.65 \cdot \num{6.77e-3} = \qty{11.16}{mV} \label{eqn_sym_partc_uncert_quant}.
+\end{gather}
 
+Aby zweryfikować poprawność przedstawionych zależności przeprowadzono eksperyment stosując metodę Monte-Carlo. W ramach eksperymentu wyznaczono sto tysięcy razy realizację wartości wielkości wyjściowej analizowanego przetwornika analogowo-cyfrowego, a następnie jej wartość porównano z wartością idealną, uzyskaną dla toru pomiarowego w którym nie występowały żadne źródła błędów. Na podstawie uzyskanych zgodnie z równaniem \eqref{eqn_sym_partc_error_sum} realizacji błędu opracowano histogram i określono jego parametry. Identyczny eksperyment przeprowadzono ponownie, z tą różnicą, że jako jedyne źródło błędów, uwzględniono w nim jedynie obecność procesu kwantowania w celu oszacowania jedynie parametrów błędu kwantowania. Rysunek \ref{fig_symul_partc_hist} przedstawia uzyskane na drodze eksperymentu histogramy.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/hist_part_c}
+\caption{Histogramy błędów \textbf{a)}~kwantowania, \textbf{b)}~wypadkowego, wielkości wyjściowej zastosowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego \label{fig_symul_partc_hist}}
+\end{center}
+\end{figure}
+
+Analizując wyniki poprzedniego eksperymentu przedstawione na rysunku \ref{fig_symul_partb_hist} oraz wyniki bieżącego eksperymentu przedstawione na rysunku \ref{fig_symul_partc_hist}, wnioskować można że zaproponowane wcześniej założenia są spełnione. Wariancja błędu wypadkowego $\sigma_{b,\Sigma}^{2}$ wielkości wejściowej przetwornika analogowo-cyfrowego wyniosła w poprzednim eksperymencie około \qty{787}{\micro V}. Wariancja błędu wypadkowego $\sigma_{c,\Sigma}^{2}$ wielkości wyjściowej przetwornika analogowo-cyfrowego wyniosła w bieżącym eksperymencie około \qty{832}{\micro V}. Wartość wariancji błędu kwantowania $\sigma_{c,q}^{2}$ uzyskana na drodze eksperymentu wyniosła \qty{46.79}{\micro V}, a związana z nią niepewność $U_{c,q}$ wyniosła \qty{11.15}{mV}, co w zadowalającym stopniu pokrywa się z wartościami wyznaczonymi na podstawie równań \eqref{eqn_sym_partb_var_quant} oraz \eqref{eqn_sym_partb_uncert_quant}. Przedstawione wartości pozwolą określić korelacje pomiędzy wariancją błędu wypadkowego wielkości wejściowej przetwornika analogowo-cyfrowego oraz błędu kwantowania na podstawie równania \eqref{eqn_var_corr}, które w omawianym przypadku przyjmuje postać:
+\begin{equation}
+r_{c,q;b,\Sigma} = \frac{\sigma_{c,\Sigma}^{2} - \sigma_{c,q}^{2} - \sigma_{b,\Sigma}^{2}}{2 \sigma_{c,q} \sigma_{b,\Sigma}} = \frac{\num{8.31e-4} - \num{4.68e-5} - \num{7.87e-4}}{2 \cdot \num{6.84e-3} \cdot \num{2.81e-2}} = \num{-7.3e-3} \label{eqn_sym_partc_corr}.
+\end{equation}
+
+Uzyskana wartość współczynnika korelacji oraz wyniki przeprowadzonych eksperymentów świadczą o prawidłowości przyjętych założeń i pomijalnie małej korelacji błędu kwantowania z przebiegiem przetwarzanego przez analizowany obiekt sygnału oraz zawartych w nim sygnałów błędów. Na podstawie przedstawionych zależności oraz tabeli \ref{tab_sym_partb_params_unc_list} sporządzić można kompletny budżet niepewności wielkości wyjściowej $x_{c}(n)$ analizowanego przetwornika analogowo-cyfrowego, który zestawiono w tabeli \ref{tab_sym_partc_params_unc_list}.
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego, gdzie (a) oznacza przetwornik pomiarowy, (b) oznacza wzmacniacz pomiarowy oraz (c) oznacza przetwornik analogowo-cyfrowy \label{tab_sym_partc_params_unc_list}}
+\begin{tabular}[c]{| c | S | S | c | c |} \hline
+\textbf{Symbol} & \textbf{$U_{95\%}$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Kształt rozkładu} & \textbf{Źródło błędu} \\ \hline
+${c,q}$        & 11.16 &  45.78  & jednostajny                  & proces kwantowania (c)                     \\ \hline
+${c,sp,1}$     & 11.52 &  36.75  & trójkątny                    & dryf temperaturowy (a)                     \\ \hline
+${c,sp,2}$     & 8.15  &  18.38  & trójkątny                    & dryf temperaturowy (b)                     \\ \hline
+${c,rp,1}$     & 9.93  &  36.26  & jednostajny                  & nieliniowość obiektu (a)                   \\ \hline
+${c,rp,2}$     & 16.70 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
+${c,dp,a,1}$   & 6.21  &  19.14  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-3}
+${c,dp,a,2}$   & 15.53 &  119.62 &                              &                                            \\ \cline{1-3}
+${c,dp,a,3}$   & 15.52 &  119.44 &                              &                                            \\ \cline{1-3} \cline{5-5}
+${c,dp,b,1}$   & 3.06  &  4.64   &                              & \multirow{3}{*}{transmitancja (b)}         \\ \cline{1-3}
+${c,dp,b,2}$   & 7.65  &  29.00  &                              &                                            \\ \cline{1-3}
+${c,dp,b,3}$   & 7.65  &  28.99  &                              &                                            \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Przedstawiony w tabeli \ref{tab_sym_partc_params_unc_list} budżet niepewności dobrze obrazuje źródła błędów występujące w analizowanym torze pomiarowym oraz jednoznacznie wskazuje ich parametry. W dalszym etapie analizy stosowanie przedstawionego zestawienia jest jednak kłopotliwe, ponieważ wiązać się będzie z koniecznością osobnej analizy każdego z wskazanych sygnałów błędu z osobna. Ze względu na fakt, że proponowany w pracy model błędu dotyczący kolejnego fragmentu toru pomiarowego, jakim jest algorytm transformacji falkowej, wymaga jedynie określenia wariancji wypadkowego błędu statycznego, losowego oraz wariancji kolejnych wypadkowych harmonicznych błędu dynamicznego, podobnie jak to miało miejsce w przypadku poprzedniego elementu analizowanego toru pomiarowego przedstawiony zostanie budżet niepewności uwzględniający opisywany podział. Biorąc pod uwagę przedstawione w bieżącym podrozdziale założenia oraz wyniki zawarte w tabeli \ref{tab_sym_partb_params_unc_sum}, a także przyjmując omawiane wcześniej uproszczenie zakładające normalny rozkład wypadkowego błędu losowego, sporządzono budżet niepewności z uwzględnieniem omawianego podziału, który zestawiono w tabeli \ref{tab_sym_partc_params_unc_sum}. Parametry opisujące wypadkowy błąd losowy wyznaczono zgodnie z zależnościami:
+\begin{gather}
+\sigma_{c,r}^{2} = \sigma_{c,rp,1}^{2} + \sigma_{c,rp,2}^{2} + \sigma_{c,rp,2}^{2} + \sigma_{c,q}^{2} = \sigma_{b,rp,1}^{2} + \sigma_{b,rp,2}^{2} + \sigma_{c,q}^{2} = \qty{154.68}{\micro V} \label{eqn_sym_partc_var_random}, \\
+U_{c,r} = c_{n} \sigma_{c,r} = 1.96 \cdot \num{12.44e-3} = \qty{24.38}{mV} \label{eqn_sym_partc_uncert_random}.
+\end{gather}
+
+\begin{table}[htb!]
+\begin{center}
+\caption{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza przetwornika analogowo-cyfrowego z uwzględnieniem podziału na błędy statyczne, dynamiczne oraz losowe \label{tab_sym_partc_params_unc_sum}}
+\begin{tabular}[c]{| c | S | S | c | c |} \hline
+\textbf{Symbol} & \textbf{$U_{95\%}$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Kształt rozkładu} & \textbf{Źródło błędu} \\ \hline
+${c,s}$        & 19.66 &  107.01 & trójkątny                    & dryf temperaturowy                         \\ \hline
+${c,r}$        & 24.38 &  154.68 & normalny                     & szum, nieliniowość, konwersja              \\ \hline
+${c,d,1}$      & 6.21  &  19.14  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja}             \\ \cline{1-3}
+${c,d,2}$      & 15.53 &  119.62 &                              &                                            \\ \cline{1-3}
+${c,d,3}$      & 15.52 &  119.44 &                              &                                            \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{comment}
 \section{Analiza algorytmu transformacji falkowej}
 
 
