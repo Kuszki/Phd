@@ -13,9 +13,12 @@ A_S20 = @(x) abs(H_S20(x));
 H_T10 = @(x) a_T10(1) + a_T10(2)*e^(-i*x) + a_T10(3)*e^(-2*i*x) + a_T10(4)*e^(-3*i*x);
 A_T10 = @(x) abs(H_T10(x));
 
-f = linspace(0, pi, 128);
-k_S20 = arrayfun(A_S20, f);
-k_T10 = arrayfun(A_T10, f);
+A_S20_f = @(x) A_S20(2*pi*x/48000);
+A_T10_f = @(x) A_T10(2*pi*x/48000);
+
+f = linspace(0, 48000/2, 128);
+k_S20 = arrayfun(A_S20_f, f);
+k_T10 = arrayfun(A_T10_f, f);
 f = f / (2*pi);
 
 hold on;
