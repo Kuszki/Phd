@@ -36,9 +36,9 @@ Algorytm ciągłej transformacji falkowej wymaga zastosowania opisanej ciągłym
 
 W praktyce wyznaczenie wszystkich współczynników algorytmu ciągłej transformacji falkowej jest niemożliwe. Wprowadzając ograniczenie możliwych wartości parametrów skali i czasu użytych w równaniu \eqref{eqn_cwt}, w którym $a = 2^k$, $b = n2^k$ oraz $k, n \in \mathbb{N}$, uzyskuje się zależność opisującą algorytm dyskretnej transformacji falkowej (\enquote{DWT} -- ang. \enquote{Discrete Wavelet Transform}) \cite{wallen_handbook}. Termin \enquote{dyskretna} oznacza zatem ograniczony (dyskretny) zbiór możliwych wartości skali i przesunięcia w czasie.
 
-Modyfikacja fragmentu równania \eqref{eqn_cwt} wprowadzająca opisywane założenie dyskretyzacji parametrów skali i czasu oraz założenie początkowych wartości parametrów skali i czasu, gdzie $a_0 = 2$ oraz $b_0 = 1$, pozwala uzyskać zależność opisującą kolejne falki stworzone na bazie falki-matki dla dyskretnych wartości parametru numeru skali i przesunięcia w czasie:
+Modyfikacja fragmentu równania \eqref{eqn_cwt} wprowadzająca opisywane założenie dyskretyzacji parametrów skali i czasu oraz założenie początkowych wartości parametrów skali i czasu, gdzie $a_{0} = 2$ oraz $b_{0} = 1$, pozwala uzyskać zależność opisującą kolejne falki stworzone na bazie falki-matki dla dyskretnych wartości parametru numeru skali i przesunięcia w czasie:
 \begin{equation}
-\psi_{m,n} \left( t \right) = \frac{1}{\sqrt{2^m}} \psi \left( \frac{t-2n^m}{2^m} \right) \label{eqn_dwt_wavelet},
+\psi_{m,n} \left( t \right) = \frac{1}{\sqrt{2^{m}}} \psi \left( \frac{t-2n^{m}}{2^{m}} \right) \label{eqn_dwt_wavelet},
 \end{equation}
 gdzie $m$ jest numerem skali, a $n$ numerem przesunięcia w czasie (numerem okna pomiarowego). Tak opisana falka jest zwykle ortogonalna oraz musi posiadać znormalizowaną energię, a zatem zapisać można:
 \begin{equation}
@@ -53,7 +53,7 @@ W praktyce oznacza to, że nie ma możliwości opisu dowolnej stworzonej na pods
 
 Podstawiając falkę opisaną równaniem \eqref{eqn_dwt_wavelet} do równania \eqref{eqn_cwt} otrzymuje się zależność opisującą dyskretną transformację falkową:
 \begin{equation}
-w_{m,n} = \frac{1}{\sqrt{2^m}} \int _{-\infty} ^{\infty} { x \left( t \right) \psi \left( \frac{t-2n^m}{2^m} \right) } dt \label{eqn_dwt}.
+w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} { x \left( t \right) \psi \left( \frac{t-2n^{m}}{2^{m}} \right) } dt \label{eqn_dwt}.
 \end{equation}
 Cechą algorytmu dyskretnej transformacji falkowej jest dynamiczna zależność rozdzielczości dziedziny czasu w funkcji skali. Dla niskich wartości parametru skali (wysokich częstotliwości sygnału) rozdzielczość w dziedzinie czasu jest większa w porównaniu z rozdzielczością dla skali wyższych (niższych zakresów częstotliwości). Jako, że sygnał o wyższej częstotliwości zmienia się bardziej dynamicznie, niż w przypadku sygnału o niższej częstotliwości, takie podejście jest bardzo korzystne. Umożliwia ono redukcję liczby współczynników transformacji (wielkości wyjściowych algorytmu), przy jednoczesnym zachowaniu optymalnej rozdzielczości w dziedzinie czasu oraz zapewnieniu możliwości rekonstrukcji oryginalnego przebiegu sygnału na podstawie uzyskanych współczynników transformacji.
 
@@ -61,7 +61,7 @@ Ze względu na fakt, że falka-matka dla zadanej skali stanowi filtr pasmowo-prz
 
 Stosując podobne założenia, jak w równaniu \eqref{eqn_dwt_wavelet}, otrzymuje się równanie funkcji skalującej dla dyskretnej wartości numeru skali i przesunięcia w czasie:
 \begin{equation}
-\phi_{m,n} \left( t \right) = \frac{1}{\sqrt{2^m}} \phi \left( \frac{t-2n^m}{2^m} \right) dt \label{eqn_dwt_scalefun},
+\phi_{m,n} \left( t \right) = \frac{1}{\sqrt{2^{m}}} \phi \left( \frac{t-2n^{m}}{2^{m}} \right) dt \label{eqn_dwt_scalefun},
 \end{equation}
 Przy czym funkcję skalującą dla $m = n = 0$ nazywa się w literaturze \enquote{falką-ojcem} \cite{akujuobi_applications}. Właściwością funkcji skalującej jest spełnianie przez nią założenia odnośnie ograniczonej mocy, które jest opisane w postaci:
 \begin{equation}
@@ -71,24 +71,24 @@ a także ortogonalność względem samej siebie dla dowolnych różnych wartośc
 
 Omawianą funkcję skalującą można przedstawić również w postaci sumy iloczynów współczynników skalowania oraz wartości przeskalowanej i przesuniętej w czasie funkcji skalującej, co opisuje następującą zależność:
 \begin{equation}
-\phi \left( t \right) = \sum _{k} ^{N_k-1} c_k \phi \left( 2t - k \right) \label{eqn_dwt_scalefunrek},
+\phi \left( t \right) = \sum _{k} ^{N_k-1} c_{k} \phi \left( 2t - k \right) \label{eqn_dwt_scalefunrek},
 \end{equation}
 gdzie $k$ jest dowolną liczbą całkowitą powiązaną ze współczynnikiem skalowania $c_k$. Dodatkowo wszystkie współczynniki $c_k$ muszą spełniać założenia:
 \begin{equation}
-\sum _{k} ^{N_k-1} c_k = 2 \label{eqn_dwt_scalefunsum}.
+\sum _{k} ^{N_k-1} c_{k} = 2 \label{eqn_dwt_scalefunsum}.
 \end{equation}
 Należy również zaznaczyć, że w celu zachowania warunku wzajemnej ortogonalności opisywanej rodziny falek, spełnione musi zostać dodatkowe założenie odnośnie wzajemnej relacji pomiędzy kolejnymi wartościami współczynników skalowania, w którym przyjmuje się że:
 \begin{equation}
-\sum _{k} ^{N_k-1} c_k c_{k+2k'} =
+\sum _{k} ^{N_k-1} c_{k} c_{k+2k'} =
 \begin{cases}
 	2 & $gdy$ ~ k' = 0 \\
 	0 & $w pozostałych przypadkach$
 \end{cases}
 \label{eqn_dwt_scalemulort}.
 \end{equation}
-Powyższe założenia zapewniają ortogonalność stworzonych falek w stosunku do funkcji skalującej oraz brak nadmiarowych współczynników wyjściowych algorytmu dyskretnej transformacji falkowej. Tworzone na opisanych zasadach falki posiadają skończoną liczbę niezerowych współczynników skalujących $c_k$, przy czym rząd falki $N_r$ określa liczbę tych współczynników równą $N_k = 2 N_r$. Manipulując odpowiednio znakiem i kolejnością współczynników skalujących istnieje możliwość opisu falki-matki za pomocą równania \cite{wallen_handbook}:
+Powyższe założenia zapewniają ortogonalność stworzonych falek w stosunku do funkcji skalującej oraz brak nadmiarowych współczynników wyjściowych algorytmu dyskretnej transformacji falkowej. Tworzone na opisanych zasadach falki posiadają skończoną liczbę niezerowych współczynników skalujących $c_k$, przy czym rząd falki $N_r$ określa liczbę tych współczynników równą $N_{k} = 2 N_r$. Manipulując odpowiednio znakiem i kolejnością współczynników skalujących istnieje możliwość opisu falki-matki za pomocą równania \cite{wallen_handbook}:
 \begin{equation}
-\psi \left( t \right) = \sum _{k} ^{N_k-1} \left( -1 \right) ^k c_{N_k-k-1} \phi \left( 2t - k \right) \label{eqn_dwt_waveletfunrek}.
+\psi \left( t \right) = \sum _{k} ^{N_k-1} \left( -1 \right) ^{k} c_{N_k-k-1} \phi \left( 2t - k \right) \label{eqn_dwt_waveletfunrek}.
 \end{equation}
 Ostatecznie przedstawić można rekursywne zależności opisujące funkcję skalującą i funkcję falki dla dowolnego numeru skali i numeru przesunięcia czasowego za pomocą równań:
 \begin{gather}
@@ -97,7 +97,7 @@ Ostatecznie przedstawić można rekursywne zależności opisujące funkcję skal
 \end{gather}
 przy czym parametr $b_{k}$ przedstawić można jako rekombinacje współczynników skalujących w postaci równania:
 \begin{equation}
-b_{k} = \left( -1 \right) ^k c_{N_k-k-1} \label{eqn_dwt_bk}.
+b_{k} = \left( -1 \right) ^{k} c_{N_k-k-1} \label{eqn_dwt_bk}.
 \end{equation}
 
 Dekompozycja sygnału w przypadku algorytmu dyskretnej transformacji falkowej odbywa się w ten sposób, że sygnał wejściowy podawany jest na wejścia pary filtrów -- górno i dolno przepustowego. Wyjście filtru dolno przepustowego stanowi aproksymacje sygnału, natomiast wyjście filtru górno przepustowego stanowią detale sygnału. Ze względu na fakt, że opisywana operacja dostarcza dwa razy więcej próbek wyjściowych, niż zawierał oryginalny sygnał, co druga próbka wyjściowa jest usuwana w procesie decymacji. Opisywane działanie rozdziela widmo sygnału na dwie części: detale sygnału związane z wysokimi częstotliwościami oraz aproksymacje sygnału powiązaną z niskimi zakresami częstotliwości. Filtr dolno-przepustowy odpowiada charakterystyce funkcji skalującej, natomiast filtr górno-przepustowy charakterystyce falki-matki. Filtr górno-przepustowy jest więc faktycznie filtrem pasmowo-rzepustowym, natomiast ze względu na wartość parametru skali jego częstotliwość środkowa odpowiada częstotliwości Nyquista dla przetwarzanego sygnału -- stąd też można w uproszczeniu nazwać go filtrem górno-przepustowym. Proces dekompozycji sygnału może zostać powtórzony dla aproksymacji sygnału wielokrotnie, zapewniając większą rozdzielczość w dziedzinie częstotliwości kosztem mniejszej rozdzielczości w dziedzinie czasu. Przebieg procesu dekompozycji sygnału dla trzech iteracji opisywanego procesu przedstawiono na rysunku \ref{fig_dwt_decomposition}.
@@ -188,29 +188,29 @@ Rodzina falek \enquote{Daubechies} (w skrócie \enquote{db}) została opisana pr
 \begin{equation}
 \sum _{k} ^{N_k-1} \left( -1 \right)^{k} c_{k} k^{m} = 0 \label{eqn_db_musthave},
 \end{equation}
-gdzie $m$ jest liczbą całkowitą z przedziału $<0;\frac{N_k}{2}-1>$.
+gdzie $m$ jest liczbą całkowitą z przedziału $<0;\frac{N_{k}}{2}-1>$.
 
-W przypadku falek \enquote{db} oraz ich pochodnych, rząd falki wynosi $\frac{N_k}{2}$. Falka \enquote{db2}, będąca falką drugiego rzędu, posiada cztery niezerowe współczynniki skalujące. W literaturze spotkać się można również z oznaczeniem \enquote{D4} dla omawianej falki, gdzie zamiast rzędu falki wskazana jest liczba niezerowych współczynników skalujących. Falka \enquote{Daubechies} rzędu pierwszego jest opisana identycznymi zależnościami, jak falka Hara. Z falek \enquote{Daubechies} wywodzą się kolejne rodziny: \enquote{Symleth} oraz \enquote{Coiflet}, które uzupełniają ją o kolejne cechy -- w szczególności symetrię, istotną podczas przetwarzania i analizy obrazów.
+W przypadku falek \enquote{db} oraz ich pochodnych, rząd falki wynosi $\frac{N_{k}}{2}$. Falka \enquote{db2}, będąca falką drugiego rzędu, posiada cztery niezerowe współczynniki skalujące. W literaturze spotkać się można również z oznaczeniem \enquote{D4} dla omawianej falki, gdzie zamiast rzędu falki wskazana jest liczba niezerowych współczynników skalujących. Falka \enquote{Daubechies} rzędu pierwszego jest opisana identycznymi zależnościami, jak falka Hara. Z falek \enquote{Daubechies} wywodzą się kolejne rodziny: \enquote{Symleth} oraz \enquote{Coiflet}, które uzupełniają ją o kolejne cechy -- w szczególności symetrię, istotną podczas przetwarzania i analizy obrazów.
 
 Jako, że falka \enquote{db2} posiada cztery niezerowe współczynniki skalujące oznaczone jako $c_0, c_1, c_2, c_3$, to zgodnie z równaniem \eqref{eqn_dwt_scalefunrek} oraz równaniem \eqref{eqn_dwt_waveletfunrek}, zapisać można równanie falki-matki i funkcji skalującej w postaci:
 \begin{gather}
-\phi \left( t \right) = c_0 \phi \left( 2t \right) + c_1 \phi \left( 2t - 1 \right) + c_2 \phi \left( 2t - 2 \right) + c_3 \phi \left( 2t - 3 \right) \label{eqn_db2_scalefunrek}, \\
-\psi \left( t \right) = c_3 \phi \left( 2t \right) - c_2 \phi \left( 2t - 1 \right) + c_1 \phi \left( 2t - 2 \right) - c_0 \phi \left( 2t - 3 \right) \label{eqn_db2_waveletfunrek}.
+\phi \left( t \right) = c_{0} \phi \left( 2t \right) + c_{1} \phi \left( 2t - 1 \right) + c_{2} \phi \left( 2t - 2 \right) + c_{3} \phi \left( 2t - 3 \right) \label{eqn_db2_scalefunrek}, \\
+\psi \left( t \right) = c_{3} \phi \left( 2t \right) - c_{2} \phi \left( 2t - 1 \right) + c_{1} \phi \left( 2t - 2 \right) - c_{0} \phi \left( 2t - 3 \right) \label{eqn_db2_waveletfunrek}.
 \end{gather}
 
 Uwzględniając założenia przedstawione w poprzedniej części rozdziału oraz te wskazane powyżej, zapisać można układ równań wiążący wszystkie przedstawione zależności w postaci:
 \begin{equation}
 \begin{cases}
-	c_0 + c_1 + c_2 + c_3 = 2         & $na podstawie właściwości \eqref{eqn_dwt_scalefunsum}$ \\
-	c_0^2 + c_1^2 + c_2^2 + c_3^2 = 2 & $na podstawie właściwości \eqref{eqn_dwt_scalemulort}$ \\
-	c_0 - c_1 + c_2 - c_3 = 0         & $na podstawie \eqref{eqn_db_musthave} dla $ m = 0 \\
-	- 1 c_1 + 2 c_2 - 3 c_3 = 0       & $na podstawie \eqref{eqn_db_musthave} dla $ m = 1
+	c_{0} + c_{1} + c_{2} + c_{3} = 2                 & $na podstawie właściwości \eqref{eqn_dwt_scalefunsum}$ \\
+	c_{0}^{2} + c_{1}^{2} + c_{2}^{2} + c_{3}^{2} = 2 & $na podstawie właściwości \eqref{eqn_dwt_scalemulort}$ \\
+	c_{0} - c_{1} + c_{2} - c_{3} = 0                 & $na podstawie \eqref{eqn_db_musthave} dla $ m = 0 \\
+	- 1 c_{1} + 2 c_{2} - 3 c_{3} = 0                 & $na podstawie \eqref{eqn_db_musthave} dla $ m = 1
 \end{cases}
 \label{eqn_db2_system},
 \end{equation}
 oraz wskazać jego rozwiązanie, które determinuje następujące wartości kolejnych współczynników skalujących:
 \begin{equation}
-c_0 = \frac{1 + \sqrt{3}}{4}, c_1 = \frac{3 + \sqrt{3}}{4}, c_2 = \frac{3 - \sqrt{3}}{4}, c_3 = \frac{1 - \sqrt{3}}{4} \label{eqn_db2_coefs}.
+c_{0} = \frac{1 + \sqrt{3}}{4}, c_{1} = \frac{3 + \sqrt{3}}{4}, c_{2} = \frac{3 - \sqrt{3}}{4}, c_{3} = \frac{1 - \sqrt{3}}{4} \label{eqn_db2_coefs}.
 \end{equation}
 
 Zgodnie z założeniami odnośnie długości wektora wielkości wejściowych oraz liczby poziomów dekompozycji zauważyć można, że wektor wielkości wyjściowych zawierać będzie dwie próbki związane z aproksymacją sygnału dla skali $m = 2$, dwie próbki związane z detalami sygnału dla skali $m = 2$ oraz cztery próbki związane z detalami dla skali $m = 1$. Oznaczając wektor wielkości wejściowych jako:
@@ -231,47 +231,47 @@ S_{2,0} & S_{2,1} & T_{2,0} & T_{2,1} & T_{1,0} & T_{1,1} & T_{1,2} & T_{1,3}
 \end{equation}
 a następnie zgodnie z równaniem \eqref{eqn_dwt_aproxrek} oraz \eqref{eqn_dwt_detailrek} opisać można kolejne wymienione w równaniu \eqref{eqn_db2_outvect} wielkości wyjściowe za pomocą zależności:
 \begin{gather}
-S_{2,0} = \frac{1}{\sqrt{2}} \left( c_0 S_{1,0} + c_1 S_{1,1} + c_2 S_{1,2} + c_3 S_{1,3} \right) \label{eqn_db2_outvect_s_2_0}, \\
-S_{2,1} = \frac{1}{\sqrt{2}} \left( c_0 S_{1,2} + c_1 S_{1,3} + c_2 S_{1,4} + c_3 S_{1,5} \right) \label{eqn_db2_outvect_s_2_1}, \\
-T_{2,0} = \frac{1}{\sqrt{2}} \left( c_3 S_{1,0} - c_2 S_{1,1} + c_1 S_{1,2} - c_0 S_{1,3} \right) \label{eqn_db2_outvect_t_2_0}, \\
-T_{2,1} = \frac{1}{\sqrt{2}} \left( c_3 S_{1,2} - c_2 S_{1,3} + c_1 S_{1,4} - c_0 S_{1,5} \right) \label{eqn_db2_outvect_t_2_1}, \\
-T_{1,0} = \frac{1}{\sqrt{2}} \left( c_3 S_{0,0} - c_2 S_{0,1} + c_1 S_{0,2} - c_0 S_{0,3} \right) \label{eqn_db2_outvect_t_1_0}, \\
-T_{1,1} = \frac{1}{\sqrt{2}} \left( c_3 S_{0,2} - c_2 S_{0,3} + c_1 S_{0,4} - c_0 S_{0,5} \right) \label{eqn_db2_outvect_t_1_1}, \\
-T_{1,2} = \frac{1}{\sqrt{2}} \left( c_3 S_{0,4} - c_2 S_{0,5} + c_1 S_{0,6} - c_0 S_{0,7} \right) \label{eqn_db2_outvect_t_1_2}, \\
-T_{1,3} = \frac{1}{\sqrt{2}} \left( c_3 S_{0,6} - c_2 S_{0,7} + c_1 S_{0,0} - c_0 S_{0,1} \right) \label{eqn_db2_outvect_t_1_3},
+S_{2,0} = \frac{1}{\sqrt{2}} \left( c_{0} S_{1,0} + c_{1} S_{1,1} + c_{2} S_{1,2} + c_{3} S_{1,3} \right) \label{eqn_db2_outvect_s_2_0}, \\
+S_{2,1} = \frac{1}{\sqrt{2}} \left( c_{0} S_{1,2} + c_{1} S_{1,3} + c_{2} S_{1,4} + c_{3} S_{1,5} \right) \label{eqn_db2_outvect_s_2_1}, \\
+T_{2,0} = \frac{1}{\sqrt{2}} \left( c_{3} S_{1,0} - c_{2} S_{1,1} + c_{1} S_{1,2} - c_{0} S_{1,3} \right) \label{eqn_db2_outvect_t_2_0}, \\
+T_{2,1} = \frac{1}{\sqrt{2}} \left( c_{3} S_{1,2} - c_{2} S_{1,3} + c_{1} S_{1,4} - c_{0} S_{1,5} \right) \label{eqn_db2_outvect_t_2_1}, \\
+T_{1,0} = \frac{1}{\sqrt{2}} \left( c_{3} S_{0,0} - c_{2} S_{0,1} + c_{1} S_{0,2} - c_{0} S_{0,3} \right) \label{eqn_db2_outvect_t_1_0}, \\
+T_{1,1} = \frac{1}{\sqrt{2}} \left( c_{3} S_{0,2} - c_{2} S_{0,3} + c_{1} S_{0,4} - c_{0} S_{0,5} \right) \label{eqn_db2_outvect_t_1_1}, \\
+T_{1,2} = \frac{1}{\sqrt{2}} \left( c_{3} S_{0,4} - c_{2} S_{0,5} + c_{1} S_{0,6} - c_{0} S_{0,7} \right) \label{eqn_db2_outvect_t_1_2}, \\
+T_{1,3} = \frac{1}{\sqrt{2}} \left( c_{3} S_{0,6} - c_{2} S_{0,7} + c_{1} S_{0,0} - c_{0} S_{0,1} \right) \label{eqn_db2_outvect_t_1_3},
 \end{gather}
 gdzie $S_{m,n}$ oznaczono aproksymacje, natomiast $T_{m,n}$ detale sygnału dla zadanego numeru skali i numeru przesunięcia w czasie. Po przekształceniu otrzymuje się równania:
 \begin{gather}
 \begin{split}
 S_{2,0} = ~
-	& \frac{1}{\sqrt{2}} \frac{c_0}{\sqrt{2}} \left( c_0 S_{0,0} + c_1 S_{0,1} + c_2 S_{0,2} + c_3 S_{0,3} \right) + \\
-	& \frac{1}{\sqrt{2}} \frac{c_1}{\sqrt{2}} \left( c_0 S_{0,2} + c_1 S_{0,3} + c_2 S_{0,4} + c_3 S_{0,5} \right) + \\
-	& \frac{1}{\sqrt{2}} \frac{c_2}{\sqrt{2}} \left( c_0 S_{0,4} + c_1 S_{0,5} + c_2 S_{0,6} + c_3 S_{0,7} \right) + \\
-	& \frac{1}{\sqrt{2}} \frac{c_3}{\sqrt{2}} \left( c_0 S_{0,6} + c_1 S_{0,7} + c_2 S_{0,0} + c_3 S_{0,1} \right)
+	& \frac{1}{\sqrt{2}} \frac{c_{0}}{\sqrt{2}} \left( c_{0} S_{0,0} + c_{1} S_{0,1} + c_{2} S_{0,2} + c_{3} S_{0,3} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_{1}}{\sqrt{2}} \left( c_{0} S_{0,2} + c_{1} S_{0,3} + c_{2} S_{0,4} + c_{3} S_{0,5} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_{2}}{\sqrt{2}} \left( c_{0} S_{0,4} + c_{1} S_{0,5} + c_{2} S_{0,6} + c_{3} S_{0,7} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_{3}}{\sqrt{2}} \left( c_{0} S_{0,6} + c_{1} S_{0,7} + c_{2} S_{0,0} + c_{3} S_{0,1} \right)
 \end{split}
 \label{eqn_db2_outvect_s_2_0_rek}, \\
 \begin{split}
 S_{2,1} = ~
-	& \frac{1}{\sqrt{2}} \frac{c_0}{\sqrt{2}} \left( c_0 S_{0,4} + c_1 S_{0,5} + c_2 S_{0,6} + c_3 S_{0,7} \right) + \\
-	& \frac{1}{\sqrt{2}} \frac{c_1}{\sqrt{2}} \left( c_0 S_{0,6} + c_1 S_{0,7} + c_2 S_{0,0} + c_3 S_{0,1} \right) + \\
-	& \frac{1}{\sqrt{2}} \frac{c_2}{\sqrt{2}} \left( c_0 S_{0,0} + c_1 S_{0,1} + c_2 S_{0,2} + c_3 S_{0,3} \right) + \\
-	& \frac{1}{\sqrt{2}} \frac{c_3}{\sqrt{2}} \left( c_0 S_{0,2} + c_1 S_{0,3} + c_2 S_{0,4} + c_3 S_{0,5} \right)
+	& \frac{1}{\sqrt{2}} \frac{c_{0}}{\sqrt{2}} \left( c_{0} S_{0,4} + c_{1} S_{0,5} + c_{2} S_{0,6} + c_{3} S_{0,7} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_{1}}{\sqrt{2}} \left( c_{0} S_{0,6} + c_{1} S_{0,7} + c_{2} S_{0,0} + c_{3} S_{0,1} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_{2}}{\sqrt{2}} \left( c_{0} S_{0,0} + c_{1} S_{0,1} + c_{2} S_{0,2} + c_{3} S_{0,3} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_{3}}{\sqrt{2}} \left( c_{0} S_{0,2} + c_{1} S_{0,3} + c_{2} S_{0,4} + c_{3} S_{0,5} \right)
 \end{split}
 \label{eqn_db2_outvect_s_2_1_rek}, \\
 \begin{split}
 T_{2,0} = ~
-	& \frac{1}{\sqrt{2}} \frac{c_3}{\sqrt{2}} \left( c_0 S_{0,0} + c_1 S_{0,1} + c_2 S_{0,2} + c_3 S_{0,3} \right) - \\
-	& \frac{1}{\sqrt{2}} \frac{c_2}{\sqrt{2}} \left( c_0 S_{0,2} + c_1 S_{0,3} + c_2 S_{0,4} + c_3 S_{0,5} \right) + \\
-	& \frac{1}{\sqrt{2}} \frac{c_1}{\sqrt{2}} \left( c_0 S_{0,4} + c_1 S_{0,5} + c_2 S_{0,6} + c_3 S_{0,7} \right) - \\
-	& \frac{1}{\sqrt{2}} \frac{c_0}{\sqrt{2}} \left( c_0 S_{0,6} + c_1 S_{0,7} + c_2 S_{0,0} + c_3 S_{0,1} \right)
+	& \frac{1}{\sqrt{2}} \frac{c_{3}}{\sqrt{2}} \left( c_{0} S_{0,0} + c_{1} S_{0,1} + c_{2} S_{0,2} + c_{3} S_{0,3} \right) - \\
+	& \frac{1}{\sqrt{2}} \frac{c_{2}}{\sqrt{2}} \left( c_{0} S_{0,2} + c_{1} S_{0,3} + c_{2} S_{0,4} + c_{3} S_{0,5} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_{1}}{\sqrt{2}} \left( c_{0} S_{0,4} + c_{1} S_{0,5} + c_{2} S_{0,6} + c_{3} S_{0,7} \right) - \\
+	& \frac{1}{\sqrt{2}} \frac{c_{0}}{\sqrt{2}} \left( c_{0} S_{0,6} + c_{1} S_{0,7} + c_{2} S_{0,0} + c_{3} S_{0,1} \right)
 \end{split}
 \label{eqn_db2_outvect_t_2_0_rek}, \\
 \begin{split}
 T_{2,1} = ~
-	& \frac{1}{\sqrt{2}} \frac{c_3}{\sqrt{2}} \left( c_0 S_{0,4} + c_1 S_{0,5} + c_2 S_{0,6} + c_3 S_{0,7} \right) - \\
-	& \frac{1}{\sqrt{2}} \frac{c_2}{\sqrt{2}} \left( c_0 S_{0,6} + c_1 S_{0,7} + c_2 S_{0,0} + c_3 S_{0,1} \right) + \\
-	& \frac{1}{\sqrt{2}} \frac{c_1}{\sqrt{2}} \left( c_0 S_{0,0} + c_1 S_{0,1} + c_2 S_{0,2} + c_3 S_{0,3} \right) - \\
-	& \frac{1}{\sqrt{2}} \frac{c_0}{\sqrt{2}} \left( c_0 S_{0,2} + c_1 S_{0,3} + c_2 S_{0,4} + c_3 S_{0,5} \right)
+	& \frac{1}{\sqrt{2}} \frac{c_{3}}{\sqrt{2}} \left( c_{0} S_{0,4} + c_{1} S_{0,5} + c_{2} S_{0,6} + c_{3} S_{0,7} \right) - \\
+	& \frac{1}{\sqrt{2}} \frac{c_{2}}{\sqrt{2}} \left( c_{0} S_{0,6} + c_{1} S_{0,7} + c_{2} S_{0,0} + c_{3} S_{0,1} \right) + \\
+	& \frac{1}{\sqrt{2}} \frac{c_{1}}{\sqrt{2}} \left( c_{0} S_{0,0} + c_{1} S_{0,1} + c_{2} S_{0,2} + c_{3} S_{0,3} \right) - \\
+	& \frac{1}{\sqrt{2}} \frac{c_{0}}{\sqrt{2}} \left( c_{0} S_{0,2} + c_{1} S_{0,3} + c_{2} S_{0,4} + c_{3} S_{0,5} \right)
 \end{split}
 \label{eqn_db2_outvect_t_2_1_rek}.
 \end{gather}
@@ -279,43 +279,43 @@ Grupując odpowiednie wyrazy w zależnościach od \eqref{eqn_db2_outvect_s_2_0_r
 \begin{gather}
 \begin{split}
 S_{2,0} = ~
-	& \frac{c_0^2 + c_2 c_3}{2} x_0 + \frac{c_0 c_1 + c_3^2}{2} x_1 + \frac{c_0 c_2 + c_0 c_1}{2} x_2 + \frac{c_0 c_3 + c_1^2}{2} x_3 + \\
-	& \frac{c_1 c_2 + c_0 c_2}{2} x_4 + \frac{c_1 c_3 + c_1 c_2}{2} x_5 + \frac{c_2^2 + c_0 c_3}{2} x_6 + \frac{c_2 c_3 + c_1 c_3}{2} x_7
+	& \frac{c_{0}^{2} + c_{2} c_{3}}{2} x_{0} + \frac{c_{0} c_{1} + c_{3}^{2}}{2} x_{1} + \frac{c_{0} c_{2} + c_{0} c_{1}}{2} x_{2} + \frac{c_{0} c_{3} + c_{1}^{2}}{2} x_{3} + \\
+	& \frac{c_{1} c_{2} + c_{0} c_{2}}{2} x_{4} + \frac{c_{1} c_{3} + c_{1} c_{2}}{2} x_{5} + \frac{c_2^{2} + c_{0} c_{3}}{2} x_{6} + \frac{c_{2} c_{3} + c_{1} c_{3}}{2} x_7
 \end{split}
 \label{eqn_db2_outvect_s_2_0_full}, \\
 \begin{split}
 S_{2,1} = ~
-	& \frac{c_1 c_2 + c_0 c_2}{2} x_0 + \frac{c_1 c_3 + c_1 c_2}{2} x_1 + \frac{c_2^2 + c_0 c_3}{2} x_2 + \frac{c_2 c_3 + c_1 c_3}{2} x_3 + \\
-	& \frac{c_0^2 + c_2 c_3}{2} x_4 + \frac{c_0 c_1 + c_3^2}{2} x_5 + \frac{c_0 c_2 + c_0 c_1}{2} x_6 + \frac{c_0 c_3 + c_1^2}{2} x_7
+	& \frac{c_{1} c_{2} + c_{0} c_{2}}{2} x_{0} + \frac{c_{1} c_{3} + c_{1} c_{2}}{2} x_{1} + \frac{c_2^{2} + c_{0} c_{3}}{2} x_{2} + \frac{c_{2} c_{3} + c_{1} c_{3}}{2} x_{3} + \\
+	& \frac{c_0^{2} + c_{2} c_{3}}{2} x_{4} + \frac{c_{0} c_{1} + c_3^{2}}{2} x_{5} + \frac{c_{0} c_{2} + c_{0} c_{1}}{2} x_{6} + \frac{c_{0} c_{3} + c_1^{2}}{2} x_7
 \end{split}
 \label{eqn_db2_outvect_s_2_1_full}, \\
 \begin{split}
 T_{2,0} = ~
-	& \frac{c_0 c_3 - c_0 c_2}{2} x_0 + \frac{c_1 c_3 - c_0 c_3}{2} x_1 + \frac{c_2 c_3 - c_0 c_2}{2} x_2 + \frac{c_3^2 - c_1 c_2}{2} x_3 + \\
-	& \frac{c_0 c_1 - c_2^2}{2} x_4 + \frac{c_1^2 - c_2 c_3}{2} x_5 + \frac{c_1 c_2 - c_0^2}{2} x_6 + \frac{c_1 c_3 - c_0 c_1}{2} x_7
+	& \frac{c_{0} c_{3} - c_{0} c_{2}}{2} x_{0} + \frac{c_{1} c_{3} - c_{0} c_{3}}{2} x_{1} + \frac{c_{2} c_{3} - c_{0} c_{2}}{2} x_{2} + \frac{c_3^{2} - c_{1} c_{2}}{2} x_{3} + \\
+	& \frac{c_{0} c_{1} - c_2^{2}}{2} x_{4} + \frac{c_1^{2} - c_{2} c_{3}}{2} x_{5} + \frac{c_{1} c_{2} - c_0^{2}}{2} x_{6} + \frac{c_{1} c_{3} - c_{0} c_{1}}{2} x_7
 \end{split}
 \label{eqn_db2_outvect_t_2_0_full}, \\
 \begin{split}
 T_{2,1} = ~
-	& \frac{c_0 c_1 - c_2^2}{2} x_0 + \frac{c_1^2 - c_2 c_3}{2} x_1 + \frac{c_1 c_2 - c_0^2}{2} x_2 + \frac{c_1 c_3 - c_0 c_1}{2} x_3 + \\
-	& \frac{c_0 c_3 - c_0 c_2}{2} x_4 + \frac{c_1 c_3 - c_0 c_3}{2} x_5 + \frac{c_2 c_3 - c_0 c_2}{2} x_6 + \frac{c_3^2 - c_1 c_2}{2} x_7
+	& \frac{c_{0} c_{1} - c_2^{2}}{2} x_{0} + \frac{c_1^{2} - c_{2} c_{3}}{2} x_{1} + \frac{c_{1} c_{2} - c_0^{2}}{2} x_{2} + \frac{c_{1} c_{3} - c_{0} c_{1}}{2} x_{3} + \\
+	& \frac{c_{0} c_{3} - c_{0} c_{2}}{2} x_{4} + \frac{c_{1} c_{3} - c_{0} c_{3}}{2} x_{5} + \frac{c_{2} c_{3} - c_{0} c_{2}}{2} x_{6} + \frac{c_3^{2} - c_{1} c_{2}}{2} x_7
 \end{split}
 \label{eqn_db2_outvect_t_2_1_full}, \\
-T_{1,0} = \frac{c_3}{\sqrt{2}} x_0 + \frac{- c_2}{\sqrt{2}} x_1 + \frac{c_1}{\sqrt{2}} x_2 + \frac{- c_0}{\sqrt{2}} x_3 + \frac{0}{\sqrt{2}} x_4 + \frac{0}{\sqrt{2}} x_5 + \frac{0}{\sqrt{2}} x_6 + \frac{0}{\sqrt{2}} x_7 \label{eqn_db2_outvect_t_1_0_full}, \\
-T_{1,1} = \frac{0}{\sqrt{2}} x_0 + \frac{0}{\sqrt{2}} x_1 + \frac{c_3}{\sqrt{2}} x_2 + \frac{- c_2}{\sqrt{2}} x_3 + \frac{c_1}{\sqrt{2}} x_4 + \frac{- c_0}{\sqrt{2}} x_5 + \frac{0}{\sqrt{2}} x_6 + \frac{0}{\sqrt{2}} x_7 \label{eqn_db2_outvect_t_1_1_full}, \\
-T_{1,2} = \frac{0}{\sqrt{2}} x_0 + \frac{0}{\sqrt{2}} x_1 + \frac{0}{\sqrt{2}} x_2 + \frac{0}{\sqrt{2}} x_3 + \frac{c_3}{\sqrt{2}} x_4 + \frac{- c_2}{\sqrt{2}} x_5 + \frac{c_1}{\sqrt{2}} x_6 + \frac{- c_0}{\sqrt{2}} x_7 \label{eqn_db2_outvect_t_1_2_full}, \\
-T_{1,3} = \frac{c_1}{\sqrt{2}} x_0 + \frac{- c_0}{\sqrt{2}} x_1 + \frac{0}{\sqrt{2}} x_2 + \frac{0}{\sqrt{2}} x_3 + \frac{0}{\sqrt{2}} x_4 + \frac{0}{\sqrt{2}} x_5 + \frac{c_3}{\sqrt{2}} x_6 + \frac{- c_2}{\sqrt{2}} x_7 \label{eqn_db2_outvect_t_1_3_full}.
+T_{1,0} = \frac{c_{3}}{\sqrt{2}} x_{0} + \frac{- c_{2}}{\sqrt{2}} x_{1} + \frac{c_{1}}{\sqrt{2}} x_{2} + \frac{- c_{0}}{\sqrt{2}} x_{3} + \frac{0}{\sqrt{2}} x_{4} + \frac{0}{\sqrt{2}} x_{5} + \frac{0}{\sqrt{2}} x_{6} + \frac{0}{\sqrt{2}} x_{7} \label{eqn_db2_outvect_t_1_0_full}, \\
+T_{1,1} = \frac{0}{\sqrt{2}} x_{0} + \frac{0}{\sqrt{2}} x_{1} + \frac{c_{3}}{\sqrt{2}} x_{2} + \frac{- c_{2}}{\sqrt{2}} x_{3} + \frac{c_{1}}{\sqrt{2}} x_{4} + \frac{- c_{0}}{\sqrt{2}} x_{5} + \frac{0}{\sqrt{2}} x_{6} + \frac{0}{\sqrt{2}} x_{7} \label{eqn_db2_outvect_t_1_1_full}, \\
+T_{1,2} = \frac{0}{\sqrt{2}} x_{0} + \frac{0}{\sqrt{2}} x_{1} + \frac{0}{\sqrt{2}} x_{2} + \frac{0}{\sqrt{2}} x_{3} + \frac{c_{3}}{\sqrt{2}} x_{4} + \frac{- c_{2}}{\sqrt{2}} x_{5} + \frac{c_{1}}{\sqrt{2}} x_{6} + \frac{- c_{0}}{\sqrt{2}} x_{7} \label{eqn_db2_outvect_t_1_2_full}, \\
+T_{1,3} = \frac{c_{1}}{\sqrt{2}} x_{0} + \frac{- c_{0}}{\sqrt{2}} x_{1} + \frac{0}{\sqrt{2}} x_{2} + \frac{0}{\sqrt{2}} x_{3} + \frac{0}{\sqrt{2}} x_{4} + \frac{0}{\sqrt{2}} x_{5} + \frac{c_{3}}{\sqrt{2}} x_{6} + \frac{- c_{2}}{\sqrt{2}} x_{7} \label{eqn_db2_outvect_t_1_3_full}.
 \end{gather}
 Następnie, uwzględniając w równaniu \eqref{eqn_alg_out_mat} kolejność elementów wektora wielkości wyjściowych zgodną z założoną w równaniu \eqref{eqn_db2_outvect}, zapisać można:
 \begin{gather}
-S_{2,0} = a_{0,0} x_0 + a_{0,1} x_1 + a_{0,2} x_2 + a_{0,3} x_3 + a_{0,4} x_4 + a_{0,5} x_5 + a_{0,6} x_6 + a_{0,7} x_7 \label{eqn_db2_outvect_s_2_0_row}, \\
-S_{2,1} = a_{1,0} x_0 + a_{1,1} x_1 + a_{1,2} x_2 + a_{1,3} x_3 + a_{1,4} x_4 + a_{1,5} x_5 + a_{1,6} x_6 + a_{1,7} x_7 \label{eqn_db2_outvect_s_2_1_row}, \\
-T_{2,0} = a_{2,0} x_0 + a_{2,1} x_1 + a_{2,2} x_2 + a_{2,3} x_3 + a_{2,4} x_4 + a_{2,5} x_5 + a_{2,6} x_6 + a_{2,7} x_7 \label{eqn_db2_outvect_t_2_0_row}, \\
-T_{2,1} = a_{3,0} x_0 + a_{3,1} x_1 + a_{3,2} x_2 + a_{3,3} x_3 + a_{3,4} x_4 + a_{3,5} x_5 + a_{3,6} x_6 + a_{3,7} x_7 \label{eqn_db2_outvect_t_2_1_row}, \\
-T_{1,0} = a_{4,0} x_0 + a_{4,1} x_1 + a_{4,2} x_2 + a_{4,3} x_3 + a_{4,4} x_4 + a_{4,5} x_5 + a_{4,6} x_6 + a_{4,7} x_7 \label{eqn_db2_outvect_t_1_0_row}, \\
-T_{1,1} = a_{5,0} x_0 + a_{5,1} x_1 + a_{5,2} x_2 + a_{5,3} x_3 + a_{5,4} x_4 + a_{5,5} x_5 + a_{5,6} x_6 + a_{5,7} x_7 \label{eqn_db2_outvect_t_1_1_row}, \\
-T_{1,2} = a_{6,0} x_0 + a_{6,1} x_1 + a_{6,2} x_2 + a_{6,3} x_3 + a_{6,4} x_4 + a_{6,5} x_5 + a_{6,6} x_6 + a_{6,7} x_7 \label{eqn_db2_outvect_t_1_2_row}, \\
-T_{1,3} = a_{7,0} x_0 + a_{7,1} x_1 + a_{7,2} x_2 + a_{7,3} x_3 + a_{7,4} x_4 + a_{7,5} x_5 + a_{7,6} x_6 + a_{7,7} x_7 \label{eqn_db2_outvect_t_1_3_row}.
+S_{2,0} = a_{0,0} x_{0} + a_{0,1} x_{1} + a_{0,2} x_{2} + a_{0,3} x_{3} + a_{0,4} x_{4} + a_{0,5} x_{5} + a_{0,6} x_{6} + a_{0,7} x_{7} \label{eqn_db2_outvect_s_2_0_row}, \\
+S_{2,1} = a_{1,0} x_{0} + a_{1,1} x_{1} + a_{1,2} x_{2} + a_{1,3} x_{3} + a_{1,4} x_{4} + a_{1,5} x_{5} + a_{1,6} x_{6} + a_{1,7} x_{7} \label{eqn_db2_outvect_s_2_1_row}, \\
+T_{2,0} = a_{2,0} x_{0} + a_{2,1} x_{1} + a_{2,2} x_{2} + a_{2,3} x_{3} + a_{2,4} x_{4} + a_{2,5} x_{5} + a_{2,6} x_{6} + a_{2,7} x_{7} \label{eqn_db2_outvect_t_2_0_row}, \\
+T_{2,1} = a_{3,0} x_{0} + a_{3,1} x_{1} + a_{3,2} x_{2} + a_{3,3} x_{3} + a_{3,4} x_{4} + a_{3,5} x_{5} + a_{3,6} x_{6} + a_{3,7} x_{7} \label{eqn_db2_outvect_t_2_1_row}, \\
+T_{1,0} = a_{4,0} x_{0} + a_{4,1} x_{1} + a_{4,2} x_{2} + a_{4,3} x_{3} + a_{4,4} x_{4} + a_{4,5} x_{5} + a_{4,6} x_{6} + a_{4,7} x_{7} \label{eqn_db2_outvect_t_1_0_row}, \\
+T_{1,1} = a_{5,0} x_{0} + a_{5,1} x_{1} + a_{5,2} x_{2} + a_{5,3} x_{3} + a_{5,4} x_{4} + a_{5,5} x_{5} + a_{5,6} x_{6} + a_{5,7} x_{7} \label{eqn_db2_outvect_t_1_1_row}, \\
+T_{1,2} = a_{6,0} x_{0} + a_{6,1} x_{1} + a_{6,2} x_{2} + a_{6,3} x_{3} + a_{6,4} x_{4} + a_{6,5} x_{5} + a_{6,6} x_{6} + a_{6,7} x_{7} \label{eqn_db2_outvect_t_1_2_row}, \\
+T_{1,3} = a_{7,0} x_{0} + a_{7,1} x_{1} + a_{7,2} x_{2} + a_{7,3} x_{3} + a_{7,4} x_{4} + a_{7,5} x_{5} + a_{7,6} x_{6} + a_{7,7} x_{7} \label{eqn_db2_outvect_t_1_3_row}.
 \end{gather}
 
 Powyższe zależności pozwalają wyznaczyć wartości współczynników macierzy transformacji dla analizowanego algorytmu dyskretnej transformacji falkowej. Po podstawieniu wartości zgodnie z zależnością \eqref{eqn_db2_coefs} oraz biorąc pod uwagę równania od \eqref{eqn_db2_outvect_s_2_0_row} do \eqref{eqn_db2_outvect_t_1_3_row} macierz transformacji przyjmuje postać:
@@ -497,7 +497,7 @@ a_{i,j}^{'} = w \left( j \right) \cdot a_{i,j} \label{eqn_wt_windowmod},
 gdzie $a_{i,j}^{'}$ stanowi nową wartość współczynnika macierzy transformacji algorytmu. Użyta funkcja $w(n)$ powinna być opisana dla wartości $n$ w przedziale $<0;N-1>$. Wybrane okna pomiarowe opisane w literaturze \cite{oppenheim_dsp} to okna: trójkątne \eqref{eqn_wnd_triang}, Gaussa \eqref{eqn_wnd_gauss}, Hamminga \eqref{eqn_wnd_hamming} oraz Hanna \eqref{eqn_wnd_hann}. W dalszej części pracy stosowane będzie okno prostokątne, w którym $w(n) = 1$ o ile nie zostanie zaznaczony fakt stosowania innego okna pomiarowego. Wpływ parametrów okna pomiarowego na przenoszenie błędów losowych przez algorytmy dyskretnej transformacji falkowej przedstawiono w pracy \cite{auth_window}. Wymienione funkcje okien przedstawiają równania:
 \begin{gather}
 w_{\text{tr}} \left( n \right) = 1 - \left| \frac{n - \frac{N-1}{2}}{\frac{N}{2}} \right| \label{eqn_wnd_triang}, \\
-w_{\text{ga}} \left( n \right) = \exp \left(-\frac{1}{2} \cdot \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{ \left( N-1 \right)}{2}} \right)^2 \right) \label{eqn_wnd_gauss}, \\
+w_{\text{ga}} \left( n \right) = \exp \left(-\frac{1}{2} \cdot \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{ \left( N-1 \right)}{2}} \right)^{2} \right) \label{eqn_wnd_gauss}, \\
 w_{\text{hm}} \left( n \right) = 0.5384 - 0.4616 \cos \left( \frac{2 \pi n}{N} \right) \label{eqn_wnd_hamming}, \\
 w_{\text{hn}} \left( n \right) = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eqn_wnd_hann},
 \end{gather}
