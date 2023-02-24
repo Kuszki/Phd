@@ -489,7 +489,7 @@ Na podstawie zależności danych równaniami od \eqref{eqn_adc_function} do \eqr
 
 Analizując równanie \eqref{eqn_sym_partc_out_real} zauważyć można, że realizacja błędu kwantowania zależna jest od wartości przetwarzanej wielkości wejściowej analizowanego przetwornika. Jednakże, jak wykazano w pracach \cite{sienkowski_kwant, sienkowski_adc}, zależność tą można pominąć. Przy założeniu, że uzyskanie na wejściu przetwornika dowolnej wartości z zakresu wartości wielkości wejściowej jest jednakowo prawdopodobne oraz że podczas pomiaru wielkość ta będzie się zmieniać, powtarzając proces pomiaru wielokrotnie, z punktu widzenia pojedynczego okna pomiarowego błąd kwantowania $e_{c,q}(x)$ rozpatrywać można w kategoriach probabilistycznych jako losową realizację wielkości z zakresu opisanego równaniem \eqref{eqn_sym_partc_error_quant} o rozkładzie jednostajnym \cite{jakubiec_system}. Takie podejście umożliwia zastosowanie zaproponowanego w pracy modelu błędu, podczas gdy analiza zakładająca funkcję przetwarzania omawianego obiektu daną w postaci równania \eqref{eqn_adc_output} byłaby skomplikowana. Wobec powyższych założeń wariancja $\sigma_{c,q}^{2}$ oraz niepewność rozszerzona $U_{c,q}$ związane z błędem kwantowania $e_{c,q}(x)$ mogą być opisane przez następujące zależności:
 \begin{gather}
-\sigma_{c,q}^{2} = \frac{ \left( 2q \right)^{2}}{12} = \frac{ \left( 2 \cdot \num{23.44e-3} \right)^{2} }{12} = \qty{45.78}{\micro V} \label{eqn_sym_partc_var_quant}, \\
+\sigma_{c,q}^{2} = \frac{ q^{2}}{12} = \frac{ \left( \num{23.44e-3} \right)^{2} }{12} = \qty{45.78}{\micro V} \label{eqn_sym_partc_var_quant}, \\
 U_{c,q} = c_{u} \sigma_{c,q} = 1.65 \cdot \num{6.77e-3} = \qty{11.16}{mV} \label{eqn_sym_partc_uncert_quant}.
 \end{gather}
 

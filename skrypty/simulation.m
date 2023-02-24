@@ -120,23 +120,23 @@ tic; for i = 1 : iters_a
 
   # perform converter part tasks
   ya = ys;
-#  ya = ya + f_tm_a(temp(i));
+  ya = ya + f_tm_a(temp(i));
   ya = ya + gen_randu(ns, var_r_a, 'w');
   ya = ya ...
-#       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
-#       + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
-#       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
+       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
+       + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
+       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
   ;
 
   # perform amplifier part tasks
   yb = ya;
   yb = yb ...
-#       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
-#       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
-#       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
+       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
+       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
+       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
   ;
   yb = amp_b * yb;
-#  yb = yb + f_tm_b(temp(i));
+  yb = yb + f_tm_b(temp(i));
 
   # perform adc tasks
   yc = yb;
@@ -145,16 +145,16 @@ tic; for i = 1 : iters_a
   # calc input error
   errs(ns*(i-1)+1:ns*i) = yc - yi;
 
-#  for j = 1 : nsam : ns
-#
-#    part_I = yi(j:j+nsam-1);
-#    part_T = yc(j:j+nsam-1);
-#
-#    out_E(curr,:) = A*transpose(part_T - part_I);
-#
-#    curr = curr + 1;
-#
-#  end
+  for j = 1 : nsam : ns
+
+    part_I = yi(j:j+nsam-1);
+    part_T = yc(j:j+nsam-1);
+
+    out_E(curr,:) = A*transpose(part_T - part_I);
+
+    curr = curr + 1;
+
+  end
 
 end; toc;
 

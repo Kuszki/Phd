@@ -2,7 +2,7 @@
 
 Algorytm transformacji falkowej oznaczany skrótem \enquote{WT} (ang. \enquote{Wavelet Transform}) jest przekształceniem umożliwiającym analizę sygnału w dziedzinie skala-czas \cite{wallen_handbook}. Skala w przypadku algorytmu transformacji falkowej stanowi wybrany zakres częstotliwości składowych (harmonicznych) analizowanego sygnału. Jest to podobna cecha, jak w przypadku algorytmu \enquote{STFT} (ang. \enquote{Short-time Fourier transform}) \cite{durak_sftp}, będącego modyfikacją transformacji Fouriera. W ogólnej formie algorytm ciągłej transformacji falkowej (\enquote{CWT} -- ang. \enquote{Continous Wavelet Transform}) opisać można równaniem \cite{lord_guide, wallen_handbook}:
 \begin{equation}
-w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} { x \left( t \right) \psi \left( \frac{t-b}{a} \right) } dt \label{eqn_cwt},
+w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \left( t \right) \psi \left( \frac{t-b}{a} \right) dt \label{eqn_cwt},
 \end{equation}
 gdzie $w$ jest wyznaczonym współczynnikiem transformacji falkowej, $a$ parametrem skali, $b$ parametrem przesunięcia w czasie, natomiast $\psi$ równaniem falki-matki.
 
@@ -53,7 +53,7 @@ W praktyce oznacza to, że nie ma możliwości opisu dowolnej stworzonej na pods
 
 Podstawiając falkę opisaną równaniem \eqref{eqn_dwt_wavelet} do równania \eqref{eqn_cwt} otrzymuje się zależność opisującą dyskretną transformację falkową:
 \begin{equation}
-w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} { x \left( t \right) \psi \left( \frac{t-2n^{m}}{2^{m}} \right) } dt \label{eqn_dwt}.
+w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} x \left( t \right) \psi \left( \frac{t-2n^{m}}{2^{m}} \right) dt \label{eqn_dwt}.
 \end{equation}
 Cechą algorytmu dyskretnej transformacji falkowej jest dynamiczna zależność rozdzielczości dziedziny czasu w funkcji skali. Dla niskich wartości parametru skali (wysokich częstotliwości sygnału) rozdzielczość w dziedzinie czasu jest większa w porównaniu z rozdzielczością dla skali wyższych (niższych zakresów częstotliwości). Jako, że sygnał o wyższej częstotliwości zmienia się bardziej dynamicznie, niż w przypadku sygnału o niższej częstotliwości, takie podejście jest bardzo korzystne. Umożliwia ono redukcję liczby współczynników transformacji (wielkości wyjściowych algorytmu), przy jednoczesnym zachowaniu optymalnej rozdzielczości w dziedzinie czasu oraz zapewnieniu możliwości rekonstrukcji oryginalnego przebiegu sygnału na podstawie uzyskanych współczynników transformacji.
 
@@ -301,10 +301,22 @@ T_{2,1} = ~
 	& \frac{c_{0} c_{3} - c_{0} c_{2}}{2} x_{4} + \frac{c_{1} c_{3} - c_{0} c_{3}}{2} x_{5} + \frac{c_{2} c_{3} - c_{0} c_{2}}{2} x_{6} + \frac{c_3^{2} - c_{1} c_{2}}{2} x_7
 \end{split}
 \label{eqn_db2_outvect_t_2_1_full}, \\
-T_{1,0} = \frac{c_{3}}{\sqrt{2}} x_{0} + \frac{- c_{2}}{\sqrt{2}} x_{1} + \frac{c_{1}}{\sqrt{2}} x_{2} + \frac{- c_{0}}{\sqrt{2}} x_{3} + \frac{0}{\sqrt{2}} x_{4} + \frac{0}{\sqrt{2}} x_{5} + \frac{0}{\sqrt{2}} x_{6} + \frac{0}{\sqrt{2}} x_{7} \label{eqn_db2_outvect_t_1_0_full}, \\
-T_{1,1} = \frac{0}{\sqrt{2}} x_{0} + \frac{0}{\sqrt{2}} x_{1} + \frac{c_{3}}{\sqrt{2}} x_{2} + \frac{- c_{2}}{\sqrt{2}} x_{3} + \frac{c_{1}}{\sqrt{2}} x_{4} + \frac{- c_{0}}{\sqrt{2}} x_{5} + \frac{0}{\sqrt{2}} x_{6} + \frac{0}{\sqrt{2}} x_{7} \label{eqn_db2_outvect_t_1_1_full}, \\
-T_{1,2} = \frac{0}{\sqrt{2}} x_{0} + \frac{0}{\sqrt{2}} x_{1} + \frac{0}{\sqrt{2}} x_{2} + \frac{0}{\sqrt{2}} x_{3} + \frac{c_{3}}{\sqrt{2}} x_{4} + \frac{- c_{2}}{\sqrt{2}} x_{5} + \frac{c_{1}}{\sqrt{2}} x_{6} + \frac{- c_{0}}{\sqrt{2}} x_{7} \label{eqn_db2_outvect_t_1_2_full}, \\
-T_{1,3} = \frac{c_{1}}{\sqrt{2}} x_{0} + \frac{- c_{0}}{\sqrt{2}} x_{1} + \frac{0}{\sqrt{2}} x_{2} + \frac{0}{\sqrt{2}} x_{3} + \frac{0}{\sqrt{2}} x_{4} + \frac{0}{\sqrt{2}} x_{5} + \frac{c_{3}}{\sqrt{2}} x_{6} + \frac{- c_{2}}{\sqrt{2}} x_{7} \label{eqn_db2_outvect_t_1_3_full}.
+T_{1,0} =
+	\frac{c_{3}}{\sqrt{2}} x_{0} + \frac{- c_{2}}{\sqrt{2}} x_{1} + \frac{c_{1}}{\sqrt{2}} x_{2} + \frac{- c_{0}}{\sqrt{2}} x_{3} +
+	\frac{0}{\sqrt{2}} x_{4} + \frac{0}{\sqrt{2}} x_{5} + \frac{0}{\sqrt{2}} x_{6} + \frac{0}{\sqrt{2}} x_{7} 
+\label{eqn_db2_outvect_t_1_0_full}, \\
+T_{1,1} =
+	\frac{0}{\sqrt{2}} x_{0} + \frac{0}{\sqrt{2}} x_{1} + \frac{c_{3}}{\sqrt{2}} x_{2} + \frac{- c_{2}}{\sqrt{2}} x_{3} +
+	\frac{c_{1}}{\sqrt{2}} x_{4} + \frac{- c_{0}}{\sqrt{2}} x_{5} + \frac{0}{\sqrt{2}} x_{6} + \frac{0}{\sqrt{2}} x_{7}
+\label{eqn_db2_outvect_t_1_1_full}, \\
+T_{1,2} =
+	\frac{0}{\sqrt{2}} x_{0} + \frac{0}{\sqrt{2}} x_{1} + \frac{0}{\sqrt{2}} x_{2} + \frac{0}{\sqrt{2}} x_{3} +
+	\frac{c_{3}}{\sqrt{2}} x_{4} + \frac{- c_{2}}{\sqrt{2}} x_{5} + \frac{c_{1}}{\sqrt{2}} x_{6} + \frac{- c_{0}}{\sqrt{2}} x_{7}
+\label{eqn_db2_outvect_t_1_2_full}, \\
+T_{1,3} =
+	\frac{c_{1}}{\sqrt{2}} x_{0} + \frac{- c_{0}}{\sqrt{2}} x_{1} + \frac{0}{\sqrt{2}} x_{2} + \frac{0}{\sqrt{2}} x_{3} +
+	\frac{0}{\sqrt{2}} x_{4} + \frac{0}{\sqrt{2}} x_{5} + \frac{c_{3}}{\sqrt{2}} x_{6} + \frac{- c_{2}}{\sqrt{2}} x_{7}
+\label{eqn_db2_outvect_t_1_3_full}.
 \end{gather}
 Następnie, uwzględniając w równaniu \eqref{eqn_alg_out_mat} kolejność elementów wektora wielkości wyjściowych zgodną z założoną w równaniu \eqref{eqn_db2_outvect}, zapisać można:
 \begin{gather}
