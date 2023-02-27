@@ -9,14 +9,14 @@ pkg load signal;
 addpath("~/Projekty/Octave-FWT-Utils");
 
 # iterations params
-iters_a = 1e4;#2e4;
-iters_b = 5e0;#5e1;
+iters_a = 5e3;#2e4;
+iters_b = 5e2;#5e1;
 
 # wavelet params
 wname = 'db2';
 ndec = 2;
 nsam = 8;
-num = 1;
+num = 0;
 
 # output settings
 calc_in_uc = 1;
@@ -85,7 +85,7 @@ f_fil_b_cmp = @(x) 1 / (1 + i * (x/fb));
 f_fil_b_amp = @(x) abs(f_fil_b_cmp(x));
 f_fil_b_phi = @(x) atan(imag(f_fil_b_cmp(x))./real(f_fil_b_cmp(x)));
 
-#A = lin_ident(@(x) fwt(x, wname, ndec), nsam);
+A = lin_ident(@(x) fwt(x, wname, ndec), nsam);
 sq2_4 = 4*sqrt(2); sq3 = sqrt(3);
 A = [ ...
 (5-sq3)/16 (5+sq3)/16 (3+3*sq3)/16 (5+3*sq3)/16 (3+sq3)/16 (3-sq3)/16 (5-3*sq3)/16 (3-3*sq3)/16; ...
@@ -101,13 +101,11 @@ elen_m = iters_a * iters_b;
 elen_v = iters_a * ns;
 
 temp = gen_randt(iters_a, var_s_t, 'w') + t_exp;
-phi = (rand(1, iters_a) - 0.5) * T0 * 10;
+phi = rand(1, iters_a) * T0;
 
-out_E = zeros(elen_m, nsam);
-errs = zeros(1, elen_v);
+out_E = zeros(elen_v, nsam + 1);
 
 step = floor(iters_a*iters_b / 10);
-errs = [];
 curr = 1;
 
 tic; for i = 1 : iters_a
@@ -153,50 +151,34 @@ tic; for i = 1 : iters_a
   yc = f_adc(yc);
 
   # calc input error
-  errs(ns*(i-1)+1:ns*i) = yc - yi;
+  in_err = yc - yi;
+  out_E(ns*(i-1)+1:ns*i,1) = in_err;
 
-  for j = 1 : nsam : ns
+  for j = 1 : nsam
 
-    part_I = yi(j:j+nsam-1);
-    part_T = yc(j:j+nsam-1);
-    round_err = gen_randn(nsam, var_r_d, 'w');
+    out_err = filter(A(j,:), 1, in_err);
+    out_err = out_err + gen_randn(ns, var_r_d, 'w');
 
-    out_E(curr,:) = A*transpose(part_T - part_I + round_err);
-
-    curr = curr + 1;
+    out_E(ns*(i-1)+1:ns*i,j+1) = out_err;
 
   end
 
 end; toc;
 
-#errs = (errs / amp_b);
-
 if calc_in_uc
-  printf("input value:\n");
-  [u_in, c_in, s_in, w_in] = get_uncertainty(errs);
-  u_in = u_in * 1000
-  c_in
-  s_in = s_in * 1000
-  w_in = w_in * 1000000
-  printf("output value %d:\n", num);
-  [u_in, c_in, s_in, w_in] = get_uncertainty(out_E(:,num));
-  u_in = u_in * 1000
-  c_in
-  s_in = s_in * 1000
-  w_in = w_in * 1000000
-else
-  w_in = var(errs/amp_b)
-  s_in = sqrt(w_in)
-  u_in = s_in * 1.96
+  printf("n\tu\tc\ts\tw\n");
+  for i = 1 : nsam + 1
+    if i == 1 || num == i-1 || num == 0
+      [u_in, c_in, s_in, w_in] = get_uncertainty(out_E(:,i));
+      printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", i-1, ...
+             u_in * 1000, c_in, s_in * 1000, w_in * 1000000);
+    end
+  end
 end
 
-hist(out_E(:,num), 100);
+if num > 0
+  hist(out_E(:,num+1), 100);
+else
+  hist(out_E(:,1), 100);
+end
 
-#  plot(x, ea)
-#  plotfft(fft(y), fs, 'posfreq', 'flog', 'linabs')
-#  plot(xw, et)
-
-#  hold on
-#  plot(x, y)
-#  plot(xw, yw)
-#  xlim([0 2*T0])

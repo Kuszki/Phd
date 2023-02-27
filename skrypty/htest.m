@@ -7,6 +7,7 @@ pkg load parallel
 addpath("~/Projekty/Octave-FWT-Utils")
 
 num = 1e6;
+
 #u = linspace(1, 10, 30);
 #c = "nust";
 
@@ -27,7 +28,26 @@ num = 1e6;
 #
 #return
 
-W = [ 1.65 428.04 154.68 168.70 707.64 5.99 ];
+N = 8;
+
+sq2_4 = 4*sqrt(2); sq3 = sqrt(3);
+A = [ ...
+(5-sq3)/16 (5+sq3)/16 (3+3*sq3)/16 (5+3*sq3)/16 (3+sq3)/16 (3-sq3)/16 (5-3*sq3)/16 (3-3*sq3)/16; ...
+(3+sq3)/16 (3-sq3)/16 (5-3*sq3)/16 (3-3*sq3)/16 (5-sq3)/16 (5+sq3)/16 (3+3*sq3)/16 (5+3*sq3)/16; ...
+-(1+sq3)/16 (1-sq3)/16 (3-3*sq3)/16 -(1+sq3)/16 -(3-5*sq3)/16 (3+5*sq3)/16 (1-sq3)/16 -(3+3*sq3)/16; ...
+-(3-5*sq3)/16 (3+5*sq3)/16 (1-sq3)/16 -(3+3*sq3)/16 -(1+sq3)/16 (1-sq3)/16 (3-3*sq3)/16 -(1+sq3)/16; ...
+(1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0 0 0; ...
+0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0; ...
+0 0 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4; ...
+(3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4; ];
+
+[h, f] = freqz(A(N,:), [], [1000, 5000, 15000], 48000);
+
+amp = abs(h);
+sta = sum(A(N,:));
+ran = sqrt(sum(A(N,:).^2));
+
+W = [ 1 107.01*sta^2 154.68*ran^2 42.60*amp(1)^2 266.34*amp(2)^2 266.11*amp(3)^2 ];
 R = [ ...
   gen_randu(num, W(1), 'w'); ...
   gen_randt(num, W(2), 'w'); ...
@@ -64,6 +84,10 @@ for i = 1 : len
   end
 end
 
-U1 = sqrt(U*coh*transpose(U))
-U2 = get_uncertainty(A)
-100*(U1-U2)/U2
+W1 = sum(W)
+Ua = sqrt(W1)*1.96
+Ub = sqrt(U*coh*transpose(U))
+Cb = Ub / sqrt(W1)
+
+#U2 = get_uncertainty(A)
+#100*(U1-U2)/U2
