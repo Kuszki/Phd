@@ -304,7 +304,7 @@ c_{a,\Sigma} = \frac{U_{a,\Sigma}}{\sigma_{a,\Sigma}} = \frac{\qty{12.33}{mV}}{\
 
 Drugim sposobem na wyznaczenie parametrów wypadkowego sygnału błędu jest wykorzystanie wartości wyznaczonych w równaniach od od \eqref{eqn_sym_parta_uncert_stat} do \eqref{eqn_sym_parta_var_dyn}. Metoda ta jest kłopotliwa, ponieważ nie wszystkie rozkłady błędów cząstkowych posiadają standardowy kształt. Sytuacja ta znacznie utrudnia wyznaczenie wartości współczynników koherencji, jako że trudno będzie w symulacji uzyskać odpowiedni kształt rozkładu błędu. Ze względu na to, że wszystkie składowe sygnału błędu cechują się niepewnością rozszerzoną o tym samym rzędzie wielkości, niepewność wypadkową oszacować można korzystając z centralnego twierdzenia granicznego \cite{jcgm_guide}. W tym celu wyznaczyć należy odchylenie standardowe błędu wynikowego, a następnie zakładając normalny rozkład tego błędu wyznaczyć niepewność rozszerzoną zgodnie z równaniem \eqref{eqn_unc_sum} przyjmując współczynnik rozszerzenia $c_{a,\Sigma} = c_{n} = 1.96$. Wobec powyższego zapisać można następującą zależność:
 \begin{equation}
-U_{a,\Sigma} = c_{a,\Sigma} \sqrt{\sigma_{a,s}^{2} + \sigma_{a,r}^{2} + \sigma_{a,d}^{2}} = 1.96 \sqrt{\qty{37.1}{\micro V}} = \qty{11.94}{mV} \label{eqn_sym_parta_uncert_value_b},
+U_{a,\Sigma} = c_{a,\Sigma} \sqrt{\sigma_{a,s}^{2} + \sigma_{a,r}^{2} + \sigma_{a,d}^{2}} = 1.96 \sqrt{\num{37.1e-6}} = \qty{11.94}{mV} \label{eqn_sym_parta_uncert_value_b},
 \end{equation}
 przy czym wyznaczona wartość jest zbliżona do wyznaczonej za pomocą równania \eqref{eqn_sym_parta_uncert_sum}.
 
@@ -444,7 +444,7 @@ Ostatnim krokiem analizy pozostaje określenie związków pomiędzy składowymi 
 \begin{equation}
 r_{b,sw,sp} = \frac{\sigma_{b,sw,sp}^{2} - \sigma_{b,sw}^{2} - \sigma_{b,sp}^{2}}{2 \sigma_{b,sw} \sigma_{b,sp}} = \frac{\num{1.07e-4} - \num{3.68e-5} - \num{1.84e-5}}{2 \cdot \num{1.92e-2} \cdot \num{4.29e-3}} = 0.31 \label{eqn_sym_partb_stat_corr},
 \end{equation}
-przy czym w celu wyznaczenia wypadkowej wartości wariancji $\sigma_{b,sw,sp}^{2}$ przeprowadzono eksperyment metodą Monte-Carlo. Ze względu na fakt, że analizowane sygnały błędu statycznego zależą liniowo w pełni od tej samej wielkości fizycznej, rozkład błędu wypadkowego cechować się będzie kształtem identycznym, jak rozkład omawianej wielkości fizycznej. W przypadku kolejnych harmonicznych błędu dynamicznego własnego oraz propagowanego zauważyć można, że przesunięcia fazowe przebiegów tych harmonicznych są pomijalnie małe -- ich rząd wielkości wynosi \qty{1e-3}{rad}. Można zatem przyjąć, że współczynniki korelacji składanych sygnałów będą zbliżone do zera, co pozwoli zastosować uproszczone równanie \eqref{eqn_var_sum} do określenia wypadkowej wariancji tych przebiegów. Założenia te potwierdzają wyniki zestawione w tabeli \ref{tab_sym_partb_params_dyn_summary}.
+przy czym w celu wyznaczenia wypadkowej wartości wariancji $\sigma_{b,sw,sp}^{2}$ przeprowadzono eksperyment metodą Monte-Carlo. Ze względu na fakt, że analizowane sygnały błędu statycznego zależą liniowo w pełni od tej samej wielkości fizycznej, rozkład błędu wypadkowego cechować się będzie kształtem identycznym, jak rozkład omawianej wielkości fizycznej. W przypadku kolejnych harmonicznych błędu dynamicznego własnego oraz propagowanego zauważyć można, że przesunięcia fazowe przebiegów tych harmonicznych są pomijalnie małe -- ich rząd wielkości wynosi \qty{1e-3}{rad}. Można zatem przyjąć, że współczynniki korelacji składanych sygnałów będą zbliżone do jedności, co pozwoli zastosować równanie \eqref{eqn_var_matrix} do określenia wypadkowej wariancji tych przebiegów. Założenia te potwierdzają wyniki zestawione w tabeli \ref{tab_sym_partb_params_dyn_summary}.
 
 Korzystając zależności przedstawionych równaniami od \eqref{eqn_sym_parta_uncert_stat} do \eqref{eqn_sym_parta_var_dyn}, równania \eqref{eqn_var_function} oraz zestawionych w tabeli \ref{tab_sym_partb_params_unc_list} wartości, wyznaczono budżet niepewności uwzględniający podział na kategorie błędów, przy czym ze względu na konieczność przeprowadzania dalszej analizy w dziedzinie pulsacji, nie wyznaczano wypadkowych parametrów błędu dynamicznego. Wyznaczone wartości przedstawia tabela \ref{tab_sym_partb_params_unc_sum}, która zostanie wykorzystana w dalszym etapie analizy toru pomiarowego.
 
@@ -455,9 +455,9 @@ Korzystając zależności przedstawionych równaniami od \eqref{eqn_sym_parta_un
 \textbf{Symbol} & \textbf{$U_{95\%}$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Kształt rozkładu} & \textbf{Źródło błędu} \\ \hline
 ${b,s}$        & 19.66 &  107.01 & trójkątny                    & dryf temperaturowy                         \\ \hline
 ${b,r}$        & 20.45 &  108.90 & normalny                     & szum i nieliniowość                        \\ \hline
-${b,d,1}$      & 6.21  &  19.14  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja}             \\ \cline{1-3}
-${b,d,2}$      & 15.53 &  119.62 &                              &                                            \\ \cline{1-3}
-${b,d,3}$      & 15.52 &  119.44 &                              &                                            \\ \hline
+${b,d,1}$      & 9.20  &  42.60  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja}             \\ \cline{1-3}
+${b,d,2}$      & 23.01 &  266.34 &                              &                                            \\ \cline{1-3}
+${b,d,3}$      & 23.00 &  266.11 &                              &                                            \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -543,9 +543,9 @@ przyjmując omawiane wcześniej uproszczenie zakładające normalny rozkład wyp
 \textbf{Symbol} & \textbf{$U_{95\%}$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Kształt rozkładu} & \textbf{Źródło błędu} \\ \hline
 ${c,s}$        & 19.66 &  107.01 & trójkątny                    & dryf temperaturowy                         \\ \hline
 ${c,r}$        & 24.38 &  154.68 & normalny                     & szum, nieliniowość, konwersja              \\ \hline
-${c,d,1}$      & 6.21  &  19.14  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja}             \\ \cline{1-3}
-${c,d,2}$      & 15.53 &  119.62 &                              &                                            \\ \cline{1-3}
-${c,d,3}$      & 15.52 &  119.44 &                              &                                            \\ \hline
+${c,d,1}$      & 9.20  &  42.60  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja}             \\ \cline{1-3}
+${c,d,2}$      & 23.01 &  266.34 &                              &                                            \\ \cline{1-3}
+${c,d,3}$      & 23.00 &  266.11 &                              &                                            \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -654,7 +654,7 @@ G_{S_{2,0}} \left( \omega_{n} \right) = ~
 \label{eqn_sym_partd_output_trans_wn_S_2_0}, \\
 G_{T_{1,0}} \left( \omega_{n} \right) = \frac{1 - \sqrt{3}}{4 \sqrt{2}} - \frac{3 - \sqrt{3}}{4 \sqrt{2}} e^{-j\omega} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} e^{-2j\omega} - \frac{1 + \sqrt{3}}{4 \sqrt{2}} e^{-3j\omega} \label{eqn_sym_partd_output_trans_wn_T_1_0},
 \end{gather}
-przy czym pulsacja znormalizowana wyznaczana jest zgodnie z zależnością \eqref{eqn_puls_norm} i przyjmuje wartości z zakresu $<0;\pi>$. Następnie, zgodnie z zależnościami \eqref{eqn_mid_disc_amp} oraz \eqref{eqn_mid_disc_phi} wyznaczyć można wzmocnienie oraz przesunięcie fazowe dla analizowanych wielkości wyjściowych w funkcji pulsacji:
+przy czym pulsacja znormalizowana wyznaczana jest zgodnie z zależnością \eqref{eqn_puls_norm} i przyjmuje wartości z zakresu $<0;\pi>$. Następnie, zgodnie z zależnościami \eqref{eqn_mid_disc_amp} oraz \eqref{eqn_mid_disc_phi} wyznaczyć można wzmocnienie oraz przesunięcie fazowe dla analizowanych wielkości wyjściowych w funkcji pulsacji \cite{proakis_dsp}:
 \begin{gather}
 K \left( \omega \right) = \sqrt{\Re \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)^{2} + \Im \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)^{2}} \label{eqn_sym_partd_output_amp_w}, \\
 \varphi \left( \omega \right) = \arctan \left( \frac{\Im \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)}{\Re \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)} \right) \label{eqn_sym_partd_output_phi_w},
@@ -699,14 +699,96 @@ A_{T_{1,0},r} = \sqrt{\sum _{j = 0} ^{N-1} a_{4, j}^{2}} = 1 \label{eqn_sym_part
 \end{gather}
 Można zauważyć, że zgodnie z oczekiwaniami, wielkość wyjściowa $T_{1,0}$ nie będzie obarczona błędem statycznym w związku z faktem, że jest ona związana z filtrem pasmowo-przepustowym. Dodatkowo zauważyć można, że dla wszystkich wielkości wyjściowych współczynnik $A_{r}$ każdorazowo będzie równy jedności, co wynika z charakterystyki rodziny \enquote{Daubechies} \cite{vonesch_dbbasics, wei_coiflet}.
 
-Wobec powyższych zależności oraz na podstawie danych zawartych w tabeli \ref{tab_sym_partc_params_unc_sum} parametry wariancji sygnałów błędów propagowanych dla wielkości wyjściowej $S_{2,0}$ wyznaczyć można jako:
+Wobec powyższych zależności oraz na podstawie danych zawartych w tabeli \ref{tab_sym_partc_params_unc_sum}, parametry wariancji sygnałów błędów propagowanych statycznych i losowych dla wielkości wyjściowej $S_{2,0}$ wyznaczyć można jako:
 \begin{gather}
-\sigma_{S_{2,0},s}^{2} = \sigma_{c,s}^{2} A_{S_{2,0},s}^{2} = \qty{428.04}{\micro V} \label{eqn_sym_partd_output_var_stat_S_2_0}, \\
-\sigma_{S_{2,0},r}^{2} = \sigma_{c,r}^{2} A_{S_{2,0},r}^{2} = \qty{154.68}{\micro V} \label{eqn_sym_partd_output_var_rand_S_2_0}, \\
-\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,1} \right) = {1.99}^{2} \cdot \num{19.14e-6} = \qty{76.40}{\micro V} \label{eqn_sym_partd_output_var_dyn_1_S_2_0}, \\
-\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{S_{2,0}}^{2}\left(\omega_{c,e,1}\right) = {1.63}^{2} \cdot \num{119.62e-6} = \qty{316.38}{\micro V} \label{eqn_sym_partd_output_var_dyn_2_S_2_0}, \\
-\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,1} \right) = {0.15}^{2} \cdot \num{119.44e-6} = \qty{2.77}{\micro V} \label{eqn_sym_partd_output_var_dyn_3_S_2_0}.
+\sigma_{S_{2,0},s}^{2} = \sigma_{c,s}^{2} A_{S_{2,0},s}^{2} = 2^{2} \cdot \num{107.01e-6} = \qty{428.04}{\micro V} \label{eqn_sym_partd_output_var_stat_S_2_0}, \\
+\sigma_{S_{2,0},r}^{2} = \sigma_{c,r}^{2} A_{S_{2,0},r}^{2} = 1^{2} \cdot \num{154.68e-6} = \qty{154.68}{\micro V} \label{eqn_sym_partd_output_var_rand_S_2_0}.
 \end{gather}
+W przypadku błędów o charakterze dynamicznym, wariancje kolejnych harmonicznych tych błędów wyznaczyć można na podstawie zależności \eqref{eqn_dyn_std}, stosując właściwości transformacji Fouriera opisane w \cite{oppenheim_sns}:
+\begin{gather}
+\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,1} \right) = {1.99}^{2} \cdot \num{42.6e-6} = \qty{168.70}{\micro V} \label{eqn_sym_partd_output_var_dyn_1_S_2_0}, \\
+\sigma_{S_{2,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{S_{2,0}}^{2}\left(\omega_{c,e,2}\right) = {1.63}^{2} \cdot \num{266.34e-6} = \qty{707.64}{\micro V} \label{eqn_sym_partd_output_var_dyn_2_S_2_0}, \\
+\sigma_{S_{2,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,3} \right) = {0.15}^{2} \cdot \num{266.11e-6} = \qty{5.99}{\micro V} \label{eqn_sym_partd_output_var_dyn_3_S_2_0}.
+\end{gather}
+Ze względu na brak korelacji przedstawionych sygnałów błędów wariancję błędu wypadkowego wyznaczyć można zgodnie z równaniem \eqref{eqn_var_sum}, jako sumę wariancji kolejnych błędów cząstkowych:
+\begin{equation}
+\sigma_{S_{2,0},\Sigma}^{2} = \sigma_{S_{2,0},z}^{2} + \sigma_{S_{2,0},s}^{2} + \sigma_{S_{2,0},r}^{2} + \sigma_{S_{2,0},d,1}^{2} + \sigma_{S_{2,0},d,2}^{2} + \sigma_{S_{2,0},d,3}^{2} = \qty{1.47}{mV} \label{eqn_sym_partd_output_var_sum_S_2_0},
+\end{equation}
+gdzie $\sigma_{S_{2,0},z}^{2}$ jest wariancją błędu własnego zaokrągleń i zgodnie z tabelą \ref{tab_varnum_db2_2_f16} wynosi w rozpatrywanym przypadku \qty{0.974}{\micro V}, natomiast współczynnik rozszerzenia $c_{S_{2,0},z}$ jest równy $2.16$.
+
+Zgodnie z zależnościami danymi w równaniach od \eqref{eqn_sym_partd_output_var_stat_S_2_0} do \eqref{eqn_sym_partd_output_var_dyn_3_S_2_0}, kolejne wartości niepewności rozszerzonych błędów cząstkowych wielkości wyjściowej $S_{2,0}$ wynoszą:
+\begin{gather}
+U_{S_{2,0},z} = c_{S_{2,0},z} \sigma_{S_{2,0},z} = \qty{2.13}{mV} \label{eqn_sym_partd_output_unc_roun_S_2_0},\\
+U_{S_{2,0},s} = c_{t} \sigma_{S_{2,0},s} = \qty{39.31}{mV} \label{eqn_sym_partd_output_unc_stat_S_2_0}, \\
+U_{S_{2,0},r} = c_{n} \sigma_{S_{2,0},r} = \qty{24.38}{mV} \label{eqn_sym_partd_output_unc_rand_S_2_0}, \\
+U_{S_{2,0},d,1} = c_{d} \sigma_{S_{2,0},d,1} = \qty{18.31}{mV} \label{eqn_sym_partd_output_unc_dyn_1_S_2_0}, \\
+U_{S_{2,0},d,2} = c_{d} \sigma_{S_{2,0},d,2} = \qty{37.51}{mV} \label{eqn_sym_partd_output_unc_dyn_2_S_2_0}, \\
+U_{S_{2,0},d,3} = c_{d} \sigma_{S_{2,0},d,3} = \qty{3.45}{mV} \label{eqn_sym_partd_output_unc_dyn_3_S_2_0}.
+\end{gather}
+Jako, że wszystkie niepewności cząstkowe cechują się podobną wartością, wyznaczenie wypadkowej wartości niepewności rozszerzonej jest możliwe na dwa sposoby. Sposób pierwszy zakłada, że kształt rozkładu błędu wypadkowego będzie zbliżony do normalnego, a zatem niepewność wypadkowa może zostać oszacowana zgodnie z równaniem \eqref{eqn_unc_sum}:
+\begin{equation} 
+U_{S_{2,0},\Sigma} = c_{n} \sigma_{S_{2,0},\Sigma} = 1.96 \cdot \num{38.29e-3} = \qty{75.05}{mV} \label{eqn_sym_partd_output_unc_total_a_S_2_0}.
+\end{equation}
+Sposób drugi jest znacznie bardziej złożony obliczeniowo i wykorzystuje zależność \eqref{eqn_alg_outunc_mat}. Wymagane jest zatem wyznaczenie wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi w postaci macierzy koherencji, której wartości są wyznaczane zgodnie z równaniem \eqref{eqn_unc_coher}. Można zatem zapisać, że:
+\begin{equation}
+U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} \label{eqn_sym_partd_output_unc_summul_S_2_0}
+\end{equation}
+gdzie wektor niepewności cząstkowych $\mathbf{U}_{S_{2,0}}$ oraz macierz koherencji $\mathbf{h}_{S_{2,0}}$ są dane jako:
+\begin{gather}
+\mathbf{U}_{S_{2,0}} =
+\begin{bmatrix}
+U_{S_{2,0},z} & U_{S_{2,0},s} & U_{S_{2,0},r} & U_{S_{2,0},d,1} & U_{S_{2,0},d,2} & U_{S_{2,0},d,3}
+\end{bmatrix}
+\label{eqn_sym_partd_output_unc_sumuvect_S_2_0}, \\
+\mathbf{h}_{S_{2,0}} =
+\begin{bmatrix}
+1                 & h_{S_{2,0},z,s}   & h_{S_{2,0},z,r}   & h_{S_{2,0},z,d,1} & h_{S_{2,0},z,d,2} & h_{S_{2,0},z,d,3} \\
+h_{S_{2,0},s,z}   & 1                 & h_{S_{2,0},s,r}   & h_{S_{2,0},s,d,1} & h_{S_{2,0},s,d,2} & h_{S_{2,0},s,d,3} \\
+h_{S_{2,0},r,z}   & h_{S_{2,0},r,s}   & 1                 & h_{S_{2,0},r,d,1} & h_{S_{2,0},r,d,2} & h_{S_{2,0},r,d,3} \\
+h_{S_{2,0},d,1,z} & h_{S_{2,0},d,1,s} & h_{S_{2,0},d,1,r} & 1                 & h_{S_{2,0},d,1,2} & h_{S_{2,0},d,1,3} \\
+h_{S_{2,0},d,2,z} & h_{S_{2,0},d,2,s} & h_{S_{2,0},d,2,r} & h_{S_{2,0},d,2,1} & 1                 & h_{S_{2,0},d,2,3} \\
+h_{S_{2,0},d,3,z} & h_{S_{2,0},d,3,s} & h_{S_{2,0},d,3,r} & h_{S_{2,0},d,3,1} & h_{S_{2,0},d,3,2} & 1                 \\
+\end{bmatrix}
+\label{eqn_sym_partd_output_unc_sumcoher_S_2_0}.
+\end{gather}
+Kolejne wartości współczynników macierzy koherencji zostały oszacowane stosując metodę Monte-Carlo i wynoszą odpowiednio:
+\begin{equation}
+\mathbf{h}_{S_{2,0}} =
+\begin{bmatrix}
+1.000 & 0.004 & 0.015 & 0.034 & 0.097 & 0.002 \\
+0.004 & 1.000 & 0.021 & 0.122 & 0.262 & 0.011 \\
+0.015 & 0.021 & 1.000 & 0.059 & 0.164 & 0.027 \\
+0.034 & 0.122 & 0.059 & 1.000 & 0.309 & 0.055 \\
+0.097 & 0.262 & 0.164 & 0.309 & 1.000 & 0.183 \\
+0.002 & 0.011 & 0.027 & 0.055 & 0.183 & 1.000
+\end{bmatrix}
+\label{eqn_sym_partd_output_unc_sumcoherval_S_2_0},
+\end{equation}
+a zatem ostatecznie zapisać można:
+\begin{gather}
+\mathbf{U}_{S_{2,0}} = 
+\begin{bmatrix}
+\num{2.13} & \num{39.31} & \num{24.38} & \num{18.31} & \num{37.51} & \num{3.45}
+\end{bmatrix} \cdot \num{e-3}
+\label{eqn_sym_partd_output_unc_sumuvectval_S_2_0}, \\
+U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{75.96}{mV} \label{eqn_sym_partd_output_unc_total_b_S_2_0}.
+\end{gather}
+
+Porównując wyniki otrzymane w równaniu \eqref{eqn_sym_partd_output_unc_total_a_S_2_0} z wynikami uzyskanymi w równaniu \eqref{eqn_sym_partd_output_unc_total_b_S_2_0} zauważyć można, że obydwie metody zapewniają podobne wartości, przy czym metoda druga jest znacznie bardziej skomplikowana i wymaga oszacowania wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi. W dalszej cześć podrozdziału wyznaczone wartości zostaną porównane z wynikami eksperymentu przeprowadzonego metodą Monte-Carlo w celu weryfikacji ich poprawności.
+
+Analogicznie jak w w przypadku przedstawionych powyżej rozważań, parametry wariancji sygnałów błędów propagowanych dla wielkości wyjściowej $T_{1,0}$ wyznaczyć można jako:
+\begin{gather}
+\sigma_{T_{1,0},s}^{2} = \sigma_{c,s}^{2} A_{T_{1,0},s}^{2} = 0^{2} \cdot \num{107.01e-6} = \qty{0.00}{\micro V} \label{eqn_sym_partd_output_var_stat_T_1_0}, \\
+\sigma_{T_{1,0},r}^{2} = \sigma_{c,r}^{2} A_{T_{1,0},r}^{2} = 1^{2} \cdot \num{154.68e-6} = \qty{154.68}{\micro V} \label{eqn_sym_partd_output_var_rand_T_1_0}, \\
+\sigma_{T_{1,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{T_{1,0}}^{2} \left( \omega_{c,e,1} \right) = {1.99}^{2} \cdot \num{42.6e-6} = \qty{168.70}{\micro V} \label{eqn_sym_partd_output_var_dyn_1_T_1_0}, \\
+\sigma_{T_{1,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{T_{1,0}}^{2}\left(\omega_{c,e,2}\right) = {1.63}^{2} \cdot \num{266.34e-6} = \qty{707.64}{\micro V} \label{eqn_sym_partd_output_var_dyn_2_T_1_0}, \\
+\sigma_{T_{1,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{T_{1,0}}^{2} \left( \omega_{c,e,3} \right) = {0.15}^{2} \cdot \num{266.11e-6} = \qty{5.99}{\micro V} \label{eqn_sym_partd_output_var_dyn_3_T_1_0},
+\end{gather}
+natomiast zgodnie z tabelą \ref{tab_varnum_db2_2_f16}, wariancja błędu własnego zaokrągleń $\sigma_{T_{1,0},z}^{2}$ wynosi w tym przypadku \qty{0.699}{\micro V}. Wobec powyższych, zgodnie z równaniem \eqref{eqn_var_sum}, wariancję błędu wypadkowego wielkości wyjściowej $T_{1,0}$ opisuje zależność:
+\begin{equation}
+\sigma_{T_{1,0},\Sigma}^{2} = \sigma_{T_{1,0},z}^{2} + \sigma_{T_{1,0},s}^{2} + \sigma_{T_{1,0},r}^{2} + \sigma_{T_{1,0},d,1}^{2} + \sigma_{T_{1,0},d,2}^{2} + \sigma_{T_{1,0},d,3}^{2} = \qty{1.47}{mV} \label{eqn_sym_partd_output_var_sum_T_1_0},
+\end{equation}
+
 
 \section{Podsumowanie przeprowadzonego eksperymentu}
 

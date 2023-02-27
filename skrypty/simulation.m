@@ -10,13 +10,13 @@ addpath("~/Projekty/Octave-FWT-Utils");
 
 # iterations params
 iters_a = 1e4;#2e4;
-iters_b = 1e1;#5e1;
+iters_b = 5e0;#5e1;
 
 # wavelet params
 wname = 'db2';
 ndec = 2;
 nsam = 8;
-num = get_fwt_levels(nsam, ndec, 'midd')(1);
+num = 1;
 
 # output settings
 calc_in_uc = 1;
@@ -46,6 +46,7 @@ t_diff = 3;
 var_s_t = (3*t_diff^2)/(18);
 var_r_s = 2e-5/3;
 var_r_a = 1e-5/3;
+var_r_d = 1.65e-6;
 
 # adc settings
 nq = 256;
@@ -84,8 +85,17 @@ f_fil_b_cmp = @(x) 1 / (1 + i * (x/fb));
 f_fil_b_amp = @(x) abs(f_fil_b_cmp(x));
 f_fil_b_phi = @(x) atan(imag(f_fil_b_cmp(x))./real(f_fil_b_cmp(x)));
 
-A = lin_ident(@(x) fwt(x, wname, ndec), nsam);
-R = A(num,:);
+#A = lin_ident(@(x) fwt(x, wname, ndec), nsam);
+sq2_4 = 4*sqrt(2); sq3 = sqrt(3);
+A = [ ...
+(5-sq3)/16 (5+sq3)/16 (3+3*sq3)/16 (5+3*sq3)/16 (3+sq3)/16 (3-sq3)/16 (5-3*sq3)/16 (3-3*sq3)/16; ...
+(3+sq3)/16 (3-sq3)/16 (5-3*sq3)/16 (3-3*sq3)/16 (5-sq3)/16 (5+sq3)/16 (3+3*sq3)/16 (5+3*sq3)/16; ...
+-(1+sq3)/16 (1-sq3)/16 (3-3*sq3)/16 -(1+sq3)/16 -(3-5*sq3)/16 (3+5*sq3)/16 (1-sq3)/16 -(3+3*sq3)/16; ...
+-(3-5*sq3)/16 (3+5*sq3)/16 (1-sq3)/16 -(3+3*sq3)/16 -(1+sq3)/16 (1-sq3)/16 (3-3*sq3)/16 -(1+sq3)/16; ...
+(1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0 0 0; ...
+0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0; ...
+0 0 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4; ...
+(3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4; ];
 
 elen_m = iters_a * iters_b;
 elen_v = iters_a * ns;
@@ -149,8 +159,9 @@ tic; for i = 1 : iters_a
 
     part_I = yi(j:j+nsam-1);
     part_T = yc(j:j+nsam-1);
+    round_err = gen_randn(nsam, var_r_d, 'w');
 
-    out_E(curr,:) = A*transpose(part_T - part_I);
+    out_E(curr,:) = A*transpose(part_T - part_I + round_err);
 
     curr = curr + 1;
 
@@ -161,7 +172,14 @@ end; toc;
 #errs = (errs / amp_b);
 
 if calc_in_uc
+  printf("input value:\n");
   [u_in, c_in, s_in, w_in] = get_uncertainty(errs);
+  u_in = u_in * 1000
+  c_in
+  s_in = s_in * 1000
+  w_in = w_in * 1000000
+  printf("output value %d:\n", num);
+  [u_in, c_in, s_in, w_in] = get_uncertainty(out_E(:,num));
   u_in = u_in * 1000
   c_in
   s_in = s_in * 1000
@@ -172,7 +190,7 @@ else
   u_in = s_in * 1.96
 end
 
-hist(errs, 100);
+hist(out_E(:,num), 100);
 
 #  plot(x, ea)
 #  plotfft(fft(y), fs, 'posfreq', 'flog', 'linabs')
