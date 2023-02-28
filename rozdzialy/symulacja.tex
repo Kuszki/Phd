@@ -854,21 +854,22 @@ Porównując otrzymane wyniki zauważyć można, że oszacowana w równaniu \eqr
 
 Parametry pozostałych wielkości wyjściowych wyznaczono analogicznie, jak miało to miejsce w przedstawionych przykładach. Dodatkowo w celu weryfikacji zaproponowanych w pracy zależności i przedstawionego modelu błędu wykonano eksperyment metodą Monte-Carlo, w którym sto tysięcy razy powtórzono proces wyznaczania wartości wielkości wyjściowych analizowanego toru pomiarowego. Każdorazowo z przedziału $<-2 \pi f_{1};2 \pi f_{1}>\unit{rad}$ losowano fazę początkową przetwarzanego sygnału $s(t)$, przy czym uzyskanie każdej z możliwych wartości było jednakowo prawdopodobne. Wartości uzyskanych wielkości wyjściowych każdorazowo porównywano z wartościami dla toru pomiarowego, w którym nie występowały żadne źródła błędów, aa następnie zgodnie z równaniem \eqref{eqn_sym_partd_errvect} określano aktualną realizacje wektora błędów wielkości wyjściowych. Na podstawie uzyskanych realizacji sygnałów błędów sporządzano histogramy, które pozwalały oszacować wariancję, niepewność rozszerzoną oraz współczynnik rozszerzenia dla analizowanych wielkości wyjściowych.
 
-Poniżej w tabeli \ref{tab_sym_partd_params_unc_sum_a} zestawiono wyniki przeprowadzonego eksperymentu oraz wyniki uzyskane stosując zaproponowaną w pracy metodę analizy. Wielkość $\sigma_{ab}^{2}$ oznacza wypadkową wartość wariancji sygnału błędu uzyskaną obliczeniowo, analogicznie do przykładów przedstawionych w równaniach \eqref{eqn_sym_partd_output_var_sum_S_2_0} oraz \eqref{eqn_sym_partd_output_var_sum_T_1_0}, natomiast symbolem $\sigma_{s}^{2}$ oznaczono wartość wariancji uzyskaną na drodze eksperymentu. Symbolem $U_{a}$ oznaczono wartość niepewności rozszerzonej wyznaczoną przy założeniu zbliżonego do normalnego kształtu rozkładu błędu wypadkowego analizowanej wielkości wyjściowej, która w przykładzie wyznaczana była w równaniach \eqref{eqn_sym_partd_output_unc_total_a_S_2_0} oraz \eqref{eqn_sym_partd_output_unc_total_a_T_1_0}. Symbolem $U_{b}$ oznaczono wartość niepewności rozszerzonej uzyskaną przy użyciu algorytmu redukcyjnej arytmetyki interwałowej, wykorzystanego w przykładzie w równaniach \eqref{eqn_sym_partd_output_unc_total_b_S_2_0} oraz \eqref{eqn_sym_partd_output_unc_total_b_T_1_0}. Symbolem $U_{s}$ oznaczono wartość niepewności rozszerzonej uzyskaną na drodze eksperymentu. Symbole $c_{b}$ oraz $c_{s}$ oznaczają kolejno współczynnik rozszerzenia wyznaczony na podstawie równania \eqref{eqn_unc_sum} dla wielkości $U_{a}$ oraz ten uzyskany symulacyjnie dla wielkości $U_{s}$.
+Poniżej w tabeli \ref{tab_sym_partd_params_unc_sum_a} zestawiono wyniki przeprowadzonego eksperymentu oraz wyniki uzyskane stosując zaproponowaną w pracy metodę analizy. Wielkość $\sigma_{ab}^{2}$ oznacza wypadkową wartość wariancji sygnału błędu uzyskaną obliczeniowo, analogicznie do przykładów przedstawionych w równaniach \eqref{eqn_sym_partd_output_var_sum_S_2_0} oraz \eqref{eqn_sym_partd_output_var_sum_T_1_0}, natomiast symbolem $\sigma_{s}^{2}$ oznaczono wartość wariancji uzyskaną na drodze eksperymentu. Symbolem $U_{a}$ oznaczono wartość niepewności rozszerzonej wyznaczoną przy założeniu zbliżonego do normalnego kształtu rozkładu błędu wypadkowego analizowanej wielkości wyjściowej, która w przykładzie wyznaczana była w równaniach \eqref{eqn_sym_partd_output_unc_total_a_S_2_0} oraz \eqref{eqn_sym_partd_output_unc_total_a_T_1_0}. Symbolem $U_{b}$ oznaczono wartość niepewności rozszerzonej uzyskaną przy użyciu algorytmu redukcyjnej arytmetyki interwałowej, wykorzystanego w przykładzie w równaniach \eqref{eqn_sym_partd_output_unc_total_b_S_2_0} oraz \eqref{eqn_sym_partd_output_unc_total_b_T_1_0}. Symbolem $U_{s}$ oznaczono wartość niepewności rozszerzonej uzyskaną na drodze eksperymentu. Symbole $c_{b}$ oraz $c_{s}$ oznaczają kolejno współczynnik rozszerzenia wyznaczony na podstawie równania \eqref{eqn_unc_sum} dla wielkości $U_{a}$ oraz ten uzyskany symulacyjnie dla wielkości $U_{s}$. Wielkości $\delta_{a}$ oraz $\delta_{b}$ oznaczają błąd względny oszacowania wartości niepewności w odniesieniu do wartości uzyskanej w eksperymencie wyrażony w procentach.
 
 \begin{table}[htb!]
 \begin{center}
 \caption{Zestawienie wyników eksperymentu mającego na celu weryfikacje poprawności zaproponowanej w pracy tezy w przypadku posiadania informacji o parametrach wypadkowych analizowanych sygnałów błędów \label{tab_sym_partd_params_unc_sum_a}}
-\begin{tabular}[c]{| c | S | S | S | S | S | c | c |} \hline
-\textbf{Wielkość} & \textbf{$\sigma_{ab}^{2}$, \micro V} & \textbf{$\sigma_{s}^{2}$, \micro V} & \textbf{$U_{a}$, mV} & \textbf{$U_{b}$, mV} & \textbf{$U_{s}$, mV} & $c_{b}$ & $c_{s}$ \\ \hline
-$S_{2,0}$ & 1466.02 & 1464.53 & 75.05 & 75.96 & 73.78 & 1.98 & 1.93 \\ \hline
-$S_{2,1}$ & 1210.10 & 1209.16 & 68.18 & 69.58 & 67.41 & 2.00 & 1.94 \\ \hline
-$T_{2,0}$ & 854.18  & 853.65  & 57.28 & 56.66 & 55.83 & 1.93 & 1.91 \\ \hline
-$T_{2,1}$ & 901.75  & 902.05  & 58.86 & 58.05 & 59.24 & 1.93 & 1.97 \\ \hline
-$T_{1,0}$ & 582.68  & 582.99  & 47.28 & 44.78 & 43.76 & 1.86 & 1.81 \\ \hline
-$T_{1,1}$ & 582.98  & 582.69  & 47.32 & 44.75 & 43.79 & 1.85 & 1.81 \\ \hline
-$T_{1,2}$ & 582.98  & 582.42  & 47.32 & 44.99 & 43.84 & 1.86 & 1.82 \\ \hline
-$T_{1,3}$ & 522.56  & 523.07  & 44.81 & 44.64 & 42.78 & 1.95 & 1.87 \\ \hline
+\begin{tabular}[c]{| c | S | S | S | S | S | S | S | S | S |} \hline
+\multirow{2}{*}{$X$} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{3}{c|}{\textbf{Niepewność, mV}} & \multicolumn{2}{c|}{\textbf{Kształt}} & \multicolumn{2}{c|}{\textbf{Błąd, \%}} \\ \cline{2-10}
+ & $\sigma_{ab}^{2}$ & $\sigma_{s}^{2}$ & $U_{a}$ & $U_{b}$ & $U_{s}$ & $c_{b}$ & $c_{s}$ & $\delta_{a}$ & $\delta_{b}$ \\ \hline
+$S_{2,0}$ & 1466.02 & 1464.53 & 75.05 & 75.96 & 73.78 & 1.98 & 1.93 & 1.72  & 2.95  \\ \hline
+$S_{2,1}$ & 1210.10 & 1209.16 & 68.18 & 69.58 & 67.41 & 2.00 & 1.94 & 1.14  & 3.22  \\ \hline
+$T_{2,0}$ & 854.18  & 853.65  & 57.28 & 56.66 & 55.83 & 1.93 & 1.91 & 2.60  & 1.49  \\ \hline
+$T_{2,1}$ & 902.75  & 902.47  & 58.89 & 59.19 & 59.11 & 1.97 & 1.97 & -0.37 & 0.14  \\ \hline
+$T_{1,0}$ & 582.68  & 582.99  & 47.28 & 44.78 & 43.76 & 1.86 & 1.81 & 8.04  & 2.33  \\ \hline
+$T_{1,1}$ & 582.98  & 582.69  & 47.32 & 44.75 & 43.79 & 1.85 & 1.81 & 8.06  & 2.19  \\ \hline
+$T_{1,2}$ & 582.98  & 582.42  & 47.32 & 44.99 & 43.84 & 1.86 & 1.82 & 7.94  & 2.62  \\ \hline
+$T_{1,3}$ & 523.56  & 523.68  & 44.85 & 44.54 & 42.84 & 1.95 & 1.87 & 4.69  & 3.97  \\ \hline
 \end{tabular}
 \end{center}
 \end{table}

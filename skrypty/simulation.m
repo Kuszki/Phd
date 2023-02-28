@@ -9,14 +9,14 @@ pkg load signal;
 addpath("~/Projekty/Octave-FWT-Utils");
 
 # iterations params
-iters_a = 5e3;#2e4;
-iters_b = 5e2;#5e1;
+iters_a = 5e4;#2e4;
+iters_b = 5e0;#5e1;
 
 # wavelet params
 wname = 'db2';
 ndec = 2;
 nsam = 8;
-num = 0;
+num = 1;
 
 # output settings
 calc_in_uc = 1;
@@ -46,7 +46,7 @@ t_diff = 3;
 var_s_t = (3*t_diff^2)/(18);
 var_r_s = 2e-5/3;
 var_r_a = 1e-5/3;
-var_r_d = 1.65e-6;
+var_r_d = 1.65e-6;#1.65e-6;
 
 # adc settings
 nq = 256;
@@ -104,6 +104,7 @@ temp = gen_randt(iters_a, var_s_t, 'w') + t_exp;
 phi = rand(1, iters_a) * T0;
 
 out_E = zeros(elen_v, nsam + 1);
+f_st = zeros(nsam - 1, nsam);
 
 step = floor(iters_a*iters_b / 10);
 curr = 1;
@@ -124,31 +125,31 @@ tic; for i = 1 : iters_a
 
   # inject signal noise
   ys = y;
-  ys = y + gen_randn(ns, var_r_s, 'w');
+#  ys = y + gen_randn(ns, var_r_s, 'w');
 
   # perform converter part tasks
   ya = ys;
   ya = ya + f_tm_a(temp(i));
-  ya = ya + gen_randu(ns, var_r_a, 'w');
+#  ya = ya + gen_randu(ns, var_r_a, 'w');
   ya = ya ...
-       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
-       + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
-       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
+#       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
+#       + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
+#       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
   ;
 
   # perform amplifier part tasks
   yb = ya;
   yb = yb ...
-       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
-       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
-       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
+#       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
+#       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
+#       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
   ;
   yb = amp_b * yb;
   yb = yb + f_tm_b(temp(i));
 
   # perform adc tasks
   yc = yb;
-  yc = f_adc(yc);
+#  yc = f_adc(yc);
 
   # calc input error
   in_err = yc - yi;
@@ -156,8 +157,8 @@ tic; for i = 1 : iters_a
 
   for j = 1 : nsam
 
-    out_err = filter(A(j,:), 1, in_err);
-    out_err = out_err + gen_randn(ns, var_r_d, 'w');
+    [out_err, f_st(:,j)] = filter(A(j,:), 1, in_err, f_st(:,j));
+#    out_err = out_err + gen_randn(ns, var_r_d, 'w');
 
     out_E(ns*(i-1)+1:ns*i,j+1) = out_err;
 
