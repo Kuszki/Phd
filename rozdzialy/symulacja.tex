@@ -706,13 +706,13 @@ Wobec powyższych zależności oraz na podstawie danych zawartych w tabeli \ref{
 \end{gather}
 W przypadku błędów o charakterze dynamicznym, wariancje kolejnych harmonicznych tych błędów wyznaczyć można na podstawie zależności \eqref{eqn_dyn_std}, stosując właściwości transformacji Fouriera opisane w \cite{oppenheim_sns}:
 \begin{gather}
-\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,1} \right) = {1.99}^{2} \cdot \num{42.6e-6} = \qty{168.70}{\micro V} \label{eqn_sym_partd_output_var_dyn_1_S_2_0}, \\
-\sigma_{S_{2,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{S_{2,0}}^{2}\left(\omega_{c,e,2}\right) = {1.63}^{2} \cdot \num{266.34e-6} = \qty{707.64}{\micro V} \label{eqn_sym_partd_output_var_dyn_2_S_2_0}, \\
-\sigma_{S_{2,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,3} \right) = {0.15}^{2} \cdot \num{266.11e-6} = \qty{5.99}{\micro V} \label{eqn_sym_partd_output_var_dyn_3_S_2_0}.
+\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,1} \right) = {1.998}^{2} \cdot \num{42.6e-6} = \qty{170.04}{\micro V} \label{eqn_sym_partd_output_var_dyn_1_S_2_0}, \\
+\sigma_{S_{2,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{S_{2,0}}^{2}\left(\omega_{c,e,2}\right) = {1.623}^{2} \cdot \num{266.34e-6} = \qty{704.44}{\micro V} \label{eqn_sym_partd_output_var_dyn_2_S_2_0}, \\
+\sigma_{S_{2,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,3} \right) = {0.152}^{2} \cdot \num{266.11e-6} = \qty{6.18}{\micro V} \label{eqn_sym_partd_output_var_dyn_3_S_2_0}.
 \end{gather}
 Ze względu na brak korelacji przedstawionych sygnałów błędów wariancję błędu wypadkowego wyznaczyć można zgodnie z równaniem \eqref{eqn_var_sum}, jako sumę wariancji kolejnych błędów cząstkowych:
 \begin{equation}
-\sigma_{S_{2,0},\Sigma}^{2} = \sigma_{S_{2,0},z}^{2} + \sigma_{S_{2,0},s}^{2} + \sigma_{S_{2,0},r}^{2} + \sigma_{S_{2,0},d,1}^{2} + \sigma_{S_{2,0},d,2}^{2} + \sigma_{S_{2,0},d,3}^{2} = \qty{1466}{\micro V} \label{eqn_sym_partd_output_var_sum_S_2_0},
+\sigma_{S_{2,0},\Sigma}^{2} = \sigma_{S_{2,0},z}^{2} + \sigma_{S_{2,0},s}^{2} + \sigma_{S_{2,0},r}^{2} + \sigma_{S_{2,0},d,1}^{2} + \sigma_{S_{2,0},d,2}^{2} + \sigma_{S_{2,0},d,3}^{2} = \qty{1464}{\micro V} \label{eqn_sym_partd_output_var_sum_S_2_0},
 \end{equation}
 gdzie $\sigma_{S_{2,0},z}^{2}$ jest wariancją błędu własnego zaokrągleń i zgodnie z tabelą \ref{tab_varnum_db2_2_f16} wynosi w rozpatrywanym przypadku \qty{0.974}{\micro V}, natomiast współczynnik rozszerzenia $c_{S_{2,0},z}$ jest równy $2.16$.
 
@@ -721,13 +721,13 @@ Zgodnie z zależnościami danymi w równaniach od \eqref{eqn_sym_partd_output_va
 U_{S_{2,0},z} = c_{S_{2,0},z} \sigma_{S_{2,0},z} = 2.16 \cdot \num{0.987e-3} = \qty{2.13}{mV} \label{eqn_sym_partd_output_unc_roun_S_2_0},\\
 U_{S_{2,0},s} = c_{t} \sigma_{S_{2,0},s} = 1.90 \cdot \num{20.69e-3} = \qty{39.31}{mV} \label{eqn_sym_partd_output_unc_stat_S_2_0}, \\
 U_{S_{2,0},r} = c_{n} \sigma_{S_{2,0},r} = 1.96 \cdot \num{12.44e-3} = \qty{24.38}{mV} \label{eqn_sym_partd_output_unc_rand_S_2_0}, \\
-U_{S_{2,0},d,1} = c_{d} \sigma_{S_{2,0},d,1} = 1.41 \cdot \num{12.99e-3} = \qty{18.31}{mV} \label{eqn_sym_partd_output_unc_dyn_1_S_2_0}, \\
-U_{S_{2,0},d,2} = c_{d} \sigma_{S_{2,0},d,2} = 1.41 \cdot \num{26.60e-3} = \qty{37.51}{mV} \label{eqn_sym_partd_output_unc_dyn_2_S_2_0}, \\
-U_{S_{2,0},d,3} = c_{d} \sigma_{S_{2,0},d,3} = 1.41 \cdot \num{2.45e-3} = \qty{3.45}{mV} \label{eqn_sym_partd_output_unc_dyn_3_S_2_0}.
+U_{S_{2,0},d,1} = c_{d} \sigma_{S_{2,0},d,1} = 1.41 \cdot \num{13.04e-3} = \qty{18.39}{mV} \label{eqn_sym_partd_output_unc_dyn_1_S_2_0}, \\
+U_{S_{2,0},d,2} = c_{d} \sigma_{S_{2,0},d,2} = 1.41 \cdot \num{26.54e-3} = \qty{37.42}{mV} \label{eqn_sym_partd_output_unc_dyn_2_S_2_0}, \\
+U_{S_{2,0},d,3} = c_{d} \sigma_{S_{2,0},d,3} = 1.41 \cdot \num{2.49e-3} = \qty{3.50}{mV} \label{eqn_sym_partd_output_unc_dyn_3_S_2_0}.
 \end{gather}
 Jako, że wszystkie niepewności cząstkowe cechują się podobną wartością, wyznaczenie wypadkowej wartości niepewności rozszerzonej jest możliwe na dwa sposoby. Sposób pierwszy zakłada, że kształt rozkładu błędu wypadkowego będzie zbliżony do normalnego, a zatem niepewność wypadkowa może zostać oszacowana zgodnie z równaniem \eqref{eqn_unc_sum}:
 \begin{equation} 
-U_{S_{2,0},\Sigma} = c_{n} \sigma_{S_{2,0},\Sigma} = 1.96 \cdot \num{38.29e-3} = \qty{75.05}{mV} \label{eqn_sym_partd_output_unc_total_a_S_2_0}.
+U_{S_{2,0},\Sigma} = c_{n} \sigma_{S_{2,0},\Sigma} = 1.96 \cdot \num{38.27e-3} = \qty{75.00}{mV} \label{eqn_sym_partd_output_unc_total_a_S_2_0}.
 \end{equation}
 
 Sposób drugi jest znacznie bardziej złożony obliczeniowo i wykorzystuje zależność \eqref{eqn_alg_outunc_mat}. Wymagane jest zatem wyznaczenie wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi w postaci macierzy koherencji, której wartości są wyznaczane zgodnie z równaniem \eqref{eqn_unc_coher}. Można zatem zapisać, że:
@@ -756,12 +756,12 @@ Kolejne wartości współczynników macierzy koherencji zostały oszacowane stos
 \begin{equation}
 \mathbf{h}_{S_{2,0}} =
 \begin{bmatrix}
-1.000 & 0.004 & 0.015 & 0.034 & 0.097 & 0.002 \\
-0.004 & 1.000 & 0.021 & 0.122 & 0.262 & 0.011 \\
-0.015 & 0.021 & 1.000 & 0.059 & 0.164 & 0.027 \\
-0.034 & 0.122 & 0.059 & 1.000 & 0.309 & 0.055 \\
-0.097 & 0.262 & 0.164 & 0.309 & 1.000 & 0.183 \\
-0.002 & 0.011 & 0.027 & 0.055 & 0.183 & 1.000
+1.000 & 0.000 & 0.002 & 0.030 & 0.077 & 0.002 \\
+0.000 & 1.000 & 0.008 & 0.121 & 0.261 & 0.011 \\
+0.002 & 0.008 & 1.000 & 0.062 & 0.159 & 0.018 \\
+0.030 & 0.121 & 0.062 & 1.000 & 0.311 & 0.055 \\
+0.077 & 0.261 & 0.159 & 0.311 & 1.000 & 0.183 \\
+0.002 & 0.011 & 0.018 & 0.055 & 0.183 & 1.000
 \end{bmatrix}
 \label{eqn_sym_partd_output_unc_sumcoherval_S_2_0},
 \end{equation}
@@ -769,10 +769,10 @@ a zatem ostatecznie zapisać można:
 \begin{gather}
 \mathbf{U}_{S_{2,0}} = 
 \begin{bmatrix}
-\num{2.13} & \num{39.31} & \num{24.38} & \num{18.31} & \num{37.51} & \num{3.45}
+\num{2.13} & \num{39.31} & \num{24.38} & \num{18.39} & \num{37.42} & \num{3.50}
 \end{bmatrix} \cdot \num{e-3}
 \label{eqn_sym_partd_output_unc_sumuvectval_S_2_0}, \\
-U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{75.96}{mV} \label{eqn_sym_partd_output_unc_total_b_S_2_0}.
+U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{75.53}{mV} \label{eqn_sym_partd_output_unc_total_b_S_2_0}.
 \end{gather}
 
 Porównując wyniki otrzymane w równaniu \eqref{eqn_sym_partd_output_unc_total_a_S_2_0} z wynikami uzyskanymi w równaniu \eqref{eqn_sym_partd_output_unc_total_b_S_2_0} zauważyć można, że obydwie metody zapewniają podobne wartości, przy czym metoda druga jest znacznie bardziej skomplikowana i wymaga oszacowania wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi. W dalszej cześć podrozdziału wyznaczone wartości zostaną porównane z wynikami eksperymentu przeprowadzonego metodą Monte-Carlo w celu weryfikacji ich poprawności.
@@ -781,9 +781,9 @@ Analogicznie, jak w przypadku przedstawionych powyżej rozważań, parametry war
 \begin{gather}
 \sigma_{T_{1,0},s}^{2} = \sigma_{c,s}^{2} A_{T_{1,0},s}^{2} = 0^{2} \cdot \num{107.01e-6} = \qty{0.00}{\micro V} \label{eqn_sym_partd_output_var_stat_T_1_0}, \\
 \sigma_{T_{1,0},r}^{2} = \sigma_{c,r}^{2} A_{T_{1,0},r}^{2} = 1^{2} \cdot \num{154.68e-6} = \qty{154.68}{\micro V} \label{eqn_sym_partd_output_var_rand_T_1_0}, \\
-\sigma_{T_{1,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{T_{1,0}}^{2} \left( \omega_{c,e,1} \right) = {0.01}^{2} \cdot \num{42.6e-6} = \qty{0.0047}{\micro V} \label{eqn_sym_partd_output_var_dyn_1_T_1_0}, \\
-\sigma_{T_{1,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{T_{1,0}}^{2}\left(\omega_{c,e,2}\right) = {0.24}^{2} \cdot \num{266.34e-6} = \qty{15.89}{\micro V} \label{eqn_sym_partd_output_var_dyn_2_T_1_0}, \\
-\sigma_{T_{1,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{T_{1,0}}^{2} \left( \omega_{c,e,3} \right) = {1.24}^{2} \cdot \num{266.11e-6} = \qty{411.41}{\micro V} \label{eqn_sym_partd_output_var_dyn_3_T_1_0}.
+\sigma_{T_{1,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{T_{1,0}}^{2} \left( \omega_{c,e,1} \right) = {0.010}^{2} \cdot \num{42.6e-6} = \qty{0.0027}{\micro V} \label{eqn_sym_partd_output_var_dyn_1_T_1_0}, \\
+\sigma_{T_{1,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{T_{1,0}}^{2}\left(\omega_{c,e,2}\right) = {0.244}^{2} \cdot \num{266.34e-6} = \qty{15.89}{\micro V} \label{eqn_sym_partd_output_var_dyn_2_T_1_0}, \\
+\sigma_{T_{1,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{T_{1,0}}^{2} \left( \omega_{c,e,3} \right) = {1.243}^{2} \cdot \num{266.11e-6} = \qty{411.41}{\micro V} \label{eqn_sym_partd_output_var_dyn_3_T_1_0}.
 \end{gather}
 Zgodnie z tabelą \ref{tab_varnum_db2_2_f16} wariancja błędu własnego zaokrągleń $\sigma_{T_{1,0},z}^{2}$ wynosi w tym przypadku \qty{0.699}{\micro V}, natomiast współczynnik rozszerzenia $c_{T_{1,0},z}$ jest równy $2.16$. Wobec powyższych, zgodnie z równaniem \eqref{eqn_var_sum}, wariancję błędu wypadkowego wielkości wyjściowej $T_{1,0}$ opisuje zależność:
 \begin{equation}
@@ -794,14 +794,14 @@ natomiast niepewności rozszerzone analizowanych sygnałów błędów składowyc
 U_{T_{1,0},z} = c_{T_{1,0},z} \sigma_{T_{1,0},z} = 2.16 \cdot \num{0.836e-3} = \qty{1.81}{mV} \label{eqn_sym_partd_output_unc_roun_T_1_0},\\
 U_{T_{1,0},s} = c_{t} \sigma_{T_{1,0},s} = 1.90 \cdot \num{0} = \qty{0}{mV} \label{eqn_sym_partd_output_unc_stat_T_1_0}, \\
 U_{T_{1,0},r} = c_{n} \sigma_{T_{1,0},r} = 1.96 \cdot \num{12.44e-3} = \qty{24.38}{mV} \label{eqn_sym_partd_output_unc_rand_T_1_0}, \\
-U_{T_{1,0},d,1} = c_{d} \sigma_{T_{1,0},d,1} = 1.41 \cdot \num{0.069e-3} = \qty{0.097}{mV} \label{eqn_sym_partd_output_unc_dyn_1_T_1_0}, \\
+U_{T_{1,0},d,1} = c_{d} \sigma_{T_{1,0},d,1} = 1.41 \cdot \num{0.052e-3} = \qty{0.073}{mV} \label{eqn_sym_partd_output_unc_dyn_1_T_1_0}, \\
 U_{T_{1,0},d,2} = c_{d} \sigma_{T_{1,0},d,2} = 1.41 \cdot \num{3.99e-3} = \qty{5.62}{mV} \label{eqn_sym_partd_output_unc_dyn_2_T_1_0}, \\
 U_{T_{1,0},d,3} = c_{d} \sigma_{T_{1,0},d,3} = 1.41 \cdot \num{20.28e-3} = \qty{28.60}{mV} \label{eqn_sym_partd_output_unc_dyn_3_T_1_0}.
 \end{gather}
 
 Zakładając zbliżony do normalnego kształt rozkładu błędu wypadkowego wielkości $T_{1,0}$, wartość niepewności rozszerzonej tej wielkości oszacować można zgodnie z \eqref{eqn_unc_sum}:
 \begin{equation} 
-U_{T_{1,0},\Sigma} = c_{n} \sigma_{T_{1,0},\Sigma} = 1.96 \cdot \num{24.12e-3} = \qty{47.28}{mV} \label{eqn_sym_partd_output_unc_total_a_T_1_0}.
+U_{T_{1,0},\Sigma} = c_{n} \sigma_{T_{1,0},\Sigma} = 1.96 \cdot \num{24.14e-3} = \qty{47.31}{mV} \label{eqn_sym_partd_output_unc_total_a_T_1_0}.
 \end{equation}
 Na podstawie równań od \eqref{eqn_sym_partd_output_unc_roun_T_1_0} do \eqref{eqn_sym_partd_output_unc_dyn_3_T_1_0} zauważyć jednak można, że założenie to może nie być właściwe, jako że w analizowanej sytuacji występuje mniej źródeł błędów, niż w przypadku wielkości wyjściowej $S_{2,0}$, a dodatkowo wyróżnić można dominujące źródło błędu w postaci sygnału błędu dynamicznego o częstotliwości \qty{15}{kHz}.
 
@@ -831,12 +831,12 @@ Stosując metodę Monte-Carlo uzyskuje się wartości współczynników koherenc
 \begin{equation}
 \mathbf{h}_{T_{1,0}} =
 \begin{bmatrix}
-1.000  & 0.000  & -0.050 & 0.000  & 0.012 & 0.160  \\
-0.000  & 1.000  & -0.020 & 0.000  & 0.000 & -0.016 \\
--0.050 & -0.020 & 1.000  & 0.023  & 0.011 & 0.283  \\
-0.000  & 0.000  & 0.023  & 1.000  & 0.001 & -0.089 \\
-0.012  & 0.000  & 0.011  & 0.001  & 1.000 & 0.357  \\
-0.160  & -0.016 & 0.283  & -0.089 & 0.357 & 1.000
+1.000  & 0.000 & -0.008 & 0.000  & 0.011 & 0.132  \\
+0.000  & 1.000 & 0.000  & 0.000  & 0.000 & 0.000  \\
+-0.008 & 0.000 & 1.000  & 0.026  & 0.050 & 0.307  \\
+0.000  & 0.000 & 0.026  & 1.000  & 0.001 & -0.087 \\
+0.011  & 0.000 & 0.050  & 0.001  & 1.000 & 0.363  \\
+0.132  & 0.000 & 0.307  & -0.087 & 0.363 & 1.000
 \end{bmatrix}
 \label{eqn_sym_partd_output_unc_sumcoherval_T_1_0},
 \end{equation}
@@ -844,10 +844,10 @@ a zatem po podstawieniu do równania \eqref{eqn_sym_partd_output_unc_summul_T_1_
 \begin{gather}
 \mathbf{U}_{T_{1,0}} = 
 \begin{bmatrix}
-\num{1.81} & \num{0.00} & \num{24.38} & \num{0.097} & \num{2.62} & \num{28.60}
+\num{1.81} & \num{0.00} & \num{24.38} & \num{0.073} & \num{5.62} & \num{28.60}
 \end{bmatrix} \cdot \num{e-3}
 \label{eqn_sym_partd_output_unc_sumuvectval_T_1_0}, \\
-U_{T_{1,0},\Sigma} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} = \qty{44.78}{mV} \label{eqn_sym_partd_output_unc_total_b_T_1_0}.
+U_{T_{1,0},\Sigma} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} = \qty{44.93}{mV} \label{eqn_sym_partd_output_unc_total_b_T_1_0}.
 \end{gather}
 
 Porównując otrzymane wyniki zauważyć można, że oszacowana w równaniu \eqref{eqn_sym_partd_output_unc_total_a_T_1_0} wartość niepewności rozszerzonej jest większa, nić ta oszacowana stosując metodę opisaną równaniem \eqref{eqn_sym_partd_output_unc_total_b_T_1_0}. Jak zaznaczono, w analizowanym przypadku okoliczności konieczne do przyjęcia uproszczeń wynikających z warunków centralnego twierdzenia granicznego nie są do końca spełnione -- występuje zbyt mało źródeł błędu, a dodatkowo przetwarzane sygnały błędu cechują znaczne różnice w wartości niepewności rozszerzonej. Wartość oszacowana za pomocą równania \eqref{eqn_sym_partd_output_unc_total_a_T_1_0} jest większa, ponieważ w analizowanym przypadku współczynnik rozszerzenia dominującego źródła błędu wynosi $c_{d} = 1.41$. Współczynnik rozszerzenia dla rozkładu błędu wypadkowego będzie zatem mniejszy od współczynnika rozszerzenia dla rozkładu normalnego.
@@ -859,17 +859,17 @@ Poniżej w tabeli \ref{tab_sym_partd_params_unc_sum_a} zestawiono wyniki przepro
 \begin{table}[htb!]
 \begin{center}
 \caption{Zestawienie wyników eksperymentu mającego na celu weryfikacje poprawności zaproponowanej w pracy tezy w przypadku posiadania informacji o parametrach wypadkowych analizowanych sygnałów błędów \label{tab_sym_partd_params_unc_sum_a}}
-\begin{tabular}[c]{| c | S | S | S | S | S | S | S | S | S |} \hline
-\multirow{2}{*}{$X$} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{3}{c|}{\textbf{Niepewność, mV}} & \multicolumn{2}{c|}{\textbf{Kształt}} & \multicolumn{2}{c|}{\textbf{Błąd, \%}} \\ \cline{2-10}
- & $\sigma_{ab}^{2}$ & $\sigma_{s}^{2}$ & $U_{a}$ & $U_{b}$ & $U_{s}$ & $c_{b}$ & $c_{s}$ & $\delta_{a}$ & $\delta_{b}$ \\ \hline
-$S_{2,0}$ & 1466.02 & 1464.53 & 75.05 & 75.96 & 73.78 & 1.98 & 1.93 & 1.72  & 2.95  \\ \hline
-$S_{2,1}$ & 1210.10 & 1209.16 & 68.18 & 69.58 & 67.41 & 2.00 & 1.94 & 1.14  & 3.22  \\ \hline
-$T_{2,0}$ & 854.18  & 853.65  & 57.28 & 56.66 & 55.83 & 1.93 & 1.91 & 2.60  & 1.49  \\ \hline
-$T_{2,1}$ & 902.75  & 902.47  & 58.89 & 59.19 & 59.11 & 1.97 & 1.97 & -0.37 & 0.14  \\ \hline
-$T_{1,0}$ & 582.68  & 582.99  & 47.28 & 44.78 & 43.76 & 1.86 & 1.81 & 8.04  & 2.33  \\ \hline
-$T_{1,1}$ & 582.98  & 582.69  & 47.32 & 44.75 & 43.79 & 1.85 & 1.81 & 8.06  & 2.19  \\ \hline
-$T_{1,2}$ & 582.98  & 582.42  & 47.32 & 44.99 & 43.84 & 1.86 & 1.82 & 7.94  & 2.62  \\ \hline
-$T_{1,3}$ & 523.56  & 523.68  & 44.85 & 44.54 & 42.84 & 1.95 & 1.87 & 4.69  & 3.97  \\ \hline
+\begin{tabular}[c]{| c | S | S | c | c | c | c | c | c | c |} \hline
+\multirow{2}{*}{\textbf{Wielkość}} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{3}{c|}{\textbf{Niepewność, mV}} & \multicolumn{2}{c|}{\textbf{Kształt}} & \multicolumn{2}{c|}{\textbf{Błąd, \%}} \\ \cline{2-10}
+& $\sigma_{ab}^{2}$ & $\sigma_{s}^{2}$ & $U_{a}$ & $U_{b}$ & $U_{s}$ & $c_{b}$ & $c_{s}$ & $\delta_{a}$ & $\delta_{b}$ \\ \hline
+$S_{2.0}$ & 1464.35 & 1462.37 & 75.00 & 75.53 & 73.21 & 1.97 & 1.91 & 2.45 & 3.17 \\ \hline
+$S_{2.1}$ & 1210.12 & 1211.14 & 68.18 & 69.53 & 67.21 & 2.00 & 1.93 & 1.44 & 3.45 \\ \hline
+$T_{2.0}$ & 854.39  & 853.65  & 57.29 & 56.78 & 55.83 & 1.94 & 1.91 & 2.62 & 1.70 \\ \hline
+$T_{2.1}$ & 901.72  & 902.72  & 58.86 & 58.08 & 56.74 & 1.93 & 1.89 & 3.74 & 2.36 \\ \hline
+$T_{1.0}$ & 582.68  & 582.09  & 47.31 & 44.93 & 43.93 & 1.86 & 1.82 & 7.69 & 2.28 \\ \hline
+$T_{1.1}$ & 582.56  & 583.79  & 47.31 & 45.30 & 44.18 & 1.88 & 1.83 & 7.08 & 2.54 \\ \hline
+$T_{1.2}$ & 582.56  & 582.31  & 47.31 & 44.76 & 44.05 & 1.85 & 1.83 & 7.40 & 1.61 \\ \hline
+$T_{1.3}$ & 522.10  & 522.13  & 44.79 & 44.65 & 43.33 & 1.95 & 1.90 & 3.37 & 3.05 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}

@@ -12,8 +12,8 @@ addpath("~/Projekty/Octave-FWT-Utils");
 #profile on;
 
 # iterations params
-iters_a = 5e4;#2e4;
-iters_b = 5e1;#5e1;
+iters_a = 2e5;#2e4;
+iters_b = 1e2;#5e1;
 
 # wavelet params
 wname = 'db2';
@@ -57,7 +57,6 @@ var_s_t = (3*t_diff^2)/(18);
 var_r_s = 2e-5/3;
 var_r_a = 1e-5/3;
 var_r_c = (aq^2)/12;
-var_r_d = 1.65e-6;
 
 # timing evals
 ns = nsam * iters_b;
@@ -101,6 +100,9 @@ A = [ ...
 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0; ...
 0 0 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4; ...
 (3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4; ];
+#A = lin_ident(@(x) fwt(x, wname, ndec), nsam);
+
+rw = [ 0.974 1.01 1.21 0.973 0.699 0.587 0.585 0.541 ] * 1e-6;
 
 elen_m = iters_a * iters_b;
 elen_v = iters_a * ns;
@@ -155,7 +157,7 @@ tic; for i = 1 : iters_a
 
   # perform adc tasks
   yc = yb;
-  yc = yc + gen_randu(ns, var_r_c, 'w');
+  yc = f_adc(yc);
 
   # calc input error
   cerr = transpose(yc - yi);
@@ -174,7 +176,7 @@ tic; for i = 1 : iters_a
 end; toc;
 
 for j = 1 : nsam
-#  out_E(:,j) = out_E(:,j) + transpose(gen_randu(elen_m, var_r_d, 'w'));
+  out_E(:,j) = out_E(:,j) + transpose(gen_randn(elen_m, rw(j), 'w'));
 end
 
 if calc_in_uc || calc_out_uc
@@ -198,7 +200,7 @@ if calc_out_uc
 end
 
 if num > 0
-  hist(out_E(:,num+1), 100);
+  hist(out_E(:,num), 100);
 else
   hist(errs, 100);
 end
