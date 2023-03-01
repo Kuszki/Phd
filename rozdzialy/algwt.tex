@@ -95,12 +95,16 @@ Ostatecznie przedstawić można rekursywne zależności opisujące funkcję skal
 \psi_{m+1,n} \left( t \right) = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} c_{k} \psi_{m,2n+k} \left( t \right) \label{eqn_dwt_fatherrek}, \\
 \phi_{m+1,n} \left( t \right) = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} b_{k} \psi_{m,2n+k} \left( t \right) \label{eqn_dwt_matherrek},
 \end{gather}
-przy czym parametr $b_{k}$ przedstawić można jako rekombinacje współczynników skalujących w postaci równania:
+przy czym parametr $b_{k}$ przedstawić można jako rekombinacje współczynników skalujących:
 \begin{equation}
 b_{k} = \left( -1 \right) ^{k} c_{N_k-k-1} \label{eqn_dwt_bk}.
 \end{equation}
 
 Dekompozycja sygnału w przypadku algorytmu dyskretnej transformacji falkowej odbywa się w ten sposób, że sygnał wejściowy podawany jest na wejścia pary filtrów -- górno i dolno przepustowego. Wyjście filtru dolno przepustowego stanowi aproksymacje sygnału, natomiast wyjście filtru górno przepustowego stanowią detale sygnału. Ze względu na fakt, że opisywana operacja dostarcza dwa razy więcej próbek wyjściowych, niż zawierał oryginalny sygnał, co druga próbka wyjściowa jest usuwana w procesie decymacji. Opisywane działanie rozdziela widmo sygnału na dwie części: detale sygnału związane z wysokimi częstotliwościami oraz aproksymacje sygnału powiązaną z niskimi zakresami częstotliwości. Filtr dolno-przepustowy odpowiada charakterystyce funkcji skalującej, natomiast filtr górno-przepustowy charakterystyce falki-matki. Filtr górno-przepustowy jest więc faktycznie filtrem pasmowo-rzepustowym, natomiast ze względu na wartość parametru skali jego częstotliwość środkowa odpowiada częstotliwości Nyquista dla przetwarzanego sygnału -- stąd też można w uproszczeniu nazwać go filtrem górno-przepustowym. Proces dekompozycji sygnału może zostać powtórzony dla aproksymacji sygnału wielokrotnie, zapewniając większą rozdzielczość w dziedzinie częstotliwości kosztem mniejszej rozdzielczości w dziedzinie czasu. Przebieg procesu dekompozycji sygnału dla trzech iteracji opisywanego procesu przedstawiono na rysunku \ref{fig_dwt_decomposition}.
+
+W celu rekonstrukcji sygnału należy zastosować odpowiedni bank filtrów, który w parze z bankiem filtrów wejściowych stanowi system zwany kwadraturowymi filtrami lustrzanymi \cite{johnston_filter}. Na wejście opisywanego filtru podać należy współczynniki uzyskane wcześniej na drodze dekompozycji sygnału wykonanej za pomocą lustrzanego filtru. Przebieg procesu rekonstrukcji sygnału dla trzech iteracji opisywanego procesu przedstawiono na rysunku \ref{fig_dwt_reconstruction}.
+
+Na rysunkach \ref{fig_dwt_decomposition} oraz \ref{fig_dwt_reconstruction} \enquote{strzałką w górę} oznaczono uzupełnianie brakujących wielkości wejściowych współczynnikami o wartości zero. Działanie to wynika z faktu, że liczba wielkości wejściowych jest mniejsza, niż wymagana do wyznaczenia. \enquote{Strzałką w dół} oznaczono natomiast proces decymacji, czyli odrzucania co drugiej wielkości wyjściowej. Pominięcie tego procesu spowodowałoby, że wielkości wyjściowych byłoby dwa razy więcej, niż jest to wymagane w celu rekonstrukcji sygnału. Symbol $S$ na rysunkach oznacza wielkości wyjściowe związane z detalami sygnału, a symbol $T$ wielkości wyjściowe związane z aproksymacją sygnału. Indeks dolny jest związany z numerem iteracji procesu dekompozycji. Opisywany algorytm w literaturze nosi nazwę \enquote{Algorytm Malata} lub \enquote{FWT} (ang. \enquote{Fast Wavelet Transform}) i został opracowany w 1988 roku przez Stéphane Mallata \cite{lujian_mallat}.
 
 \begin{figure}[htb!]
 \begin{center}
@@ -109,16 +113,12 @@ Dekompozycja sygnału w przypadku algorytmu dyskretnej transformacji falkowej od
 \end{center}
 \end{figure}
 
-W celu rekonstrukcji sygnału należy zastosować odpowiedni bank filtrów, który w parze z bankiem filtrów wejściowych stanowi system zwany kwadraturowymi filtrami lustrzanymi \cite{johnston_filter}. Na wejście opisywanego filtru podać należy współczynniki uzyskane wcześniej na drodze dekompozycji sygnału wykonanej za pomocą lustrzanego filtru. Przebieg procesu rekonstrukcji sygnału dla trzech iteracji opisywanego procesu przedstawiono na rysunku \ref{fig_dwt_reconstruction}.
-
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/dwt_rekonstrukcja}
 \caption{Proces rekonstrukcji sygnału za pomocą algorytmu Mallata \label{fig_dwt_reconstruction}}
 \end{center}
 \end{figure}
-
-Na rysunkach \ref{fig_dwt_decomposition} oraz \ref{fig_dwt_reconstruction} \enquote{strzałką w górę} oznaczono uzupełnianie brakujących wielkości wejściowych współczynnikami o wartości zero. Działanie to wynika z faktu, że liczba wielkości wejściowych jest mniejsza, niż wymagana do wyznaczenia. \enquote{Strzałką w dół} oznaczono natomiast proces decymacji, czyli odrzucania co drugiej wielkości wyjściowej. Pominięcie tego procesu spowodowałoby, że wielkości wyjściowych byłoby dwa razy więcej, niż jest to wymagane w celu rekonstrukcji sygnału. Symbol $S$ na rysunkach oznacza wielkości wyjściowe związane z detalami sygnału, a symbol $T$ wielkości wyjściowe związane z aproksymacją sygnału. Indeks dolny jest związany z numerem iteracji procesu dekompozycji. Opisywany algorytm w literaturze nosi nazwę \enquote{Algorytm Malata} lub \enquote{FWT} (ang. \enquote{Fast Wavelet Transform}) i został opracowany w 1988 roku przez Stéphane Mallata \cite{lujian_mallat}.
 
 Pominiecie procesu decymacji powoduje powstanie nadmiarowych wielkości wyjściowych algorytmu i jest praktykowane w przypadku algorytmu \enquote{UWT} (ang. \enquote{Undecimated Wavelet Transform}). W przypadku tej odmiany algorytmu transformacji falkowej, dla każdego poziomu dekompozycji wyznaczanych jest tyle wielkości wyjściowych, ile wielkości wejściowych zawierał przetwarzany sygnał. Praktyczna realizacja algorytmu niedecymowanej transformacji falkowej jest bardzo podobna do realizacji algorytmu ciągłej transformacji falkowej. Algorytmy dyskretnej transformacji falkowej w klasycznym przypadku posiadają identyczną liczbę próbek wielkości wyjściowych i wejściowych. Istnieją jednak przypadki, w których liczba wielkości wyjściowych jest większa od liczby wielkości wyjściowych -- np. w przypadku falek podwójnej gęstości \cite{selenick_ddenusage}. Różnica ta wynika z modyfikacji procesu dekompozycji sygnału w przypadku falek podwójnej gęstości.
 
