@@ -191,8 +191,8 @@ U_{a,rw} \\ U_{a,rp}
 3.01 \\ 5.06
 \end{bmatrix}^{T}
 \begin{bmatrix}
-1     & 0.120 \\
-0.120 & 1
+1.000 & 0.120 \\
+0.120 & 1.000
 \end{bmatrix}
 \begin{bmatrix}
 3.01 \\ 5.06
@@ -218,9 +218,9 @@ U_{a,dw,1} \\ U_{a,dw,2} \\ U_{a,dw,3}
 1.87 \\ 4.68 \\ 4.67
 \end{bmatrix}^{T}
 \begin{bmatrix}
-1     & 0.359 & 0.358 \\
-0.359 & 1     & 0.376 \\
-0.358 & 0.376 & 1
+1.000 & 0.359 & 0.358 \\
+0.359 & 1.000 & 0.376 \\
+0.358 & 0.376 & 1.000
 \end{bmatrix}
 \begin{bmatrix}
 1.87 \\ 4.68 \\ 4.67
@@ -475,7 +475,7 @@ Analizując wyniki eksperymentu zauważyć można, że uzyskane wyniki dla błę
 
 \section{Analiza przetwornika analogowo-cyfrowego}
 
-Kolejnym elementem wchodzącym w skład analizowanego toru pomiarowego jest przetwornik analogowo-cyfrowy. W eksperymencie zakłada się, że element jest realizowany przy użyciu 8-bitowego przetwornika wagowego o zakresie napięcia wejściowego z przedziału $<-3;3>\unit{V}$. Wobec powyższych liczba dostępnych wartości wielkości wyjściowej tego przetwornika wynosi $N_{q} = 256$, natomiast wartość kwantu jest równa $q = \frac{\qty{3}{V} - (\qty{-3}{V})}{256} = \qty{23.44}{mV}$. Zakładając, że wielkością wyjściową $x_{c}(n)$ analizowanego przetwornika będzie dyskretna reprezentacja wielkości wejściowej $y_{b}(t)$, zapisać można następujące zależności:
+Kolejnym elementem wchodzącym w skład analizowanego toru pomiarowego jest przetwornik analogowo-cyfrowy. W eksperymencie zakłada się, że element jest realizowany przy użyciu 8-bitowego przetwornika wagowego o zakresie napięcia wejściowego z przedziału $<-3;3>\unit{V}$. Wobec powyższych liczba dostępnych wartości wielkości wyjściowej tego przetwornika wynosi $N_{q} = 256$, natomiast wartość kwantu jest równa $q = \frac{3 - (-3) ~\unit{V}}{256} = \qty{23.44}{mV}$. Zakładając, że wielkością wyjściową $x_{c}(n)$ analizowanego przetwornika będzie dyskretna reprezentacja wielkości wejściowej $y_{b}(t)$, zapisać można następujące zależności:
 \begin{gather}
 \dot{x}_{c} \left( n \right) = \dot{y}_{b} \left( nT_{p} \right) \label{eqn_sym_partc_out_ideal}, \\
 \tilde{x}_{c} \left( n \right) = \tilde{y}_{b} \left( nT_{p} \right) + e_{c,q} \left( \tilde{y}_{b} \left( nT_{p} \right) \right) = \dot{x}_{c} \left( n \right) + e_{c,\Sigma} \left( n \right) \label{eqn_sym_partc_out_real}, \\

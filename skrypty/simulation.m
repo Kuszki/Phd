@@ -23,7 +23,7 @@ num = 0;
 
 # output settings
 calc_in_uc = 1;
-calc_out_uc = 1;
+calc_out_uc = 0;
 show_prog = 1;
 
 # sampling params
@@ -148,9 +148,9 @@ tic; for i = 1 : iters_a
   # perform amplifier part tasks
   yb = ya;
   yb = yb ...
-       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
-       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
-       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
+#       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
+#       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
+#       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
   ;
   yb = amp_b * yb;
 #  yb = yb + f_tm_b(temp(i));
@@ -162,11 +162,13 @@ tic; for i = 1 : iters_a
   # calc input error
   cerr = transpose(yc - yi);
 
-  for j = 1 : nsam : ns
+  if calc_out_uc
+    for j = 1 : nsam : ns
 
-    out_E(curr,:) = A*cerr(j:j+nsam-1);
-    curr = curr + 1;
+      out_E(curr,:) = A*cerr(j:j+nsam-1);
+      curr = curr + 1;
 
+    end
   end
 
   if calc_in_uc
