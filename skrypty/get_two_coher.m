@@ -1,32 +1,32 @@
-function h = get_two_coher(u1, u2, c1, c2, mode = 'u', num = 1e6)
+function [h, r] = get_two_coher(p1, p2, c1, c2, mode = 'u', num = 1e6)
 
   switch (c1)
     case 'n'
-      g1 = @(x) gen_randn(num, x, mode);
+      x1 = gen_randn(num, p1, mode);
     case 'u'
-      g1 = @(x) gen_randu(num, x, mode);
+      x1 = gen_randu(num, p1, mode);
     case 's'
-      g1 = @(x) gen_rands(num, x, mode);
+      x1 = gen_rands(num, p1, mode);
     case 't'
-      g1 = @(x) gen_randt(num, x, mode);
+      x1 = gen_randt(num, p1, mode);
   end
 
   switch (c2)
     case 'n'
-      g2 = @(x) gen_randn(num, x, mode);
+      x2 = gen_randn(num, p2, mode);
     case 'u'
-      g2 = @(x) gen_randu(num, x, mode);
+      x2 = gen_randu(num, p2, mode);
     case 's'
-      g2 = @(x) gen_rands(num, x, mode);
+      x2 = gen_rands(num, p2, mode);
     case 't'
-      g2 = @(x) gen_randt(num, x, mode);
+      x2 = gen_randt(num, p2, mode);
   end
 
-  x1 = g1(u1); u1 = get_uncertainty(x1);
-  x2 = g2(u2); u2 = get_uncertainty(x2);
-
-  u3 = get_uncertainty(x1 + x2);
+  [u1, c1, s1, w1] = get_uncertainty(x1);
+  [u2, c2, s2, w2] = get_uncertainty(x2);
+  [u3, c3, s3, w3] = get_uncertainty(x1 + x2);
 
   h = (u3^2 - u1^2 - u2^2) / (2*u1*u2);
+  r = (w3 - w1 - w2) / (2*s1*s2);
 
 end

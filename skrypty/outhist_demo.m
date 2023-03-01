@@ -8,7 +8,7 @@ pkg load parallel
 addpath("~/Projekty/Octave-FWT-Utils")
 
 dim = "-r300";
-part = "c";
+part = "T";
 
 fcolor = "#333333";
 ecolor = "#333333";
@@ -16,7 +16,7 @@ nbins = 300;
 nstd = 0;
 xran = [0 5.5];
 
-nr = 1;
+nr = 2;
 nc = 2;
 tot = nr*nc;
 pos = 1;
