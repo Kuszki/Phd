@@ -12,7 +12,6 @@
 \RequirePackage[section]{placeins}
 \RequirePackage[polish]{babel}
 
-
 \RequirePackage{lualatex-math}
 \RequirePackage{unicode-math}
 \RequirePackage{indentfirst}
@@ -54,15 +53,17 @@
 \renewcommand{\cftsecaftersnum}{.} % for sections
 \renewcommand{\arraystretch}{1.30} % larger tables
 
-\renewcommand\floatpagefraction{0.9}
-\renewcommand\topfraction{0.9}
-\renewcommand\bottomfraction{0.9}
-\renewcommand\textfraction{0.1}   
+\renewcommand\floatpagefraction{0.85}
+\renewcommand\topfraction{0.85}
+\renewcommand\bottomfraction{0.35}
+\renewcommand\textfraction{0.15}   
 
 \newcommand{\hugelinespacing}{\renewcommand{\baselinestretch}{1.60} \normalsize}
 \newcommand{\normallinespacing}{\renewcommand{\baselinestretch}{1.30} \normalsize}
 \newcommand{\mediumlinespacing}{\renewcommand{\baselinestretch}{1.00} \normalsize}
 \newcommand{\narrowlinespacing}{\renewcommand{\baselinestretch}{0.70} \normalsize}
+
+\newcommand{\makecaption}[2]{\caption{\label{#1}#2}}
 
 \setenumerate{leftmargin = 32pt}
 \setdescription{leftmargin = 32pt}
@@ -183,4 +184,3 @@
 % --------------------
 
 \makeatother
-
