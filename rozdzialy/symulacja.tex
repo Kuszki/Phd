@@ -15,15 +15,15 @@ Podczas eksperymentu przyjmuje się, że przetwarzany sygnał pomiarowy będzie 
 
 W dalszej części rozdziału omówione zostaną kolejne elementy toru pomiarowego, ich wpływ na przetwarzany sygnał oraz relacje pomiędzy błędami na wejściu i wyjściu tych fragmentów. Przedstawione zostaną również szczegółowe założenia odnośnie właściwości opisanych we wprowadzeniu fragmentów toru pomiarowego. Dla przeprowadzonego eksperymentu przyjmuje się, że przetwarzany sygnał $s(t)$ określony jest w postaci:
 \begin{gather}
-\dot{s} \left( t \right) = \frac{6}{10} \sin \left( 2 \pi f_{1} t \right) - \frac{3}{10} \sin \left( 10 \pi f_{1} t + \frac{\pi}{8} \right) + \frac{1}{10} \sin \left( 30 \pi f_{1} t + \frac{\pi}{6} \right) \label{eq:sym_in_ideal}, \\
-\tilde{s} \left( t \right) = \dot{s} \left( t \right) + e_{s,r} \left( t \right) \label{eq:sym_in_real},
+\dot{s} \emb{t} = \frac{6}{10} \sin \left( 2 \pi f_{1} t \right) - \frac{3}{10} \sin \left( 10 \pi f_{1} t + \frac{\pi}{8} \right) + \frac{1}{10} \sin \left( 30 \pi f_{1} t + \frac{\pi}{6} \right) \label{eq:sym_in_ideal}, \\
+\tilde{s} \emb{t} = \dot{s} \emb{t} + e_{s,r} \emb{t} \label{eq:sym_in_real},
 \end{gather}
 przy czym $f_{1} = \qty{1}{kHz}$, natomiast $\sigma_{s,r}^{2} = \frac{2}{3} \cdot 10^{-5}$. Parametry kolejnych harmonicznych przetwarzanego sygnału zostały zestawione w tabeli \ref{tab:sym_in_params_ideal}. Przetwarzany sygnał będzie próbkowany ze stałą częstotliwością $f_{s} = \qty{48}{kHz}$. Do wyznaczenia wektora wielkości wyjściowych algorytmu dyskretnej transformacji falkowej koniecznych będzie $N = 8$ próbek wielkości wejściowych tego algorytmu, na podstawie których wyznaczonych zostanie $M = 8$ próbek wielkości wyjściowych toru pomiarowego.
 
 \begin{table}[htb!]
 \begin{center}
 \makecaption{tab:sym_in_params_ideal}{Parametry kolejnych harmonicznych przetwarzanego sygnału niezakłóconego błędami przyjęte w przeprowadzanym eksperymencie symulacyjnym}
-\begin{tabular}[c]{| c | c | S[table-format = 1.1] | c |} \hline
+\begin{tabular}[c]{| c | c | S[table-format = +1.1] | c |} \hline
 \textbf{Lp. $i$} & \textbf{Pulsacja $\omega_{s,i}$, rad/s} & \textbf{Amplituda $E_{s,o}(\omega_{s,i})$} & \textbf{Faza $\varphi_{s,o}(\omega_{s,i})$, rad} \\ \hline
 1 & $1000  \cdot 2\pi$ &  0.6 & $0$       \\ \hline
 2 & $5000  \cdot 2\pi$ & -0.3 & $\pi / 8$ \\ \hline
@@ -38,14 +38,14 @@ Eksperyment zakłada, że okres próbkowania będzie stały dla każdej próbki 
 
 Zastosowany w przykładzie przetwornik pomiarowy przekształca sygnał $s(t)$, związany z mierzoną wielkością fizyczną, na wyjściowy sygnał napięciowy $y_{a}(t)$. Przyjmuje się, że wielkość fizyczna zmieniać się może w zakresie $<0;1>$, przy czym czułość przetwornika pomiarowego będzie równa jedności, a jego częstotliwość graniczna wyniesie $f_{a,g} = \qty{320}{kHz}$. Wobec powyższych, wartość wielkości wyjściowej $y_{a}(t)$ mieścić się będzie w przedziale $<0;1>\unit{V}$. Charakterystyka omawianego obiektu jest zależna od temperatury otoczenia, przy czym temperatura ta nie jest mierzona w trakcie wykonywania pomiarów. Stosując zaproponowany w pracy model błędu, opisać można przebieg wielkości wyjściowej analizowanego obiektu na podstawie równań od \eqref{eq:out_cont_ideal_all} do \eqref{eq:out_cont_err_sum_all}, które w przedstawionym przypadku przyjmują postać:
 \begin{gather}
-\dot{y}_{a} \left( t \right) = \dot{s} \left( t \right) \label{eq:sym_parta_out_ideal}, \\
-\tilde{y}_{a} \left( t \right) = \dot{y}_{a} \left( t \right) + e_{a,\Sigma} \left( t \right) \label{eq:sym_parta_out_real},
+\dot{y}_{a} \emb{t} = \dot{s} \emb{t} \label{eq:sym_parta_out_ideal}, \\
+\tilde{y}_{a} \emb{t} = \dot{y}_{a} \emb{t} + e_{a,\Sigma} \emb{t} \label{eq:sym_parta_out_real},
 \end{gather}
 przy czym błędy cząstkowe zawarte w błędzie wypadkowym $e_{a,\Sigma}$ zostaną omówione w dalszej cześć podrozdziału.
 
 Opisywane w założeniach eksperymentu zmiany temperatury otoczenia będą bardzo niewielkie w obrębie pojedynczej serii pomiarowej. Można zatem przyjąć, że błąd wynikający z wpływu temperatury na wartość wielkości wyjściowej analizowanego obiektu będzie stały w obrębie okna pomiarowego, a zatem kwalifikowany on będzie jako błąd statyczny. W eksperymencie zakłada się, że dryf temperaturowy związany z błędem statycznym własnym jest określony następującym równaniem:
 \begin{equation}
-e_{a,sw} \left( t \right) = f_{a,z} \left( \vartheta \left( t \right) \right) = \frac{3}{2} \left( \vartheta \left( t \right) - \qty{20}{\degreeCelsius} \right) ~\unit{\frac{mV}{K}} \label{eq:sym_parta_stat_err},
+e_{a,sw} \emb{t} = f_{a,z} \left( \vartheta \emb{t} \right) = \frac{3}{2} \left( \vartheta \emb{t} - \qty{20}{\degreeCelsius} \right) ~\unit{\frac{mV}{K}} \label{eq:sym_parta_stat_err},
 \end{equation}
 gdzie $\vartheta$ jest rzeczywistą temperaturą otoczenia wyrażoną w stopniach Celsjusza. Można zatem określić wariancję oraz niepewność rozszerzoną omawianego błędu zależnościami:
 \begin{gather}
@@ -56,7 +56,7 @@ gdzie $c_{t}$ jest współczynnikiem rozszerzenia dla rozkładu trójkątnego i 
 
 Funkcja przetwarzania obiektu, wynikająca z przedstawionych we wstępie do podrozdziału założeń, powinna być określona równaniem liniowym w postaci:
 \begin{equation}
-\dot{f}_{a} \left( x \right) = x \label{eq:sym_parta_statfun},
+\dot{f}_{a} \emb{x} = x \label{eq:sym_parta_statfun},
 \end{equation}
 natomiast przyjmuje się, że rzeczywista funkcja przetwarzania $\tilde{f}_{a}(x)$, uwzględniająca nieliniowość zastosowanego przetwornika, nie jest znana. Zakłada się jednak, że błąd wynikający z nieliniowości charakterystyki przyjmuje wartość z przedziału $<-\sqrt{10};\sqrt{10}>\unit{mV}$, a dodatkowo uzyskanie każdej z wartości jest jednakowo prawdopodobne. Wobec powyższych, jeżeli pomiar będzie przeprowadzany wielokrotnie, można rozważany błąd opisywać w kategoriach probabilistycznych, wliczając jego udział do puli błędów losowych. Wariancję oraz niepewność rozszerzoną, związane z omawianym błędem losowym własnym $e_{a,rw}(t)$, wyrazić można w postaci:
 \begin{gather}
@@ -67,23 +67,23 @@ przy czym $c_{u}$ jest współczynnikiem rozszerzenia dla rozkładu jednostajneg
 
 Kolejną grupą właściwości obiektu są właściwości dynamiczne, związane z jego częstotliwością graniczną. Przypadek idealny zakłada, że analizowany obiekt nie powinien mieć żadnego wpływu na widmo przetwarzanego sygnału, a zatem transmitancja tego obiektu powinna wynosić $\dot{G}_{a}(j\omega) = 1$. Na podstawie założonych parametrów rzeczywistych obiektu przyjmuje się, że transmitancja $\tilde{G}_{a}(j\omega)$ wynosi:
 \begin{equation}
-\tilde{G}_{a} \left( j\omega \right) = \frac{1}{1 + j \frac{\omega}{2 \pi f_{a,g}}} = \frac{1}{\frac{\omega^{2}}{4 \pi^{2} f_{a,g}^{2}} + 1} - j \frac{\omega}{2 \pi f_{a,g} \left( \frac{\omega^{2}}{4 \pi^{2} f_{a,g}^{2}} + 1 \right) } \label{eq:sym_parta_trans},
+\tilde{G}_{a} \emb{j\omega} = \frac{1}{1 + j \frac{\omega}{2 \pi f_{a,g}}} = \frac{1}{\frac{\omega^{2}}{4 \pi^{2} f_{a,g}^{2}} + 1} - j \frac{\omega}{2 \pi f_{a,g} \left( \frac{\omega^{2}}{4 \pi^{2} f_{a,g}^{2}} + 1 \right) } \label{eq:sym_parta_trans},
 \end{equation}
 a zatem równania \eqref{eq:mid_cont_amp} oraz \eqref{eq:mid_cont_phi} przyjmują w tym przypadku postać:
 \begin{gather}
-\tilde{K}_{a} \left( \omega \right) = \left( \frac{\omega^{2}}{4 \pi^{2} f_{a,g}^{2}} + 1 \right)^{-\frac{1}{2}} \label{eq:sym_parta_amp_real}, \\
-\tilde{\varphi}_{a} \left( \omega \right) = \arctan \left( -\frac{\omega}{2 \pi f_{a,g}} \right) \label{eq:sym_parta_phi_real},
+\tilde{K}_{a} \emb{\omega} = \left( \frac{\omega^{2}}{4 \pi^{2} f_{a,g}^{2}} + 1 \right)^{-\frac{1}{2}} \label{eq:sym_parta_amp_real}, \\
+\tilde{\varphi}_{a} \emb{\omega} = \arctan \left( -\frac{\omega}{2 \pi f_{a,g}} \right) \label{eq:sym_parta_phi_real},
 \end{gather}
 przy czym dla idealnej transmitancji $\dot{G}_{a}(j\omega)$ parametry te wynoszą kolejno:
 \begin{gather}
-\dot{K}_{a} \left( \omega \right) = 1 \label{eq:sym_parta_amp_ideal}, \\
-\dot{\varphi}_{a} \left( \omega \right) = 0 \label{eq:sym_parta_phi_ideal},
+\dot{K}_{a} \emb{\omega} = 1 \label{eq:sym_parta_amp_ideal}, \\
+\dot{\varphi}_{a} \emb{\omega} = 0 \label{eq:sym_parta_phi_ideal},
 \end{gather}
 co oznacza, że w sytuacji idealnej wzmocnienie układu jest niezależnie od częstotliwości sygnału i równe jedności oraz że obiekt ten nie wprowadza żadnego przesunięcia w fazie przetwarzanego sygnału -- co odbiega od analizowanej sytuacji rzeczywistej.
 
 Przedstawione zależności oraz zaproponowana w równaniu \eqref{eq:mid_cont_var_rand} metoda pozwalają oszacować średnią wariancję błędu związanego z szumem zawartym w przetwarzanej wielkości wejściowej w zakresie częstotliwości od $<0;f_{p}>$ oraz związaną z nią niepewność rozszerzoną w postaci:
 \begin{gather}
-\sigma_{a,rp}^{2} = \frac{1}{\omega_{p}} \int _{0} ^{\omega_{p}} \tilde{K}_{a}^{2} \left( \omega \right) \sigma_{s,r}^{2} d\omega = \sigma_{s,r}^{2} = 6 \frac{2}{3} ~\unit{\micro V} \label{eq:sym_parta_rand_prop_var}, \\
+\sigma_{a,rp}^{2} = \frac{1}{\omega_{p}} \int _{0} ^{\omega_{p}} \tilde{K}_{a}^{2} \emb{\omega} \sigma_{s,r}^{2} d\omega = \sigma_{s,r}^{2} = 6 \frac{2}{3} ~\unit{\micro V} \label{eq:sym_parta_rand_prop_var}, \\
 U_{a,rp} = c_{u} \sigma_{a,rp} = \frac{3.92 \sqrt{15}}{3} ~\unit{mV} \label{eq:sym_parta_rand_prop_unc},
 \end{gather}
 gdzie $\omega_{p} = 2 \pi f_{p}$ jest pulsacją próbkowania. Zauważyć można, że w analizowanym zakresie częstotliwości wartość wzmocnienia $\tilde{K}_{a}(\omega)$ jest zbliżona do jedności, a zatem transmitancja obiektu nie wpływa na widmo przetwarzanego szumu. Można zatem uznać, że wariancja błędu losowego propagowanego na wyjściu jest identyczna, jak na wejściu obiektu.
@@ -91,18 +91,18 @@ gdzie $\omega_{p} = 2 \pi f_{p}$ jest pulsacją próbkowania. Zauważyć można,
 Na podstawie równania \eqref{eq:mid_cont_err_dyn_self}, błąd własny dynamiczny w funkcji częstotliwości wybranej harmonicznej sygnału opisać można następującą zależnością:
 \begin{equation}
 \begin{split}
-e_{a,dw} \left( t,\omega \right) = ~
-& \tilde{K}_{a} \left( \omega \right) E_{s,o} \left( \omega \right) \sin \left( \omega t + \varphi_{s,o} \left( \omega \right) + \tilde{\varphi}_{a} \left( \omega \right) \right) - \\
-& \dot{K}_{a} \left( \omega \right) E_{s,o} \left( \omega \right) \sin \left( \omega t + \varphi_{s,o} \left( \omega \right) + \dot{\varphi}_{a} \left( \omega \right) \right)
+e_{a,dw} \emb{t,\omega} = ~
+& \tilde{K}_{a} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \tilde{\varphi}_{a} \emb{\omega} \right) - \\
+& \dot{K}_{a} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \dot{\varphi}_{a} \emb{\omega} \right)
 \end{split}
 \label{eq:sym_parta_dyn_self_err}.
 \end{equation}
 Jako, że sygnał wejściowy analizowanego obiektu nie jest obarczony błędem dynamicznym, nie ma potrzeby wykonywania analizy dla błędu dynamicznego propagowanego. Ze względu na fakt, że przedstawione przebiegi składowych harmonicznych błędu dynamicznego będą w kolejnych fragmentach toru pomiarowego przetwarzane ponownie, nie należy w tym miejscu wyznaczać wariancji całkowitego błędu dynamicznego. Aby umożliwić analizę propagacji błędów dynamicznych przez kolejne fragmenty toru pomiarowego, minimalizując jednocześnie liczbę analizowanych składowych błędu dynamicznego, wyznaczone zostaną na podstawie równań \eqref{eq:dyn_vect_amp} oraz \eqref{eq:dyn_vect_phi} wypadkowe parametry składowych błędu dla kolejnych harmonicznych. Należy zauważyć, że relacje pomiędzy amplitudą, a odchyleniem standardowym analizowanej harmonicznej opisuje równanie \eqref{eq:dyn_std}. Analizując równanie \eqref{eq:sym_parta_dyn_self_err} można zauważyć, że dla każdej harmonicznej błąd ten ma dwie składowe o przeciwnych znakach. Korzystając z właściwości funkcji \enquote{sinus} można odwrócić znak wybranej składowej oraz dodać kąt $\pi~\unit{rad}$ do argumentu tej funkcji, zachowując przy tym oryginalną wartość tej składowej. Przebieg składowej błędu dynamicznego własnego o częstotliwości \qty{1}{kHz} przedstawia następujące równanie:
 \begin{equation}
 \begin{split}
-e_{a,dw} \left( t,\omega \right) \left|_{\omega = 1000 \cdot 2 \pi } \right. = ~
-& \tilde{K}_{a} \left( \omega \right) E_{s,o} \left( \omega \right) \sin \left( \omega t + \varphi_{s,o} \left( \omega \right) + \tilde{\varphi}_{a} \left( \omega \right) \right) - \\
-& \dot{K}_{a} \left( \omega \right) E_{s,o} \left( \omega \right) \sin \left( \omega t + \varphi_{s,o} \left( \omega \right) + \dot{\varphi}_{a} \left( \omega \right) \right) = \\
+e_{a,dw} \emb{t,\omega} \left|_{\omega = 1000 \cdot 2 \pi } \right. = ~
+& \tilde{K}_{a} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \tilde{\varphi}_{a} \emb{\omega} \right) - \\
+& \dot{K}_{a} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \dot{\varphi}_{a} \emb{\omega} \right) = \\
 & 1.0 \cdot 0.6 \cdot \sin \left( \omega t + 0 - \num{3.13e-3} \right) + \\
 & 1.0 \cdot 0.6 \cdot \sin \left( \omega t + 0 + 0 + \pi \right)
 \end{split}
@@ -129,11 +129,11 @@ Przedstawiając składowe równania \eqref{eq:sym_parta_dyn_self_example_harm} z
 \begin{gather}
 \mathbf{e}_{\Sigma,1} =
 \begin{bmatrix}
-0.6 \cos \left( \num{-3.13e-3} \right) + 0.6 \cos \left( \pi \right) & 0.6 \sin \left( \num{-3.13e-3} \right) + 0.6 \sin \left( \pi \right)
+0.6 \cos \emb{\num{-3.13e-3}} + 0.6 \cos \emb{\pi} & 0.6 \sin \emb{\num{-3.13e-3}} + 0.6 \sin \emb{\pi}
 \end{bmatrix}
 \label{eq:sym_parta_dyn_self_example_sum}, \\
-E_{\Sigma,1} = \sqrt{ \left( \num{-5.86e-6} \right)^{2} + \left( \num{-1.88e-3} \right)^{2}} = \qty{1.88}{mV} \label{eq:sym_parta_dyn_self_example_amp}, \\
-\varphi_{\Sigma,1} = \arctan \left( \frac{\num{-1.88e-3}}{\num{-5.86e-6}} \right) = \qty{-1.57}{rad} \label{eq:sym_parta_dyn_self_example_phi}.
+E_{\Sigma,1} = \sqrt{\emb{\num{-5.86e-6}}^{2} + \emb{\num{-1.88e-3}}^{2}} = \qty{1.88}{mV} \label{eq:sym_parta_dyn_self_example_amp}, \\
+\varphi_{\Sigma,1} = \arctan \emb{\frac{\num{-1.88e-3}}{\num{-5.86e-6}}} = \qty{-1.57}{rad} \label{eq:sym_parta_dyn_self_example_phi}.
 \end{gather}
 Dla pozostałych harmonicznych należy opisane powyżej wartości wyznaczyć w sposób analogiczny, przy czym omawiane wyniki zestawiono w tabeli \ref{tab:sym_parta_params_dyn_summary}. Przedstawione wartości umożliwiają wyznaczenie na podstawie równania \eqref{eq:dyn_std} odchylenia standardowego kolejnych składowych błędu oraz na podstawie równania \eqref{eq:unc_sum} niepewności rozszerzonej, przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla poziomu ufności $\alpha = 95\%$ wynosi $1.42$.
 
@@ -269,8 +269,8 @@ przy czym przykładowo, dla pary błędów statycznego własnego oraz losowego w
 \begin{equation}
 \begin{split}
 h_{a,sw,rw} = ~
-& \frac{ \left( \num{4.99e-3} \right)^{2} - \left( \num{3.49e-3} \right)^{2} - \left( \num{3.01e-3} \right)^{2}}{2 \cdot \num{3.49e-3} \cdot \num{3.01e-3}} \cdot \\
-& \frac{ \left( \num{3.49e-3} \right)^{2} + \left( \num{3.01e-3} \right)^{2}}{\num{9.41e-5}} = 0.039
+& \frac{\emb{\num{4.99e-3}}^{2} - \emb{\num{3.49e-3}}^{2} - \emb{\num{3.01e-3}}^{2}}{2 \cdot \num{3.49e-3} \cdot \num{3.01e-3}} \cdot \\
+& \frac{\emb{\num{3.49e-3}}^{2} + \emb{\num{3.01e-3}}^{2}}{\num{9.41e-5}} = 0.039
 \end{split}
 \label{eq:sym_parta_coher_sw_rw}.
 \end{equation}
@@ -310,7 +310,7 @@ przy czym wyznaczona wartość jest zbliżona do wyznaczonej za pomocą równani
 
 W celu weryfikacji poprawności zaproponowanej metody i przedstawionego modelu błędu przeprowadzono eksperyment stosując metodę Monte-Carlo. W ramach eksperymentu wykonano sto tysięcy powtórzeń wyznaczenia wielkości wyjściowej analizowanego obiektu. Każdorazowo losowano z przedziału $<-2 \pi f_{1};2 \pi f_{1}>\unit{rad}$ fazę początkową sygnału wejściowego, przy czym wylosowanie każdej w możliwych wartości było jednakowo prawdopodobne. Następnie błąd wypadkowy analizowanego obiektu wyznaczano zgodnie z równaniem:
 \begin{equation}
-e_{a,\Sigma} \left( t \right) = e_{a,sw} \left( t \right) + e_{a,rw} \left( t \right) + e_{a,rp} \left( t \right) + e_{a,dw} \left( t \right) \label{eq:sym_parta_error_sum},
+e_{a,\Sigma} \emb{t} = e_{a,sw} \emb{t} + e_{a,rw} \emb{t} + e_{a,rp} \emb{t} + e_{a,dw} \emb{t} \label{eq:sym_parta_error_sum},
 \end{equation}
 po czym na podstawie uzyskanych wartości realizacji błędu opracowano histogram, który posłużył do identyfikacji parametrów jego rozkładu. Rysunek \ref{fig:symul_parta_hist} przedstawia uzyskane podczas przeprowadzania eksperymentu histogramy uwzględniając podział na błędy statyczne, dynamiczne oraz losowe, a także przedstawia on rozkład błędu wypadkowego.
 
@@ -331,81 +331,81 @@ Wobec przedstawionych rozważań i przeprowadzonego eksperymentu można stwierdz
 
 Kolejną część toru pomiarowego stanowi wzmacniacz operacyjny, którego zadaniem jest dopasowanie poziomu sygnału napięciowego $y_{a}(t)$, reprezentującego mierzoną wielkość fizyczną $s(t)$, do zakresu napięcia wejściowego przetwornika analogowo-cyfrowego. Realizacje tego elementu stanowi wzmacniacz operacyjny w konfiguracji nieodwracającej, co dodatkowo pozytywnie wpływa na zwiększenie impedancji wejściowej tego elementu oraz zmniejszenie jego impedancji wyjściowej. Zakładane wzmocnienie układu wynosi $\qty{3.3}{V \per V}$, natomiast jego funkcję przetwarzania $\dot{f}_{b}(x)$ opisuje addytywna funkcja liniowa, przy czym:
 \begin{equation}
-\dot{f}_{b} \left( x \right) = 3.3 \cdot x \label{eq:sym_partb_function}.
+\dot{f}_{b} \emb{x} = 3.3 \cdot x \label{eq:sym_partb_function}.
 \end{equation}
 Dodatkowo przyjmuje się, że nieliniowość przedstawionej charakterystyki statycznej wzmacniacza jest pomijalnie mała. Analizowany układ charakteryzować się będzie częstotliwością graniczną równą $f_{b,g} = \qty{650}{kHz}$, stąd opisać można jego transmitancje i związane z nią parametry równaniami:
 \begin{equation}
-\tilde{G}_{b} \left( j\omega \right) = \frac{1}{1 + j \frac{\omega}{2 \pi f_{b,g}}} = \frac{1}{\frac{\omega^{2}}{4 \pi^{2} f_{b,g}^{2}} + 1} - j \frac{\omega}{2 \pi f_{b,g} \left( \frac{\omega^{2}}{4 \pi^{2} f_{b,g}^{2}} + 1 \right) } \label{eq:sym_partb_trans},
+\tilde{G}_{b} \emb{j\omega} = \frac{1}{1 + j \frac{\omega}{2 \pi f_{b,g}}} = \frac{1}{\frac{\omega^{2}}{4 \pi^{2} f_{b,g}^{2}} + 1} - j \frac{\omega}{2 \pi f_{b,g} \left( \frac{\omega^{2}}{4 \pi^{2} f_{b,g}^{2}} + 1 \right) } \label{eq:sym_partb_trans},
 \end{equation}
 a zatem równania \eqref{eq:mid_cont_amp} oraz \eqref{eq:mid_cont_phi} przyjmują postać:
 \begin{gather}
-\tilde{K}_{b} \left( \omega \right) = \left( \frac{\omega^{2}}{4 \pi^{2} f_{b,g}^{2}} + 1 \right)^{-\frac{1}{2}} \label{eq:sym_partb_amp_real}, \\
-\tilde{\varphi}_{b} \left( \omega \right) = \arctan \left( -\frac{\omega}{2 \pi f_{b,g}} \right) \label{eq:sym_partb_phi_real},
+\tilde{K}_{b} \emb{\omega} = \left( \frac{\omega^{2}}{4 \pi^{2} f_{b,g}^{2}} + 1 \right)^{-\frac{1}{2}} \label{eq:sym_partb_amp_real}, \\
+\tilde{\varphi}_{b} \emb{\omega} = \arctan \left( -\frac{\omega}{2 \pi f_{b,g}} \right) \label{eq:sym_partb_phi_real},
 \end{gather}
 przy czym dla idealnej transmitancji $\dot{G}_{b}(j\omega)$ parametry te wynoszą kolejno:
 \begin{gather}
-\dot{K}_{b} \left( \omega \right) = 1 \label{eq:sym_partb_amp_ideal}, \\
-\dot{\varphi}_{b} \left( \omega \right) = 0 \label{eq:sym_partb_phi_ideal}.
+\dot{K}_{b} \emb{\omega} = 1 \label{eq:sym_partb_amp_ideal}, \\
+\dot{\varphi}_{b} \emb{\omega} = 0 \label{eq:sym_partb_phi_ideal}.
 \end{gather}
 Temperatura otoczenia wpływać będzie na dryf zera, zgodnie z poniższą zależnością:
 \begin{equation}
-f_{b,z} \left( \vartheta \left( t \right) \right) = \frac{7}{2} \left( \vartheta \left( t \right) - \qty{20}{\degreeCelsius} \right) ~\unit{\frac{mV}{K}} \label{eq:sym_partb_temp_err}.
+f_{b,z} \left( \vartheta \emb{t} \right) = \frac{7}{2} \left( \vartheta \emb{t} - \qty{20}{\degreeCelsius} \right) ~\unit{\frac{mV}{K}} \label{eq:sym_partb_temp_err}.
 \end{equation}
 
 Można zatem, podobnie jak w ramach poprzedniego fragmentu toru pomiarowego, opisać właściwości analizowanego obiektu stosując zaproponowany w pracy model:
 \begin{gather}
-\dot{y}_{b} \left( t \right) = f_{b} \left( \dot{y}_{a} \left( t \right) \right) = 3.3 \cdot \dot{y}_{a} \left( t \right) \label{eq:sym_partb_out_ideal}, \\
-\tilde{y}_{b} \left( t \right) = \dot{y}_{b} \left( t \right) + e_{b,\Sigma} \left( t \right) \label{eq:sym_partb_out_real},
+\dot{y}_{b} \emb{t} = f_{b} \left( \dot{y}_{a} \emb{t} \right) = 3.3 \cdot \dot{y}_{a} \emb{t} \label{eq:sym_partb_out_ideal}, \\
+\tilde{y}_{b} \emb{t} = \dot{y}_{b} \emb{t} + e_{b,\Sigma} \emb{t} \label{eq:sym_partb_out_real},
 \end{gather}
 Na wypadkowy błąd $e_{b,\Sigma}(t)$ składać się będą błędy zawarte w przetwarzanym sygnale $y_{a}(t)$ przenoszone przez analizowany element oraz błędy własne, które wprowadzane będą przez analizowany wzmacniacz pomiarowy.
 
 Pierwszą omawianą grupą błędów będą błędy własne, wprowadzane przez analizowany obiekt. Błąd statyczny własny, wynikający z dryfu zera spowodowanego temperaturą otoczenia, opisać można równaniem:
 \begin{equation}
-e_{b,sw} \left( t \right) = f_{b,z} \left( \vartheta \left( t \right) \right) \label{eq:sym_partb_err_sw},
+e_{b,sw} \emb{t} = f_{b,z} \left( \vartheta \emb{t} \right) \label{eq:sym_partb_err_sw},
 \end{equation}
 natomiast błąd dynamiczny własny, wynikający z nieidealnej transmitancji obiektu, dla pojedynczej harmonicznej o pulsacji $\omega$ opisuje równanie:
 \begin{equation}
 \begin{split}
-e_{b,dw} \left( t,\omega \right) = ~
-& \dot{f}_{b} \left( \tilde{K}_{b} \left( \omega \right) E_{a,o} \left( \omega \right) \sin \left( \omega t + \varphi_{a,o} \left( \omega \right) + \tilde{\varphi}_{b} \left( \omega \right) \right) \right)- \\
-& \dot{f}_{b} \left( \dot{K}_{b} \left( \omega \right) E_{a,o} \left( \omega \right) \sin \left( \omega t + \varphi_{a,o} \left( \omega \right) + \dot{\varphi}_{b} \left( \omega \right) \right) \right) = \\
-& \dot{f}_{b} \left( \tilde{K}_{b} \left( \omega \right) E_{s,o} \left( \omega \right) \sin \left( \omega t + \varphi_{s,o} \left( \omega \right) + \tilde{\varphi}_{b} \left( \omega \right) \right) \right) - \\
-& \dot{f}_{b} \left( \dot{K}_{b} \left( \omega \right) E_{s,o} \left( \omega \right) \sin \left( \omega t + \varphi_{s,o} \left( \omega \right) + \dot{\varphi}_{b} \left( \omega \right) \right) \right)
+e_{b,dw} \emb{t,\omega} = ~
+& \dot{f}_{b} \left( \tilde{K}_{b} \emb{\omega} E_{a,o} \emb{\omega} \sin \left( \omega t + \varphi_{a,o} \emb{\omega} + \tilde{\varphi}_{b} \emb{\omega} \right) \right)- \\
+& \dot{f}_{b} \left( \dot{K}_{b} \emb{\omega} E_{a,o} \emb{\omega} \sin \left( \omega t + \varphi_{a,o} \emb{\omega} + \dot{\varphi}_{b} \emb{\omega} \right) \right) = \\
+& \dot{f}_{b} \left( \tilde{K}_{b} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \tilde{\varphi}_{b} \emb{\omega} \right) \right) - \\
+& \dot{f}_{b} \left( \dot{K}_{b} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \dot{\varphi}_{b} \emb{\omega} \right) \right)
 \end{split}
 \label{eq:sym_partb_dyn_self_err},
 \end{equation}
 wynikające z zależności \eqref{eq:mid_cont_err_dyn_self} oraz \eqref{eq:out_cont_err_dyn_prop}, przy czym wypadkowy błąd dynamiczny własny jest określony w postaci sumy kolejnych harmonicznych sygnału błędu dynamicznego własnego i może zostać opisany w postaci:
 \begin{equation}
-e_{b,dw} \left( t \right) = \sum _{i = 1} ^{\infty} e_{b,dw} \left( t,\omega_{a,i} \right) \label{eq:sym_partb_dyn_self_sum}.
+e_{b,dw} \emb{t} = \sum _{i = 1} ^{\infty} e_{b,dw} \emb{t,\omega_{a,i}} \label{eq:sym_partb_dyn_self_sum}.
 \end{equation}
 
 Drugą grupę błędów stanowią błędy propagowane, przenoszone z wejścia na wyjście obiektu. Błędy statyczny $e_{a,sw}(t)$, związany z dryfem zera przetwornika pomiarowego, oraz losowy $e_{a,rw}$, związany z nieliniowością charakterystyki zastosowanego przetwornika pomiarowego, będą przenoszone zgodnie z następującymi zależnościami:
 \begin{gather}
-e_{b,sp} \left( t \right) = \dot{f}_{b} \left( e_{a,sw} \left( t \right) \right) = 3.3 \cdot e_{a,sw} \left( t \right) \label{eq:sym_partb_stat_prop_err}, \\
-e_{b,rp,1} \left( t \right) = \dot{f}_{b} \left( e_{a,rw} \left( t \right) \right) = 3.3 \cdot e_{a,rw} \left( t \right) \label{eq:sym_partb_rand_prop_err_1}.
+e_{b,sp} \emb{t} = \dot{f}_{b} \left( e_{a,sw} \emb{t} \right) = 3.3 \cdot e_{a,sw} \emb{t} \label{eq:sym_partb_stat_prop_err}, \\
+e_{b,rp,1} \emb{t} = \dot{f}_{b} \left( e_{a,rw} \emb{t} \right) = 3.3 \cdot e_{a,rw} \emb{t} \label{eq:sym_partb_rand_prop_err_1}.
 \end{gather}
 Błąd losowy $e_{b,rp,2}$ związany z szumem obecnym w sygnale pomiarowym, z którym związany jest błąd $e_{a,rp,2}$, należy analizować zgodnie z zależnościami \eqref{eq:mid_cont_var_rand} oraz \eqref{eq:out_cont_err_rand_prop}. Podobnie, jak w przypadku analizowanego przetwornika pomiarowego, w zakresie częstotliwości próbkowania transmitancja obiektu nie będzie miała wpływu na widmo przetwarzanego sygnału szumu. Można zatem zapisać równanie opisujące przebieg omawianego błędu na wyjściu obiektu:
 \begin{equation}
-e_{b,rp,2} \left( t \right) = \dot{f}_{b} \left( e_{a,rp} \left( t \right) \right) = 3.3 \cdot e_{a,rp} \left( t \right) \label{eq:sym_partb_rand_prop_err_2},
+e_{b,rp,2} \emb{t} = \dot{f}_{b} \left( e_{a,rp} \emb{t} \right) = 3.3 \cdot e_{a,rp} \emb{t} \label{eq:sym_partb_rand_prop_err_2},
 \end{equation}
 oraz wskazać zależność opisującą sumaryczny błąd losowy propagowany analizowanego obiektu daną równaniem:
 \begin{equation}
-e_{b,rp} \left( t \right) = e_{b,rp,1} \left( t \right) + e_{b,rp,2} \left( t \right) = 3.3 \left( e_{a,rp} \left( t \right) + e_{a,rw} \left( t \right) \right) \label{eq:sym_partb_rand_prop_err},
+e_{b,rp} \emb{t} = e_{b,rp,1} \emb{t} + e_{b,rp,2} \emb{t} = 3.3 \left( e_{a,rp} \emb{t} + e_{a,rw} \emb{t} \right) \label{eq:sym_partb_rand_prop_err},
 \end{equation}
 Propagacja błędów dynamicznych $e_{a,dw}$ zawartych w przetwarzanym sygnale analizowana będzie z osobna dla każdej harmonicznej błędu dynamicznego, których parametry zestawiono w tabeli \ref{tab:sym_parta_params_dyn_summary}. Harmoniczne te, zgodnie z charakterystyką dynamiczną analizowanego wzmacniacza, będą odpowiednio tłumione i przesuwane w fazie, a następnie zgodnie z jego charakterystyką statyczną zostaną wzmocnione. Przedstawione zależności, zgodnie z równaniami \eqref{eq:mid_cont_err_dyn_prop} oraz \eqref{eq:out_cont_err_dyn_prop} przyjmują postać:
 \begin{gather}
-e_{b,dp} \left( t,\omega \right) = \dot{f}_{b} \left( \tilde{K}_{b} \left( \omega \right) E_{a,e} \left( \omega \right) \sin \left( \omega t + \varphi_{a,e} \left( \omega \right) + \tilde{\varphi}_{b} \left( \omega \right) \right) \right) \label{eq:sym_partb_dyn_prop_err},\\
-e_{b,dp} \left( t \right) = \sum _{i = 1} ^{\infty} e_{b,dp} \left( t,\omega_{a,i} \right) \label{eq:sym_partb_dyn_prop_sum}.
+e_{b,dp} \emb{t,\omega} = \dot{f}_{b} \left( \tilde{K}_{b} \emb{\omega} E_{a,e} \emb{\omega} \sin \left( \omega t + \varphi_{a,e} \emb{\omega} + \tilde{\varphi}_{b} \emb{\omega} \right) \right) \label{eq:sym_partb_dyn_prop_err},\\
+e_{b,dp} \emb{t} = \sum _{i = 1} ^{\infty} e_{b,dp} \emb{t,\omega_{a,i}} \label{eq:sym_partb_dyn_prop_sum}.
 \end{gather}
 
 Na podstawie przedstawionych zależności, zgodnie z równaniem \eqref{eq:out_cont_err_sum_add}, opisać można wypadkowy błąd wielkości wyjściowej analizowanego wzmacniacza pomiarowego w postaci równania:
 \begin{equation}
-e_{b,\Sigma} \left( t \right) = e_{b,sw} \left( t \right) + e_{b,sp} \left( t \right) + e_{b,rp} \left( t \right) + e_{b,dw} \left( t \right) + e_{b,dp} \left( t \right) \label{eq:sym_partb_error_sum}.
+e_{b,\Sigma} \emb{t} = e_{b,sw} \emb{t} + e_{b,sp} \emb{t} + e_{b,rp} \emb{t} + e_{b,dw} \emb{t} + e_{b,dp} \emb{t} \label{eq:sym_partb_error_sum}.
 \end{equation}
 
 Kolejny etap analizy sprowadza się do wyznaczenia parametrów opisanych sygnałów błędów. Jako, że proces pomiaru powtarzany będzie wielokrotnie, należy dla wskazanych sygnałów określić ich parametry w kategorii probabilistycznej, uwzględniając zachodzące pomiędzy nimi związki. W przypadku błędów dynamicznych należy, analogicznie jak w przypadku przedstawionej analizy przetwornika pomiarowego, wyznaczyć wypadkowe amplitudy i przesunięcia w fazie kolejnych harmonicznych sygnału błędu. W analizowanym przypadku każda wypadkowa harmoniczna sygnału błędu dynamicznego złożona będzie z trzech składników -- dwóch wynikających z równania \eqref{eq:sym_partb_dyn_self_err} oraz jednej wynikającej z równania \eqref{eq:sym_partb_dyn_prop_err}. Parametry wypadkowe należy wyznaczyć zgodnie z metodą opisaną w równaniach od \eqref{eq:dyn_vect} do \eqref{eq:dyn_vect_phi}. W przypadku pozostałych błędów składowych należy określić ich wariancję uwzględniając funkcję przetwarzania obiektu, przy czym w przypadku liniowej i addytywnej funkcji przetwarzania zapisać można zależność:
 \begin{equation}
-\sigma_{wy}^{2} = f \left( \sigma_{we} \right)^{2} \label{eq:var_function},
+\sigma_{wy}^{2} = f \emb{\sigma_{we}}^{2} \label{eq:var_function},
 \end{equation}
 gdzie $\sigma_{wy}^{2}$ jest wariancją na wyjściu funkcji przetwarzania $f(x)$, a $\sigma_{we}^{2}$ wariancją na wejściu. Dodatkowo zauważyć należy, że kształt rozkładu przetwarzanej wielkości nie ulega zmianie. Wyznaczone analogicznie do przykładu opisanego w równaniach od \eqref{eq:sym_parta_dyn_self_example_sum} do \eqref{eq:sym_parta_dyn_self_example_phi} parametry wypadkowe sygnału błędu dynamicznego $e_{b,d}$ zestawiono w tabeli \ref{tab:sym_partb_params_dyn_summary}, natomiast tabela \ref{tab:sym_partb_params_unc_list} przedstawia budżet niepewności wielkości wyjściowej analizowanego wzmacniacza pomiarowego z uwzględnieniem podziału na błędy własne i propagowane.
 
@@ -477,19 +477,19 @@ Analizując wyniki eksperymentu zauważyć można, że uzyskane wyniki dla błę
 
 Kolejnym elementem wchodzącym w skład analizowanego toru pomiarowego jest przetwornik analogowo-cyfrowy. W eksperymencie zakłada się, że element jest realizowany przy użyciu 8-bitowego przetwornika wagowego o zakresie napięcia wejściowego z przedziału $<-3;3>\unit{V}$. Wobec powyższych liczba dostępnych wartości wielkości wyjściowej tego przetwornika wynosi $N_{q} = 256$, natomiast wartość kwantu jest równa $q = \frac{3 - (-3) ~\unit{V}}{256} = \qty{23.44}{mV}$. Zakładając, że wielkością wyjściową $x_{c}(n)$ analizowanego przetwornika będzie dyskretna reprezentacja wielkości wejściowej $y_{b}(t)$, zapisać można następujące zależności:
 \begin{gather}
-\dot{x}_{c} \left( n \right) = \dot{y}_{b} \left( nT_{p} \right) \label{eq:sym_partc_out_ideal}, \\
-\tilde{x}_{c} \left( n \right) = \tilde{y}_{b} \left( nT_{p} \right) + e_{c,q} \left( \tilde{y}_{b} \left( nT_{p} \right) \right) = \dot{x}_{c} \left( n \right) + e_{c,\Sigma} \left( n \right) \label{eq:sym_partc_out_real}, \\
-e_{c,\Sigma} \left( n \right) = e_{b,\Sigma} \left( nT_{p} \right) + e_{c,q} \left( \tilde{y}_{b} \left( nT_{p} \right) \right) \label{eq:sym_partc_error_sum},
+\dot{x}_{c} \emb{n} = \dot{y}_{b} \emb{nT_{p}} \label{eq:sym_partc_out_ideal}, \\
+\tilde{x}_{c} \emb{n} = \tilde{y}_{b} \emb{nT_{p}} + e_{c,q} \left( \tilde{y}_{b} \emb{nT_{p}} \right) = \dot{x}_{c} \emb{n} + e_{c,\Sigma} \emb{n} \label{eq:sym_partc_out_real}, \\
+e_{c,\Sigma} \emb{n} = e_{b,\Sigma} \emb{nT_{p}} + e_{c,q} \left( \tilde{y}_{b} \emb{nT_{p}} \right) \label{eq:sym_partc_error_sum},
 \end{gather}
 gdzie $T_{p}$ jest okresem próbkowania równym $\frac{1}{\qty{48}{kHz}} = \qty{20.8(3)}{\micro s}$.
 Na podstawie zależności danych równaniami od \eqref{eq:adc_function} do \eqref{eq:adc_qerrrange} zapisać można nierówność określającą przedział, w jakim znajdować się będzie błąd kwantowania $e_{c,q}(x)$ jako:
 \begin{equation}
-\qty{-11.72}{mV} \le e_{c,q} \left( x \right) \le \qty{11.72}{mV} \label{eq:sym_partc_error_quant}.
+\qty{-11.72}{mV} \le e_{c,q} \emb{x} \le \qty{11.72}{mV} \label{eq:sym_partc_error_quant}.
 \end{equation}
 
 Analizując równanie \eqref{eq:sym_partc_out_real} zauważyć można, że realizacja błędu kwantowania zależna jest od wartości przetwarzanej wielkości wejściowej analizowanego przetwornika. Jednakże, jak wykazano w pracach \cite{sienkowski_kwant, sienkowski_adc}, zależność tą można pominąć. Przy założeniu, że uzyskanie na wejściu przetwornika dowolnej wartości z zakresu wartości wielkości wejściowej jest jednakowo prawdopodobne oraz że podczas pomiaru wielkość ta będzie się zmieniać, powtarzając proces pomiaru wielokrotnie, z punktu widzenia pojedynczego okna pomiarowego błąd kwantowania $e_{c,q}(x)$ rozpatrywać można w kategoriach probabilistycznych jako losową realizację wielkości z zakresu opisanego równaniem \eqref{eq:sym_partc_error_quant} o rozkładzie jednostajnym \cite{jakubiec_system}. Takie podejście umożliwia zastosowanie zaproponowanego w pracy modelu błędu, podczas gdy analiza zakładająca funkcję przetwarzania omawianego obiektu daną w postaci równania \eqref{eq:adc_output} byłaby skomplikowana. Wobec powyższych założeń wariancja $\sigma_{c,q}^{2}$ oraz niepewność rozszerzona $U_{c,q}$ związane z błędem kwantowania $e_{c,q}(x)$ mogą być opisane przez następujące zależności:
 \begin{gather}
-\sigma_{c,q}^{2} = \frac{ q^{2}}{12} = \frac{ \left( \num{23.44e-3} \right)^{2} }{12} = \qty{45.78}{\micro V} \label{eq:sym_partc_var_quant}, \\
+\sigma_{c,q}^{2} = \frac{ q^{2}}{12} = \frac{\emb{\num{23.44e-3}}^{2} }{12} = \qty{45.78}{\micro V} \label{eq:sym_partc_var_quant}, \\
 U_{c,q} = c_{u} \sigma_{c,q} = 1.65 \cdot \num{6.77e-3} = \qty{11.16}{mV} \label{eq:sym_partc_uncert_quant}.
 \end{gather}
 
@@ -556,54 +556,54 @@ Ostatnim fragmentem analizowanego toru pomiarowego, a za razem najistotniejszym 
 
 Wobec powyższych założeń oraz modelu zaproponowanego w równaniach od \eqref{eq:alg_out_mat} do \eqref{eq:alg_out_single} wektor wielkości wejściowych analizowanego algorytmu opisać można w postaci:
 \begin{gather}
-\dot{\mathbf{x}}_{d}^{T} \left( k \right) =
+\dot{\mathbf{x}}_{d}^{T} \emb{k} =
 \begin{bmatrix}
-\dot{x}_{c} \left( kT_{p} \right) & \dot{x}_{c} \left( \left( k+1 \right) T_{p} \right) & \hdots & \dot{x}_{c} \left( \left( k+7 \right) T_{p} \right)
+\dot{x}_{c} \emb{kT_{p}} & \dot{x}_{c} \left( \emb{k+1} T_{p} \right) & \hdots & \dot{x}_{c} \left( \emb{k+7} T_{p} \right)
 \end{bmatrix}
 \label{eq:sym_partd_input_ideal}, \\
-\tilde{\mathbf{x}}_{d}^{T} \left( k \right) =
+\tilde{\mathbf{x}}_{d}^{T} \emb{k} =
 \begin{bmatrix}
-\tilde{x}_{c} \left( kT_{p} \right) & \tilde{x}_{c} \left( \left( k+1 \right) T_{p} \right) & \hdots & \tilde{x}_{c} \left( \left( k+7 \right) T_{p} \right)
+\tilde{x}_{c} \emb{kT_{p}} & \tilde{x}_{c} \left( \emb{k+1} T_{p} \right) & \hdots & \tilde{x}_{c} \left( \emb{k+7} T_{p} \right)
 \end{bmatrix}
 \label{eq:sym_partd_input_real},
 \end{gather}
 natomiast wektor błędu wypadkowego wielkości wyjściowych algorytmu opisuje równanie:
 \begin{equation}
-\mathbf{e}_{d,\Sigma}^{T} \left( k \right) =
+\mathbf{e}_{d,\Sigma}^{T} \emb{k} =
 \begin{bmatrix}
-e_{c,\Sigma} \left( kT_{p} \right) & e_{c,\Sigma} \left( \left( k+1 \right) T_{p} \right) & \hdots & e_{c,\Sigma} \left( \left( k+7 \right) T_{p} \right)
+e_{c,\Sigma} \emb{kT_{p}} & e_{c,\Sigma} \left( \emb{k+1} T_{p} \right) & \hdots & e_{c,\Sigma} \left( \emb{k+7} T_{p} \right)
 \end{bmatrix}
 \label{eq:sym_partd_input_error_sum}.
 \end{equation}
 Dodatkowo zdefiniować można wektory błędów rozpatrując zaproponowany podział na błędy statyczne, losowe oraz dynamiczne:
 \begin{gather}
-\mathbf{e}_{d,s}^{T} \left( k \right) =
+\mathbf{e}_{d,s}^{T} \emb{k} =
 \begin{bmatrix}
-e_{c,s} \left( kT_{p} \right) & e_{c,s} \left( \left( k+1 \right) T_{p} \right) & \hdots & e_{c,s} \left( \left( k+7 \right) T_{p} \right)
+e_{c,s} \emb{kT_{p}} & e_{c,s} \left( \emb{k+1} T_{p} \right) & \hdots & e_{c,s} \left( \emb{k+7} T_{p} \right)
 \end{bmatrix}
 \label{eq:sym_partd_input_error_stat}, \\
-\mathbf{e}_{d,r}^{T} \left( k \right) =
+\mathbf{e}_{d,r}^{T} \emb{k} =
 \begin{bmatrix}
-e_{c,r} \left( kT_{p} \right) & e_{c,r} \left( \left( k+1 \right) T_{p} \right) & \hdots & e_{c,r} \left( \left( k+7 \right) T_{p} \right)
+e_{c,r} \emb{kT_{p}} & e_{c,r} \left( \emb{k+1} T_{p} \right) & \hdots & e_{c,r} \left( \emb{k+7} T_{p} \right)
 \end{bmatrix}
 \label{eq:sym_partd_input_error_rand}, \\
-\mathbf{e}_{d,d}^{T} \left( k \right) =
+\mathbf{e}_{d,d}^{T} \emb{k} =
 \begin{bmatrix}
-e_{c,d} \left( kT_{p} \right) & e_{c,d} \left( \left( k+1 \right) T_{p} \right) & \hdots & e_{c,d} \left( \left( k+7 \right) T_{p} \right)
+e_{c,d} \emb{kT_{p}} & e_{c,d} \left( \emb{k+1} T_{p} \right) & \hdots & e_{c,d} \left( \emb{k+7} T_{p} \right)
 \end{bmatrix}
 \label{eq:sym_partd_input_error_dyn},
 \end{gather}
 a także w analogiczny sposób rozpatrywać można wektory błędów cząstkowych, których parametry zestawiono w tabeli \ref{tab:sym_partc_params_unc_list}. Wobec powyższego, zgodnie z równaniem \eqref{eq:alg_out_mul}, wektor wielkości wyjściowych opisać można jako:
 \begin{gather}
-\dot{\mathbf{X}} \left( k \right) = \mathbf{A} \cdot \dot{\mathbf{x}}_{d} \left( k \right) \label{eq:sym_partd_output_ideal}, \\
-\tilde{\mathbf{X}} \left( k \right) = \mathbf{A} \cdot \tilde{\mathbf{x}}_{d} \left( k \right) \label{eq:sym_partd_output_real},
+\dot{\mathbf{X}} \emb{k} = \mathbf{A} \cdot \dot{\mathbf{x}}_{d} \emb{k} \label{eq:sym_partd_output_ideal}, \\
+\tilde{\mathbf{X}} \emb{k} = \mathbf{A} \cdot \tilde{\mathbf{x}}_{d} \emb{k} \label{eq:sym_partd_output_real},
 \end{gather}
 natomiast kolejne wektory błędów wielkości wyjściowej są opisane zależnościami przedstawionymi jako:
 \begin{gather}
-\mathbf{e}_{X,\Sigma} \left( k \right) = \mathbf{A} \cdot \mathbf{e}_{d,\Sigma} \left( k \right) \label{eq:sym_partd_output_error_sum}, \\
-\mathbf{e}_{X,s} \left( k \right) = \mathbf{A} \cdot \mathbf{e}_{d,s} \left( k \right) \label{eq:sym_partd_output_error_stat}, \\
-\mathbf{e}_{X,r} \left( k \right) = \mathbf{A} \cdot \mathbf{e}_{d,r} \left( k \right) \label{eq:sym_partd_output_error_rand}, \\
-\mathbf{e}_{X,d} \left( k \right) = \mathbf{A} \cdot \mathbf{e}_{d,d} \left( k \right) \label{eq:sym_partd_output_error_dyn}.
+\mathbf{e}_{X,\Sigma} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,\Sigma} \emb{k} \label{eq:sym_partd_output_error_sum}, \\
+\mathbf{e}_{X,s} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,s} \emb{k} \label{eq:sym_partd_output_error_stat}, \\
+\mathbf{e}_{X,r} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,r} \emb{k} \label{eq:sym_partd_output_error_rand}, \\
+\mathbf{e}_{X,d} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,d} \emb{k} \label{eq:sym_partd_output_error_dyn}.
 \end{gather}
 Należy zauważyć, że tak jak w przypadku wektora wielkości wejściowych, tak i w przypadku wektora wielkości wyjściowych, wyróżnić można również osobne wektory błędu dla każdego z opisanych w tabeli \ref{tab:sym_partc_params_unc_list} sygnałów. Zgodnie z oznaczeniami przyjętymi w równaniach \eqref{eq:db2_invect} oraz \eqref{eq:db2_outvect}, wektory wielkości wejściowych i wyjściowych pojedynczej realizacji algorytmu będą w dalszej części rozdziału oznaczone symbolami:
 \begin{gather}
@@ -637,54 +637,54 @@ Przedstawiane w dalszej części obliczenia dotyczyć będą dwóch przykładowy
 Zgodnie z równaniem \eqref{eq:alg_trans_single} oraz postacią macierzy $\mathbf{A}$ daną równaniem \eqref{eq:db2_2_8_matrix}, transmitancje algorytmu związane z omawianymi wielkościami wyjściowymi przedstawiają równania:
 \begin{gather}
 \begin{split}
-H_{S_{2,0}} \left( z \right) = ~
+H_{S_{2,0}} \emb{z} = ~
 & \frac{5 - \sqrt{3}}{16} + \frac{5 + \sqrt{3}}{16} z^{-1} + \frac{3 + 3 \sqrt{3}}{16} z^{-2} + \frac{5 + 3 \sqrt{3}}{16} z^{-3} + \\
 & \frac{3 + \sqrt{3}}{16} z^{-4} + \frac{3 - \sqrt{3}}{16} z^{-5} + \frac{5 - 3 \sqrt{3}}{16} z^{-6} + \frac{3 - 3 \sqrt{3}}{16} z^{-7}
 \end{split}
 \label{eq:sym_partd_output_trans_z_S_2_0}, \\
-H_{T_{1,0}} \left( z \right) = \frac{1 - \sqrt{3}}{4 \sqrt{2}} - \frac{3 - \sqrt{3}}{4 \sqrt{2}} z^{-1} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} z^{-2} - \frac{1 + \sqrt{3}}{4 \sqrt{2}} z^{-3} \label{eq:sym_partd_output_trans_z_T_1_0}.
+H_{T_{1,0}} \emb{z} = \frac{1 - \sqrt{3}}{4 \sqrt{2}} - \frac{3 - \sqrt{3}}{4 \sqrt{2}} z^{-1} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} z^{-2} - \frac{1 + \sqrt{3}}{4 \sqrt{2}} z^{-3} \label{eq:sym_partd_output_trans_z_T_1_0}.
 \end{gather}
 Po podstawieniu do równań \eqref{eq:sym_partd_output_trans_z_S_2_0} oraz \eqref{eq:sym_partd_output_trans_z_T_1_0} założenia gdzie $z = e^{j\omega}$ otrzymuje się zależności opisujące transmitancje wybranych wierszy w funkcji pulsacji znormalizowanej:
 \begin{gather}
 \begin{split}
-G_{S_{2,0}} \left( \omega_{n} \right) = ~
+G_{S_{2,0}} \emb{\omega_{n}} = ~
 & \frac{5 - \sqrt{3}}{16} + \frac{5 + \sqrt{3}}{16} e^{-j\omega} + \frac{3 + 3 \sqrt{3}}{16} e^{-2j\omega} + \frac{5 + 3 \sqrt{3}}{16} e^{-3j\omega} + \\
 & \frac{3 + \sqrt{3}}{16} e^{-4j\omega} + \frac{3 - \sqrt{3}}{16} e^{-5j\omega} + \frac{5 - 3 \sqrt{3}}{16} e^{-6j\omega} + \frac{3 - 3 \sqrt{3}}{16} e^{-7j\omega}
 \end{split}
 \label{eq:sym_partd_output_trans_wn_S_2_0}, \\
-G_{T_{1,0}} \left( \omega_{n} \right) = \frac{1 - \sqrt{3}}{4 \sqrt{2}} - \frac{3 - \sqrt{3}}{4 \sqrt{2}} e^{-j\omega} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} e^{-2j\omega} - \frac{1 + \sqrt{3}}{4 \sqrt{2}} e^{-3j\omega} \label{eq:sym_partd_output_trans_wn_T_1_0},
+G_{T_{1,0}} \emb{\omega_{n}} = \frac{1 - \sqrt{3}}{4 \sqrt{2}} - \frac{3 - \sqrt{3}}{4 \sqrt{2}} e^{-j\omega} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} e^{-2j\omega} - \frac{1 + \sqrt{3}}{4 \sqrt{2}} e^{-3j\omega} \label{eq:sym_partd_output_trans_wn_T_1_0},
 \end{gather}
 przy czym pulsacja znormalizowana wyznaczana jest zgodnie z zależnością \eqref{eq:puls_norm} i przyjmuje wartości z zakresu $<0;\pi>$. Następnie, zgodnie z zależnościami \eqref{eq:mid_disc_amp} oraz \eqref{eq:mid_disc_phi} wyznaczyć można wzmocnienie oraz przesunięcie fazowe dla analizowanych wielkości wyjściowych w funkcji pulsacji \cite{proakis_dsp}:
 \begin{gather}
-K \left( \omega \right) = \sqrt{\Re \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)^{2} + \Im \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)^{2}} \label{eq:sym_partd_output_amp_w}, \\
-\varphi \left( \omega \right) = \arctan \left( \frac{\Im \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)}{\Re \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)} \right) \label{eq:sym_partd_output_phi_w},
+K \emb{\omega} = \sqrt{\Re \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)^{2} + \Im \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)^{2}} \label{eq:sym_partd_output_amp_w}, \\
+\varphi \emb{\omega} = \arctan \left( \frac{\Im \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)}{\Re \left( G \left( 2\pi \frac{\omega}{\omega_{n}} \right) \right)} \right) \label{eq:sym_partd_output_phi_w},
 \end{gather}
 gdzie w opisywanym przypadku składniki powyższych równań wynoszą kolejno dla $T_{1,0}$:
 \begin{gather}
 \begin{split}
-\Re \left( G_{T_{1,0}} \left( \omega_{n} \right) \right) = ~
-& \frac{5 + \sqrt{3}}{16} \cos \left( \omega_{n} \right) + \frac{3 + 3 \sqrt{3}}{16} \cos \left( 2\omega_{n} \right) + \frac{5 + 3 \sqrt{3}}{16} \cos \left( 3\omega_{n} \right) + \\
-& \frac{3 + \sqrt{3}}{16} \cos \left( 4\omega_{n} \right) + \frac{3 - \sqrt{3}}{16} \cos \left( 5\omega_{n} \right) + \frac{5 - 3 \sqrt{3}}{16} \cos \left( 6\omega_{n} \right) + \\
-& \frac{3 - 3 \sqrt{3}}{16} \cos \left( 7\omega_{n} \right) + \frac{5 - \sqrt{3}}{16}
+\Re \left( G_{T_{1,0}} \emb{\omega_{n}} \right) = ~
+& \frac{5 + \sqrt{3}}{16} \cos \emb{\omega_{n}} + \frac{3 + 3 \sqrt{3}}{16} \cos \emb{2\omega_{n}} + \frac{5 + 3 \sqrt{3}}{16} \cos \emb{3\omega_{n}} + \\
+& \frac{3 + \sqrt{3}}{16} \cos \emb{4\omega_{n}} + \frac{3 - \sqrt{3}}{16} \cos \emb{5\omega_{n}} + \frac{5 - 3 \sqrt{3}}{16} \cos \emb{6\omega_{n}} + \\
+& \frac{3 - 3 \sqrt{3}}{16} \cos \emb{7\omega_{n}} + \frac{5 - \sqrt{3}}{16}
 \end{split}
 \label{eq:sym_partd_output_trans_wn_re_S_2_0}, \\
 \begin{split}
-\Im \left( G_{T_{1,0}} \left( \omega_{n} \right) \right) = ~
-& - \frac{5 + \sqrt{3}}{16} \sin \left( \omega_{n} \right) - \frac{3 + 3 \sqrt{3}}{16} \sin \left( 2\omega_{n} \right) - \frac{5 + 3 \sqrt{3}}{16} \sin \left( 3\omega_{n} \right) \\
-& - \frac{3 + \sqrt{3}}{16} \sin \left( 4\omega_{n} \right) - \frac{3 - \sqrt{3}}{16} \sin \left( 5\omega_{n} \right) - \frac{5 - 3 \sqrt{3}}{16} \sin \left( 6\omega_{n} \right) \\
-& - \frac{3 - 3 \sqrt{3}}{16} \sin \left( 7\omega_{n} \right)
+\Im \left( G_{T_{1,0}} \emb{\omega_{n}} \right) = ~
+& - \frac{5 + \sqrt{3}}{16} \sin \emb{\omega_{n}} - \frac{3 + 3 \sqrt{3}}{16} \sin \emb{2\omega_{n}} - \frac{5 + 3 \sqrt{3}}{16} \sin \emb{3\omega_{n}} \\
+& - \frac{3 + \sqrt{3}}{16} \sin \emb{4\omega_{n}} - \frac{3 - \sqrt{3}}{16} \sin \emb{5\omega_{n}} - \frac{5 - 3 \sqrt{3}}{16} \sin \emb{6\omega_{n}} \\
+& - \frac{3 - 3 \sqrt{3}}{16} \sin \emb{7\omega_{n}}
 \end{split}
 \label{eq:sym_partd_output_trans_wn_im_S_2_0},
 \end{gather}
 natomiast dla wielkości wyjściowej $T_{1,0}$ wynoszą one odpowiednio:
 \begin{gather}
 \begin{split}
-\Re \left( G_{T_{1,0}} \left( \omega_{n} \right) \right) = ~
-& - \frac{3 - \sqrt{3}}{4 \sqrt{2}} \cos \left( \omega_{n} \right) + \frac{3 + \sqrt{3}}{4 \sqrt{2}} \cos \left( 2\omega_{n} \right) - \frac{1 + \sqrt{3}}{4 \sqrt{2}} \cos \left( 3\omega_{n} \right) + \\
+\Re \left( G_{T_{1,0}} \emb{\omega_{n}} \right) = ~
+& - \frac{3 - \sqrt{3}}{4 \sqrt{2}} \cos \emb{\omega_{n}} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} \cos \emb{2\omega_{n}} - \frac{1 + \sqrt{3}}{4 \sqrt{2}} \cos \emb{3\omega_{n}} + \\
 & \frac{1 - \sqrt{3}}{4 \sqrt{2}}
 \end{split}
 \label{eq:sym_partd_output_trans_wn_re_T_1_0}, \\
-\Im \left( G_{T_{1,0}} \left( \omega_{n} \right) \right) = \frac{3 - \sqrt{3}}{4 \sqrt{2}} \sin \left( \omega_{n} \right) - \frac{3 + \sqrt{3}}{4 \sqrt{2}} \sin \left( 2\omega_{n} \right) + \frac{1 + \sqrt{3}}{4 \sqrt{2}} \sin \left( 3\omega_{n} \right)
+\Im \left( G_{T_{1,0}} \emb{\omega_{n}} \right) = \frac{3 - \sqrt{3}}{4 \sqrt{2}} \sin \emb{\omega_{n}} - \frac{3 + \sqrt{3}}{4 \sqrt{2}} \sin \emb{2\omega_{n}} + \frac{1 + \sqrt{3}}{4 \sqrt{2}} \sin \emb{3\omega_{n}}
 \label{eq:sym_partd_output_trans_wn_im_T_1_0}.
 \end{gather}
 
@@ -706,9 +706,9 @@ Wobec powyższych zależności oraz na podstawie danych zawartych w tabeli \ref{
 \end{gather}
 W przypadku błędów o charakterze dynamicznym, wariancje kolejnych harmonicznych tych błędów wyznaczyć można na podstawie zależności \eqref{eq:dyn_std}, stosując właściwości transformacji Fouriera opisane w \cite{oppenheim_sns}:
 \begin{gather}
-\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,1} \right) = {1.998}^{2} \cdot \num{42.6e-6} = \qty{170.04}{\micro V} \label{eq:sym_partd_output_var_dyn_1_S_2_0}, \\
-\sigma_{S_{2,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{S_{2,0}}^{2}\left(\omega_{c,e,2}\right) = {1.623}^{2} \cdot \num{266.34e-6} = \qty{704.44}{\micro V} \label{eq:sym_partd_output_var_dyn_2_S_2_0}, \\
-\sigma_{S_{2,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{S_{2,0}}^{2} \left( \omega_{c,e,3} \right) = {0.152}^{2} \cdot \num{266.11e-6} = \qty{6.18}{\micro V} \label{eq:sym_partd_output_var_dyn_3_S_2_0}.
+\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{S_{2,0}}^{2} \emb{\omega_{c,e,1}} = {1.998}^{2} \cdot \num{42.6e-6} = \qty{170.04}{\micro V} \label{eq:sym_partd_output_var_dyn_1_S_2_0}, \\
+\sigma_{S_{2,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{S_{2,0}}^{2}\emb{\omega_{c,e,2}} = {1.623}^{2} \cdot \num{266.34e-6} = \qty{704.44}{\micro V} \label{eq:sym_partd_output_var_dyn_2_S_2_0}, \\
+\sigma_{S_{2,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{S_{2,0}}^{2} \emb{\omega_{c,e,3}} = {0.152}^{2} \cdot \num{266.11e-6} = \qty{6.18}{\micro V} \label{eq:sym_partd_output_var_dyn_3_S_2_0}.
 \end{gather}
 Ze względu na brak korelacji przedstawionych sygnałów błędów wariancję błędu wypadkowego wyznaczyć można zgodnie z równaniem \eqref{eq:var_sum}, jako sumę wariancji kolejnych błędów cząstkowych:
 \begin{equation}
@@ -781,9 +781,9 @@ Analogicznie, jak w przypadku przedstawionych powyżej rozważań, parametry war
 \begin{gather}
 \sigma_{T_{1,0},s}^{2} = \sigma_{c,s}^{2} A_{T_{1,0},s}^{2} = 0^{2} \cdot \num{107.01e-6} = \qty{0.00}{\micro V} \label{eq:sym_partd_output_var_stat_T_1_0}, \\
 \sigma_{T_{1,0},r}^{2} = \sigma_{c,r}^{2} A_{T_{1,0},r}^{2} = 1^{2} \cdot \num{154.68e-6} = \qty{154.68}{\micro V} \label{eq:sym_partd_output_var_rand_T_1_0}, \\
-\sigma_{T_{1,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{T_{1,0}}^{2} \left( \omega_{c,e,1} \right) = {0.010}^{2} \cdot \num{42.6e-6} = \qty{0.0027}{\micro V} \label{eq:sym_partd_output_var_dyn_1_T_1_0}, \\
-\sigma_{T_{1,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{T_{1,0}}^{2}\left(\omega_{c,e,2}\right) = {0.244}^{2} \cdot \num{266.34e-6} = \qty{15.89}{\micro V} \label{eq:sym_partd_output_var_dyn_2_T_1_0}, \\
-\sigma_{T_{1,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{T_{1,0}}^{2} \left( \omega_{c,e,3} \right) = {1.243}^{2} \cdot \num{266.11e-6} = \qty{411.41}{\micro V} \label{eq:sym_partd_output_var_dyn_3_T_1_0}.
+\sigma_{T_{1,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{T_{1,0}}^{2} \emb{\omega_{c,e,1}} = {0.010}^{2} \cdot \num{42.6e-6} = \qty{0.0027}{\micro V} \label{eq:sym_partd_output_var_dyn_1_T_1_0}, \\
+\sigma_{T_{1,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{T_{1,0}}^{2}\emb{\omega_{c,e,2}} = {0.244}^{2} \cdot \num{266.34e-6} = \qty{15.89}{\micro V} \label{eq:sym_partd_output_var_dyn_2_T_1_0}, \\
+\sigma_{T_{1,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{T_{1,0}}^{2} \emb{\omega_{c,e,3}} = {1.243}^{2} \cdot \num{266.11e-6} = \qty{411.41}{\micro V} \label{eq:sym_partd_output_var_dyn_3_T_1_0}.
 \end{gather}
 Zgodnie z tabelą \ref{tab:varnum_db2_2_f16} wariancja błędu własnego zaokrągleń $\sigma_{T_{1,0},z}^{2}$ wynosi w tym przypadku \qty{0.699}{\micro V}, natomiast współczynnik rozszerzenia $c_{T_{1,0},z}$ jest równy $2.16$. Wobec powyższych, zgodnie z równaniem \eqref{eq:var_sum}, wariancję błędu wypadkowego wielkości wyjściowej $T_{1,0}$ opisuje zależność:
 \begin{equation}

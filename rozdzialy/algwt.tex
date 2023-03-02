@@ -2,7 +2,7 @@
 
 Algorytm transformacji falkowej oznaczany skrótem \enquote{WT} (ang. \enquote{Wavelet Transform}) jest przekształceniem umożliwiającym analizę sygnału w dziedzinie skala-czas \cite{wallen_handbook}. Skala w przypadku algorytmu transformacji falkowej stanowi wybrany zakres częstotliwości składowych (harmonicznych) analizowanego sygnału. Jest to podobna cecha, jak w przypadku algorytmu \enquote{STFT} (ang. \enquote{Short-time Fourier transform}) \cite{durak_sftp}, będącego modyfikacją transformacji Fouriera. W ogólnej formie algorytm ciągłej transformacji falkowej (\enquote{CWT} -- ang. \enquote{Continous Wavelet Transform}) opisać można równaniem \cite{lord_guide, wallen_handbook}:
 \begin{equation}
-w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \left( t \right) \psi \left( \frac{t-b}{a} \right) dt \label{eq:cwt},
+w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac{t-b}{a}} dt \label{eq:cwt},
 \end{equation}
 gdzie $w$ jest wyznaczonym współczynnikiem transformacji falkowej, $a$ parametrem skali, $b$ parametrem przesunięcia w czasie, natomiast $\psi$ równaniem falki-matki.
 
@@ -38,11 +38,11 @@ W praktyce wyznaczenie wszystkich współczynników algorytmu ciągłej transfor
 
 Modyfikacja fragmentu równania \eqref{eq:cwt} wprowadzająca opisywane założenie dyskretyzacji parametrów skali i czasu oraz założenie początkowych wartości parametrów skali i czasu, gdzie $a_{0} = 2$ oraz $b_{0} = 1$, pozwala uzyskać zależność opisującą kolejne falki stworzone na bazie falki-matki dla dyskretnych wartości parametru numeru skali i przesunięcia w czasie:
 \begin{equation}
-\psi_{m,n} \left( t \right) = \frac{1}{\sqrt{2^{m}}} \psi \left( \frac{t-2n^{m}}{2^{m}} \right) \label{eq:dwt_wavelet},
+\psi_{m,n} \emb{t} = \frac{1}{\sqrt{2^{m}}} \psi \emb{\frac{t-2n^{m}}{2^{m}}} \label{eq:dwt_wavelet},
 \end{equation}
 gdzie $m$ jest numerem skali, a $n$ numerem przesunięcia w czasie (numerem okna pomiarowego). Tak opisana falka jest zwykle ortogonalna oraz musi posiadać znormalizowaną energię, a zatem zapisać można:
 \begin{equation}
-\int _{-\infty} ^{\infty} \psi_{m,n} \left( t \right) \psi_{m',n'} dt =
+\int _{-\infty} ^{\infty} \psi_{m,n} \emb{t} \psi_{m',n'} dt =
 \begin{cases}
 	1 & $d $ m = m' $ oraz $ n = n' \\
 	0 & $w pozostałych przypadkach$
@@ -53,7 +53,7 @@ W praktyce oznacza to, że nie ma możliwości opisu dowolnej stworzonej na pods
 
 Podstawiając falkę opisaną równaniem \eqref{eq:dwt_wavelet} do równania \eqref{eq:cwt} otrzymuje się zależność opisującą dyskretną transformację falkową:
 \begin{equation}
-w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} x \left( t \right) \psi \left( \frac{t-2n^{m}}{2^{m}} \right) dt \label{eq:dwt}.
+w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac{t-2n^{m}}{2^{m}}} dt \label{eq:dwt}.
 \end{equation}
 Cechą algorytmu dyskretnej transformacji falkowej jest dynamiczna zależność rozdzielczości dziedziny czasu w funkcji skali. Dla niskich wartości parametru skali (wysokich częstotliwości sygnału) rozdzielczość w dziedzinie czasu jest większa w porównaniu z rozdzielczością dla skali wyższych (niższych zakresów częstotliwości). Jako, że sygnał o wyższej częstotliwości zmienia się bardziej dynamicznie, niż w przypadku sygnału o niższej częstotliwości, takie podejście jest bardzo korzystne. Umożliwia ono redukcję liczby współczynników transformacji (wielkości wyjściowych algorytmu), przy jednoczesnym zachowaniu optymalnej rozdzielczości w dziedzinie czasu oraz zapewnieniu możliwości rekonstrukcji oryginalnego przebiegu sygnału na podstawie uzyskanych współczynników transformacji.
 
@@ -61,17 +61,17 @@ Ze względu na fakt, że falka-matka dla zadanej skali stanowi filtr pasmowo-prz
 
 Stosując podobne założenia, jak w równaniu \eqref{eq:dwt_wavelet}, otrzymuje się równanie funkcji skalującej dla dyskretnej wartości numeru skali i przesunięcia w czasie:
 \begin{equation}
-\phi_{m,n} \left( t \right) = \frac{1}{\sqrt{2^{m}}} \phi \left( \frac{t-2n^{m}}{2^{m}} \right) dt \label{eq:dwt_scalefun},
+\phi_{m,n} \emb{t} = \frac{1}{\sqrt{2^{m}}} \phi \emb{\frac{t-2n^{m}}{2^{m}}} dt \label{eq:dwt_scalefun},
 \end{equation}
 Przy czym funkcję skalującą dla $m = n = 0$ nazywa się w literaturze \enquote{falką-ojcem} \cite{akujuobi_applications}. Właściwością funkcji skalującej jest spełnianie przez nią założenia odnośnie ograniczonej mocy, które jest opisane w postaci:
 \begin{equation}
-\int _{-\infty} ^{\infty} \phi_{0,0} \left( t \right) dt = 1 \label{eq:dwt_fatherwav},
+\int _{-\infty} ^{\infty} \phi_{0,0} \emb{t} dt = 1 \label{eq:dwt_fatherwav},
 \end{equation}
 a także ortogonalność względem samej siebie dla dowolnych różnych wartości parametru numeru przesunięcia w czasie. Warto zaznaczyć, że w przypadku zmiany parametru numeru skali kolejne wersje funkcji skalującej nie są wobec siebie ortogonalne. W praktyce jednak nie ma to znaczenia, ponieważ współczynniki transformacji zależne od funkcji skalującej wyznacza się tylko dla jednej wartości parametru numeru skali oraz dla wszystkich dostępnych wartości parametru numeru przesunięcia w czasie. Opisywane zależności będą związane aproksymacją przetwarzanego sygnału.
 
 Omawianą funkcję skalującą można przedstawić również w postaci sumy iloczynów współczynników skalowania oraz wartości przeskalowanej i przesuniętej w czasie funkcji skalującej, co opisuje następującą zależność:
 \begin{equation}
-\phi \left( t \right) = \sum _{k} ^{N_k-1} c_{k} \phi \left( 2t - k \right) \label{eq:dwt_scalefunrek},
+\phi \emb{t} = \sum _{k} ^{N_k-1} c_{k} \phi \left( 2t - k \right) \label{eq:dwt_scalefunrek},
 \end{equation}
 gdzie $k$ jest dowolną liczbą całkowitą powiązaną ze współczynnikiem skalowania $c_k$. Dodatkowo wszystkie współczynniki $c_k$ muszą spełniać założenia:
 \begin{equation}
@@ -88,16 +88,16 @@ Należy również zaznaczyć, że w celu zachowania warunku wzajemnej ortogonaln
 \end{equation}
 Powyższe założenia zapewniają ortogonalność stworzonych falek w stosunku do funkcji skalującej oraz brak nadmiarowych współczynników wyjściowych algorytmu dyskretnej transformacji falkowej. Tworzone na opisanych zasadach falki posiadają skończoną liczbę niezerowych współczynników skalujących $c_k$, przy czym rząd falki $N_r$ określa liczbę tych współczynników równą $N_{k} = 2 N_r$. Manipulując odpowiednio znakiem i kolejnością współczynników skalujących istnieje możliwość opisu falki-matki za pomocą równania \cite{wallen_handbook}:
 \begin{equation}
-\psi \left( t \right) = \sum _{k} ^{N_k-1} \left( -1 \right) ^{k} c_{N_k-k-1} \phi \left( 2t - k \right) \label{eq:dwt_waveletfunrek}.
+\psi \emb{t} = \sum _{k} ^{N_k-1} \emb{-1} ^{k} c_{N_k-k-1} \phi \left( 2t - k \right) \label{eq:dwt_waveletfunrek}.
 \end{equation}
 Ostatecznie przedstawić można rekursywne zależności opisujące funkcję skalującą i funkcję falki dla dowolnego numeru skali i numeru przesunięcia czasowego za pomocą równań:
 \begin{gather}
-\psi_{m+1,n} \left( t \right) = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} c_{k} \psi_{m,2n+k} \left( t \right) \label{eq:dwt_fatherrek}, \\
-\phi_{m+1,n} \left( t \right) = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} b_{k} \psi_{m,2n+k} \left( t \right) \label{eq:dwt_matherrek},
+\psi_{m+1,n} \emb{t} = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} c_{k} \psi_{m,2n+k} \emb{t} \label{eq:dwt_fatherrek}, \\
+\phi_{m+1,n} \emb{t} = \frac{1}{\sqrt{2}} \sum _{k} ^{N_k-1} b_{k} \psi_{m,2n+k} \emb{t} \label{eq:dwt_matherrek},
 \end{gather}
 przy czym parametr $b_{k}$ przedstawić można jako rekombinacje współczynników skalujących:
 \begin{equation}
-b_{k} = \left( -1 \right) ^{k} c_{N_k-k-1} \label{eq:dwt_bk}.
+b_{k} = \emb{-1} ^{k} c_{N_k-k-1} \label{eq:dwt_bk}.
 \end{equation}
 
 Dekompozycja sygnału w przypadku algorytmu dyskretnej transformacji falkowej odbywa się w ten sposób, że sygnał wejściowy podawany jest na wejścia pary filtrów -- górno i dolno przepustowego. Wyjście filtru dolno przepustowego stanowi aproksymacje sygnału, natomiast wyjście filtru górno przepustowego stanowią detale sygnału. Ze względu na fakt, że opisywana operacja dostarcza dwa razy więcej próbek wyjściowych, niż zawierał oryginalny sygnał, co druga próbka wyjściowa jest usuwana w procesie decymacji. Opisywane działanie rozdziela widmo sygnału na dwie części: detale sygnału związane z wysokimi częstotliwościami oraz aproksymacje sygnału powiązaną z niskimi zakresami częstotliwości. Filtr dolno-przepustowy odpowiada charakterystyce funkcji skalującej, natomiast filtr górno-przepustowy charakterystyce falki-matki. Filtr górno-przepustowy jest więc faktycznie filtrem pasmowo-rzepustowym, natomiast ze względu na wartość parametru skali jego częstotliwość środkowa odpowiada częstotliwości Nyquista dla przetwarzanego sygnału -- stąd też można w uproszczeniu nazwać go filtrem górno-przepustowym. Proces dekompozycji sygnału może zostać powtórzony dla aproksymacji sygnału wielokrotnie, zapewniając większą rozdzielczość w dziedzinie częstotliwości kosztem mniejszej rozdzielczości w dziedzinie czasu. Przebieg procesu dekompozycji sygnału dla trzech iteracji opisywanego procesu przedstawiono na rysunku \ref{fig:dwt_decomposition}.
@@ -186,7 +186,7 @@ Poza opisanym algorytmem identyfikacji współczynników macierzy transformacji,
 
 Rodzina falek \enquote{Daubechies} (w skrócie \enquote{db}) została opisana przez Ingrid Daubechies \cite{vonesch_dbbasics}, cechuje się ortogonalnością, natomiast nie wykazuje cech symetrii. Poza założeniami opisanymi w poprzednim podrozdziale rodzina ta spełnia dodatkowe założenie odnośnie relacji pomiędzy kolejnymi współczynnikami skalującymi:
 \begin{equation}
-\sum _{k} ^{N_k-1} \left( -1 \right)^{k} c_{k} k^{m} = 0 \label{eq:db_musthave},
+\sum _{k} ^{N_k-1} \emb{-1}^{k} c_{k} k^{m} = 0 \label{eq:db_musthave},
 \end{equation}
 gdzie $m$ jest liczbą całkowitą z przedziału $<0;\frac{N_{k}}{2}-1>$.
 
@@ -194,8 +194,8 @@ W przypadku falek \enquote{db} oraz ich pochodnych, rząd falki wynosi $\frac{N_
 
 Jako, że falka \enquote{db2} posiada cztery niezerowe współczynniki skalujące oznaczone jako $c_0, c_1, c_2, c_3$, to zgodnie z równaniem \eqref{eq:dwt_scalefunrek} oraz równaniem \eqref{eq:dwt_waveletfunrek}, zapisać można równanie falki-matki i funkcji skalującej w postaci:
 \begin{gather}
-\phi \left( t \right) = c_{0} \phi \left( 2t \right) + c_{1} \phi \left( 2t - 1 \right) + c_{2} \phi \left( 2t - 2 \right) + c_{3} \phi \left( 2t - 3 \right) \label{eq:db2_scalefunrek}, \\
-\psi \left( t \right) = c_{3} \phi \left( 2t \right) - c_{2} \phi \left( 2t - 1 \right) + c_{1} \phi \left( 2t - 2 \right) - c_{0} \phi \left( 2t - 3 \right) \label{eq:db2_waveletfunrek}.
+\phi \emb{t} = c_{0} \phi \emb{2t} + c_{1} \phi \left( 2t - 1 \right) + c_{2} \phi \left( 2t - 2 \right) + c_{3} \phi \left( 2t - 3 \right) \label{eq:db2_scalefunrek}, \\
+\psi \emb{t} = c_{3} \phi \emb{2t} - c_{2} \phi \left( 2t - 1 \right) + c_{1} \phi \left( 2t - 2 \right) - c_{0} \phi \left( 2t - 3 \right) \label{eq:db2_waveletfunrek}.
 \end{gather}
 
 Uwzględniając założenia przedstawione w poprzedniej części rozdziału oraz te wskazane powyżej, zapisać można układ równań wiążący wszystkie przedstawione zależności w postaci:
@@ -500,18 +500,18 @@ Stosowanie liczb rzeczywistych o długości słowa 16-bitów pozwala zmniejszyć
 
 Identycznie, jak w przypadku innych algorytmów przetwarzających ciągi wielkości wejściowych, dla algorytmu transformacji falkowej stosować można wybrane okno pomiarowe. Wprowadzenie okna pomiarowego oznaczonego jako $w(n)$ można przedstawić za pomocą modyfikacji równania \eqref{eq:alg_out_single} jako:
 \begin{equation}
-X \left( i \right) = a_{i, 0} w \left( 0 \right) x \left( 0 \right) + a_{i, 1} w \left( 1 \right) x \left( 1 \right) + \hdots + a_{i, N-1} w \left( N-1 \right) x \left( N-1 \right) \label{eq:wt_singlewindow}.
+X \emb{i} = a_{i, 0} w \emb{0} x \emb{0} + a_{i, 1} w \emb{1} x \emb{1} + \hdots + a_{i, N-1} w \emb{N-1} x \emb{N-1} \label{eq:wt_singlewindow}.
 \end{equation}
 Na podstawie przedstawionego równania zauważyć można, że wprowadzenie okna pomiarowego opisać można za pomocą modyfikacji współczynników macierzy transformacji algorytmu zgodnie z zależnością:
 \begin{equation}
-a_{i,j}^{'} = w \left( j \right) \cdot a_{i,j} \label{eq:wt_windowmod},
+a_{i,j}^{'} = w \emb{j} \cdot a_{i,j} \label{eq:wt_windowmod},
 \end{equation}
 gdzie $a_{i,j}^{'}$ stanowi nową wartość współczynnika macierzy transformacji algorytmu. Użyta funkcja $w(n)$ powinna być opisana dla wartości $n$ w przedziale $<0;N-1>$. Wybrane okna pomiarowe opisane w literaturze \cite{oppenheim_dsp} to okna: trójkątne \eqref{eq:wnd_triang}, Gaussa \eqref{eq:wnd_gauss}, Hamminga \eqref{eq:wnd_hamming} oraz Hanna \eqref{eq:wnd_hann}. W dalszej części pracy stosowane będzie okno prostokątne, w którym $w(n) = 1$ o ile nie zostanie zaznaczony fakt stosowania innego okna pomiarowego. Wpływ parametrów okna pomiarowego na przenoszenie błędów losowych przez algorytmy dyskretnej transformacji falkowej przedstawiono w pracy \cite{auth_window}. Wymienione funkcje okien przedstawiają równania:
 \begin{gather}
-w_{\text{tr}} \left( n \right) = 1 - \left| \frac{n - \frac{N-1}{2}}{\frac{N}{2}} \right| \label{eq:wnd_triang}, \\
-w_{\text{ga}} \left( n \right) = \exp \left(-\frac{1}{2} \cdot \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{ \left( N-1 \right)}{2}} \right)^{2} \right) \label{eq:wnd_gauss}, \\
-w_{\text{hm}} \left( n \right) = 0.5384 - 0.4616 \cos \left( \frac{2 \pi n}{N} \right) \label{eq:wnd_hamming}, \\
-w_{\text{hn}} \left( n \right) = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eq:wnd_hann},
+w_{tr} \emb{n} = 1 - \left| \frac{n - \frac{N-1}{2}}{\frac{N}{2}} \right| \label{eq:wnd_triang}, \\
+w_{ga} \emb{n} = \exp \left(-\frac{1}{2} \cdot \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{\emb{N-1}}{2}} \right)^{2} \right) \label{eq:wnd_gauss}, \\
+w_{hm} \emb{n} = 0.5384 - 0.4616 \cos \left( \frac{2 \pi n}{N} \right) \label{eq:wnd_hamming}, \\
+w_{hn} \emb{n} = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eq:wnd_hann},
 \end{gather}
 
 Implementacja okna pomiarowego, z punktu widzenia przedstawionych w pracy założeń, mogłaby również zostać opisana jako zastosowanie dodatkowego algorytmu. Algorytm ten przetwarzałby $N$ wielkości wejściowych na $M$ wielkości wyjściowych, gdzie $N = M$. Macierz transformacji omawianego algorytmu byłaby macierzą diagonalną, przy czym wartości kolejnych współczynników odpowiadałyby wyznaczonym wagom dla $i$-tej wielkości okna. Z praktycznego punktu widzenia zaproponowana metoda modyfikacji wartości współczynników transformacji algorytmu transformacji falkowej wydaje się jednak bardziej optymalna. Na tej samej zasadzie istnieje możliwość implementacji innych modyfikacji, np. wprowadzenia dodatkowego filtru.
