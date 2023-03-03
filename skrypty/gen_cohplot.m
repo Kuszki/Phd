@@ -17,11 +17,12 @@ for a = list
 
     for i = 1 : length(m)
 
-      fun = @(x) get_two_coher(1, 1, a, b, 's', 1e5, m(i));
+      fun = @(x) gen_coherence(1, 1, a, b, 's', 1e5, m(i));
       [h, r] = pararrayfun(nproc-1, fun, 1:500);
 
       hv(i) = mean(h);
       rv(i) = mean(r);
+
     end
 
     v = transpose([ [rv]; [hv] ]);
