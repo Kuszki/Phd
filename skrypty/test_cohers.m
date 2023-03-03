@@ -27,42 +27,62 @@ h_tn = 0.0218;
 h_ts = 0.3502;
 h_tt = 0.0408;
 
-U = [ 1 1 ];
-R = [ 1 0.3358; 0.3358 1 ];
+#U = [ 2.13 39.31 24.38 18.39 37.42 3.5 ];
+#C = 'ntnsss';
 
-#U = [ 1.87 4.68 4.67 ];
+#U = [ 1.81 1e-3 24.38 0.073 5.62 28.6 ];
+#C = 'ntnsss';
+
+#U = [ 2.13 13.26 11.80 16.70 23.04 16.29 12.32 25.08 2.35 6.07 12.35 1.16 ];
+#U = [ 1.81 13.26 11.80 16.70 1e-5 1e-5 0.06 3.77 19.16 0.03 1.85 9.44 ];
+#C = 'nnnnttssssss';
 #R = [ ...
-#1 h_ss h_ss; ...
-#h_ss 1 h_ss; ...
-#h_ss h_ss 1; ...
-#];
-#C = zeros(length(U), length(U));
+#1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
+#0.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
+#0.0   0.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
+#0.0   0.0   0.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
+#0.0   0.0   0.0   0.0   1.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
+#0.0   0.0   0.0   0.0   1.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
+#0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0   0.0   0.0 ; ...
+#0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0   0.0 ; ...
+#0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0 ; ...
+#0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0   0.0   0.0 ; ...
+#0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0   0.0 ; ...
+#0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0 ];
+#tst = gen_randm(1e5, C, U);
+#tst(5,:) = tst(6,:) * (U(5)/U(6));
+#tst(7,:) = tst(10,:) * (U(7)/U(10));
+#tst(8,:) = tst(11,:) * (U(8)/U(11));
+#tst(9,:) = tst(12,:) * (U(9)/U(12));
 #
 #for i = 1 : length(U)
-#  for j = 1 : length(U)
-#    if i == j; C(i,j) = 1;
-#    elseif C(i,j) == 0
-#
-#      C(i,j) = C(j,i) = (U(i)^2 + U(j)^2)/sum(U .^ 2);
-#
-#    end
-#  end
+#  Uc(i) = get_uncertainty(tst(i,:));
 #end
-#
-#CR = C .* R;
 
-CR = R;
+x1 = gen_randt(1e5, 1, 'u');
+x2 = sqrt(0.5)*x1;# + sqrt(0.5)*gen_randu(1e5, 1, 'u');
+x3 = gen_randn(1e5, 1, 'u');
+x4 = gen_randu(1e5, 5, 'u');
+x5 = gen_rands(1e5, 3, 'u');
 
-x1 = gen_randu(1e6, U(1), 'u');
-x2 = gen_randu(1e6, U(2), 'u');
-#x3 = gen_rands(1e6, U(3), 'u');
+xs = x1 + x2 + x3 + x4 + x5;
 
-xs = x1 + x2;# + x3;
+r = get_corelation(x1, x2);
+R = [1 r 0 0 0; r 1 0 0 0; 0 0 1 0 0; 0 0 0 1 0; 0 0 0 0 1];
+U = [get_uncertainty(x1) get_uncertainty(x2) get_uncertainty(x3) get_uncertainty(x4) get_uncertainty(x5)];
+C = 'ttnus';
 
-#u1 = get_uncertainty(x1)
-#u2 = get_uncertainty(x2)
+#U = [ 1 5 1 ];
+#C = 'ttt';
+#R = 0;
+
+[H, S, K, k2] = get_cohermatrix(C, U, R);
+#tst = gen_randm(1e5, C, U);
+
+#us = get_uncertainty(sum(tst))
 us = get_uncertainty(xs)
-
-uc = sqrt(U*CR*transpose(U))
+uc = sqrt(U*H*transpose(U))
 pd = 100*(uc - us)/us
+#uc = sqrt(U*(H.*k2)*transpose(U))
+#pd = 100*(uc - us)/us
 

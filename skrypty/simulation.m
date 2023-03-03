@@ -19,11 +19,11 @@ iters_b = 1e2;#5e1;
 wname = 'db2';
 ndec = 2;
 nsam = 8;
-num = 0;
+num = 1;
 
 # output settings
 calc_in_uc = 1;
-calc_out_uc = 0;
+calc_out_uc = 1;
 show_prog = 1;
 
 # sampling params
@@ -140,9 +140,9 @@ tic; for i = 1 : iters_a
 
 #  ya = ya + gen_randu(ns, var_r_a, 'w');
   ya = ya ...
-       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
-       + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
-       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
+#       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
+#       + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
+#       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
   ;
 
   # perform amplifier part tasks
