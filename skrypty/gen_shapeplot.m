@@ -8,7 +8,7 @@ addpath("~/Projekty/Octave-FWT-Utils")
 
 list = "nust";
 
-m = 1+10*linspace(0, sqrt(0.9), 20).^2
+m = 1+10*linspace(0, sqrt(0.9), 20).^2;
 
 for a = list
   for b = list
@@ -17,7 +17,7 @@ for a = list
 
     for i = 1 : length(m)
 
-      fun = @(x) gen_coherence(1, 1+m(i)*10, a, b, 'u', 1e5, 0);
+      fun = @(x) gen_coherence(1, m(i), a, b, 'u', 1e5, 0);
       [h, r] = pararrayfun(nproc-1, fun, 1:100);
 
       hv(i) = mean(h);

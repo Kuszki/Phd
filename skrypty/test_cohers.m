@@ -77,15 +77,18 @@ h_tt = 0.0408;
 #C = 'ntnsss';
 #R = 0;
 
-#U = [ 1 2 3 4 1 1 ];
-#C = 'uuuuuu';
-#R = 0;
+U = [ 1 5 ];
+C = 'uu';
+R = 0;
 
 [H, S, k1, k2] = get_cohermatrix(C, U, R);
 tst = gen_randm(1e5, C, U);
 
-us = get_uncertainty(sum(tst))
+us = get_uncertainty(sum(tst));
 #us = get_uncertainty(xs)
-uc = sqrt(U*H*transpose(U))
+
+uc = sqrt(U*H*transpose(U));
+pd = 100*(uc - us)/us
+uc = sqrt(U*(H./k2)*transpose(U));
 pd = 100*(uc - us)/us
 

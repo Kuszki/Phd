@@ -6,14 +6,19 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
-a = 's';
-b = 't';
+list = {'uu', 'ss', 'tt', 'un', 'us', 'ut', 'ns', 'nt', 'st'};
+list = {'ut'};
 
-fun = @(x) gen_coherence(1, 1, a, b, 'u', 5e5, 0.0);
-[h, r] = pararrayfun(nproc-1, fun, 1:500);
+for i = 1 : length(list)
+  name = list{i};
 
-hm = mean(h), hs = std(h);
-rm = mean(r), rs = std(r);
+  fun = @(x) gen_coherence(5, 5, name(1), name(2), 'w', 1e5, 0.0);
+  [h, r] = pararrayfun(nproc-1, fun, 1:1000);
 
-printf("%0.8e %0.8e\n", rm, hm)
+  hm = mean(h);, hs = std(h);
+  rm = mean(r);, rs = std(r);
+
+#  printf("%0.8e %0.8e\n", rm, hm)
+  printf("%s\t%0.5f\n", name, hm)
+end
 

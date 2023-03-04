@@ -472,6 +472,43 @@ Proponuje się zatem, aby w pierwszej kolejności wyznaczyć wartość współcz
 \begin{equation}
 s_{a,b} = \frac{U_{a,b}^{2} - U_{a}^{2} - U_{b}^{2}}{2 U_{a} U_{b}} = \frac{U^{2}}{2 U_{a,b}} - 1 \label{eq:unc_shapertwo}.
 \end{equation}
+Przeprowadzane badania symulacyjne wykazały, że wartość współczynnika kształtu maleje wraz ze wzrostem wartości jednej z niepewności rozszerzonych względem drugiej. Można zatem zaproponować korektę wyznaczonej dla takich samych wartości niepewności rozszerzonej wartości współczynnika kształtu, która uwzględniać będzie opisywane zjawisko. W pracy proponuje się następujący współczynnik korekcji, wynikający z proporcji pomiędzy składanymi niepewnościami:
+\begin{equation}
+p_{a,b} = \sqrt[3]{\frac{\min \emb{U_a, U_b}}{\max \emb{U_a, U_b}}} \label{eq:unc_cohercorra}.
+\end{equation}
+Uzyskaną zgodnie z równaniem \eqref{eq:unc_shapertwo} wartość współczynnika kształtu należy pomnożyć przez uzyskany w omawiany sposób współczynnik korekcji. Uzyskana wartość staje się skorygowanym współczynnikiem koherencji.
+
+Aby zweryfikować zasadność przedstawionych zależności przeprowadzono eksperyment metodą Monte-Carlo, którego celem było porównanie wartości niepewności rozszerzonej uzyskiwanej na drodze eksperymentu, zgodnie z definicją \eqref{eq:unc_summation} oraz wartości uzyskiwanych zgodnie z równaniem \eqref{eq:unc_mattwo} dla oryginalnego i skorygowanego współczynnika kształtu. W tabeli \ref{tab:unc_cohercorra} znajduje się zestawienie wyznaczonych współczynników koherencji dla par sygnałów błędu o określonym kształcie rozkładu i wartości niepewności niepewności rozszerzonej, a także wartość wyrażonej w procentach względnej różnicy pomiędzy wartością wypadkową niepewności rozszerzonej uzyskaną symulacyjnie oraz uzyskaną stosując oryginalną i skorygowaną wartość współczynnika koherencji. Pierwsza kolumna tabeli \ref{tab:unc_cohercorra} przedstawia uzyskane metodą Monte-Carlo wartości współczynnika kształtu dla typowych par rozkładów, przy czym uzyskane wartości pokrywają się z tymi wyznaczanymi analitycznie w pracy \cite{jakubiec_redmono}.
+
+\begin{table}[htb!]
+\begin{center}
+\makecaption{tab:unc_cohercorra}{Zestawienie wyników eksperymentu mającego na celu weryfikacje wpływu zaproponowanego w równaniu \eqref{eq:unc_cohercorra} współczynnika korekcji, gdzie indeksem \enquote{o} oznaczono wielkości związane z oryginalnym współczynnikiem kształtu, natomiast indeksem \enquote{c} wielkości związane z wartością skorygowaną}
+\begin{tabular}[c]{| c | c | c | S[table-format = +1.2] | S[table-format = +1.2] | S[table-format = 1.3] | S[table-format = +1.2] | S[table-format = +1.2] | S[table-format = 1.3] | S[table-format = +1.2] | S[table-format = +1.2] |} \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$s_{a,b}$}} & \multicolumn{3}{c|}{$U_{a} / U_{b} = 2$} & \multicolumn{3}{c|}{$U_{a} / U_{b} = 5$} & \multicolumn{3}{c|}{$U_{a} / U_{b} = 10$} \\ \cline{3-11}
+\multicolumn{2}{|c|}{} & $p_{a,b}$ & $\delta_{o}$ & $\delta_{c}$ & $p_{a,b}$ & $\delta_{o}$ & $\delta_{c}$ & $p_{a,b}$ & $\delta_{o}$ & $\delta_{c}$ \\ \hline
+$n,n$ & 0.000 & 0.000 & +0.45 & +0.45 & 0.000 & +0.52 & +0.52 & 0.000 & +0.19 & +0.19 \\ \hline
+$n,u$ & 0.156 & 0.124 & +3.01 & +1.83 & 0.091 & +2.38 & +1.17 & 0.072 & +1.70 & +0.88 \\ \hline
+$n,t$ & 0.025 & 0.020 & +1.00 & +0.80 & 0.015 & +0.64 & +0.44 & 0.012 & +0.56 & +0.43 \\ \hline
+$n,s$ & 0.299 & 0.237 & +3.93 & +1.84 & 0.175 & +4.27 & +2.01 & 0.139 & +2.78 & +1.23 \\ \hline
+$u,n$ & 0.156 & 0.124 & +2.80 & +1.61 & 0.091 & +4.03 & +2.80 & 0.072 & +3.83 & +2.99 \\ \hline
+$u,u$ & 0.336 & 0.266 & +1.86 & -0.38 & 0.196 & +3.79 & +1.30 & 0.156 & +3.60 & +1.85 \\ \hline
+$u,t$ & 0.177 & 0.141 & +1.20 & -0.11 & 0.104 & +2.67 & +1.30 & 0.082 & +2.49 & +1.55 \\ \hline
+$u,s$ & 0.534 & 0.424 & +2.84 & -0.38 & 0.312 & +4.92 & +1.14 & 0.248 & +4.81 & +2.09 \\ \hline
+$t,n$ & 0.025 & 0.020 & +2.15 & +1.95 & 0.015 & +2.42 & +2.22 & 0.012 & +2.18 & +2.04 \\ \hline
+$t,u$ & 0.177 & 0.141 & +2.23 & +0.92 & 0.104 & +3.07 & +1.69 & 0.082 & +2.02 & +1.09 \\ \hline
+$t,t$ & 0.042 & 0.033 & +0.97 & +0.63 & 0.024 & +1.18 & +0.85 & 0.019 & +0.84 & +0.62 \\ \hline
+$t,s$ & 0.350 & 0.278 & +3.36 & +1.00 & 0.205 & +5.19 & +2.56 & 0.163 & +3.45 & +1.63 \\ \hline
+$s,n$ & 0.299 & 0.237 & +1.04 & -0.99 & 0.175 & +2.44 & +0.22 & 0.139 & +3.09 & +1.53 \\ \hline
+$s,u$ & 0.534 & 0.424 & +1.01 & -2.16 & 0.312 & +1.93 & -1.74 & 0.248 & +2.47 & -0.19 \\ \hline
+$s,t$ & 0.350 & 0.278 & +0.02 & -2.27 & 0.205 & +1.28 & -1.24 & 0.163 & +1.91 & +0.13 \\ \hline
+$s,s$ & 0.714 & 0.567 & +1.30 & -2.57 & 0.418 & +2.35 & -2.34 & 0.332 & +2.47 & -0.99 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Analizując wyniki przedstawione w tabeli \ref{tab:unc_cohercorra} zauważyć można, że wprowadzenie proponowanej korekty powoduje zmniejszenie szacowanej wartości niepewności rozszerzonej, co w większości przypadków zmniejsza wartość bezwzględną różnicy pomiędzy wartością prawdziwą i oszacowaną. Niestety, można również zauważyć przypadki w których wprowadzana korekta okazała się zbyt duża, co w efekcie spowodowało niedoszacowanie wartości wypadkowej niepewności rozszerzonej. Opisywana sytuacja ma miejsce głównie w przypadku gdy jednym ze składanych sygnałów jest sygnał sinusoidalny, którego wartość niepewności rozszerzonej jest porównywalna z wartością niepewności dla drugiego składanego sygnału. Analizując całościowo przedstawione wyniki można jednak uznać proponowaną korektę za zasadną. W dalszej części podrozdziału, wraz z omówieniem kolejnych właściwości stosowanej metody redukcyjnej arytmetyki interwałowej, korekta ta zostanie raz jeszcze omówiona w świetle dodatkowych okoliczności.
+
+Zgodnie z treścią centralnego twierdzenia granicznego, w przypadku sumowania wielu nieskorelowanych zdarzeń gdzie żadne z nich nie jest zdarzeniem dominującym, rozkład gęstości prawdopodobieństwa zdarzenia wypadkowego dążył będzie do rozkładu normalnego. Twierdzenie to jest bardzo istotne z punktu widzenia omawianej metody wyznaczania wypadkowej wartości niepewności rozszerzonej z uwagi na fakt, że należy uwzględnić je szacując wypadkowy kształt rozkładu. Z praktycznego punktu widzenia w przypadku stosowanej metody oznacza to, że wraz ze wzrostem
 
 Analizując przedstawione zależności zauważyć można, że sposób przedstawienia niedokładności wyniku pomiaru zależeć będzie w dużej mierze od potrzeb projektanta toru pomiarowego oraz od specyfiki zakłócających proces pomiaru błędów. Opis wykorzystujący wariancję błędów wydaje się bardziej przystępny, gdyż wariancja może być utożsamiana z mocą sygnału. Opis wykorzystujący niepewność rozszerzoną będzie jednak bardziej precyzyjny, natomiast wymaga większego zaangażowania w proces wyznaczania ostatecznej wartości tej niepewności. W odpowiednich okolicznościach, jeżeli spełnione są warunki związane z centralnym twierdzeniem granicznym, opis bazujący na wariancji błędu może być w łatwy sposób przeniesiony na opis związany z niepewnością rozszerzoną. Podczas wyznaczania wypadkowej wartości niepewności rozszerzonej należy zastosować metodę \enquote{Redukcyjnej arytmetyki interwałowej}, opisaną szerzej w~\cite{jakubiec_reductive, jakubiec_arithmetic, batko_uncertainty}. Wyznaczone wartości niepewności rozszerzonej mogą w niewielkim stopniu odbiegać od wartości rzeczywistych, co opisano w~\cite{jakubiec_arithmetic, jakubiec_model}.
 
