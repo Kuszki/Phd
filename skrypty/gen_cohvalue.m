@@ -6,8 +6,8 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
-a = 'u';
-b = 'n';
+a = 's';
+b = 't';
 
 fun = @(x) gen_coherence(1, 1, a, b, 'u', 5e5, 0.0);
 [h, r] = pararrayfun(nproc-1, fun, 1:500);
