@@ -12,8 +12,8 @@ list = 'nuts';
 dim = "-r300";
 
 set(h, "paperunits", "centimeters")
-set(h, "papersize", [16 11])
-set(h, "paperposition", [0, 0, [16 11]])
+set(h, "papersize", [16 12.3])
+set(h, "paperposition", [0, 0, [16 12.3]])
 
 set(0, "defaultaxesposition", [0.085, 0.11, 0.885, 0.865])
 set(0, "defaultaxesfontsize", 11)
@@ -36,7 +36,7 @@ for i = 1 : length(list)
 
   hold off;
   legend("location", 'southeast')
-  title(sprintf("a) \\rm %s (%s)", names{i}, list(i)))
+  title(sprintf("%s) \\rm %s (%s)", char('a'+i-1), names{i}, list(i)))
   ylabel("Współczynnik koherencji");
   xlabel("Współczynnik korelacji");
   xlim([-1 1])

@@ -943,11 +943,11 @@ Zgodnie z założeniami przedstawionymi we wstępie podrozdziału, ostatnią czy
 \end{center}
 \end{table}
 
-W dalszej części rozważań przyjmuje się, że symbolem $\bsigma_{*}$ oznaczono wektory złożone z kolejnych odchyleń standardowych sygnałów błędów wielkości wyjściowych algorytmu, gdzie \enquote{$*$} oznacza symbol analizowanej wielkości wyjściowej. Zgodnie z równaniem \eqref{eq:alg_outvar_mat} wartość wariancji wypadkowego sygnału błędu błędu dla wybranej wielkości wyjściowej opisać można jako:
+W dalszej części rozważań przyjmuje się, że symbolem $\bsigma_{*}$ oznaczono wektory złożone z kolejnych odchyleń standardowych sygnałów błędów wielkości wyjściowych algorytmu, gdzie \enquote{$*$} oznacza symbol analizowanej wielkości wyjściowej. Zgodnie z równaniem~\eqref{eq:alg_outvar_mat} wartość wariancji wypadkowego sygnału błędu błędu dla wybranej wielkości wyjściowej opisać można jako:
 \begin{equation}
 \sigma_{*,\Sigma}^{2} = \bsigma_{*}^{T} \cdot \mathbf{h} \cdot \bsigma_{*} \label{eq:sym_partd_output_varmat_list}
 \end{equation}
-Z uwagi na fakt, że analizowany algorytm nie wpływa na relacje przetwarzanych sygnałów błędu, macierz korelacji oznaczona symbolem $\mathbf{h}_{d}$ będzie jednakowa dla wszystkich wielkości wyjściowych tego algorytmu i składać się będzie z dwunastu wierszy i kolumn. Na podstawie równania \eqref{eq:sym_partb_stat_corr} korelacja pomiędzy błędami statycznymi spowodowanymi wpływem temperatury na charakterystykę wzmacniacza i przetwornika pomiarowego wyniesie $1$, zatem $r_{d,5,6} = 1$. Dodatkowo współczynniki korelacji kolejnych harmonicznych błędu dynamicznego o tej samej częstotliwości są w przybliżeniu równe jedności, zatem: $r_{d,7,10} = r_{d,8,11} = r_{d,9,12} = 1$. W pozostałych przypadkach współczynniki korelacji będą równe $0$, poza przekątną macierzy gdzie wyniosą one $1$. Wobec powyższych macierz korelacji w omawianym przypadku przyjmuje postać:
+Z uwagi na fakt, że analizowany algorytm nie wpływa na relacje przetwarzanych sygnałów błędu, macierz korelacji oznaczona symbolem $\mathbf{h}_{d}$ będzie jednakowa dla wszystkich wielkości wyjściowych tego algorytmu i składać się będzie z dwunastu wierszy i kolumn. Na podstawie równania~\eqref{eq:sym_partb_stat_corr} korelacja pomiędzy błędami statycznymi spowodowanymi wpływem temperatury na charakterystykę wzmacniacza i przetwornika pomiarowego wyniesie $1$, zatem $r_{d,5,6} = 1$. Dodatkowo współczynniki korelacji kolejnych harmonicznych błędu dynamicznego o tej samej częstotliwości są w przybliżeniu równe jedności, zatem: $r_{d,7,10} = r_{d,8,11} = r_{d,9,12} = 1$. W pozostałych przypadkach współczynniki korelacji będą równe $0$, poza przekątną macierzy gdzie wyniosą one $1$. Wobec powyższych macierz korelacji w omawianym przypadku przyjmuje postać:
 \begin{equation}
 \mathbf{r}_{d} =
 \begin{bmatrix}
@@ -966,15 +966,15 @@ Z uwagi na fakt, że analizowany algorytm nie wpływa na relacje przetwarzanych 
 \end{bmatrix}
 \label{eq:sym_partd_output_coher_list}.
 \end{equation}
-Na podstawie zależności \eqref{eq:sym_partd_output_varmat_list}, macierzy korelacji danej równaniem \eqref{eq:sym_partd_output_coher_list} po podstawieniu danych z tabeli \ref{tab:sym_partd_params_unc_list_S_2_0} otrzymuje się wartość wariancji wypadkowego sygnału błędu wielkości wyjściowej $S_{2,0}$:
+Na podstawie zależności~\eqref{eq:sym_partd_output_varmat_list}, macierzy korelacji danej równaniem~\eqref{eq:sym_partd_output_coher_list} po podstawieniu danych z tabeli~\ref{tab:sym_partd_params_unc_list_S_2_0} otrzymuje się wartość wariancji wypadkowego sygnału błędu wielkości wyjściowej $S_{2,0}$:
 \begin{equation}
 \sigma_{S_{2,0},\Sigma}^{2} = \bsigma_{S_{2,0}}^{T} \cdot \mathbf{h} \cdot \bsigma_{S_{2,0}} = \qty{1465.10}{\micro V} \label{eq:sym_partd_output_varmat_S_2_0},
 \end{equation}
-natomiast po podstawieniu wartości z tabeli \ref{tab:sym_partd_params_unc_list_T_1_0} otrzymuje się wartość wariancji wypadkowego sygnału błędu dla wielkości $T_{1,0}$:
+natomiast po podstawieniu wartości z tabeli~\ref{tab:sym_partd_params_unc_list_T_1_0} otrzymuje się wartość wariancji wypadkowego sygnału błędu dla wielkości $T_{1,0}$:
 \begin{equation}
 \sigma_{T_{1,0},\Sigma}^{2} = \bsigma_{T_{1,0}}^{T} \cdot \mathbf{h} \cdot \bsigma_{T_{1,0}} = \qty{1234.56}{\micro V} \label{eq:sym_partd_output_varmat_T_1_0}.
 \end{equation}
-Można zauważyć, że wyznaczone w ten sposób wartości są identyczne, jak te wyznaczone w równaniach \eqref{eq:sym_partd_output_var_sum_S_2_0} oraz \eqref{eq:sym_partd_output_var_sum_T_1_0}
+Można zauważyć, że wyznaczone w ten sposób wartości są identyczne, jak te wyznaczone w równaniach~\eqref{eq:sym_partd_output_var_sum_S_2_0} oraz~\eqref{eq:sym_partd_output_var_sum_T_1_0}
 
 \begin{table}[htb!]
 \begin{center}

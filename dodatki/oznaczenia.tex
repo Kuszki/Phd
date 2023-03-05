@@ -1,6 +1,8 @@
 \chapter*{Wykaz oznaczeń}\addcontentsline{toc}{chapter}{Wykaz oznaczeń}
 
 \begin{longtable}[l]{ l @{~~--~~} p{368pt} }
+$N$                             & liczba wielkości wejściowych obiektu \\
+$M$                             & liczba wielkości wyjściowych obiektu \\
 $t$                             & zmienna reprezentująca czas \\
 $\alpha$                        & przyjęty poziom ufności \\
 $\omega$                        & pulsacja przebiegu sinusoidalnego \\
@@ -18,8 +20,14 @@ $\psi(t)$                       & równanie falki-matki określone w dziedzinie 
 $\phi(t)$                       & równanie falki-ojca określone w dziedzinie czasu \\
 $\dot{a}(t)$                    & wartość idealna wielkości $a$ w chwili $t$ \\
 $\tilde{a}(t)$                  & wartość wielkości $a$ w chwili $t$ obarczona błędem \\
-$N$                             & liczba wielkości wejściowych obiektu \\
-$M$                             & liczba wielkości wyjściowych obiektu \\
+$G_{a}(j\omega)$                & transmitancja obiektu $a$ w dziedzinie $\mathcal{F}$ \\
+$H_{a}(z)$                      & transmitancja obiektu $a$ w dziedzinie $\mathcal{Z}$ \\
+$f_{a}(x)$                      & funkcja przetwarzania statycznego obiektu $a$ \\
+$E_{a}(\omega)$                 & amplituda harmonicznej sygnału $a$ o pulsacji $\omega$ \\
+$K_{a}(\omega)$                 & wzmocnienie harmonicznej sygnału $a$ o pulsacji $\omega$ \\
+$\varphi_{a}(\omega)$           & przesunięcie w fazie harmonicznej sygnału $a$ o pulsacji $\omega$ \\
+$S_{i,j}$                       & aproksymacje $j$-tej wielkości wyjściowej $i$-tego poziomu dekompozycji \\
+$T_{i,j}$                       & detale $j$-tej wielkości wyjściowej $i$-tego poziomu dekompozycji \\
 $T_{p}$                         & okres próbkowania sygnału \\
 $N_{q}$                         & rozdzielczość przetwornika analogowo-cyfrowego \\
 $N_{k}$                         & liczba niezerowych współczynników skalujących \\
@@ -31,14 +39,8 @@ $U_{a}$                         & niepewność rozszerzona wielkości $a$ \\
 $r_{a,b}$                       & współczynnik korelacji wielkości $a$ oraz $b$ \\
 $h_{a,b}$                       & współczynnik koherencji niepewności $a$ oraz $b$ \\
 $s_{a,b}$                       & współczynnik kształtu rozkładów $a$ oraz $b$ \\
-$G_{a}(j\omega)$                & transmitancja obiektu $a$ w dziedzinie $\mathcal{F}$ \\
-$H_{a}(z)$                      & transmitancja obiektu $a$ w dziedzinie $\mathcal{Z}$ \\
-$f_{a}(x)$                      & funkcja przetwarzania statycznego obiektu $a$ \\
-$E_{a}(\omega)$                 & amplituda harmonicznej sygnału $a$ o pulsacji $\omega$ \\
-$K_{a}(\omega)$                 & wzmocnienie harmonicznej sygnału $a$ o pulsacji $\omega$ \\
-$\varphi_{a}(\omega)$           & przesunięcie w fazie harmonicznej sygnału $a$ o pulsacji $\omega$ \\
-$S_{i,j}$                       & aproksymacje $j$-tej wielkości wyjściowej $i$-tego poziomu dekompozycji \\
-$T_{i,j}$                       & detale $j$-tej wielkości wyjściowej $i$-tego poziomu dekompozycji \\
+$p_{a,b}$                       & korekta współczynnika kształtu $s_{a,b}$ wynikająca z rozbieżności wartości niepewności rozszerzonej sygnałów $a$ oraz $b$ \\
+$k_{a,b}$                       & korekta współczynnika kształtu $s_{a,b}$ wynikająca z założeń centralnego twierdzenia granicznego \\
 $a_{b,c}$                       & parametr $a$ wielkości $b$, gdzie symbol indeksu $c$ oznacza między innymi: \newline
                                   \begin{tabular}{ *{3}{l @{~--~} l} }
                                   $s$ & statyczny   & $d$      & dynamiczny & $r$      & losowy     \\
