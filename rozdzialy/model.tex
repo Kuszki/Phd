@@ -90,7 +90,7 @@ Wprowadzanie przez analizowany obiekt błędów dynamicznych wynika z faktu, że
 natomiast ten sam przebieg zakłócony błędami własnym i propagowanymi, wynikającymi z transmitancji obiektu, wyrazić można w postaci równania:
 \begin{equation}
 \begin{split}
-\tilde{u} \emb{t,\omega} = ~
+\tilde{u} \emb{t,\omega} =~
 & \tilde{K}_{u} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \tilde{\varphi}_{u} \emb{\omega} \right) + \\
 & \tilde{K}_{u} \emb{\omega} E_{s,e} \emb{\omega} \sin \left( \omega t + \varphi_{s,e} \emb{\omega} + \tilde{\varphi}_{u} \emb{\omega} \right)
 \end{split}
@@ -99,7 +99,7 @@ natomiast ten sam przebieg zakłócony błędami własnym i propagowanymi, wynik
 Wobec powyższych zależności, wprowadzany do sygnału $u(t)$ błąd dynamiczny własny $e_{u,dw}$ opisać można równaniem:
 \begin{equation}
 \begin{split}
-e_{u,dw} \emb{t} = ~
+e_{u,dw} \emb{t} =~
 & \sum _{i = 1} ^{\infty} \tilde{K}_{u} \emb{\omega_{s,i}} E_{s,o} \emb{\omega_{s,i}} \sin \left( \omega_{s,i} t + \varphi_{s,o} \emb{\omega_{s,i}} + \tilde{\varphi}_{u} \emb{\omega_{s,i}} \right) - \\
 & \sum _{i = 1} ^{\infty} \dot{K}_{u} \emb{\omega_{s,i}} E_{s,o} \emb{\omega_{s,i}} \sin \left( \omega_{s,i} t + \varphi_{s,o} \emb{\omega_{s,i}} + \dot{\varphi}_{u} \emb{\omega_{s,i}} \right)
 \end{split}
@@ -251,7 +251,7 @@ gdzie $K_{u}(\omega)$ oznaczono wzmocnienie oraz $\varphi_{u}(\omega)$ przesuni�
 natomiast ten sam przebieg zakłócony błędami własnym i propagowanymi, wynikającymi z transmitancji obiektu, wyrazić można w postaci równania:
 \begin{equation}
 \begin{split}
-\tilde{v} \emb{i,\omega} = ~
+\tilde{v} \emb{i,\omega} =~
 & \tilde{K}_{v} \emb{\omega} E_{x,o} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{x,o} \emb{\omega} + \tilde{\varphi}_{v} \emb{\omega} \right) + \\
 & \tilde{K}_{v} \emb{\omega} E_{x,e} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{x,e} \emb{\omega} + \tilde{\varphi}_{v} \emb{\omega} \right)
 \end{split}
@@ -261,7 +261,7 @@ natomiast ten sam przebieg zakłócony błędami własnym i propagowanymi, wynik
 Na podstawie przedstawionych zależności określających właściwości dynamiczne analizowanego obiektu, w sposób analogiczny jak w równaniach~\eqref{eq:mid_cont_err_dyn_self} oraz~\eqref{eq:mid_cont_err_dyn_prop}, wprowadzany do sygnału $v(t)$ błąd dynamiczny własny $e_{v,dw}$ opisać można zależnością przedstawioną równaniem:
 \begin{equation}
 \begin{split}
-e_{v,dw} \emb{t} = ~
+e_{v,dw} \emb{t} =~
 & \sum _{j = 1} ^{\infty} \tilde{K}_{v} \emb{\omega_{x,j}} E_{x,o} \emb{\omega_{x,j}} \sin \left( \omega_{x,j} t + \varphi_{x,o} \emb{\omega_{x,j}} + \tilde{\varphi}_{v} \emb{\omega_{s,i}} \right) - \\
 & \sum _{j = 1} ^{\infty} \dot{K}_{v} \emb{\omega_{x,j}} E_{x,o} \emb{\omega_{x,j}} \sin \left( \omega_{x,j} t + \varphi_{x,o} \emb{\omega_{x,j}} + \dot{\varphi}_{v} \emb{\omega_{s,i}} \right)
 \end{split}
@@ -329,11 +329,11 @@ Powyższe założenia stanowią o zerowej wartości oczekiwanej realizacji sygna
 
 W praktyce pomiarowej wartość niepewności szacuje się bardzo często mając do dyspozycji zbiór dyskretnych realizacji analizowanego sygnału błędu. Jeżeli dysponuje się danymi w postaci histogramu $h(i)$ kolejnych przedziałów wartości realizacji sygnału błędu, przy czym $i \in <0;N-1>$, to równanie~\eqref{eq:unc_integral} przyjmuje postać:
 \begin{equation}
-\frac{1}{F} \sum _{i=a} ^{N-a-1} g \emb{i} de = \alpha \label{eq:unc_summation},
+\frac{1}{F} \sum _{i=a} ^{N-a-1} g \emb{i} = \alpha \label{eq:unc_summation},
 \end{equation}
 zatem jego wartością jest suma słupków stanowiących $\alpha$ części słupków leżących na obszarze symetrycznym względem połowy szerokości obszaru histogramu, takim że zachodzi $i \in <a;N-a-1>$, przy czym $F$ jest sumą wysokości wszystkich słupków histogramu daną w postaci równania:
 \begin{equation}
-F = \sum _{i=0} ^{N-1} g \emb{i} de = \alpha \label{eq:unc_normalizer_sum},
+F = \sum _{i=0} ^{N-1} g \emb{i} = \alpha \label{eq:unc_normalizer_sum},
 \end{equation}
 co odpowiada roli równania~\eqref{eq:unc_normalizer_int} dla analizowanego przypadku. Podobnie, jak w przypadku ciągłej funkcji gęstości prawdopodobieństwa, w analizowanym przypadku również istnieje możliwość analizy prawego i lewego obszaru niesymetrycznego rozkładu.
 
@@ -489,19 +489,19 @@ Aby zweryfikować zasadność przedstawionych zależności przeprowadzono eksper
 $n,n$ & 0.000 & 0.000 & +0.45 & +0.45 & 0.000 & +0.52 & +0.52 & 0.000 & +0.19 & +0.19 \\ \hline
 $n,u$ & 0.156 & 0.124 & +3.01 & +1.83 & 0.091 & +2.38 & +1.17 & 0.072 & +1.70 & +0.88 \\ \hline
 $n,t$ & 0.025 & 0.020 & +1.00 & +0.80 & 0.015 & +0.64 & +0.44 & 0.012 & +0.56 & +0.43 \\ \hline
-$n,s$ & 0.299 & 0.237 & +3.93 & +1.84 & 0.175 & +4.27 & +2.01 & 0.139 & +2.78 & +1.23 \\ \hline
+$n,d$ & 0.299 & 0.237 & +3.93 & +1.84 & 0.175 & +4.27 & +2.01 & 0.139 & +2.78 & +1.23 \\ \hline
 $u,n$ & 0.156 & 0.124 & +2.80 & +1.61 & 0.091 & +4.03 & +2.80 & 0.072 & +3.83 & +2.99 \\ \hline
 $u,u$ & 0.336 & 0.266 & +1.86 & -0.38 & 0.196 & +3.79 & +1.30 & 0.156 & +3.60 & +1.85 \\ \hline
 $u,t$ & 0.177 & 0.141 & +1.20 & -0.11 & 0.104 & +2.67 & +1.30 & 0.082 & +2.49 & +1.55 \\ \hline
-$u,s$ & 0.534 & 0.424 & +2.84 & -0.38 & 0.312 & +4.92 & +1.14 & 0.248 & +4.81 & +2.09 \\ \hline
+$u,d$ & 0.534 & 0.424 & +2.84 & -0.38 & 0.312 & +4.92 & +1.14 & 0.248 & +4.81 & +2.09 \\ \hline
 $t,n$ & 0.025 & 0.020 & +2.15 & +1.95 & 0.015 & +2.42 & +2.22 & 0.012 & +2.18 & +2.04 \\ \hline
 $t,u$ & 0.177 & 0.141 & +2.23 & +0.92 & 0.104 & +3.07 & +1.69 & 0.082 & +2.02 & +1.09 \\ \hline
 $t,t$ & 0.042 & 0.033 & +0.97 & +0.63 & 0.024 & +1.18 & +0.85 & 0.019 & +0.84 & +0.62 \\ \hline
-$t,s$ & 0.350 & 0.278 & +3.36 & +1.00 & 0.205 & +5.19 & +2.56 & 0.163 & +3.45 & +1.63 \\ \hline
-$s,n$ & 0.299 & 0.237 & +1.04 & -0.99 & 0.175 & +2.44 & +0.22 & 0.139 & +3.09 & +1.53 \\ \hline
-$s,u$ & 0.534 & 0.424 & +1.01 & -2.16 & 0.312 & +1.93 & -1.74 & 0.248 & +2.47 & -0.19 \\ \hline
-$s,t$ & 0.350 & 0.278 & +0.02 & -2.27 & 0.205 & +1.28 & -1.24 & 0.163 & +1.91 & +0.13 \\ \hline
-$s,s$ & 0.714 & 0.567 & +1.30 & -2.57 & 0.418 & +2.35 & -2.34 & 0.332 & +2.47 & -0.99 \\ \hline
+$t,d$ & 0.350 & 0.278 & +3.36 & +1.00 & 0.205 & +5.19 & +2.56 & 0.163 & +3.45 & +1.63 \\ \hline
+$d,n$ & 0.299 & 0.237 & +1.04 & -0.99 & 0.175 & +2.44 & +0.22 & 0.139 & +3.09 & +1.53 \\ \hline
+$d,u$ & 0.534 & 0.424 & +1.01 & -2.16 & 0.312 & +1.93 & -1.74 & 0.248 & +2.47 & -0.19 \\ \hline
+$d,t$ & 0.350 & 0.278 & +0.02 & -2.27 & 0.205 & +1.28 & -1.24 & 0.163 & +1.91 & +0.13 \\ \hline
+$d,d$ & 0.714 & 0.567 & +1.30 & -2.57 & 0.418 & +2.35 & -2.34 & 0.332 & +2.47 & -0.99 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -522,7 +522,7 @@ h_{i,j} = h_{j,i} = s_{i,j} \cdot p_{i,j} \cdot k_{i,j} = s_{i,j} \sqrt[3]{\frac
 \end{equation}
 Na podstawie przedstawionego równania istnieje możliwość budowy macierzy koherencji, wykorzystywanej do wyznaczenia wypadkowej wartości niepewności rozszerzonej dla analizowanych sygnałów błędów zgodnie z zależnością~\eqref{eq:unc_matrix}. Należy zauważyć, że z uwagi na okoliczność możliwości wyznaczenia wartości współczynników kształtu $s_{i,j}$ niezależnie od parametrów niepewności błędów występujących w analizowanym torze pomiarowym, zaproponowana metoda jest możliwa do stosowania w czasie działania systemu również w przypadkach, gdy parametry te ulegają zmianie.
 
-Ostatnim wymagającym komentarza przypadkiem jest przypadek, w którym istnieją korelacje pomiędzy analizowanymi sygnałami. Zgodnie z właściwościami macierzy koherencji elementy tej macierzy, podobnie elementy macierzy korelacji, przyjmować mogą wartości z zakresu $<-1;1>$. Dla pełnej dodatniej korelacji wartość współczynnika koherencji wynosić będzie $1$, natomiast dla pełnej ujemnej korelacji wartość ta wyniesie $-1$. W pozostałych przypadkach, zgodnie z informacjami przytoczonymi w poprzedniej części podrozdziału, wartość współczynnika koherencji wynikać będzie z wypadkowych parametrów kształtu rozkładu oraz współczynnika korelacji. Jako, że metody analityczne wyznaczania wartości współczynnika koherencji dla sygnałów skorelowanych są złożone i skomplikowane, w pracy proponuje się wyznaczenie metodą Monte-Carlo wartości współczynników koherencji dla par typowych kształtów rozkładów w zależności od wartości współczynnika korelacji danego równaniem~\eqref{eq:var_corr} zgodnie z równaniem \eqref{eq:unc_cohertwo}. Wyznaczony w ten sposób współczynnik nie podlega korekcie opisanej w równaniach~\eqref{eq:unc_cohercorra} oraz~\eqref{eq:unc_cohercorra}. Na rysunku~\ref{fig:unc_cohers} przedstawiono wykresy wyznaczonych wartości współczynników koherencji w funkcji współczynnika korelacji dla typowych analizowanych w pracy przebiegów.
+Ostatnim wymagającym komentarza przypadkiem jest przypadek, w którym istnieją korelacje pomiędzy analizowanymi sygnałami. Zgodnie z właściwościami macierzy koherencji elementy tej macierzy, podobnie elementy macierzy korelacji, przyjmować mogą wartości z zakresu $<-1;1>$. Dla pełnej dodatniej korelacji wartość współczynnika koherencji wynosić będzie $1$, natomiast dla pełnej ujemnej korelacji wartość ta wyniesie $-1$. W pozostałych przypadkach, zgodnie z informacjami przytoczonymi w poprzedniej części podrozdziału, wartość współczynnika koherencji wynikać będzie z wypadkowych parametrów kształtu rozkładu oraz współczynnika korelacji. Jako, że metody analityczne wyznaczania wartości współczynnika koherencji dla sygnałów skorelowanych są złożone i skomplikowane, w pracy proponuje się wyznaczenie metodą Monte-Carlo wartości współczynników koherencji dla par typowych kształtów rozkładów w zależności od wartości współczynnika korelacji danego równaniem~\eqref{eq:var_corr} zgodnie z równaniem~\eqref{eq:unc_cohertwo}. Wyznaczony w ten sposób współczynnik nie podlega korekcie opisanej w równaniach~\eqref{eq:unc_cohercorra} oraz~\eqref{eq:unc_cohercorra}. Na rysunku~\ref{fig:unc_cohers} przedstawiono wykresy wyznaczonych wartości współczynników koherencji w funkcji współczynnika korelacji dla typowych analizowanych w pracy przebiegów.
 
 \begin{figure}[htb!]
 \begin{center}
@@ -574,8 +574,8 @@ W przypadku, gdy dysponuje się gotową implementacją algorytmu, w celu identyf
 \begin{equation}
 x \emb{n} =
 \begin{cases}
-	1 & $gdy$ ~ n = i \\
-	0 & $gdy$ ~ n \neq i
+	1 & $gdy$~n = i \\
+	0 & $gdy$~n \neq i
 \end{cases}
 \label{eq:wt_ident},
 \end{equation}

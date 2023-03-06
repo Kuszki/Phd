@@ -12,18 +12,18 @@ addpath("~/Projekty/Octave-FWT-Utils");
 #profile on;
 
 # iterations params
-iters_a = 1e4;#2e4;
-iters_b = 1e2;#5e1;
+iters_a = 2e4;#2e4;
+iters_b = 1e1;#5e1;
 
 # wavelet params
 wname = 'db2';
 ndec = 2;
 nsam = 8;
-num = 5;
+num = 0;
 
 # output settings
 calc_in_uc = 1;
-calc_out_uc = 1;
+calc_out_uc = 0;
 show_prog = 1;
 
 # sampling params
@@ -132,13 +132,13 @@ tic; for i = 1 : iters_a
 
   # inject signal noise
   ys = y;
-  ys = y + gen_randn(ns, var_r_s, 'w');
+#  ys = y + gen_randn(ns, var_r_s, 'w');
 
   # perform converter part tasks
   ya = ys;
-  ya = ya + f_tm_a(temp(i));
+#  ya = ya + f_tm_a(temp(i));
 
-  ya = ya + gen_randu(ns, var_r_a, 'w');
+#  ya = ya + gen_randu(ns, var_r_a, 'w');
   ya = ya ...
        + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
        + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
@@ -148,16 +148,16 @@ tic; for i = 1 : iters_a
   # perform amplifier part tasks
   yb = ya;
   yb = yb ...
-       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
-       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
-       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
+#       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
+#       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
+#       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
   ;
   yb = amp_b * yb;
-  yb = yb + f_tm_b(temp(i));
+#  yb = yb + f_tm_b(temp(i));
 
   # perform adc tasks
   yc = yb;
-  yc = yc + gen_randu(ns, var_r_c, 'w');#f_adc(yc);
+#  yc = yc + gen_randu(ns, var_r_c, 'w');#f_adc(yc);
 
   # calc input error
   cerr = transpose(yc - yi);
@@ -178,12 +178,14 @@ tic; for i = 1 : iters_a
 end; toc;
 
 for j = 1 : nsam
-  out_E(:,j) = out_E(:,j) + transpose(gen_randn(elen_m, rw(j), 'w'));
+#  out_E(:,j) = out_E(:,j) + transpose(gen_randn(elen_m, rw(j), 'w'));
 end
 
 if calc_in_uc || calc_out_uc
   printf("n\tu\tc\ts\tw\n");
 end
+
+errs = errs / amp_b;
 
 if calc_in_uc
   [u_in, c_in, s_in, w_in] = get_uncertainty(errs);

@@ -7,26 +7,6 @@ pkg load signal;
 
 addpath("~/Projekty/Octave-FWT-Utils");
 
-h_uu = 0.3358;
-h_un = 0.1338;
-h_us = 0.5233;
-h_ut = 0.1774;
-
-h_nu = 0.1338;
-h_nn = 0.0000;
-h_ns = 0.2876;
-h_nt = 0.0218;
-
-h_su = 0.5233;
-h_sn = 0.2876;
-h_ss = 0.7144;
-h_st = 0.3502;
-
-h_tu = 0.1774;
-h_tn = 0.0218;
-h_ts = 0.3502;
-h_tt = 0.0408;
-
 #U = [ 2.13 39.31 24.38 18.39 37.42 3.5 ];
 #C = 'ntnsss';
 
@@ -59,36 +39,22 @@ h_tt = 0.0408;
 #  Uc(i) = get_uncertainty(tst(i,:));
 #end
 
-#x1 = gen_randt(1e5, 10, 'u');
-#x2 = sqrt(0.5)*x1;# + sqrt(0.5)*gen_randu(1e5, 1, 'u');
-#x3 = gen_randn(1e5, 7, 'u');
-#x4 = gen_randu(1e5, 5, 'u');
-#x5 = gen_rands(1e5, 3, 'u');
-#
-#xs = x1 + x2 + x3 + x4 + x5;
-#
-#r = get_corelation(x1, x2);
-#R = [1 r 0 0 0; r 1 0 0 0; 0 0 1 0 0; 0 0 0 1 0; 0 0 0 0 1];
-#U = [get_uncertainty(x1) get_uncertainty(x2) get_uncertainty(x3) get_uncertainty(x4) get_uncertainty(x5)];
-#C = 'ttnus';
-#
-#U = [ 2.13 39.31 24.38 18.39 37.42 3.5 ]; us = 73.21;
-#U = [ 1.81 1e-3 24.38 0.073 5.62 28.6 ]; us = 43.93;
-#C = 'ntnsss';
-#R = 0;
+U = [ 3.49 3.01 5.06 1.87 4.68 4.67 ];
+C = 'tunsss';
 
-U = [ 1 5 ];
-C = 'uu';
+U = [ 9.93 16.7 11.16 ];
+C = 'unu';
 R = 0;
 
 [H, S, k1, k2] = get_cohermatrix(C, U, R);
-tst = gen_randm(1e5, C, U);
+errs = sum(gen_randm(1e6, C, U));
 
-us = get_uncertainty(sum(tst));
-#us = get_uncertainty(xs)
+us = get_uncertainty(errs)
 
-uc = sqrt(U*H*transpose(U));
+uc = sqrt(U*H*transpose(U))
 pd = 100*(uc - us)/us
-uc = sqrt(U*(H./k2)*transpose(U));
+uc = sqrt(U*(H./k2)*transpose(U))
 pd = 100*(uc - us)/us
+
+hist(errs, 100)
 
