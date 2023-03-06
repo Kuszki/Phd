@@ -487,7 +487,17 @@ Na podstawie rysunku~\ref{fig:dwt_rerror_coif5} zauważyć można liniowy wzrost
 \end{center}
 \end{table}
 
-Stosowanie liczb rzeczywistych o długości słowa 16-bitów pozwala zmniejszyć czas obliczeń oraz rozmiar wymaganej pamięci w stosunku do analogicznego przypadku wykorzystującego liczby o długości słowa 32-bitów. Wariant ten wprowadza jednak znacznie większe błędy związane z zaokrągleniami ze względu na ograniczoną precyzję. Należy zatem tak dobrać długość słowa, aby błąd zaokrągleń był możliwie mały w stosunku do pozostałych błędów obecnych w przetwarzanym sygnale, przez co w efekcie nie wpływał on znacznie na błąd wypadkowy. Ze względu na fakt, że zakres wielkości wejściowych algorytmu transformacji falkowej również wpływa na wprowadzany błąd zaokrągleń, należy brać ten czynnik pod uwagę podczas analizy projektowanego toru pomiarowego. Należy zatem tak dobrać warunki eksperymentu, aby w jak największym stopniu były one zbieżne z warunkami rzeczywistymi. Analizując przedstawione wyniki zauważyć można, że wraz ze wzrostem zakresu wielkości wejściowych wariancja błędu zaokrągleń wzrasta. Zależność ta wynika bezpośrednio z właściwości stosowanej powszechnie metody zapisu liczb zmiennoprzecinkowych. Analizując przedstawione histogramy zauważyć można, że kształt rozkładu błędów własnych algorytmu jest zbliżony do kształtu rozkładu normalnego, natomiast dla poziomu ufności $\alpha = 95\%$ współczynnik kształtu wynosi około $2.17$. Wobec tego nie można podczas analizy właściwości metrologicznych przyjąć uproszczenia, w którym rozkład błędów zaokrągleń traktowany będzie jak rozkład normalny.
+Jako, że stosowana w pracy metoda redukcyjnej arytmetyki interwałowej wymaga znajomości wartości współczynników kształtu dla sumowanych par rozkładów błędów, ze względu na niestandardowy kształt rozkładu błędów własnych zaokrągleń konieczne jest wyznaczenie wartości współczynników kształtu dla typowych rozkładów prawdopodobieństwa. Zgodnie z równaniem~\eqref{eq:unc_shapertwo}, stosując metodę Monte-Carlo oszacowano wartości omawianych współczynników kształtu, a uzyskane wyniki zestawiono w tabeli~\ref{tab:unc_coherdwt}. Przedstawione wyniki stanowią uśrednione wartości dla wszystkich przeprowadzonych wcześniej eksperymentów z uwagi na fakt, że uzyskiwane rozkłady błędów cechowały się bardzo zbliżonym kształtem. Sporządzone zestawienie będzie konieczne w dalszej części pracy do wyznaczania zgodnie z równaniem~\eqref{eq:unc_coher} wartości współczynników koherencji, koniecznych do oszacowania wypadkowej wartości niepewności rozszerzonych kolejnych wielkości wyjściowych algorytmu dyskretnej transformacji falkowej.
+
+\begin{table}[htb!]
+\begin{center}
+\makecaption{tab:unc_coherdwt}{Wartości współczynników kształtu dla typowych kształtów rozkładów oraz rozkładu błędu zaokrągleń algorytmu transformacji falkowej}
+\begin{tabular}[c]{| c | c | c | c | c |} \hline
+$s_{r,*}$ & $n$ & $u$ & $t$ & $d$ \\ \hline
+$r$ & $0.123$ & $0.123$ & $0.123$ & $0.123$ \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
 
 \begin{figure}[htb!]
 \begin{center}
@@ -496,22 +506,26 @@ Stosowanie liczb rzeczywistych o długości słowa 16-bitów pozwala zmniejszyć
 \end{center}
 \end{figure}
 
+Stosowanie liczb rzeczywistych o długości słowa 16-bitów pozwala zmniejszyć czas obliczeń oraz rozmiar wymaganej pamięci w stosunku do analogicznego przypadku wykorzystującego liczby o długości słowa 32-bitów. Wariant ten wprowadza jednak znacznie większe błędy związane z zaokrągleniami ze względu na ograniczoną precyzję. Należy zatem tak dobrać długość słowa, aby błąd zaokrągleń był możliwie mały w stosunku do pozostałych błędów obecnych w przetwarzanym sygnale, przez co w efekcie nie wpływał on znacznie na błąd wypadkowy. Ze względu na fakt, że zakres wielkości wejściowych algorytmu transformacji falkowej również wpływa na wprowadzany błąd zaokrągleń, należy brać ten czynnik pod uwagę podczas analizy projektowanego toru pomiarowego. Należy zatem tak dobrać warunki eksperymentu, aby w jak największym stopniu były one zbieżne z warunkami rzeczywistymi. Analizując przedstawione wyniki zauważyć można, że wraz ze wzrostem zakresu wielkości wejściowych wariancja błędu zaokrągleń wzrasta. Zależność ta wynika bezpośrednio z właściwości stosowanej powszechnie metody zapisu liczb zmiennoprzecinkowych. Analizując przedstawione histogramy zauważyć można, że kształt rozkładu błędów własnych algorytmu jest zbliżony do kształtu rozkładu normalnego, natomiast dla poziomu ufności $\alpha = 95\%$ współczynnik kształtu wynosi około $2.17$. Wobec tego nie można podczas analizy właściwości metrologicznych przyjąć uproszczenia, w którym rozkład błędów zaokrągleń traktowany będzie jak rozkład normalny.
+
 \section{Implementacja okna pomiarowego}
 
 Identycznie, jak w przypadku innych algorytmów przetwarzających ciągi wielkości wejściowych, dla algorytmu transformacji falkowej stosować można wybrane okno pomiarowe. Wprowadzenie okna pomiarowego oznaczonego jako $w(n)$ można przedstawić za pomocą modyfikacji równania~\eqref{eq:alg_out_single} jako:
 \begin{equation}
 X \emb{i} = a_{i, 0} w \emb{0} x \emb{0} + a_{i, 1} w \emb{1} x \emb{1} + \hdots + a_{i, N-1} w \emb{N-1} x \emb{N-1} \label{eq:wt_singlewindow}.
 \end{equation}
-Na podstawie przedstawionego równania zauważyć można, że wprowadzenie okna pomiarowego opisać można za pomocą modyfikacji współczynników macierzy transformacji algorytmu zgodnie z zależnością:
+Na podstawie przedstawionego równania zauważyć można, że wprowadzenie okna pomiarowego opisać można również za pomocą modyfikacji współczynników macierzy transformacji algorytmu zgodnie z zależnością:
 \begin{equation}
 a_{i,j}^{'} = w \emb{j} \cdot a_{i,j} \label{eq:wt_windowmod},
 \end{equation}
-gdzie $a_{i,j}^{'}$ stanowi nową wartość współczynnika macierzy transformacji algorytmu. Użyta funkcja $w(n)$ powinna być opisana dla wartości $n$ w przedziale $<0;N-1>$. Wybrane okna pomiarowe opisane w literaturze~\cite{oppenheim_dsp} to okna: trójkątne~\eqref{eq:wnd_triang}, Gaussa~\eqref{eq:wnd_gauss}, Hamminga~\eqref{eq:wnd_hamming} oraz Hanna~\eqref{eq:wnd_hann}. W dalszej części pracy stosowane będzie okno prostokątne, w którym $w(n) = 1$ o ile nie zostanie zaznaczony fakt stosowania innego okna pomiarowego. Wpływ parametrów okna pomiarowego na przenoszenie błędów losowych przez algorytmy dyskretnej transformacji falkowej przedstawiono w pracy~\cite{auth_window}. Wymienione funkcje okien przedstawiają równania:
+gdzie $a_{i,j}^{'}$ stanowi nową wartość współczynnika macierzy transformacji algorytmu. Użyta funkcja $w(n)$ powinna być opisana dla wartości $n$ w przedziale $<0;N-1>$. Stosowanie okna pomiarowego będzie miało wpływ na widmo sygnału wielkości wyjściowych algorytmu i wynika z charakteru przetwarzanego sygnału. Wybrane okna pomiarowe opisane w literaturze~\cite{oppenheim_dsp, oppenheim_sns, proakis_dsp} to okna: trójkątne~\eqref{eq:wnd_triang}, sinusoidalne~\eqref{eq:wnd_sine}, Gaussa~\eqref{eq:wnd_gauss}, Hamminga~\eqref{eq:wnd_hamming}, Hanna~\eqref{eq:wnd_hann} oraz Welcha~\eqref{eq:wnd_welch}. W dalszej części pracy stosowane będzie okno prostokątne, w którym $w(n) = 1$, o ile nie zostanie zaznaczony fakt stosowania innego okna pomiarowego. Wpływ parametrów okna pomiarowego na przenoszenie błędów losowych przez algorytmy dyskretnej transformacji falkowej przedstawiono w pracy~\cite{auth_window}. Wymienione wcześniej typowe funkcje okien pomiarowych przedstawiają następujące równania:
 \begin{gather}
 w_{tr} \emb{n} = 1 - \left| \frac{n - \frac{N-1}{2}}{\frac{N}{2}} \right| \label{eq:wnd_triang}, \\
+w_{sn} \emb{n} = \sin \left( \frac{\pi n}{N} \right) \label{eq:wnd_sine}, \\
 w_{ga} \emb{n} = \exp \left(-\frac{1}{2} \cdot \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{\emb{N-1}}{2}} \right)^{2} \right) \label{eq:wnd_gauss}, \\
 w_{hm} \emb{n} = 0.5384 - 0.4616 \cos \left( \frac{2 \pi n}{N} \right) \label{eq:wnd_hamming}, \\
-w_{hn} \emb{n} = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eq:wnd_hann},
+w_{hn} \emb{n} = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eq:wnd_hann}, \\
+w_{wh} \emb{n} = 1 - \left( \frac{n - \frac{N}{2}}{\frac{N}{2}} \right)^{2} \label{eq:wnd_welch}.
 \end{gather}
 
-Implementacja okna pomiarowego, z punktu widzenia przedstawionych w pracy założeń, mogłaby również zostać opisana jako zastosowanie dodatkowego algorytmu. Algorytm ten przetwarzałby $N$ wielkości wejściowych na $M$ wielkości wyjściowych, gdzie $N = M$. Macierz transformacji omawianego algorytmu byłaby macierzą diagonalną, przy czym wartości kolejnych współczynników odpowiadałyby wyznaczonym wagom dla $i$-tej wielkości okna. Z praktycznego punktu widzenia zaproponowana metoda modyfikacji wartości współczynników transformacji algorytmu transformacji falkowej wydaje się jednak bardziej optymalna. Na tej samej zasadzie istnieje możliwość implementacji innych modyfikacji, np. wprowadzenia dodatkowego filtru.
+Implementacja okna pomiarowego, z punktu widzenia przedstawionych w pracy założeń, mogłaby również zostać opisana jako zastosowanie dodatkowego algorytmu. Algorytm ten przetwarzałby $N$ wielkości wejściowych na $M$ wielkości wyjściowych, gdzie $N = M$. Macierz transformacji omawianego algorytmu byłaby macierzą diagonalną, przy czym wartości kolejnych współczynników odpowiadałyby wyznaczonym wagom dla $i$-tej wielkości okna. Z praktycznego punktu widzenia zaproponowana metoda modyfikacji wartości współczynników transformacji algorytmu transformacji falkowej wydaje się jednak bardziej optymalna. Na tej samej zasadzie istnieje możliwość implementacji innych modyfikacji, np. wprowadzenia dodatkowego filtru. Jako, że algorytm dyskretnej transformacji sam w sobie implementuje dla kolejnych wielkości wyjściowych podział tych wielkości na odpowiadające im okna pomiarowe, stosowanie dodatkowego okna pomiarowego nie jest tak popularne, jak w przypadku innych algorytmów (np. algorytmu \enquote{DFT}).
