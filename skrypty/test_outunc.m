@@ -10,9 +10,8 @@ wname = 'db2';
 ndec = 2;
 nsam = 8;
 
-num = 1e6;
-from = 5;
-to = 5;
+from = 1;
+to = 8;
 
 sq2_4 = 4*sqrt(2); sq3 = sqrt(3);
 A = [ ...
@@ -26,98 +25,51 @@ A = [ ...
 (3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4; ];
 #A = lin_ident(@(x) fwt(x, wname, ndec), nsam);
 
-rw = [ 0.974 1.01 1.21 0.973 0.699 0.587 0.585 0.541 ];
+rw = [ 0.974 1.01 1.21 0.973 0.699 0.587 0.585 0.541 ]; R = 0;
 
-printf("n\twc\tua\tub\tcb\tus\n")
-
-r = [ ...
-1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
-0.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
-0.0   0.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
-0.0   0.0   0.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
-0.0   0.0   0.0   0.0   1.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
-0.0   0.0   0.0   0.0   1.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
-0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0   0.0   0.0 ; ...
-0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0   0.0 ; ...
-0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0 ; ...
-0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0   0.0   0.0 ; ...
-0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0   0.0 ; ...
-0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0   0.0   0.0   1.0 ];
+printf("n\twc\tua\tub\tcb\n")
 
 c = [ 2.16 1.96 1.96 1.96 1.90 1.90 1.41 1.41 1.41 1.41 1.41 1.41 ];
+C = 'rnnnttssssss';
+
+Ug = [ 74.73 69.28 56.38 56.42 44.02 44.01 44.01 44.11 ];
+
+#c = [ 2.16 1.90 1.96 1.41 1.41 1.41 ];
+#C = 'rtnsss';
+
+R = diag(ones(1, length(C)));
 
 for N = from : to
 
   [h, f] = freqz(A(N,:), [], [1000, 5000, 15000], 48000);
 
   amp = abs(h);
-  sta = sum(A(N,:));
-  ran = sqrt(sum(A(N,:).^2));
+  sta = sum(A(N,:))^2;
+  ran = sqrt(sum(A(N,:).^2))^2;
 
-  W = [ rw(N) 45.78*ran^2 36.26*ran^2 72.64*ran^2 36.75*sta^2 18.38*sta^2 ...
+  W = [ rw(N) 45.78*ran 36.26*ran 72.64*ran 36.75*sta 18.38*sta ...
         19.14*amp(1)^2 119.62*amp(2)^2 119.44*amp(3)^2 ...
-        4.64*amp(1)^2 29.00*amp(2)^2 28.99*amp(3)^2];
+        4.64*amp(1)^2 29.00*amp(2)^2 28.99*amp(3)^2 ];
 
-  tr = gen_randt(num, 1, 'w');
-  s1 = gen_rands(num, 1, 'w');
-  s2 = gen_rands(num, 1, 'w');
-  s3 = gen_rands(num, 1, 'w');
+  R(5,6) = R(6,5) = 1;
+  R(7,10) = R(10,7) = 1;
+  R(8,11) = R(11,8) = 1;
+  R(9,12) = R(12,9) = 1;
 
-  R = [ ...
-    gen_randn(num, W(1), 'w'); ...
-    gen_randn(num, W(2), 'w'); ...
-    gen_randn(num, W(3), 'w'); ...
-    gen_randn(num, W(4), 'w'); ...
-    tr*sqrt(W(5)); ...
-    tr*sqrt(W(6)); ...
-    s1*sqrt(W(7)); ...
-    s2*sqrt(W(8)); ...
-    s3*sqrt(W(9)); ...
-    s1*sqrt(W(10)); ...
-    s2*sqrt(W(11)); ...
-    s3*sqrt(W(12)); ...
-  ];
-
-  len = length(W);
-  coh = zeros(len, len);
-  k = zeros(len, len);
-  h = zeros(len, len);
-
-  for i = 1 : len
-    U(i) = get_uncertainty(R(i,:));
-  end
-
-  for i = 1 : len
-    for j = 1 : len
-      if i == j; coh(i,j) = h(i,j) = k(i,j) = 1;
-      elseif coh(i,j) == 0
-
-        uc = get_uncertainty(R(j,:) + R(i,:));
-
-        h(i,j) = h(j,i) = (uc^2 - U(i)^2 - U(j)^2)/(2*U(i)*U(j));
-        k(i,j) = k(j,i) = (U(i)^2 + U(j)^2)/sum(U .^ 2);
-
-        if h(i,j) > 0.9
-          ko = 1;
-        else
-          ko = k(i,j);
-        end
-
-        coh(i,j) = coh(j,i) = h(i,j) * ko;
-
-      end
-    end
-  end
+#  W = [ rw(N) 107.12*sta 154.68*ran ...
+#        42.60*amp(1)^2 266.34*amp(2)^2 266.11*amp(3)^2];
 
   sw = sqrt(W);
 
-  W1 = sw*r*transpose(sw)
-  Uw = sw .* c;
-  Ua = sqrt(W1)*1.96;
-  Ub = sqrt(U*coh*transpose(U));
-  Cb = Ub / sqrt(W1);
-  Us = get_uncertainty(sum(R));
+  U = c .* sw;
 
-  printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", N, W1, Ua, Ub, Cb, Us);
+  [H, S, k1, k2] = get_cohermatrix(C, U, R);
+  uc = sqrt(U*H*transpose(U));
+  wc = sw*R*transpose(sw);
+
+  un = sqrt(wc)*1.96;
+  cc = uc / sqrt(wc);
+
+  printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", N, wc, Ug(N), uc, cc);
 
 end

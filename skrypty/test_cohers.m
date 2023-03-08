@@ -13,8 +13,8 @@ addpath("~/Projekty/Octave-FWT-Utils");
 #U = [ 1.81 1e-3 24.38 0.073 5.62 28.6 ];
 #C = 'ntnsss';
 
-#U = [ 2.13 13.26 11.80 16.70 23.04 16.29 12.32 25.08 2.35 6.07 12.35 1.16 ]; us = 73.21;
-#U = [ 1.81 13.26 11.80 16.70 1e-5 1e-5 0.06 3.77 19.16 0.04 1.85 9.44 ]; us = 43.93;
+#U = [ 2.13 13.26 11.80 16.70 23.04 16.29 12.32 25.08 2.35 6.07 12.35 1.16 ]; #us = 73.21;
+#U = [ 1.81 13.26 11.80 16.70 1e-5 1e-5 0.06 3.77 19.16 0.04 1.85 9.44 ]; #us = 43.93;
 #C = 'nnnnttssssss';
 #R = [ ...
 #1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0 ; ...
@@ -39,22 +39,25 @@ addpath("~/Projekty/Octave-FWT-Utils");
 #  Uc(i) = get_uncertainty(tst(i,:));
 #end
 
-U = [ 3.49 3.01 5.06 1.87 4.68 4.67 ];
-C = 'tunsss';
+#U = [ 3.49 3.01 5.06 1.87 4.68 4.67 ];
+#C = 'tunsss';
+#R = 0;
 
-U = [ 9.93 16.7 11.16 ];
-C = 'unu';
-R = 0;
+R = [1 -1 0; -1 1 0; 0 0 1];
+C = "uun";
 
-[H, S, k1, k2] = get_cohermatrix(C, U, R);
-errs = sum(gen_randm(1e6, C, U));
+#errs = sum(gen_randm(1e6, C, U));
+x1 = gen_randu(1e6, 5, 'u');
+x2 = -0.5*x1;#gen_randu(1e6, 1, 'u');
+x3 = gen_randn(1e6, 3, 'u');
+errs = x1 + x2 + x3;
+
+U = [ get_uncertainty(x1) get_uncertainty(x2) get_uncertainty(x3) ];
 
 us = get_uncertainty(errs)
 
+[H, S, k1, k2] = get_cohermatrix(C, U, R);
 uc = sqrt(U*H*transpose(U))
 pd = 100*(uc - us)/us
-uc = sqrt(U*(H./k2)*transpose(U))
-pd = 100*(uc - us)/us
 
-hist(errs, 100)
 

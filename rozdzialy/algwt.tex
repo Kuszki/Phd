@@ -491,10 +491,10 @@ Jako, że stosowana w pracy metoda redukcyjnej arytmetyki interwałowej wymaga z
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:unc_coherdwt}{Wartości współczynników kształtu dla typowych kształtów rozkładów oraz rozkładu błędu zaokrągleń algorytmu transformacji falkowej}
-\begin{tabular}[c]{| c | c | c | c | c |} \hline
-$s_{r,*}$ & $n$ & $u$ & $t$ & $d$ \\ \hline
-$r$ & $0.123$ & $0.123$ & $0.123$ & $0.123$ \\ \hline
+\makecaption{tab:unc_coherdwt}{Wartości współczynników kształtu dla typowych kształtów rozkładów oraz rozkładu błędu zaokrągleń algorytmu transformacji falkowej, gdzie kolejne symbole oznaczają rozkład: (n)~normalny, (u)~jednostajny, (t)~trójkątny, (d)~dwumodalny, (r)~zaokrągleń}
+\begin{tabular}[c]{| c | S[table-format = +1.3] | S[table-format = +1.3] | S[table-format = +1.3] | S[table-format = +1.3] | S[table-format = +1.3] |} \hline
+$s_{r,*}$ & \textbf{$n$} & \textbf{$u$} & \textbf{$t$} & \textbf{$d$} & \textbf{$r$} \\ \hline
+$r$       & -0.009       & 0.066        & -0.010       & 0.197        & 0.027        \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -506,7 +506,7 @@ $r$ & $0.123$ & $0.123$ & $0.123$ & $0.123$ \\ \hline
 \end{center}
 \end{figure}
 
-Stosowanie liczb rzeczywistych o długości słowa 16-bitów pozwala zmniejszyć czas obliczeń oraz rozmiar wymaganej pamięci w stosunku do analogicznego przypadku wykorzystującego liczby o długości słowa 32-bitów. Wariant ten wprowadza jednak znacznie większe błędy związane z zaokrągleniami ze względu na ograniczoną precyzję. Należy zatem tak dobrać długość słowa, aby błąd zaokrągleń był możliwie mały w stosunku do pozostałych błędów obecnych w przetwarzanym sygnale, przez co w efekcie nie wpływał on znacznie na błąd wypadkowy. Ze względu na fakt, że zakres wielkości wejściowych algorytmu transformacji falkowej również wpływa na wprowadzany błąd zaokrągleń, należy brać ten czynnik pod uwagę podczas analizy projektowanego toru pomiarowego. Należy zatem tak dobrać warunki eksperymentu, aby w jak największym stopniu były one zbieżne z warunkami rzeczywistymi. Analizując przedstawione wyniki zauważyć można, że wraz ze wzrostem zakresu wielkości wejściowych wariancja błędu zaokrągleń wzrasta. Zależność ta wynika bezpośrednio z właściwości stosowanej powszechnie metody zapisu liczb zmiennoprzecinkowych. Analizując przedstawione histogramy zauważyć można, że kształt rozkładu błędów własnych algorytmu jest zbliżony do kształtu rozkładu normalnego, natomiast dla poziomu ufności $\alpha = 95\%$ współczynnik kształtu wynosi około $2.17$. Wobec tego nie można podczas analizy właściwości metrologicznych przyjąć uproszczenia, w którym rozkład błędów zaokrągleń traktowany będzie jak rozkład normalny.
+Stosowanie liczb rzeczywistych o długości słowa 16-bitów pozwala zmniejszyć czas obliczeń oraz rozmiar wymaganej pamięci w stosunku do analogicznego przypadku wykorzystującego liczby o długości słowa 32-bitów. Wariant ten wprowadza jednak znacznie większe błędy związane z zaokrągleniami ze względu na ograniczoną precyzję. Należy zatem tak dobrać długość słowa, aby błąd zaokrągleń był możliwie mały w stosunku do pozostałych błędów obecnych w przetwarzanym sygnale, przez co w efekcie nie wpływał on znacznie na błąd wypadkowy. Ze względu na fakt, że zakres wielkości wejściowych algorytmu transformacji falkowej również wpływa na wprowadzany błąd zaokrągleń, należy brać ten czynnik pod uwagę podczas analizy projektowanego toru pomiarowego. Należy zatem tak dobrać warunki eksperymentu, aby w jak największym stopniu były one zbieżne z warunkami rzeczywistymi. Analizując przedstawione wyniki zauważyć można, że wraz ze wzrostem zakresu wielkości wejściowych wariancja błędu zaokrągleń wzrasta. Zależność ta wynika bezpośrednio z właściwości stosowanej powszechnie metody zapisu liczb zmiennoprzecinkowych. Analizując przedstawione histogramy zauważyć można, że kształt rozkładu błędów własnych algorytmu jest zbliżony do kształtu rozkładu normalnego, natomiast dla poziomu ufności $\alpha = 95\%$ współczynnik kształtu wynosi około $2.16$. Wobec tego nie można podczas analizy właściwości metrologicznych przyjąć uproszczenia, w którym rozkład błędów zaokrągleń traktowany będzie jak rozkład normalny. W dalszej cześć pracy przyjmuje się, że współczynnik kształtu oznaczony symbolem $c_{z}$ odpowiadać będzie kształtowi rozkładu błędów zaokrągleń i będzie on równy $2.16$.
 
 \section{Implementacja okna pomiarowego}
 

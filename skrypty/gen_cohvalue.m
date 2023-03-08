@@ -22,3 +22,4 @@ for i = 1 : length(list)
   printf("%s\t%0.5f\n", name, hm)
 end
 
+h = pararrayfun(nproc-1, @(x) get_corelation(tst, gen_randu(length(tst), u, 'u')), 1:300)

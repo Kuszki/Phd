@@ -45,7 +45,7 @@ fit fun5(x) name using 1:6 via val5, amp5, zer5
 fun6(x) = (x > (val6-zer6)/amp6) ? val6 : amp6 * x + zer6
 fit fun6(x) name using 1:7 via val6, amp6, zer6
 
-set term pdf size 16cm,9cm font "Latin Modern Roman,18"
+set term pdf size 16cm,10.3cm font "Latin Modern Roman,18"
 set output "../obrazki/dwt_rerror_coif5.pdf"
 
 set logscale x 2
@@ -61,12 +61,12 @@ set key right bottom horizontal title 'Liczba iteracji procesu dekompozycji' sam
 
 set grid mytics xtics ytics
 
-plot name using 1:2 t'1' lc rgb '#0072bd', [8:4096] fun1(x) t'' lc rgb '#0072bd', \
-	name using 1:3 t'2' lc rgb '#d95319', [8:4096] fun2(x) t'' lc rgb '#d95319', \
-	name using 1:4 t'3' lc rgb '#edb120', [8:4096] fun3(x) t'' lc rgb '#edb120', \
-	name using 1:5 t'4' lc rgb '#7e2f8e', [16:4096] fun4(x) t'' lc rgb '#7e2f8e', \
-	name using 1:6 t'5' lc rgb '#77ac30', [32:4096] fun5(x) t'' lc rgb '#77ac30', \
-	name using 1:7 t'6' lc rgb '#a2142f', [64:4096] fun6(x) t'' lc rgb '#a2142f'
+plot name using 1:2 t'1' lc rgb '#0072bd' pt 1, [8:4096] fun1(x) t'' lc rgb '#0072bd', \
+	name using 1:3 t'2' lc rgb '#d95319' pt 2, [8:4096] fun2(x) t'' lc rgb '#d95319', \
+	name using 1:4 t'3' lc rgb '#edb120' pt 3, [8:4096] fun3(x) t'' lc rgb '#edb120', \
+	name using 1:5 t'4' lc rgb '#7e2f8e' pt 1, [16:4096] fun4(x) t'' lc rgb '#7e2f8e', \
+	name using 1:6 t'5' lc rgb '#77ac30' pt 2, [32:4096] fun5(x) t'' lc rgb '#77ac30', \
+	name using 1:7 t'6' lc rgb '#a2142f' pt 3, [64:4096] fun6(x) t'' lc rgb '#a2142f'
 
 print 512, fun6(512)
 
