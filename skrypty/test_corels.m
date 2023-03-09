@@ -6,14 +6,15 @@ pkg load parallel;
 pkg load signal;
 
 addpath("~/Projekty/Octave-FWT-Utils");
+warning('off', 'Octave:data-file-in-path');
 
 C = "uunu";
 R = diag(ones(1, length(C)));
 
 x1 = gen_randu(1e6, 1.5, 'u');
-x2 = gen_randu(1e6, 1.0, 'u') + 1 * x1;
-x3 = gen_randu(1e6, 1.5, 'u');
-x4 = gen_randt(1e6, 1.5, 'u') + 0.1 * x2 + 0.2*x3;
+x2 = gen_randu(1e6, 1.8, 'u') + 1.5 * x1;
+x3 = gen_randn(1e6, 5.5, 'u');
+x4 = gen_randu(1e6, 2.5, 'u') - 1.1 * x2;# - 0.1*x3;
 
 errs = x1 + x2 + x3 + x4;
 
@@ -31,7 +32,7 @@ Rr = [ 1 r12 r13 r14; r12 1 r23 r24; r13 r23 1 r34; r14 r24 r34 1 ];
 
 Rh = Rh .* (Rr != 0.0);
 
-[H, S, k1, k2] = get_cohermatrix(C, U, Rh);
+[H, S, k1, k2] = get_cohermatrix(C, U, Rr);
 
 us = get_uncertainty(errs)
 

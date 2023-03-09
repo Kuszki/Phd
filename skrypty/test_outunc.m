@@ -4,7 +4,8 @@ pkg load communications
 pkg load ltfat
 pkg load parallel
 
-addpath("~/Projekty/Octave-FWT-Utils")
+addpath("~/Projekty/Octave-FWT-Utils");
+warning('off', 'Octave:data-file-in-path');
 
 wname = 'db2';
 ndec = 2;

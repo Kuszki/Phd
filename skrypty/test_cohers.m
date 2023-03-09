@@ -6,6 +6,7 @@ pkg load parallel;
 pkg load signal;
 
 addpath("~/Projekty/Octave-FWT-Utils");
+warning('off', 'Octave:data-file-in-path');
 
 #U = [ 2.13 39.31 24.38 18.39 37.42 3.5 ];
 #C = 'ntnsss';
@@ -43,13 +44,15 @@ addpath("~/Projekty/Octave-FWT-Utils");
 #C = 'tunsss';
 #R = 0;
 
-R = [1 -1 0; -1 1 0; 0 0 1];
-C = "uun";
+rr = 1;
+
+R = [1 rr 0; rr 1 0; 0 0 1];
+C = "uut";
 
 #errs = sum(gen_randm(1e6, C, U));
 x1 = gen_randu(1e6, 5, 'u');
-x2 = -0.5*x1;#gen_randu(1e6, 1, 'u');
-x3 = gen_randn(1e6, 3, 'u');
+x2 = 0.1*rr*x1;#gen_randu(1e6, 1, 'u');
+x3 = gen_randt(1e6, 3, 'u');
 errs = x1 + x2 + x3;
 
 U = [ get_uncertainty(x1) get_uncertainty(x2) get_uncertainty(x3) ];
