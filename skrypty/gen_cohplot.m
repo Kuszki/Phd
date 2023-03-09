@@ -18,7 +18,7 @@ for a = list
   for i = 1 : length(m)
 
     fun = @(x) gen_coherence(1, 1, a, a, 'u', 1e5, m(i));
-    [h, r] = pararrayfun(nproc-1, fun, 1:10);
+    [h, r] = pararrayfun(nproc-1, fun, 1:1000);
 
     hv(i) = mean(h);
     rv(i) = mean(r);

@@ -7,71 +7,61 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
+list = 'nuts';
 dim = "-r300";
 
-fcolor = "#333333";
-ecolor = "#333333";
-nbins = 300;
-xran = [0 5.5];
+texp = [3 : 12];
+lab = num2str([2 .^ texp](:), '%d');
 
 set(h, "paperunits", "centimeters")
-set(h, "papersize", [16 11])
-set(h, "paperposition", [0, 0, [16 11]])
+set(h, "papersize", [16 10.3])
+set(h, "paperposition", [0, 0, [16 10.3]])
 
-set(0, "defaultaxesposition", [0.085, 0.11, 0.885, 0.865])
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
-x = load("-ascii", "f16_coif5_6_2048.dat");
-[u, c, s, w] = get_uncertainty(x, 0.95, 10)
+m = load('-ascii', '../archiwa/fwterr/rerror_coif5_fun.dat');
+v = load('-ascii', '../archiwa/fwterr/rerror_coif5_plot.dat');
+c = lines(rows(m));
+p = '+x*+x*';
+pl = length(p);
 
-subplot(2, 2, 1)
-hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("a) \\rm\\it N{ =\\rm 2^{11}}, U{ =\\rm %0.2g}, c{ =\\rm %1.2f}\n", u, c))
-ylabel("Udział wystąpień, %");
-xlabel("Wartość błędu");
-xlim([-s*5 s*5])
-ylim([0 5.5])
+function [x] = fun(x, val, amp, zer)
+  for i = 1 : length(x)
+    if x(i) > ((val-zer)/amp)
+      x(i) = val;
+    else
+      x(i) = amp * x(i) + zer;
+    end
+  end
+end
+
+hold on
+
+for i = 1 : rows(m)
+
+  x = linspace(m(i,5), m(i,6), 128);
+
+  loglog(v(:,1), v(:,i+1), sprintf("%s;%d;", char(p(i)), i), "Color", [c(i,:)]);
+  loglog(x, fun(x, m(i,2), m(i,3), m(i,4)), "HandleVisibility", "off", "Color", [c(i,:)]);
+
+end
+
+hold off;
+legend("location", 'southeast', 'orientation', 'horizontal')
+ylabel("Wariancja błędu zaokrągleń");
+xlabel("Liczba wielkości wejściowych algorytmu");
+xticks(2 .^ texp);
+xticklabels({lab});
+xlim([8 4096])
+ylim([1e-15 3e-13])
 grid on
+grid minor off
 
-x = load("-ascii", "f16_coif5_6_256.dat");
-[u, c, s, w] = get_uncertainty(x, 0.95, 10)
+set (gca, "yminorgrid", "on");
 
-subplot(2, 2, 2)
-hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("b) \\rm\\it N{ =\\rm 2^{9}}, U{ =\\rm %0.2g}, c{ =\\rm %1.2f}\n", u, c))
-ylabel("Udział wystąpień, %");
-xlabel("Wartość błędu");
-xlim([-s*5 s*5])
-ylim([0 5.5])
-grid on
-
-x = load("-ascii", "f32_coif5_6_2048.dat");
-[u, c, s, w] = get_uncertainty(x, 0.95, 10)
-
-subplot(2, 2, 3)
-hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("c) \\rm\\it N{ =\\rm 2^{11}}, U{ =\\rm %0.2g}, c{ =\\rm %1.2f}", u, c))
-ylabel("Udział wystąpień, %");
-xlabel("Wartość błędu");
-xlim([-s*5 s*5])
-ylim([0 5.5])
-grid on
-
-x = load("-ascii", "f32_coif5_6_256.dat");
-[u, c, s, w] = get_uncertainty(x, 0.95, 10)
-
-subplot(2, 2, 4)
-hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("d) \\rm\\it N{ =\\rm 2^{9}}, U{ =\\rm %0.2g}, c{ =\\rm %1.2f}", u, c))
-ylabel("Udział wystąpień, %");
-xlabel("Wartość błędu");
-xlim([-s*5 s*5])
-ylim([0 5.5])
-grid on
-
-print("../obrazki/hist_numerr_coif5.svg", "-svgconvert", dim);
+print("../obrazki/dwt_rerror_coif5.svg", "-svgconvert", dim);
 

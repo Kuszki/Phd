@@ -1,7 +1,7 @@
 set fit limit 1e-100
 set fit maxiter 0
 
-name = 'rerror_coif5.dat'
+name = '../archiwa/fwterr/rerror_coif5_plot.dat'
 
 val1 = 7.43e-15
 amp1 = 2.34e-16
@@ -45,8 +45,8 @@ fit fun5(x) name using 1:6 via val5, amp5, zer5
 fun6(x) = (x > (val6-zer6)/amp6) ? val6 : amp6 * x + zer6
 fit fun6(x) name using 1:7 via val6, amp6, zer6
 
-set term pdf size 16cm,10.3cm font "Latin Modern Roman,18"
-set output "../obrazki/dwt_rerror_coif5.pdf"
+#set term pdf size 16cm,10.3cm font "Latin Modern Roman,18"
+#set output "../obrazki/dwt_rerror_coif5.pdf"
 
 set logscale x 2
 set logscale y 10
@@ -68,6 +68,11 @@ plot name using 1:2 t'1' lc rgb '#0072bd' pt 1, [8:4096] fun1(x) t'' lc rgb '#00
 	name using 1:6 t'5' lc rgb '#77ac30' pt 2, [32:4096] fun5(x) t'' lc rgb '#77ac30', \
 	name using 1:7 t'6' lc rgb '#a2142f' pt 3, [64:4096] fun6(x) t'' lc rgb '#a2142f'
 
-print 512, fun6(512)
+print 1, val1, amp1, zer1, 8, 4096
+print 2, val2, amp2, zer2, 8, 4096
+print 3, val3, amp3, zer3, 8, 4096
+print 4, val4, amp4, zer4, 16, 4096
+print 5, val5, amp5, zer5, 32, 4096
+print 6, val6, amp6, zer6, 64, 4096
 
 pause -1

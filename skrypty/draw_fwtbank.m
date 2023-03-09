@@ -7,12 +7,11 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
-#dim = "-S1600,1000";
 dim = "-r300";
 
 set(h, "paperunits", "centimeters")
-set(h, "papersize", [16 10.5])
-set(h, "paperposition", [0, 0, [16 10.5]])
+set(h, "papersize", [16 11.3])
+set(h, "paperposition", [0, 0, [16 11.3]])
 
 set(0, "defaultaxesposition", [0.085, 0.11, 0.885, 0.865])
 set(0, "defaultaxesfontsize", 11)
@@ -146,4 +145,4 @@ ylim([0 1])
 grid on
 
 print("bank_dden_demo.svg", "-svgconvert", dim);
-#print("bank_dden_demo.pdf", "-dpdfcrop", "-svgconvert", dim);
+
