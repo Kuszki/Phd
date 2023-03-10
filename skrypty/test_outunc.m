@@ -64,7 +64,7 @@ for N = from : to
 
   U = c .* sw;
 
-  [H, S, k1, k2] = get_cohermatrix(C, U, R);
+  [H, S, k1, k2] = get_cohermatrix(C, U);
   uc = sqrt(U*H*transpose(U));
   wc = sw*R*transpose(sw);
 

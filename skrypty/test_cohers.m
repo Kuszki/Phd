@@ -44,22 +44,23 @@ warning('off', 'Octave:data-file-in-path');
 #C = 'tunsss';
 #R = 0;
 
-rr = 1;
-
-R = [1 rr 0; rr 1 0; 0 0 1];
-C = "uut";
+C = "uuu";
+mul = rand(1,1)*5
 
 #errs = sum(gen_randm(1e6, C, U));
 x1 = gen_randu(1e6, 5, 'u');
-x2 = 0.1*rr*x1;#gen_randu(1e6, 1, 'u');
-x3 = gen_randt(1e6, 3, 'u');
+x2 = gen_randu(1e6, 1, 'u'); #1.5453 1.2181
+x3 = gen_randu(1e6, 3, 'u');
 errs = x1 + x2 + x3;
+
+[h, r] = get_corelation(x1, x2);
+R = [1 r 0; r 1 0; 0 0 1];
 
 U = [ get_uncertainty(x1) get_uncertainty(x2) get_uncertainty(x3) ];
 
 us = get_uncertainty(errs)
 
-[H, S, k1, k2] = get_cohermatrix(C, U, R);
+[H, S, k1, k2] = get_cohermatrix(C, U);
 uc = sqrt(U*H*transpose(U))
 pd = 100*(uc - us)/us
 
