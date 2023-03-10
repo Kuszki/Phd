@@ -14,9 +14,10 @@ texp = [3 : 12];
 lab = num2str([2 .^ texp](:), '%d');
 
 set(h, "paperunits", "centimeters")
-set(h, "papersize", [16 10.3])
-set(h, "paperposition", [0, 0, [16 10.3]])
+set(h, "papersize", [16 8.3])
+set(h, "paperposition", [0, 0, [16 8.3]])
 
+set(0, "defaultaxesposition", [0.105, 0.155, 0.865, 0.825])
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
@@ -60,6 +61,7 @@ xlim([8 4096])
 ylim([1e-15 3e-13])
 grid on
 grid minor off
+box on
 
 set (gca, "yminorgrid", "on");
 

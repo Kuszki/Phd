@@ -29,6 +29,7 @@ xlabel("Częstotliwość znormalizowana\n");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 [g,a] = wfbt2filterbank({'db8', 3, 'dwt'});
 subplot(2, 2, 2)
@@ -39,6 +40,7 @@ xlabel("Częstotliwość znormalizowana\n");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 [g,a] = wfbt2filterbank({'db2', 6, 'dwt'});
 subplot(2, 2, 3)
@@ -49,6 +51,7 @@ xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 [g,a] = wfbt2filterbank({'db8', 6, 'dwt'});
 subplot(2, 2, 4)
@@ -59,6 +62,7 @@ xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 print("bank_db_demo.svg", "-svgconvert", dim);
 
@@ -71,6 +75,7 @@ xlabel("Częstotliwość znormalizowana\n");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 [g,a] = wfbt2filterbank({'ana:spline4:4', 3, 'dwt'});
 subplot(2, 2, 2)
@@ -81,6 +86,7 @@ xlabel("Częstotliwość znormalizowana\n");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 [g,a] = wfbt2filterbank({'ana:spline2:4', 6, 'dwt'});
 subplot(2, 2, 3)
@@ -91,6 +97,7 @@ xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 [g,a] = wfbt2filterbank({'ana:spline4:4', 6, 'dwt'});
 subplot(2, 2, 4)
@@ -101,6 +108,7 @@ xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 print("bank_spline_demo.svg", "-svgconvert", dim);
 
@@ -113,6 +121,7 @@ xlabel("Częstotliwość znormalizowana\n");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 [g,a] = wfbt2filterbank({'dden6', 3, 'dwt'});
 subplot(2, 2, 2)
@@ -123,6 +132,7 @@ xlabel("Częstotliwość znormalizowana\n");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 [g,a] = wfbt2filterbank({'dden2', 6, 'dwt'});
 subplot(2, 2, 3)
@@ -133,6 +143,7 @@ xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 [g,a] = wfbt2filterbank({'dden6', 6, 'dwt'});
 subplot(2, 2, 4)
@@ -143,6 +154,7 @@ xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1])
 ylim([0 1])
 grid on
+box on
 
 print("bank_dden_demo.svg", "-svgconvert", dim);
 

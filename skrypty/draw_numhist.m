@@ -36,6 +36,7 @@ xlabel("Wartość błędu");
 xlim([-s*5 s*5])
 ylim([0 5.5])
 grid on
+box on
 
 x = load("-ascii", "../archiwa/fwterr/f16_coif5_6_256.dat");
 [u, c, s, w] = get_uncertainty(x, 0.95, 10)
@@ -48,6 +49,7 @@ xlabel("Wartość błędu");
 xlim([-s*5 s*5])
 ylim([0 5.5])
 grid on
+box on
 
 x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_2048.dat");
 [u, c, s, w] = get_uncertainty(x, 0.95, 10)
@@ -60,6 +62,7 @@ xlabel("Wartość błędu");
 xlim([-s*5 s*5])
 ylim([0 5.5])
 grid on
+box on
 
 x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_256.dat");
 [u, c, s, w] = get_uncertainty(x, 0.95, 10)
@@ -72,6 +75,7 @@ xlabel("Wartość błędu");
 xlim([-s*5 s*5])
 ylim([0 5.5])
 grid on
+box on
 
 print("../obrazki/hist_numerr_coif5.svg", "-svgconvert", dim);
 

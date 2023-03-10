@@ -8,7 +8,7 @@ pkg load parallel
 addpath("~/Projekty/Octave-FWT-Utils")
 
 dim = "-r300";
-part = "T";
+part = "a";
 
 fcolor = "#333333";
 ecolor = "#333333";
@@ -46,6 +46,7 @@ xlabel("Wartość błędu, mV");
 #ylim([0 0.8])
 #yticks([0 : 0.1 : 0.6])
 grid on
+box on
 pos = pos + 1;
 end;
 
@@ -64,6 +65,7 @@ xlabel("Wartość błędu, mV");
 #ylim([0 1.2])
 #yticks([0 : 0.2 : 1.2])
 grid on
+box on
 pos = pos + 1;
 end;
 
@@ -82,6 +84,7 @@ xlabel("Wartość błędu, mV");
 #ylim([0 1.2])
 #yticks([0 : 0.2 : 1.2])
 grid on
+box on
 pos = pos + 1;
 end;
 
@@ -100,6 +103,7 @@ xlabel("Wartość błędu, mV");
 #ylim([0 1.2])
 #yticks([0 : 0.2 : 1.2])
 grid on
+box on
 pos = pos + 1;
 end;
 

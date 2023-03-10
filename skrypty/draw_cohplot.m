@@ -11,9 +11,10 @@ list = 'nuts';
 dim = "-r300";
 
 set(h, "paperunits", "centimeters")
-set(h, "papersize", [16 10.3])
-set(h, "paperposition", [0, 0, [16 10.3]])
+set(h, "papersize", [16 8.3])
+set(h, "paperposition", [0, 0, [16 8.3]])
 
+set(0, "defaultaxesposition", [0.105, 0.155, 0.865, 0.825])
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
@@ -38,6 +39,7 @@ ylim([-1 1])
 xticks([-1 : 0.25 : 1])
 yticks([-1 : 0.25 : 1])
 grid on
+box on
 
 print("../obrazki/cohers.svg", "-svgconvert", dim);
 
