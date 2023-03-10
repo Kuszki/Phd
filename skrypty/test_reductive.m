@@ -12,17 +12,23 @@ shapes = 'unst';
 n_min = 3;
 n_max = 9;
 
-u_min = 1.0e0;
-u_max = 1.0e1;
+u_max = [ 3 6 10 20 ];
 
-rn = randi([n_min n_max], 1e4, 1);
-fn = @(x) gen_redtest(x, u_min, u_max);
+for i = 1 : length(u_max)
 
-tic
-pd = pararrayfun(nproc-1, fn, rn);
-toc
+  rn = randi([n_min n_max], 2e4, 1);
+  fn = @(x) gen_redtest(x, 1.0, u_max(i));
 
-hist(pd, 100);
-m = mean(pd)
-s = std(pd)
+  tic
+  errs = pararrayfun(nproc-1, fn, rn);
+  toc
 
+  hist(errs, 100);
+  m(i) = mean(errs);
+  s(i) = std(errs);
+
+  save('-z', sprintf('../archiwa/rederr_org_1_%d.txt.gz', u_max(i)), 'errs');
+
+end
+
+u_max, m, s
