@@ -8,9 +8,6 @@ pkg load signal;
 
 addpath("~/Projekty/Octave-FWT-Utils");
 
-#profile clear;
-#profile on;
-
 # iterations params
 iters_a = 1e5;#2e4;
 iters_b = 1e1;#5e1;

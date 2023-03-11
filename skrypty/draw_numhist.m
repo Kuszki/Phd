@@ -26,54 +26,54 @@ set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
 x = load("-ascii", "../archiwa/fwterr/f16_coif5_6_2048.dat");
-[u, c, s, w] = get_uncertainty(x, 0.95, 10)
+[u, c, s, w] = get_uncertainty(x)
 
 subplot(2, 2, 1)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("a) \\rm\\it N{ =\\rm 2^{11}}, U{ =\\rm %0.2g}, c{ =\\rm %1.2f}\n", u, c))
+title(sprintf("a) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
-xlim([-s*5 s*5])
-ylim([0 5.5])
+xlim([-0.015 0.015])
+ylim([0 6])
 grid on
 box on
 
 x = load("-ascii", "../archiwa/fwterr/f16_coif5_6_256.dat");
-[u, c, s, w] = get_uncertainty(x, 0.95, 10)
+[u, c, s, w] = get_uncertainty(x)
 
 subplot(2, 2, 2)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("b) \\rm\\it N{ =\\rm 2^{9}}, U{ =\\rm %0.2g}, c{ =\\rm %1.2f}\n", u, c))
+title(sprintf("b) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
-xlim([-s*5 s*5])
-ylim([0 5.5])
+xlim([-0.01 0.01])
+ylim([0 6])
 grid on
 box on
 
 x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_2048.dat");
-[u, c, s, w] = get_uncertainty(x, 0.95, 10)
+[u, c, s, w] = get_uncertainty(x)
 
 subplot(2, 2, 3)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("c) \\rm\\it N{ =\\rm 2^{11}}, U{ =\\rm %0.2g}, c{ =\\rm %1.2f}", u, c))
+title(sprintf("c) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
-xlim([-s*5 s*5])
-ylim([0 5.5])
+xlim([-2e-6 2e-6])
+ylim([0 6])
 grid on
 box on
 
 x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_256.dat");
-[u, c, s, w] = get_uncertainty(x, 0.95, 10)
+[u, c, s, w] = get_uncertainty(x)
 
 subplot(2, 2, 4)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("d) \\rm\\it N{ =\\rm 2^{9}}, U{ =\\rm %0.2g}, c{ =\\rm %1.2f}", u, c))
+title(sprintf("d) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
-xlim([-s*5 s*5])
-ylim([0 5.5])
+xlim([-1e-6 1e-6])
+ylim([0 6])
 grid on
 box on
 

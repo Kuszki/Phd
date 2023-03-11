@@ -18,12 +18,11 @@ u_max = [ 3 ];
 
 for i = 1 : length(u_max)
 
-  rn = randi([n_min n_max], 2e3, 1);
+  rn = randi([n_min n_max], 5e3, 1);
   fn = @(x) gen_redtest(x, 1.0, u_max(i));
-#  fn = @(x) gen_cortest(x, 1.0, u_max(i), 1);
 
   tic
-  errs = pararrayfun(nproc, fn, rn);
+  errs = pararrayfun(nproc-1, fn, rn);
   toc
 
   hist(errs, 100);
