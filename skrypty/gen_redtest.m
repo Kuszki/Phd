@@ -1,4 +1,4 @@
-function [pd] = gen_redtest(num, u_min, u_max)
+function [pd] = gen_redtest(num, u_min, u_max, check = false)
 
   vc = char(zeros(0, num));
   u_df = (u_max - u_min);
@@ -14,9 +14,9 @@ function [pd] = gen_redtest(num, u_min, u_max)
   vr = gen_randm(1e5, vc, vu);
   us = get_uncertainty(sum(vr));
 
-  for j = 1 : num
+  if check; for j = 1 : num
     vu(j) = get_uncertainty(vr(j,:));
-  end
+  end; end
 
   hm = get_cohermatrix(vc, vu);
   uc = sqrt(vu*hm*transpose(vu));

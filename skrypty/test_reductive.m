@@ -13,8 +13,7 @@ shapes = 'unst';
 n_min = 3;
 n_max = 9;
 
-#u_max = [ 3 6 10 20 ];
-u_max = [ 3 ];
+u_max = [ 3 6 10 20 ];
 
 for i = 1 : length(u_max)
 
@@ -29,8 +28,9 @@ for i = 1 : length(u_max)
   m(i) = mean(errs);
   s(i) = std(errs);
 
-#  save('-z', sprintf('../archiwa/rederr_org_1_%d.txt.gz', u_max(i)), 'errs');
+  #save('-z', sprintf('../archiwa/rederr_org_1_%d.txt.gz', u_max(i)), 'errs');
 
 end
 
 u_max, m, s
+

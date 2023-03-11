@@ -64,7 +64,7 @@ ylim([0 1])
 grid on
 box on
 
-print("bank_db_demo.svg", "-svgconvert", dim);
+print("../obrazki/bank_db_demo.svg", "-svgconvert", dim);
 
 [g,a] = wfbt2filterbank({'ana:spline2:4', 3, 'dwt'});
 subplot(2, 2, 1)
@@ -110,7 +110,7 @@ ylim([0 1])
 grid on
 box on
 
-print("bank_spline_demo.svg", "-svgconvert", dim);
+print("../obrazki/bank_spline_demo.svg", "-svgconvert", dim);
 
 [g,a] = wfbt2filterbank({'dden2', 3, 'dwt'});
 subplot(2, 2, 1)
@@ -156,5 +156,5 @@ ylim([0 1])
 grid on
 box on
 
-print("bank_dden_demo.svg", "-svgconvert", dim);
+print("../obrazki/bank_dden_demo.svg", "-svgconvert", dim);
 

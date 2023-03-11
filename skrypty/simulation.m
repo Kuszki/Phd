@@ -97,7 +97,6 @@ A = [ ...
 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0; ...
 0 0 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4 (3+sq3)/sq2_4 -(1+sq3)/sq2_4; ...
 (3+sq3)/sq2_4 -(1+sq3)/sq2_4 0 0 0 0 (1-sq3)/sq2_4 -(3-sq3)/sq2_4; ];
-#A = lin_ident(@(x) fwt(x, wname, ndec), nsam);
 
 rw = [ 0.974 1.01 1.21 0.973 0.699 0.587 0.585 0.541 ] * 1e-6;
 
@@ -129,32 +128,32 @@ tic; for i = 1 : iters_a
 
   # inject signal noise
   ys = y;
-#  ys = y + gen_randn(ns, var_r_s, 'w');
+  ys = y + gen_randn(ns, var_r_s, 'w');
 
   # perform converter part tasks
   ya = ys;
-#  ya = ya + f_tm_a(temp(i));
+  ya = ya + f_tm_a(temp(i));
 
-#  ya = ya + gen_randu(ns, var_r_a, 'w');
+  ya = ya + gen_randu(ns, var_r_a, 'w');
   ya = ya ...
-#       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
+       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
        + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
-#       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
+       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
   ;
 
   # perform amplifier part tasks
   yb = ya;
   yb = yb ...
-#       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
+       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
        + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
-#       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
+       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
   ;
   yb = amp_b * yb;
-#  yb = yb + f_tm_b(temp(i));
+  yb = yb + f_tm_b(temp(i));
 
   # perform adc tasks
   yc = yb;
-#  yc = f_adc(yc);
+  yc = f_adc(yc);
 
   # calc input error
   cerr = transpose(yc - yi);
@@ -175,7 +174,7 @@ tic; for i = 1 : iters_a
 end; toc;
 
 for j = 1 : nsam
-#  out_E(:,j) = out_E(:,j) + transpose(gen_randn(elen_m, rw(j), 'w'));
+  out_E(:,j) = out_E(:,j) + transpose(gen_randn(elen_m, rw(j), 'w'));
 end
 
 if calc_in_uc || calc_out_uc

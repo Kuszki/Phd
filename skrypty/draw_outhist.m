@@ -80,8 +80,8 @@ title(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-#ylim([0 1.2])
-#yticks([0 : 0.2 : 1.2])
+#ylim([0 1.4])
+#yticks([0 : 0.2 : 1.4])
 grid on
 box on
 pos = pos + 1;
