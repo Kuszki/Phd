@@ -32,7 +32,7 @@ subplot(2, 2, 1)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(sprintf("a) \\rm\\it U_{-}{\\rm = %1.2f}, U_{+}{\\rm = %1.2f}", um, up))
 ylabel("Udział wystąpień, %");
-xlabel("Wartość błędu");
+xlabel("Wartość błędu, %");
 xlim([-10 10])
 ylim([0 3])
 grid on
@@ -45,7 +45,7 @@ subplot(2, 2, 2)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(sprintf("b) \\rm\\it U_{-}{\\rm = %1.2f}, U_{+}{\\rm = %1.2f}", um, up))
 ylabel("Udział wystąpień, %");
-xlabel("Wartość błędu");
+xlabel("Wartość błędu, %");
 xlim([-10 10])
 ylim([0 3])
 grid on
@@ -58,7 +58,7 @@ subplot(2, 2, 3)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(sprintf("c) \\rm\\it U_{-}{\\rm = %1.2f}, U_{+}{\\rm = %1.2f}", um, up))
 ylabel("Udział wystąpień, %");
-xlabel("Wartość błędu");
+xlabel("Wartość błędu, %");
 xlim([-10 10])
 ylim([0 3])
 grid on
@@ -71,7 +71,7 @@ subplot(2, 2, 4)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(sprintf("d) \\rm\\it U_{-}{\\rm = %1.2f}, U_{+}{\\rm = %1.2f}", um, up))
 ylabel("Udział wystąpień, %");
-xlabel("Wartość błędu");
+xlabel("Wartość błędu, %");
 xlim([-10 10])
 ylim([0 3])
 grid on

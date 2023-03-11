@@ -119,9 +119,7 @@ natomiast proces rekonstrukcji sygnału opisać można za pomocą równania:
 \begin{equation}
 S_{m-1,n} = \frac{1}{\sqrt{2}} \left( \sum _{k} ^{N_k-1} c_{n-2k} S_{m,k} + \sum _{k} ^{N_k-1} b_{n-2k} T_{m,k} \right) \label{eq:dwt_reconrek},
 \end{equation}
-gdzie $S_{0,i}$ jest $i$-tą próbką przetwarzanego sygnału, $S_{m+1,n}$ aproksymacjami, a $T_{m+1,n}$ detalami sygnału dla zadanego numeru skali i przesunięcia w czasie. Współczynniki $c_i$ oraz $b_i$ są niezerowe tylko dla $i$ należących do przedziału $<0;N_k-1>$ -- poza tym przedziałem są one równe zero.
-
-Wartości i liczba współczynników $c$ oraz $b$ zależy od zastosowanej rodziny falek i jej rzędu. W przypadku, gdy w wektorze wielkości wejściowych nie istnieje element o zadanym indeksie (tj. zachodzi $S_{m,i}$ lub $T_{m,i}$ dla $i \ge N$) należy przyjąć w obliczeniach wartość dla indeksu $i' = i \text{ mod } N$, gdzie \enquote{mod} jest resztą z dzielenia wyrazu po lewej stronie operatora przez wyraz z prawej strony operatora. W ten sam sposób postępować należy w przypadku procesu rekonstrukcji sygnału.
+gdzie $S_{0,i}$ jest $i$-tą próbką przetwarzanego sygnału, $S_{m+1,n}$ aproksymacjami, a $T_{m+1,n}$ detalami sygnału dla zadanego numeru skali i przesunięcia w czasie. Współczynniki $c_i$ oraz $b_i$ są niezerowe tylko dla $i$ należących do przedziału $<0;N_k-1>$ -- poza tym przedziałem są one równe zero. Wartości i liczba współczynników $c$ oraz $b$ zależą od zastosowanej rodziny falek i jej rzędu. W przypadku, gdy w wektorze wielkości wejściowych nie istnieje element o zadanym indeksie (tj. zachodzi $S_{m,i}$ lub $T_{m,i}$ dla $i \ge N$) należy przyjąć w obliczeniach wartość dla indeksu $i' = i \text{ mod } N$, gdzie \enquote{mod} jest resztą z dzielenia wyrazu po lewej stronie operatora przez wyraz z prawej strony operatora. Identycznie postępować należy w przypadku procesu rekonstrukcji sygnału.
 
 Ze względu na fakt, że ciągła transformacja falkowa jest w praktyce niemożliwa w realizacji, natomiast proces decymacji nie jest zwykle pomijany ze względu na brak potrzeby wyznaczania nadmiarowej liczby współczynników, dalsza część pracy poświęcona będzie algorytmowi dyskretnej transformacji falkowej. Przedstawiany w pracy sposób analizy właściwości metrologicznych będzie jednak jednolity dla rzeczywistych implementacji omawianych algorytmów.
 
@@ -134,7 +132,7 @@ Na rysunkach~\ref{fig:demo_db} oraz~\ref{fig:demo_spline} zaprezentowano przykł
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/bank_db_demo}
-\makecaption{fig:demo_db}{Banki filtrów dla falki \enquote{Daubechies}}
+\makecaption{fig:demo_db}{Przykładowe banki filtrów dla rodziny falek \enquote{Daubechies}}
 \end{center}
 \end{figure}
 
@@ -143,7 +141,7 @@ Na podstawie wykresu zauważyć można, że dla kolejnych parametrów skali pasm
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/bank_spline_demo}
-\makecaption{fig:demo_spline}{Banki filtrów dla falki \enquote{Spline}}
+\makecaption{fig:demo_spline}{Przykładowe banki filtrów dla rodziny falek \enquote{Spline}}
 \end{center}
 \end{figure}
 
@@ -155,9 +153,9 @@ Ze względu na bardzo dużą liczbę opisanych w literaturze falek~\cite{akujuob
 
 Problem skomplikowanej analizy algorytmów transformacji falkowej, podobnie jak w przypadku innych algorytmów przetwarzających ciągi danych, uprościć można przedstawiając analizowany algorytm w postaci macierzowej. Wektor wielkości wyjściowych algorytmu jest wtedy równy iloczynowi macierzy transformacji i wektora wielkości wejściowych zgodnie z równaniem~\eqref{eq:alg_out_mat}. Przedstawienie algorytmu transformacji falkowej w formie macierzowej umożliwi stworzenie jednolitego i uniwersalnego opisu działania tego algorytmu oraz w znaczącym stopniu ułatwi jego analizę w kolejnych rozdziałach pracy. Zwykle projektant toru pomiarowego nie jest ekspertem w dziedzinie falek -- jest on ekspertem w dziedzinie analizowanego zjawiska, a transformacja falkowa jest dla niego jedynie narzędziem, umożliwiającym jego analizę. Stąd w większości przypadków osoba ta stosuje gotowe biblioteki, zaimplementowane np. dla środowisk \enquote{Matlab}, \enquote{GNU Octave} czy \enquote{PyWavelets}~\cite{lee_pywavelets, misiti_matlabwav}.
 
-W celu identyfikacji wartości współczynników macierzy transformacji należy zastosować metodę opisaną w poprzednim rozdziale pracy lub wyznaczyć go analitycznie, jak zostanie to przedstawione w dalszej cześć rozdziału. Opisany wcześniej algorytm identyfikacji macierzy transformacji może być z łatwością zaimplementowany w środowiskach, które implementują algorytmy transformacji falkowej, przez co projektant toru pomiarowego z łatwością jest w stanie go zastosować. Ewentualna zmiana parametrów algorytmu transformacji falkowej (zmiana liczby wielkości wejściowych, liczby iteracji procesu dekompozycji, czy wybór innej falki-matki) skutkować będzie jedynie koniecznością ponownej identyfikacji wartości współczynników macierzy transformacji. W odróżnieniu od metod analitycznych nie zachodzi tutaj potrzeba stosowania skomplikowanych funkcjonałów w celu analizy zastosowanego algorytmu.
+W celu identyfikacji wartości współczynników macierzy transformacji należy zastosować metodę opisaną w poprzednim rozdziale pracy lub wyznaczyć te wartości analitycznie, co zostanie przedstawione w dalszej cześć rozdziału. Opisany wcześniej algorytm identyfikacji macierzy transformacji może być zaimplementowany w środowiskach, które implementują algorytmy transformacji falkowej, przez co projektant toru pomiarowego z łatwością jest w stanie go zastosować. Ewentualna zmiana parametrów algorytmu transformacji falkowej (zmiana liczby wielkości wejściowych, liczby iteracji procesu dekompozycji, czy wybór innej falki-matki) skutkować będzie jedynie koniecznością ponownej identyfikacji wartości współczynników macierzy transformacji.
 
-Poza opisanym algorytmem identyfikacji współczynników macierzy transformacji, bazującym na gotowej implementacji omawianego algorytmu, istnieje możliwość ich wyznaczenia przy użyciu zależności przedstawionych we wcześniejszej części rozdziału opisującej właściwości algorytmu dyskretnej transformacji falkowej. Proces ten jest jednak skomplikowany i uzależniony od założeń związanych z opisem zastosowanej falki-matki i jej funkcji skalującej. Poniżej zostanie przedstawiony przykład wyznaczania wartości macierzy transformacji w przypadku zastosowania falki \enquote{db2} dla dwóch iteracji procesu dekompozycji sygnału oraz ośmiu próbek wejściowych sygnału. Macierz transformacji będzie miała zatem wymiary ośmiu wierszy i ośmiu kolumn, natomiast wektor próbek wejściowych oraz wektor próbek wyjściowych będą zawierały po osiem elementów.
+Poza opisanym algorytmem identyfikacji współczynników macierzy transformacji, bazującym na istniejącej implementacji omawianego algorytmu, istnieje możliwość wyznaczenia wartości tych współczynników przy użyciu zależności przedstawionych we wcześniejszej części rozdziału, opisującej właściwości algorytmu dyskretnej transformacji falkowej. Proces ten jest jednak skomplikowany i uzależniony od założeń związanych z opisem zastosowanej falki-matki i jej funkcji skalującej. Poniżej zostanie przedstawiony przykład wyznaczania wartości macierzy transformacji w przypadku zastosowania falki \enquote{db2} dla dwóch iteracji procesu dekompozycji sygnału oraz ośmiu próbek wejściowych sygnału. Macierz transformacji będzie miała zatem wymiary ośmiu wierszy i ośmiu kolumn, natomiast wektor próbek wejściowych oraz wektor próbek wyjściowych będą zawierały po osiem elementów.
 
 Rodzina falek \enquote{Daubechies} (nazywana w skrócie \enquote{db}) została opisana przez Ingrid Daubechies~\cite{vonesch_dbbasics}. Rodzina ta cechuje się ortogonalnością, natomiast nie wykazuje cech symetrii. Poza założeniami opisanymi w poprzednim podrozdziale, danymi w równaniach~\eqref{eq:dwt_orthogonal} oraz od~\eqref{eq:dwt_fatherwav} do~\eqref{eq:dwt_scalemulort}, rodzina ta spełnia dodatkowe założenie odnośnie relacji pomiędzy kolejnymi współczynnikami skalującymi, które opisuje następujące równanie:
 \begin{equation}
