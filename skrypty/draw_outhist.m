@@ -61,8 +61,8 @@ title(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-#ylim([0 1.2])
-#yticks([0 : 0.2 : 1.2])
+ylim([0 1.2])
+yticks([0 : 0.2 : 1.2])
 grid on
 box on
 pos = pos + 1;
@@ -76,12 +76,12 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c))
+title(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-#ylim([0 1.4])
-#yticks([0 : 0.2 : 1.4])
+#ylim([0 1.2])
+#yticks([0 : 0.2 : 1.2])
 grid on
 box on
 pos = pos + 1;
@@ -95,7 +95,7 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c))
+title(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])

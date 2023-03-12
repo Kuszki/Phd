@@ -56,7 +56,7 @@ x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_2048.dat");
 
 subplot(2, 2, 3)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("c) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
+title(sprintf("\nc) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
 xlim([-2e-6 2e-6])
@@ -69,7 +69,7 @@ x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_256.dat");
 
 subplot(2, 2, 4)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("d) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
+title(sprintf("\nd) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
 xlim([-1e-6 1e-6])

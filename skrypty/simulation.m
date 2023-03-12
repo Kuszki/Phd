@@ -10,7 +10,7 @@ addpath("~/Projekty/Octave-FWT-Utils");
 
 # iterations params
 iters_a = 1e5;#2e4;
-iters_b = 1e1;#5e1;
+iters_b = 1e2;#5e1;
 
 # wavelet params
 wname = 'db2';

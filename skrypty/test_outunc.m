@@ -62,6 +62,6 @@ for N = from : to
   un = sqrt(wc)*1.96;
   cc = uc / sqrt(wc);
 
-  printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", N, wc, Ug(N), uc, cc);
+  printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", N, wc, un, uc, cc);
 
 end
