@@ -28,6 +28,8 @@ for i = 1 : length(list)
   subplot(2, 2, i)
   hold on;
 
+  num = char('a'+i-1);
+
   for j = 1 : length(list)
 
     x = load("-ascii", sprintf("../archiwa/shapes/%s_%s.txt", list(i), list(j)));
@@ -35,9 +37,13 @@ for i = 1 : length(list)
 
   end
 
+  if i > 2
+     num = sprintf("\n%s", num);
+  end
+
   hold off;
   legend("location", 'north', 'orient', 'horizontal')
-  title(sprintf("%s) \\rm %s (%s)", char('a'+i-1), names{i}, list(i)))
+  title(sprintf("%s) \\rm %s (%s)", num, names{i}, list(i)))
   ylabel("Współczynnik kształtu");
   xlabel(sprintf("Stosunek wartości{\\it U/U_{%s}}", list(i)));
   xlim([1 10])

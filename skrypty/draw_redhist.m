@@ -26,7 +26,7 @@ set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
 load('../archiwa/rederr_mod_1_3.txt.gz');
-[up, um, s, w] = get_uncertainty(errs, 95, 'n')
+[up, um, s, w] = get_uncertainty(errs, 95, false)
 
 subplot(2, 2, 1)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
@@ -39,7 +39,7 @@ grid on
 box on
 
 load('../archiwa/rederr_mod_1_6.txt.gz');
-[up, um, s, w] = get_uncertainty(errs, 95, 'n')
+[up, um, s, w] = get_uncertainty(errs, 95, false)
 
 subplot(2, 2, 2)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
@@ -52,7 +52,7 @@ grid on
 box on
 
 load('../archiwa/rederr_mod_1_10.txt.gz');
-[up, um, s, w] = get_uncertainty(errs, 95, 'n')
+[up, um, s, w] = get_uncertainty(errs, 95, false)
 
 subplot(2, 2, 3)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
@@ -65,7 +65,7 @@ grid on
 box on
 
 load('../archiwa/rederr_mod_1_20.txt.gz');
-[up, um, s, w] = get_uncertainty(errs, 95, 'n')
+[up, um, s, w] = get_uncertainty(errs, 95, false)
 
 subplot(2, 2, 4)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)

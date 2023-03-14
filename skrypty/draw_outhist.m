@@ -8,7 +8,7 @@ pkg load parallel
 addpath("~/Projekty/Octave-FWT-Utils")
 
 dim = "-r300";
-part = "a";
+part = "T";
 
 fcolor = "#333333";
 ecolor = "#333333";
@@ -42,8 +42,8 @@ title(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-ylim([0 0.8])
-yticks([0 : 0.1 : 0.8])
+#ylim([0 0.7])
+#yticks([0 : 0.1 : 0.7])
 grid on
 box on
 pos = pos + 1;
@@ -99,8 +99,8 @@ title(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+p
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 #xlim([-s*5 s*5])
-ylim([0 1.2])
-yticks([0 : 0.2 : 1.2])
+#ylim([0 1.2])
+#yticks([0 : 0.2 : 1.2])
 grid on
 box on
 pos = pos + 1;
