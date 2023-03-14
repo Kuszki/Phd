@@ -767,7 +767,7 @@ H_{S_{2,0}} \emb{z} = ~
 \label{eq:sym_partd_output_trans_z_S_2_0}, \\
 H_{T_{1,0}} \emb{z} = \frac{1 - \sqrt{3}}{4 \sqrt{2}} - \frac{3 - \sqrt{3}}{4 \sqrt{2}} z^{-1} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} z^{-2} - \frac{1 + \sqrt{3}}{4 \sqrt{2}} z^{-3} \label{eq:sym_partd_output_trans_z_T_1_0}.
 \end{gather}
-Podstawiając do powyższych równań założenia gdzie $z = e^{j\omega_{n}}$ otrzymuje się zależności opisujące transmitancje wybranych wierszy w funkcji pulsacji znormalizowanej \cite{oppenheim_dsp}:
+Podstawiając do powyższych równań założenia gdzie $z = e^{j\omega_{n}}$ otrzymuje się zależności opisujące transmitancje wybranych wierszy w funkcji pulsacji znormalizowanej~\cite{oppenheim_dsp}:
 \begin{gather}
 \begin{split}
 G_{S_{2,0}} \emb{\omega_{n}} = ~
@@ -902,7 +902,7 @@ Analogicznie, jak w przypadku przedstawionych powyżej rozważań, parametry war
 \sigma_{T_{1,0},s}^{2} = \sigma_{c,s}^{2} \cdot A_{T_{1,0},s}^{2} = 0^{2} \cdot \num{107.12e-6} = \qty{0.00}{\micro V} \label{eq:sym_partd_output_var_stat_T_1_0}, \\
 \sigma_{T_{1,0},r}^{2} = \sigma_{c,r}^{2} \cdot A_{T_{1,0},r}^{2} = 1^{2} \cdot \num{154.68e-6} = \qty{154.68}{\micro V} \label{eq:sym_partd_output_var_rand_T_1_0},
 \end{gather}
-natomiast w przypadku kolejnych harmonicznych błędu dynamicznego w postaci: 
+natomiast w przypadku kolejnych harmonicznych błędu dynamicznego w postaci:
 \begin{gather}
 \sigma_{T_{1,0},d,1}^{2} = \sigma_{c,d,1}^{2} \cdot K_{T_{1,0}}^{2} \emb{\omega_{c,e,1}} = {0.010}^{2} \cdot \num{42.6e-6} = \qty{0.0043}{\micro V} \label{eq:sym_partd_output_var_dyn_1_T_1_0}, \\
 \sigma_{T_{1,0},d,2}^{2} = \sigma_{c,d,2}^{2} \cdot K_{T_{1,0}}^{2} \emb{\omega_{c,e,2}} = {0.244}^{2} \cdot \num{266.34e-6} = \qty{15.89}{\micro V} \label{eq:sym_partd_output_var_dyn_2_T_1_0}, \\
@@ -973,7 +973,7 @@ U_{T_{1,0},\Sigma} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot
 \end{gather}
 Porównując otrzymane wyniki zauważyć można, że oszacowana w równaniu~\eqref{eq:sym_partd_output_unc_total_a_T_1_0} wartość niepewności rozszerzonej jest większa, nić ta oszacowana stosując metodę opisaną równaniem~\eqref{eq:sym_partd_output_unc_total_b_T_1_0}. Jak zaznaczono, w analizowanym przypadku okoliczności konieczne do przyjęcia uproszczeń wynikających z warunków centralnego twierdzenia granicznego nie są do końca spełnione -- występuje zbyt mało źródeł błędu, a dodatkowo przetwarzane sygnały błędu cechują znaczne różnice w wartości niepewności rozszerzonej.
 
-Na podstawie powyższych rozważań, w tabelach~\ref{tab:sym_partd_params_unc_sum_S_2_0} oraz~\ref{tab:sym_partd_params_unc_sum_T_1_0}, zestawiono budżety niepewności analizowanych w przykładach wielkości wyjściowych, uwzględniające sygnały błędów z podziałem na ich kategorie, przy czym parametry wypadkowe sygnału błędu dynamicznego wyznaczono analogicznie, jak w przykładzie \eqref{eq:sym_parta_uncert_dyn}. Symbolem \enquote{$*$} przy typie rozkładu oznaczono sytuacje, gdy kształt rozkładu przypomina ten określony w opisie, natomiast jego parametry odbiegają nieznacznie od standardowych parametrów tego rozkładu.
+Na podstawie powyższych rozważań, w tabelach~\ref{tab:sym_partd_params_unc_sum_S_2_0} oraz~\ref{tab:sym_partd_params_unc_sum_T_1_0}, zestawiono budżety niepewności analizowanych w przykładach wielkości wyjściowych, uwzględniające sygnały błędów z podziałem na ich kategorie, przy czym parametry wypadkowe sygnału błędu dynamicznego wyznaczono analogicznie, jak w przykładzie~\eqref{eq:sym_parta_uncert_dyn}. Symbolem \enquote{$*$} przy typie rozkładu oznaczono sytuacje, gdy kształt rozkładu przypomina ten określony w opisie, natomiast jego parametry odbiegają nieznacznie od standardowych parametrów tego rozkładu.
 
 \begin{table}[htb!]
 \begin{center}
@@ -1164,7 +1164,7 @@ U_{*,rw,z} & U_{*,rp,q} & U_{*,rp,1} & U_{*,rp,2} & U_{*,sp} & U_{*,dp,1} & U_{*
 \end{equation}
 natomiast macierze koherencji kolejnych wielkości wyjściowych, których wartości wyznaczane są zgodnie z równaniem~\eqref{eq:unc_coher}, opisać można w postaci:
 \begin{equation}
-\mathbf{h}_{*} = 
+\mathbf{h}_{*} =
 \begin{bmatrix}
 1 & h_{*,0,1} & h_{*,0,2} & h_{*,0,3} & h_{*,0,4} & h_{*,0,5} & h_{*,0,6} & h_{*,0,7} \\
 h_{*,1,0} & 1 & h_{*,1,2} & h_{*,1,3} & h_{*,1,4} & h_{*,1,5} & h_{*,1,6} & h_{*,1,7} \\
@@ -1299,7 +1299,7 @@ Parametry pozostałych harmonicznych sygnałów błędów dynamicznych wyznaczan
 \end{gather}
 przy czym macierze koherencji dla analizowanych wielkości wyjściowych przyjmują wartości zgodnie z równaniem~\eqref{eq:unc_coher}, a zatem:
 \begin{gather}
-\mathbf{h}_{S_{2,0}} = 
+\mathbf{h}_{S_{2,0}} =
 \begin{bmatrix}
 1 & h_{*,0,1} & h_{*,0,2} & h_{*,0,3} & h_{*,0,4} & h_{*,0,5} & h_{*,0,6} & h_{*,0,7} \\
 h_{*,1,0} & 1 & h_{*,1,2} & h_{*,1,3} & h_{*,1,4} & h_{*,1,5} & h_{*,1,6} & h_{*,1,7} \\
@@ -1311,7 +1311,7 @@ h_{*,6,0} & h_{*,6,1} & h_{*,6,2} & h_{*,6,3} & h_{*,6,4} & h_{*,6,5} & 1 & h_{*
 h_{*,7,0} & h_{*,7,1} & h_{*,7,2} & h_{*,7,3} & h_{*,7,4} & h_{*,7,5} & h_{*,7,6} & 1
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_cohermat_S_2_0_b}, \\
-\mathbf{h}_{T_{1,0}} = 
+\mathbf{h}_{T_{1,0}} =
 \begin{bmatrix}
 1 & h_{*,0,1} & h_{*,0,2} & h_{*,0,3} & h_{*,0,4} & h_{*,0,5} & h_{*,0,6} & h_{*,0,7} \\
 h_{*,1,0} & 1 & h_{*,1,2} & h_{*,1,3} & h_{*,1,4} & h_{*,1,5} & h_{*,1,6} & h_{*,1,7} \\
@@ -1329,7 +1329,7 @@ Po podstawieniu powyższych wartości do równania~\eqref{eq:sym_partd_output_un
 U_{S_{2,0}} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{74.10}{mV} \label{eq:sym_partd_output_unc_totalmat_S_2_0}, \\
 U_{T_{1,0}} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} = \qty{43.37}{mV} \label{eq:sym_partd_output_unc_totalmat_T_1_0}.
 \end{gather}
-Dla macierzy koherencji, których wartości wyznaczone zostały bez uwzględnienia korekty zaproponowanej w równaniu~\eqref{eq:unc_cohercorra}, tj. kiedy w równaniu~\eqref{eq:unc_coher} przyjmuje się $p_{i,j} = 1$ dla dowolnej pary $i$ oraz $j$, otrzymuje się $U_{S_{2,0}} = \qty{77.32}{mV}$ oraz $U_{T_{1,0}} = \qty{46.09}{mV}$. 
+Dla macierzy koherencji, których wartości wyznaczone zostały bez uwzględnienia korekty zaproponowanej w równaniu~\eqref{eq:unc_cohercorra}, tj. kiedy w równaniu~\eqref{eq:unc_coher} przyjmuje się $p_{i,j} = 1$ dla dowolnej pary $i$ oraz $j$, otrzymuje się $U_{S_{2,0}} = \qty{77.32}{mV}$ oraz $U_{T_{1,0}} = \qty{46.09}{mV}$.
 
 W tabeli~\ref{tab:sym_partd_params_unc_sum_b} zestawiono wyniki dla pozostałych wielkości wyjściowych oraz ich porównanie z tymi uzyskanymi w poprzednim eksperymencie. Symbolem $a$ oznaczono wartości uzyskane przy założeniu normalnego rozkładu sygnału błędu wypadkowego, symbolem $b$ oznaczono wartości uzyskane z wykorzystaniem budżetu niepewności opisanego w tabeli~\ref{tab:sym_partc_params_unc_sum}. Wartości oznaczone symbolem $c$ dotyczą analizy z wykorzystaniem budżetu niepewności opisanego w tabeli~\ref{tab:sym_partc_params_unc_list}, przy czym wielkości oznaczone symbolem $d$ wyznaczono identycznie, z tą różnicą że nie stosowano korekty opisanej równaniem~\eqref{eq:unc_cohercorra} w procesie wyznaczania kolejnych wartości współczynników koherencji. Podobnie jak w zestawieniu zawartym w tabeli~\ref{tab:sym_partd_params_unc_sum_a} wielkości oznaczone symbolem $s$ dotyczą przeprowadzonego eksperymentu metodą Monte-Carlo, natomiast symbolem $\delta_{*}$ oznaczono błąd względny oszacowania wartości niepewności rozszerzonej metodą $a$, $b$, $c$ oraz $d$ w odniesieniu do wartości $U_{s}$, wyrażony w procentach.
 
