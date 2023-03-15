@@ -1,3 +1,35 @@
 \chapter{Pomiarowa weryfikacja tezy}
 
+Ostatnim etapem weryfikacji postawionej w pracy tezy będzie analiza właściwości metrologicznych przykładowego toru pomiarowego, który stworzony został na potrzeby pracy. Analizowany tor pomiarowy przetwarzać będzie zmienny w czasie sygnał napięciowy $s(t)$ o wartości napięcia z przedziału $<0;1>~\unit{V}$. W celu dopasowania poziomu sygnału wejściowego do zakresu napięcia wejściowego przetwornika analogowo-cyfrowego, zwiększenia impedancji wejściowej toru pomiarowego oraz zmniejszeniu impedancji obwodu analogowo-cyfrowego, sygnał $s(t)$ podawany będzie na wejście wzmacniacza operacyjnego. Sygnał wyjściowy wzmacniacza, oznaczony $y(t)$ będzie przetwarzany na postać cyfrową, oznaczoną $x(i)$, a następnie podawany będzie na wejście jednostki \enquote{DSP}, która pobierać będzie $N$ próbek tego sygnału i wyznaczać na ich podstawie $M$ wartości wielkości wyjściowych toru pomiarowego, stosując w tym celu algorytm dyskretnej transformacji falkowej. Schemat blokowy omawianego toru pomiarowego przedstawiono na rysunku~\ref{fig:chain_real}.
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/schemat_real}
+\makecaption{fig:chain_real}{Schemat blokowy stworzonego na potrzeby pracy toru pomiarowego będącego obiektem przeprowadzanego eksperymentu}
+\end{center}
+\end{figure}
+
+Zastosowany wzmacniacz operacyjny \enquote{MCP6002} zastosowano w konfiguracji nieodwracającej, z docelowym wzmocnieniem wynoszącym~\qty{3.3}{V \per V}. Napięcie zasilania wzmacniacza wynosi~\qty{3.3}{V} i pochodzi ze stabilizatora \enquote{LD33CV} zasilanego ze wspólnej linii całego toru pomiarowego. Zaproponowana konfiguracja zapewnia wysoką impedancję wejściową toru pomiarowego oraz bardzo niską impedancję wyjściową wzmacniacza, co stanowi pożądane warunki pracy tego układu. Parametry statyczne oraz dynamiczne analizowanego wzmacniacza wymagają identyfikacji, ze względu na niedostateczne informacje zawarte w dokumentacji tego układu oraz braku dokładnego modelu zastosowanej aplikacji układu.
+
+Zastosowany przetwornik analogowo-cyfrowy stanowi $12$-bitowy przetwornik wagowy~\enquote{SAR} (ang. \enquote{Successive Approximation Register}), wbudowany w mikrokontroler \enquote{STM32F411}. Źródło napięcia odniesienia stanowi w jego przypadku stabilizator \enquote{LD3985M33R} typu \enquote{LDO} (ang. \enquote{Low Dropout Regulator}), o znamionowym napięciu wyjściowym równym~\qty{3.3}{V}. Przetwornik taktowany jest wewnętrznym sygnałem zegarowym o częstotliwości~\qty{24}{MHz}, przy czym próbkowanie wyzwalane jest sygnałem z licznika, którego częstotliwość wyzwalania wynosi~\qty{48}{kHz}. Częstotliwość próbkowania analizowanego toru pomiarowego wynosi zatem $f_{s} = \qty{48}{kHz}$. Na proces konwersji analogowo-cyfrowej przypada proces kluczowania napięcia wejściowego trwający TODO taktów zegara, co odpowiada czasowi~\qty{123}{ns}, po którym następuje konwersja trwająca $15$ taktów zegara, co w analizowanym przypadku stanowi czas~\qty{625}{ns}. Łączny czas konwersji analogowo-cyfrowej pojedynczej próbki sygnału wejściowego $y(t)$ na jego dyskretną reprezentację $x(i)$ wynosi zatem~\qty{1234}{ns}. Ze względu na typową aplikacje omawianego przetwornika, jego parametry metrologiczne mogą zostać pozyskane z dokumentacji producenta układu.
+
+Pozyskane próbki napięcia $x(i)$, stanowiące reprezentację wzmocnionego sygnału wejściowego $s(t)$, są buforowane w ten sposób, że pobierany jest wektor $N = 128$ kolejnych wartości, oznaczony symbolem $\mathbf{x}$. Wektor wielkości wejściowych $\mathbf{x}$ podawany jest na wejście algorytmu dyskretnej transformacji falkowej, którego implementacja zrealizowana jest z wykorzystaniem instrukcji \enquote{DSP} zastosowanego mikrokontrolera. Analizowany algorytm wykorzystuje falkę \enquote{spline4:4} dla TODO iteracji procesu dekompozycji sygnału. Na podstawie wartości wektora wielkości wejściowych wyznaczane jest $M = 128$ próbek wektora wielkości wyjściowych $\mathbf{X}$, które stanowią wyjście pojedynczej serii pomiarowej analizowanego toru pomiarowego. Czas obliczeń wynosi w analizowanym przypadku~\qty{1508}{\micro s}. Przedstawiony tor pomiarowy pracuje w trybie ciągłym, tj. podczas pobierania $N$ próbek wielkości wejściowych wyznaczana jest realizacja wektora wielkości wyjściowych dla poprzedniej realizacji wektora wielkości wejściowych. Wykorzystywany jest w tym celu kontroler \enquote{DMA} (ang. \enquote{Direct Memory Access}) nadzorujący proces buforowania kolejnych realizacji sygnału $x(i)$, podczas gdy program główny wykonuje obliczenia.
+
+W dalszej części rozdziału zidentyfikowane zostaną najważniejsze źródła błędów analizowanego toru pomiarowego, a następnie wykorzystany zostanie zaproponowany w pracy model błędu do opisu właściwości wykazanych sygnałów błędów. Ze względu na fakt, że do budowy toru pomiarowego wykorzystano układ typu \enquote{SoC}, a zatem nie jest znany dokładny model tego toru, zostanie przedstawiona metoda identyfikacji jego właściwości istotnych ze względu na zaproponowany model błędu i jego aplikację. W ostatniej części rozdziału przeprowadzony zostanie eksperyment pomiarowy, wykorzystujący metodę Monte-Carlo w celu oceny poprawności przedstawionych rozważań.
+
+\section{Identyfikacja właściwości toru pomiarowego}
+
+TODO
+
+\section{Model błędu toru pomiarowego}
+
+TODO
+
+\section{Weryfikacja przedstawionych zależności}
+
+TODO
+
+\section{Podsumowanie przeprowadzonego eksperymentu}
+
+TODO
 
