@@ -44,7 +44,7 @@ hold on
 
 for i = 1 : rows(m)
 
-  x = linspace(m(i,5), m(i,6), 128);
+  x = 2 .^ linspace(log2(m(i,5)), log2(m(i,6)), 128);
 
   loglog(v(:,1), v(:,i+1), sprintf("%s;%d;", char(p(i)), i), "Color", [c(i,:)]);
   loglog(x, fun(x, m(i,2), m(i,3), m(i,4)), "HandleVisibility", "off", "Color", [c(i,:)]);
