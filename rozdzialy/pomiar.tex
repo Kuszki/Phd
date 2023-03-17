@@ -41,29 +41,29 @@ Zakładając, że czułość wielkości $x(i)$ równa będzie~\qty{1}{V \per V},
 x \emb{i} = f_{x} \emb{c \emb{i}} = 123.4 \cdot c \emb{i} \label{eq:pom_funx_static}.
 \end{equation}
 
-Dodatkowo uwzględnić należy podczas analizy występowanie czynników zakłócających proces pomiaru, których charakter określić można jako losowy. W omawianej grupie mieścić się będą zakłócenia wynikające przede wszystkim z fluktuacji napięcia zasilania oraz odniesienia, błędu kwantowania oraz nieliniowości zastosowanych obiektów, a także szumów występujących w części analogowej toru pomiarowego. Cennym źródłem informacji będzie zatem histogram przedstawiający uzyskane realizacje błędu odtwarzania wielkości $s(t)$, opisanego równaniem:
+Dodatkowo uwzględnić należy podczas analizy występowanie czynników zakłócających proces pomiaru, których charakter określić można jako losowy. W omawianej grupie mieścić się będą zakłócenia wynikające przede wszystkim z fluktuacji napięcia zasilania oraz odniesienia, błędu kwantowania, nieliniowości zastosowanych obiektów oraz właściwości charakterystyki przetwornika analogowo-cyfrowego, a także szumów występujących w części analogowej toru pomiarowego. Na rysunku~\ref{fig:pom_static_hist} przedstawiono histogram uzyskanych realizacji błędu odtwarzania $e_{x}(t)$ wielkości $s(t)$, przy czym jest on zdefiniowany jako:
 \begin{equation}
 e_{x} \emb{i} = x \emb{i} - s \emb{iT_{p}} \label{eq:pom_funx_error}.
 \end{equation}
-Uzyskany histogram dla pozyskanych wcześniej danych pomiarowych przedstawiono na rysunku~\ref{fig:pom_static_hist}. Zidentyfikowane właściwości posłużą w dalszej części rozdziału do budowy modelu błędu wskazanego toru pomiarowego.
+Kolejne składowe opisanego sygnału błędu zostaną omówione w dalszej cześć rozdziału.
 
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/dwt_rerror_coif5}
-\makecaption{fig:pom_static_hist}{Zależność wartości wielkości wyjściowej przetwornika analogowo-cyfrowego w funkcji wartości napięcia wejściowego analizowanego toru pomiarowego}
+\makecaption{fig:pom_static_hist}{Histogram wypadkowego błędu wielkości wejściowych algorytmu dyskretnej transformacji falkowej dla analizowanego toru pomiarowego}
 \end{center}
 \end{figure}
 
-Drugą grupą koniecznych do identyfikacji właściwości są właściwości dynamiczne. Podobnie, jak w przypadku właściwości statycznych, istnieje możliwość ich identyfikacji pomiarowej uzyskując kolejne realizacje wielkości wyjściowej $c(i)$. Przypadek właściwości dynamicznych jest jednak bardziej skomplikowany i wymagałby w tym przypadku bardziej skomplikowanej procedury pomiarów -- konieczna bowiem byłaby odpowiednia synchronizacja przebiegu napięcia sygnału wejściowego toru pomiarowego z wyjściem przetwornika analogowo-cyfrowego. Opisywana procedura byłaby zatem kłopotliwa, a dodatkowo do pomiaru zostałby wprowadzony kolejny błąd związany z opisywaną synchronizacją. Proponuje się zatem w pierwszej kolejności zidentyfikować właściwości zastosowanego wzmacniacza, a następnie ustalić właściwości przetwornika analogowo cyfrowego na podstawie jego dokumentacji.
+Drugą grupą koniecznych do identyfikacji właściwości są właściwości dynamiczne. Podobnie, jak w przypadku właściwości statycznych, istnieje możliwość ich identyfikacji pomiarowej uzyskując kolejne realizacje wielkości wyjściowej $c(i)$. Przypadek właściwości dynamicznych jest jednak bardziej skomplikowany i wymagałby w tym przypadku bardziej skomplikowanej procedury pomiarów -- konieczna bowiem byłaby odpowiednia synchronizacja przebiegu napięcia wejściowego toru pomiarowego z przebiegiem sygnału wyjściowego przetwornika analogowo-cyfrowego w celu oszacowania różnicy pomiędzy fazami analizowanych sygnałów. Opisywana procedura byłaby zatem kłopotliwa, a dodatkowo podczas jej realizacji wprowadzany byłby kolejny błąd, związany z opisywaną synchronizacją. Wobec powyższych okoliczności proponuje się zatem w pierwszej kolejności zidentyfikować właściwości dynamiczne zastosowanego wzmacniacza pomiarowego, a następnie ustalić właściwości dynamiczne przetwornika analogowo-cyfrowego na podstawie jego dokumentacji~\cite{stm_f411}, w której opisano model analizowanego przetwornika.
 
 W przypadku wzmacniacza pomiarowego procedura identyfikacji polegać będzie na podawaniu na jego wejście napięcia sinusoidalnie zmiennego o zadanej częstotliwości i stałej amplitudzie. Dla zadanych parametrów sygnału zmierzyć należy amplitudę sygnału wyjściowego wzmacniacza, potrzebną do wyznaczenia jego wzmocnienia $K_{y}(f)$, oraz przesunięcie fazowe $\varphi_{y}(t)$ pomiędzy sygnałem wejściowym $s(t)$ i wyjściowym $y(t)$, przy czym pomiędzy omawianymi wielkościami zachodzą następujące relacje:
 \begin{gather}
 K_{y} \emb{f} = 20 \log \left( \frac{A_{wy} \emb{f}}{A_{we} \emb{f}} \right) \label{eq:pom_dyn_amp}, \\
 \varphi_{y} \emb{f} = \varphi_{wy} \emb{f} - \varphi_{we} \emb{f} \label{eq:pom_dyn_phi},
 \end{gather}
-gdzie w funkcji częstotliwości $A_{wy}(f)$ jest amplitudą sygnału wyjściowego, $A_{we}(f)$ amplitudą sygnału wejściowego, $\varphi_{wy}(f)$ przesunięciem fazowym sygnału napięcia wyjściowego, natomiast $\varphi_{we}(f)$ przesunięciem fazowym sygnału napięcia wejściowego analizowanego wzmacniacza.
+gdzie $A_{wy}(f)$ jest amplitudą sygnału wyjściowego, $A_{we}(f)$ amplitudą sygnału wejściowego, $\varphi_{wy}(f)$ przesunięciem fazowym sygnału wyjściowego, natomiast $\varphi_{we}(f)$ przesunięciem fazowym sygnału wejściowego wzmacniacza w funkcji częstotliwości.
 
-Na podstawie pozyskanych danych oszacować można częstotliwość graniczną analizowanego wzmacniacza, która w tym przypadku wyniosła $f_{y,g} = \qty{123}{kHz}$. Dla przedstawionych charakterystyk sporządzono dwa modele aproksymacji. W modelu pierwszym wykorzystano funkcję opisującą transmitancję wzmacniacza w postaci:
+Na podstawie pozyskanych danych oszacować można pasmo przenoszenia analizowanego wzmacniacza, które w tym przypadku wyniosło $f_{y,g} = \qty{123}{kHz}$. Dla przedstawionych charakterystyk sporządzono dwa modele aproksymacji. W modelu pierwszym wykorzystano funkcję opisującą transmitancję wzmacniacza w postaci:
 \begin{gather}
 \tilde{G}_{y} \emb{j\omega} = \frac{1}{1 + j \frac{\omega}{2 \pi f_{y,g}}} = \frac{1}{\frac{\omega^{2}}{4 \pi^{2} f_{y,g}^{2}} + 1} - j \frac{\omega}{2 \pi f_{y,g} \left( \frac{\omega^{2}}{4 \pi^{2} f_{y,g}^{2}} + 1 \right) } \label{eq:pom_dyn_trans},
 \end{gather}
@@ -73,6 +73,8 @@ K_{y} \emb{f} = 123 \cdot f^{2} - 321 \cdot f \label{eq:pom_aprox_amp}, \\
 \varphi_{y} \emb{f} = 123 \cdot f^{2} - 321 \cdot f \label{eq:pom_aprox_phi}.
 \end{gather}
 Uzyskane dla zakresu częstotliwości $<0.1;300>~\unit{kHz}$ wartości wzmocnienia i przesunięcia fazowego oraz odpowiadające im wartości dla zaproponowanych w równaniach od~\eqref{eq:pom_dyn_trans} do~\eqref{eq:pom_aprox_phi} przedstawiono na rysunkach~\ref{fig:pom_dynamic_amp} oraz~\ref{fig:pom_dynamic_phi}.
+
+Analizując przedstawione wykresy zauważyć można, że model zaproponowany w równaniach~\eqref{eq:pom_aprox_amp} oraz~\eqref{eq:pom_aprox_phi} stanowi bardzo dobre przybliżenie charakterystyki analizowanego wzmacniacza pomiarowego, natomiast model dany równaniem~\eqref{eq:pom_dyn_trans} odbiega od niej znacząco. Stąd przyjmuje się, że omawiane równania~\eqref{eq:pom_aprox_amp} oraz~\eqref{eq:pom_aprox_phi} opisywać będą właściwości dynamiczne zastosowanego wzmacniacza, odpowiadające zależnościom~\eqref{eq:mid_cont_amp} oraz~\eqref{eq:mid_cont_phi}. Należy zauważyć, że na potrzeby zaproponowanego w pracy modelu błędu informacje te będą wystarczające i nie jest konieczna znajomość dokładnej postaci funkcji opisującej transmitancję analizowanego obiektu.
 
 \begin{figure}[htb!]
 \begin{center}
@@ -88,26 +90,44 @@ Uzyskane dla zakresu częstotliwości $<0.1;300>~\unit{kHz}$ wartości wzmocnien
 \end{center}
 \end{figure}
 
-Analizując przedstawione wykresy zauważyć można, że model zaproponowany w równaniach~\eqref{eq:pom_aprox_amp} oraz~\eqref{eq:pom_aprox_phi} stanowi bardzo dobre przybliżenie charakterystyki analizowanego wzmacniacza pomiarowego, natomiast model dany równaniem~\eqref{eq:pom_dyn_trans} odbiega od niej znacząco. Stąd, w dalszej części rozdziału przyjmuje się, że omawiane równania~\eqref{eq:pom_aprox_amp} oraz~\eqref{eq:pom_aprox_phi} opisywać będą właściwości dynamiczne zastosowanego wzmacniacza, odpowiadające zależnościom~\eqref{eq:mid_cont_amp} oraz~\eqref{eq:mid_cont_phi}. Należy zauważyć, że na potrzeby zaproponowanego w pracy modelu błędu informacje te będą wystarczające i nie jest konieczna znajomość dokładnej postaci funkcji opisującej transmitancję analizowanego obiektu.
-
-Zgodnie z dokumentacją~\cite{stm_f411} obwód zastępczy części analogowej przetwornika analogowo-cyfrowego przedstawić można w postaci modelu filtra dolno-przepustowego typu \enquote{RC}, przy czym stanowić on będzie kaskadowe połączenie dwóch takich filtrów, co przedstawiono na rysunku~\ref{fig:schemat_adc}. Wypadkowa pojemność $C_{we}$ wynika w analizowanym przypadku z pojemności w obrębie wyprowadzenia mikrokontrolera, natomiast pojemność $C_{adc}$ wynika pojemności wewnętrznej układu próbkująco-pamiętającego. Zgodnie z dokumentacją wewnętrzna pojemność przetwornika wynosi typowo około~\qty{4}{pF}, natomiast pojemność wynikająca z wyprowadzenia oraz zastosowanego laminatu wynosi około~\qty{5}{pF}. Rezystancję $R_{we}$ w zaproponowanym modelu stanowi szeregowe połączenie rezystancji doprowadzeń pomiędzy wzmacniaczem pomiarowym i mikrokontrolerem oraz rezystancja samego wzmacniacza, przy czym w omawianym przypadku jest to wartość rzędu pojedynczych Ohmów. Rezystancja $R_{adc}$ jest rezystancją klucza układu próbkująco-pamiętającego i, zgodnie z dokumentacją, jej wartość nie przekracza~\qty{6}{k\ohm}. Dodatkowe elementy, które można zauważyć na omawianym schemacie, to diody zabezpieczające wejście mikrokontrolera przed zbyt wysokim lub niskim napięciem oraz źródło $I_{adc}$, które zastępuje upływność nieprzekraczającą~\qty{\pm 1}{\micro A}. Elementy te mogą być zatem pominięte w omawianej analizie.
+Zgodnie z dokumentacją~\cite{stm_f411} obwód zastępczy części analogowej przetwornika analogowo-cyfrowego przedstawić można w postaci modelu filtra dolno-przepustowego typu \enquote{RC}, przy czym stanowić on będzie kaskadowe połączenie dwóch takich filtrów, co przedstawiono na rysunku~\ref{fig:schemat_adc}. Wypadkowa pojemność $C_{we}$ wynika w analizowanym przypadku z pojemności w obrębie wyprowadzenia mikrokontrolera, natomiast pojemność $C_{adc}$ wynika pojemności wewnętrznej układu próbkująco-pamiętającego. Zgodnie z dokumentacją wewnętrzna pojemność przetwornika wynosi typowo około~\qty{4}{pF}, natomiast pojemność zastępcza $C_{we}$ obwodu wejściowego przetwornika wynosi zwykle około~\qty{5}{pF}. Rezystancję $R_{we}$ w zaproponowanym modelu stanowi szeregowe połączenie rezystancji doprowadzeń pomiędzy wzmacniaczem pomiarowym i mikrokontrolerem oraz rezystancja samego wzmacniacza, przy czym w omawianym przypadku jest to wartość rzędu pojedynczych Ohmów. Rezystancja $R_{adc}$ jest rezystancją klucza układu próbkująco-pamiętającego i, zgodnie z dokumentacją, jej wartość nie przekracza~\qty{6}{k\ohm}. Dodatkowe elementy, które można zauważyć na omawianym schemacie, to diody zabezpieczające wejście mikrokontrolera przed zbyt wysokim lub niskim napięciem wejściowym oraz źródło $I_{adc}$, które zastępuje upływność układu nieprzekraczającą~\qty{\pm 1}{\micro A}. Elementy te mogą być zatem pominięte w omawianej analizie, ze względu na ich znikome znaczenie w budżecie błędów analizowanego toru pomiarowego.
 
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/schemat_adc}
-\makecaption{fig:schemat_adc}{Schemat zastępczy modelu przetwornika analogowo-cyfrowego zastosowanego w analizowanym torze pomiarowym}
+\makecaption{fig:schemat_adc}{Schemat zastępczy modelu przetwornika analogowo-cyfrowego zastosowanego w analizowanym torze pomiarowym zgodny z dokumentacją producenta układu~\cite{stm_f411}}
 \end{center}
 \end{figure}
 
-Pierwszy filtr, który przedstawiono na rysunku~\ref{fig:schemat_adc}, składa się z rezystancji rzędu pojedynczych Ohmów oraz pojemności rzędu mikro Faradów. Pozwala to oszacować częstotliwość graniczną tego filtru na poziomie kilkuset giga Herców. Filtr drugi stanowi połączenie rezystancji rzędu kilo Ohmów z pojemnością rzędu piko Faradów, a zatem rząd wielkości częstotliwości granicznej takiego filtru oszacować można na poziomie kilkuset mega Herców. Na podstawie przedstawionych parametrów modelu analizowanego przetwornika analogowo-cyfrowego, przyjąć można pomijalnie mały udział jego parametrów dynamicznych w puli właściwości dynamicznych całego toru pomiarowego. Ostateczna analiza właściwości dynamicznych całości toru pomiarowego uwzględniać będzie jedynie właściwości zastosowanego wzmacniacza pomiarowego, którego częstotliwość graniczna cechowała się wartością rzędu kilkuset kilo Herców.
+Pierwszy filtr, który przedstawiono na rysunku~\ref{fig:schemat_adc}, składa się z rezystancji rzędu pojedynczych Ohmów oraz pojemności rzędu mikro Faradów. Pozwala to oszacować częstotliwość graniczną tego filtru na poziomie kilkuset giga Herców. Filtr drugi stanowi połączenie rezystancji rzędu kilo Ohmów z pojemnością rzędu piko Faradów, a zatem rząd wielkości częstotliwości granicznej takiego filtru oszacować można na poziomie kilkuset mega Herców. Na podstawie przedstawionych parametrów modelu analizowanego przetwornika analogowo-cyfrowego, przyjąć można pomijalnie mały udział jego właściwości dynamicznych w puli właściwości dynamicznych całego toru pomiarowego. Ostateczna analiza właściwości dynamicznych całości toru pomiarowego uwzględniać będzie zatem tylko właściwości zastosowanego wzmacniacza pomiarowego, którego pasmo przenoszenia cechowało się wartością rzędu kilkuset kilo Herców.
 
-Ostatnim fragmentem toru pomiarowego, który wprowadzać może do sygnału wyjściowego dodatkowe błędy, jest algorytm dyskretnej transformacji falkowej. Jako, że zastosowany mikrokontroler posiada jednostkę \enquote{FPU} (ang. \enquote{Floating Point Unit}) oraz zestaw instrukcji \enquote{DSP} umożliwiające optymalne wykonywanie operacji na liczbach zmiennoprzecinkowych pojedynczej precyzji, wykorzystane zostaną liczby o długości słowa $32$-bitów. Przeprowadzone wcześniej badania, których wyniki przedstawiono w tabeli~\ref{tab:varnum_spline4_4_5_f32} pozwalają przypuszczać, że wariancja błędu związanego z zaokrągleniami nie przekroczy w bieżącym przypadku rzędu piko Voltów, a zatem niepewność rozszerzona z nią związana nie przekroczy rzędu mikro Voltów.
+Ostatnim fragmentem toru pomiarowego, który wprowadzać może do sygnału wyjściowego dodatkowe błędy, jest algorytm dyskretnej transformacji falkowej. Jako, że zastosowany mikrokontroler posiada jednostkę \enquote{FPU} (ang. \enquote{Floating Point Unit}) oraz zestaw instrukcji \enquote{DSP} umożliwiające optymalne wykonywanie operacji na liczbach zmiennoprzecinkowych pojedynczej precyzji, wykorzystane zostaną liczby o długości słowa $32$-bitów. Przeprowadzone wcześniej badania, których wyniki przedstawiono w tabeli~\ref{tab:varnum_spline4_4_5_f32}, pozwalają przypuszczać, że wariancja błędu związanego z zaokrągleniami nie przekroczy w bieżącym przypadku rzędu piko Voltów, a zatem niepewność rozszerzona z nią związana nie powinna przekroczyć rzędu mikro Voltów.
 
 Dotychczasowe rozważania zakładały, że podawany na wejście toru pomiarowego z zastosowanego generatora sygnał cechował się idealną wartością napięcia. W rzeczywistości sygnał ten również obarczony był pewnym błędem, który zostanie uwzględniony i opisany w kolejnym podrozdziale. Przedstawione dotychczas zabiegi umożliwią sporządzenie modelu błędu analizowanego toru pomiarowego w oparciu o model błędu przedstawiony w niniejszej pracy.
 
 \section{Model błędu toru pomiarowego}
 
-TODO
+Zakładając dla wielkości wejściowej $x(i)$ algorytmu dyskretnej transformacji falkowej czułość równą~\qty{1}{V \per V} w stosunku do przetwarzanego sygnału $s(t)$, idealny przebieg wielkości $x(i)$ opisać można w postaci:
+\begin{equation}
+\dot{x} \emb{i} = \dot{f}_{x} \left( \dot{f}_{c} \left( \dot{f}_{y} \left( s \emb{kT_{p}} \right) \right) \right) = \dot{s} \emb{kT_{p}} \label{eq:pom_dwtina_ideal},
+\end{equation}
+wobec czego, przy założeniu czułości wzmacniacza równej~\qty{3.3}{V \per V} oraz idealnej charakterystyki przetwarzania przetwornika analogowo-cyfrowego, idealne funkcje przetwarzania kolejnych fragmentów toru pomiarowego opisują równania:
+\begin{gather}
+\dot{f}_{y} \emb{x} = 3.3 \cdot x \label{eq:pom_ampfun_ideal}, \\
+\dot{f}_{c} \emb{x} = 4096 \cdot \frac{x}{3.3} \label{eq:pom_adcfun_ideal}, \\
+\dot{f}_{x} \emb{x} = \frac{x}{4096} \label{eq:pom_confun_ideal}.
+\end{gather}
+
+Przeprowadzone wcześniej pomiary, których wynik przedstawiono na rysunku~\ref{fig:pom_static_fun}, wykazują jednak pewne rozbieżności pomiędzy założeniami danymi w równaniach~\eqref{eq:pom_ampfun_ideal} oraz~\eqref{eq:pom_adcfun_ideal}. Omawiane różnice wynikają z innych niż zakładano parametrów czułości wzmacniacza pomiarowego, wartości napięcia referencyjnego lub wartości napięcia zasilania wzmacniacza. Ze względu na fakt, że przedstawiony tor pomiarowy występuje w formie prototypu, który nie będzie produkowany seryjnie, przyjmuje się że pomiar zakłócany jest błędami systematycznymi, niezmiennymi w czasie, które należy skorygować. Proponuje się zatem na podstawie pozyskanych wcześniej wyników pomiarów opisać ogólną funkcję przetwarzania wielkości $s(t)$ na wielkość $c(i)$, na podstawie której opisana zostanie odwrotna do niej funkcja odtwarzania wielkości $x(i)$ uwzględniająca wprowadzone korekty. Wobec powyższych zapisać można równania:
+\begin{gather}
+\dot{f}_{sc} \emb{x} = 4096 \cdot \frac{x}{1234} \label{eq:pom_scfun_ideal}, \\
+\dot{f}_{cx} \emb{x} = \frac{x}{4096} \label{eq:pom_cxfun_ideal}, \\
+\dot{f}_{sx} \emb{x} = \dot{f}_{cx} \left( \dot{f}_{sc} \emb{x} \right) \label{eq:pom_sxfun_ideal}, \\
+\dot{x} \emb{i} = \dot{f}_{sx} \left( s \emb{kT_{p}} \right) \label{eq:pom_dwtinb_ideal},
+\end{gather}
+przy czym należy zauważyć, że sens równania~\eqref{eq:pom_dwtina_ideal} zostaje zachowany. W przypadku, gdyby analizowany tor pomiarowy miał być produkowany seryjnie, należałoby wskazać niepewność standardową dla wartości napięcia referencyjnego oraz czułości statycznej zastosowanego wzmacniacza, a następnie korzystając z prawa propagacji niepewności opisanego w~\cite{jcgm_guide} wyznaczyć niepewność związaną z rozrzutem tych parametrów.
+
+
 
 \section{Weryfikacja przedstawionych zależności}
 
