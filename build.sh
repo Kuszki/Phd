@@ -29,6 +29,7 @@ while [ "$1" != "" ]; do
 done
 
 [ $REMOVE == true ] && rm budowa/*
+[ $CONVERT == true ] && libreoffice --convert-to pdf obrazki/*.odg --outdir obrazki 
 [ $CONVERT == true ] && inkscape -D obrazki/*.svg --export-type pdf
 [ $BUILD == true ] && latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
 
