@@ -8,18 +8,22 @@ pkg load optim
 
 addpath("~/Projekty/Octave-FWT-Utils");
 
-dat = load("../pomiary/dc.dat");
-mns = zeros(1, columns(dat)-1);
-dff = zeros(1, columns(dat)-1);
+list = glob("../pomiary/dc/*.txt");
+mns = zeros(1, length(list));
+dff = zeros(1, length(list));
 
-pts = [ 25 : 50 : 975 ];
-#pts = [25, 150 : 150 : 3150, 3250];
 data = [];
+pts = [];
 
-for i = 2 : columns(dat)
+for i = 1 : length(list)
 
-	col = dat(:,i);
-	mns(i-1) = mean(col);
+	fname = list{i,1};
+	[s, e, te, m, t] = regexp(fname, "(\\d+(?:\\.\\d+)?)");
+	vcc = str2num(t{1}{1});
+	dat = load("-ascii", fname);
+
+	mns(i) = mean(dat);
+	pts(i) = vcc;
 
 end
 
@@ -29,18 +33,21 @@ P = F \ transpose(mns);
 fun = @(x) P(1) + P(2)*x;
 fpr = @(x) (x - P(1)) / P(2);
 
-y = fun([0 1000]);
+y = fun([0 max(pts)]);
 x = [0 fpr(y(2))];
 
-for i = 2 : columns(dat)
+for i = 1 : length(list)
 
-	col = dat(:,i) - fun(pts(i-1));
-	data = [data; col];
+	fname = list{i,1};
+	[s, e, te, m, t] = regexp(fname, "(\\d+(?:\\.\\d+)?)");
+	vcc = str2num(t{1}{1});
+	dat = load("-ascii", fname);
 
-	[u, c, s, w, m] = get_uncertainty(col);
-	dff(i-1) = m;
+	dat = dat - fun(vcc);
+	data = [data; dat];
 
-	printf("%d\t%f\t%f\t%f\t%f\t%f\n", pts(i-1), u, c, s, w, m);
+	[u, c, s, w, m] = get_uncertainty(dat);
+	dff(i) = m;
 
 end
 
