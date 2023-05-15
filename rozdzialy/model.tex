@@ -31,7 +31,7 @@ przy czym $\omega_{s,i}$ jest pulsacją $i$-tej harmonicznej opisywanego sygnał
 \tilde{s} \left( t, \omega \right) = \dot{s} \left( t, \omega \right) + E_{s,e} \emb{\omega} \sin \left( \omega t + \varphi_{s,e} \emb{\omega} \right) \label{eq:in_cont_omega_real}, \\
 \tilde{s} \emb{t} = e_{s,r} \emb{t} + \sum _{i = 0} ^{\infty} \tilde{s} \left( t, \omega_{s,i} \right) \label{eq:in_cont_sum_real},
 \end{gather}
-gdzie $E_{s,o}(\omega)$ jest amplitudą oraz $\varphi_{s,o}(\omega)$ przesunięciem w fazie wybranej harmonicznej sygnału, $E_{s,e}$ amplitudą oraz $ \varphi_{s,e}$ przesunięciem w fazie analizowanej harmonicznej przebiegu błędu zawartego w sygnale, natomiast $e_{s,r}$ jest błędem losowym. W opisie sygnału pominięto jawny opis składowej stałej sygnału, jako że zastąpić go można harmoniczną o indeksie $i = 0$, gdzie $\omega_{0} = 0$ oraz $\varphi_{0} = \pi$.
+gdzie $E_{s,o}$ jest amplitudą oraz $\varphi_{s,o}$ przesunięciem w fazie wybranej harmonicznej sygnału w przypadku idealnym, $E_{s,e}$ amplitudą oraz $ \varphi_{s,e}$ przesunięciem w fazie analizowanej harmonicznej sygnału błędu, natomiast $e_{s,r}$ jest błędem losowym. W opisie sygnału pominięto jawny opis składowej stałej sygnału, jako że zastąpić go można harmoniczną o indeksie $i = 0$, gdzie $\omega_{0} = 0$ oraz $\varphi_{0} = \pi$.
 
 Na podstawie równania~\eqref{eq:in_cont_sum_real} wyróżnić można trzy grupy błędów, przy czym zaproponowany podział wynika z charakteru ich realizacji i obejmuje:
 \begin{description}
@@ -115,7 +115,7 @@ Ostatnią grupą błędów dla analizowanego fragmentu obiektu stanowią błędy
 
 Przedstawione zjawisko znacznie utrudnia analizę błędów losowych. Zważywszy, że w praktyce każdy element toru pomiarowego posiada transmitancję różną od $G(j\omega) = \text{const}$, w zasadzie na jego wyjściu nigdy nie otrzymuje się sygnału błędu o przedstawionych w poprzednim akapicie założeniach. Aby umożliwić analizę dla błędów losowych, w przypadku gdy są one przetwarzane przez rzeczywisty obiekt, zaproponowana zostanie metoda pozwalająca na oszacowanie wariancji tych błędów uwzględniająca transmitancje obiektu oraz wariancję błędu na wejściu obiektu. Szacowaną wartość wariancji $\sigma_{u,rp}^{2}$ błędu losowego na wyjściu obiektu opisać można równaniem~\cite{jadziak_dsp, proakis_dsp}:
 \begin{equation}
-\sigma_{u,rp}^{2} = \frac{1}{a - b} \int _{b} ^{a} \tilde{K}_{u}^{2} \emb{\omega} \sigma_{s,r}^{2} d\omega \label{eq:mid_cont_var_rand},
+\sigma_{u,rp}^{2} = \frac{1}{a - b} \int _{b} ^{a} \tilde{K}_{u}^{2} \emb{\omega} \sigma_{s,r}^{2} \emb{\omega} d\omega \label{eq:mid_cont_var_rand},
 \end{equation}
 przy czym $<a;b>$ jest zakresem częstotliwości, dla którego szacowana jest wariancja przenoszonego błędu losowego. W przypadku wystąpienia błędów losowych własnych również należy wskazać ich wariancję, opisaną jako $\sigma_{u,rw}^{2}$.
 
@@ -273,7 +273,7 @@ e_{v,dp} \emb{i} = \sum _{j = 1} ^{\infty} \tilde{K}_{v} \emb{\omega_{x,j}} E_{x
 \end{equation}
 Wariancja $\sigma_{v,rp}^{2}$ propagowanego błędu losowego może natomiast zostać oszacowana zgodnie z metodologią zaproponowaną w równaniu~\eqref{eq:mid_cont_var_rand} i opisana zależnością:
 \begin{equation}
-\sigma_{v,rp}^{2} = \frac{1}{a - b} \int _{b} ^{a} \tilde{K}_{v}^{2} \emb{\omega} \sigma_{x,r}^{2} d\omega \label{eq:mid_disc_var_rand}.
+\sigma_{v,rp}^{2} = \frac{1}{a - b} \int _{b} ^{a} \tilde{K}_{v}^{2} \emb{\omega} \sigma_{x,r}^{2} \emb{\omega} d\omega \label{eq:mid_disc_var_rand}.
 \end{equation}
 Ze względu na fakt, że operacje wyznaczania wielkości wyjściowych dla omawianej części toru pomiarowego związane będą z operacjami numerycznymi, wielkości wyjściowe tej części będą również obarczone związanym z nimi błędem zaokrągleń. Charakter tego błędu będzie niedeterministyczny, a zatem traktować go należy jak błąd losowy i oszacować należy jego wariancję oznaczoną jako $\sigma_{v,rw}^{2}$.
 
