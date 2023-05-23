@@ -66,8 +66,10 @@ for i = 1 : length(list)
 
 end
 
+printf("ADC(x) = %1.5g * x + %1.5g\n", P(2), P(1))
+printf("VIN(x) = (x - %1.5g) / %1.5g\n", P(1), P(2))
+
 [u, c, s, w] = get_uncertainty(data)
-std(dff)
 
 hold on;
 plot(pts, mns, 'x');
