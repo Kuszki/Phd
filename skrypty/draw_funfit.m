@@ -15,6 +15,9 @@ dff = zeros(1, length(list));
 data = [];
 pts = [];
 
+fcolor = "#333333";
+ecolor = "#333333";
+
 set(h, "paperunits", "centimeters")
 set(h, "papersize", [16 8.3])
 set(h, "paperposition", [0, 0, [16 8.3]])
@@ -53,14 +56,16 @@ for i = 1 : length(list)
 	[s, e, te, m, t] = regexp(fname, "(\\d+(?:\\.\\d+)?)");
 	vcc = str2num(t{1}{1});
 	dat = load("-ascii", fname);
+	mnd = mean(dat);
 
-	obl = fpr(mean(dat));
+	obl = fpr(mnd);
 	dat = dat - fun(vcc);
 	data = [data; dat];
 
 	[u, c, s, w, m] = get_uncertainty(dat);
-	dff(i) = obl - vcc;
-	stds(i) = s;
+
+	dff_v(i) = obl - vcc;
+	dff_q(i) = mnd - fun(vcc);
 
 	printf("%0.1f\t%0.1f\t%0.3f\t%0.3f\n", vcc, obl, u, s);
 
@@ -69,12 +74,17 @@ end
 printf("ADC(x) = %1.5g * x + %1.5g\n", P(2), P(1))
 printf("VIN(x) = (x - %1.5g) / %1.5g\n", P(1), P(2))
 
-[u, c, s, w] = get_uncertainty(data)
+[uq, cq, sq, wq] = get_uncertainty(data)
+[uv, cv, sv, wv] = get_uncertainty(data / P(2))
+std_v = std(dff_v)
+std_q = std(dff_q)
 
+subplot(1, 2, 1)
 hold on;
-plot(pts, mns, 'x');
+plot(pts, mns, '+');
 plot(x, y);
 hold off;
+title(sprintf("\\rm{\\itc}({\\iti}) = %1.5g \\cdot {\\its}({\\itiT_{p}}) + %1.5g", P(2), P(1)))
 ylabel("Wielkość wyjściowa przetwornika A/C");
 xlabel("Napięcie na wejściu toru pomiarowego, mV");
 yticks(0 : 512 : 4096);
@@ -85,5 +95,14 @@ box on
 
 set (gca, "xminorgrid", "on");
 
-print("../obrazki/static_adcout.svg", "-svgconvert", "-r300");
+subplot(1, 2, 2)
+hist(data, 300, 100, "facecolor", fcolor, "edgecolor", ecolor)
+title(sprintf("\\rm\\itU{\\rm = %1.3g}, c{\\rm = %1.2f}", uq, cq))
+ylabel("Udział wystąpień, %");
+xlabel("Wartość błędu, liczba kwantów");
+xlim([-5 5])
+ylim([0 6])
+grid on
+box on
 
+print("../obrazki/static_adcout.svg", "-svgconvert", "-r300");
