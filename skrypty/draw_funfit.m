@@ -19,8 +19,8 @@ fcolor = "#333333";
 ecolor = "#333333";
 
 set(h, "paperunits", "centimeters")
-set(h, "papersize", [16 8.3])
-set(h, "paperposition", [0, 0, [16 8.3]])
+set(h, "papersize", [16 5.65])
+set(h, "paperposition", [0, 0, [16 5.65]])
 
 set(0, "defaultaxesposition", [0.105, 0.155, 0.865, 0.825])
 set(0, "defaultaxesfontsize", 11)
@@ -84,8 +84,8 @@ hold on;
 plot(pts, mns, '+');
 plot(x, y);
 hold off;
-title(sprintf("\\rm{\\itc}({\\iti}) = %1.5g \\cdot {\\its}({\\itiT_{p}}) + %1.5g", P(2), P(1)))
-ylabel("Wielkość wyjściowa przetwornika A/C");
+title(sprintf("\\rm{\\itc}({\\iti}) = %1.5g\\cdot{\\its}({\\itiT_{p}}) + %1.5g", P(2), P(1)))
+ylabel("Wyjście przetwornika A/C");
 xlabel("Napięcie na wejściu toru pomiarowego, mV");
 yticks(0 : 512 : 4096);
 xlim([0 1000])
@@ -93,14 +93,12 @@ ylim([0 4096])
 grid on
 box on
 
-set (gca, "xminorgrid", "on");
-
 subplot(1, 2, 2)
 hist(data, 300, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(sprintf("\\rm\\itU{\\rm = %1.3g}, c{\\rm = %1.2f}", uq, cq))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, liczba kwantów");
-xlim([-5 5])
+xlim([-8 8])
 ylim([0 6])
 grid on
 box on
