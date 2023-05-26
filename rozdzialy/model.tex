@@ -220,7 +220,7 @@ przy czym $e_{AC,rp}(i)$ stanowi błąd losowy propagowany, natomiast $e_{AC,rw}
 
 \section{Błędy w części cyfrowej toru pomiarowego}
 
-Opis właściwości metrologicznych części cyfrowej toru pomiarowego może być wykonany w sposób podobny, jak w przypadku części analogowej. Transmitancję części cyfrowej wyrazić można odpowiednią dla opisu dyskretnych obiektów transmitancją $H_{X}(z)$. Ciągłą zmienną $t$ reprezentującą czas należy zastąpić zmienną $i$, oznaczającą numer próbki sygnału, przy czym $i \in \mathbb{N}$. Podobnie, jak w przypadku części analogowej, z analizowanym obiektem związana jest również funkcja przetwarzania $f_{X}(x)$. Schemat ideowy cyfrowej części toru pomiarowego przedstawiono na rysunku~\ref{fig:chain_disc}. Przykładem omawianego rodzaju obiektu może być filtr cyfrowy lub inny algorytm jednopunktowy realizujący odtwarzanie statyczne bądź dynamiczne. Przyjmuje się, że transmitancja $G_{X}(j\omega)$ jest transmitancją obiektu w dziedzinie pulsacji, która odpowiada dyskretnej, liniowej oraz niezmiennej w czasie, transmitancji $H_{X}(z)$ tego obiektu.
+Opis właściwości metrologicznych części cyfrowej toru pomiarowego może być wykonany w sposób podobny, jak w przypadku części analogowej. Transmitancję części cyfrowej wyrazić można odpowiednią dla opisu dyskretnych obiektów transmitancją $H_{X}(z)$, natomiast związaną z właściwościami statycznymi funkcję przetwarzania oznaczyć można symbolem $f_{X}(x)$. Ciągłą zmienną $t$ reprezentującą czas należy zastąpić zmienną $i$, oznaczającą numer próbki sygnału, przy czym $i \in \mathbb{N}$. Schemat ideowy cyfrowej części toru pomiarowego przedstawiono na rysunku~\ref{fig:chain_disc}. Przykładem omawianego rodzaju obiektu może być filtr cyfrowy lub inny algorytm jednopunktowy realizujący odtwarzanie statyczne bądź dynamiczne. Przyjmuje się, że transmitancja $G_{X}(j\omega)$ jest transmitancją obiektu w dziedzinie pulsacji, która odpowiada dyskretnej, liniowej oraz niezmiennej w czasie, transmitancji $H_{X}(z)$ tego obiektu.
 
 \begin{figure}[htb!]
 \begin{center}
@@ -248,34 +248,46 @@ gdzie $e_{x,s}(i)$ jest błędem statycznym, $e_{x,d}(i)$ błędem dynamicznym, 
 e_{x,s} \emb{i} = E_{x,e} \emb{\omega_{s,0}} \sin \left( \omega_{s,0} iT_{p} + \varphi_{x,e} \emb{\omega_{x,0}} \right) = E_{x,e} \emb{0} \label{eq:in_disc_err_stat}, \\
 e_{x,d} \emb{i} = \sum _{i = 1} ^{\infty} E_{x,e} \emb{\omega_{x,i}} \sin \left( \omega_{x,i} iT_{p} + \varphi_{x,e} \emb{\omega_{x,i}} \right) \label{eq:in_disc_err_dyn}.
 \end{gather}
-Błąd wypadkowy $e_{x,\Sigma}(i)$ zawarty w przetwarzanym sygnale można zatem wyrazić w postaci sumy wszystkich wymienionych błędów cząstkowych jako:
+Błąd wypadkowy $e_{x,\Sigma}(i)$ zawarty w przetwarzanym sygnale można zatem wyrazić w postaci sumy wszystkich wymienionych w równaniu~\eqref{eq:in_disc_real} błędów cząstkowych jako:
 \begin{equation}
 e_{x,\Sigma} \emb{i} = e_{x,s} \emb{i} + e_{x,d} \emb{i} + e_{x,r} \emb{i} \label{eq:in_disc_err_sum}.
 \end{equation}
+Przedstawiony sygnał błędu przetwarzany jest przez analizowany obiekt i propagowany na jego wyjście, zgodnie z charakterystyką tego obiektu.
 
-Podobnie jak w przypadku opisu części analogowej, w pierwszej kolejności omówiony zostanie wpływ transmitancji $H_{v}(z)$ na przetwarzany sygnał $x(i)$. Sygnał wyjściowy omawianego fragmentu oznaczono symbolem $v(i)$. Analogicznie, jak w przypadku analogowej części toru pomiarowego, właściwości dynamiczne dla przyjętych założeń nie wpływają na zawarte w sygnale wejściowym błędy statyczne oraz nie wprowadzają statycznych błędów własnych do sygnału $v(i)$. Równania~\eqref{eq:mid_cont_err_stat_self} oraz~\eqref{eq:mid_cont_err_stat_prop} przyjmują zatem postać:
+Podobnie jak w przypadku opisu części analogowej, rozważyć należy wpływ transmitancji $H_{X}(z)$ na przetwarzany sygnał $x(i)$, przy czym sygnał wyjściowy fragmentu obiektu związanego z omawianą transmitancją oznaczono symbolem $v(i)$. Biorąc pod uwagę wcześniejsze założenie, gdzie transmitancja $G_{X}(j\omega)$ odpowiada transmitancji $H_{X}(z)$ dla zastosowanego okresu próbkowania, parametry związane z tą transmitancją, stanowiące odpowiednik równań~\eqref{eq:mid_cont_amp} oraz~\eqref{eq:mid_cont_phi}, opisać można jako:
 \begin{gather}
-e_{v,sw} \emb{i} = 0 \label{eq:mid_disc_err_stat_self}, \\
-e_{v,sp} \emb{i} = E_{x,s} \emb{0} \label{eq:mid_disc_err_stat_prop},
+K_{X} \emb{\omega} = \left| G_{X} \emb{j\omega} \right| = \sqrt{\left( \Re \left( G_{X} \emb{j\omega} \right) \right)^{2} + \left( \Im \left( G_{X} \emb{j\omega} \right) \right)^{2}} \label{eq:mid_disc_amp}, \\
+\varphi_{X} \emb{\omega} = \arctan \left( \frac{\Im \left( G_{X} \emb{j\omega} \right)}{\Re \left( G_{X} \emb{j\omega} \right)} \right) \label{eq:mid_disc_phi},
 \end{gather}
-gdzie $e_{u,sw}$ jest błędem statycznym własnym, a $e_{u,sp}$ błędem statycznym przenoszonym przez fragment obiektu związany z jego właściwościami dynamicznymi. Parametry związane z transmitancją obiektu, stanowiące odpowiednik równań~\eqref{eq:mid_cont_amp} oraz~\eqref{eq:mid_cont_phi} w analizowanym przypadku opisać można jako:
-\begin{gather}
-K_{v} \emb{\omega} = \left| G_{v} \emb{j\omega} \right| = \sqrt{\left( \Re \left( G_{v} \emb{j\omega} \right) \right)^{2} + \left( \Im \left( G_{v} \emb{j\omega} \right) \right)^{2}} \label{eq:mid_disc_amp}, \\
-\varphi_{v} \emb{\omega} = \arctan \left( \frac{\Im \left( G_{v} \emb{j\omega} \right)}{\Re \left( G_{v} \emb{j\omega} \right)} \right) \label{eq:mid_disc_phi},
-\end{gather}
-gdzie $K_{u}(\omega)$ oznaczono wzmocnienie oraz $\varphi_{u}(\omega)$ przesunięcie w fazie pojedynczej harmonicznej sygnału. Pojedynczą harmoniczną wielkości wyjściowej $v(i)$ omawianego fragmentu dla przypadku idealnego opisać można zatem jako:
+gdzie $K_{u}(\omega)$ stanowi wzmocnienie oraz $\varphi_{u}(\omega)$ przesunięcie w fazie wprowadzane przez obiekt. Związek pomiędzy przedstawionymi postaciami transmitancji obiektu w dziedzinie $\mathcal{Z}$ oraz $\mathcal{F}$ wyjaśniono w dalszej części pracy. Wobec przedstawionych założeń równanie~\eqref{eq:mid_cont_var_omega} przyjmuje postać:
 \begin{equation}
-\dot{v} \emb{i,\omega} = \dot{K}_{v} \emb{\omega} E_{x,o} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{x,o} \emb{\omega} + \dot{\varphi}_{v} \emb{\omega} \right) \label{eq:mid_disc_omega_ideal},
+\sigma_{v}^{2} \emb{\omega} = K_{X}^{2} \emb{\omega} \sigma_{x}^{2} \emb{\omega} \label{eq:mid_disc_var_omega},
 \end{equation}
-natomiast ten sam przebieg zakłócony błędami własnym i propagowanymi, wynikającymi z transmitancji obiektu, wyrazić można w postaci równania:
-\begin{equation}
+gdzie $\sigma_{x}^{2}(\omega)$ jest wariancją sygnału na wejściu, natomiast $\sigma_{X}^{2}(\omega)$ wariancją sygnału na wyjściu fragmentu reprezentującego właściwości dynamiczne obiektu.
+
+Dla sygnałów o charakterze deterministycznym, pojedynczą harmoniczną wielkości wyjściowej $v(i)$ dla analizowanego fragmentu obiektu opisać można analogicznie, jak miało to miejsce w przypadku równań~\eqref{eq:mid_cont_omega_ideal} oraz~\eqref{eq:mid_cont_omega_real}. Zakładając, że $\dot{v}(i,\omega)$ jest idealnym, natomiast $\tilde{v}(i,\omega)$ zakłóconym sygnałem błędu przebiegiem harmonicznej sygnału $v(i)$ o pulsacji $\omega$, $\dot{K}_{X}(\omega)$ jest idealną, a $\tilde{K}_{X}(\omega)$ rzeczywistą wartością wzmocnienia, natomiast $\dot{\varphi}_{X}(\omega)$ jest idealnym, a $\tilde{\varphi}_{X}(\omega)$ rzeczywistym przesunięciem fazowym, zapisać można:
+\begin{gather}
+\dot{v} \emb{i,\omega} = \dot{K}_{v} \emb{\omega} E_{x,o} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{x,o} \emb{\omega} + \dot{\varphi}_{v} \emb{\omega} \right) \label{eq:mid_disc_omega_ideal}, \\
 \begin{split}
 \tilde{v} \emb{i,\omega} =~
 & \tilde{K}_{v} \emb{\omega} E_{x,o} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{x,o} \emb{\omega} + \tilde{\varphi}_{v} \emb{\omega} \right) + \\
 & \tilde{K}_{v} \emb{\omega} E_{x,e} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{x,e} \emb{\omega} + \tilde{\varphi}_{v} \emb{\omega} \right)
 \end{split}
 \label{eq:mid_disc_omega_real}.
-\end{equation}
+\end{gather}
+Uwzględniając wypadkowy sygnał błędu zawarty w sygnale $v(t)$, podobnie jak w przypadku równań~\eqref{eq:mid_cont_sum_ideal} oraz~\eqref{eq:mid_cont_sum_real}, sygnał ten przedstawić można w postaci:
+\begin{gather}
+\dot{v} \emb{i} = \sum _{j = 0} ^{\infty} \dot{v} \left( i, \omega_{v,j} \right) \label{eq:mid_disc_sum_ideal}, \\
+\tilde{v} \emb{i} = \dot{v} \emb{i} + e_{v,\Sigma} \emb{i} \label{eq:mid_disc_sum_real},
+\end{gather}
+przy czym $e_{v,\Sigma}(i)$ jest wypadkowym sygnałem błędu, stanowiącym sumę wszystkich sygnałów błędów wielkości wyjściowej fragmentu związanego z właściwościami dynamicznymi analizowanego obiektu.
+
+W przypadku błędów statycznych, opisanych dla części analogowej równaniami~\eqref{eq:mid_cont_err_stat_self} oraz~\eqref{eq:mid_cont_err_stat_prop}, w analizowanym przypadku zapisać można:
+\begin{gather}
+e_{v,sw} \emb{i} = \left( \tilde{K}_{X} \emb{0} - \dot{K}_{X} \emb{0} \right) E_{x,o} \emb{0} \label{eq:mid_disc_err_stat_self}, \\
+e_{v,sp} \emb{i} = \tilde{K}_{X} \emb{0} E_{x,e} \emb{0} \emb{0} \label{eq:mid_disc_err_stat_prop},
+\end{gather}
+gdzie $e_{v,sw}(t)$ jest błędem statycznym własnym, natomiast $e_{v,sp}(t)$ jest błędem statycznym propagowanym przez fragment obiektu związany z jego właściwościami dynamicznymi.
 
 Na podstawie przedstawionych zależności określających właściwości dynamiczne analizowanego obiektu, w sposób analogiczny jak w równaniach~\eqref{eq:mid_cont_err_dyn_self} oraz~\eqref{eq:mid_cont_err_dyn_prop}, wprowadzany do sygnału $v(i)$ błąd dynamiczny własny $e_{v,dw}$ opisać można zależnością przedstawioną równaniem:
 \begin{equation}
