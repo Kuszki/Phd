@@ -33,7 +33,7 @@ for i = 1 : length(list)
   for j = 1 : length(list)
 
     x = load("-ascii", sprintf("../archiwa/shapes/%s_%s.txt", list(i), list(j)));
-    plot(x(:,1), x(:,2), sprintf(";%s;", list(j)));
+    plot(x(:,1), x(:,2), sprintf(";\\it%s;", list(j)));
 
   end
 
@@ -43,7 +43,7 @@ for i = 1 : length(list)
 
   hold off;
   legend("location", 'north', 'orient', 'horizontal')
-  title(sprintf("%s) \\rm %s (%s)", num, names{i}, list(i)))
+  title(sprintf("%s) \\rm %s ({\\it%s})", num, names{i}, list(i)))
   ylabel("Współczynnik kształtu");
   xlabel(sprintf("Stosunek wartości{\\it U/U_{%s}}", list(i)));
   xlim([1 10])
