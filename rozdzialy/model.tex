@@ -260,16 +260,16 @@ e_{x,s} \emb{i} = E_{x,e} \emb{\omega_{s,0}} \sin \left( \omega_{s,0} iT_{p} + \
 e_{x,d} \emb{i} = \sum _{i = 1} ^{\infty} E_{x,e} \emb{\omega_{x,i}} \sin \left( \omega_{x,i} iT_{p} + \varphi_{x,e} \emb{\omega_{x,i}} \right) \label{eq:in_disc_err_dyn}.
 \end{gather}
 
-Zakładając, że transmitancja oznaczona symbolem $G_{X}(j\omega)$ odpowiada transmitancji $H_{X}(z)$ dla okresu próbkowania $T_{p}$, parametry związane z właściwościami dynamicznymi obiektu, stanowiące odpowiednik równań~\eqref{eq:mid_cont_amp} oraz~\eqref{eq:mid_cont_phi}, wynoszą:
+Transmitancja $H_{X}(z)$ dla okresu próbkowania $T_{p}$ może zostać określona w dziedzinie pulsacji przyjmując założenie gdzie $z = e^{j\omega T_{p}}$ \cite{proakis_dsp}. Parametry związane z właściwościami dynamicznymi obiektu, stanowiące odpowiednik równań~\eqref{eq:mid_cont_amp} oraz~\eqref{eq:mid_cont_phi}, wynoszą w takim przypadku:
 \begin{gather}
-K_{X} \emb{\omega} = \left| G_{X} \emb{j\omega} \right| = \sqrt{\left( \Re \left( G_{X} \emb{j\omega} \right) \right)^{2} + \left( \Im \left( G_{X} \emb{j\omega} \right) \right)^{2}} \label{eq:mid_disc_amp}, \\
-\varphi_{X} \emb{\omega} = \arctan \left( \frac{\Im \left( G_{X} \emb{j\omega} \right)}{\Re \left( G_{X} \emb{j\omega} \right)} \right) \label{eq:mid_disc_phi},
+K_{X} \emb{\omega} = \left| H_{X} \emb{e^{j\omega T_{p}}} \right| = \sqrt{\left( \Re \left( H_{X} \emb{e^{j\omega T_{p}}} \right) \right)^{2} + \left( \Im \left( H_{X} \emb{e^{j\omega T_{p}}} \right) \right)^{2}} \label{eq:mid_disc_amp}, \\
+\varphi_{X} \emb{\omega} = \arctan \left( \frac{\Im \left( H_{X} \emb{e^{j\omega T_{p}}} \right)}{\Re \left( H_{X} \emb{e^{j\omega T_{p}}} \right)} \right) \label{eq:mid_disc_phi},
 \end{gather}
 gdzie $K_{X}(\omega)$ stanowi wzmocnienie oraz $\varphi_{X}(\omega)$ przesunięcie w fazie wprowadzane przez obiekt. Wobec przedstawionych założeń równanie~\eqref{eq:mid_cont_var_omega} przyjmuje postać:
 \begin{equation}
 \sigma_{v}^{2} \emb{\omega} = K_{X}^{2} \emb{\omega} \sigma_{x}^{2} \emb{\omega} \label{eq:mid_disc_var_omega},
 \end{equation}
-gdzie $\sigma_{x}^{2}(\omega)$ jest wariancją sygnału na wejściu, natomiast $\sigma_{v}^{2}(\omega)$ wariancją sygnału na wyjściu fragmentu reprezentującego właściwości dynamiczne obiektu, oznaczonego symbolem $v(i)$. W celu wyznaczenia transmitancji algorytmu w dziedzinie pulsacji należy dla $H_{X}(z)$ przyjąć założenie $z = e^{2\pi j \frac{\omega}{\omega_{p}}}$, gdzie $\omega_{p}$ jest pulsacją próbkowania.
+gdzie $\sigma_{x}^{2}(\omega)$ jest wariancją analizowanego sygnału na wejściu obiektu, natomiast $\sigma_{v}^{2}(\omega)$ wariancją sygnału na wyjściu fragmentu reprezentującego właściwości dynamiczne obiektu, oznaczonego symbolem $v(i)$. 
 
 Dla sygnałów o charakterze deterministycznym, pojedynczą harmoniczną wielkości wyjściowej $v(i)$ dla analizowanego fragmentu obiektu opisać można analogicznie, jak miało to miejsce w przypadku równań~\eqref{eq:mid_cont_omega_ideal} oraz~\eqref{eq:mid_cont_omega_real}. Zakładając, że $\dot{v}(i,\omega)$ jest idealnym, natomiast $\tilde{v}(i,\omega)$ zakłóconym sygnałem błędu przebiegiem harmonicznej sygnału $v(i)$ o pulsacji $\omega$, $\dot{K}_{X}(\omega)$ jest idealną, a $\tilde{K}_{X}(\omega)$ rzeczywistą wartością wzmocnienia, natomiast $\dot{\varphi}_{X}(\omega)$ jest idealnym, a $\tilde{\varphi}_{X}(\omega)$ rzeczywistym przesunięciem fazowym, zapisać można:
 \begin{gather}
@@ -596,7 +596,7 @@ Wyznaczone zgodnie z metodą redukcyjnej arytmetyki interwałowej szacowane wart
 
 \section{Algorytm jako fragment toru pomiarowego}
 
-Podczas opisu właściwości cyfrowej części toru pomiarowego przedstawiono przypadek, w którym analizowany obiekt przetwarzał kolejne próbki sygnału wejściowego na próbki sygnału wyjściowego zgodnie z odpowiadającą mu transmitancją i funkcją przetwarzania. Algorytmy stosowane w torach pomiarowych mogą generować wiele wielkości wyjściowych, pobierając przy tym w oknie pomiarowym określoną liczbę próbek wielkości wejściowych. W przypadku, gdy wyjście analizowanego obiektu stanowi $M$ próbek wielkości wyjściowych wyznaczanych na podstawie $N$ próbek wielkości wejściowych, a funkcja przetwarzania tego obiektu jest liniowa, działanie obiektu przedstawić można w ogólnej postaci jako~\cite{jakubiec_algorithms, jakubiec_single}:
+Podczas opisu właściwości cyfrowej części toru pomiarowego przedstawiono przypadek ogólny, w którym analizowany obiekt przetwarzał kolejne próbki sygnału wejściowego na próbki sygnału wyjściowego zgodnie z odpowiadającą mu transmitancją i funkcją przetwarzania. Algorytmy stosowane w torach pomiarowych mogą generować wiele wielkości wyjściowych, pobierając w tym celu określoną liczbę próbek wielkości wejściowych. W przypadku, gdy wyjście analizowanego obiektu stanowi $M$ próbek wielkości wyjściowych wyznaczanych na podstawie $N$ próbek wielkości wejściowych, a funkcja przetwarzania oraz transmitancja tego obiektu są liniowe i niezmienne w czasie, działanie obiektu przedstawić można w postaci równania~\cite{jakubiec_algorithms, jakubiec_single}:
 \begin{equation}
 \begin{bmatrix}
 X \emb{0}   \\
@@ -619,36 +619,44 @@ x \emb{N-1}
 \end{bmatrix}
 \label{eq:alg_out_mat},
 \end{equation}
-gdzie $a_{i,j}$ to kolejne współczynniki macierzy transformacji. Równanie~\eqref{eq:alg_out_mat} można przedstawić również w postaci iloczynu~\cite{jakubiec_algorithms}:
+gdzie $a_{i,j}$ to kolejne współczynniki macierzy transformacji, $X(i)$ to kolejne wielkości wejściowe, natomiast $x(j)$ to kolejne wielkości wejściowe analizowanego algorytmu. Równanie~\eqref{eq:alg_out_mat} można przedstawić również w postaci iloczynu~\cite{jakubiec_algorithms}:
 \begin{equation}
 \mathbf{X} = \mathbf{A} \cdot \mathbf{x} \label{eq:alg_out_mul},
 \end{equation}
 gdzie $\mathbf{X}$ jest wektorem wielkości wyjściowych, $\mathbf{A}$ macierzą transformacji oraz $\mathbf{x}$ wektorem wielkości wejściowych. Wobec powyższych zależności, pojedynczą wielkość wyjściową algorytmu przedstawić można w postaci:
 \begin{equation}
-X \emb{i} = a_{i, 0} x \emb{0} + a_{i, 1} x \emb{1} + \hdots + a_{i, N-1} x \emb{N-1} \label{eq:alg_out_single}.
+X \emb{i} = a_{i, 0} x \emb{0} + a_{i, 1} x \emb{1} + \hdots + a_{i, N-1} x \emb{N-1} = \sum _{j = 0} ^{N-1} a_{i,j} x \emb{j} \label{eq:alg_out_single}.
 \end{equation}
-Na podstawie równania~\eqref{eq:alg_out_single} zauważyć można, że analizowany obiekt stanowi zbiór filtrów o skończonej odpowiedzi impulsowej \enquote{FIR}. Przedstawione metody analizy będą zatem przypominały metody analizy opisywanego typu filtru~\cite{mehrnia_fir}.
+Na podstawie równania~\eqref{eq:alg_out_single} zauważyć można, że analizowany obiekt stanowi zbiór filtrów o skończonej odpowiedzi impulsowej \enquote{FIR} (ang. \enquote{Finite Impulse Response}). Przedstawione metody analizy będą zatem przypominały metody analizy opisywanego typu filtru~\cite{mehrnia_fir}. Przedstawione założenie odnośnie stałej transmitancji algorytmu implikuje niezmienność wartości elementów macierzy transformacji analizowanego algorytmu. W przypadku, gdy istnieje konieczność analizy algorytmu o zmiennej transmitancji, przy zmianie tej transmitancji należy każdorazowo wyznaczyć wartości wszystkich wielkości od niej zależnych.
 
-Wartości współczynników macierzy transformacji opisanej równaniem~\eqref{eq:alg_out_mat} mogą nie być znane przez projektanta toru pomiarowego, jeżeli w torze pomiarowym stosowany jest algorytm o nieznanej strukturze numerycznej. Ich znajomość jest jednak konieczna w celu przeprowadzenia analizy metrologicznej zastosowanego algorytmu. Najczęściej projektant toru pomiarowego stosuje gotowy algorytm, zaimplementowany np. w środowisku \enquote{GNU Octave}, \enquote{Matlab} lub dostarczany mu jako zewnętrzną bibliotekę języka programowania~\cite{pruuvsa_dwt}. W takim przypadku należy przeprowadzić proces identyfikacji wartości współczynników macierzy, który przedstawiono w dalszej części rozdziału. Drugim przypadkiem jest sytuacja, w której wartości współczynników mogą być wyznaczone analitycznie za pomocą odpowiednich zależności, opisujących stosowany algorytm. Możliwy jest również przypadek, w którym znana jest transmitancja $H_{i}(z)$ dla kolejnych wielkości wyjściowych, przy czym wyznaczenie wartości współczynników macierzy transformacji odbywać się będzie poprzez przekształcenie tej transmitancji na postać zgodną z równaniem~\eqref{eq:alg_out_single}.
+Jako, że w procesie przetwarzania danych stosuje zwykle gotowe algorytmy, zaimplementowane np. w środowiskach \enquote{GNU Octave} czy \enquote{Matlab}~\cite{pruuvsa_dwt, lee_pywavelets}, wartości współczynników macierzy transformacji $\mathbf{A}$ stosowanej w równaniach~\eqref{eq:alg_out_mat} oraz~\eqref{eq:alg_out_mul} mogą nie być znane. Jeżeli znana jest transmitancja $H_{i}(z)$ dla kolejnych wielkości wyjściowych, wyznaczenie wartości współczynników macierzy transformacji odbywać się będzie poprzez przekształcenie tej transmitancji na postać zgodną z równaniem~\eqref{eq:alg_out_single}, przy czym zabieg ten nie jest konieczny. Analiza właściwości metrologicznych w omawianym przypadku przebiegać może identycznie, jak miało to miejsce w przypadku cyfrowego fragmentu toru pomiarowego, natomiast wyznaczenie wartości współczynników macierzy transformacji przy znajomości transmitancji algorytmu pozwoli w pewnym stopniu uprościć analizę, co przedstawiono w dalszej części podrozdziału. Drugim przypadkiem jest sytuacja, w której wartości współczynników mogą być wyznaczone analitycznie za pomocą odpowiednich zależności, opisujących stosowany algorytm, jak ma to zwykle miejsce w przypadku algorytmów dyskretnej transformacji falkowej~\cite{vonesch_dbbasics}. Ostatnim analizowanym w pracy przypadkiem jest sytuacja, w której dostępna jest implementacja stosowanego algorytmu, natomiast nie jest znana jego struktura numeryczna~\cite{misiti_matlabwav}.
+
+Jeżeli analizowany algorytm jest liniowy oraz jego transmitancja jest liniowa i niezmienna w czasie, związek pomiędzy transmitancją $H_{i}(z)$ dla $i$-tej wielkości wyjściowej oraz $i$-tym wierszem macierzy transformacji $\mathbf{A}$ może być opisany równaniem:
+\begin{equation}
+H_{i} \emb{z} = a_{i, 0} + a_{i, 1} z^{-1} + \hdots + a_{i, N-1} z^{-N+1} = \sum _{k = 0} ^{N-1} a_{i, k} z^{-k} \label{eq:alg_trans_single}.
+\end{equation}
+Przedstawiona zależność umożliwia wyznaczenie wartości współczynników macierzy transformacji przy znajomości transmitancji wielkości wyjściowych algorytmu oraz wyznaczenie transmitancji tych wielkości przy znajomości wartości macierzy transformacji tego algorytmu. W celu wyznaczenia transmitancji $H_{i}(z)$ dla $i$-tej wielkości wyjściowej algorytmu w dziedzinie pulsacji, odpowiedniej dla okresu próbkowania $T_{p}$, należy przyjąć w równaniu~\eqref{eq:alg_trans_single} założenie gdzie $z = e^{j\omega T_{p}}$~\cite{proakis_dsp}.
 
 Identyfikacja wartości współczynników macierzy transformacji w przypadku istniejącego algorytmu polega na wyznaczaniu odpowiedzi tego algorytmu dla wektora wielkości wejściowych o wartościach zgodnych z równaniem~\cite{jakubiec_algorithms, jakubiec_system}:
 \begin{equation}
 x \emb{n} =
 \begin{cases}
-	1 & $gdy$~n = i \\
-	0 & $gdy$~n \neq i
+	1 & $gdy$~n = j \\
+	0 & $gdy$~n \neq j
 \end{cases}
 \label{eq:wt_ident},
 \end{equation}
-przy czym uzyskany wektor wielkości wyjściowych stanowi $i$-tą kolumnę macierzy transformacji tego algorytmu. Przedstawioną operację należy wykonać dla wszystkich kolumn macierzy transformacji, a zatem dla $i$ w przedziale $<0;N-1>$. Opisana metoda jest uniwersalna, przy czym wymaga ona, aby identyfikowany algorytm spełniał założenia przedstawione na początku podrozdziału.
+przy czym uzyskany wektor wielkości wyjściowych stanowi $j$-tą kolumnę macierzy transformacji tego algorytmu. Przedstawioną operację należy wykonać dla wszystkich kolumn macierzy transformacji, a zatem dla $j$ w przedziale $<0;N-1>$. Opisana metoda jest uniwersalna, przy czym wymaga ona, aby identyfikowany algorytm spełniał założenia przedstawione na początku podrozdziału.
+
+Przedstawione dotychczas zależności podkreślają ścisły związek pomiędzy transmitancją kolejnych wielkości wyjściowych algorytmu oraz wartościami macierzy transformacji. Należy zauważyć, że z punktu widzenia zaproponowanego w pracy modelu, rozpatrywany algorytm mógłby być analizowany jako kilka obiektów cyfrowej części toru pomiarowego, przetwarzających te same wielkości wejściowe $x(i)$ na odpowiednie wielkości wyjściowe $X_{j}(i)$. Przedstawienie algorytmu w postaci macierzowej pozwala natomiast ujednolicić analizę i sprowadzić ją do zastąpienia opisywanej grupy obiektów jednym obiektem. Mnogość sposobów wyznaczania wartości elementów macierzy transformacji stanowi bardzo cenny walor proponowanej metody analizy.
 
 Aby ustalić związek pomiędzy sygnałami błędów wielkości wejściowych, a sygnałami błędów wielkości wyjściowych analizowanego algorytmu, należy przeanalizować proces wyznaczania wartości pojedynczej wielkości wyjściowej. Zakładając, że wielkości wejściowe algorytmu są obarczone błędami o charakterze addytywnym zgodnie z zależnością:
 \begin{equation}
 \tilde{x} \emb{i} = \dot{x} \emb{i} + e_{x,\Sigma} \emb{i} = \dot{x} \emb{i} + e_{x,s} \emb{i} + e_{x,d} \emb{i} + e_{x,r} \emb{i} \label{eq:alg_inputval},
 \end{equation}
-gdzie $e_{x,s}(i)$ oznacza błąd statyczny, $e_{x,d}(i)$ błąd dynamiczny oraz $e_{x,r}(i)$ błąd losowy wielkości wejściowej, istnieje możliwość osobnej analizy wyniku realizacji algorytmu dla idealnych wartości wielkości wejściowych oraz dla wymienionych sygnałów błędów. Błąd wielkości wyjściowej przenoszony z wejścia na wyjście algorytmu można zatem opisać, zgodnie z równaniem~\eqref{eq:alg_out_single}, w postaci:
+gdzie $e_{x,s}(i)$ oznacza błąd statyczny, $e_{x,d}(i)$ błąd dynamiczny oraz $e_{x,r}(i)$ błąd losowy wielkości wejściowej, istnieje możliwość osobnej analizy wyniku realizacji algorytmu dla idealnych wartości wielkości wejściowych oraz dla wymienionych sygnałów błędów. Sygnał błędu $e_{X,p}(i)$ propagowanego z wejścia na wyjście analizowanego algorytmu można zatem opisać zgodnie z równaniem~\eqref{eq:alg_out_single} w postaci sumy:
 \begin{equation}
-e_{X,p} \emb{i} = a_{i, 0} e_{x,\Sigma} \emb{0} + a_{i, 1} e_{x,\Sigma} \emb{1} + \hdots + a_{i, N-1} e_{x,\Sigma} \emb{N-1} \label{eq:alg_outerr}.
+e_{X,p} \emb{i} = a_{i, 0} e_{x,\Sigma} \emb{0} + a_{i, 1} e_{x,\Sigma} \emb{1} + \hdots + a_{i, N-1} e_{x,\Sigma} \emb{N-1} = \sum _{j = 0} ^{N-1} a_{i,j} e_{x,\Sigma} \emb{j} \label{eq:alg_outerr}.
 \end{equation}
 
 Dla sygnałów błędów o charakterze statycznym, ze względu na fakt że wartość realizacji tych sygnałów jest niezmienna w obrębie pojedynczego okna pomiarowego, równanie~\eqref{eq:alg_outerr} można uprościć i zapisać w postaci:
@@ -661,11 +669,7 @@ gdzie $e_{x,s}(k)$ jest błędem statycznym wielkości wejściowej dla $k$-tego 
 \end{equation}
 Należy zauważyć, że kształt rozkładu sygnału wyjściowego błędu statycznego będzie identyczny, jak kształt rozkładu sygnału błędu statycznego na wejściu algorytmu.
 
-Dla sygnałów błędów dynamicznych należy przeprowadzić analizę zgodnie z metodologią przedstawioną w poprzedniej części rozdziału, wykorzystując znajomość transmitancji $H_{i}(z)$ odpowiedniej dla analizowanej wielkości wyjściowej algorytmu. Identycznie, jak w przypadku równania~\eqref{eq:mid_disc_err_dyn_prop}, wyznaczyć należy wypadkowe amplitudy oraz przesunięcia w fazie kolejnych harmonicznych sygnału propagowanego błędu dynamicznego, a następnie wykorzystać należy równania od~\eqref{eq:dyn_harm} do~\eqref{eq:dyn_corr} w celu wyznaczenia wariancji analizowanych sygnałów. Transmitancja $H_{i}(z)$ dla $i$-tej wielkości wyjściowej może zostać wyznaczona na podstawie wartości współczynników $i$-tego wiersza macierzy transformacji algorytmu jako:
-\begin{equation}
-H_{i} \emb{z} = a_{i, 0} + a_{i, 1} z^{-1} + \hdots + a_{i, N-1} z^{-N+1} = \sum _{k = 0} ^{N-1} a_{i, k} z^{-k} \label{eq:alg_trans_single}.
-\end{equation}
-W celu wyznaczenia transmitancji algorytmu w dziedzinie pulsacji należy przyjąć w równaniu~\eqref{eq:alg_trans_single} założenie $z = e^{2\pi j \frac{\omega}{\omega_{p}}}$, gdzie $\omega_{p}$ jest pulsacją próbkowania.
+Dla sygnałów błędów dynamicznych należy przeprowadzić analizę zgodnie z metodologią przedstawioną w poprzedniej części rozdziału, wykorzystując znajomość transmitancji $H_{i}(z)$ odpowiedniej dla analizowanej wielkości wyjściowej algorytmu. Identycznie, jak w przypadku równania~\eqref{eq:mid_disc_err_dyn_prop}, wyznaczyć należy wypadkowe amplitudy oraz przesunięcia w fazie kolejnych harmonicznych sygnału propagowanego błędu dynamicznego, a następnie wykorzystać należy równania od~\eqref{eq:dyn_harm} do~\eqref{eq:dyn_corr} w celu wyznaczenia wariancji analizowanych sygnałów.
 
 Sygnały błędów niedeterministycznych propagowane są przez analizowany algorytm w sposób identyczny, jak miało to miejsce w przypadku cyfrowej części toru pomiarowego. W ogólnym przypadku można zatem wykorzystać zależność~\eqref{eq:mid_disc_var_omega} w celu określenia wariancji $\sigma_{X,rp}^{2}(\omega)$ propagowanego błędu losowego $e_{x,r}(i)$ w funkcji pulsacji. Wyznaczenie średniej wartości omawianej wielkości może odbywać się zgodnie z równaniem~\eqref{eq:mid_disc_var_rand}, przy czym należy wyznaczać ją dla przedziału $\omega \in <0; \omega_{p}>$. Jeżeli analizowany sygnał błędu losowego $e_{x,r}(i)$ cechuje się stałą widmową gęstością mocy, to obliczenia można uprościć stosując do wyznaczenia wartości wariancji losowego sygnału błędu na wyjściu algorytmu zależność~\cite{jakubiec_system}:
 \begin{equation}
@@ -721,18 +725,6 @@ A_{i,s} = \sum _{j = 0} ^{N-1} a_{i, j} \label{eq:alg_trans_stat}, \\
 A_{i,r} = \sqrt{\sum _{j = 0} ^{N-1} a_{i, j}^{2}} \label{eq:alg_trans_rand},
 \end{gather}
 gdzie $A_{i,s}$ jest współczynnikiem przenoszenia dla błędów statycznych, natomiast jest $A_{i,r}$ współczynnikiem przenoszenia dla błędów losowych $i$-tej wielkości wyjściowej analizowanego algorytmu. Wyznaczenie wartości opisanych współczynników umożliwi wyznaczenie wariancji kolejnych błędów losowych oraz statycznych, a dodatkowo będzie stanowiło informacje, w jaki sposób analizowany algorytm przenosi z wejścia na wyjście określony rodzaj błędu. Można zauważyć, że dla niskich wartości współczynnika przenoszenia (tj. $A_{i} < 1$) kolejne błędy wielkości wejściowych będą tłumione (wariancja błędu wielkości wyjściowej będzie mniejsza, niż wariancja błędów wielkości wejściowych). Odwrotna sytuacja będzie miała miejsce w przypadku dużych wartości współczynnika (tj. $A_{i} > 1$).
-
-W przypadku analizy błędów dynamicznych, na podstawie równania~\eqref{eq:alg_trans_single} po podstawieniu $z = e^{j\omega}$, wyznaczyć można adekwatne dla równań~\eqref{eq:mid_disc_amp} oraz~\eqref{eq:mid_disc_phi} zależności opisujące wzmocnienie $K_{X,i}(\omega_{n})$ oraz przesunięcie w fazie $\varphi_{X,i}(\omega_{n})$ przetwarzanych harmonicznych sygnału w funkcji pulsacji znormalizowanej $\omega_{n}$ dla $i$-tej wielkości wyjściowej algorytmu w postaci:
-\begin{gather}
-G_{X,i} \emb{\omega_{n}} = \sum _{k = 0} ^{N-1} a_{i,k} e^{-j k \omega_{n}} \label{eq:alg_trans_norm}, \\
-K_{X,i} \emb{\omega_{n}} = \left| G_{X,i} \emb{\omega_{n}} \right| = \sqrt{\left( \Re \left( G_{X,i} \emb{\omega_{n}} \right) \right)^{2} + \left( \Im \left( G_{X,i} \emb{\omega_{n}} \right) \right)^{2}} \label{eq:alg_trans_amp}, \\
-\varphi_{X,i} \emb{\omega_{n}} = \arctan \left( \frac{\Im \left( G_{X,i} \emb{\omega_{n}} \right)}{\Re \left( G_{X,i} \emb{\omega_{n}} \right)} \right) \label{eq:alg_trans_phi},
-\end{gather}
-przy czym pulsacja znormalizowana, oznaczona symbolem $\omega_{n}$, odnosi się do pulsacji próbkowania i jest określona przez następującą zależność:
-\begin{equation}
-\omega_{n} = 2\pi \frac{\omega}{\omega_{s}} \label{eq:puls_norm},
-\end{equation}
-gdzie $\omega$ jest analizowaną pulsacją, natomiast $\omega_{s}$ pulsacją próbkowania równą $\frac{2 \pi}{T_{p}}$ dla okresu próbkowania $T_{p}$. Prawidłowa wartość pulsacji znormalizowanej mieści się zatem w zakresie $<0;\pi>$, co odpowiada zakresowi od zera do pulsacji Nyquista dla przyjętego okresu próbkowania.
 
 \section{Podsumowanie przedstawionych zależności}
 
