@@ -187,7 +187,7 @@ Należy zauważyć, że w przypadku przesunięcia charakterystyki przetwarzania 
 
 Analizując przedstawione powyżej równania zauważyć można kluczowy wpływ funkcji przetwarzania $f_{y}(x)$ obiektu na wprowadzane i przenoszone sygnały błędów. W przypadku nieliniowej charakterystyki przetwarzania obiektu, dla kolejnych harmonicznych przetwarzanego sygnału oraz harmonicznych propagowanych sygnałów błędów mogą pojawić się dodatkowe, wprowadzane przez funkcję przetwarzania harmoniczne. Dla liniowej funkcji przetwarzania rolę tej funkcji zastąpić można wzmocnieniem zawartym w transmitancji analizowanego obiektu.
 
-Przedstawiona dotychczas analiza mogłaby odbywać się w całości z punktu widzenia wpływu obiektu na wariancję przetwarzanego sygnału w funkcji pulsacji. Podejście to byłoby najbardziej uniwersalne, natomiast z punktu widzenia przeprowadzania tej analizy utrudniałoby określanie wzajemnych relacji pomiędzy kolejnymi sygnałami błędów, przez co byłoby ono mniej korzystne dla projektanta toru pomiarowego.
+Jeżeli rzeczywista postać funkcji przetwarzania $\tilde{f}_{y}(x)$ nie jest znana, należy w równaniach od~\eqref{eq:out_cont_err_stat_self} do~\eqref{eq:out_cont_err_rand_prop}, \eqref{eq:out_cont_var_function} oraz~\eqref{eq:out_cont_var_function} stosować zależność opisującą idealną funkcję przetwarzania $\dot{f}_{y}(x)$. Przedstawione podejście umożliwi oszacowanie wpływu funkcji przetwarzania na parametry analizowanych sygnałów błędów, przy czym przyjmuje się, że wprowadzona niedokładność tego oszacowania jest akceptowalnie mała.
 
 \section{Błędy przetwornika analogowo-cyfrowego}
 
@@ -338,7 +338,7 @@ e_{X,zw} \emb{i} = f_{z} \emb{\mathbf{z} \emb{i}} \label{eq:out_disc_err_env_sel
 gdzie $e_{X,fw}(i)$ jest sygnałem błędu własnego związanego z niedoskonałością funkcji przetwarzania, natomiast $e_{X,zw}(i)$ sygnałem błędu wynikającym z udziału wielkości zakłócających. Wypadkowy sygnał błędu wielkości wyjściowej analizowanego fragmentu toru pomiarowego opisać można w postaci sumy wszystkich wymienionych sygnałów:
 \begin{equation}
 \begin{split}
-e_{y,\Sigma} \emb{t} = ~
+e_{y,\Sigma} \emb{t} =~
 & e_{y,sw} \emb{t} + e_{y,sp} \emb{t} + e_{y,dw} \emb{t} + e_{y,dp} \emb{t} + \\
 & e_{y,rw} \emb{t} + e_{y,rp} \emb{t} + e_{y,fw} \emb{t} + e_{y,zw} \emb{t}
 \end{split}
@@ -733,9 +733,9 @@ Przeprowadzone rozważania nie poruszały problemu opóźnień w systemach pomia
 Z punktu widzenia zaproponowanego modelu, zjawisko opóźnień w systemie opisać można jako dodatkowe przesunięcie w fazie składowych przetwarzanego sygnału oraz sygnałów błędów deterministycznych, będące iloczynem pulsacji analizowanej harmonicznej i wartości realizacji błędu opóźnienia. Omawiany sygnał mógłby być zdefiniowany w przypadku przetwornika cyfrowo-analogowego jako dodatkowa harmoniczna sygnału błędu dynamicznego własnego:
 \begin{equation}
 \begin{split}
-e_{x,tw} \emb{i}
-= ~ & E_{y,o} \emb{\omega} \sin \left( \omega \emb{i T_{p} + t_{x} \emb{i}} + \varphi_{y,o} \emb{\omega} \right) \\
-= ~ & E_{y,o} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{y,o} \emb{\omega} + \varphi_{x,t} \emb{\omega, i} \right) 
+e_{x,tw} \emb{i} =~ 
+& E_{y,o} \emb{\omega} \sin \left( \omega \emb{i T_{p} + t_{x} \emb{i}} + \varphi_{y,o} \emb{\omega} \right) = \\
+& E_{y,o} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{y,o} \emb{\omega} + \varphi_{x,t} \emb{\omega, i} \right) 
 \end{split}
 \label{eq:tim_err_self},
 \end{equation}
