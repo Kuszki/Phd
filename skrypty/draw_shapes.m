@@ -44,7 +44,7 @@ for i = 1 : length(list)
   hold off;
   legend("location", 'north', 'orient', 'horizontal')
   title(sprintf("%s) \\rm %s ({\\it%s})", num, names{i}, list(i)))
-  ylabel("Współczynnik kształtu");
+  ylabel("Współczynnik koherencji");
   xlabel(sprintf("Stosunek wartości{\\it U/U_{%s}}", list(i)));
   xlim([1 10])
   ylim([0 yl(i)])

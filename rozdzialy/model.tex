@@ -682,10 +682,10 @@ Sygnały błędów niedeterministycznych propagowane są przez analizowany algor
 \end{equation}
 Niezależnie od zastosowanego sposobu obliczeń, każda metoda dostarcza identyczne wyniki, jeżeli tylko została zastosowana w odpowiednich dla niej okolicznościach.
 
-Znajomość wartości kolejnych elementów macierzy transformacji pozwala na podstawie równań~\eqref{eq:alg_outvar_stat} oraz~\eqref{eq:alg_outvar_rand} wprowadzić dodatkowe wielkości, przedstawione następującymi zależnościami~\cite{jakubiec_algorithms}:
+Znajomość wartości kolejnych elementów macierzy transformacji pozwala na podstawie równań~\eqref{eq:alg_outvar_stat} oraz~\eqref{eq:alg_outvar_rand} wprowadzić dodatkowe wielkości, przedstawione następującymi zależnościami~\cite{jakubiec_algorithms, oppenheim_dsp, proakis_dsp}:
 \begin{gather}
-A_{i,s} = \sum _{j = 0} ^{N-1} a_{i, j} \label{eq:alg_trans_stat}, \\
-A_{i,r} = \sqrt{\sum _{j = 0} ^{N-1} a_{i, j}^{2}} \label{eq:alg_trans_rand},
+A_{i,s} = \sum _{j = 0} ^{N-1} a_{i, j} = K_{i} \emb{0} \label{eq:alg_trans_stat}, \\
+A_{i,r} = \sqrt{\sum _{j = 0} ^{N-1} a_{i, j}^{2}} = \sqrt{\frac{2}{\omega_{p}} \int _{0} ^{\frac{1}{2}\omega_{p}} K_{i}^{2} \emb{\omega} d\omega} \label{eq:alg_trans_rand},
 \end{gather}
 gdzie $A_{i,s}$ jest współczynnikiem przenoszenia dla błędów statycznych, natomiast jest $A_{i,r}$ współczynnikiem przenoszenia dla błędów losowych $i$-tej wielkości wyjściowej analizowanego algorytmu. Wyznaczenie wartości opisanych współczynników umożliwi wyznaczenie wariancji kolejnych błędów losowych oraz statycznych, a dodatkowo będzie stanowiło informacje, w jaki sposób analizowany algorytm przenosi z wejścia na wyjście określony rodzaj błędu. Można zauważyć, że dla niskich wartości współczynnika przenoszenia (tj. $A_{i} < 1$) kolejne błędy wielkości wejściowych będą tłumione (wariancja błędu wielkości wyjściowej będzie mniejsza, niż wariancja błędów wielkości wejściowych). Odwrotna sytuacja będzie miała miejsce w przypadku dużych wartości współczynnika (tj. $A_{i} > 1$). Wobec powyższych zapisać można:
 \begin{gather}

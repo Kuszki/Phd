@@ -694,10 +694,11 @@ Analizując wyniki poprzedniego eksperymentu, przedstawione na rysunku~\ref{fig:
 r_{c,rw,q;b,\Sigma} = \frac{\sigma_{c,\Sigma}^{2} - \sigma_{c,rw,q}^{2} - \sigma_{b,\Sigma}^{2}}{2 \sigma_{c,rw,q} \sigma_{b,\Sigma}} = \frac{\num{8.4e-4} - \num{4.7e-5} - \num{7.9e-4}}{2 \cdot \num{6.85e-3} \cdot \num{2.81e-2}} = \num{7.8e-4} \label{eq:sym_partc_corr}.
 \end{equation}
 Uzyskana wartość współczynnika korelacji oraz wyniki przeprowadzonych eksperymentów świadczą o prawidłowości przyjętych założeń. Wobec powyższych założyć można, że przetwarzane przez analizowany obiekt sygnały błędów przenoszone będą na jego wyjście zgodnie z zależnością:
-\begin{equation}
-e_{c,*} \emb{n} = e_{b,*} \emb{nT_{p}} \label{eq:sym_partc_err_prop}
-\end{equation}
-a zatem zachowają one swoje oryginalne parametry oraz mogą być opisane jako błędy propagowane. Na podstawie przedstawionych zależności oraz tabeli~\ref{tab:sym_partb_params_unc_list} sporządzono kompletny budżet niepewności wielkości wyjściowej $x_{c}(n)$ analizowanego przetwornika analogowo-cyfrowego, który zestawiono w tabeli~\ref{tab:sym_partc_params_unc_list}.
+\begin{gather}
+e_{c} \emb{n} \cong e_{b} \emb{nT_{p}} \label{eq:sym_partc_err_prop}, \\
+\sigma_{c}^{2} \emb{\omega} \cong \sigma_{b}^{2} \emb{\omega} \label{eq:sym_partc_var_prop},
+\end{gather}
+a zatem zachowają one swoje oryginalne parametry. Na podstawie przedstawionych zależności oraz tabeli~\ref{tab:sym_partb_params_unc_list} sporządzono budżet niepewności wielkości wyjściowej $x_{c}(n)$ analizowanego przetwornika analogowo-cyfrowego, który zestawiono w tabeli~\ref{tab:sym_partc_params_unc_list}.
 
 \begin{table}[htb!]
 \begin{center}
@@ -774,7 +775,7 @@ Na podstawie wyznaczonej w równaniu~\eqref{eq:sym_partc_rand_factor} wartości 
 
 \section{Analiza algorytmu transformacji falkowej}
 
-Ostatnim fragmentem analizowanego toru pomiarowego, przy czym najistotniejszym obiektem z punktu widzenia niniejszej pracy, jest algorytm dyskretnej transformacji falkowej. Zakłada się, że na wejście algorytmu podawany jest wektor wielkości wejściowych $\mathbf{x}_{d}$ złożony z kolejnych $N = 8$ próbek wielkości wyjściowej $x_{c}(n)$ przetwornika analogowo-cyfrowego. Wyjście analizowanego algorytmu stanowi wektor $\mathbf{X}$ składający się z $M = 8$ wielkości, które stanowią ostateczne wielkości wyjściowe analizowanego toru pomiarowego. Omawiany algorytm wykorzystuje falkę \enquote{db2}, przy czym na jego realizację składają się dwie iteracje procesu dekompozycji sygnału. Macierz transformacji $\mathbf{A}$ omawianego algorytmu przedstawia równanie~\eqref{eq:db2_2_8_matrix}. Zakłada się, że implementacja stosowanego algorytmu wykorzystuje liczby zmiennoprzecinkowe połowicznej precyzji, o długości słowa 16-bitów~\cite{gcc_manual}.
+Ostatnim, przy czym najistotniejszym z punktu widzenia pracy, fragmentem analizowanego toru pomiarowego jest algorytm dyskretnej transformacji falkowej. Zakłada się, że dla każdej $k$-tej realizacji pomiaru na wejście algorytmu podawany jest wektor wielkości wejściowych $\mathbf{x}_{d}(k)$ złożony z kolejnych $N = 8$ próbek wielkości wyjściowej $x_{c}(k+n)$ przetwornika analogowo-cyfrowego. Wyjście analizowanego algorytmu stanowi wektor $\mathbf{X}(k)$ składający się z $M = 8$ wielkości, które stanowią ostateczne wielkości wyjściowe analizowanego toru pomiarowego. Omawiany algorytm wykorzystuje falkę \enquote{db2}, przy czym na jego realizację składają się dwie iteracje procesu dekompozycji sygnału. Macierz transformacji $\mathbf{A}$ omawianego algorytmu przedstawia równanie~\eqref{eq:db2_2_8_matrix}. Zakłada się, że implementacja stosowanego algorytmu wykorzystuje liczby zmiennoprzecinkowe połowicznej precyzji, o długości słowa 16-bitów~\cite{gcc_manual}.
 
 Wobec powyższych założeń oraz modelu zaproponowanego w równaniach od~\eqref{eq:alg_out_mat} do~\eqref{eq:alg_out_single} wektor wielkości wejściowych analizowanego algorytmu opisać można w postaci:
 \begin{gather}
@@ -828,7 +829,7 @@ natomiast kolejne wektory realizacji sygnałów błędów wielkości wyjściowej
 \mathbf{e}_{X,d} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,d} \emb{k} \label{eq:sym_partd_output_error_dyn}.
 \end{gather}
 
-Należy zauważyć, że tak jak w przypadku wektora wielkości wejściowych, tak i w przypadku wektora wielkości wyjściowych, wyróżnić można również osobne wektory realizacji sygnałów błędów dla każdego z opisanych w tabeli~\ref{tab:sym_partc_params_unc_list} sygnałów. Zgodnie z oznaczeniami przyjętymi w równaniach~\eqref{eq:db2_invect} oraz~\eqref{eq:db2_outvect}, wektory wielkości wejściowych i wyjściowych pojedynczej realizacji algorytmu są w dalszej części rozdziału oznaczane symbolami:
+Należy zauważyć, że tak jak w przypadku wektora wielkości wejściowych, tak i w przypadku wektora wielkości wyjściowych, wyróżnić można również osobne wektory realizacji sygnałów błędów dla każdego z opisanych w tabeli~\ref{tab:sym_partc_params_unc_list} sygnałów. Zgodnie z oznaczeniami przyjętymi w równaniach~\eqref{eq:db2_invect} oraz~\eqref{eq:db2_outvect}, wektory wielkości wejściowych $\mathbf{x}(k)$ i wyjściowych $\mathbf{X}(k)$ pojedynczej realizacji algorytmu dla $k$-tego okna pomiarowego są w dalszej części rozdziału oznaczane symbolami:
 \begin{gather}
 \mathbf{x}_{d}^{T} =
 \begin{bmatrix}
@@ -841,7 +842,7 @@ S_{2,0} & S_{2,1} & T_{2,0} & T_{2,1} & T_{1,0} & T_{1,1} & T_{1,2} & T_{1,3}
 \end{bmatrix}
 \label{eq:sym_partd_outvect},
 \end{gather}
-natomiast wektor realizacji sygnałów błędów wielkości wyjściowej dla pojedynczej realizacji algorytmu jest oznaczany w postaci:
+natomiast wektor realizacji sygnałów błędów wielkości wyjściowej  $\mathbf{e}_{X,*}(k)$ dla pojedynczej $k$-tej iteracji realizacji algorytmu jest oznaczany w postaci:
 \begin{equation}
 \mathbf{e}_{X,*}^{T} =
 \begin{bmatrix}
@@ -851,21 +852,21 @@ e_{S_{2,0},*} & e_{S_{2,1},*} & e_{T_{2,0},*} & e_{T_{2,1},*} & e_{T_{1,0},*} & 
 \end{equation}
 gdzie w miejsce symbolu \enquote{$*$} umieszczany jest symbol analizowanego sygnału błędu.
 
-W poprzednich podrozdziałach przedstawiono różne sposoby wyznaczania budżetu niepewności, uwzględniające każde źródło błędu z osobna oraz wskazujące wypadkowe parametry danego rodzaju błędu. Zabiegi te miały na celu wskazanie optymalnej drogi analizy właściwości metrologicznych z punktu widzenia projektanta toru pomiarowego, tak aby nie wykonywał on czynności nieistotnych z punktu widzenia oszacowania ostatecznych wartości opisujących analizowany obiekt. Opisywany zabieg został również przeprowadzony w celu weryfikacji postawionej w pracy tezy, jako przy wykorzystaniu zaproponowanej metody analizy istnieje możliwość wyznaczenia jedynie zastępczych parametrów sygnałów błędów wielkości wejściowej algorytmu dyskretnej transformacji falkowej w celu oszacowania wartości niepewności na wyjściu tego algorytmu. W dalszej części rozdziału opisane zostaną dwa sposoby wyznaczenia niepewności wielkości wyjściowych algorytmu. Podejście pierwsze uwzględniać będzie budżet niepewności podzielony na kategorie błędów, opisany w tabeli~\ref{tab:sym_partc_params_unc_sum}, natomiast podejście drugie przedstawi analizę z wykorzystaniem budżetu sporządzonego dla każdego sygnału błędu z osobna, który wcześniej przedstawiono w tabeli~\ref{tab:sym_partc_params_unc_list}.
+W poprzednich podrozdziałach przedstawiono różne sposoby wyznaczania budżetu niepewności, uwzględniające każde źródło błędu z osobna oraz wskazujące wypadkowe parametry danego rodzaju błędu. Zabiegi te miały na celu wskazanie optymalnej drogi analizy właściwości metrologicznych z punktu widzenia projektanta toru pomiarowego, tak aby nie wykonywał on czynności nieistotnych z punktu widzenia przeprowadzanej analizy. Opisywany zabieg został również przeprowadzony w celu weryfikacji postawionej w pracy tezy, jako przy wykorzystaniu zaproponowanej metody analizy istnieje możliwość wyznaczenia jedynie zastępczych parametrów sygnałów błędów wielkości wejściowej algorytmu dyskretnej transformacji falkowej w celu oszacowania wartości niepewności na wyjściu tego algorytmu. W dalszej części rozdziału opisane zostały dwa sposoby wyznaczenia niepewności wielkości wyjściowych algorytmu. Podejście pierwsze uwzględniać będzie budżet niepewności podzielony na kategorie błędów, opisany w tabeli~\ref{tab:sym_partc_params_unc_sum}, natomiast podejście drugie przedstawi analizę z wykorzystaniem budżetu sporządzonego dla każdego sygnału błędu z osobna, który przedstawiono w tabeli~\ref{tab:sym_partc_params_unc_list}.
 
-Istotnym faktem podczas analizy właściwości metrologicznych stosowanego algorytmu jest to, że jego wielkości wejściowe każdorazowo pochodzą z tego samego źródła. Powtarzając proces wyznaczania wartości wektora wielkości wyjściowych algorytmu wielokrotnie wszystkie wielkości wejściowe algorytmu cechowały będą te same parametry wariancji i niepewności rozszerzonej. Zjawisko to zostało omówione w poprzedniej części pracy. Ze względu na fakt, że w przypadku błędów o charakterze statycznym wartości realizacji tych błędów nie zmieniają się w obrębie pojedynczego okna pomiarowego, do oceny wariancji wyjściowego sygnału związanego z tym rodzajem błędu stosowane będzie równanie~\eqref{eq:alg_outvar_stat}. Do określenia parametrów rozkładu błędów o charakterze dynamicznym wykorzystana zostanie transmitancja pojedynczej wielkości wyjściowej algorytmu dana równaniem~\eqref{eq:alg_trans_single}, natomiast w przypadku błędów o charakterze losowym wykorzystywana będzie w tym celu zależność~\eqref{eq:alg_outvar_rand}.
-Przedstawiane w dalszej części obliczenia dotyczyć będą dwóch przykładowych wielkości wyjściowych algorytmu -- $S_{2,0}$ oraz $T_{1,0}$. Wybór przedstawionych wielkości jest uzasadniony faktem, że jedna z nich stanowi detale sygnału (jest reprezentowana przez filtr dolno-przepustowy związany z funkcją skalującą), natomiast druga stanowi aproksymacje sygnału (jest reprezentowana przez filtr pasmowo-przepustowy związany z falką-matką). Pozostałe wielkości zostaną poddane analizie w identyczny sposób, natomiast dla zachowania czytelności pracy obliczenia te nie będą przedstawiane.
+Istotnym faktem podczas analizy właściwości metrologicznych stosowanego algorytmu jest to, że jego wielkości wejściowe każdorazowo pochodzą z tego samego źródła. Powtarzając proces wyznaczania wartości wektora wielkości wyjściowych algorytmu wielokrotnie, wszystkie wielkości wejściowe algorytmu cechowały będą te same parametry wariancji i niepewności rozszerzonej. Zjawisko to zostało omówione w poprzedniej części pracy. Ze względu na fakt, że w przypadku błędów o charakterze statycznym, wartości realizacji tych błędów nie zmieniają się w obrębie pojedynczego okna pomiarowego, do oceny wariancji wyjściowego sygnału związanego z tym rodzajem błędu stosowane będzie równanie~\eqref{eq:alg_outvar_stat}. Do określenia parametrów sygnałów błędów o charakterze dynamicznym wykorzystana zostanie transmitancja pojedynczej wielkości wyjściowej algorytmu dana równaniem~\eqref{eq:alg_trans_single}, natomiast w przypadku sygnałów błędów o charakterze losowym wykorzystywana będzie w tym celu zależność~\eqref{eq:alg_outvar_rand}, ze względu na stałą widmową gęstość mocy tych sygnałów w zakresie częstotliwości $f \in~<0;\frac{f_{p}}{2}>$.
+Przedstawiane w dalszej części obliczenia dotyczą dwóch przykładowych wielkości wyjściowych algorytmu -- $S_{2,0}$ oraz $T_{1,0}$. Wybór przedstawionych wielkości jest uzasadniony faktem, że jedna z nich stanowi detale sygnału (jest reprezentowana przez filtr dolno-przepustowy związany z funkcją skalującą), natomiast druga stanowi aproksymacje sygnału (jest reprezentowana przez filtr pasmowo-przepustowy związany z falką-matką). Pozostałe wielkości poddano analizie w identyczny sposób, natomiast dla zachowania czytelności pracy obliczenia te nie zostały przedstawione.
 
-Błędy statyczne przenoszone będą przez analizowany algorytm z wejścia na wyjście zgodnie z równaniem~\eqref{eq:alg_outerr_stat}, a zatem zgodnie z zależnością~\eqref{eq:alg_outvar_stat} może zostać wyznaczona ich wariancja, przy czym na etapie analizy dla każdej wielkości wyjściowej wyznaczony zostanie współczynnik $A_{s}$ zgodnie z równaniem~\eqref{eq:alg_trans_stat}. W przypadku błędów losowych, przenoszonych zgodnie z zależnością~\eqref{eq:alg_outerr} ich wariancja będzie wyznaczana zgodnie z równaniem~\eqref{eq:alg_outvar_rand} i podobnie jak w przypadku błędów statycznych, do jej wyznaczenia stosowane będą współczynniki $A_{r}$ wyznaczone zgodnie z zależnością~\eqref{eq:alg_trans_rand}. Można zatem dla rozważanych wielkości wyjściowych zapisać:
+Błędy statyczne przenoszone są przez analizowany algorytm z wejścia na wyjście zgodnie z równaniem~\eqref{eq:alg_outerr_stat}, a zatem zgodnie z zależnością~\eqref{eq:alg_outvar_stat} może zostać wyznaczona ich wariancja, przy czym na etapie analizy dla każdej wielkości wyjściowej wyznaczana jest wartość współczynnika $A_{s}$, zgodnie z równaniem~\eqref{eq:alg_trans_stat}. W przypadku błędów losowych, przenoszonych zgodnie z zależnością~\eqref{eq:alg_outerr} ich wariancja jest wyznaczana zgodnie z równaniem~\eqref{eq:alg_outvar_rand} i, podobnie jak w przypadku błędów statycznych, do jej wyznaczenia stosowane są współczynniki $A_{r}$ wyznaczone zgodnie z zależnością~\eqref{eq:alg_trans_rand}. Można zatem dla rozważanych wielkości wyjściowych zapisać:
 \begin{gather}
 A_{S_{2,0},s} = \sum _{j = 0} ^{N-1} a_{0, j} = 2 \label{eq:sym_partd_output_as_S_2_0}, \\
 A_{S_{2,0},r} = \sqrt{\sum _{j = 0} ^{N-1} a_{0, j}^{2}} = 1 \label{eq:sym_partd_output_ar_S_2_0}, \\
 A_{T_{1,0},s} = \sum _{j = 0} ^{N-1} a_{4, j} = 0 \label{eq:sym_partd_output_as_T_1_0}, \\
 A_{T_{1,0},r} = \sqrt{\sum _{j = 0} ^{N-1} a_{4, j}^{2}} = 1 \label{eq:sym_partd_output_ar_T_1_0}.
 \end{gather}
-Należy zauważyć, że zgodnie z oczekiwaniami wielkość wyjściowa $T_{1,0}$ nie będzie obarczona błędem statycznym w związku z faktem, że jest ona związana z filtrem pasmowo-przepustowym. Dodatkowo zauważyć można, że dla wszystkich wielkości wyjściowych współczynnik $A_{r}$ każdorazowo będzie równy jedności, co wynika z charakterystyki rodziny \enquote{Daubechies}~\cite{vonesch_dbbasics, wei_coiflet}.
+Należy zauważyć, że zgodnie z oczekiwaniami wielkość wyjściowa $T_{1,0}$ nie będzie obarczona błędem statycznym w związku z faktem, że jest ona związana z filtrem pasmowo-przepustowym. Dodatkowo zauważyć można, że dla wszystkich wielkości wyjściowych współczynnik $A_{r}$ każdorazowo będzie równy jedności, co wynika z założenia rodziny \enquote{Daubechies} odnośnie normalizacji energii~\cite{vonesch_dbbasics, wei_coiflet}.
 
-Zgodnie z równaniem~\eqref{eq:alg_trans_single} oraz postacią macierzy $\mathbf{A}$ daną równaniem~\eqref{eq:db2_2_8_matrix}, transmitancje algorytmu związane z omawianymi wielkościami wyjściowymi przedstawiają następujące równania:
+Zgodnie z równaniem~\eqref{eq:alg_trans_single} oraz postacią macierzy $\mathbf{A}$ daną równaniem~\eqref{eq:db2_2_8_matrix}, transmitancje algorytmu związane z omawianymi wielkościami wyjściowymi w dziedzinie $\mathcal{Z}$ przedstawiają następujące równania:
 \begin{gather}
 \begin{split}
 H_{S_{2,0}} \emb{z} = ~
@@ -875,7 +876,7 @@ H_{S_{2,0}} \emb{z} = ~
 \label{eq:sym_partd_output_trans_z_S_2_0}, \\
 H_{T_{1,0}} \emb{z} = \frac{1 - \sqrt{3}}{4 \sqrt{2}} - \frac{3 - \sqrt{3}}{4 \sqrt{2}} z^{-1} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} z^{-2} - \frac{1 + \sqrt{3}}{4 \sqrt{2}} z^{-3} \label{eq:sym_partd_output_trans_z_T_1_0}.
 \end{gather}
-Podstawiając do powyższych równań założenia gdzie $z = e^{j\omega_{n}}$ otrzymuje się zależności opisujące transmitancje wybranych wierszy w funkcji pulsacji znormalizowanej~\cite{oppenheim_dsp}:
+Podstawiając do powyższych równań założenie gdzie $z = e^{j\omega_{n}}$ otrzymuje się zależności opisujące transmitancje wybranych wierszy w funkcji pulsacji znormalizowanej~\cite{oppenheim_dsp}:
 \begin{gather}
 \begin{split}
 G_{S_{2,0}} \emb{\omega_{n}} = ~
@@ -886,58 +887,53 @@ G_{S_{2,0}} \emb{\omega_{n}} = ~
 \label{eq:sym_partd_output_trans_wn_S_2_0}, \\
 G_{T_{1,0}} \emb{\omega_{n}} = \frac{1 - \sqrt{3}}{4 \sqrt{2}} - \frac{3 - \sqrt{3}}{4 \sqrt{2}} e^{-j\omega_{n}} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} e^{-2j\omega_{n}} - \frac{1 + \sqrt{3}}{4 \sqrt{2}} e^{-3j\omega_{n}} \label{eq:sym_partd_output_trans_wn_T_1_0},
 \end{gather}
-przy czym pulsacja znormalizowana wyznaczana jest zgodnie z zależnością~\eqref{eq:puls_norm} i przyjmuje wartości z zakresu $<0;\pi>$. Następnie, zgodnie z zależnościami~\eqref{eq:mid_disc_amp} oraz~\eqref{eq:mid_disc_phi}, po podstawieniu gdzie $\omega_{n} = 2\pi \frac{\omega}{\omega_{p}}$, wyznaczyć można wzmocnienie oraz przesunięcie fazowe dla analizowanych wielkości wyjściowych w funkcji pulsacji~\cite{proakis_dsp}:
-\begin{gather}
-K \emb{\omega} = \sqrt{\Re \left( G \left( 2\pi \frac{\omega}{\omega_{p}} \right) \right)^{2} + \Im \left( G \left( 2\pi \frac{\omega}{\omega_{p}} \right) \right)^{2}} \label{eq:sym_partd_output_amp_w}, \\
-\varphi \emb{\omega} = \arctan \left( \frac{\Im \left( G \left( 2\pi \frac{\omega}{\omega_{p}} \right) \right)}{\Re \left( G \left( 2\pi \frac{\omega}{\omega_{p}} \right) \right)} \right) \label{eq:sym_partd_output_phi_w},
-\end{gather}
-gdzie $\omega_{p}$ jest pulsacją próbkowania. Wartości części rzeczywistych i urojonych powyższych równań w funkcji pulsacji wynoszą kolejno dla wielkości wyjściowej $S_{2,0}$:
+przy czym pulsacja znormalizowana $\omega_{n} = \omega T_{p}$ dla okresu próbkowania $T_{p}$. Wobec powyższych, zgodnie z zależnościami~\eqref{eq:mid_disc_amp} oraz~\eqref{eq:mid_disc_phi}, wyznaczyć można wzmocnienie oraz przesunięcie fazowe dla analizowanych wielkości wyjściowych w funkcji pulsacji oraz wskazać można rzeczywistą i urojoną część transmitancji analizowanych wielkości:
 \begin{gather}
 \begin{split}
 \Re \left( G_{S_{2,0}} \emb{\omega} \right) = ~
-& \frac{5 + \sqrt{3}}{16} \cos \emb{2 \pi \frac{\omega}{\omega_{p}}} + \frac{3 + 3 \sqrt{3}}{16} \cos \emb{4 \pi \frac{\omega}{\omega_{p}}} + \\
-& \frac{5 + 3 \sqrt{3}}{16} \cos \emb{6 \pi \frac{\omega}{\omega_{p}}} + \frac{3 + \sqrt{3}}{16} \cos \emb{8 \pi \frac{\omega}{\omega_{p}}} + \\
-& \frac{3 - \sqrt{3}}{16} \cos \emb{10 \pi \frac{\omega}{\omega_{p}}} + \frac{5 - 3 \sqrt{3}}{16} \cos \emb{12 \pi \frac{\omega}{\omega_{p}}} + \\
-& \frac{3 - 3 \sqrt{3}}{16} \cos \emb{14 \pi \frac{\omega}{\omega_{p}}} + \frac{5 - \sqrt{3}}{16}
+& \frac{5 + \sqrt{3}}{16} \cos \emb{\omega T_{p}} + \frac{3 + 3 \sqrt{3}}{16} \cos \emb{2 \omega T_{p}} + \\
+& \frac{5 + 3 \sqrt{3}}{16} \cos \emb{3 \omega T_{p}} + \frac{3 + \sqrt{3}}{16} \cos \emb{4 \omega T_{p}} + \\
+& \frac{3 - \sqrt{3}}{16} \cos \emb{5 \omega T_{p}} + \frac{5 - 3 \sqrt{3}}{16} \cos \emb{6 \omega T_{p}} + \\
+& \frac{3 - 3 \sqrt{3}}{16} \cos \emb{7 \omega T_{p}} + \frac{5 - \sqrt{3}}{16}
 \end{split}
 \label{eq:sym_partd_output_trans_wn_re_S_2_0}, \\
 \begin{split}
 \Im \left( G_{S_{2,0}} \emb{\omega} \right) = ~
-& - \frac{5 + \sqrt{3}}{16} \sin \emb{2 \pi \frac{\omega}{\omega_{p}}} - \frac{3 + 3 \sqrt{3}}{16} \sin \emb{4 \pi \frac{\omega}{\omega_{p}}} \\
-& - \frac{5 + 3 \sqrt{3}}{16} \sin \emb{6 \pi \frac{\omega}{\omega_{p}}} - \frac{3 + \sqrt{3}}{16} \sin \emb{8 \pi \frac{\omega}{\omega_{p}}} \\
-& - \frac{3 - \sqrt{3}}{16} \sin \emb{10 \pi \frac{\omega}{\omega_{p}}} - \frac{5 - 3 \sqrt{3}}{16} \sin \emb{12 \pi \frac{\omega}{\omega_{p}}} \\
-& - \frac{3 - 3 \sqrt{3}}{16} \sin \emb{14 \pi \frac{\omega}{\omega_{p}}}
+& - \frac{5 + \sqrt{3}}{16} \sin \emb{\omega T_{p}} - \frac{3 + 3 \sqrt{3}}{16} \sin \emb{2 \omega T_{p}} \\
+& - \frac{5 + 3 \sqrt{3}}{16} \sin \emb{3 \omega T_{p}} - \frac{3 + \sqrt{3}}{16} \sin \emb{4 \omega T_{p}} \\
+& - \frac{3 - \sqrt{3}}{16} \sin \emb{5 \omega T_{p}} - \frac{5 - 3 \sqrt{3}}{16} \sin \emb{6 \omega T_{p}} \\
+& - \frac{3 - 3 \sqrt{3}}{16} \sin \emb{7 \omega T_{p}}
 \end{split}
-\label{eq:sym_partd_output_trans_wn_im_S_2_0},
-\end{gather}
-natomiast dla wielkości wyjściowej $T_{1,0}$ są one równe odpowiednio:
-\begin{gather}
+\label{eq:sym_partd_output_trans_wn_im_S_2_0}, \\
 \begin{split}
 \Re \left( G_{T_{1,0}} \emb{\omega} \right) = ~
-& - \frac{3 - \sqrt{3}}{4 \sqrt{2}} \cos \emb{2 \pi \frac{\omega}{\omega_{p}}} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} \cos \emb{4 \pi \frac{\omega}{\omega_{p}}} \\
-& - \frac{1 + \sqrt{3}}{4 \sqrt{2}} \cos \emb{6 \pi \frac{\omega}{\omega_{p}}} + \frac{1 - \sqrt{3}}{4 \sqrt{2}}
+& - \frac{3 - \sqrt{3}}{4 \sqrt{2}} \cos \emb{\omega T_{p}} + \frac{3 + \sqrt{3}}{4 \sqrt{2}} \cos \emb{2 \omega T_{p}} \\
+& - \frac{1 + \sqrt{3}}{4 \sqrt{2}} \cos \emb{3 \omega T_{p}} + \frac{1 - \sqrt{3}}{4 \sqrt{2}}
 \end{split}
 \label{eq:sym_partd_output_trans_wn_re_T_1_0}, \\
 \begin{split}
 \Im \left( G_{T_{1,0}} \emb{\omega} \right) = ~
-& \frac{3 - \sqrt{3}}{4 \sqrt{2}} \sin \emb{2 \pi \frac{\omega}{\omega_{p}}} - \frac{3 + \sqrt{3}}{4 \sqrt{2}} \sin \emb{4 \pi \frac{\omega}{\omega_{p}}} + \\
-& \frac{1 + \sqrt{3}}{4 \sqrt{2}} \sin \emb{6 \pi \frac{\omega}{\omega_{p}}}
+& \frac{3 - \sqrt{3}}{4 \sqrt{2}} \sin \emb{\omega T_{p}} - \frac{3 + \sqrt{3}}{4 \sqrt{2}} \sin \emb{2 \omega T_{p}} + \\
+& \frac{1 + \sqrt{3}}{4 \sqrt{2}} \sin \emb{3 \omega T_{p}}
 \end{split}
 \label{eq:sym_partd_output_trans_wn_im_T_1_0}.
 \end{gather}
 
-Przedstawione zależności pozwalają zgodnie z równaniem~\eqref{eq:mid_disc_err_dyn_prop} określić w jaki sposób algorytm przenosi z wejścia na wyjście obecne w przetwarzanym sygnale harmoniczne błędu dynamicznego. Zgodnie z wcześniejszymi założeniami przyjmuje się, że przedstawiana transmitancja algorytmu jest transmitancją idealną, a zatem obiekt ten nie wprowadza błędu dynamicznego własnego do wielkości wyjściowych. Jako, że analizowany algorytm jest ostatnim elementem rozważanego toru pomiarowego, z punktu widzenia właściwości metrologicznych istotna jest jedynie amplituda kolejnych harmonicznych błędu dynamicznego, która pozwoli oszacować wariancję związaną z analizowaną częstotliwością sygnału błędu. Znajomość fazy przetwarzanej harmonicznej błędu dynamicznego będzie istotna tylko wtedy, gdy zaistnieje konieczność wyznaczania wypadkowych parametrów kilku harmonicznych o tej samej pulsacji. Parametry wypadkowe harmonicznych błędu dynamicznego będą wyznaczane zgodnie z zależnościami od~\eqref{eq:dyn_vect} do~\eqref{eq:dyn_vect_phi}, natomiast do wyznaczenia ich wariancji użyte zostanie równanie~\eqref{eq:dyn_var}.
+Przedstawione zależności pozwalają zgodnie z równaniem~\eqref{eq:mid_disc_err_dyn_prop} określić w jaki sposób algorytm przenosi z wejścia na wyjście obecne w przetwarzanym sygnale harmoniczne sygnału błędu dynamicznego. Zgodnie z wcześniejszymi założeniami przyjmuje się, że przedstawiana transmitancja algorytmu jest transmitancją idealną, a zatem obiekt ten nie wprowadza błędu dynamicznego własnego do wielkości wyjściowych. Jako, że analizowany algorytm jest ostatnim elementem rozważanego toru pomiarowego, z punktu widzenia właściwości metrologicznych istotna jest jedynie amplituda kolejnych harmonicznych sygnału błędu dynamicznego, która pozwoli oszacować wariancję związaną z analizowaną częstotliwością sygnału błędu. Znajomość fazy przetwarzanej harmonicznej błędu dynamicznego będzie istotna tylko wtedy, gdy zaistnieje konieczność wyznaczania wypadkowych parametrów kilku harmonicznych o tej samej pulsacji. Parametry wypadkowe harmonicznych sygnału błędu dynamicznego są wyznaczane zgodnie z zależnościami od~\eqref{eq:dyn_vect} do~\eqref{eq:dyn_vect_phi}, natomiast do wyznaczenia ich wariancji stosowane jest równanie~\eqref{eq:dyn_var}.
 
-Wobec powyższych zależności oraz na podstawie danych zawartych w tabeli~\ref{tab:sym_partc_params_unc_sum}, parametry wariancji sygnałów błędów propagowanych statycznych i losowych dla wielkości wyjściowej $S_{2,0}$ wyznaczyć można jako:
-\begin{gather}
-\sigma_{S_{2,0},s}^{2} = \sigma_{c,s}^{2} \cdot A_{S_{2,0},s}^{2} = 2^{2} \cdot \num{107.12e-6} = \qty{428.48}{\micro V} \label{eq:sym_partd_output_var_stat_S_2_0}, \\
+Na podstawie danych zawartych w tabeli~\ref{tab:sym_partc_params_unc_sum} oraz równania~\eqref{eq:sym_partd_output_as_S_2_0} parametry wariancji sygnałów błędów propagowanych statycznych dla wielkości wyjściowej $S_{2,0}$ wyznaczyć można zgodnie z zależnością~\eqref{eq:alg_outvar_trans_stat}:
+\begin{equation}
+\sigma_{S_{2,0},s}^{2} = \sigma_{c,s}^{2} A_{S_{2,0},s}^{2} = 2^{2} \cdot \num{107.12e-6} = \qty{428.48}{\micro V} \label{eq:sym_partd_output_var_stat_S_2_0},
+\end{equation}
+natomiast na podstawie równania~\eqref{eq:sym_partd_output_ar_S_2_0} wariancja propagowanego sygnału błędu losowego może być wyznaczona zgodnie z zależnością~\eqref{eq:alg_outvar_trans_rand}:
+\begin{equation}
 \sigma_{S_{2,0},r}^{2} = \sigma_{c,r}^{2} A_{S_{2,0},r}^{2} = 1^{2} \cdot \num{154.68e-6} = \qty{154.68}{\micro V} \label{eq:sym_partd_output_var_rand_S_2_0}.
-\end{gather}
-W przypadku błędów o charakterze dynamicznym, wariancje kolejnych harmonicznych tych błędów wyznaczyć można na podstawie zależności~\eqref{eq:dyn_var}, stosując właściwości transformacji Fouriera opisane w~\cite{oppenheim_sns}:
+\end{equation}
+W przypadku sygnałów błędów dynamicznych wariancje kolejnych harmonicznych tych sygnałów wyznaczyć można na podstawie zależności~\eqref{eq:dyn_var} oraz~\eqref{eq:alg_outvar_dyn}:
 \begin{gather}
-\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} \cdot K_{S_{2,0}}^{2} \emb{\omega_{c,e,1}} = {1.998}^{2} \cdot \num{42.60e-6} = \qty{170.04}{\micro V} \label{eq:sym_partd_output_var_dyn_1_S_2_0}, \\
-\sigma_{S_{2,0},d,2}^{2} = \sigma_{c,d,2}^{2} \cdot K_{S_{2,0}}^{2} \emb{\omega_{c,e,2}} = {1.623}^{2} \cdot \num{266.34e-6} = \qty{704.44}{\micro V} \label{eq:sym_partd_output_var_dyn_2_S_2_0}, \\
-\sigma_{S_{2,0},d,3}^{2} = \sigma_{c,d,3}^{2} \cdot K_{S_{2,0}}^{2} \emb{\omega_{c,e,3}} = {0.152}^{2} \cdot \num{266.11e-6} = \qty{6.18}{\micro V} \label{eq:sym_partd_output_var_dyn_3_S_2_0}.
+\sigma_{S_{2,0},d,1}^{2} = \sigma_{c,d,1}^{2} K_{S_{2,0}}^{2} \emb{\omega_{c,e,1}} = {1.998}^{2} \cdot \num{42.60e-6} = \qty{170.04}{\micro V} \label{eq:sym_partd_output_var_dyn_1_S_2_0}, \\
+\sigma_{S_{2,0},d,2}^{2} = \sigma_{c,d,2}^{2} K_{S_{2,0}}^{2} \emb{\omega_{c,e,2}} = {1.623}^{2} \cdot \num{266.34e-6} = \qty{704.44}{\micro V} \label{eq:sym_partd_output_var_dyn_2_S_2_0}, \\
+\sigma_{S_{2,0},d,3}^{2} = \sigma_{c,d,3}^{2} K_{S_{2,0}}^{2} \emb{\omega_{c,e,3}} = {0.152}^{2} \cdot \num{266.11e-6} = \qty{6.18}{\micro V} \label{eq:sym_partd_output_var_dyn_3_S_2_0}.
 \end{gather}
 Ze względu na brak korelacji przedstawionych sygnałów błędów wariancję sygnału błędu wypadkowego wyznaczyć można zgodnie z równaniem~\eqref{eq:var_sum}, jako sumę wariancji kolejnych sygnałów błędów cząstkowych, wobec czego zachodzi zależność:
 \begin{equation}
@@ -954,11 +950,11 @@ U_{S_{2,0},d,2} = c_{d} \cdot \sigma_{S_{2,0},d,2} = 1.41 \cdot \num{26.54e-3} =
 U_{S_{2,0},d,3} = c_{d} \cdot \sigma_{S_{2,0},d,3} = 1.41 \cdot \num{2.49e-3} = \qty{3.50}{mV} \label{eq:sym_partd_output_unc_dyn_3_S_2_0}.
 \end{gather}
 
-Jako, że w analizowanej sytuacji spełnione zostały warunki centralnego twierdzenia granicznego, wyznaczenie wypadkowej wartości niepewności rozszerzonej jest możliwe na dwa sposoby. Sposób pierwszy zakłada, że kształt rozkładu błędu wypadkowego będzie zbliżony do normalnego, a zatem niepewność wypadkowa może zostać oszacowana zgodnie z równaniem~\eqref{eq:unc_sum}:
+Jako, że w analizowanej sytuacji spełnione zostały warunki centralnego twierdzenia granicznego, wyznaczenie wypadkowej wartości niepewności rozszerzonej jest możliwe na dwa sposoby. Sposób pierwszy zakłada zbliżony do normalnego kształt rozkładu wypadkowego sygnału błędu, a zatem niepewność wypadkowa może zostać oszacowana zgodnie z równaniem~\eqref{eq:unc_sum}:
 \begin{equation}
 U_{S_{2,0},\Sigma} = c_{n} \cdot \sigma_{S_{2,0},\Sigma} = 1.96 \cdot \num{38.27e-3} = \qty{75.01}{mV} \label{eq:sym_partd_output_unc_total_a_S_2_0}.
 \end{equation}
-Sposób drugi jest znacznie bardziej złożony obliczeniowo i wykorzystuje zależność~\eqref{eq:alg_outunc_mat}. Wymagane jest zatem wyznaczenie wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi w postaci macierzy koherencji, której wartości są wyznaczane zgodnie z równaniem~\eqref{eq:unc_coher}. Można zatem zapisać, że:
+Sposób drugi jest znacznie bardziej złożony obliczeniowo i wykorzystuje zależność~\eqref{eq:unc_mat}. Wymagane jest zatem wyznaczenie wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi w postaci macierzy koherencji, której wartości są wyznaczane zgodnie z równaniem~\eqref{eq:unc_coher}. Można zatem zapisać, że:
 \begin{equation}
 U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} \label{eq:sym_partd_output_unc_summul_S_2_0},
 \end{equation}
