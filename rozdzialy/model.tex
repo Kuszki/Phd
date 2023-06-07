@@ -244,7 +244,7 @@ Analizowana cześć toru pomiarowego przetwarza próbki sygnału wejściowego $x
 \end{gather}
 gdzie $E_{x,o}(\omega)$ jest amplitudą oraz $\varphi_{x,o}(\omega)$ przesunięciem w fazie wybranej harmonicznej sygnału wejściowego, $E_{x,e}(\omega)$ amplitudą oraz $\varphi_{x,e}(\omega)$ przesunięciem w fazie harmonicznej sygnału błędu zawartego w przetwarzanym sygnale, natomiast $e_{x,r}(i)$ jest przetwarzanym sygnałem błędu losowego. Dla przyjętych założeń idealny przebieg wielkości wejściowej analizowanego obiektu opisać można w postaci:
 \begin{equation}
-\dot{x} \emb{i} = \sum _{j = 0} ^{\infty} \dot{x} \left( i, \omega_{x,j} \right) \label{eq:in_disc_sum}, 
+\dot{x} \emb{i} = \sum _{j = 0} ^{\infty} \dot{x} \left( i, \omega_{x,j} \right) \label{eq:in_disc_sum},
 \end{equation}
 gdzie $\omega_{x,j}$ jest pulsacją $j$-tej harmonicznej opisywanego sygnału. Zakłóconą błędami wielkość wejściową analizowanej cześć toru pomiarowego opisuje równanie:
 \begin{equation}
@@ -269,7 +269,7 @@ gdzie $K_{X}(\omega)$ stanowi wzmocnienie oraz $\varphi_{X}(\omega)$ przesunięc
 \begin{equation}
 \sigma_{v}^{2} \emb{\omega} = K_{X}^{2} \emb{\omega} \sigma_{x}^{2} \emb{\omega} \label{eq:mid_disc_var_omega},
 \end{equation}
-gdzie $\sigma_{x}^{2}(\omega)$ jest wariancją analizowanego sygnału na wejściu obiektu, natomiast $\sigma_{v}^{2}(\omega)$ wariancją sygnału na wyjściu fragmentu reprezentującego właściwości dynamiczne obiektu, oznaczonego symbolem $v(i)$. 
+gdzie $\sigma_{x}^{2}(\omega)$ jest wariancją analizowanego sygnału na wejściu obiektu, natomiast $\sigma_{v}^{2}(\omega)$ wariancją sygnału na wyjściu fragmentu reprezentującego właściwości dynamiczne obiektu, oznaczonego symbolem $v(i)$.
 
 Dla sygnałów o charakterze deterministycznym, pojedynczą harmoniczną wielkości wyjściowej $v(i)$ dla analizowanego fragmentu obiektu opisać można analogicznie, jak miało to miejsce w przypadku równań~\eqref{eq:mid_cont_omega_ideal} oraz~\eqref{eq:mid_cont_omega_real}. Zakładając, że $\dot{v}(i,\omega)$ jest idealnym, natomiast $\tilde{v}(i,\omega)$ zakłóconym sygnałem błędu przebiegiem harmonicznej sygnału $v(i)$ o pulsacji $\omega$, $\dot{K}_{X}(\omega)$ jest idealną, a $\tilde{K}_{X}(\omega)$ rzeczywistą wartością wzmocnienia, natomiast $\dot{\varphi}_{X}(\omega)$ jest idealnym, a $\tilde{\varphi}_{X}(\omega)$ rzeczywistym przesunięciem fazowym, zapisać można:
 \begin{gather}
@@ -424,14 +424,14 @@ gdzie $E_{i}$ jest amplitudą oraz $\varphi_{i}$ przesunięciem w fazie analizow
 \end{equation}
 natomiast wartości współczynników korelacji pomiędzy analizowanymi składowymi $e_{i}(t)$ oraz $e_{j}(t)$ wyznaczyć można na podstawie równania~\cite{oppenheim_sns, jakubiec_system}:
 \begin{equation}
-r_{i,j} = 
+r_{i,j} =
 \begin{cases}
 \cos \left( \varphi_{j} - \varphi_{i} \right) & $dla $ \omega_{i} = \omega_{j} \\
 0                                             & $dla $ \omega_{i} \ne \omega_{j}
 \end{cases}
 \label{eq:dyn_corr}.
 \end{equation}
-Brak korelacji kolejnych składowych sygnałów błędów w przypadku różnych pulsacji ich harmonicznych wynika z liniowej niezależności tych sygnałów~\cite{oppenheim_sns, proakis_dsp}. 
+Brak korelacji kolejnych składowych sygnałów błędów w przypadku różnych pulsacji ich harmonicznych wynika z liniowej niezależności tych sygnałów~\cite{oppenheim_sns, proakis_dsp}.
 
 Przedstawione dotychczas zależności pozwalają na wyznaczenie wypadkowej wartości wariancji dowolnej liczby przebiegów sinusoidalnie zmiennych sygnałów błędów o znanych parametrach, natomiast nie dostarczają informacji o fazie wybranej harmonicznej wypadkowego sygnału błędu. W pewnych przypadkach znajomość wartości tego parametru jest konieczna, np. gdy na kolejnym etapie analizy rozpatrywane będą dodatkowe harmoniczne sygnału błędu. Problem ten rozwiązać można przechodząc na rachunek wektorowy, oznaczając kolejne wektory sygnałów błędów opisanych równaniem~\eqref{eq:dyn_harm} o jednakowej pulsacji w postaci:
 \begin{gather}
@@ -463,7 +463,7 @@ Przedstawione równania umożliwiają wyznaczenie parametrów kolejnych harmonic
 
 Wyznaczenie wartości wariancji $\sigma_{\Sigma}^{2}$ wypadkowego sygnału błędu pozwala wyznaczyć niepewność standardową, natomiast w wielu przypadkach wielkość ta może okazać się niewystarczająca do oceny właściwości analizowanego obiektu i wymagane będzie wyznaczenie wartości niepewności rozszerzonej. Na tym etapie napotkać można problem związany z zależnością wartości tej wielkości od kształtu rozkładu błędu. W przypadku, gdy w rozważanej sytuacji nie będzie można wyróżnić żadnego błędu dominującego, a dodatkowo wystąpi wiele źródeł błędów od siebie niezależnych, to zgodnie z centralnym twierdzeniem granicznym, błąd wypadkowy będzie błędem o rozkładzie w zadowalającym stopniu zbliżonym do normalnego, co umożliwi wyznaczenie wartości niepewności rozszerzonej zgodnie z równaniem~\eqref{eq:unc_sum} stosując współczynnik rozszerzenia dla rozkładu normalnego, równy $c_{n} = 1.96$ dla poziomu ufności $\alpha = 95\%$~\cite{jcgm_guide}. Opisywane założenie w wielu przypadkach będzie prawdziwe, natomiast nie może być stosowane w sytuacji innej, niż opisana.
 
-Najbardziej uniwersalnym sposobem na wyznaczenie wypadkowej wartości niepewności rozszerzonej jest w sytuacji ogólnej metoda Monte-Carlo. Metoda ta wymaga jednak przeprowadzenia wielu iteracji procesu uzyskiwania wypadkowej wartości realizacji analizowanego sygnału błędu wypadkowego i nie może być stosowana do bieżącej oceny właściwości metrologicznych toru pomiarowego, którego parametry zmieniać się będą w czasie -- ograniczenie to wynika z nakładu czasu potrzebnego do ponownego przeprowadzenia eksperymentu. Alternatywę dla metody Monte-Carlo stanowić mogą metody analityczne~\cite{koliander_fusion}, takie jak metoda propagacji dystrybuant opisana między innymi w~\cite{zhang_pdp}, czy metoda rozszerzonej reguły kombinacji niepewności, zastosowana w pracy~\cite{yang_euc}. Metody te są jednak skomplikowane i zastosowanie ich dla zaproponowanego w pracy modelu błędu byłoby mniej efektywne, niż zastosowanie metody redukcyjnej arytmetyki interwałowej, przedstawionej w pracy~\cite{jakubiec_redmono}. Wymieniona metoda bazuje na arytmetyce interwałowej, opisanej szerzej w pracy~\cite{moore_interval}, przy czym umożliwia ona zawężenie wynikowego interwału.
+Najbardziej uniwersalnym sposobem na wyznaczenie wypadkowej wartości niepewności rozszerzonej jest w sytuacji ogólnej metoda Monte-Carlo~\cite{jcgm_montecarlo}. Metoda ta wymaga jednak przeprowadzenia wielu iteracji procesu uzyskiwania wartości realizacji analizowanego sygnału błędu i ze względu na czas obliczeń nie może być stosowana do bieżącej oceny właściwości metrologicznych toru pomiarowego, którego parametry zmieniać się będą w czasie. Alternatywę dla metody Monte-Carlo stanowić mogą metody analityczne, wśród których znajdują się między innymi metoda propagacji dystrybuant~\cite{koliander_fusion, zhang_pdp}, metoda rozszerzonej reguły kombinacji niepewności opisana w~\cite{dieck_measurement} i zastosowana w pracy~\cite{yang_euc}, czy metoda bazująca na zbiorach rozmytych, zaproponowana w~\cite{urbanski_fuzzy}. Metody te są jednak skomplikowane i zastosowanie ich dla zaproponowanego w pracy modelu błędu byłoby mniej efektywne, niż zastosowanie metody redukcyjnej arytmetyki interwałowej, przedstawionej w pracy~\cite{jakubiec_redmono}. Wymieniona metoda bazuje na arytmetyce interwałowej, opisanej szerzej w pracy~\cite{moore_interval}, przy czym umożliwia ona zawężenie wynikowego interwału.
 
 Zastosowanie metody redukcyjnej arytmetyki interwałowej wymaga, aby dla każdego z analizowanych sygnałów błędów wyznaczyć niepewność rozszerzoną, zgodnie z definicją opisaną nierównością~\eqref{eq:unc_definition}, zakładając jednakowy poziom ufności. Następnie wyznaczyć należy wartości współczynników macierzy koherencji, podobnej do macierzy współczynników korelacji przedstawionej w równaniu~\eqref{eq:var_matrix}. W odróżnieniu od macierzy korelacji, której kolejne współczynniki wyznaczane były zgodnie z równaniem~\eqref{eq:var_corr}, wyznaczenie wartości współczynników macierzy koherencji jest zadaniem złożonym. Współczynniki koherencji reprezentują wypadkową korelacji zachodzącej pomiędzy analizowanymi sygnałami oraz wzajemnej relacji pomiędzy kształtami ich rozkładów, a kształtem rozkładu wypadkowego~\cite{jakubiec_system}.
 
@@ -471,7 +471,7 @@ Istnieje kilka sposobów umożliwiających wyznaczenie wartości macierzy kohere
 
 Wobec powyższych, należy przedstawić metodę stanowiącą kompromis pomiędzy dokładnością uzyskiwanych wyników, stopniem skomplikowania analizy oraz czasem potrzebnym na wykonanie obliczeń. Proponuje się wykorzystanie w tym celu przedstawionych w literaturze wyników metody analitycznej oraz uzyskanych na potrzeby pracy wyników metody symulacyjnej, umożliwiających oszacowanie wartości współczynników koherencji dla dowolnej liczby i dowolnej kombinacji parametrów analizowanych sygnałów. Jednocześnie zakłada się, że względny błąd oszacowana wartości wypadkowej niepewności rozszerzonej powinien z prawdopodobieństwem równym $95\%$ zawierać się w przedziale $\pm 5\%$ wartości prawidłowej tej wielkości.
 
-Oznaczając symbolem $h_{i,j}$ wartość współczynnika koherencji dla $i$-tego i $j$-tego sygnału błędu cząstkowego, których niepewności rozszerzone wynoszą $U_{i}$ oraz $U_{j}$, zapisać można równanie pozwalające wyznaczyć wartość wypadkową niepewności rozszerzonej $U_{\Sigma}$ dla $N$ analizowanych sygnałów błędów w postaci~\cite{jakubiec_reductive}:
+Oznaczając symbolem $h_{i,j}$ wartość współczynnika koherencji dla $i$-tego i $j$-tego sygnału błędu cząstkowego, których niepewności rozszerzone wynoszą $U_{i}$ oraz $U_{j}$, zapisać można równanie pozwalające wyznaczyć wartość wypadkową niepewności rozszerzonej $U_{\Sigma}$ dla $N$ analizowanych sygnałów błędów w postaci~\cite{jakubiec_redmono}:
 \begin{equation}
 U_{\Sigma} = \sqrt{
 \begin{bmatrix}
@@ -592,7 +592,7 @@ Bez korekty & -1.14 & +7.96 & -1.13 & +8.69 & -1.09 & +8.80 & -1.13 & +8.86 \\ \
 
 Analizując przedstawione dotychczas zależności zauważyć można, że sposób opisu niedokładności wyniku pomiaru zależeć będzie w dużej mierze od potrzeb projektanta toru pomiarowego oraz od specyfiki zakłócających proces pomiaru zjawisk. Opis wykorzystujący wariancję sygnału błędu wydaje się bardziej przystępny i mniej skomplikowany, a dodatkowo wielkość ta może być utożsamiana z mocą sygnału~\cite{proakis_dsp}. Opis wykorzystujący niepewność rozszerzoną będzie jednak bardziej precyzyjny, ze względu na informacje odnośnie prawdopodobieństwa wystąpienia danej wartości realizacji sygnału błędu, natomiast wymaga on większego zaangażowania w proces wyznaczania ostatecznej wartości tej wielkości. W odpowiednich okolicznościach, jeżeli spełnione są warunki związane z centralnym twierdzeniem granicznym, opis bazujący na wariancji sygnału błędu może być w łatwy sposób przeniesiony na opis związany z niepewnością rozszerzoną~\cite{jcgm_guide}.
 
-Wyznaczone zgodnie z metodą redukcyjnej arytmetyki interwałowej szacowane wartości niepewności rozszerzonej mogą w niewielkim stopniu odbiegać od wartości rzeczywistych, co opisano w~\cite{jakubiec_arithmetic, jakubiec_model}. Zaproponowana w równaniu~\eqref{eq:unc_cohercorra} korekta zmniejsza omawiane różnice, zapewniając jednocześnie niski stopnień skomplikowania obliczeń oraz względny błąd oszacowania wypadkowej wartości niepewności rozszerzonej nieprzekraczający $\pm 5\%$ prawidłowej wartości tej wielkości. Można zatem stwierdzić, że zaproponowana w pracy metoda szacowania wypadkowej wartości niepewności rozszerzonej jest zasadna z punktu widzenia przyjętych założeń. Ponadto, ze względu na niską złożoność obliczeń, metoda ta może być stosowana w przypadkach, gdzie liczba analizowanych sygnałów oraz ich parametry ulegają zmianie.
+Wyznaczone zgodnie z metodą redukcyjnej arytmetyki interwałowej szacowane wartości niepewności rozszerzonej mogą w niewielkim stopniu odbiegać od wartości rzeczywistych, co opisano w~\cite{jakubiec_redmono, jakubiec_model}. Zaproponowana w równaniu~\eqref{eq:unc_cohercorra} korekta zmniejsza omawiane różnice, zapewniając jednocześnie niski stopnień skomplikowania obliczeń oraz względny błąd oszacowania wypadkowej wartości niepewności rozszerzonej nieprzekraczający $\pm 5\%$ prawidłowej wartości tej wielkości. Można zatem stwierdzić, że zaproponowana w pracy metoda szacowania wypadkowej wartości niepewności rozszerzonej jest zasadna z punktu widzenia przyjętych założeń. Ponadto, ze względu na niską złożoność obliczeń, metoda ta może być stosowana w przypadkach, gdzie liczba analizowanych sygnałów oraz ich parametry ulegają zmianie.
 
 \section{Algorytm jako fragment toru pomiarowego}
 
@@ -733,9 +733,9 @@ Przeprowadzone rozważania nie poruszały problemu opóźnień w systemach pomia
 Z punktu widzenia zaproponowanego modelu, zjawisko opóźnień w systemie opisać można jako dodatkowe przesunięcie w fazie składowych przetwarzanego sygnału oraz sygnałów błędów deterministycznych, będące iloczynem pulsacji analizowanej harmonicznej i wartości realizacji błędu opóźnienia. Omawiany sygnał mógłby być zdefiniowany w przypadku przetwornika cyfrowo-analogowego jako dodatkowa harmoniczna sygnału błędu dynamicznego własnego:
 \begin{equation}
 \begin{split}
-e_{x,tw} \emb{i} =~ 
+e_{x,tw} \emb{i} =~
 & E_{y,o} \emb{\omega} \sin \left( \omega \emb{i T_{p} + t_{x} \emb{i}} + \varphi_{y,o} \emb{\omega} \right) = \\
-& E_{y,o} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{y,o} \emb{\omega} + \varphi_{x,t} \emb{\omega, i} \right) 
+& E_{y,o} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{y,o} \emb{\omega} + \varphi_{x,t} \emb{\omega, i} \right)
 \end{split}
 \label{eq:tim_err_self},
 \end{equation}
