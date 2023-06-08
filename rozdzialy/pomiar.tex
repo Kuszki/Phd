@@ -98,6 +98,58 @@ Pierwszy filtr, który przedstawiono na rysunku~\ref{fig:pom_schemat_adc}, skła
 
 Ostatnim fragmentem toru pomiarowego, który wprowadzać może do sygnału wyjściowego dodatkowe błędy, jest algorytm dyskretnej transformacji falkowej. Przeprowadzone wcześniej badania, których wyniki przedstawiono w tabeli~\ref{tab:varnum_spline4_4_5_f32}, pozwalają przypuszczać, że wariancja błędu związanego z zaokrągleniami nie przekroczy w bieżącym przypadku rzędu piko Voltów, a zatem niepewność rozszerzona z nią związana nie powinna przekroczyć rzędu mikro Voltów. Oznacza to, że błędy własne zastosowanego algorytmu dyskretnej transformacji falkowej mogą być pominięte w budżecie niepewności, bez większego wpływu na oszacowaną wartość niepewności rozszerzonej wielkości wyjściowych analizowanego toru pomiarowego~\cite{jcgm_guide}.
 
+\section{Model błędu wielkości wejściowej}
+
+Jako, że w analizowanym przypadku źródło napięciowego sygnału wejściowego $s(t)$ toru pomiarowego stanowi generator przebiegów arbitralnych RIGOL DG1011~\cite{rigol_fawg}, należy uwzględnić jego parametry w budżecie niepewności. Zgodnie z dokumentacją, błąd graniczny nastawy wartości amplitudy $E$ sygnału wyjściowego generatora wynosi:
+\begin{equation}
+\delta_{E,gr} = \pm \emb{\frac{0.5}{100} E + \frac{0.5}{1000}}~\unit{V} \label{eq:pom_gen_amperr_max},
+\end{equation}
+natomiast błąd graniczny nastawy składowej stałej $D$ sygnału wyjściowego wynosi:
+\begin{equation}
+\delta_{D,gr} = \pm \emb{\frac{0.5}{100} D + \frac{2}{1000}}~\unit{V} \label{eq:pom_gen_shferr_max},
+\end{equation}
+przy czym omawiane wielkości $E$ oraz $D$ wyrażone są w Woltach. Na podstawie powyższych zależności należy oszacować przedział, w jakim znajduje się \qty{95}{\percent} wartości realizacji błędu nastawy amplitudy oraz błędu nastawy składowej stałej. Zgodnie z wytycznymi zawartymi w~\cite{jcgm_guide} zapisać można:
+\begin{gather}
+U_{E} = c_{u} \cdot \sigma_{E} = c_{u} \frac{\delta_{E,gr}}{\sqrt{3}} = 1.65 \frac{\num{5e-3}E + \num{0.5e-3}}{\sqrt{3}} \unit{V} \label{eq:pom_gen_amperr_unc}, \\
+U_{D} = c_{u} \cdot \sigma_{D} = c_{u} \frac{\delta_{D,gr}}{\sqrt{3}} = 1.65 \frac{\num{5e-3}D + \num{2e-3}}{\sqrt{3}} \unit{V} \label{eq:pom_gen_shferr_unc}.
+\end{gather}
+
+Należy zauważyć, że w przypadku pojedynczego przyrządu, sygnały błędów związane z rozbieżnościami w nastawie przedstawionych parametrów stanowią systematyczne źródło błędów. Ich wpływ nożna skorygować przeprowadzając kalibrację przyrządu. Dalsza część rozdziału obejmuje zarówno scenariusz, w którym opisana kalibracja jest przeprowadzona, oraz taki gdzie nie została ona wykonana.
+
+Niezależnie od wykonania kalibracji przyrządu, dla sygnału sinusoidalnie zmiennego o wartości zadanej amplitudy $E_{s,o}$ oraz składowej stałej o wartości zadanej $D_{s,o}$, sygnał $s(t)$ na wyjściu przyrządu opisać można równaniem:
+\begin{gather}
+\dot{s} \emb{t} = E_{s,o} \sin \emb{\omega_{s,o} t} \label{eq:pom_gen_out_ideal}, \\
+\tilde{s} \emb{t} = \dot{s} \emb{t} + e_{s,s} \emb{t} + e_{s,d} \emb{t} + e_{s,r} \emb{t}\label{eq:pom_gen_out_real},
+\end{gather}
+przy symbolem $e_{s,s}(t)$ oznaczono błąd statyczny, symbolem $e_{s,s}(t)$ błąd dynamiczny, natomiast symbolem $e_{s,r}(t)$ oznaczono sygnał błędu losowego. Deterministyczna postać sygnałów błędów $e_{s,s}(t)$ oraz $e_{s,d}(t)$ nie jest znana, jeżeli dla konkretnego modelu urządzenia nie zostanie wykonana kalibracja. Jeżeli eksperyment nie zakłada wykonywania kalibracji stosowanego przyrządu, koniczne jest wskazanie opisu przedstawionych sygnałów w kategorii probabilistycznej. Po wykonaniu kalibracji oraz wykonaniu korekty błędów systematycznych można przyjąć, że $e_{s,s}(t) = 0$ oraz $e_{s,d}(t) = 0$. W przypadku, gdy błędy systematyczne nie zostaną skorygowane po wykonaniu kalibracji, należy opisać deterministycznie przebiegi sygnałów związanych z tymi błędami.
+
+W przypadku sygnału błędu statycznego $e_{s,s}(t)$ przyjąć można, że błąd ten powodowany jest rozbieżnością nastawy wartości składowej stałej. Wartość realizacji tego sygnału jest stała dla zadanej wartości parametru $D_{s,o}$, natomiast jego parametry określać może wariancja oraz niepewność rozszerzona, definiowane na podstawie równania~\eqref{eq:pom_gen_amperr_unc}. Zatem w przypadku braku kalibracji zapisać można:
+\begin{gather}
+e_{s,s} \emb{t} = E_{s,e,0} \emb{D_{s,o}} = \tilde{D}_{s,o} - D_{s,o} \label{eq:pom_gen_err_stat}, \\
+\sigma_{s,s}^{2} = 1.65 \frac{\emb{\num{5e-3} D_{s,o} + \num{2e-3}}^{2}}{3} \unit{V} \label{eq:pom_gen_var_stat}, \\
+U_{s,s} = 1.65 \frac{\num{5e-3} D_{s,o} + \num{2e-3}}{\sqrt{3}} \label{eq:pom_gen_var_stat}.
+\end{gather}
+gdzie $\tilde{D}_{s,o}$ jest rzeczywistą wartością składowej stałej dla wartości zadanej równej $\dot{D}_{s,o}$. Po przeprowadzeniu kalibracji istnieje możliwość deterministycznego opisu sygnału $e_{s,s}(t)$ w funkcji zadanej wartości $D_{s,o}$, przy czym wartość tego sygnału jest stała w czasie. Po wykonaniu korekty założyć można, że sygnał ten nie występuje, zatem $e_{s,s}(t) = 0$.
+
+Sygnał błędu dynamicznego $e_{s,d}(t)$ wynikać będzie z rozbieżności nastawy amplitudy względem wartości zadanej $\dot{E}_{s,o}$. Sygnał ten opisać można w postaci:
+\begin{equation}
+e_{s,d} \emb{t} = \emb{\tilde{E}_{s,o} - \dot{E}_{s,o}} \sin \emb{\omega_{s,o} t}= E_{s,e,1} \left| \dot{E}_{s,o} \right| \sin \emb{\omega_{s,o} t + \varphi_{s,e,1}} \label{eq:pom_gen_err_dyn},
+\end{equation}
+gdzie $\tilde{E}_{s,o}$ jest rzeczywistą amplitudą dla wartości zadanej amplitudy $\dot{E}_{s,o}$, natomiast $\varphi_{s,e,1}$ jest fazą sygnału błędu dynamicznego. Jako, że błąd nastawy amplitudy sygnału może przyjmować zarówno dodatni, jak ujemny znak, należy rozważać sygnał z nim związany dla obydwóch przypadków. Sytuacje te odróżnić należy analizując inną fazę $\varphi_{s,e,1}$ tego sygnału, przy czym dla dodatniej wartości sygnału błędu zachodzi $\varphi_{s,e,1} = 0$, natomiast dla ujemnej $\varphi_{s,e,1} = \frac{\pi}{2}$. Kalibracja przyrządu prowadzi do zdeterminowania zależności $E_{s,e,1} \emb{\dot{E}_{s,o}}$ i umożliwia korektę opisanego sygnału błędu. Jeżeli po wykonaniu wzorcowania nie uwzględnia się korekty związanej z nastawą amplitudy, to wariancję sygnału błędu $e_{s,d}(t)$ wyznaczyć można zgodnie z zależnością~\eqref{eq:dyn_var}. W przypadku braku kalibracji, należy określić maksymalną wariancję tego sygnału w postaci:
+\begin{equation}
+\sigma_{s,d}^{2} = \frac{1}{6} \emb{1.65 \cdot \num{5e-3} \dot{E}_{s,o} + \num{0.5e-3}}^{2} \unit{V} \label{eq:pom_gen_var_dyn},
+\end{equation}
+która odpowiada wartości błędu granicznego nastawy amplitudy dla $95\%$ przypadków. Należy zauważyć, że wartość błędu $E_{s,e,1}$ jest stała w czasie i zależy jedynie od wartości parametru $\dot{E}_{s,o}$. Z uwagi na fakt, że bez procedury kalibracji rzeczywista wartość $\tilde{E}_{s,o}$ nie jest znana, należy przyjąć taką wartość wariancji $\sigma_{s,d}^{2}$ sygnału błędu dynamicznego $e_{s,d}(t)$, która z prawdopodobieństwem $95\%$ obejmie wszystkie możliwe przypadki realizacji tego błędu, niezależnie od użytego egzemplarza urządzenia i zadanej wartości $\dot{E}_{s,o}$.
+
+Ostatnim analizowanym sygnałem jest sygnał błędu losowego $e_{s,r}(t)$, na który składać się będzie błąd kwantowania związany z rozdzielczością przetwornika cyfrowo-analogowego oraz szum zawarty w sygnale wyjściowym. Dokumentacja urządzenia nie pozwala na określenie wariancji szumu obecnego w sygnale wyjściowym. Mimo, że dokumentacja układu wskazuje rozdzielczość przetwornika cyfrowo-analogowego równą $14$-bitów, to nie wskazuje ona kolejnych wartości napięcia referencyjnego tego przetwornika dla wybranych wartości amplitudy i składowej stałej sygnału. Bez procedury kalibracyjnej oszacowanie wariancji $\sigma_{s,r}^{2}$ sygnału błędu losowego $e_{s,r}(t)$ jest zatem niemożliwe, zatem ze względu na bardzo wysoki deklarowany stosunek mocy sygnału do szumu przyjmuje się, że $e_{s,r}(t) = 0$.
+
+Zgodnie z dokumentacją urządzenia błąd graniczny nastawy częstotliwości po roku wynosi maksymalnie \qty{20}{ppm}, natomiast współczynnik temperaturowy tej nastawy w przedziale $\hat{\vartheta} \in~<18;28>\unit{\degreeCelsius}$ nie przekracza \qty{2}{ppm}. Wobec przedstawionych danych nie rozważa się wpływu błędu związanego z nastawą parametru pulsacji $\omega_{s,o}$ na proces wyznaczania wartości wielkości wyjściowych analizowanego toru pomiarowego.
+
+W przypadku sygnałów poliharmonicznych należy analizować przebieg sygnału błędu dynamicznego analogicznie, jak pokazano w równaniu~\eqref{eq:pom_gen_err_dyn}, przy czym przykładowo dla sygnału trójkątnego zapisać można:
+\begin{equation}
+asd
+\end{equation}
+
 \section{Model błędu toru pomiarowego}
 
 Przyjmując założoną wcześniej czułość dla wielkości $x(i)$ w stosunku do przetwarzanego sygnału $s(t)$ równą~\qty{1}{V \per V}, idealny oraz zakłócony sygnałem błędu przebieg wielkości $x(i)$ opisać można w postaci:
@@ -120,26 +172,6 @@ e_{x,dw} \emb{i} =~
 e_{x,dp} \emb{i} = \sum _{j = 1} ^{\infty} E_{s,e} \emb{\omega_{s,j}} \sin \left( \omega_{s,j} iT_{p} + \varphi_{s,e} \emb{\omega_{s,j}} + \tilde{\varphi}_{y} \emb{\omega_{s,j}} \right) \label{eq:pom_errx_dyn_prop},
 \end{gather}
 przy czym stosowane oznaczenia parametrów sygnału $s(t)$ są zbieżne z tymi wprowadzonymi w równaniach od~\eqref{eq:in_cont_sum} do~\eqref{eq:in_cont_err_dyn}.
-
-Jako, że w analizowanym przypadku źródło napięcia wejściowego toru pomiarowego stanowi generator przebiegów arbitralnych RIGOL DG1011~\cite{rigol_fawg}, należy uwzględnić jego parametry w budżecie niepewności. Zgodnie z dokumentacją błąd nastawy wartości amplitudy sygnału wyjściowego generatora mieści się w przedziale:
-\begin{equation}
--\frac{0.5}{100} E - \qty{0.5}{mV} \le \delta_{E} \le \frac{0.5}{100} E + \qty{0.5}{mV} \label{eq:pom_gen_amperr_range},
-\end{equation}
-natomiast błąd nastawy składowej stałej sygnału wyjściowego zawiera się w przedziale:
-\begin{equation}
--\frac{0.5}{100} D - \qty{2}{mV} \le \delta_{D} \le \frac{0.5}{100} D + \qty{2}{mV} \label{eq:pom_gen_shferr_range},
-\end{equation}
-gdzie symbolem $E$ oznaczono zadaną wartość amplitudy sygnału oraz symbolem $D$ oznaczono zadaną wartość składowej stałej. Błędy graniczny związane z omawianymi parametrami można zatem opisać jako:
-\begin{gather}
-\delta_{E,gr} = \pm \emb{\frac{0.5}{100} E + \qty{0.5}{mV}} \label{eq:pom_gen_amperr_max}, \\
-\delta_{D,gr} = \pm \emb{\frac{0.5}{100} D + \qty{2}{mV}} \label{eq:pom_gen_shferr_max}.
-\end{gather}
-Na podstawie powyższych zależności należy oszacować przedział, w jakim znajdzie się \qty{95}{\percent} wartości realizacji błędu nastawy amplitudy oraz błędu nastawy składowej stałej. Zgodnie z wytycznymi zawartymi w~\cite{jcgm_guide} zapisać można:
-\begin{gather}
-U_{E} = c_{u} \cdot \sigma_{E} = c_{u} \frac{\delta_{E,gr}}{\sqrt{3}} = 1.65 \frac{\num{5e-3}E + 0.5}{\sqrt{3}} ~\unit{mV} \label{eq:pom_gen_amperr_unc}, \\
-U_{D} = c_{u} \cdot \sigma_{D} = c_{u} \frac{\delta_{D,gr}}{\sqrt{3}} = 1.65 \frac{\num{5e-3}D + 2}{\sqrt{3}} ~\unit{mV} \label{eq:pom_gen_shferr_unc}.
-\end{gather}
-Należy zauważyć, że postać sygnałów $e_{s,s}(t)$ oraz $e_{s,d}(t)$ zależeć będzie od parametrów syntezowanego sygnału. Ze względu na brak kalibracji parametrów sygnału $s(t)$ należy w obliczeniach przyjąć parametry wynikające z maksymalnej wartości błędu dla deklarowanego poziomu ufności. Ze względu na bardzo wysoki stosunek mocy sygnału do szumu błąd losowy $e_{s,r}(i)$ może być pominięty w rozważaniach~\cite{jcgm_guide}.
 
 Na podstawie zależności od~\eqref{eq:pom_dwtina_ideal} do~\eqref{eq:pom_errx_dyn_prop} wypadkowy sygnał błędu $e_{x,\Sigma}(t)$ opisać można jako sumę sygnałów błędów cząstkowych w postaci:
 \begin{equation}

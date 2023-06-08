@@ -733,9 +733,9 @@ Przeprowadzone rozważania nie poruszały problemu opóźnień w systemach pomia
 Z punktu widzenia zaproponowanego modelu, zjawisko opóźnień w systemie opisać można jako dodatkowe przesunięcie w fazie składowych przetwarzanego sygnału oraz sygnałów błędów deterministycznych, będące iloczynem pulsacji analizowanej harmonicznej i wartości realizacji błędu opóźnienia. Omawiany sygnał mógłby być zdefiniowany w przypadku przetwornika cyfrowo-analogowego jako dodatkowa harmoniczna sygnału błędu dynamicznego własnego:
 \begin{equation}
 \begin{split}
-e_{x,tw} \emb{i} =~
-& E_{y,o} \emb{\omega} \sin \left( \omega \emb{i T_{p} + t_{x} \emb{i}} + \varphi_{y,o} \emb{\omega} \right) = \\
-& E_{y,o} \emb{\omega} \sin \left( \omega iT_{p} + \varphi_{y,o} \emb{\omega} + \varphi_{x,t} \emb{\omega, i} \right)
+e_{x,tw} \emb{i,\omega} =~
+& E_{y,o} \emb{\omega} \sin \left( \omega i T_{p} + \varphi_{y,o} \emb{\omega} + \varphi_{x,t} \emb{\omega, i} \right) - \\
+& E_{y,o} \emb{\omega} \sin \left( \omega i T_{p} + \varphi_{y,o} \emb{\omega} \right)
 \end{split}
 \label{eq:tim_err_self},
 \end{equation}
@@ -743,9 +743,9 @@ gdzie $t_{x}(i)$ stanowi realizację opóźnienia dla $i$-tej wielkości wyjści
 \begin{equation}
 \varphi_{x,t} \emb{\omega, i} = \omega t_{x} \emb{i} \label{eq:tim_err_phi}.
 \end{equation}
-Należy zaznaczyć, że w przypadku analizy opóźnień równania opisujące propagowany przez związany z opóźnieniami obiekt sygnał błędu dynamicznego również musiały by zostać zmodyfikowane z uwzględnieniem wprowadzanego opóźnienia.
+Należy zaznaczyć, że w przypadku analizy opóźnień równania opisujące propagowany przez związany z opóźnieniami obiekt sygnał błędu dynamicznego również musiałyby zostać zmodyfikowane z uwzględnieniem wprowadzanego opóźnienia, jeżeli z punktu widzenia tej analizy istotna byłaby faza tych sygnałów.
 
-Przedstawiona w równaniu~\eqref{eq:tim_err_self} koncepcja stanowi jedynie pojedynczy przypadek analizy opóźnienia w działaniu fragmentu toru pomiarowego. Celem poruszenia przedstawionego zagadnienia, mimo że nie obejmuje ono tematyki pracy, było podkreślenie możliwości dalszego rozwoju zaproponowanego modelu błędu o możliwość analizy kolejnych źródeł niedokładności wyznaczania wartości wielkości wyjściowych torów pomiarowych. Przedstawione zagadnienie może stanowić dalsze prace badawcze.
+Przedstawiona w równaniu~\eqref{eq:tim_err_self} koncepcja stanowi jedynie pojedynczy przypadek analizy opóźnienia w działaniu fragmentu toru pomiarowego. Celem poruszenia przedstawionego zagadnienia, mimo że nie obejmuje ono tematyki pracy, było podkreślenie możliwości dalszego rozwoju zaproponowanego modelu błędu o możliwość analizy kolejnych źródeł niedokładności wyznaczania wartości wielkości wyjściowych torów pomiarowych. Przedstawione zagadnienie może stanowić dalsze prace badawcze, w szczególności że stanowi ono tematykę bardzo istotną z punktu widzenia torów pomiarowych implementujących współbieżnie realizowane zadania pod nadzorem odpowiedniego systemu operacyjnego czasu rzeczywistego~\cite{bandyszak_rtos, laplante_rtos}.
 
 \section{Podsumowanie przedstawionych zależności}
 
