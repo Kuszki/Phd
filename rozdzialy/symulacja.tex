@@ -775,7 +775,7 @@ Na podstawie wyznaczonej w równaniu~\eqref{eq:sym_partc_rand_factor} wartości 
 
 \section{Analiza algorytmu transformacji falkowej}
 
-Ostatnim, przy czym najistotniejszym z punktu widzenia pracy, fragmentem analizowanego toru pomiarowego jest algorytm dyskretnej transformacji falkowej. Zakłada się, że dla każdej $k$-tej realizacji pomiaru na wejście algorytmu podawany jest wektor wielkości wejściowych $\mathbf{x}_{d}(k)$ złożony z kolejnych $N = 8$ próbek wielkości wyjściowej $x_{c}(k+n)$ przetwornika analogowo-cyfrowego. Wyjście analizowanego algorytmu stanowi wektor $\mathbf{X}(k)$ składający się z $M = 8$ wielkości, które stanowią ostateczne wielkości wyjściowe analizowanego toru pomiarowego. Omawiany algorytm wykorzystuje falkę \enquote{db2}, przy czym na jego realizację składają się dwie iteracje procesu dekompozycji sygnału. Macierz transformacji $\mathbf{A}$ omawianego algorytmu przedstawia równanie~\eqref{eq:db2_2_8_matrix}. Zakłada się, że implementacja stosowanego algorytmu wykorzystuje liczby zmiennoprzecinkowe połowicznej precyzji, o długości słowa 16-bitów~\cite{gcc_manual}.
+Ostatnim, przy czym najistotniejszym z punktu widzenia pracy, fragmentem analizowanego toru pomiarowego jest algorytm dyskretnej transformacji falkowej. Zakłada się, że dla każdej $k$-tej realizacji pomiaru na wejście algorytmu podawany jest wektor wielkości wejściowych $\mathbf{x}_{d}(k)$ złożony z $N = 8$ występujących po sobie próbek wielkości wyjściowej $x_{c}(i)$ przetwornika analogowo-cyfrowego. Wyjście analizowanego algorytmu stanowi wektor $\mathbf{X}(k)$ składający się z $M = 8$ wielkości, które stanowią ostateczne wielkości wyjściowe analizowanego toru pomiarowego. Omawiany algorytm wykorzystuje falkę \enquote{db2}, przy czym na jego realizację składają się dwie iteracje procesu dekompozycji sygnału. Macierz transformacji $\mathbf{A}$ omawianego algorytmu przedstawia równanie~\eqref{eq:db2_2_8_matrix}. Zakłada się, że implementacja stosowanego algorytmu wykorzystuje liczby zmiennoprzecinkowe połowicznej precyzji, o długości słowa 16-bitów~\cite{gcc_manual}.
 
 Wobec powyższych założeń oraz modelu zaproponowanego w równaniach od~\eqref{eq:alg_out_mat} do~\eqref{eq:alg_out_single} wektor wielkości wejściowych analizowanego algorytmu opisać można w postaci:
 \begin{gather}
@@ -819,14 +819,14 @@ e_{c,d} \emb{kT_{p}} & e_{c,d} \left( \emb{k+1} T_{p} \right) & \hdots & e_{c,d}
 a także w analogiczny sposób rozpatrywać można wektory sygnałów błędów cząstkowych, których parametry zestawiono w tabeli~\ref{tab:sym_partc_params_unc_list}. Wobec powyższego, zgodnie z równaniem~\eqref{eq:alg_out_mul}, wektor wielkości wyjściowych opisać można jako:
 \begin{gather}
 \dot{\mathbf{X}} \emb{k} = \mathbf{A} \cdot \dot{\mathbf{x}}_{d} \emb{k} \label{eq:sym_partd_output_ideal}, \\
-\tilde{\mathbf{X}} \emb{k} = \mathbf{A} \cdot \tilde{\mathbf{x}}_{d} \emb{k} \label{eq:sym_partd_output_real},
+\tilde{\mathbf{X}} \emb{k} = \mathbf{A} \cdot \tilde{\mathbf{x}}_{d} \emb{k} + \mathbf{e}_{d,z} \emb{k} = \dot{\mathbf{X}} \emb{k} + \mathbf{e}_{X,\Sigma} \emb{k} \label{eq:sym_partd_output_real},
 \end{gather}
-natomiast kolejne wektory realizacji sygnałów błędów wielkości wyjściowej są opisane w postaci iloczynów macierzy transformacji i wektorów realizacji sygnału błędu:
+gdzie $\mathbf{e}_{d,z}(k)$ jest wektorem realizacji błędu własnego zaokrągleń $e_{d,z}(j)$, natomiast kolejne wektory realizacji sygnałów błędów wielkości wyjściowej są opisane w postaci:
 \begin{gather}
-\mathbf{e}_{X,\Sigma} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,\Sigma} \emb{k} \label{eq:sym_partd_output_error_sum}, \\
+\mathbf{e}_{X,\Sigma} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,\Sigma} \emb{k} = \mathbf{e}_{X,s} \emb{k} + \mathbf{e}_{X,d} \emb{k} + \mathbf{e}_{X,r} \emb{k} + \mathbf{e}_{d,z} \emb{k} \label{eq:sym_partd_output_error_sum}, \\
 \mathbf{e}_{X,s} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,s} \emb{k} \label{eq:sym_partd_output_error_stat}, \\
-\mathbf{e}_{X,r} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,r} \emb{k} \label{eq:sym_partd_output_error_rand}, \\
-\mathbf{e}_{X,d} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,d} \emb{k} \label{eq:sym_partd_output_error_dyn}.
+\mathbf{e}_{X,d} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,d} \emb{k} \label{eq:sym_partd_output_error_dyn}, \\
+\mathbf{e}_{X,r} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,r} \emb{k} \label{eq:sym_partd_output_error_rand}.
 \end{gather}
 
 Należy zauważyć, że tak jak w przypadku wektora wielkości wejściowych, tak i w przypadku wektora wielkości wyjściowych, wyróżnić można również osobne wektory realizacji sygnałów błędów dla każdego z opisanych w tabeli~\ref{tab:sym_partc_params_unc_list} sygnałów. Zgodnie z oznaczeniami przyjętymi w równaniach~\eqref{eq:db2_invect} oraz~\eqref{eq:db2_outvect}, wektory wielkości wejściowych $\mathbf{x}(k)$ i wyjściowych $\mathbf{X}(k)$ pojedynczej realizacji algorytmu dla $k$-tego okna pomiarowego są w dalszej części rozdziału oznaczane symbolami:
@@ -949,22 +949,22 @@ U_{S_{2,0},d,1} = c_{d} \cdot \sigma_{S_{2,0},d,1} = 1.41 \cdot \num{13.04e-3} =
 U_{S_{2,0},d,2} = c_{d} \cdot \sigma_{S_{2,0},d,2} = 1.41 \cdot \num{26.54e-3} = \qty{37.42}{mV} \label{eq:sym_partd_output_unc_dyn_2_S_2_0}, \\
 U_{S_{2,0},d,3} = c_{d} \cdot \sigma_{S_{2,0},d,3} = 1.41 \cdot \num{2.49e-3} = \qty{3.50}{mV} \label{eq:sym_partd_output_unc_dyn_3_S_2_0}.
 \end{gather}
+Przedstawione zależności stanowią dane niezbędne do wyznaczenie wypadkowej wartości niepewności rozszerzonej związanej z analizowaną wielkością wyjściową algorytmu.
 
-Jako, że w analizowanej sytuacji spełnione zostały warunki centralnego twierdzenia granicznego, wyznaczenie wypadkowej wartości niepewności rozszerzonej jest możliwe na dwa sposoby. Sposób pierwszy zakłada zbliżony do normalnego kształt rozkładu wypadkowego sygnału błędu, a zatem niepewność wypadkowa może zostać oszacowana zgodnie z równaniem~\eqref{eq:unc_sum}:
-\begin{equation}
-U_{S_{2,0},\Sigma} = c_{n} \cdot \sigma_{S_{2,0},\Sigma} = 1.96 \cdot \num{38.27e-3} = \qty{75.01}{mV} \label{eq:sym_partd_output_unc_total_a_S_2_0}.
-\end{equation}
-Sposób drugi jest znacznie bardziej złożony obliczeniowo i wykorzystuje zależność~\eqref{eq:unc_mat}. Wymagane jest zatem wyznaczenie wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi w postaci macierzy koherencji, której wartości są wyznaczane zgodnie z równaniem~\eqref{eq:unc_coher}. Można zatem zapisać, że:
+Wyznaczenie wypadkowej wartości niepewności rozszerzonej odbywa się zgodnie z zależnością~\eqref{eq:unc_matrix}. Wymagane jest zatem wyznaczenie wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi w postaci macierzy koherencji, której wartości są wyznaczane zgodnie z równaniem~\eqref{eq:unc_coher}. Można zatem zapisać, że:
 \begin{equation}
 U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} \label{eq:sym_partd_output_unc_summul_S_2_0},
 \end{equation}
-gdzie wektor niepewności cząstkowych oznaczony symbolem $\mathbf{U}_{S_{2,0}}$ oraz macierz koherencji oznaczona jako $\mathbf{h}_{S_{2,0}}$ są przedstawione w postaci:
-\begin{gather}
+gdzie symbolem $\mathbf{U}_{S_{2,0}}$ oznaczono wektor cząstkowych niepewności rozszerzonych:
+\begin{equation}
 \mathbf{U}_{S_{2,0}} =
 \begin{bmatrix}
 U_{S_{2,0},z} & U_{S_{2,0},s} & U_{S_{2,0},r} & U_{S_{2,0},d,1} & U_{S_{2,0},d,2} & U_{S_{2,0},d,3}
 \end{bmatrix}
-\label{eq:sym_partd_output_unc_sumuvect_S_2_0_a}, \\
+\label{eq:sym_partd_output_unc_sumuvect_S_2_0_a},
+\end{equation}
+natomiast macierz koherencji oznaczona symbolem $\mathbf{h}_{S_{2,0}}$ jest dana w postaci:
+\begin{equation}
 \mathbf{h}_{S_{2,0}} =
 \begin{bmatrix}
 1                 & h_{S_{2,0},z,s}   & h_{S_{2,0},z,r}   & h_{S_{2,0},z,d,1} & h_{S_{2,0},z,d,2} & h_{S_{2,0},z,d,3} \\
@@ -975,9 +975,9 @@ h_{S_{2,0},d,2,z} & h_{S_{2,0},d,2,s} & h_{S_{2,0},d,2,r} & h_{S_{2,0},d,2,1} & 
 h_{S_{2,0},d,3,z} & h_{S_{2,0},d,3,s} & h_{S_{2,0},d,3,r} & h_{S_{2,0},d,3,1} & h_{S_{2,0},d,3,2} & 1                 \\
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_sumcoher_S_2_0}.
-\end{gather}
-Jako, że błąd własny zaokrągleń cechuje się rozkładem o niestandardowym kształcie, konieczne było wyznaczenie wartości współczynników kształtu zgodnie z równaniem~\eqref{eq:unc_shapertwo}. Wyznaczone wartości zestawiono wcześniej w tabeli~\ref{tab:unc_shapedwt}, a następnie na ich podstawie obliczono zgodnie z równaniem~\eqref{eq:unc_coher} oraz wartościami zestawionymi w tabeli~\ref{tab:unc_shapefac} wartości współczynników koherencji. Wyznaczone wartości macierzy koherencji dla wielkości wyjściowej $S_{2,0}$ wynoszą:
-\begin{equation}
+\end{equation}
+Podstawiając do powyższych zależności wyprowadzone w równaniach od~\eqref{eq:sym_partd_output_unc_roun_S_2_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_S_2_0} wielkości oraz wyznaczając zgodnie z równaniem~\eqref{eq:unc_coher} kolejne wartości współczynników koherencji dla analizowanych danych oraz wartości współczynników kształtu zestawionych w tabelach~\ref{tab:unc_shapefac} oraz~\ref{tab:unc_shapedwt} otrzymuje się:
+\begin{gather}
 \mathbf{h}_{S_{2,0}} =
 \begin{bmatrix}
 1.000 & 0.000 & 0.000 & 0.006 & 0.017 & 0.001 \\
@@ -986,27 +986,27 @@ Jako, że błąd własny zaokrągleń cechuje się rozkładem o niestandardowym 
 0.006 & 0.116 & 0.062 & 1.000 & 0.223 & 0.028 \\
 0.017 & 0.259 & 0.123 & 0.223 & 1.000 & 0.079 \\
 0.001 & 0.042 & 0.018 & 0.028 & 0.079 & 1.000 \\
-
 \end{bmatrix}
-\label{eq:sym_partd_output_unc_sumcoherval_S_2_0_a},
-\end{equation}
-a zatem ostatecznie zapisać można:
-\begin{gather}
+\label{eq:sym_partd_output_unc_sumcoherval_S_2_0_a}, \\
 \mathbf{U}_{S_{2,0}} =
 \begin{bmatrix}
 \num{2.13} & \num{39.31} & \num{24.38} & \num{18.39} & \num{37.42} & \num{3.50}
 \end{bmatrix} \cdot \num{e-3}
 \label{eq:sym_partd_output_unc_sumuvectval_S_2_0_a}, \\
-U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{74.00}{mV} \label{eq:sym_partd_output_unc_total_b_S_2_0}.
+U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{74.00}{mV} \label{eq:sym_partd_output_unc_total_a_S_2_0}.
 \end{gather}
-Porównując wyniki otrzymane w równaniu~\eqref{eq:sym_partd_output_unc_total_a_S_2_0} z wynikami uzyskanymi w równaniu~\eqref{eq:sym_partd_output_unc_total_b_S_2_0} zauważyć można, że obydwie metody zapewniają podobne wartości, przy czym metoda druga jest znacznie bardziej skomplikowana i wymaga oszacowania wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi. W dalszej cześć podrozdziału wyznaczone wartości zostaną porównane z wynikami eksperymentu przeprowadzonego metodą Monte-Carlo w celu weryfikacji ich poprawności.
+Jako, że w analizowanej sytuacji spełnione zostały warunki centralnego twierdzenia granicznego, wyznaczenie wypadkowej wartości niepewności rozszerzonej jest możliwe przyjmując założenie zbliżonego do normalnego kształtu rozkładu wypadkowego sygnału błędu. Wobec przedstawionego założenia wartość wypadkowej niepewności rozszerzonej może zostać oszacowana zgodnie z równaniem~\eqref{eq:unc_sum} dla $c_{S_{2,0},\Sigma} = c_{n}$, zatem:
+\begin{equation}
+U_{S_{2,0},\Sigma} = c_{n} \cdot \sigma_{S_{2,0},\Sigma} = 1.96 \cdot \num{38.27e-3} = \qty{75.01}{mV} \label{eq:sym_partd_output_unc_total_b_S_2_0}.
+\end{equation}
+Porównując wartości otrzymane stosując zależność~\eqref{eq:sym_partd_output_unc_total_b_S_2_0} z wynikami uzyskanymi w równaniu~\eqref{eq:sym_partd_output_unc_total_a_S_2_0} zauważyć można, że obydwie metody zapewniają podobne wyniki, przy czym metoda pierwsza jest znacznie bardziej skomplikowana i wymaga oszacowania wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi. W dalszej cześć podrozdziału wyznaczone wartości zostały porównane z wynikami eksperymentu przeprowadzonego metodą Monte-Carlo w celu weryfikacji ich poprawności.
 
 Analogicznie, jak w przypadku przedstawionych powyżej rozważań, parametry wariancji sygnałów błędów propagowanych dla wielkości wyjściowej $T_{1,0}$ wyznaczyć można w przypadku przetwarzanych przez algorytm błędów statycznych i losowych jako:
 \begin{gather}
 \sigma_{T_{1,0},s}^{2} = \sigma_{c,s}^{2} \cdot A_{T_{1,0},s}^{2} = 0^{2} \cdot \num{107.12e-6} = \qty{0.00}{\micro V} \label{eq:sym_partd_output_var_stat_T_1_0}, \\
 \sigma_{T_{1,0},r}^{2} = \sigma_{c,r}^{2} \cdot A_{T_{1,0},r}^{2} = 1^{2} \cdot \num{154.68e-6} = \qty{154.68}{\micro V} \label{eq:sym_partd_output_var_rand_T_1_0},
 \end{gather}
-natomiast w przypadku kolejnych harmonicznych błędu dynamicznego w postaci:
+natomiast w przypadku kolejnych harmonicznych sygnału błędu dynamicznego w postaci:
 \begin{gather}
 \sigma_{T_{1,0},d,1}^{2} = \sigma_{c,d,1}^{2} \cdot K_{T_{1,0}}^{2} \emb{\omega_{c,e,1}} = {0.010}^{2} \cdot \num{42.6e-6} = \qty{0.0043}{\micro V} \label{eq:sym_partd_output_var_dyn_1_T_1_0}, \\
 \sigma_{T_{1,0},d,2}^{2} = \sigma_{c,d,2}^{2} \cdot K_{T_{1,0}}^{2} \emb{\omega_{c,e,2}} = {0.244}^{2} \cdot \num{266.34e-6} = \qty{15.89}{\micro V} \label{eq:sym_partd_output_var_dyn_2_T_1_0}, \\
@@ -1025,18 +1025,9 @@ U_{T_{1,0},d,1} = c_{d} \cdot \sigma_{T_{1,0},d,1} = 1.41 \cdot \num{0.065e-3} =
 U_{T_{1,0},d,2} = c_{d} \cdot \sigma_{T_{1,0},d,2} = 1.41 \cdot \num{3.99e-3} = \qty{5.62}{mV} \label{eq:sym_partd_output_unc_dyn_2_T_1_0}, \\
 U_{T_{1,0},d,3} = c_{d} \cdot \sigma_{T_{1,0},d,3} = 1.41 \cdot \num{20.28e-3} = \qty{28.60}{mV} \label{eq:sym_partd_output_unc_dyn_3_T_1_0}.
 \end{gather}
-
-Zakładając zbliżony do normalnego kształt rozkładu sygnału błędu wypadkowego wielkości wyjściowej $T_{1,0}$, wartość niepewności rozszerzonej tej wielkości oszacować można zgodnie z równaniem~\eqref{eq:unc_sum} jako:
-\begin{equation}
-U_{T_{1,0},\Sigma} = c_{n} \cdot \sigma_{T_{1,0},\Sigma} = 1.96 \cdot \num{24.14e-3} = \qty{47.31}{mV} \label{eq:sym_partd_output_unc_total_a_T_1_0}.
-\end{equation}
-Na podstawie równań od~\eqref{eq:sym_partd_output_unc_roun_T_1_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_T_1_0} zauważyć jednak można, że założenie to może nie być właściwe, jako że w analizowanej sytuacji występuje mniej źródeł błędów, niż w przypadku wielkości wyjściowej $S_{2,0}$, a dodatkowo wyróżnić można dominujące źródło błędu w postaci sygnału błędu dynamicznego o częstotliwości~\qty{15}{kHz}.
-Stosując metodę opisaną równaniem~\eqref{eq:alg_outunc_mat} wartość wypadkowej niepewności rozszerzonej analizowanej wielkości wyjściowej wyznaczyć można w postaci:
-\begin{equation}
-U_{T_{1,0},\Sigma} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} \label{eq:sym_partd_output_unc_summul_T_1_0},
-\end{equation}
-przy czym wektor niepewności cząstkowych $\mathbf{U}_{T_{1,0}}$ oraz macierz koherencji $\mathbf{h}_{S_{2,0}}$ są opisane w następujący sposób:
+Oznaczając symbolem $\mathbf{U}_{T_{1,0}}$ wektor niepewności cząstkowych oraz symbolem  $\mathbf{h}_{S_{2,0}}$ macierz koherencji związane z analizowaną wielkością $T_{1,0}$, wartość wypadkowej niepewności rozszerzonej tej wielkości wyznaczyć można zgodnie z równaniem~\eqref{eq:unc_matrix}:
 \begin{gather}
+U_{T_{1,0},\Sigma} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} \label{eq:sym_partd_output_unc_summul_T_1_0}, \\
 \mathbf{U}_{T_{1,0}} =
 \begin{bmatrix}
 U_{T_{1,0},z} & U_{T_{1,0},s} & U_{T_{1,0},r} & U_{T_{1,0},d,1} & U_{T_{1,0},d,2} & U_{T_{1,0},d,3}
@@ -1053,8 +1044,8 @@ h_{T_{1,0},d,3,z} & h_{T_{1,0},d,3,s} & h_{T_{1,0},d,3,r} & h_{T_{1,0},d,3,1} & 
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_sumcoher_T_1_0_a}.
 \end{gather}
-Zgodnie z równaniem~\eqref{eq:unc_coher} oraz na podstawie danych zestawionych w tabelach~\ref{tab:unc_shapefac} oraz~\ref{tab:unc_shapedwt} wyznaczono kolejne wartości współczynników koherencji, przy czym w analizowanym przypadku wynoszą one:
-\begin{equation}
+Na podstawie wartości wyznaczonych zgodnie z zależnościami od~\eqref{eq:sym_partd_output_unc_roun_T_1_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_T_1_0} wyznaczono zgodnie z równaniem~\eqref{eq:unc_coher} kolejne wartości współczynników koherencji dla macierzy opisanej w równaniu~\eqref{eq:sym_partd_output_unc_sumcoher_T_1_0_a}, przy czym w obliczeniach stosowano wartości współczynników kształtu zestawione w tabelach~\ref{tab:unc_shapefac} oraz~\ref{tab:unc_shapedwt}. Ostatecznie, po podstawieniu do równania~\eqref{eq:sym_partd_output_unc_summul_T_1_0} uzyskanych wartości cząstkowych niepewności rozszerzonych oraz wartości współczynników koherencji otrzymuje się:
+\begin{gather}
 \mathbf{h}_{T_{1,0}} =
 \begin{bmatrix}
 1.000 & 0.000 & 0.000 & 0.000 & 0.003 & 0.028 \\
@@ -1062,12 +1053,9 @@ Zgodnie z równaniem~\eqref{eq:unc_coher} oraz na podstawie danych zestawionych 
 0.000 & 0.000 & 1.000 & 0.008 & 0.062 & 0.269 \\
 0.000 & 0.000 & 0.008 & 1.000 & 0.002 & 0.023 \\
 0.003 & 0.000 & 0.062 & 0.002 & 1.000 & 0.186 \\
-0.028 & 0.000 & 0.269 & 0.023 & 0.186 & 1.000
+0.028 & 0.000 & 0.269 & 0.023 & 0.186 & 1.000 \\
 \end{bmatrix}
-\label{eq:sym_partd_output_unc_sumcoherval_T_1_0_a}.
-\end{equation}
-Po podstawieniu do równania~\eqref{eq:sym_partd_output_unc_summul_T_1_0} wartości rozszerzonych niepewności cząstkowych wyznaczonych w równaniach od~\eqref{eq:sym_partd_output_unc_roun_T_1_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_T_1_0} oraz współczynników koherencji opisanych równaniem~\eqref{eq:sym_partd_output_unc_sumcoherval_T_1_0_a} otrzymuje się:
-\begin{gather}
+\label{eq:sym_partd_output_unc_sumcoherval_T_1_0_a}. \\
 \mathbf{U}_{T_{1,0}} =
 \begin{bmatrix}
 \num{1.81} & \num{0.00} & \num{24.38} & \num{0.073} & \num{5.62} & \num{28.60}
@@ -1075,9 +1063,14 @@ Po podstawieniu do równania~\eqref{eq:sym_partd_output_unc_summul_T_1_0} warto�
 \label{eq:sym_partd_output_unc_sumuvectval_T_1_0}, \\
 U_{T_{1,0},\Sigma} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} = \qty{43.61}{mV} \label{eq:sym_partd_output_unc_total_b_T_1_0}.
 \end{gather}
-Porównując otrzymane wyniki zauważyć można, że oszacowana w równaniu~\eqref{eq:sym_partd_output_unc_total_a_T_1_0} wartość niepewności rozszerzonej jest większa, nić ta oszacowana stosując metodę opisaną równaniem~\eqref{eq:sym_partd_output_unc_total_b_T_1_0}. Jak zaznaczono, w analizowanym przypadku okoliczności konieczne do przyjęcia uproszczeń wynikających z warunków centralnego twierdzenia granicznego nie są do końca spełnione -- występuje zbyt mało źródeł błędu, a dodatkowo przetwarzane sygnały błędu cechują znaczne różnice w wartości niepewności rozszerzonej.
+Zakładając zbliżony do normalnego kształt rozkładu sygnału błędu wypadkowego wielkości wyjściowej $T_{1,0}$, wartość niepewności rozszerzonej tej wielkości oszacować można zgodnie z równaniem~\eqref{eq:unc_sum} jako:
+\begin{equation}
+U_{T_{1,0},\Sigma} = c_{n} \cdot \sigma_{T_{1,0},\Sigma} = 1.96 \cdot \num{24.14e-3} = \qty{47.31}{mV} \label{eq:sym_partd_output_unc_total_a_T_1_0}.
+\end{equation}
+Na podstawie równań od~\eqref{eq:sym_partd_output_unc_roun_T_1_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_T_1_0} zauważyć można, że przyjęte założenie może nie być właściwe. W analizowanej sytuacji występują cztery źródła błędów, a dodatkowo wyróżnić można dominujące źródła błędów w postaci sygnałów błędu dynamicznego o częstotliwości~\qty{15}{kHz} oraz sygnału błędu losowego.
+Porównując otrzymane wyniki zauważyć można, że oszacowana w równaniu~\eqref{eq:sym_partd_output_unc_total_b_T_1_0} wartość niepewności rozszerzonej jest mniejsza, nić ta oszacowana stosując metodę opisaną równaniem~\eqref{eq:sym_partd_output_unc_total_a_T_1_0}.
 
-Na podstawie powyższych rozważań, w tabelach~\ref{tab:sym_partd_params_unc_sum_S_2_0} oraz~\ref{tab:sym_partd_params_unc_sum_T_1_0}, zestawiono budżety niepewności analizowanych w przykładach wielkości wyjściowych, uwzględniające sygnały błędów z podziałem na ich kategorie, przy czym parametry wypadkowe sygnału błędu dynamicznego wyznaczono analogicznie, jak w przykładzie~\eqref{eq:sym_parta_uncert_dyn}. Symbolem \enquote{$*$} przy typie rozkładu oznaczono sytuacje, gdy kształt rozkładu przypomina ten określony w opisie, natomiast jego parametry odbiegają nieznacznie od standardowych parametrów tego rozkładu.
+Na podstawie powyższych rozważań, w tabelach~\ref{tab:sym_partd_params_unc_sum_S_2_0} oraz~\ref{tab:sym_partd_params_unc_sum_T_1_0}, zestawiono budżety niepewności analizowanych w przedstawionych przykładach wielkości wyjściowych, uwzględniające sygnały błędów z podziałem na ich kategorie, przy czym parametry wypadkowe sygnału błędu dynamicznego wyznaczono analogicznie, jak w przykładzie~\eqref{eq:sym_parta_uncert_dyn}. Symbolem \enquote{$*$} przy typie rozkładu oznaczono sytuacje, gdy kształt rozkładu przypomina ten określony w opisie, natomiast jego parametry odbiegają nieznacznie od standardowych parametrów tego rozkładu.
 
 \begin{table}[htb!]
 \begin{center}
@@ -1107,9 +1100,9 @@ Na podstawie powyższych rozważań, w tabelach~\ref{tab:sym_partd_params_unc_su
 \end{center}
 \end{table}
 
-Parametry pozostałych wielkości wyjściowych wyznaczono analogicznie, jak miało to miejsce w przedstawionych przykładach. Dodatkowo, w celu weryfikacji zaproponowanych w pracy zależności i przedstawionego modelu błędu, wykonano eksperyment metodą Monte-Carlo, w którym sto tysięcy razy powtórzono proces wyznaczania wartości wielkości wyjściowych analizowanego toru pomiarowego. Każdorazowo z przedziału $<-2 \pi f_{1};2 \pi f_{1}>\unit{rad}$ losowano fazę początkową przetwarzanego sygnału $s(t)$, przy czym uzyskanie każdej z możliwych wartości było jednakowo prawdopodobne. Wartości uzyskanych wielkości wyjściowych porównywano z wartościami dla toru pomiarowego, w którym nie występowały żadne źródła błędów, a następnie zgodnie z równaniem~\eqref{eq:sym_partd_errvect} określano aktualną realizacje wektora błędów wielkości wyjściowych. Na podstawie uzyskanych realizacji sygnałów błędów sporządzano histogramy, które zgodnie z równaniami~\eqref{eq:unc_summation} oraz~\eqref{eq:unc_sum} pozwalały oszacować niepewność rozszerzoną i współczynnik rozszerzenia dla analizowanych wielkości wyjściowych.
+Parametry pozostałych wielkości wyjściowych wyznaczono analogicznie, jak miało to miejsce w przedstawionych przykładach. Dodatkowo, w celu weryfikacji zaproponowanych w pracy zależności i przedstawionego modelu błędu, wykonano eksperyment metodą Monte-Carlo, w którym sto tysięcy razy powtórzono proces wyznaczania wartości wielkości wyjściowych analizowanego toru pomiarowego. Każdorazowo z przedziału $\hat{t}_{0} \in~<-\frac{1}{f_{1}};\frac{1}{f_{1}}>\unit{s}$ losowano fazę początkową przetwarzanego sygnału $s(t+t_{0})$, przy czym uzyskanie każdej z możliwych wartości realizacji $\hat{t}_{0}$ było jednakowo prawdopodobne. Wartości uzyskanych wielkości wyjściowych porównywano z wartościami dla toru pomiarowego, w którym nie występowały żadne źródła błędów, a następnie zgodnie z równaniem~\eqref{eq:sym_partd_errvect} określano aktualną realizacje wektora błędów wielkości wyjściowych. Na podstawie uzyskanych wartości realizacji sygnałów błędów wyznaczano ich wariancję, niepewność rozszerzoną oraz współczynnik rozszerzenia, zgodnie z równaniami~\eqref{eq:unc_summation} oraz~\eqref{eq:unc_sum}.
 
-W tabeli~\ref{tab:sym_partd_params_unc_sum_a} zestawiono wyniki przeprowadzonego eksperymentu oraz wyniki uzyskane stosując zaproponowaną w pracy metodę analizy. Symbolem $\sigma_{ab}^{2}$ oznaczono wypadkową wartość wariancji sygnału błędu uzyskaną obliczeniowo, analogicznie do przykładów przedstawionych w równaniach~\eqref{eq:sym_partd_output_var_sum_S_2_0} oraz~\eqref{eq:sym_partd_output_var_sum_T_1_0}, natomiast symbolem $\sigma_{s}^{2}$ oznaczono wartość wariancji uzyskaną na drodze eksperymentu. Symbolem $U_{a}$ oznaczono wartość niepewności rozszerzonej wyznaczoną przy założeniu zbliżonego do normalnego kształtu rozkładu błędu wypadkowego analizowanej wielkości wyjściowej, która w przykładzie wyznaczana była w równaniach~\eqref{eq:sym_partd_output_unc_total_a_S_2_0} oraz~\eqref{eq:sym_partd_output_unc_total_a_T_1_0}. Symbolem $U_{b}$ oznaczono wartość niepewności rozszerzonej uzyskaną przy użyciu metody redukcyjnej arytmetyki interwałowej, stosowanej w równaniach~\eqref{eq:sym_partd_output_unc_total_b_S_2_0} oraz~\eqref{eq:sym_partd_output_unc_total_b_T_1_0}. Symbolem $U_{s}$ oznaczono wartość niepewności rozszerzonej uzyskaną na drodze eksperymentu. Symbole $c_{b}$ oraz $c_{s}$ oznaczają kolejno współczynnik rozszerzenia wyznaczony na podstawie równania~\eqref{eq:unc_sum} dla wielkości $U_{a}$ oraz ten uzyskany symulacyjnie dla wielkości $U_{s}$. Symbole $\delta_{a}$ oraz $\delta_{b}$ oznaczają błąd względny oszacowania wartości niepewności rozszerzonej w odniesieniu do wartości uzyskanej w eksperymencie, wyrażony w procentach. Dodatkowo na rysunkach~\ref{fig:symul_partd_hist_S_2_0} oraz~\ref{fig:symul_partc_hist_T_1_0} przedstawiono histogramy dla realizacji sygnałów błędów analizowanych w przykładzie wielkości wyjściowych, wraz z podziałem na kategorie błędów składowych. Błędy własne zaokrągleń zostały uwzględnione na rysunkach jako składowe błędów losowych. Rysunek~\ref{fig:symul_partd_hist_S_2_0} przedstawia wyniki symulacji dla wielkości wyjściowej $S_{2,0}$ i nawiązuje do wartości zestawionych w tabeli~\ref{tab:sym_partd_params_unc_sum_S_2_0}, natomiast rysunek~\ref{fig:symul_partc_hist_T_1_0} dotyczy wielkości wyjściowej $T_{1,0}$ i stanowi weryfikacje danych zawartych w tabeli~\ref{tab:sym_partd_params_unc_sum_T_1_0}.
+W tabeli~\ref{tab:sym_partd_params_unc_sum_a} zestawiono wyniki przeprowadzonego eksperymentu oraz wyniki uzyskane stosując zaproponowaną w pracy metodę analizy. Symbolem $\sigma_{ab}^{2}$ oznaczono wypadkową wartość wariancji sygnału błędu uzyskaną obliczeniowo, analogicznie do przykładów przedstawionych w równaniach~\eqref{eq:sym_partd_output_var_sum_S_2_0} oraz~\eqref{eq:sym_partd_output_var_sum_T_1_0}, natomiast symbolem $\sigma_{s}^{2}$ oznaczono wartość wariancji uzyskaną na drodze eksperymentu. Symbolem $U_{a}$ oznaczono wartość niepewności rozszerzonej wyznaczoną przy założeniu zbliżonego do normalnego kształtu rozkładu błędu wypadkowego analizowanej wielkości wyjściowej, która w przykładzie wyznaczana była w równaniach~\eqref{eq:sym_partd_output_unc_total_b_S_2_0} oraz~\eqref{eq:sym_partd_output_unc_total_a_T_1_0}. Symbolem $U_{b}$ oznaczono wartość niepewności rozszerzonej uzyskaną przy użyciu metody redukcyjnej arytmetyki interwałowej, stosowanej w równaniach~\eqref{eq:sym_partd_output_unc_total_a_S_2_0} oraz~\eqref{eq:sym_partd_output_unc_total_b_T_1_0}. Symbolem $U_{s}$ oznaczono wartość niepewności rozszerzonej uzyskaną na drodze eksperymentu. Symbole $c_{b}$ oraz $c_{s}$ oznaczają kolejno współczynnik rozszerzenia wyznaczony na podstawie równania~\eqref{eq:unc_sum} dla wielkości $U_{a}$ oraz ten uzyskany symulacyjnie dla wielkości $U_{s}$. Symbole $\delta_{a}$ oraz $\delta_{b}$ oznaczają błąd względny oszacowania wartości niepewności rozszerzonej w odniesieniu do wartości uzyskanej w eksperymencie, wyrażony w procentach i wyznaczany zgodnie z zależnością~\eqref{eq:unc_error}. Dodatkowo na rysunkach~\ref{fig:symul_partd_hist_S_2_0} oraz~\ref{fig:symul_partc_hist_T_1_0} przedstawiono histogramy dla realizacji sygnałów błędów analizowanych w przykładzie wielkości wyjściowych, wraz z podziałem na kategorie błędów składowych. Błędy własne zaokrągleń zostały uwzględnione na rysunkach jako składowe błędów losowych. Rysunek~\ref{fig:symul_partd_hist_S_2_0} przedstawia wyniki symulacji dla wielkości wyjściowej $S_{2,0}$ i nawiązuje do wartości zestawionych w tabeli~\ref{tab:sym_partd_params_unc_sum_S_2_0}, natomiast rysunek~\ref{fig:symul_partc_hist_T_1_0} dotyczy wielkości wyjściowej $T_{1,0}$ i stanowi weryfikacje danych zawartych w tabeli~\ref{tab:sym_partd_params_unc_sum_T_1_0}.
 
 \begin{table}[htb!]
 \begin{center}
@@ -1129,12 +1122,12 @@ $T_{1.3}$ & 522.10  & 522.10  & 44.79 & 43.64 & 43.17 & 1.91 & 1.89 & +3.75 & +1
 \end{center}
 \end{table}
 
-Analizując wyniki zestawione w tabeli~\ref{tab:sym_partd_params_unc_sum_a} zauważyć można, że wyniki uzyskane zgodnie z metodą opisaną równaniem~\eqref{eq:alg_outunc_mat} w bardzo niewielkim stopniu odbiegają od wyników uzyskanych symulacyjnie. Maksymalna równica pomiędzy wyznaczoną wartością niepewności rozszerzonej nie różni się w tym przypadku o więcej, niż $\pm 5\%$, co jest wynikiem akceptowalnym. Każdorazowo oszacowane omawianą metodą wartości są większe od uzyskanych symulacyjnie, co w przypadku szacowania niepewności jest sytuacją znacznie bardziej korzystną od sytuacji, gdyby wartości te byłyby zaniżone. Oszacowany współczynnik rozszerzenia jest we wszystkich przypadkach większy, od uzyskanego symulacyjnie. Oznacza to, że mimo prawidłowo oszacowanej wartości wariancji, oszacowana wartość niepewności rozszerzonej będzie większa od rzeczywistej. W przypadku metody przyjmującej założenie o zbliżonym do normalnego kształcie rozkładu błędu wypadkowego oszacowane wartości niepewności znacznie różnią się od tych uzyskanych symulacyjnie. Uproszczenie to można przyjąć tylko wtedy, gdy z całą stanowczością spełnione są warunki wynikające z centralnego twierdzenia granicznego. Na przykładzie wielkości wyjściowej $T_{1.0}$ można było zauważyć, że warunki te nie były do końca spełnione, natomiast w przypadku wielkości wyjściowej $S_{2.0}$ przyjęte założenia okazały się właściwe. Stosowanie przedstawionej dla wielkości $U_{a}$ metody znacznie ułatwia obliczenia, a dodatkowo można zauważyć mniejsze rozbieżności dla przypadków, w których omawiane warunki stosowania tej metody były właściwe. Niestety, w przypadku przyjęcia błędnych założeń, uzyskiwane wartości obarczone są błędem przewyższającym $\pm 5\%$ wartości prawdziwej, a co za tym idzie nie można ich uznać za prawidłowe.
+Analizując wartości zestawione w tabeli~\ref{tab:sym_partd_params_unc_sum_a} zauważyć można, że wyniki uzyskane zgodnie z metodą opisaną równaniem~\eqref{eq:unc_matrix} w bardzo niewielkim stopniu odbiegają od wyników uzyskanych symulacyjnie. Maksymalna równica pomiędzy wyznaczoną wartością niepewności rozszerzonej nie różni się w tym przypadku o więcej, niż $\pm 5\%$, co jest wynikiem akceptowalnym. W przypadku metody przyjmującej założenie o zbliżonym do normalnego kształcie rozkładu wypadkowego sygnału błędu, oszacowane wartości niepewności rozszerzonej znacznie różnią się od tych uzyskanych symulacyjnie. Uproszczenie to można przyjąć tylko wtedy, gdy z całą stanowczością spełnione są warunki wynikające z centralnego twierdzenia granicznego, które w analizowanych sytuacjach nie zawsze były spełniane. Na przykładzie wielkości wyjściowej $T_{1.0}$ można było zauważyć, że warunki te nie były spełnione, natomiast w przypadku wielkości wyjściowej $S_{2.0}$ przyjęte założenia okazały się właściwe. Stosowanie przedstawionej dla wielkości $U_{a}$ metody znacznie ułatwia obliczenia, a dodatkowo można zauważyć mniejsze rozbieżności dla przypadków, w których omawiane warunki stosowania tej metody były właściwe. Niestety, w przypadku przyjęcia błędnych założeń, uzyskiwane wartości obarczone są błędem przewyższającym $\pm 5\%$ wartości prawdziwej, a co za tym idzie nie można ich uznać za prawidłowe.
 
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/hist_part_S}
-\makecaption{fig:symul_partd_hist_S_2_0}{Histogramy błędu \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego, wielkości wyjściowej $S_{2,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego}
+\makecaption{fig:symul_partd_hist_S_2_0}{Histogramy błędu \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego, wielkości wyjściowej $S_{2,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego uzyskane metodą Monte-Carlo}
 \end{center}
 \end{figure}
 
@@ -1147,13 +1140,13 @@ Na podstawie histogramów przedstawionych na rysunkach~\ref{fig:symul_partd_hist
 \end{center}
 \end{figure}
 
-Wobec powyższych informacji wnioskować można, że przeprowadzony eksperyment wykazał poprawność zaproponowanej metody analizy oraz stworzonego na potrzeby pracy modelu błędu. Oszacowana przy użyciu proponowanej metody wartość wariancji dla analizowanych źródeł błędów oraz dla błędów wypadkowych każdorazowo okazywała się zbieżna z wartością uzyskaną metodą symulacyjną. Uzyskane wartości niepewności rozszerzonej, wyznaczane z użyciem redukcyjnej arytmetyki interwałowej, cechowały się rozbieżnością na poziomie mniejszym niż $<-5;5> \%$, a zatem również uznać można je za poprawne. Eksperyment wykazał możliwość stosowania uproszczenia obliczeń, które wynika bezpośrednio z warunków centralnego twierdzenia granicznego, natomiast stosowanie go dopuszczone jest tylko i wyłącznie w określonych warunkach. Stosowanie założeń centralnego twierdzenia granicznego w przypadkach o niewielkiej liczbie niezależnych źródeł błędów lub w przypadkach istnienia dominującego źródła błędu skutkować będzie przekraczającym $5\%$ błędem oszacowania niepewności rozszerzonej, co w wielu przypadkach może być uznawane za niedopuszczalne.
+Ostatecznie wnioskować można, że przeprowadzony eksperyment wykazał poprawność zaproponowanej metody analizy oraz stworzonego na potrzeby pracy modelu błędu. Oszacowana przy użyciu proponowanej metody wartość wariancji dla analizowanych sygnałów każdorazowo okazywała się zbieżna z wartością uzyskaną metodą symulacyjną. Uzyskane wartości niepewności rozszerzonej, wyznaczane z użyciem redukcyjnej arytmetyki interwałowej, cechowały się rozbieżnością na poziomie mniejszym niż wymagany w założeniach pracy. Eksperyment wykazał możliwość stosowania uproszczenia obliczeń, które wynika bezpośrednio z warunków centralnego twierdzenia granicznego, natomiast stosowanie go dopuszczalne jest tylko i wyłącznie w określonych warunkach, natomiast w nieuzasadnionych przypadkach skutkować ono będzie przekraczającym $\pm 5\%$ błędem oszacowania niepewności rozszerzonej.
 
-Zgodnie z założeniami przedstawionymi we wstępie podrozdziału, ostatnią czynnością weryfikującą symulacyjnie poprawność przedstawionych w pracy założeń będzie przeprowadzenie powyższej analizy wykorzystując budżet niepewności zestawiony w tabeli~\ref{tab:sym_partc_params_unc_list}. Jako, że wyznaczanie parametrów kolejnych składowych sygnałów błędów odbywać się będzie analogicznie, jak miało to miejsce w przykładach opisanych zależnościami od~\eqref{eq:sym_partd_output_var_stat_S_2_0} do~\eqref{eq:sym_partd_output_var_dyn_3_S_2_0} oraz od~\eqref{eq:sym_partd_output_unc_stat_S_2_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_S_2_0}, omawiane wyprowadzenia i obliczenia nie będą przedstawiane. W tabeli~\ref{tab:sym_partd_params_unc_list_S_2_0} zestawiono obliczone parametry wszystkich źródeł błędów wielkości wyjściowej $S_{2,0}$, natomiast parametry wielkości wyjściowej $T_{1,0}$ zestawiono w tabeli~\ref{tab:sym_partd_params_unc_list_T_1_0}.
+Identyczną analizę wykonano wykorzystując budżet niepewności zestawiony w tabeli~\ref{tab:sym_partc_params_unc_list}. Parametry kolejnych składowych sygnałów błędów wyznaczono analogicznie, jak miało to miejsce w przykładach opisanych zależnościami od~\eqref{eq:sym_partd_output_var_stat_S_2_0} do~\eqref{eq:sym_partd_output_var_dyn_3_S_2_0} oraz od~\eqref{eq:sym_partd_output_unc_stat_S_2_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_S_2_0}. W tabelach~\ref{tab:sym_partd_params_unc_list_S_2_0} oraz~\ref{tab:sym_partd_params_unc_list_T_1_0} zestawiono budżety niepewności dla analizowanych wielkości wyjściowych $S_{2,0}$ oraz $T_{1,0}$.
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:sym_partd_params_unc_list_S_2_0}{Budżet niepewności wielkości wyjściowej $S_{2,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego, gdzie (a) oznacza przetwornik pomiarowy, (b) oznacza wzmacniacz pomiarowy oraz (c) oznacza przetwornik analogowo-cyfrowy}
+\makecaption{tab:sym_partd_params_unc_list_S_2_0}{Budżet niepewności wielkości wyjściowej $S_{2,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego obejmujący wszystkie źródła błędów}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U_{95\%}$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
 1  & ${rw,z}$     & 2.13  &   0.97  & zaokrągleń                   & operacje zmiennoprzecinkowe                \\ \hline
@@ -1174,7 +1167,7 @@ Zgodnie z założeniami przedstawionymi we wstępie podrozdziału, ostatnią czy
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:sym_partd_params_unc_list_T_1_0}{Budżet niepewności wielkości wyjściowej $T_{1,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego, gdzie (a) oznacza przetwornik pomiarowy, (b) oznacza wzmacniacz pomiarowy oraz (c) oznacza przetwornik analogowo-cyfrowy}
+\makecaption{tab:sym_partd_params_unc_list_T_1_0}{Budżet niepewności wielkości wyjściowej $T_{1,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego obejmujący wszystkie źródła błędów}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U_{95\%}$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
 1  & ${rw,z}$     & 1.81  &  0.70   & zaokrągleń                   & operacje zmiennoprzecinkowe                \\ \hline
@@ -1193,11 +1186,12 @@ Zgodnie z założeniami przedstawionymi we wstępie podrozdziału, ostatnią czy
 \end{center}
 \end{table}
 
-Jako, że analiza kolejnych fragmentów toru pomiarowego wykazała korelacje pomiędzy wybranymi sygnałami błędów, wyznaczenie wariancji wypadkowych sygnałów błędów przeprowadzane będzie zgodnie z zależnością~\eqref{eq:alg_outvar_mat}. W dalszej części rozważań przyjmuje się, że symbolem $\bsigma_{*}$ oznaczono wektory złożone z kolejnych odchyleń standardowych sygnałów błędów wielkości wyjściowych algorytmu, przy czym \enquote{$*$} oznacza symbol analizowanej wielkości wyjściowej. Z uwagi na fakt, że analizowany algorytm nie wpływa na istniejące korelacje przetwarzanych sygnałów błędu, macierz korelacji oznaczona symbolem $\mathbf{r}_{d}$ będzie jednakowa dla wszystkich wielkości wyjściowych tego algorytmu i składać się będzie z dwunastu wierszy i kolumn. Zgodnie z równaniem~\eqref{eq:alg_outvar_mat} wartość wariancji wypadkowego sygnału błędu błędu dla wybranej wielkości wyjściowej opisać można w rozważanym przypadku jako:
+Ze względu na korelacje wybranych sygnałów błędów wielkości wejściowych rozważanego algorytmu, wyznaczenie wypadkowych wartości wariancji sygnałów błędów dla kolejnych wielkości wyjściowych przeprowadzane jest zgodnie z zależnością~\eqref{eq:var_matrix}. W dalszej części rozważań przyjęto, że symbol $\bsigma_{*}$ oznacza wektor złożony z odchyleń standardowych sygnałów błędów składowych wielkości wyjściowej algorytmu, przy czym \enquote{$*$} oznacza symbol analizowanej wielkości wyjściowej. Macierz korelacji oznaczona symbolem $\mathbf{r}_{d}$ jest jednakowa dla wszystkich wielkości wyjściowych tego algorytmu i składa się z dwunastu wierszy i kolumn, co wynika z liczby analizowanych sygnałów błędów. Przyjmuje się, że kolejne wielkości zawarte w wektorze $\bsigma_{*}$ oraz kolejne elementy macierzy $\mathbf{r}_{d}$ są związane z sygnałami błędów zestawionymi w tabelach~\ref{tab:sym_partd_params_unc_list_S_2_0} oraz~\ref{tab:sym_partd_params_unc_list_T_1_0}, a dodatkowo kolejność wyrazów omawianych wielkości jest zgodna z tą daną w tabelach. Wobec powyższych, równanie~\eqref{eq:var_matrix} przyjmuje postać:
 \begin{equation}
 \sigma_{*,\Sigma}^{2} = \bsigma_{*}^{T} \cdot \mathbf{r}_{d} \cdot \bsigma_{*} \label{eq:sym_partd_output_varmat_list}.
 \end{equation}
-Na podstawie równania~\eqref{eq:sym_partb_stat_corr} korelacja pomiędzy błędami statycznymi wzmacniacza i przetwornika pomiarowego wyniesie $1$, zatem $r_{d,sp,1,2} = 1$. Dodatkowo współczynniki korelacji kolejnych harmonicznych błędu dynamicznego o tej samej częstotliwości są w przybliżeniu równe jedności, a zatem $r_{d,dp,a,b,n} = 1$ dla $n \in \{ 1, 2, 3 \}$. Wobec powyższych macierz korelacji $\mathbf{r}_{d}$ przyjmuje postać:
+
+Uwzględniając pełną dodatnią korelacje pary sygnałów błędów statycznych wzmacniacza i przetwornika pomiarowego przyjmuje się, że $r_{d,sp,1,2} = 1$. Dodatkowo, na podstawie danych zawartych w tabelach~\ref{tab:sym_partb_params_dyn_self} oraz~\ref{tab:sym_partb_params_dyn_prop}, współczynniki korelacji kolejnych harmonicznych sygnału błędu dynamicznego o jednakowej częstotliwości są zbliżone do jedności, co wynika z równania~\eqref{eq:dyn_corr}, a zatem $r_{d,dp,a,b,n} = 1$ dla $n \in \{ 1, 2, 3 \}$. Wobec powyższych, kolejne elementy macierzy korelacji $\mathbf{r}_{d}$ przyjmują wartości:
 \begin{equation}
 \mathbf{r}_{d} =
 \begin{bmatrix}
@@ -1224,7 +1218,7 @@ Zgodnie z zależnościami~\eqref{eq:sym_partd_output_varmat_list} oraz~\eqref{eq
 \end{gather}
 Można zauważyć, że wyznaczone w ten sposób wartości są identyczne, jak te wyznaczone wcześniej w równaniach~\eqref{eq:sym_partd_output_var_sum_S_2_0} oraz~\eqref{eq:sym_partd_output_var_sum_T_1_0}.
 
-Oszacowanie wypadkowej wartości niepewności rozszerzonej kolejnych wielkości wyjściowych odbywać się będzie z wykorzystaniem równania~\eqref{eq:alg_outunc_mat}, przy czym w celu dodatkowej weryfikacji wpływu korekty wartości współczynników koherencji, zaproponowanej w pracy i danej równaniem~\eqref{eq:unc_cohercorra}, obliczenia zostaną wykonane zarówno uwzględniając jak i pomijając tą korektę. Z uwagi na występowanie korelacji pomiędzy analizowanymi sygnałami błędów bezpośrednie zastosowanie metody opisanej równaniem~\eqref{eq:unc_matrix} dla współczynników koherencji wyznaczanych zgodnie z równaniem~\eqref{eq:unc_coher} nie jest możliwe. Proponuje się zatem wyprowadzenie zależności opisujących wypadkowe parametry niepewności rozszerzonej dla grup wzajemnie skorelowanych sygnałów, a następnie zastosowanie tych wartości w równaniu~\eqref{eq:unc_matrix} gdzie nie wystąpią korelacje.
+Występowanie korelacji pomiędzy analizowanymi sygnałami błędów powoduje, że bezpośrednie zastosowanie metody opisanej równaniem~\eqref{eq:unc_matrix} dla współczynników koherencji wyznaczanych zgodnie z równaniem~\eqref{eq:unc_coher} nie jest możliwe. Aby umożliwić zastosowanie omawianej metody, proponuje się wyprowadzenie zależności opisujących wypadkowe parametry niepewności rozszerzonej dla grup skorelowanych sygnałów.
 
 Dla sygnałów błędów statycznych wzmacniacza i przetwornika pomiarowego zapisać można następującą zależność, która określa wypadkową wartość niepewności rozszerzonej analizowanej pary sygnałów:
 \begin{equation}
@@ -1241,7 +1235,7 @@ U_{*,sp,1} \\ U_{*,sp,2}
 \end{bmatrix}}
 \label{eq:sym_partd_output_static_corrunc},
 \end{equation}
-przy czym w przypadku pełnej dodatniej korelacji (tj. dla $r_{d,sp,1,2} = 1$) wartość współczynnika koherencji $h_{d,sp,1,2}$ jest równa $1$. Podobną zależność opisać można dla kolejnych par skorelowanych sygnałów błędów dynamicznych:
+przy czym w przypadku pełnej dodatniej korelacji tych sygnałów, tj. dla $r_{d,sp,1,2} = 1$, zachodzi $h_{d,sp,1,2} = 1$. Podobną zależność opisać można dla kolejnych par skorelowanych sygnałów błędów dynamicznych:
 \begin{equation}
 U_{*,dp,n} = \sqrt{
 \begin{bmatrix}
@@ -1256,7 +1250,7 @@ U_{*,dp,a,n} \\ U_{*,dp,b,n}
 \end{bmatrix}}
 \label{eq:sym_partd_output_dynamic_corrunc},
 \end{equation}
-gdzie ze względu na pełną dodatnią korelację zachodzi $h_{d,dp,x,1,2} = 1$. W analizowanych przypadkach, opisanych równaniami~\eqref{eq:sym_partd_output_static_corrunc} oraz~\eqref{eq:sym_partd_output_dynamic_corrunc}, zauważyć można, że wypadkowe sygnały błędów cechować się będą identycznymi kształtami rozkładu, jak ich składowe. Sytuacja ta sprzyja stosowaniu w dalszej części rozważań zależności~\eqref{eq:unc_coher}, jako że istnieje możliwość wykorzystania współczynników kształtu, których wartości dla typowych par rozkładów przedstawiono wcześniej w tabeli~\ref{tab:unc_shapefac}.
+gdzie ze względu na pełną dodatnią korelację zachodzi $h_{d,dp,x,1,2} = 1$. W analizowanych przypadkach, opisanych równaniami~\eqref{eq:sym_partd_output_static_corrunc} oraz~\eqref{eq:sym_partd_output_dynamic_corrunc}, zauważyć można, że wypadkowe sygnały błędów cechować się będą identycznymi kształtami rozkładu, jak ich składowe.
 
 Wobec powyższych, wektor niepewności rozszerzonych kolejnych sygnałów błędów dla wielkości wyjściowych analizowanego toru pomiarowego przedstawić można jako:
 \begin{equation}
@@ -1266,7 +1260,7 @@ U_{*,rw,z} & U_{*,rp,q} & U_{*,rp,1} & U_{*,rp,2} & U_{*,sp} & U_{*,dp,1} & U_{*
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_sumuvect},
 \end{equation}
-natomiast macierze koherencji kolejnych wielkości wyjściowych, których wartości wyznaczane są zgodnie z równaniem~\eqref{eq:unc_coher}, opisać można w postaci:
+natomiast macierz koherencji, której wartości wyznaczane są zgodnie z równaniem~\eqref{eq:unc_coher}, opisać można dla kolejnych wielkości wyjściowych w postaci:
 \begin{equation}
 \mathbf{h}_{*} =
 \begin{bmatrix}
@@ -1281,9 +1275,9 @@ h_{*,7,0} & h_{*,7,1} & h_{*,7,2} & h_{*,7,3} & h_{*,7,4} & h_{*,7,5} & h_{*,7,6
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_cohermat},
 \end{equation}
-przy czym kolejne indeksy przy współczynnikach macierzy odpowiadają oznaczeniom przyjętym w wektorze niepewności rozszerzonych opisanym równaniem~\eqref{eq:sym_partd_output_unc_sumuvect}, gdzie przykładowo $h_{*,0,1} = h_{*,rw,z,rp,q}$. Wartość wypadkowej niepewności rozszerzonej może być w analizowanym przypadku oszacowana zgodnie z równaniem~\eqref{eq:alg_outunc_mat} jako:
+przy czym kolejność elementów przedstawionej macierzy odpowiada kolejności elementów w wektorze niepewności rozszerzonych, opisanym równaniem~\eqref{eq:sym_partd_output_unc_sumuvect}, gdzie przykładowo $h_{*,0,1} = h_{*,rw,z,rp,q}$. Ostatecznie, wartość wypadkowej niepewności rozszerzonej może być oszacowana zgodnie z równaniem~\eqref{eq:unc_matrix}:
 \begin{equation}
-U_{*} = \sqrt{\mathbf{U}_{*} \cdot \mathbf{h}_{*} \cdot \mathbf{U}_{*}^{T}} \label{eq:sym_partd_output_unc_totalmat},
+U_{*} = \sqrt{\mathbf{U}_{*} \cdot \mathbf{h}_{*} \cdot \mathbf{U}_{*}^{T}} \label{eq:sym_partd_output_unc_totalmat}.
 \end{equation}
 
 Podstawiając do równania~\eqref{eq:sym_partd_output_static_corrunc} wartości z tabel~\ref{tab:sym_partd_params_unc_list_S_2_0} oraz~\ref{tab:sym_partd_params_unc_list_T_1_0} otrzymuje się wypadkowe wartości niepewności rozszerzonej dla sygnałów wypadkowych skorelowanych błędów statycznych wielkości $S_{2,0}$ oraz $T_{1,0}$ w postaci:
@@ -1388,7 +1382,7 @@ U_{T_{1,0},dp,a,1} \\ U_{T_{1,0},dp,b,1}
 \end{split}
 \label{eq:sym_partd_output_dynamic_corrunc_T_1_0}.
 \end{gather}
-Parametry pozostałych harmonicznych sygnałów błędów dynamicznych wyznaczane są w analogiczny sposób, zatem obliczenia z nimi związane nie będą przedstawiane. Po podstawieniu uzyskanych wyników do równania~\eqref{eq:sym_partd_output_unc_sumuvect} otrzymuje się wektory składowych niepewności rozszerzonych dla analizowanych wielkości wyjściowych:
+Parametry pozostałych harmonicznych sygnałów błędów dynamicznych wyznaczono w analogiczny sposób, zatem obliczenia z nimi związane nie zastały przedstawione. Po podstawieniu uzyskanych wyników do równania~\eqref{eq:sym_partd_output_unc_sumuvect} otrzymuje się wektory składowych niepewności rozszerzonych dla analizowanych wielkości wyjściowych:
 \begin{gather}
 \mathbf{U}_{S_{2,0}} =
 \begin{bmatrix}
@@ -1401,7 +1395,7 @@ Parametry pozostałych harmonicznych sygnałów błędów dynamicznych wyznaczan
 \end{bmatrix} \cdot \num{e-3}
 \label{eq:sym_partd_output_unc_sumuvect_T_1_0_b},
 \end{gather}
-przy czym macierze koherencji dla analizowanych wielkości wyjściowych przyjmują wartości zgodnie z równaniem~\eqref{eq:unc_coher}, a zatem:
+przy czym kolejne wyrazy macierzy koherencji dla analizowanych wielkości wyjściowych wyznaczane są zgodnie z równaniem~\eqref{eq:unc_coher}, a zatem przyjmują wartości:
 \begin{gather}
 \mathbf{h}_{S_{2,0}} =
 \begin{bmatrix}
@@ -1433,9 +1427,10 @@ Po podstawieniu powyższych wartości do równania~\eqref{eq:sym_partd_output_un
 U_{S_{2,0}} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{74.10}{mV} \label{eq:sym_partd_output_unc_totalmat_S_2_0}, \\
 U_{T_{1,0}} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} = \qty{43.37}{mV} \label{eq:sym_partd_output_unc_totalmat_T_1_0}.
 \end{gather}
-Dla macierzy koherencji, których wartości wyznaczone zostały bez uwzględnienia korekty zaproponowanej w równaniu~\eqref{eq:unc_cohercorra}, tj. kiedy w równaniu~\eqref{eq:unc_coher} przyjmuje się $p_{i,j} = 1$ dla dowolnej pary $i$ oraz $j$, otrzymuje się $U_{S_{2,0}} = \qty{77.32}{mV}$ oraz $U_{T_{1,0}} = \qty{46.09}{mV}$.
 
-tabeli~\ref{tab:sym_partd_params_unc_sum_b} zestawiono wyniki dla pozostałych wielkości wyjściowych oraz ich porównanie z tymi uzyskanymi w poprzednim eksperymencie. Symbolem $a$ oznaczono wartości uzyskane przy założeniu normalnego rozkładu sygnału błędu wypadkowego, symbolem $b$ oznaczono wartości uzyskane z wykorzystaniem budżetu niepewności opisanego w tabeli~\ref{tab:sym_partc_params_unc_sum}. Wartości oznaczone symbolem $c$ dotyczą analizy z wykorzystaniem budżetu niepewności opisanego w tabeli~\ref{tab:sym_partc_params_unc_list}, przy czym wielkości oznaczone symbolem $d$ wyznaczono identycznie, jak dla $c$, z tą różnicą że nie stosowano korekty opisanej równaniem~\eqref{eq:unc_cohercorra} w procesie wyznaczania wartości współczynników koherencji. Podobnie, jak w zestawieniu zawartym w tabeli~\ref{tab:sym_partd_params_unc_sum_a}, wielkości oznaczone symbolem $s$ dotyczą przeprowadzonego eksperymentu metodą Monte-Carlo, natomiast symbolem $\delta_{*}$ oznaczono błąd względny oszacowania wartości niepewności rozszerzonej metodą $a$, $b$, $c$ oraz $d$ w odniesieniu do wartości $U_{s}$, wyrażony w procentach.
+Przedstawione w równaniach~\eqref{eq:sym_partd_output_unc_totalmat_S_2_0} oraz~\eqref{eq:sym_partd_output_unc_totalmat_T_1_0} obliczenia wykonano ponownie, dla macierzy koherencji których wartości wyznaczone zostały bez uwzględnienia korekty zaproponowanej w równaniu~\eqref{eq:unc_cohercorra}, tj. kiedy w równaniu~\eqref{eq:unc_coher} przyjmuje się $p_{i,j} = 1$ dla dowolnej pary $i$ oraz $j$. Otrzymane wartości wyniosły kolejno $U_{S_{2,0}} = \qty{77.32}{mV}$ oraz $U_{T_{1,0}} = \qty{46.09}{mV}$. Podobne obliczenia wykonano dla pozostałych wielkości wyjściowych.
+
+W tabeli~\ref{tab:sym_partd_params_unc_sum_b} zestawiono wyniki obliczeń dla pozostałych wielkości wyjściowych oraz te uzyskane w poprzednim eksperymencie, w celu umożliwienia ich porównania. Symbolem $a$ oznaczono wartości uzyskane przy założeniu normalnego rozkładu sygnału błędu wypadkowego, symbolem $b$ oznaczono wartości uzyskane z wykorzystaniem budżetu niepewności opisanego w tabeli~\ref{tab:sym_partc_params_unc_sum}. Wartości oznaczone symbolem $c$ dotyczą analizy z wykorzystaniem budżetu niepewności opisanego w tabeli~\ref{tab:sym_partc_params_unc_list}, przy czym wielkości oznaczone symbolem $d$ wyznaczono identycznie, jak dla $c$, z tą różnicą że nie stosowano korekty opisanej równaniem~\eqref{eq:unc_cohercorra} w procesie wyznaczania wartości współczynników koherencji. Podobnie, jak w zestawieniu zawartym w tabeli~\ref{tab:sym_partd_params_unc_sum_a}, wielkości oznaczone symbolem $s$ dotyczą przeprowadzonego eksperymentu metodą Monte-Carlo, natomiast symbolem $\delta_{*}$ oznaczono błąd względny oszacowania wartości niepewności rozszerzonej metodą $a$, $b$, $c$ oraz $d$ w odniesieniu do wartości $U_{s}$, wyrażony w procentach, wyznaczany zgodnie z zależnością~\eqref{eq:unc_error}.
 
 \begin{table}[htb!]
 \begin{center}
@@ -1459,12 +1454,14 @@ Analizując wyniki przedstawione w tabeli~\ref{tab:sym_partd_params_unc_sum_b} z
 
 \section{Podsumowanie przeprowadzonego eksperymentu}
 
-Przedstawione w bieżącym rozdziale rozważania i przeprowadzone eksperymenty potwierdzają poprawność proponowanego w pracy modelu błędu oraz skuteczność stosowanej metody redukcyjnej arytmetyki interwałowej. Oszacowane zgodnie z równaniem~\eqref{eq:unc_matrix} wartości wypadkowej niepewności rozszerzonej dla współczynników koherencji szacowanych zgodnie z zależnością~\eqref{eq:unc_coher} każdorazowo okazywały się zbieżne z wynikami uzyskiwanymi dla przeprowadzonych metodą Monte-Carlo eksperymentów.
+Przedstawione w bieżącym rozdziale rozważania i przeprowadzone eksperymenty potwierdzają poprawność proponowanego w pracy modelu błędu oraz skuteczność stosowanej metody redukcyjnej arytmetyki interwałowej. Oszacowane zgodnie z równaniem~\eqref{eq:unc_matrix} wartości wypadkowej niepewności rozszerzonej dla współczynników koherencji szacowanych zgodnie z zależnością~\eqref{eq:unc_coher} każdorazowo okazywały się zbieżne z wynikami uzyskiwanymi dla przeprowadzonych metodą Monte-Carlo eksperymentów. Wartości niepewności oszacowane stosując zaproponowaną w pracy korektę wartości współczynników koherencji daną równaniem~\eqref{eq:unc_cohercorra} były bliższe uzyskanym eksperymentalnie, natomiast w praktyce pomiarowej korekta ta nie jest wymagana, jeżeli dopuszcza się przekraczający $5\%$ błąd oszacowania wartości wypadkowej niepewności rozszerzonej. Należy również brać pod uwagę, że oszacowane w proponowany sposób wartości niepewności rozszerzonej mogą być w pewnych przypadkach nieco niższe, niż wartości prawdziwe. Różnice te nie przekraczają jednak $-3\%$ wartości prawdziwej, co wykazano w eksperymencie, którego wyniki przedstawiono wcześniej na rysunku~\ref{fig:hist_reductive} oraz w przedstawionych dotychczas rozważaniach.
 
-Wartości niepewności oszacowane stosując zaproponowaną w pracy korektę wartości współczynników koherencji daną równaniem~\eqref{eq:unc_cohercorra} były bliższe uzyskanym eksperymentalnie, natomiast w praktyce pomiarowej korekta ta nie jest wymagana, jeżeli dopuszcza się przekraczający $5\%$ błąd oszacowania wartości wypadkowej niepewności rozszerzonej. Należy również brać pod uwagę, że oszacowane w proponowany sposób wartości niepewności rozszerzonej mogą być w pewnych przypadkach nieco niższe, niż wartości prawdziwe. Różnice te nie przekraczają jednak $-3\%$ wartości prawdziwej, co wykazano w eksperymencie, którego wyniki przedstawiono wcześniej na rysunku~\ref{fig:hist_reductive} oraz w przedstawionych dotychczas rozważaniach.
+W przypadku, gdy analizowane sygnały błędów składowych cechować się będą nietypowym rozkładem, stosowanie omawianej w pracy metody wymagać będzie wyznaczenia wartości współczynników kształtu dla wszystkich analizowanych typów rozkładów. Jest to jedyna czynność, której przeprowadzenie nie będzie mogło zwykle odbywać się w czasie pracy systemu pomiarowego i będzie musiała zostać przeprowadzona na etapie identyfikacji jego właściwości. Podobny problem napotkać można w przypadku wystąpienia korelacji pomiędzy analizowanymi sygnałami błędów składowych -- należy wtedy postąpić identycznie, jak pokazano w przykładzie lub zastosować inną metodę wyznaczania wartości elementów macierzy koherencji, jak chociażby pokazano w pracy~\cite{jakubiec_reductive}.
 
-Stosowanie uproszczenia, gdzie zakłada się normalny rozkład błędu wypadkowego, pozwala znacznie uprościć proces wyznaczania wypadkowej wartości niepewności rozszerzonej i zastąpić konieczność stosowania zależności~\eqref{eq:unc_matrix} oraz~\eqref{eq:unc_coher} wyznaczeniem wariancji wypadkowego sygnału błędu, natomiast jego stosowanie wymaga posiadania pewności odnoście spełnienia warunków centralnego twierdzenia granicznego. Jak wykazały przeprowadzone eksperymenty, nawet dla kilkunastu źródeł błędów, gdzie większość z nich nie jest wzajemnie skorelowana, założenie to może okazać się niespełnione, co skutkuje znaczną rozbieżnością pomiędzy oszacowaną, a prawdziwą wartością niepewności rozszerzonej na poziomie zbliżonym do $10\%$.
+Przedstawiona w równaniach od~\eqref{eq:sym_partd_output_static_corrunc} do~\eqref{eq:sym_partd_output_unc_totalmat} analiza umożliwiła wykorzystanie zaproponowanej metody szacowania wartości współczynników koherencji, opisanej równaniem~\eqref{eq:unc_coher} mimo, że metoda ta nie jest odpowiednia dla analizy skorelowanych sygnałów. Możliwość zastosowania opisanego algorytmu wynika z faktu, że wypadkowe sygnały dla skorelowanych grup sygnałów cechują się typowym kształtem rozkładu, dla którego wyznaczono wcześniej wartości współczynników kształtu. W innych okolicznościach należałoby wyznaczyć odpowiednie dla analizowanych parametrów sygnałów wartości współczynników koherencji.
 
 Jako, że żaden z etapów szacowania wypadkowej wartości niepewności rozszerzonej zgodnie z zaproponowaną metodą nie wymaga przeprowadzania dodatkowych symulacji metodą Monte-Carlo, a wykonywane obliczenia sprowadzają się do prostych operacji arytmetycznych, przedstawiona metoda może zostać zaimplementowana w torze pomiarowym w celu bieżącej oceny jego właściwości metrologicznych. W przypadku zmiany parametrów sygnałów błędów obecnych w analizowanym torze pomiarowym wymagane jest jedynie ponowne wyznaczenie wartości macierzy koherencji i wskazanie parametrów istniejących sygnałów błędów. Istotnymi parametrami analizowanych sygnałów błędów jest w tym przypadku wartość niepewności rozszerzonej dla wybranego, identycznego dla wszystkich wielkości poziomu ufności oraz rodzaj rozkładu analizowanego sygnału.
 
-W przypadku, gdy analizowane sygnały błędów składowych cechować się będą nietypowym rozkładem, stosowanie omawianej w pracy metody wymagać będzie wyznaczenia wartości współczynników kształtu dla wszystkich analizowanych typów rozkładów. Jest to jedyna czynność, której przeprowadzenie nie będzie mogło zwykle odbywać się w czasie pracy systemu pomiarowego i będzie musiała zostać przeprowadzona na etapie identyfikacji jego właściwości. Podobny problem napotkać można w przypadku wystąpienia korelacji pomiędzy analizowanymi sygnałami błędów składowych -- należy wtedy postąpić identycznie, jak pokazano w przykładzie lub zastosować inną metodę wyznaczania wartości elementów macierzy koherencji, jak chociażby pokazano w pracy~\cite{jakubiec_reductive}.
+Stosowanie uproszczenia, gdzie zakłada się normalny rozkład błędu wypadkowego, pozwala znacznie uprościć proces wyznaczania wypadkowej wartości niepewności rozszerzonej i zastąpić konieczność stosowania zależności~\eqref{eq:unc_matrix} oraz~\eqref{eq:unc_coher} wyznaczeniem wariancji wypadkowego sygnału błędu, natomiast jego stosowanie wymaga posiadania pewności odnoście spełnienia warunków centralnego twierdzenia granicznego. Jak wykazały przeprowadzone eksperymenty, nawet dla kilkunastu źródeł błędów, gdzie większość z nich nie jest wzajemnie skorelowana, założenie to może okazać się niespełnione, co skutkuje znaczną rozbieżnością pomiędzy oszacowaną, a prawdziwą wartością niepewności rozszerzonej na poziomie zbliżonym do $10\%$.
+
+Mimo, że wprowadzenie do proponowanego modelu błędu funkcji przetwarzania obiektu może być zastąpione wprowadzeniem statycznego wzmocnienia w równaniu transmitancji obiektu, obecność tej funkcji umożliwia bardziej spójną w logiczną analizę rzeczywistych obiektów. Nawet, jeśli rzeczywista postać funkcji przetwarzania nie jest znana, to wprowadzany przez nią sygnał błędu można opisać odpowiednią zależnością lub wskazać jego parametry, jak pokazano w omówionym przykładzie. Przeprowadzone badania wykazały, że w przypadku nieznanej rzeczywistej funkcji przetwarzania obiektu do oszacowania wpływu tej funkcji na postać sygnałów na wyjściu obiektu, wykorzystać można idealne równanie funkcji przetwarzania. Omawiana okoliczność jest bardzo cenna w przypadku nieliniowości charakterystyki obiektu lub analizy przetwornika analogowo-cyfrowego.

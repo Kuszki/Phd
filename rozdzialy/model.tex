@@ -408,9 +408,9 @@ przy czym symbolem $T$ oznaczono operację transpozycji macierzy, natomiast wart
 \begin{equation}
 r_{i,j} = \frac{\sigma_{i,j}^{2} - \sigma_{i}^{2} - \sigma_{j}^{2}}{2 \sigma_{i} \sigma_{j}} \label{eq:var_corr},
 \end{equation}
-gdzie $\sigma_{i,j}^{2}$ jest wariancją sygnału błędu wypadkowego dla sumy sygnałów błędów $i$-tego i $j$-tego. W szczególnym przypadku, gdy sumowane sygnały nie są ze sobą skorelowane (tj. $r_{i,j} = 0$ dla $i \ne j$), zależność~\eqref{eq:var_matrix} przyjmuje postać sumy kolejnych wartości wariancji składanych sygnałów błędów daną w postaci:
+gdzie $\sigma_{i,j}^{2}$ jest wariancją sygnału błędu wypadkowego dla sumy sygnałów błędów $i$-tego i $j$-tego. W szczególnym przypadku, gdy sumowane sygnały nie są ze sobą skorelowane (tj. $r_{i,j} = 0$ dla $i \ne j$), zależność~\eqref{eq:var_matrix} przyjmuje postać sumy kolejnych wartości wariancji analizowanych sygnałów błędów, daną w postaci:
 \begin{equation}
-\sigma_{\Sigma}^{2} = \sum _{i = 0} ^{N-1} \sigma_{0}^{2} \label{eq:var_sum}.
+\sigma_{\Sigma}^{2} = \sum _{i = 0} ^{N-1} \sigma_{i}^{2} \label{eq:var_sum}.
 \end{equation}
 Należy zaznaczyć, że zależności przedstawione w równaniach od~\eqref{eq:var_matrix} do~\eqref{eq:var_sum} mogą być stosowane niezależnie od tego, czy analizowane sygnały są opisane deterministycznie.
 
@@ -573,7 +573,7 @@ Ze względu na dużą zmienność parametrów sumowanych sygnałów zaproponowan
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:comp_reductive}{Zestawienie wartości niepewności względnego błędu szacowania wypadkowej wartości niepewności rozszerzonej w zależności od stosowania zaproponowanej w pracy korekty współczynnika kształtu}
+\makecaption{tab:comp_reductive}{Zestawienie wartości niepewności względnego błędu szacowania wypadkowej wartości niepewności rozszerzonej w zależności od stosowania zaproponowanej w pracy korekty współczynnika kształtu uzyskane metodą Monte-Carlo}
 \begin{tabular}[c]{| c | S[table-format = +1.2] | S[table-format = +1.2] | S[table-format = +1.2] | S[table-format = +1.2] | S[table-format = +1.2] | S[table-format = +1.2] | S[table-format = +1.2] | S[table-format = +1.2] |} \hline
 \textbf{$U_{i}$} & \multicolumn{2}{c|}{\textbf{a) $<1;3>$}} & \multicolumn{2}{c|}{\textbf{b) $<1;6>$}} & \multicolumn{2}{c|}{\textbf{c) $<1;10>$}} & \multicolumn{2}{c|}{\textbf{d) $<1;20>$}} \\ \hline
 \textbf{$\delta_{U}$} & \textbf{$U_{-}$} & \textbf{$U_{+}$} & \textbf{$U_{-}$} & \textbf{$U_{+}$} & \textbf{$U_{-}$} & \textbf{$U_{+}$} & \textbf{$U_{-}$} & \textbf{$U_{+}$} \\ \hline
