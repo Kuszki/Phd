@@ -1,4 +1,4 @@
-function [y, av, fv] = gen_sawfun(x, w, a, dc, n = 25)
+function [y, av, fv] = gen_sawfun(x, w, a, dc = 0, n = 25)
 
 	y = zeros(1, length(x)) + dc;
 	m = (8/(pi^2));

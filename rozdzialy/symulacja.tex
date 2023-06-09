@@ -25,9 +25,9 @@ przy czym $f_{1} = \qty{1}{kHz}$ jest częstotliwością podstawowej harmoniczne
 \makecaption{tab:sym_in_params_ideal}{Parametry kolejnych harmonicznych przetwarzanego sygnału przyjęte w przeprowadzanym eksperymencie symulacyjnym dla sytuacji idealnej}
 \begin{tabular}[c]{| c | c | c | c |} \hline
 \textbf{Lp. $i$} & \textbf{Pulsacja $\omega_{s,i}$, rad/s} & \textbf{Amplituda $E_{s,o}(\omega_{s,i})$} & \textbf{Faza $\varphi_{s,o}(\omega_{s,i})$, rad} \\ \hline
-1 & $1000  \cdot 2\pi$ &  0.6 & $0$             \\ \hline
-2 & $5000  \cdot 2\pi$ &  0.3 & $\pi/8 + \pi/2$ \\ \hline
-3 & $15000 \cdot 2\pi$ &  0.1 & $\pi/6$         \\ \hline
+1 & $1000  \cdot 2\pi$ &  0.6 & $0$           \\ \hline
+2 & $5000  \cdot 2\pi$ &  0.3 & $\pi/8 + \pi$ \\ \hline
+3 & $15000 \cdot 2\pi$ &  0.1 & $\pi/6$       \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -91,9 +91,9 @@ przy czym $\omega_{a,i} = \omega_{s,i}$ jest pulsacją $i$-tej harmonicznej sygn
 \makecaption{tab:sym_outa_params_ideal}{Parametry kolejnych harmonicznych sygnału $y_{a}(t)$ przyjęte w przeprowadzanym eksperymencie symulacyjnym dla sytuacji idealnej}
 \begin{tabular}[c]{| c | c | c | c |} \hline
 \textbf{Lp. $i$} & \textbf{Pulsacja $\omega_{a,i}$, rad/s} & \textbf{Amplituda $E_{a,o}(\omega_{a,i})$, V} & \textbf{Faza $\varphi_{a,o}(\omega_{a,i})$, rad} \\ \hline
-1 & $1000  \cdot 2\pi$ &  0.6 & $0$               \\ \hline
-2 & $5000  \cdot 2\pi$ &  0.3 & $\pi/8 + \pi/2$   \\ \hline
-3 & $15000 \cdot 2\pi$ &  0.1 & $\pi/6$           \\ \hline
+1 & $1000  \cdot 2\pi$ &  0.6 & $0$             \\ \hline
+2 & $5000  \cdot 2\pi$ &  0.3 & $\pi/8 + \pi$   \\ \hline
+3 & $15000 \cdot 2\pi$ &  0.1 & $\pi/6$         \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -107,7 +107,7 @@ e_{a,dw} \emb{t,\omega} =~
 \end{split}
 \label{eq:sym_parta_dyn_self_err}.
 \end{equation}
-Jako, że sygnał wejściowy $s(t)$ analizowanego obiektu nie jest obarczony błędem dynamicznym, nie ma potrzeby wykonywania analizy dla sygnału błędu dynamicznego propagowanego. Aby umożliwić analizę propagacji sygnałów błędów dynamicznych przez kolejne fragmenty toru pomiarowego, minimalizując jednocześnie liczbę analizowanych składowych błędu dynamicznego, wyznaczono na podstawie równań~\eqref{eq:dyn_vect_amp} oraz~\eqref{eq:dyn_vect_phi} wypadkowe parametry amplitudy oraz fazy dla kolejnych harmonicznych tego sygnału. Należy zauważyć, że relacje pomiędzy amplitudą, a wariancją analizowanej harmonicznej opisuje równanie~\eqref{eq:dyn_var}. Analizując równanie~\eqref{eq:sym_parta_dyn_self_err} można zauważyć, że dla każdej harmonicznej błąd ten ma dwie składowe o przeciwnych znakach. Korzystając z właściwości funkcji \enquote{sinus} można odwrócić znak wybranej składowej oraz dodać kąt $\frac{\pi}{2}~\unit{rad}$ do argumentu tej funkcji, zachowując przy tym oryginalną wartość tej składowej.
+Jako, że sygnał wejściowy $s(t)$ analizowanego obiektu nie jest obarczony błędem dynamicznym, nie ma potrzeby wykonywania analizy dla sygnału błędu dynamicznego propagowanego. Aby umożliwić analizę propagacji sygnałów błędów dynamicznych przez kolejne fragmenty toru pomiarowego, minimalizując jednocześnie liczbę analizowanych składowych błędu dynamicznego, wyznaczono na podstawie równań~\eqref{eq:dyn_vect_amp} oraz~\eqref{eq:dyn_vect_phi} wypadkowe parametry amplitudy oraz fazy dla kolejnych harmonicznych tego sygnału. Należy zauważyć, że relacje pomiędzy amplitudą, a wariancją analizowanej harmonicznej opisuje równanie~\eqref{eq:dyn_var}. Analizując równanie~\eqref{eq:sym_parta_dyn_self_err} można zauważyć, że dla każdej harmonicznej błąd ten ma dwie składowe o przeciwnych znakach. Korzystając z właściwości funkcji \enquote{sinus} można odwrócić znak wybranej składowej oraz dodać kąt $\pi~\unit{rad}$ do argumentu tej funkcji, zachowując przy tym oryginalną wartość tej składowej.
 
 Stosując podane założenia, przebieg składowej sygnału błędu dynamicznego własnego o częstotliwości~\qty{1}{kHz} przedstawić można następującym równaniem:
 \begin{equation}
@@ -116,7 +116,7 @@ e_{a,dw} \emb{t,\omega} \left|_{\omega = 1000 \cdot 2 \pi } \right. =~
 & \tilde{f}_{y} \emb{\tilde{K}_{a} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \tilde{\varphi}_{a} \emb{\omega} \right)} - \\
 & \tilde{f}_{y} \emb{\dot{K}_{a} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \dot{\varphi}_{a} \emb{\omega} \right)} = \\
 & 1.0 \cdot 0.6 \sin \left( 1000 \cdot 2 \pi t + 0 - \num{3.13e-3} \right) + \\
-& 1.0 \cdot 0.6 \sin \left( 1000 \cdot 2 \pi t + 0 + 0 + \frac{\pi}{2} \right)
+& 1.0 \cdot 0.6 \sin \left( 1000 \cdot 2 \pi t + 0 + 0 + \pi \right)
 \end{split}
 \label{eq:sym_parta_dyn_self_example_harm},
 \end{equation}
@@ -142,12 +142,12 @@ przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla dek
 \makecaption{tab:sym_parta_params_dyn_list}{Parametry składowe kolejnych harmonicznych błędu dynamicznego własnego analizowanego w eksperymencie symulacyjnym przetwornika pomiarowego}
 \begin{tabular}[c]{| c | c | c | c |} \hline
 \textbf{Lp. $i$} & \textbf{Pulsacja $\omega_{a,i}$, rad/s} & \textbf{Amplituda $E_{a,e}(\omega_{a,i})$, V} & \textbf{Faza $\varphi_{a,e}(\omega_{a,i})$, rad} \\ \hline
-1 & \multirow{2}{*}{$1000  \cdot 2\pi$} &  $1.0 \cdot 0.6$       & $0 - \num{3.13e-3}$              \\ \cline{1-1} \cline{3-4}
-2 &                                     &  $1.0 \cdot 0.6$       & $0 + 0 + \pi/2$                  \\ \hline
-3 & \multirow{2}{*}{$5000  \cdot 2\pi$} &  $1.0 \cdot 0.3$       & $\pi/8 - \num{1.56e-2} + \pi/2$  \\ \cline{1-1} \cline{3-4}
-4 &                                     &  $1.0 \cdot 0.3$       & $\pi/8 + 0$                      \\ \hline
-5 & \multirow{2}{*}{$15000 \cdot 2\pi$} &  $1.0 \cdot 0.1$       & $\pi/6 - \num{4.69e-2}$          \\ \cline{1-1} \cline{3-4}
-6 &                                     &  $1.0 \cdot 0.1$       & $\pi/6 + 0 + \pi/2$              \\ \hline
+1 & \multirow{2}{*}{$1000  \cdot 2\pi$} &  $1.0 \cdot 0.6$       & $0 - \num{3.13e-3}$            \\ \cline{1-1} \cline{3-4}
+2 &                                     &  $1.0 \cdot 0.6$       & $0 + 0 + \pi$                  \\ \hline
+3 & \multirow{2}{*}{$5000  \cdot 2\pi$} &  $1.0 \cdot 0.3$       & $\pi/8 - \num{1.56e-2} + \pi$  \\ \cline{1-1} \cline{3-4}
+4 &                                     &  $1.0 \cdot 0.3$       & $\pi/8 + 0$                    \\ \hline
+5 & \multirow{2}{*}{$15000 \cdot 2\pi$} &  $1.0 \cdot 0.1$       & $\pi/6 - \num{4.69e-2}$        \\ \cline{1-1} \cline{3-4}
+6 &                                     &  $1.0 \cdot 0.1$       & $\pi/6 + 0 + \pi$              \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -401,9 +401,9 @@ gdzie $E_{b,o}(\omega)$ jest amplitudą oraz $\varphi_{b,o}(\omega)$ fazą harmo
 \makecaption{tab:sym_outb_params_ideal}{Parametry kolejnych harmonicznych sygnału $y_{b}(t)$ przyjęte w przeprowadzanym eksperymencie symulacyjnym dla sytuacji idealnej}
 \begin{tabular}[c]{| c | c | c | c |} \hline
 \textbf{Lp. $i$} & \textbf{Pulsacja $\omega_{a,i}$, rad/s} & \textbf{Amplituda $E_{a,o}(\omega_{a,i})$, V} & \textbf{Faza $\varphi_{a,o}(\omega_{a,i})$, rad} \\ \hline
-1 & $1000  \cdot 2\pi$ &  0.6 & $0$             \\ \hline
-2 & $5000  \cdot 2\pi$ &  0.3 & $\pi/8 + \pi/2$ \\ \hline
-3 & $15000 \cdot 2\pi$ &  0.1 & $\pi/6$         \\ \hline
+1 & $1000  \cdot 2\pi$ &  0.6 & $0$           \\ \hline
+2 & $5000  \cdot 2\pi$ &  0.3 & $\pi/8 + \pi$ \\ \hline
+3 & $15000 \cdot 2\pi$ &  0.1 & $\pi/6$       \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
