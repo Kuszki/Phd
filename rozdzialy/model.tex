@@ -179,7 +179,7 @@ Wpływ funkcji przetwarzania na wariancję sygnałów błędów wielkości $u(t)
 \begin{equation}
 \sigma_{y}^{2} = \text{Var}\emb{f_{y} \emb{e_{u} \emb{t}}} = E \left[ \left( f_{y} \emb{e_{u} \emb{t}} - E \left[ f_{y} \emb{e_{u} \emb{t}} \right] \right)^2 \right] \label{eq:out_cont_var_function},
 \end{equation}
-gdzie $E[e(t)]$ oznacza wartość oczekiwaną sygnału $e(t)$. Przedstawiona analiza upraszcza się w przypadku, gdy funkcję przetwarzania obiektu stanowi równanie liniowe w postaci $f(x) = ax+b$. Zakładając, że symbolem $s_{y}$ oznaczono współczynnik kierunkowy przedstawionego równania, który utożsamić można z czułością analizowanego obiektu, równanie~\eqref{eq:out_cont_var_function} przyjmuje postać~\cite{oppenheim_sns}:
+gdzie $E[e(t)]$ oznacza wartość oczekiwaną realizacji sygnału $e(t)$. Przedstawiona analiza upraszcza się w przypadku, gdy funkcję przetwarzania obiektu stanowi równanie liniowe w postaci $f(x) = ax+b$. Zakładając, że symbolem $s_{y}$ oznaczono współczynnik kierunkowy przedstawionego równania, który utożsamić można z czułością analizowanego obiektu, równanie~\eqref{eq:out_cont_var_function} przyjmuje postać~\cite{oppenheim_sns}:
 \begin{equation}
 \sigma_{y}^{2} = s_{y}^{2} \sigma_{u}^{2} \label{eq:out_cont_var_sense}.
 \end{equation}
@@ -349,7 +349,7 @@ Zależność wariancji sygnału na wyjściu fragmentu obiektu reprezentującego 
 \begin{equation}
 \sigma_{X}^{2} = \text{Var}\emb{f_{X} \emb{e_{v} \emb{i}}} = E \left[ \left( f_{X} \emb{e_{v} \emb{i}} - E \left[ f_{X} \emb{e_{v} \emb{i}} \right] \right)^2 \right] \label{eq:out_disc_var_function},
 \end{equation}
-gdzie $E[e(i)]$ oznacza wartość oczekiwaną sygnału $e(i)$. Dla funkcji przetwarzania obiektu danej w postaci $f(x) = ax+b$, zakładając że symbolem $s_{X}$ oznaczono współczynnik kierunkowy przedstawionego równania utożsamiany z czułością analizowanego obiektu, równanie~\eqref{eq:out_disc_var_function} upraszcza się do postaci:
+gdzie $E[e(i)]$ oznacza wartość oczekiwaną realizacji sygnału $e(i)$. Dla funkcji przetwarzania obiektu danej w postaci $f(x) = ax+b$, zakładając że symbolem $s_{X}$ oznaczono współczynnik kierunkowy przedstawionego równania utożsamiany z czułością analizowanego obiektu, równanie~\eqref{eq:out_disc_var_function} upraszcza się do postaci:
 \begin{equation}
 \sigma_{X}^{2} = s_{X}^{2} \sigma_{v}^{2} \label{eq:out_disc_var_sense},
 \end{equation}
@@ -672,20 +672,20 @@ Należy zauważyć, że kształt rozkładu sygnału wyjściowego błędu statycz
 
 Dla sygnałów błędów dynamicznych należy przeprowadzić analizę zgodnie z metodologią przedstawioną w poprzedniej części rozdziału, wykorzystując znajomość transmitancji $H_{i}(z)$ odpowiedniej dla analizowanej wielkości wyjściowej algorytmu. Identycznie, jak w przypadku równania~\eqref{eq:mid_disc_err_dyn_prop}, wyznaczyć należy wypadkowe amplitudy oraz przesunięcia w fazie kolejnych harmonicznych sygnału propagowanego błędu dynamicznego, a następnie wykorzystać należy równania od~\eqref{eq:dyn_harm} do~\eqref{eq:dyn_corr} w celu wyznaczenia wariancji analizowanych sygnałów. Na podstawie wskazanych zależności, wariancję $\sigma_{X,dp}^{2}(\omega)$ pojedynczej harmonicznej sygnału propagowanego błędu dynamicznego $e_{x,d}(i)$ wyznaczyć można zgodnie z zależnością:
 \begin{equation}
-\sigma_{X,dp}^{2} \emb{\omega} = \frac{1}{2} E_{x,e}^{2} \emb{\omega} \left| H \emb{e^{j\omega T_{p}}} \right|^{2} \label{eq:alg_outvar_dyn},
+\sigma_{X,dp}^{2} \emb{i, \omega} = \frac{1}{2} E_{x,e}^{2} \emb{\omega} \left| H_{i} \emb{e^{j\omega T_{p}}} \right|^{2} \label{eq:alg_outvar_dyn},
 \end{equation}
 gdzie $E_{x,e}(\omega)$ jest amplitudą analizowanej harmonicznej sygnału błędu dynamicznego $e_{x,d}(i)$ o pulsacji $\omega$, natomiast $T_{p}$ okresem próbkowania wielkości wejściowych algorytmu.
 
-Sygnały błędów niedeterministycznych propagowane są przez analizowany algorytm w sposób identyczny, jak miało to miejsce w przypadku cyfrowej części toru pomiarowego. W ogólnym przypadku można zatem wykorzystać zależność~\eqref{eq:mid_disc_var_omega} w celu określenia wariancji $\sigma_{X,rp}^{2}(\omega)$ propagowanego błędu losowego $e_{x,r}(i)$ w funkcji pulsacji. Wyznaczenie średniej wartości omawianej wielkości może odbywać się zgodnie z równaniem~\eqref{eq:mid_disc_var_rand}, przy czym należy wyznaczać ją dla przedziału $\omega \in <0; \frac{\omega_{p}}{2}>$. Jeżeli analizowany sygnał błędu losowego $e_{x,r}(i)$ cechuje się stałą widmową gęstością mocy, to obliczenia można uprościć stosując do wyznaczenia wartości wariancji losowego sygnału błędu na wyjściu algorytmu zależność~\cite{jakubiec_system}:
+Sygnały błędów niedeterministycznych propagowane są przez analizowany algorytm w sposób identyczny, jak miało to miejsce w przypadku cyfrowej części toru pomiarowego. W ogólnym przypadku można zatem wykorzystać zależność~\eqref{eq:mid_disc_var_omega} w celu określenia wariancji $\sigma_{X,rp}^{2}(\omega)$ propagowanego błędu losowego $e_{x,r}(i)$ w funkcji pulsacji. Wyznaczenie średniej wartości omawianej wielkości może odbywać się zgodnie z równaniem~\eqref{eq:mid_disc_var_rand}, przy czym należy wyznaczać ją dla przedziału $\omega \in~<0; \frac{1}{2} \omega_{p}>$. Jeżeli analizowany sygnał błędu losowego $e_{x,r}(i)$ cechuje się stałą widmową gęstością mocy, to obliczenia można uprościć stosując do wyznaczenia wartości wariancji losowego sygnału błędu na wyjściu algorytmu zależność~\cite{jakubiec_system}:
 \begin{equation}
 \sigma_{rp}^{2} \emb{i} = a_{i, 0}^{2} \sigma_{x,r}^{2} + a_{i, 1}^{2} \sigma_{x,r}^{2} + \hdots + a_{i, N-1}^{2} \sigma_{x,r}^{2} = \sigma_{x,r}^{2} \sum _{j=0} ^{N-1} {a_{i, j}^{2}} \label{eq:alg_outvar_rand}.
 \end{equation}
-Niezależnie od zastosowanego sposobu obliczeń, każda metoda dostarcza identyczne wyniki, jeżeli tylko została zastosowana w odpowiednich dla niej okolicznościach.
+Niezależnie od zastosowanego sposobu obliczeń, każda metoda zapewnia identyczne wyniki, jeżeli tylko została zastosowana w odpowiednich dla niej okolicznościach.
 
 Znajomość wartości kolejnych elementów macierzy transformacji pozwala na podstawie równań~\eqref{eq:alg_outvar_stat} oraz~\eqref{eq:alg_outvar_rand} wprowadzić dodatkowe wielkości, przedstawione następującymi zależnościami~\cite{jakubiec_algorithms, oppenheim_dsp, proakis_dsp}:
 \begin{gather}
-A_{i,s} = \sum _{j = 0} ^{N-1} a_{i, j} = K_{i} \emb{0} \label{eq:alg_trans_stat}, \\
-A_{i,r} = \sqrt{\sum _{j = 0} ^{N-1} a_{i, j}^{2}} = \sqrt{\frac{2}{\omega_{p}} \int _{0} ^{\frac{1}{2}\omega_{p}} K_{i}^{2} \emb{\omega} d\omega} \label{eq:alg_trans_rand},
+A_{i,s} = \sum _{j = 0} ^{N-1} a_{i, j} = \left| H_{i} \emb{0} \right| \label{eq:alg_trans_stat}, \\
+A_{i,r} = \sqrt{\sum _{j = 0} ^{N-1} a_{i, j}^{2}} = \sqrt{\frac{1}{\pi} \int _{0} ^{\pi} \left| H_{i} \emb{e^{j \omega}} \right|^{2} d\omega} \label{eq:alg_trans_rand},
 \end{gather}
 gdzie $A_{i,s}$ jest współczynnikiem przenoszenia dla błędów statycznych, natomiast jest $A_{i,r}$ współczynnikiem przenoszenia dla błędów losowych $i$-tej wielkości wyjściowej analizowanego algorytmu. Wyznaczenie wartości opisanych współczynników umożliwi wyznaczenie wariancji kolejnych błędów losowych oraz statycznych, a dodatkowo będzie stanowiło informacje, w jaki sposób analizowany algorytm przenosi z wejścia na wyjście określony rodzaj błędu. Można zauważyć, że dla niskich wartości współczynnika przenoszenia (tj. $A_{i} < 1$) kolejne błędy wielkości wejściowych będą tłumione (wariancja błędu wielkości wyjściowej będzie mniejsza, niż wariancja błędów wielkości wejściowych). Odwrotna sytuacja będzie miała miejsce w przypadku dużych wartości współczynnika (tj. $A_{i} > 1$). Wobec powyższych zapisać można:
 \begin{gather}

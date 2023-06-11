@@ -33,7 +33,7 @@ for i = 1 : length(list)
 
 	fname = list{i,1};
 	[s, e, te, m, t] = regexp(fname, "(\\d+(?:\\.\\d+)?)");
-	vcc = str2num(t{1}{1});
+	vcc = str2num(t{1}{1}) / 1000;
 	dat = load("-ascii", fname);
 
 	mns(i) = mean(dat);
@@ -54,7 +54,7 @@ for i = 1 : length(list)
 
 	fname = list{i,1};
 	[s, e, te, m, t] = regexp(fname, "(\\d+(?:\\.\\d+)?)");
-	vcc = str2num(t{1}{1});
+	vcc = str2num(t{1}{1}) / 1000;
 	dat = load("-ascii", fname);
 	mnd = mean(dat);
 
@@ -84,11 +84,11 @@ hold on;
 plot(pts, mns, '+');
 plot(x, y);
 hold off;
-title(sprintf("\\rm{\\itc}({\\iti}) = %1.5g\\cdot{\\its}({\\itiT_{p}}) + %1.5g", P(2), P(1)))
+title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g\\cdot{\\itx} + %1.6g", P(2), P(1)))
 ylabel("Wyjście przetwornika A/C");
-xlabel("Napięcie na wejściu toru pomiarowego, mV");
+xlabel("Napięcie na wejściu toru pomiarowego, V");
 yticks(0 : 512 : 4096);
-xlim([0 1000])
+xlim([0 1])
 ylim([0 4096])
 grid on
 box on

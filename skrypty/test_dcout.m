@@ -11,7 +11,7 @@ addpath("~/Projekty/Octave-FWT-Utils");
 ADC = @(x) 4.0956 * x + 4.1764;
 VIN = @(x) (x - 4.1764) / 4.0956
 
-list = glob("../pomiary/gen/*.txt");
+list = glob("../pomiary/dc/*.txt");
 
 data = [];
 pts = [];
