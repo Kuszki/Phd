@@ -91,11 +91,11 @@ Wobec powyższych, proponuje się wyznaczenie charakterystyki statycznej $f_{c}(
 
 Na podstawie przeprowadzonych pomiarów, po wykonaniu aproksymacji liniowej metodą najmniejszych kwadratów, przebieg sygnału $c(i)$ opisać można równaniem:
 \begin{equation}
-c \emb{i} = f_{c} \emb{f_{y} \emb{s \emb{iT_{p}}}} = 4.0956 \cdot s \emb{iT_{p}} + 4.1764 \label{eq:pom_func_static}.
+c \emb{i} = f_{c} \emb{f_{y} \emb{s \emb{iT_{p}}}} = 4095.594 \cdot s \emb{iT_{p}} + 4.17644 \label{eq:pom_func_static}.
 \end{equation}
 Zakładając, że czułość wielkości $x(i)$ w stosunku do wielkości $s(t)$ wynosi~\qty{1}{V \per V}, przebieg sygnału $x(i)$ w funkcji wielkości $c(i)$ można opisać jako:
 \begin{equation}
-x \emb{i} = f_{x} \emb{c \emb{i}} = f_{x} \emb{f_{c} \emb{f_{y} \emb{s \emb{iT_{p}}}}} = \frac{c \emb{i} - 4.1764}{4.0956} = s \emb{iT_{p}} \label{eq:pom_funx_static}.
+x \emb{i} = f_{x} \emb{c \emb{i}} = f_{x} \emb{f_{c} \emb{f_{y} \emb{s \emb{iT_{p}}}}} = \frac{c \emb{i} - 4.17644}{4095.594} = s \emb{iT_{p}} \label{eq:pom_funx_static}.
 \end{equation}
 Odchylenie standardowe średnich wartości $\overline{c}(i)$ uzyskanych dla kolejnych serii pomiarowych od charakterystyki danej równaniem~\eqref{eq:pom_func_static} wyniosło $\sigma_{c,nl} = \qty{0.56}{kwantu}$, co interpretować można jako niepewność standardową nieliniowości charakterystyki statycznej przetwarzania wielkości $c(i)$. Po wykonaniu odtwarzania statycznego, zgodnie z równaniem~\eqref{eq:pom_funx_static}, niepewność standardowa związana z nieliniowością charakterystyki odtwarzania wielkości $x(i)$ wynosi odpowiednio $\sigma_{x,nl} = \qty{0.14}{mV}$.
 
@@ -335,6 +335,8 @@ e_{x,1,\Sigma,b,*} =~ & E_{x,ew,1,2} \sin \emb{\varphi_{x,ew,1,2}} + E_{x,ew,1,1
 \end{gather}
 
 Należy podkreślić, że rzeczywisty przebieg sygnału błędu dynamicznego własnego $e_{x,dw}(i)$ również skorelowany jest z rzeczywistą wartością amplitudy $\tilde{E}_{s,o}$. Korelacja ta jest jednak pominięta w przeprowadzonej analizie ze względu na niewielkie wartości błędu nastawy tego parametru i w efekcie niski współczynnik korelacji opisywanego zjawiska. Jest to założenie analogiczne, jak stosowanie idealnej charakterystyki przetwarzania obiektu w przypadku analizy statycznych właściwości tego obiektu.
+
+
 
 \section{Podsumowanie przeprowadzonego eksperymentu}
 
