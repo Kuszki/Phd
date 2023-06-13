@@ -71,8 +71,8 @@ for i = 1 : length(list)
 
 end
 
-printf("ADC(x) = %1.5g * x + %1.5g\n", P(2), P(1))
-printf("VIN(x) = (x - %1.5g) / %1.5g\n", P(1), P(2))
+printf("ADC(x) = %1.7g * x + %1.7g\n", P(2), P(1))
+printf("VIN(x) = (x - %1.7g) / %1.7g\n", P(1), P(2))
 
 [uq, cq, sq, wq] = get_uncertainty(data)
 [uv, cv, sv, wv] = get_uncertainty(data / P(2))

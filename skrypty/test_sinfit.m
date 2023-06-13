@@ -1,5 +1,4 @@
 clear
-clf
 
 pkg load communications
 pkg load ltfat
@@ -8,28 +7,58 @@ pkg load optim
 
 addpath("~/Projekty/Octave-FWT-Utils");
 
-saw = @(x) (2/pi)*asin(sin(x));
+ADC = @(x) 4095.594 * x/1000 + 4.176439;
+VIN = @(x) 1000*(x - 4.176439) / 4095.594;
 
-dat = load("../pomiary/saw.dat");
-x = dat(:,1);
+#dat = load("../pomiary/sin/freqs.dat");
+dat = load("../pomiary/freq_st.dat");
 
-w = 628.299489193742
-amp = 1945.15548626686
-shf = 2057.47449431667
-det = 0.000389161370887997
+#amp = 950/2;
+#shf = 500;
 
-f = @(x, f) sin((1.0 / 48000.0) * x * f - det) * amp + shf;
-f = @(x, f) saw((1.0 / 48000.0) * x * f - det) * amp + shf;
+amp = 479.97;
+shf = 505.89;
 
-col = dat(:,5);
-ide = f(x, w);
-dif = col - ide;
+det = 6.5e-06;
+[b, a] = cheby1(5, 3, 0.05);
 
-hold on;
-plot(x, col, 'x');
-plot(x, ide);
-hold off;
+printf("f\tw\tu\tc\tw\n")
 
-#plot(dif);
+for i = 1 : length(dat)
 
-[u, c, s, w, m] = get_uncertainty(dif)
+	f = dat(i,1);
+	o = dat(i,2);
+
+#	if f != 1000; continue; end;
+
+	fun = @(x) amp*sin(o*x/48000.0 + det) + shf;
+
+	pts = load(sprintf("../pomiary/sin_28/%d.txt", f));
+	pts = pts(1:length(pts));
+	pts = VIN(pts);
+
+	t = 0 : (length(pts)-1);
+	org = fun(transpose(t));
+
+	diff = pts - org;
+
+	[u, c, s, w, m] = get_uncertainty(diff);
+
+	printf("%d\t%f\t%f\t%f\t%f\t%f\n", f, o, u, c, w, get_filter_var(2*pi*f, amp));
+
+	freq(i) = f;
+	vars(i) = w;
+
+#	hold on;
+#	plot(org)
+#	plot(pts)
+#	plot(diff)
+#	plot(filter(b, a, diff))
+#	pause()
+#	clf()
+#	hold off;
+
+#	return
+
+end
+
