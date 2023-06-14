@@ -1,10 +1,10 @@
 set fit limit 1e-100
 set fit maxiter 0
 
-#f = 5;    w = 31.4131795156; src = '../pomiary/sin/5.txt';
+f = 5;    w = 31.4131795156; src = '../pomiary/sin/5.txt';
 #f = 100;  w = 628.300073967; src = '../pomiary/sin/100.txt';
 #f = 200;  w = 1256.59845943; src = '../pomiary/sin/200.txt';
-f = 1000; w = 6282.99493480; src = '../pomiary/sin/1000.txt';
+#f = 1000; w = 6282.99493480; src = '../pomiary/sin_3/1000.txt';
 #f = 10000; w = 62829.9224255; src = '../pomiary/sin/10000.txt';
 
 ADC(x) = 4095.594 * x/1000 + 4.176439;
@@ -19,15 +19,18 @@ shf0 = 500
 amp1 = 479.973167260702
 shf1 = 505.89
 
+amp1 = 1825.29980389469
+shf1 = 2109.57727425084
+
 f0(x) = ADC(sin(x*ts*w + det) * amp0 + shf0)
-f1(x) = ADC(sin(x*ts*w + det) * amp1 + shf1)
+f1(x) = (sin(x*ts*w + det) * amp1 + shf1)
 
 fa(x) = ADC(sin(x*ts*w + det) * ((0.98*950-2) / 2.0) + (0.98*500-2))
 fb(x) = ADC(sin(x*ts*w + det) * ((0.98*950-2) / 2.0) + (1.02*500+2))
 fc(x) = ADC(sin(x*ts*w + det) * ((1.02*950+2) / 2.0) + (0.98*500-2))
 fd(x) = ADC(sin(x*ts*w + det) * ((1.02*950+2) / 2.0) + (1.02*500+2))
 
-#fit f1(x) src via det #amp1, shf1
+fit f1(x) src via amp1, shf1
 
 # set xrange [ 0.618 : 0.6185 ]
 # set xrange [ 0 : 64 ]

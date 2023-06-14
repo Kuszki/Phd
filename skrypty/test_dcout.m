@@ -1,5 +1,4 @@
 clear;
-clf;
 
 pkg load communications
 pkg load ltfat
