@@ -16,7 +16,7 @@ xran = [0 5.5];
 
 set(h, "paperunits", "centimeters")
 set(h, "papersize", [16 5.65])
-set(h, "paperposition", [0, 0, [16 5.65])
+set(h, "paperposition", [0, 0, [16 5.65]])
 
 set(0, "defaultaxesposition", [0.085, 0.11, 0.885, 0.865])
 set(0, "defaultaxesfontsize", 11)

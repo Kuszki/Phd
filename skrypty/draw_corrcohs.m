@@ -32,8 +32,8 @@ end
 hold off;
 
 legend("location", 'southeast', 'orient', 'horizontal')
-ylabel("Wsp. koherencji");
-xlabel("Wsp. korelacji");
+ylabel("Współczynnik koherencji");
+xlabel("Współczynnik korelacji");
 xlim([-1 1])
 ylim([-1 1])
 grid on

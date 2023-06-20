@@ -59,6 +59,7 @@ semilogx(fv, av, 'x;;');
 semilogx(xv, aa, ';Model "a";');
 semilogx(xv, ab, ';Model "b";');
 hold off;
+#title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g{\\itx} + %1.6g", 123, 321))
 ylabel("Wzmocnienie, V/V");
 xlabel("Częstotliwość sygnału, Hz");
 legend("location", 'southwest')
@@ -73,6 +74,7 @@ semilogx(fv, pv, 'x;;');
 semilogx(xv, pa, ';Model "a";');
 semilogx(xv, pb, ';Model "b";');
 hold off;
+#title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g{\\itx} + %1.6g", 123, 321))
 ylabel("Przesunięcie fazowe, rad");
 xlabel("Częstotliwość sygnału, Hz");
 legend("location", 'southwest')

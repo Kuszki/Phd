@@ -87,7 +87,7 @@ hold on;
 plot(pts / 1000, mns, '+');
 plot(x, y);
 hold off;
-title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g\\cdot{\\itx} + %1.6g", P(2), P(1)))
+title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g{\\itx} + %1.6g", P(2), P(1)))
 ylabel("Wyjście przetwornika A/C");
 xlabel("Napięcie na wejściu toru pomiarowego, V");
 yticks(0 : 512 : 4096);
@@ -98,7 +98,7 @@ box on
 
 subplot(1, 2, 2)
 hist(data, 300, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("\\rm\\itU{\\rm = %1.3g}, c{\\rm = %1.2f}", uq, cq))
+title(sprintf("\\rm{\\itU} = %1.3g, {\\itc} = %1.2f", uq, cq))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, liczba kwantów");
 xlim([-8 8])
