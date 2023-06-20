@@ -8,12 +8,8 @@ pkg load optim
 
 addpath("~/Projekty/Octave-FWT-Utils");
 
-list = glob("../pomiary/dc/*.txt");
-mns = zeros(1, length(list));
-dff = zeros(1, length(list));
-
-data = [];
-pts = [];
+list = glob("../pomiary/cal/*.txt");
+pth = "../pomiary/cal";
 
 fcolor = "#333333";
 ecolor = "#333333";
@@ -33,41 +29,48 @@ for i = 1 : length(list)
 
 	fname = list{i,1};
 	[s, e, te, m, t] = regexp(fname, "(\\d+(?:\\.\\d+)?)");
-	vcc = str2num(t{1}{1}) / 1000;
-	dat = load("-ascii", fname);
-
-	mns(i) = mean(dat);
-	pts(i) = vcc;
+	pts(i) = str2num(t{1}{1});
 
 end
 
-F = [ ones(length(pts), 1), pts(:) ];
+data = [];
+pts = sort(pts);
+
+for i = 1 : length(pts)
+
+	vcc = pts(i);
+	dat = load("-ascii", sprintf("%s/%d.txt", pth, vcc));
+
+	mns(i) = mean(dat);
+
+end
+
+F = [ ones(length(pts), 1), pts(:) / 1000 ];
 P = F \ transpose(mns);
 
 fun = @(x) P(1) + P(2)*x;
 fpr = @(x) (x - P(1)) / P(2);
 
-y = fun([0 1000]);
+y = fun([0 1]);
 x = [0 fpr(y(2))];
 
-for i = 1 : length(list)
+for i = 1 : length(pts)
 
-	fname = list{i,1};
-	[s, e, te, m, t] = regexp(fname, "(\\d+(?:\\.\\d+)?)");
-	vcc = str2num(t{1}{1}) / 1000;
-	dat = load("-ascii", fname);
+	vcc = pts(i);
+	dat = load("-ascii", sprintf("%s/%d.txt", pth, vcc));
 	mnd = mean(dat);
 
 	obl = fpr(mnd);
-	dat = dat - fun(vcc);
+	dat = dat - fun(vcc/1000);
+
 	data = [data; dat];
 
 	[u, c, s, w, m] = get_uncertainty(dat);
 
-	dff_v(i) = obl - vcc;
-	dff_q(i) = mnd - fun(vcc);
+	dff_v(i) = obl - vcc/1000;
+	dff_q(i) = mnd - fun(vcc/1000);
 
-	printf("%0.1f\t%0.1f\t%0.3f\t%0.3f\n", vcc, obl, u, s);
+	printf("%0.1f\t%0.1f\t%0.3f\t%0.3f\n", vcc, obl*1000, u, s);
 
 end
 
@@ -81,7 +84,7 @@ std_q = std(dff_q)
 
 subplot(1, 2, 1)
 hold on;
-plot(pts, mns, '+');
+plot(pts / 1000, mns, '+');
 plot(x, y);
 hold off;
 title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g\\cdot{\\itx} + %1.6g", P(2), P(1)))

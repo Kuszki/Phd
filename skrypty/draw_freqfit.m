@@ -22,7 +22,7 @@ set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
-data = load("-ascii", "../pomiary/freq.dat");
+data = load("-ascii", "../pomiary/dynp.dat");
 
 wc = (1.0659e+06 + 1.09369e+06) / 2.0;
 ks = 3.27;
