@@ -24,18 +24,8 @@ set(0, "defaulttextcolor", "black")
 
 data = load("-ascii", "../pomiary/dynp.dat");
 
-wc = (1.0659e+06 + 1.09369e+06) / 2.0;
-ks = 3.27;
-kc = 0.125+ks;
-
-pa              = -1.70052e-30 ;#    +/- 1.225e-31    (7.205%)
-pb              = 6.51751e-24  ;#    +/- 4.567e-25    (7.008%)
-pc              = -7.93226e-18 ;#    +/- 5.919e-19    (7.462%)
-pd              = 2.92126e-12  ;#    +/- 3.119e-13    (10.68%)
-pe              = -6.92367e-07 ;#    +/- 5.658e-08    (8.172%)
-
-ka              = 0.12506      ;#    +/- 0.01842      (14.73%)
-kb              = 1.78923e-06  ;#    +/- 1.083e-07    (6.055%)
+wc = 175e+4; #(1.0659e+06 + 1.09369e+06) / 2.0;
+ks = 3.28;
 
 fv = data(:,1);
 av = data(:,10);
@@ -44,10 +34,10 @@ pv = data(:,8);
 phi0 = @(x) atan(-x/wc);
 amp0 = @(x) ks ./ sqrt((x .^ 2) ./ (wc .^ 2) + 1);
 
-phi1 = @(x) pa*x.^5 + pb*x.^4 + pc*x.^3 + pd*x.^2 + pe*x;
-amp1 = @(x) kc - ka*exp(kb*x);
+phi1 = @(x) -5.995e-14*x.^2-4.125e-7*x;
+amp1 = @(x) ks*ones(rows(x), columns(x));
 
-xv = logspace(2, log10(300000), 50);
+xv = logspace(2, log10(50000), 50);
 aa = amp0(xv*2*pi);
 ab = amp1(xv*2*pi);
 pa = phi0(xv*2*pi);
@@ -59,12 +49,11 @@ semilogx(fv, av, 'x;;');
 semilogx(xv, aa, ';Model "a";');
 semilogx(xv, ab, ';Model "b";');
 hold off;
-#title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g{\\itx} + %1.6g", 123, 321))
 ylabel("Wzmocnienie, V/V");
 xlabel("Częstotliwość sygnału, Hz");
-legend("location", 'southwest')
-xlim([0.1 300]*1000)
-ylim([1.5 3.3])
+legend("location", 'northwest')
+xlim([0.1 50]*1000)
+ylim([-0.03 0.03]+ks)
 grid on
 box on
 
@@ -74,12 +63,11 @@ semilogx(fv, pv, 'x;;');
 semilogx(xv, pa, ';Model "a";');
 semilogx(xv, pb, ';Model "b";');
 hold off;
-#title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g{\\itx} + %1.6g", 123, 321))
 ylabel("Przesunięcie fazowe, rad");
 xlabel("Częstotliwość sygnału, Hz");
 legend("location", 'southwest')
-xlim([0.1 300]*1000)
-ylim([-1.2 0])
+xlim([0.1 50]*1000)
+ylim([-0.15 0])
 grid on
 box on
 
