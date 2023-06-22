@@ -5,7 +5,7 @@ pkg load ltfat;
 pkg load parallel;
 pkg load signal;
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");
 save_precision(100);
 
 prefix = "../wektory";

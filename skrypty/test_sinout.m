@@ -6,7 +6,7 @@ pkg load ltfat
 pkg load parallel
 pkg load optim
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");
 
 x = linspace(0, 6*pi, 1e4);
 [y, av, fv] = gen_sawfun(x, 1, 1, 0, 10);

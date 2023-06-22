@@ -1,4 +1,4 @@
-function [w, wv] = get_filter_var(w, amp, model = 1)
+function [w, wv] = get_filter_var(w, amp)
 
 	assert(length(w) == length(amp), "vectors must be the same length");
 
@@ -6,7 +6,7 @@ function [w, wv] = get_filter_var(w, amp, model = 1)
 
 		if w(i) > pi*48000; continue; end;
 
-		[a, p] = get_dynparams([-amp(i) amp(i)*get_filter_amp(w(i), model)], [0 get_filter_phi(w(i), model)]);
+		[a, p] = get_dynparams([-amp(i) amp(i)*get_filter_amp(w(i))], [0 get_filter_phi(w(i))]);
 		wv(i) = (a^2) / 2;
 
 	end

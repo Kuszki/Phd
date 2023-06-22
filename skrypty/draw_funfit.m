@@ -6,7 +6,7 @@ pkg load ltfat
 pkg load parallel
 pkg load optim
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");
 
 list = glob("../pomiary/cal/*.txt");
 pth = "../pomiary/cal";
@@ -84,7 +84,7 @@ std_q = std(dff_q)
 
 subplot(1, 2, 1)
 hold on;
-plot(pts / 1000, mns, '+');
+plot(pts / 1000, mns, '.');
 plot(x, y);
 hold off;
 title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g{\\itx} + %1.6g", P(2), P(1)))
@@ -101,8 +101,8 @@ hist(data, 300, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(sprintf("\\rm{\\itU} = %1.3g, {\\itc} = %1.2f", uq, cq))
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, liczba kwantów");
-xlim([-8 8])
-ylim([0 6])
+xlim([-4 4])
+ylim([0 4])
 grid on
 box on
 

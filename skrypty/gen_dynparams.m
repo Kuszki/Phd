@@ -5,7 +5,7 @@ pkg load ltfat
 pkg load parallel
 pkg load optim
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");
 
 #a1 = a2 = 0.6;
 #ph1 = -3.13e-3;

@@ -10,7 +10,13 @@ addpath("../biblioteki");
 ADC = @(x) 4097.958 * x/1000 + 3.518818;
 VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
+num = get_fwtlevels(128, 5, "midd")(1);
+A = lin_ident(@(x) fwt(x, "spline4:4", 5), 128)(num,:);
+
 dat = load("../pomiary/freq.dat");
+
+amps = freqz(A, [], dat(:,1), 48000);
+amps = abs(amps);
 
 #amp = 950/2;
 #shf = 500;
@@ -41,20 +47,22 @@ for i = 1 : length(dat)
 	t = (0 : (length(pts)-1)) / 48000.0;
 	org = fun(transpose(t) + det);
 
+	difs = zeros(1, length(pts)-128);
 	diff = pts - org;
 
-	[u, c, s, w, m] = get_uncertainty(diff);
-	wc = get_filter_var(o, amp);
+	for j = 1 : length(pts)-127
+
+		difs(j) = A * diff(j : j+127);
+
+	end
+
+	[u, c, s, w, m] = get_uncertainty(difs);
+	wc = get_filter_var(o, amps(i)*amp);
 
 	printf("%d\t%f\t%f\t%f\t%f\t%f\t%1.2f\n", f, u, c, s, w, wc, 100*(wc-w)/w);
 
 	freq(i) = f;
 	vars(i) = w;
-	werr(i) = 100*(o-2*pi*f)/(2*pi*f);
-
-	phi(i) = asin((pts(1) - shf)/amp);
-	cph(i) = get_filter_phi(o);
-	sph(i) = det*o;
 
 #	hold on;
 #	plot(org)
@@ -71,9 +79,5 @@ end
 #clf
 #hold on
 #plot(freq, vars)
-#plot(freq, werr)
-#plot(freq, phi)
-#plot(freq, -cph)
-#plot(freq, phi-sph)
 #hold off
 

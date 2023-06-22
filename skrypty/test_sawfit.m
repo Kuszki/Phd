@@ -5,7 +5,7 @@ pkg load ltfat
 pkg load parallel
 pkg load optim
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");
 
 saw = @(x) (2/pi)*asin(sin(x));
 
@@ -20,7 +20,7 @@ dat = load("../pomiary/freq.dat");
 amp = 479.520163129546;
 shf = 505.924018640675;
 
-det = 144 / 12e6 + 1e-6/6;
+det = 144 / 12e6 + 1e-6/5.5;
 
 printf("f\tw\tu\tc\tw\n")
 
@@ -46,15 +46,17 @@ for i = 1 : length(dat)
 	[u, c, s, w, m] = get_uncertainty(diff);
 	[y, av, fv] = gen_sawfun([1], o, amp, shf, 30);
 
-	printf("%d\t%f\t%f\t%f\t%f\t%f\n", f, o, u, c, w, get_filter_var(fv, av));
+	wc = get_filter_var(fv, av);
+
+	printf("%d\t%f\t%f\t%f\t%f\t%f\t%1.2f\n", f, u, c, s, w, wc, 100*(wc-w)/w);
 
 	mns(i) = m;
 
 #	hold on;
 #	plot(org)
 #	plot(pts)
-	plot(diff)
-	pause()
+#	plot(diff)
+#	pause()
 #	clf()
 #	hold off;
 

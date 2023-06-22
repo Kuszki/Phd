@@ -1,4 +1,4 @@
-function [phi] = get_filter_phi(w, model = 1)
+function [phi] = get_filter_phi(w)
 
 	wc = 1079795;
 
@@ -19,15 +19,9 @@ function [phi] = get_filter_phi(w, model = 1)
 
 	wac = (2*pi)/(rac*cac);
 
-	if model == 1
-		#phi = pa*w^5 + pb*w^4 + pc*w^3 + pd*w^2 + pe*w;
-		phi = -4.20146e-07*w;
-	else
-		phi = atan(-w/wc);
-	end
-
-
+	phi = -4.25e-7*w + 7.55e-4;
 	phi = phi + atan(-w/win) + atan(-w/wac);
 
+	phi = min(phi, 0);
 
 end

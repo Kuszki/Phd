@@ -4,7 +4,7 @@ pkg load communications
 pkg load ltfat
 pkg load parallel
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");
 warning('off', 'Octave:data-file-in-path');
 
 u = [ 3 6 10 20 ];

@@ -3,7 +3,7 @@ pkg load ltfat;
 pkg load parallel;
 pkg load signal;
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");
 
 i = 16;
 

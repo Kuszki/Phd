@@ -5,7 +5,7 @@ pkg load ltfat
 pkg load parallel
 pkg load optim
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");
 
 ADC = @(x) 4097.958 * x/1000 + 3.518818;
 VIN = @(x) 1000*(x - 3.518818) / 4097.958;

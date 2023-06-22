@@ -1,4 +1,4 @@
-function [amp] = get_filter_amp(w, model = 1)
+function [amp] = get_filter_amp(w)
 
 	wc = 1079795;
 
@@ -19,13 +19,10 @@ function [amp] = get_filter_amp(w, model = 1)
 	out = 1 / sqrt((w ^ 2) ./ (win ^ 2) + 1);
 	adc = 1 / sqrt((w ^ 2) ./ (wac ^ 2) + 1);
 
-	if model == 1
-		amp = kc - ka*exp(kb*w);
-		amp = amp / (kc - ka);
-	else
-		amp = 1 / sqrt((w ^ 2) ./ (wc ^ 2) + 1);
-	end
+	amp = kc - ka*exp(kb*w);
+	amp = amp / (kc - ka);
 
 	amp = amp * out * adc;
+	amp = 1;
 
 end

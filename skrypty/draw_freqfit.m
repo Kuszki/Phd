@@ -6,7 +6,7 @@ pkg load ltfat
 pkg load parallel
 pkg load optim
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");
 
 fcolor = "#333333";
 ecolor = "#333333";
