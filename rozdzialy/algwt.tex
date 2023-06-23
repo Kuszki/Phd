@@ -492,7 +492,7 @@ X \emb{i} = a_{i, 0} w \emb{0} x \emb{0} + a_{i, 1} w \emb{1} x \emb{1} + \hdots
 \end{equation}
 Na podstawie przedstawionego równania zauważyć można, że wprowadzenie okna pomiarowego opisać można również za pomocą modyfikacji współczynników macierzy transformacji algorytmu zgodnie z zależnością:
 \begin{equation}
-a'_{i,j} = w \emb{j} \cdot a_{i,j} \label{eq:wt_windowmod},
+a'_{i,j} = w \emb{j} a_{i,j} \label{eq:wt_windowmod},
 \end{equation}
 gdzie $a'_{i,j}$ stanowi nową wartość współczynnika macierzy transformacji algorytmu. Użyta funkcja $w(n)$ powinna być opisana dla wartości $n$ w przedziale $<0;N-1>$. Należy zaznaczyć, że stosowanie okna pomiarowego będzie miało wpływ na widmo sygnałów związanych z kolejnymi wielkościami wyjściowymi algorytmu.
 
@@ -500,7 +500,7 @@ Wybrane okna pomiarowe opisane w literaturze~\cite{oppenheim_dsp, oppenheim_sns,
 \begin{gather}
 w_{tr} \emb{n} = 1 - \left| \frac{n - \frac{N-1}{2}}{\frac{N}{2}} \right| \label{eq:wnd_triang}, \\
 w_{sn} \emb{n} = \sin \left( \frac{\pi n}{N} \right) \label{eq:wnd_sine}, \\
-w_{ga} \emb{n} = \exp \left(-\frac{1}{2} \cdot \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{\emb{N-1}}{2}} \right)^{2} \right) \label{eq:wnd_gauss}, \\
+w_{ga} \emb{n} = \exp \left(-\frac{1}{2} \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{\emb{N-1}}{2}} \right)^{2} \right) \label{eq:wnd_gauss}, \\
 w_{hm} \emb{n} = 0.5384 - 0.4616 \cos \left( \frac{2 \pi n}{N} \right) \label{eq:wnd_hamming}, \\
 w_{hn} \emb{n} = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eq:wnd_hann}, \\
 w_{wh} \emb{n} = 1 - \left( \frac{n - \frac{N}{2}}{\frac{N}{2}} \right)^{2} \label{eq:wnd_welch}.

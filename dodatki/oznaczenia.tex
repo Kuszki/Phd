@@ -1,38 +1,39 @@
 \chapter*{Wykaz oznaczeń}\addcontentsline{toc}{chapter}{Wykaz oznaczeń}
 
 \begin{longtable}[l]{ l @{~~--~~} p{376pt} }
-$N$                             & liczba wielkości wejściowych obiektu \\
-$M$                             & liczba wielkości wyjściowych obiektu \\
+$\omega$                        & pulsacja sygnału, gdzie $\omega = 2\pi f$ \\
+$f$                             & częstotliwość sygnału, gdzie $f = \frac{\omega}{2\pi}$ \\
+$T_{p}$                         & okres próbkowania sygnału, gdzie $T_{p} = \frac{1}{f_{p}}$ \\
+$\omega_{p}$                    & pulsacja próbkowania sygnału, gdzie $\omega_{p} = 2\pi f_{p}$ \\
+$f_{p}$                         & częstotliwość próbkowania sygnału, gdzie $f_{p} = \frac{\omega_{p}}{2\pi}$ \\
+$\omega_{n}$                    & pulsacja znormalizowana, gdzie $\omega_{n} = \omega T_{p}$ \\
+$f_{n}$                         & częstotliwość znormalizowana, gdzie $f_{n} = \frac{f}{f_{p}}$ \\
 $t$                             & zmienna reprezentująca czas \\
-$\alpha$                        & przyjęty poziom ufności \\
-$\omega$                        & pulsacja przebiegu sinusoidalnego \\
-$\omega_{p}$                    & pulsacja próbkowania sygnału \\
-$\omega_{n}$                    & pulsacja znormalizowana do pulsacji próbkowania \\
-$f_{p}$                         & częstotliwość próbkowania sygnału \\
-$f_{n}$                         & częstotliwość znormalizowana do częstotliwości próbkowania \\
-$c_{k}$                         & wartość $k$-tego współczynnika skalującego \\
-$w(n)$                          & funkcja opisująca zastosowane okno pomiarowe \\
+$i$                             & zmienna reprezentująca numer próbki \\
+$\alpha$                        & przyjęty poziom ufności wyrażony w procentach \\
+$w(n)$                          & funkcja opisująca okno pomiarowe dla $n$-tej wielkości wejściowej \\
 $s(t)$                          & zmienna w czasie fizyczna wielkość mierzona \\
 $y(t)$                          & zmienna w czasie wielkość wyjściowa obiektu \\
 $x(i)$                          & dyskretny przebieg wielkości wejściowej obiektu \\
 $X(i)$                          & dyskretny przebieg wielkości wyjściowej obiektu \\
 $\psi(t)$                       & równanie falki-matki określone w dziedzinie czasu \\
 $\phi(t)$                       & równanie falki-ojca określone w dziedzinie czasu \\
-$\dot{a}(t)$                    & wartość idealna wielkości $a$ w chwili $t$ \\
-$\tilde{a}(t)$                  & wartość wielkości $a$ w chwili $t$ obarczona błędem \\
+$\dot{a}(x)$                    & idealny przebieg wielkości $a$ w funkcji parametru $x$ \\
+$\tilde{a}(x)$                  & rzeczywisty przebieg wielkości $a$ w funkcji parametru $x$ \\
+$\hat{a}(x)$                    & wartość realizacji wielkości $a$ dla wartości parametru $x$ \\
+$f_{a}(x)$                      & funkcja przetwarzania statycznego obiektu $a$ \\
 $G_{a}(j\omega)$                & transmitancja obiektu $a$ w dziedzinie $\mathcal{F}$ \\
 $H_{a}(z)$                      & transmitancja obiektu $a$ w dziedzinie $\mathcal{Z}$ \\
-$f_{a}(x)$                      & funkcja przetwarzania statycznego obiektu $a$ \\
 $E_{a}(\omega)$                 & amplituda harmonicznej sygnału $a$ o pulsacji $\omega$ \\
 $K_{a}(\omega)$                 & wzmocnienie harmonicznej sygnału $a$ o pulsacji $\omega$ \\
 $\varphi_{a}(\omega)$           & przesunięcie w fazie harmonicznej sygnału $a$ o pulsacji $\omega$ \\
+$N_{a}$                         & liczba wielkości wejściowych obiektu $a$ \\
+$M_{a}$                         & liczba wielkości wyjściowych obiektu $a$ \\
 $S_{i,j}$                       & aproksymacje $j$-tej wielkości wyjściowej $i$-tego poziomu dekompozycji \\
 $T_{i,j}$                       & detale $j$-tej wielkości wyjściowej $i$-tego poziomu dekompozycji \\
-$T_{p}$                         & okres próbkowania sygnału \\
 $N_{q}$                         & rozdzielczość przetwornika analogowo-cyfrowego \\
 $N_{k}$                         & liczba niezerowych współczynników skalujących \\
-$A_{s,i}$                       & współczynnik przenoszenia błędów statycznych $i$-tej wielkości wyjściowej \\
-$A_{r,i}$                       & współczynnik przenoszenia błędów losowych $i$-tej wielkości wyjściowej \\
+$c_{k}$                         & wartość $k$-tego współczynnika skalującego \\
 $\sigma_{a}$                    & odchylenie standardowe wielkości $a$ \\
 $\sigma_{a}^{2}$                & wariancja wielkości $a$ \\
 $U_{a}$                         & niepewność rozszerzona wielkości $a$ \\
