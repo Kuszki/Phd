@@ -29,10 +29,10 @@ natomiast błąd graniczny nastawy składowej stałej $D$ sygnału wyjściowego 
 \begin{equation}
 \delta_{D,gr} = \pm \emb{\frac{0.5}{100} \left| D \right| + \frac{2}{1000}} ~\unit{V} \label{eq:pom_gen_shferr_max},
 \end{equation}
-przy czym omawiane wielkości $E$ oraz $D$ wyrażone są w woltach. Na podstawie powyższych zależności należy oszacować przedział dla zadanego poziomu ufności, w jakim znajduje się $\alpha$ wartości realizacji błędu nastawy amplitudy oraz błędu nastawy składowej stałej. Zgodnie z wytycznymi zawartymi w~\cite{jcgm_guide} i przyjętym w pracy poziomem ufności $\alpha = 95\%$ zapisać można:
+dla wartości parametrów $E$ oraz $D$ wyrażonych w woltach. Na podstawie powyższych zależności należy oszacować przedział dla zadanego poziomu ufności, w jakim znajduje się $\alpha$ wartości realizacji błędu nastawy amplitudy oraz błędu nastawy składowej stałej. Zgodnie z wytycznymi zawartymi w~\cite{jcgm_guide} i przyjętym w pracy poziomem ufności $\alpha = 95\%$ zapisać można:
 \begin{gather}
-U_{E} \emb{x} = c_{u} \cdot \sigma_{E} \emb{x} = c_{u} \frac{\left| \delta_{E,gr} \emb{x} \right|}{\sqrt{3}} = 1.65 \frac{\num{5e-3} \left| x \right| + \num{0.5e-3}}{\sqrt{3}} ~\unit{V} \label{eq:pom_gen_amperr_unc}, \\
-U_{D} \emb{x} = c_{u} \cdot \sigma_{D} \emb{x} = c_{u} \frac{\left| \delta_{D,gr} \emb{x} \right|}{\sqrt{3}} = 1.65 \frac{\num{5e-3} \left| x \right| + \num{2e-3}}{\sqrt{3}} ~\unit{V} \label{eq:pom_gen_shferr_unc}.
+U_{E} \emb{x} = c_{u} \cdot \sigma_{E} \emb{x} = c_{u} \frac{\left| \delta_{E,gr} \emb{x} \right|}{\sqrt{3}} = 1.65 \frac{\num{5e-3} \left| x \right| + \num{0.5e-3}}{\sqrt{3}} \label{eq:pom_gen_amperr_unc}, \\
+U_{D} \emb{x} = c_{u} \cdot \sigma_{D} \emb{x} = c_{u} \frac{\left| \delta_{D,gr} \emb{x} \right|}{\sqrt{3}} = 1.65 \frac{\num{5e-3} \left| x \right| + \num{2e-3}}{\sqrt{3}} \label{eq:pom_gen_shferr_unc}.
 \end{gather}
 gdzie $x$ jest wartością zadaną dla analizowanego parametru wyrażoną w woltach. Należy zauważyć, że w przypadku pojedynczego przyrządu, omawiane rozbieżności w nastawie przedstawionych parametrów stanowią systematyczne źródło błędów, a ich wpływ nożna skorygować przeprowadzając kalibrację przyrządu. Niezależnie od wykonania kalibracji przyrządu, dla syntezowanego sygnału sinusoidalnie zmiennego o wartości zadanej amplitudy $\dot{E}_{s,o}$ oraz składowej stałej o wartości zadanej $\dot{D}_{s,o}$, sygnał $s(t)$ na wyjściu przyrządu opisać można w dziedzinie czasu za pomocą równań:
 \begin{gather}
@@ -44,8 +44,8 @@ gdzie symbolem $e_{s,s}(t)$ oznaczono błąd statyczny, symbolem $e_{s,s}(t)$ b�
 W przypadku sygnału błędu statycznego $e_{s,s}(t)$ przyjąć można, że błąd ten powodowany jest rozbieżnością nastawy wartości składowej stałej. Wartość realizacji tego sygnału jest stała dla zadanej wartości parametru $\dot{D}_{s,o}$, natomiast jego parametry określać może wariancja oraz niepewność rozszerzona, definiowane na podstawie równania~\eqref{eq:pom_gen_amperr_unc}. Zatem, w przypadku braku kalibracji przyrządu zapisać można:
 \begin{gather}
 e_{s,s} \emb{t} = E_{s,e,0} \emb{\dot{D}_{s,o}} = \tilde{D}_{s,o} - \dot{D}_{s,o} \label{eq:pom_gen_err_stat}, \\
-\sigma_{s,s}^{2} = \sigma_{D}^{2} \emb{\dot{D}_{s,o}} = \frac{\left| \delta_{D,gr} \emb{\dot{D}_{s,o}} \right|^{2}}{3} ~\unit{V} \label{eq:pom_gen_var_stat}, \\
-U_{s,s} = c_{u} \cdot \sigma_{D} \emb{\dot{D}_{s,o}} = 1.65 \frac{\num{5e-3} \left| \dot{D}_{s,o} \right| + \num{2e-3}}{\sqrt{3}} ~\unit{V} \label{eq:pom_gen_unc_stat}.
+\sigma_{s,s}^{2} = \sigma_{D}^{2} \emb{\dot{D}_{s,o}} = \frac{\left| \delta_{D,gr} \emb{\dot{D}_{s,o}} \right|^{2}}{3} \label{eq:pom_gen_var_stat}, \\
+U_{s,s} = c_{u} \cdot \sigma_{D} \emb{\dot{D}_{s,o}} = 1.65 \frac{\num{5e-3} \left| \dot{D}_{s,o} \right| + \num{2e-3}}{\sqrt{3}} \label{eq:pom_gen_unc_stat}.
 \end{gather}
 gdzie $\tilde{D}_{s,o}$ jest rzeczywistą wartością składowej stałej dla wartości zadanej równej $\dot{D}_{s,o}$. Po przeprowadzeniu kalibracji istnieje możliwość deterministycznego opisu sygnału $e_{s,s}(t)$ w funkcji zadanej wartości $\dot{D}_{s,o}$, przy czym wartość tego sygnału jest stała w czasie. Po wykonaniu korekty założyć można, że sygnał ten nie występuje, zatem $e_{s,s}(t) = 0$.
 
@@ -55,7 +55,7 @@ e_{s,d} \emb{t} = \emb{\tilde{E}_{s,o} - \dot{E}_{s,o}} \sin \emb{\omega_{s,o} t
 \end{equation}
 gdzie $\tilde{E}_{s,o}$ jest rzeczywistą amplitudą, $E_{s,e,1}(\dot{E}_{s,o})$ jest wartością amplitudy oraz $\varphi_{s,e,1}(\dot{E}_{s,o})$ jest fazą sygnału błędu dynamicznego w funkcji zadanej wartości amplitudy $\dot{E}_{s,o}$. Jako, że błąd nastawy amplitudy sygnału może przyjmować zarówno dodatni, jak ujemny znak, należy rozważać sygnał z nim związany dla obydwóch przypadków. Sytuacje te odróżnić należy analizując inną fazę $\varphi_{s,e,1}$ tego sygnału, przy czym dla dodatniej wartości sygnału błędu zachodzi $\varphi_{s,e,1} = 0$, natomiast dla ujemnej $\varphi_{s,e,1} = \pi$. Kalibracja przyrządu prowadzi do zdeterminowania zależności $E_{s,e,1} \emb{\dot{E}_{s,o}}$ i umożliwia korektę opisanego sygnału błędu. Jeżeli po wykonaniu wzorcowania nie uwzględnia się korekty związanej z nastawą amplitudy, to wariancję sygnału błędu $e_{s,d}(t)$ wyznaczyć można zgodnie z zależnością~\eqref{eq:dyn_var}, natomiast w przypadku braku kalibracji, należy określić maksymalną wariancję tego sygnału w postaci:
 \begin{equation}
-\sigma_{s,d}^{2} = \frac{U_{E}^{2} \emb{\dot{E}_{s,o}}}{2} = \frac{1.65^{2}}{6} \emb{\num{5e-3} \dot{E}_{s,o} + \num{0.5e-3}}^{2} \unit{V} \label{eq:pom_gen_var_dyn},
+\sigma_{s,d}^{2} = \frac{U_{E}^{2} \emb{\dot{E}_{s,o}}}{2} = \frac{1.65^{2}}{6} \emb{\num{5e-3} \dot{E}_{s,o} + \num{0.5e-3}}^{2} \label{eq:pom_gen_var_dyn},
 \end{equation}
 która odpowiada wartości błędu granicznego nastawy amplitudy dla $95\%$ przypadków. Należy zauważyć, że wartość amplitudy sygnału błędu dynamicznego $e_{s,d}(t)$ jest stała w czasie i zależy jedynie od wartości parametru $\dot{E}_{s,o}$. Z uwagi na fakt, że bez procedury kalibracji rzeczywista wartość $\tilde{E}_{s,o}$ nie jest znana, należy przyjąć taką wartość wariancji $\sigma_{s,d}^{2}$ sygnału błędu dynamicznego $e_{s,d}(t)$, która z prawdopodobieństwem $95\%$ obejmie wszystkie możliwe przypadki realizacji tego błędu, niezależnie od użytego egzemplarza urządzenia dla zadanej wartości $\dot{E}_{s,o}$.
 
@@ -87,7 +87,7 @@ Zgodnie z dokumentacją urządzenia błąd graniczny nastawy częstotliwości po
 
 Aplikacja zaproponowanego w pracy modelu błędu wymaga identyfikacji parametrów tego modelu, właściwych dla analizowanego toru pomiarowego. Pierwszą grupą identyfikowanych właściwości analizowanego toru pomiarowego stanowią jego właściwości statyczne. Właściwości te nie zależą od częstotliwości przetwarzanego sygnału i wynikają z charakterystyk przetwarzania statycznego kolejnych fragmentów tego toru. Jako, że z punktu widzenia zaproponowanego w pracy modelu błędu i sposobu jego aplikacji, najistotniejsze informacje stanowią dane dotyczące parametrów sygnałów błędów na wejściu algorytmu dyskretnej transformacji falkowej, najbardziej przystępne z punktu widzenia projektanta toru pomiarowego jest wyznaczenie tych parametrów traktując całość toru pomiarowego znajdującego się przed tym algorytmem, jak jeden obiekt o wypadkowych parametrach wszystkich pozostałych fragmentów tego toru.
 
-Wobec powyższych, proponuje się wyznaczenie charakterystyki statycznej $f_{c}(x)$ dla wielkości wyjściowej $c(i)$ przetwornika analogowo-cyfrowego, a następnie na jej podstawie określenie funkcji odtwarzania $f_{x}(x)$. Należy w tym celu na wejście toru pomiarowego podawać, z wzorcowego źródła napięcia, napięcie stałe o zadanej wartości, a następnie pobierać wielokrotnie wartość realizacji wielkości wyjściowej $c(i)$ przetwornika analogowo-cyfrowego, którą następnie należy uśrednić dla przeprowadzonej serii pomiarów. Podczas eksperymentu na wejście toru pomiarowego podawano napięcie stałe z zakresu $\hat{s}(k) \in~<0;1>~\unit{V}$, z krokiem wynoszącym~\qty{10}{mV}. Na pojedynczą $k$-tą serię pomiarową składało się trzydzieści tysięcy realizacji wielkości wyjściowej $c(i)$ przetwornika analogowo-cyfrowego, pobieranych z częstotliwością \qty{48}{kHz}. Źródło sygnału $s(t)$ stanowił kalibrator FLUKE 5700A~\cite{fluke_manual}, stąd założyć można, że przetwarzany sygnał $s(t)$ nie zawierał żadnych sygnałów błędów, a zatem wszystkie sygnały błędów obecne w torze pomiarowym stanowiły błędy własne tego toru.
+Proponuje się zatem wyznaczenie charakterystyki statycznej $f_{c}(f_{y}(x))$ dla wielkości wyjściowej $c(i)$ przetwornika analogowo-cyfrowego stosując metodologię podobną do zaproponowanej w pracy~\cite{kampik_przetworniki}. Należy w tym celu na wejście toru pomiarowego podawać, z wzorcowego źródła napięcia, napięcie stałe o zadanej wartości, a następnie pobierać wielokrotnie wartość realizacji wielkości wyjściowej $c(i)$ przetwornika analogowo-cyfrowego, którą następnie należy uśrednić dla przeprowadzonej serii pomiarów. Podczas eksperymentu na wejście toru pomiarowego podawano napięcie stałe z zakresu $\hat{s}(k) \in~<0;1>~\unit{V}$, z krokiem wynoszącym~\qty{10}{mV}. Na pojedynczą $k$-tą serię pomiarową składało się trzydzieści tysięcy realizacji wielkości wyjściowej $c(i)$ przetwornika analogowo-cyfrowego, pobieranych z częstotliwością \qty{48}{kHz}. Źródło sygnału $s(t)$ stanowił kalibrator FLUKE 5700A~\cite{fluke_manual}, stąd założyć można, że przetwarzany sygnał $s(t)$ nie zawierał żadnych sygnałów błędów, a zatem wszystkie sygnały błędów obecne w torze pomiarowym stanowiły błędy własne tego toru.
 
 Po wykonaniu aproksymacji średnich wartości $\overline{c}(k)$ uzyskanych dla kolejnych serii pomiarowych funkcją liniową w postaci $f(x) = ax + b$, wartość średnią $\overline{c}(k)$ dla $k$-tej serii pomiarowej oszacować można w rozważanej sytuacji zgodnie z równaniem:
 \begin{equation}
@@ -97,7 +97,7 @@ gdzie $\hat{s}(k)$ jest zadaną wartością napięcia dla analizowanej serii pom
 \begin{equation}
 \overline{x} \emb{k} = f_{x} \emb{\overline{c} \emb{k}} = f_{x} \emb{f_{c} \emb{f_{y} \emb{\hat{s} \emb{k}}}} = \frac{\overline{c} \emb{k} - 3.519}{4097.96} \approx \hat{s} \emb{k} \label{eq:pom_funx_static}.
 \end{equation}
-Odchylenie standardowe zmierzonych wartości $\overline{c}(k)$ od ich aproksymacji danej równaniem~\eqref{eq:pom_func_static} wyniosło $\sigma_{c,nl} = \qty{0.37}{LSB}$, co interpretować można jako niepewność standardową nieliniowości wypadkowej charakterystyki przetwarzania $f_{c}(f_{y}(x))$ związanej z wielkością $c(i)$. Po wykonaniu odtwarzania statycznego, zgodnie z równaniem~\eqref{eq:pom_funx_static}, niepewność standardowa związana z nieliniowością charakterystyki odtwarzania wielkości $x(i)$ wyniosła odpowiednio $\sigma_{x,nl} = \qty{0.09}{mV}$. Uzyskane wartości wielkości $\overline{c}(k)$ w funkcji wartości wielkości $\hat{s}(k)$ oraz ich aproksymację, daną równaniem~\eqref{eq:pom_func_static}, przedstawiono na rysunku~\ref{fig:pom_static_fun} po stronie lewej.
+Odchylenie standardowe różnic uzyskanych pomiarowo wartości realizacji wielkości $\overline{c}(k)$ oraz wartości ich aproksymacji opisanej równaniem~\eqref{eq:pom_func_static} wyniosło $\sigma_{c,nl} = \qty{0.37}{LSB}$, co interpretować można jako niepewność standardową nieliniowości charakterystyki przetwarzania $f_{c}(f_{y}(x))$. Uwzględniając algorytm odtwarzania statycznego, zgodnie z równaniem~\eqref{eq:pom_funx_static}, niepewność standardowa związana z nieliniowością charakterystyki odtwarzania wielkości $x(i)$ wynosi odpowiednio $\sigma_{x,nl} = \qty{0.09}{mV}$. Uzyskane wartości wielkości $\overline{c}(k)$ w funkcji wartości wielkości $\hat{s}(k)$ oraz ich aproksymację, daną równaniem~\eqref{eq:pom_func_static}, przedstawiono na rysunku~\ref{fig:pom_static_fun} po stronie lewej.
 
 Poza nieliniowością charakterystyki odtwarzania sygnału $x(i)$ w budżecie niepewności uwzględnić należy występowanie pozostałych czynników zakłócających proces pomiaru. Czynniki te stanowią między innymi zakłócenia wynikające z fluktuacji napięcia zasilania wzmacniacza pomiarowego oraz napięcia odniesienia przetwornika analogowo-cyfrowego, błędy kwantowania, niejednorodność wzorców struktury wewnętrznej przetwornika analogowo-cyfrowego, czy szumy występujące w części analogowej toru pomiarowego~\cite{stm_adc}. Sygnały błędów związane z wymienionymi zjawiskami nie są możliwe do opisania w sposób deterministyczny w analizowanej sytuacji. Jako, że z punktu widzenia proponowanego w pracy modelu błędu, istotne są jedynie parametry wypadkowego sygnału błędu losowego $e_{x,rw}(i)$, który w przypadku warunków przeprowadzonego eksperymentu opisać można równaniem:
 \begin{equation}
@@ -183,22 +183,37 @@ Zaproponowany algorytm identyfikacji właściwości metrologicznych analizowaneg
 Przyjmując założoną wcześniej czułość dla wielkości $x(i)$ w stosunku do przetwarzanego sygnału $s(t)$ równą $s_{s,x} = \qty{1}{V \per V}$, idealny oraz zakłócony sygnałem błędu przebieg wielkości $x(i)$ opisać można w postaci:
 \begin{gather}
 \dot{x} \emb{i} = s_{s,x} \dot{s} \emb{kT_{p}} = \dot{s} \emb{kT_{p}} \label{eq:pom_dwtina_ideal}, \\
-\tilde{x} \emb{i} = \dot{s} \emb{kT_{p}} + e_{x,\Sigma} \emb{i} \label{eq:pom_dwtina_real}.
+\tilde{x} \emb{i} = \dot{s} \emb{kT_{p}} + e_{x,\Sigma} \emb{i} \label{eq:pom_dwtina_real},
 \end{gather}
-Należy zauważyć, że sygnał błędu $e_{x,\Sigma}(t)$ zawierać będzie składowe związane z właściwościami statycznymi oraz dynamicznymi analizowanego toru pomiarowego, przy czym z osobna rozpatrywane będą sygnały związane z błędami własnymi, wprowadzanymi przez obiekt, oraz propagowanymi z wejścia na wyjście obiektu.
-
-Uwzględniając założenie odnośnie czułości wielkości $x(i)$ względem sygnału $s(t)$ wynikające z wartości wzmocnienia statycznego $\tilde{K}_{y}(0)$ oraz postaci funkcji odtwarzania statycznego danych w równaniach~\eqref{eq:pom_funx_static} oraz~\eqref{eq:pom_aprox_amp} przyjmuje się, że wzmocnienie dla wielkości $x(t)$ względem wielkości $s(t)$ wprowadzane przez wzmacniacz pomiarowy wynosi w zakresie częstotliwości $f \in~<0; \frac{1}{2} f_{p}>$:
+przy czym składowe sygnału błędu $e_{x,\Sigma}(i)$ opisano w dalszej części podrozdziału. Zgodnie z równaniami~\eqref{eq:mid_disc_sum_real} oraz~\eqref{eq:out_disc_real_all}, w przypadku sygnału $s(t)$ o charakterze deterministycznym, którego kolejne harmoniczne mogą być opisane postaci równania $\tilde{s}(t,\omega) = A_{s}(\omega) \sin(\omega t + \varphi_{s}(\omega))$, rzeczywisty przebieg wybranej harmonicznej sygnału $x(i)$ stanowiącego wejście algorytmu transformacji falkowej opisać można w postaci:
 \begin{equation}
-\tilde{K}_{s,x} \emb{\omega} = \frac{\tilde{K}_{y} \emb{\omega}}{\tilde{K}_{y} \emb{0}} \approx \qty{1}{V \per V} \label{eq:pom_dwtin_amp}.
+\tilde{x} \emb{i,\omega} =  s_{s,x} \sum_{k = 0} ^{\infty} \tilde{K}_{s,x} \emb{\omega_{k}} A_{s} \emb{\omega_{k}} \sin \emb{\omega_{k} i T_{p} + \varphi_{s}(\omega_{k}) + \tilde{\varphi}_{s,x} \emb{\omega_{k}}} \label{eq:pom_dwtina_harmsum}.
 \end{equation}
-Na podstawie wypadkowych właściwości dynamicznych obiektu, wynikających z właściwości wzmacniacza oraz przetwornika analogowo-cyfrowego, można natomiast przyjąć, że przesunięcie fazowe sygnału $x(i)$ względem sygnału $s(t)$ jest dane zależnością:
+Wariancję sygnału $x(i)$ na wejściu algorytmu transformacji falkowej w funkcji pulsacji opisać można w przypadku przetwarzanego sygnału $s(t)$ na podstawie równań~\eqref{eq:mid_disc_err_sum_all} oraz~\eqref{eq:out_disc_var_sense} jako:
 \begin{equation}
-\tilde{\varphi}_{s,x} \emb{\omega} = \tilde{\varphi}_{y} \emb{\omega} = -\frac{1.700 \omega^{5}}{\num{e30}} + \frac{6.517 \omega^{4}}{\num{e24}} - \frac{7.932 \omega^{3}}{\num{e18}} + \frac{2.921 \omega^{2}}{\num{e12}} - \frac{6.924 \omega}{\num{e07}} \label{eq:pom_dwtin_phi}.
+\sigma_{x}^{2} \emb{\omega} = s_{s,x}^{2} \tilde{K}_{s,x}^{2} \emb{\omega} \sigma_{y}^{2} \emb{\omega} \label{eq:pom_dwtina_var},
 \end{equation}
+gdzie $\sigma_{y}^{2}(\omega)$ jest wariancją sygnału $s(t)$. Zależność~\eqref{eq:pom_dwtina_var} jest odpowiednia zarówno w przypadku sygnałów deterministycznych, jak i niedeterministycznych.
 
-Pierwszy składnik zawarty w sygnale błędu $e_{x,\Sigma}(t)$ stanowi sygnał związany ze zidentyfikowanymi właściwościami statycznymi analizowanego wcześniej fragmentu toru pomiarowego, opisany dla warunków wykonanego eksperymentu równaniem~\eqref{eq:pom_funx_error}. Jako, że deterministyczna postać omawianego sygnału błędu nie jest znana oraz wartości jego realizacji nie zależą od częstotliwości przetwarzanego sygnału, przyjmuje się, że sygnał ten zalicza się do puli błędów losowych własnych. Niepewność rozszerzona związana z omawianym sygnałem błędu wynosi, zgodnie z poprzednimi rozważaniami, $U_{x,rw} = \qty{0.62}{mV}$ oraz przyjmuje się normalny rozkład realizacji tego błędu.
+Wartość wzmocnienia $\tilde{K}_{s,x}(\omega)$ jest wypadkową wartością wzmocnienia uzyskaną dla kaskadowego połączenia wzmacniacza pomiarowego, którego wzmocnienie oznaczono symbolem $\tilde{K}_{y}(\omega)$, przetwornika analogowo-cyfrowego, którego wzmocnienie oznaczono jako $\tilde{K}_{c}(\omega)$ oraz algorytmu odtwarzania statycznego, którego nieomówione dotychczas wzmocnienie oznaczono symbolem $\tilde{K}_{x}(\omega)$. Wobec powyższych założeń zapisać można:
+\begin{equation}
+\tilde{K}_{s,x} \emb{\omega} = \tilde{K}_{y} \emb{\omega} \tilde{K}_{c} \emb{\omega} \tilde{K}_{x} \emb{\omega} \label{eq:pom_dwtina_amp},
+\end{equation}
+przy czym zgodnie z założeniami dotyczącymi postaci funkcji odtwarzania, opisanej równaniem~\eqref{eq:pom_funx_static} oraz założeń danych równaniem~\eqref{eq:pom_dwtina_ideal} odnośnie jednostkowej czułości sygnału $x(i)$ względem sygnału $s(t)$, dla których zachodzi $\tilde{K}_{s,x}(0) = \qty{1}{V \per V}$, wartość wzmocnienia $\tilde{K}_{x}(\omega)$ jest wartością stałą i kompensuje ona wzmocnienie statyczne wzmacniacza oraz przetwornika analogowo-cyfrowego, a zatem może ona być opisana równaniem:
+\begin{equation}
+\tilde{K}_{x} \emb{\omega} = \frac{1}{\tilde{K}_{y} \emb{0} \tilde{K}_{c} \emb{0}} \approx \frac{1}{3.28}~\unit{V \per V} \label{eq:pom_dwtina_ampnorm},
+\end{equation}
+przy czym zgodnie z treścią równań~\eqref{eq:pom_aprox_amp} oraz~\eqref{eq:pom_adcin_amp} przyjąć można, że $\tilde{K}_{x}(\omega) \approx \qty{1}{V \per V}$. Dla przypadku idealnego zakłada się stałe jednostkowe wzmocnienie dynamiczne, a zatem zachodzi $\dot{K}_{s,x}(\omega) = \qty{1}{V \per V}$.
 
-Drugi składnik sygnału błędu $e_{x,\Sigma}(t)$ stanowi sygnał związany z właściwościami dynamicznymi wzmacniacza pomiarowego, przy czym błąd ten ma charakter deterministyczny i można podzielić go na sygnał związany z błędem własnym oraz propagowanym. Analizując założenie opisane równaniem~\eqref{eq:pom_dwtin_amp} oraz charakterystykę amplitudową przedstawioną na rysunku~\ref{fig:pom_dynamic_ampout} zauważyć można, że dla zakresu częstotliwości $f \in~<0; \frac{1}{2} f_{p}>$ wartość wzmocnienia $\tilde{K}_{s,x}(\omega)$ jest stała, a zatem parametr ten nie ma wpływu na wprowadzane i przetwarzane sygnały błędów dynamicznych. Wobec powyższych, zgodnie z równaniami~\eqref{eq:mid_disc_err_dyn_self}, \eqref{eq:mid_disc_err_dyn_prop}, \eqref{eq:pom_funx_static} oraz~\eqref{eq:pom_dwtin_amp}:
+Przesunięcie fazowe $\tilde{\varphi}_{s,x}(\omega)$ sygnału $x(i)$ względem sygnału $s(t)$, wynikające z przesunięcia $\tilde{\varphi}_{y}(\omega)$ wprowadzanego przez wzmacniacz oraz wprowadzanego przez przetwornik analogowo-cyfrowy przesunięcia $\tilde{\varphi}_{s,x}(\omega)$ opisać można jako:
+\begin{equation}
+\tilde{\varphi}_{s,x} \emb{\omega} = \tilde{\varphi}_{y} \emb{\omega} + \tilde{\varphi}_{s,x} \emb{\omega} \approx -\frac{5.775}{\num{e14}} \omega^{2} - \frac{4.101}{\num{e07}} \omega - \arctan \emb{\frac{6.685}{\num{e9}} \omega} \label{eq:pom_dwtina_phi},
+\end{equation}
+co wynika z równań~\eqref{eq:pom_aprox_phi} oraz~\eqref{eq:pom_adcin_phi}. W rozważaniach nie uwzględniono przesunięcia fazowego wprowadzanego przez algorytm odtwarzania statycznego, ponieważ algorytm ten nie wprowadza żadnego przesunięcia w fazie dla przetwarzanego sygnału. Przyjmuje się, że w przypadku idealnym sygnał $x(i)$ powinien cechować się fazą identyczną, jak przetwarzany sygnał $s(t)$, zatem $\dot{\varphi}_{s,x}(\omega) = \qty{0}{rad}$.
+
+Pierwszy składnik zawarty w sygnale błędu $e_{x,\Sigma}(i)$ stanowi sygnał $e_{x,rw}(i)$ związany ze zidentyfikowanymi właściwościami statycznymi analizowanego fragmentu toru pomiarowego, stanowiącego źródło danych algorytmu transformacji falkowej, opisany dla warunków wykonanego eksperymentu równaniem~\eqref{eq:pom_funx_error}. Jako, że deterministyczna postać omawianego sygnału błędu nie jest znana oraz wartości jego realizacji nie zależą od częstotliwości przetwarzanego sygnału, przyjmuje się, że sygnał ten zalicza się do puli błędów losowych własnych. Niepewność rozszerzona związana z omawianym sygnałem błędu wynosi, zgodnie z poprzednimi rozważaniami, $U_{x,rw} = \qty{0.62}{mV}$ oraz przyjmuje się normalny rozkład realizacji tego sygnału.
+
+Drugi składnik sygnału błędu $e_{x,\Sigma}(i)$ stanowi sygnał związany z właściwościami dynamicznymi wzmacniacza pomiarowego oraz przetwornika analogowo-cyfrowego, przy czym błąd ten ma charakter deterministyczny i można podzielić go na sygnał związany z błędem własnym $e_{x,dw}(i)$ oraz propagowanym $e_{x,dp}(i)$. Analizując założenie związane z równaniem~\eqref{eq:pom_dwtina_amp}, gdzie przyjęto $\tilde{K}_{x}(\omega) \approx \qty{1}{V \per V}$, zgodnie z równaniami~\eqref{eq:mid_disc_err_dyn_self}, \eqref{eq:mid_disc_err_dyn_prop}, \eqref{eq:pom_dwtina_ideal}, \eqref{eq:pom_dwtina_amp} oraz~\eqref{eq:pom_dwtina_phi} i założenia gdzie $\dot{\varphi}_{s,x}(\omega) = \qty{0}{rad}$ zachodzi:
 \begin{gather}
 \begin{split}
 e_{x,dw} \emb{i} =~
@@ -206,31 +221,30 @@ e_{x,dw} \emb{i} =~
 & \sum _{k = 1} ^{\infty} E_{s,o} \emb{\omega_{x,k}} \sin \left( \omega_{s,k} iT_{p} + \varphi_{s,o} \emb{\omega_{s,k}} + \dot{\varphi}_{s,x} \emb{\omega_{s,k}} \right)
 \end{split}
 \label{eq:pom_errx_dyn_self}, \\
-e_{x,dp} \emb{i} = \sum _{j = 1} ^{\infty} E_{s,e} \emb{\omega_{s,j}} \sin \left( \omega_{s,j} iT_{p} + \varphi_{s,e} \emb{\omega_{s,j}} + \tilde{\varphi}_{s,x} \emb{\omega_{s,j}} \right) \label{eq:pom_errx_dyn_prop},
+e_{x,dp} \emb{i} = \sum _{j = 1} ^{\infty} E_{s,e} \emb{\omega_{s,j}} \sin \left( \omega_{s,j} iT_{p} + \varphi_{s,e} \emb{\omega_{s,j}} + \tilde{\varphi}_{s,x} \emb{\omega_{s,j}} \right) \label{eq:pom_errx_dyn_prop}.
 \end{gather}
-przy czym stosowane oznaczenia parametrów sygnału $s(t)$ są zbieżne z tymi wprowadzonymi w równaniach od~\eqref{eq:in_cont_sum_ideal} do~\eqref{eq:in_cont_err_dyn} oraz $\dot{\varphi}_{s,x}(\omega) = \qty{0}{rad}$.
 
-Trzeci składnik sygnału błędu $e_{x,\Sigma}(t)$ wynika z wpływu analizowanego obiektu na obecny w przetwarzanym sygnale $s(t)$ sygnał błędu statycznego $e_{s,s}(t)$, przy czym przebieg tego sygnału na wyjściu obiektu opisać można zgodnie z równaniem~\eqref{eq:pom_funx_static} jako:
+Trzeci składnik sygnału błędu $e_{x,\Sigma}(i)$ wynika z wpływu analizowanego obiektu na obecny w przetwarzanym sygnale $s(t)$ sygnał błędu statycznego $e_{s,s}(i)$, przy czym przebieg tego sygnału na wyjściu obiektu opisać można zgodnie z równaniem~\eqref{eq:out_disc_err_stat_prop} jako:
 \begin{equation}
-e_{x,sp} \emb{i} = e_{s,s} \emb{i T_{p}} \label{eq:pom_errx_stat_prop}.
+e_{x,sp} \emb{i} = e_{s,s} \emb{i T_{p}} \label{eq:pom_errx_stat_prop},
 \end{equation}
-Oznacza to, że zgodnie z równaniami~\eqref{eq:mid_disc_var_omega} oraz~\eqref{eq:out_disc_var_sense}, wariancję tego sygnału opisać można następującą zależnością:
+a zatem, zgodnie z zależnościami~\eqref{eq:mid_disc_var_omega} oraz~\eqref{eq:out_disc_var_sense}, wariancję tego sygnału opisuje równanie:
 \begin{equation}
 \sigma_{x,sp}^{2} = s_{s,x}^{2} \tilde{K}_{s,x}^{2} \emb{0} \sigma_{s,s}^{2} \cong \sigma_{s,s}^{2} \label{eq:pom_varx_stat_prop}.
 \end{equation}
-Jako, że przeprowadzone eksperymenty wykonano przy stałych parametrach otoczenia, nie obejmowały one identyfikacji źródeł i postaci sygnału błędu statycznego własnego. Przyjmuje się zatem, że $e_{x,sw}(i) = 0$ oraz $\sigma_{x,sw}^{2} = 0$.
 
-Czwartym składnikiem sygnału błędu $e_{x,\Sigma}(t)$ jest propagowany sygnał błędu losowego $e_{s,r}(t)$. Zgodnie z zależnościami~\eqref{eq:mid_disc_var_omega} oraz~\eqref{eq:out_disc_var_sense} dla założenia danego równaniem~\eqref{eq:pom_dwtin_amp} wariancję tego sygnału opisać można w postaci:
+Czwartym składnikiem sygnału błędu $e_{x,\Sigma}(i)$ jest propagowany sygnał błędu losowego $e_{x,rp}(i)$ związany z sygnałem $e_{s,r}(i)$. Zgodnie z zależnościami~\eqref{eq:mid_disc_var_omega} oraz~\eqref{eq:out_disc_var_sense} dla założenia danego równaniem~\eqref{eq:pom_dwtina_amp} wariancję tego sygnału opisać można w postaci:
 \begin{equation}
 \sigma_{x,rp}^{2} = s_{s,x}^{2} \tilde{K}_{s,x}^{2} \emb{\omega} \sigma_{s,r}^{2} \emb{\omega} \cong \sigma_{s,r}^{2} \emb{\omega} \label{eq:pom_varx_rand_prop},
 \end{equation}
-co przy założeniu~\eqref{eq:pom_dwtina_ideal} odnośnie liniowości tego obiektu oznacza, że obiekt ten nie ma wpływu na widmo sygnałów losowych w zakresie częstotliwości $f \in~<0; \frac{1}{2} f_{p}>$, zatem:
+co przy założeniu~\eqref{eq:pom_dwtina_ideal} odnośnie charakterystyki przetwarzania tego obiektu oznacza, że obiekt ten nie ma wpływu na postać przetwarzanych sygnałów losowych, a zatem:
 \begin{equation}
-e_{x,rp} \emb{i} \cong e_{x,r} \emb{i} \cong e_{s,r} \emb{i T_{p}} \label{eq:pom_errx_rand_prop}.
+e_{x,rp} \emb{i} \cong e_{s,r} \emb{i T_{p}} \label{eq:pom_errx_rand_prop}.
 \end{equation}
-W przypadku sygnału losowego błędu własnego $e_{x,rw}(i)$ przeprowadzony eksperyment pozwolił oszacować wariancję tego sygnału $\sigma_{x,rw}^{2} = \qty{0.095}{\micro V}$ oraz związaną z nią niepewność $U_{x,rw} = \qty{0.62}{mV}$, gdzie zakłada się $c_{x,rw} = c_{n} = 1.96$.
 
-Na podstawie zależności od~\eqref{eq:pom_dwtina_ideal} do~\eqref{eq:pom_errx_rand_prop} wypadkowy sygnał błędu $e_{x,\Sigma}(t)$ opisać można jako sumę zdefiniowanych dotychczas sygnałów błędów cząstkowych w postaci:
+Jako, że przeprowadzone eksperymenty wykonano przy stałych parametrach otoczenia, nie obejmowały one identyfikacji źródeł i postaci sygnału błędu statycznego własnego. Przyjmuje się zatem, że $e_{x,sw}(i) = \qty{0}{V}$ oraz $\sigma_{x,sw}^{2} = \qty{0}{V}$.
+
+Na podstawie zależności od~\eqref{eq:pom_errx_dyn_self} do~\eqref{eq:pom_errx_rand_prop} wypadkowy sygnał błędu $e_{x,\Sigma}(i)$ opisać można jako sumę zdefiniowanych dotychczas sygnałów błędów cząstkowych w postaci:
 \begin{equation}
 e_{x,\Sigma} \emb{i} = e_{x,sp} \emb{i} + e_{x,dw} \emb{i} + e_{x,dp} \emb{i} + e_{x,rw} \emb{i} + e_{x,rp} \emb{i} \label{eq:pom_errx_sum},
 \end{equation}
@@ -242,20 +256,30 @@ e_{x,r} \emb{i} = e_{x,rw} \emb{i} + e_{x,rp} \emb{i} \label{eq:pom_errx_rand},
 \end{gather}
 gdzie wypadkowe parametry amplitudy $E_{x,e}(\omega_{x,j})$ oraz fazy $\varphi_{x,e}(\omega_{x,j})$ dla kolejnych harmonicznych sygnału wypadkowego błędu dynamicznego $e_{x,d}(i)$ zależne będą od widma przetwarzanego sygnału, natomiast ich wyznaczenie przebiegać będzie zgodnie z metodologią opisaną w równaniach od~\eqref{eq:dyn_vect} do~\eqref{eq:dyn_vect_phi}. Wariancję kolejnych harmonicznych sygnału $e_{x,d}(i)$ wyznaczyć można zgodnie z zależnością~\eqref{eq:dyn_var}.
 
-Przedstawiona aplikacja zaproponowanego w pracy modelu błędu wielkości wejściowych algorytmu dyskretnej transformacji falkowej umożliwia określenie wariancji każdego z wymienionych w równaniu~\eqref{eq:pom_errx_sum} sygnałów oraz wyznaczenie niepewności rozszerzonej związanej z tymi sygnałami. W przypadku sygnałów błędów statycznych i losowych dla $i-tej$ wielkości wyjściowej toru pomiarowego zachodzi:
-\begin{gather}
-\sigma_{i,s}^{2} = \left| H_{i} \emb{0} \right|^{2} = A_{i,s}^{2} \sigma_{x,s}^{2} \label{eq:pom_varout_stat}, \\
-\sigma_{i,r}^{2} = A_{i,r}^{2} \sigma_{x,r}^{2} \label{eq:pom_varout_rand}, 
-\end{gather}
-co wynika bezpośrednio z zależności opisanych równaniami od~\eqref{eq:alg_outvar_stat} do~\eqref{eq:alg_outvar_trans_rand} oraz założenia dotyczącego stałej widmowej gęstości mocy w przypadku sygnałów błędu kwantowania i wypadkowego błędu niedoskonałości charakterystyki statycznej. W przypadku sygnałów błędów dynamicznych, wariancję tych sygnałów w funkcji pulsacji opisać można równaniem:
+Przedstawiona aplikacja zaproponowanego w pracy modelu błędu wielkości wejściowych algorytmu dyskretnej transformacji falkowej umożliwia określenie wariancji każdego z wymienionych w równaniu~\eqref{eq:pom_errx_sum} sygnałów oraz wyznaczenie niepewności rozszerzonej związanej z tymi sygnałami. Wyznaczenie omawianych parametrów sygnałów błędów wielkości wejściowych algorytmu umożliwia wyznaczenie niepewności rozszerzonych wielkości wyjściowych tego algorytmu, które stanowią wielkości wyjściowe analizowanego toru pomiarowego.
+
+W przypadku sygnałów błędów statycznych dla $i$-tej wielkości wyjściowej toru pomiarowego wariancję sygnału błędu statycznego tej wielkości opisać można zgodnie z równaniem~\eqref{eq:alg_outvar_stat} jako:
 \begin{equation}
-\sigma_{i,d}^{2} \emb{\omega} = \left| H_{i} \emb{\omega T_{p}} \right|^{2} \sigma_{x,d}^{2} \emb{\omega} \label{eq:pom_varout_dyn},
+\sigma_{i,s}^{2} = \left| H_{i} \emb{1} \right|^{2} = A_{i,s}^{2} \sigma_{x,s}^{2} \label{eq:pom_varout_stat}.
 \end{equation}
-natomiast wypadkowa wariancja sygnału błędu dynamicznego może zostać opisana w postaci sumy wypadkowych wariancji wszystkich harmonicznych tego sygnału:
+
+Ze względu na stałą widmową gęstość mocy sygnału błędu losowego $e_{x,r}(i)$, wynikającą z przyjętych założeń odnośnie modelu sygnału szumu, błędu kwantowania oraz postaci wzmocnienia $\tilde{K}_{s,x}(\omega)$, wariancja sygnałów błędów losowych na wyjściu algorytmu może być opisana dla $i$-tej wielkości wyjściowej jako:
 \begin{equation}
-\sigma_{i,d}^{2} = \sum _{j=1} ^{\infty} \left| H_{i} \emb{\omega_{x,j} T_{p}} \right|^{2} \sigma_{x,d}^{2} \emb{\omega_{x,j}} \label{eq:pom_varout_dyn_sum}.
+\sigma_{i,r}^{2} = A_{i,r}^{2} \sigma_{x,r}^{2} \label{eq:pom_varout_rand}.
 \end{equation}
-Należy zauważyć, że na etapie analizy kolejnych harmonicznych sygnału błędu dynamicznego $e_{x,d}(i)$ kolejne harmoniczne tego sygnału mogą być ze sobą skorelowane. Proponowane w równaniu~\eqref{eq:pom_errx_dyn} przedstawienie tego sygnału w postaci kolejnych harmonicznych o parametrach wypadkowych umożliwia rozpatrzenie tych korelacji przy jednoczesnej redukcji liczby składowych analizowanego sygnału. Ze względu na to, że przeprowadzona identyfikacja właściwości metrologicznych dla fragmentu toru pomiarowego związanego z wielkościami wejściowymi analizowanego algorytmu nie wykazała innych korelacji pomiędzy zidentyfikowanymi sygnałami błędów, zgodnie z równaniem~\eqref{eq:var_matrix} zapisać można:
+Jeżeli niespełnione zostaną założenia dotyczące stałej widmowej gęstości mocy sygnałów błędów losowych, należy zastosować równanie~\eqref{eq:mid_disc_var_omega} do wyznaczenia wariancji tych sygnałów na wyjściu algorytmu.
+
+Dla sygnałów błędów dynamicznych wariancję tych sygnałów w funkcji pulsacji opisać można zgodnie z zależnością~\eqref{eq:alg_outvar_dyn} jako:
+\begin{equation}
+\sigma_{i,d}^{2} \emb{\omega} = \left| H_{i} \emb{e^{j \omega T_{p}}} \right|^{2} \sigma_{x,d}^{2} \emb{\omega} \label{eq:pom_varout_dyn},
+\end{equation}
+gdzie $H_{i}(e^{j \omega T_{p}})$ jest transmitancją $i$-tej wielkości wyjściowej algorytmu opisaną równaniem~\eqref{eq:alg_trans_single}. Wypadkowa wariancja sygnału błędu dynamicznego może zostać wyrażona w postaci sumy wypadkowych wariancji wszystkich harmonicznych tego sygnału:
+\begin{equation}
+\sigma_{i,d}^{2} = \sum _{k=1} ^{\infty} \left| H_{i} \emb{e^{j \omega_{x,k} T_{p}}} \right|^{2} \sigma_{x,d}^{2} \emb{\omega_{x,k}} \label{eq:pom_varout_dyn_sum}.
+\end{equation}
+Należy zauważyć, że na etapie analizy kolejnych harmonicznych sygnału błędu dynamicznego $e_{x,d}(i)$ kolejne harmoniczne tego sygnału mogą być ze sobą skorelowane. Proponowane w równaniu~\eqref{eq:pom_errx_dyn} przedstawienie tego sygnału w postaci kolejnych harmonicznych o parametrach wypadkowych umożliwia rozpatrzenie tych korelacji przy jednoczesnej redukcji liczby składowych analizowanego sygnału.
+
+Ze względu na fakt, że przeprowadzona identyfikacja właściwości metrologicznych dla fragmentu toru pomiarowego związanego z wielkościami wejściowymi analizowanego algorytmu nie wykazała innych korelacji pomiędzy zidentyfikowanymi sygnałami błędów, zgodnie z równaniem~\eqref{eq:var_matrix} zapisać można:
 \begin{equation}
 \sigma_{i,\Sigma}^{2} = \sigma_{i,s}^{2} + \sigma_{i,d}^{2} + \sigma_{i,r}^{2} \label{eq:pom_varout_sum}.
 \end{equation}
@@ -308,7 +332,9 @@ E_{x,ep,1} \cong E_{s,e,1} \label{eq:pom_mono_dyn_prop_amp_mid}, \\
 \varphi_{x,ep,1,a} = \tilde{\varphi}_{s,x} \emb{\omega_{s,o}} + \left. \varphi_{s,e,1} \right|_{\tilde{E}_{s,o} - \dot{E}_{s,o} > 0} = \tilde{\varphi}_{s,x} \emb{\omega_{s,o}} \label{eq:pom_mono_dyn_prop_phi_mid_a}, \\
 \varphi_{x,ep,1,b} = \tilde{\varphi}_{s,x} \emb{\omega_{s,o}} + \left. \varphi_{s,e,1} \right|_{\tilde{E}_{s,o} - \dot{E}_{s,o} < 0} = \tilde{\varphi}_{s,x} \emb{\omega_{s,o}} + \pi \label{eq:pom_mono_dyn_prop_phi_mid_b},
 \end{gather}
-przy czym faza $\varphi_{x,ep,1,a}$ jest odpowiednia dla dodatnich realizacji błędu nastawy amplitudy sygnału, natomiast faza $\varphi_{x,ep,1,b}$ odpowiada ujemnym realizacjom tego błędu. W przypadku sygnału błędu statycznego, wynikającego z błędu nastawy wartości składowej stałej $\dot{D}_{x,o}$ niepewność związaną z tym sygnałem określa zależność:
+przy czym faza $\varphi_{x,ep,1,a}$ jest odpowiednia dla dodatnich realizacji błędu nastawy amplitudy sygnału, natomiast faza $\varphi_{x,ep,1,b}$ odpowiada ujemnym realizacjom tego błędu. 
+
+W przypadku sygnału błędu statycznego, wynikającego z błędu nastawy wartości składowej stałej $\dot{D}_{x,o}$ niepewność związaną z tym sygnałem określa zależność:
 \begin{equation}
 U_{x,sp} = c_{x,sp} \sigma_{x,sp} \cong c_{s,s} \sigma_{s,s} = U_{s,s} = \frac{1.65}{\sqrt{3}} \emb{\num{5e-3} \cdot 0.5 + \num{2e-3}} = \qty{4.29}{mV} \label{eq:pom_mono_stat_unc_mid},
 \end{equation}
@@ -316,7 +342,8 @@ wynikająca z treści równań od~\eqref{eq:pom_gen_err_stat} do~\eqref{eq:pom_g
 \begin{equation}
 \sigma_{x,sp}^{2} \cong \sigma_{s,s}^{2} = \sigma_{D}^{2} \emb{\dot{D}_{s,o}} = \frac{1}{3} \emb{\num{5e-3} \cdot 0.5 + \num{2e-3}}^{2} = \qty{6.75}{\micro V} \label{eq:pom_mono_stat_var_mid}.
 \end{equation}
-Równania od~\eqref{eq:pom_mono_dyn_amp_in} do~\eqref{eq:pom_mono_stat_unc_mid} dotyczą przypadku, gdy rzeczywiste wartości parametrów $\tilde{E}_{s,o}$ oraz $\tilde{D}_{s,o}$ nie są znane. Dla znanych wartości tych parametrów przyjmuje się, że $E_{s,e,1} = \qty{0}{V}$ oraz $U_{s,s} = \qty{0}{V}$, a zatem zachodzi $\sigma_{x,sp}^{2} = \qty{0}{V}$ oraz $\sigma_{x,dp}^{2} = \qty{0}{V}$.
+
+Równania od~\eqref{eq:pom_mono_dyn_amp_in} do~\eqref{eq:pom_mono_stat_unc_mid} dotyczą przypadku, gdy rzeczywiste wartości parametrów $\tilde{E}_{s,o}$ oraz $\tilde{D}_{s,o}$ nie są znane. Dla znanych wartości tych parametrów przyjmuje się $E_{s,e,1} = \qty{0}{V}$ oraz $U_{s,s} = \qty{0}{V}$, a zatem $\sigma_{x,sp}^{2} = \qty{0}{V}$ oraz $\sigma_{x,dp}^{2} = \qty{0}{V}$.
 
 Na podstawie równania~\eqref{eq:pom_errx_dyn_self} wyróżnić można dwie składowe harmonicznej sygnału błędu dynamicznego własnego na wejściu algorytmu transformacji falkowej. Amplitudy oraz fazy tych harmonicznych w analizowanym przypadku opisać można jako:
 \begin{gather}
