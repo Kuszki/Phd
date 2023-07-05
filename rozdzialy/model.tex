@@ -325,8 +325,8 @@ przy czym $\tilde{f}_{X}(x)$ jest rzeczywistym oraz $\dot{f}_{X}(x)$ idealnym r�
 \begin{gather}
 e_{X,sw} \emb{i} = \tilde{f}_{X} \left( e_{v,sw} \emb{i} \right) \label{eq:out_disc_err_stat_self}, \\
 e_{X,sp} \emb{i} = \tilde{f}_{X} \left( e_{v,sp} \emb{i} \right) \label{eq:out_disc_err_stat_prop}, \\
-e_{X,dw} \emb{i} = \tilde{f}_{X} \left( e_{v,dw} \emb{i} \right) \label{eq:out_disc_err_dyn_prop}, \\
-e_{X,dp} \emb{i} = \tilde{f}_{X} \left( e_{v,dp} \emb{i} \right) \label{eq:out_disc_err_dyn_self}, \\
+e_{X,dw} \emb{i} = \tilde{f}_{X} \left( e_{v,dw} \emb{i} \right) \label{eq:out_disc_err_dyn_self}, \\
+e_{X,dp} \emb{i} = \tilde{f}_{X} \left( e_{v,dp} \emb{i} \right) \label{eq:out_disc_err_dyn_prop}, \\
 e_{X,rw} \emb{i} = \tilde{f}_{X} \left( e_{v,rw} \emb{i} \right) \label{eq:out_disc_err_rand_self}, \\
 e_{X,rp} \emb{i} = \tilde{f}_{X} \left( e_{v,rp} \emb{i} \right) \label{eq:out_disc_err_rand_prop},
 \end{gather}
@@ -361,9 +361,9 @@ Przedstawione zależności są zbliżone do tych przedstawionych we fragmencie p
 
 W poprzednich częściach rozdziału przedstawiono związki pomiędzy kolejnymi sygnałami błędów, które zdefiniowano w ramach analizy zaproponowanego modelu toru pomiarowego. Powtarzając proces uzyskiwania wartości wielkości wyjściowej każdego z omówionych fragmentów, a następnie porównując uzyskaną wartość wskazania do wartości odpowiadającej idealnej realizacji procesu pomiaru, uzyskać można pewną populację realizacji sygnału błędu obarczającego kolejne wskazania. Poza wartością analizowanej wielkości wyjściowej, zdefiniować można zatem przedział, w jakim z określonym prawdopodobieństwem powinna znajdować się prawdziwa wartość tej wielkości. Omawiany przedział dla prawdopodobieństwa równego $\alpha$ nazywany jest niepewnością rozszerzoną i może być opisany w postaci~\cite{jcgm_guide}:
 \begin{equation}
-P \emb{|\breve{e}| \le U} = \alpha \label{eq:unc_definition},
+P \emb{|\hat{e}| \le U} = \alpha \label{eq:unc_definition},
 \end{equation}
-gdzie symbolem $|\breve{e}|$ oznaczono wartość bezwzględną dowolnej realizacji sygnału błędu $e(t)$, symbolem $U$ oznaczono wartość niepewności rozszerzonej, natomiast symbol $\alpha$ jest wybranym poziomem ufności. Zgodnie przedstawionym równaniem, uzyskanie realizacji sygnału błędu o wartości mniejszej lub równej wartości niepewności rozszerzonej cechuje się prawdopodobieństwem równym poziomowi ufności.
+gdzie symbolem $|\hat{e}|$ oznaczono wartość bezwzględną dowolnej realizacji sygnału błędu $e(t)$, symbolem $U$ oznaczono wartość niepewności rozszerzonej, natomiast symbol $\alpha$ jest wybranym poziomem ufności. Zgodnie przedstawionym równaniem, uzyskanie realizacji sygnału błędu o wartości mniejszej lub równej wartości niepewności rozszerzonej cechuje się prawdopodobieństwem równym poziomowi ufności.
 
 Wobec powyższych rozważań, oznaczając funkcję gęstości prawdopodobieństwa realizacji sygnału błędu $e(t)$ symbolem $g(e)$ oraz zakładając, że funkcja ta jest dodatnia, symetryczna względem osi rzędnych i całkowalna w sensie Riemanna, zapisać można:
 \begin{equation}

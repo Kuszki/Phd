@@ -9,8 +9,8 @@ pkg load signal;
 addpath("../biblioteki");
 
 # iterations params
-iters_a = 1e4;#1e5;#2e4;
-iters_b = 3e1;#1e2;#5e1;
+iters_a = 2e4;
+iters_b = 2e2;
 
 # wavelet params
 wname = 'db2';
@@ -20,7 +20,7 @@ num = 0;
 
 # output settings
 calc_in_uc = 1;
-calc_out_uc = 0;
+calc_out_uc = 1;
 show_prog = 1;
 
 # sampling params
@@ -32,7 +32,6 @@ fa = 320e3;
 fb = 650e3;
 
 # signal settings
-a_gr = -0 * (0.5/100);
 am_1 =  6/10; f_1 = 1*f0;  ph_1 = 0;
 am_2 = -3/10; f_2 = 5*f0;  ph_2 = pi/8;
 am_3 =  1/10; f_3 = 15*f0; ph_3 = pi/6;
@@ -129,44 +128,35 @@ tic; for i = 1 : iters_a
 
   # inject signal noise
   ys = y;
-#  ys = y + gen_randn(ns, var_r_s, 'w');
-
-  # inject amp error signal
-  ys = (1 + a_gr)*ys;
+  ys = y + gen_randn(ns, var_r_s, 'w');
 
   # perform converter part tasks
   ya = ys;
-#  ya = ya + f_tm_a(temp(i));
+  ya = ya + f_tm_a(temp(i));
 
-#  ya = ya + gen_randu(ns, var_r_a, 'w');
+  ya = ya + gen_randu(ns, var_r_a, 'w');
   ya = ya ...
-       + (1 + a_gr)*f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
-       + (1 + a_gr)*f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
-       + (1 + a_gr)*f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
+       + f_err_1(x, f_fil_a_amp(f_1), f_fil_a_phi(f_1)) ...
+       + f_err_2(x, f_fil_a_amp(f_2), f_fil_a_phi(f_2)) ...
+       + f_err_3(x, f_fil_a_amp(f_3), f_fil_a_phi(f_3)) ...
   ;
 
   # perform amplifier part tasks
   yb = ya;
   yb = yb ...
-       + (1 + a_gr)*f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
-       + (1 + a_gr)*f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
-       + (1 + a_gr)*f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
+       + f_err_1(x, f_fil_b_amp(f_1), f_fil_b_phi(f_1)) ...
+       + f_err_2(x, f_fil_b_amp(f_2), f_fil_b_phi(f_2)) ...
+       + f_err_3(x, f_fil_b_amp(f_3), f_fil_b_phi(f_3)) ...
   ;
   yb = amp_b * yb;
-#  yb = yb + f_tm_b(temp(i));
+  yb = yb + f_tm_b(temp(i));
 
   # perform adc tasks
   yc = yb;
-#  yc = f_adc(yc);
+  yc = f_adc(yc);
 
   # calc input error
   cerr = transpose(yc - yi);
-
-#  hold on
-#  plot(cerr);
-#  plot(yc);
-#  plot(yi);
-#  hold off
 
   if calc_out_uc
     for j = 1 : nsam : ns

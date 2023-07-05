@@ -53,3 +53,4 @@ printf("VIN(x) = (x - %1.7g) / %1.7g\n", P(1), P(2))
 [u, c, s, w, m] = get_uncertainty(data)
 
 plot(pts, err)
+std(err)
