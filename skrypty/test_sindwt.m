@@ -10,44 +10,40 @@ addpath("../biblioteki");
 ADC = @(x) 4097.958 * x/1000 + 3.518818;
 VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
-num = get_fwtlevels(128, 5, "midd")(2);
-A = lin_ident(@(x) fwt(x, "db2", 5), 128)(num,:);
+num = get_fwtlevels(128, 5, "midd")(3);
+A = lin_ident(@(x) fwt(x, "spline4:4", 5), 128)(num,:);
+
+doDraw = false;
 
 dat = load("../pomiary/freq.dat");
-fitted = true;
 
 amps = freqz(A, [], dat(:,1), 48000);
 amps = abs(amps);
 
-if fitted
-	amp = 479.520163129546;
-	shf = 505.924018640675;
+amp = 479.523403626645;
+shf = 505.924365593676;
 
-	u_s = 0.0;
-	e_d = 0.0;
-	p_d = 0.0;
-else
-	amp = 950/2;
-	shf = 500;
+amp0 = 950/2;
+shf0 = 500;
 
-	u_s = (1.65/sqrt(3))*(5e-3*shf+2);
-	e_d = (1.65/sqrt(3))*(5e-3*amp+0.5);
-	p_d = 0.0;
-end
+u_s = (1.65/sqrt(3))*(5e-3*shf0+2);
+e_d = (1.65/sqrt(3))*(5e-3*amp0+0.5);
 
 det = 144 / 12e6 + 1e-6/5.5;
 
-u_r = 0.62 * get_rowcoef(A, 0, 'r'); # 0.62 1.01
+u_r = 0.51 * get_rowcoef(A, 0, 'r'); # 0.38 0.51 1.10
 u_s = u_s * get_rowcoef(A, 0, 's');
+u_l = 1.96 * 0.43 * get_rowcoef(A, 0, 'r');
+cv = "uns";
 
 for i = 1 : length(dat)
 
+	if exist(sprintf("../pomiary/sin/%d.txt", dat(i,1)), "file") != 2; continue;
+#	elseif dat(i,1) != 8000; continue;
+	end;
+
 	f = dat(i,1);
 	o = dat(i,2);
-
-	if exist(sprintf("../pomiary/sin/%d.txt", f), "file") != 2; continue;
-#	elseif f != 3000; continue;
-	end;
 
 	ofin = o;
 
@@ -70,32 +66,58 @@ for i = 1 : length(dat)
 	difs = difs(length(A):length(difs));
 
 	[u, c, s, w, m] = get_uncertainty(difs);
-	[a, p, u_d, w_d] = get_dynparams([amp amp e_d], [pi get_filter_phi(o) p_d]);
 
+	[a, p, u_d, w_d] = get_dynparams([amp amp 0.685], [pi get_filter_phi(o) get_filter_phi(o)]);
+	uv = [0.0, u_r, u_d*amps(i)];
+	[uc_c, cc_c, sc_c, wc_c, hm_c] = get_unccalc(uv, cv);
+	dc_c = 100*(uc_c-u)/u;
+
+	[a, p, u_d, w_d] = get_dynparams([amp0 amp0 -e_d], [pi get_filter_phi(o) get_filter_phi(o)]);
 	uv = [u_s, u_r, u_d*amps(i)];
-	cv = "uns";
+	[uc_b, cc_b, sc_b, wc_b, hm_b] = get_unccalc(uv, cv);
 
-	[uc, cc, sc, wc] = get_unccalc(uv, cv);
+	[a, p, u_d, w_d] = get_dynparams([amp0 amp0 e_d], [pi get_filter_phi(o) get_filter_phi(o)]);
+	uv = [u_s, u_r, u_d*amps(i)];
+	[uc_a, cc_a, sc_a, wc_a, hm_a] = get_unccalc(uv, cv);
 
-	printf("%d\t%f\t%f\t%f\t%f\t%f\t%f\t%1.2f\n", f, u, uc, c, cc, w, wc, 100*(uc-u)/u);
+	uc_ab = max(uc_a, uc_b);
+	wc_ab = max(wc_a, wc_b);
+	dc_ab = 100*(uc_ab-u)/u;
+
+	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
 
 	freq(i) = f;
 	vars(i) = w;
-
-#	hold on;
-#	plot(org)
-#	plot(pts)
-#	plot(diff)
-#	pause()
-#	clf()
-#	hold off;
-
-#	return
+	du_ab(i) = dc_ab;
+	du_c(i) = dc_c;
 
 end
 
-#clf
-#hold on
-#plot(freq, vars)
-#hold off
+if !doDraw; return; end;
 
+h = figure;
+
+set(h, "paperunits", "centimeters")
+set(h, "papersize", [16 11.3*2/3])
+set(h, "paperposition", [0, 0, [16 11.3*2/3]])
+
+set(0, "defaultaxesposition", [0.085, 0.125, 0.820, 0.835])
+set(0, "defaultaxesfontsize", 11)
+set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontname", "Latin Modern Roman")
+set(0, "defaultaxesfontname", "Latin Modern Roman")
+set(0, "defaulttextcolor", "black")
+
+[ax, h1, h2] = plotyy(freq, amps, freq, du_c);
+xlabel("Częstotliwość, Hz");
+ylabel(ax(1), "Wartość wzmocnienia, V/V");
+ylabel(ax(2), "Błąd oszacowania, %");
+legend("Wartość wzmocnienia", "Błąd oszacowania", "location", 'northeast')
+grid on;
+box on;
+
+set(ax, "ycolor", "black");
+set(h1, "marker", "x");
+set(h2, "marker", "+");
+
+print("../obrazki/mono_freqcomp.svg", "-svgconvert", "-r300");

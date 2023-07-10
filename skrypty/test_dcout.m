@@ -20,7 +20,7 @@ for i = 1 : length(list)
 
 end
 
-data = [];
+data = rnde = [];
 pts = sort(pts);
 
 for i = 1 : length(pts)
@@ -32,8 +32,10 @@ for i = 1 : length(pts)
 	out(i) = VIN(mns(i));
 	err(i) = out(i) - vcc;
 
-	diff = VIN(dat) - vcc;
+	vin = VIN(dat);
+	diff = vin - vcc;
 	data = [data; diff];
+	rnde = [rnde; (vin-mean(vin))];
 
 	[u, c, s, w] = get_uncertainty(diff);
 
@@ -51,6 +53,15 @@ printf("ADC(x) = %1.7g * x + %1.7g\n", P(2), P(1))
 printf("VIN(x) = (x - %1.7g) / %1.7g\n", P(1), P(2))
 
 [u, c, s, w, m] = get_uncertainty(data)
+[u, c, s, w, m] = get_uncertainty(rnde)
 
-plot(pts, err)
-std(err)
+#plot(pts, err-mean(err))
+#std(err)
+
+sx = 475*sin(linspace(0, 2*pi, 10240))+500;
+sy = interp1(pts, err-mean(err), sx, "spline");
+sy = -1.936e-6*sx.^2 + 5.691e-4*sx + 4e-1;
+
+hist(sy, 100)
+[u, c, s, w, m] = get_uncertainty(sy)
+

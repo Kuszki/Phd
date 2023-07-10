@@ -13,7 +13,6 @@ VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 dat = load("../pomiary/freq.dat");
 fitted = true;
 
-
 if fitted
 	amp = 479.520163129546;
 	shf = 505.924018640675;
@@ -31,7 +30,7 @@ else
 end
 
 det = 144 / 12e6 + 1e-6/5.5;
-u_r = 1.01; #0.62;
+u_r = 0.38;
 
 for i = 1 : length(dat)
 
@@ -55,7 +54,7 @@ for i = 1 : length(dat)
 	diff = pts - org;
 
 	[u, c, s, w, m] = get_uncertainty(diff);
-	[a, p, u_d, w_d] = get_dynparams([amp amp e_d], [pi get_filter_phi(o) p_d]);
+	[a, p, u_d, w_d] = get_dynparams([amp amp e_d 0.55], [pi get_filter_phi(o) get_filter_phi(o) get_filter_phi(o)]);
 
 	uv = [u_s, u_r, u_d];
 	cv = "uns";
