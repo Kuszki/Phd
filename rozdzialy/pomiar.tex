@@ -31,8 +31,8 @@ natomiast błąd graniczny nastawy składowej stałej $D$ sygnału wyjściowego 
 \end{equation}
 dla wartości parametrów $E$ oraz $D$ wyrażonych w woltach. Na podstawie powyższych zależności należy oszacować przedział dla zadanego poziomu ufności, w jakim znajduje się $\alpha$ wartości realizacji błędu nastawy amplitudy oraz błędu nastawy składowej stałej. Zgodnie z wytycznymi zawartymi w~\cite{jcgm_guide} dla przyjętego w pracy poziomu ufności $\alpha = 95\%$ zapisać można:
 \begin{gather}
-U_{E} \emb{x} = c_{u} \cdot \sigma_{E} \emb{x} = c_{u} \frac{\left| \delta_{E,gr} \emb{x} \right|}{\sqrt{3}} = 1.65 \frac{\num{1e-2} \left| x \right| + \num{1e-3}}{\sqrt{3}}~\unit{V} \label{eq:pom_gen_amperr_unc}, \\
-U_{D} \emb{x} = c_{u} \cdot \sigma_{D} \emb{x} = c_{u} \frac{\left| \delta_{D,gr} \emb{x} \right|}{\sqrt{3}} = 1.65 \frac{\num{5e-3} \left| x \right| + \num{2e-3}}{\sqrt{3}}~\unit{V} \label{eq:pom_gen_shferr_unc}.
+U_{E} \emb{x} = c_{u} \cdot \sigma_{E} \emb{x} = c_{u} \frac{\left| \delta_{E,gr} \emb{x} \right|}{\sqrt{3}} = 1.65 \frac{\num{1e-2} \left| x \right| + \num{1e-3}}{\sqrt{3}} ~\unit{V} \label{eq:pom_gen_amperr_unc}, \\
+U_{D} \emb{x} = c_{u} \cdot \sigma_{D} \emb{x} = c_{u} \frac{\left| \delta_{D,gr} \emb{x} \right|}{\sqrt{3}} = 1.65 \frac{\num{5e-3} \left| x \right| + \num{2e-3}}{\sqrt{3}} ~\unit{V} \label{eq:pom_gen_shferr_unc}.
 \end{gather}
 gdzie $x$ jest wartością zadaną dla analizowanego parametru wyrażoną w woltach. Należy zauważyć, że w przypadku pojedynczego przyrządu, omawiane rozbieżności w nastawie przedstawionych parametrów stanowią systematyczne źródło błędów, a ich wpływ nożna skorygować przeprowadzając kalibrację przyrządu. Niezależnie od wykonania kalibracji przyrządu, dla syntezowanego sygnału sinusoidalnie zmiennego o wartości zadanej amplitudy $\dot{E}_{s,o}$ oraz składowej stałej o wartości zadanej $\dot{D}_{s,o}$, sygnał $s(t)$ na wyjściu przyrządu opisać można w dziedzinie czasu za pomocą równań:
 \begin{gather}
@@ -62,7 +62,7 @@ która odpowiada maksymalnej wartości realizacji błędu granicznego nastawy am
 W przypadku sygnałów poliharmonicznych należy analizować przebieg sygnału błędu dynamicznego analogicznie, jak pokazano w równaniu~\eqref{eq:pom_gen_err_dyn_mono}, przy czym przykładowo dla sygnału trójkątnego zapisać można:
 \begin{gather}
 \dot{s} \emb{t} = \dot{D}_{s,o} + \dot{E}_{s,o} \frac{\pi}{8} \sum _{i=1} ^{\infty} \emb{-1}^{i-1} \emb{2i - 1}^{-2} \sin \emb{\omega_{s,o} t \emb{2i - 1} + \varphi_{s,o}} \label{eq:pom_gen_triangle_ideal}, \\
-\tilde{s} \emb{t} = \tilde{D}_{s,o} + \tilde{E}_{s,o} \frac{\pi}{8} \sum _{i=1} ^{\infty} \emb{-1}^{i-1} \emb{2i - 1}^{-2} \sin \emb{\omega_{s,o} t \emb{2i - 1} + \varphi_{s,o}} \label{eq:pom_gen_triangle_real},
+\tilde{s} \emb{t} = e_{s,r} \emb{t} + \tilde{D}_{s,o} + \tilde{E}_{s,o} \frac{\pi}{8} \sum _{i=1} ^{\infty} \emb{-1}^{i-1} \emb{2i - 1}^{-2} \sin \emb{\omega_{s,o} t \emb{2i - 1} + \varphi_{s,o}} \label{eq:pom_gen_triangle_real},
 \end{gather}
 zatem sygnał błędu dynamicznego zdefiniować można w postaci sumy harmonicznych tego sygnału o amplitudzie zależnej od realizacji błędu nastawy amplitudy:
 \begin{gather}
@@ -264,7 +264,7 @@ Wobec powyższych założeń, dla sygnałów błędów losowych o stałej widmow
 \end{equation}
 gdzie podane równanie jest odpowiednie dla zakresu częstotliwości $\hat{f} \in~<0;\frac{1}{2} f_{p}>$.
 
-Jako, że przeprowadzone eksperymenty wykonano przy stałych parametrach otoczenia, nie obejmowały one identyfikacji źródeł i postaci sygnału błędu statycznego własnego. Przyjmuje się zatem, że $e_{x,sw}(i) = \qty{0}{V}$ oraz $\sigma_{x,sw}^{2} = \qty{0}{V}$. Na podstawie zależności od~\eqref{eq:pom_errx_dyn_self} do~\eqref{eq:pom_errx_rand_prop} wypadkowy sygnał błędu $e_{x,\Sigma}(i)$ opisać można jako sumę zdefiniowanych dotychczas sygnałów błędów cząstkowych w postaci:
+Jako, że przeprowadzone eksperymenty wykonano przy stałych parametrach otoczenia, nie obejmowały one identyfikacji źródeł i postaci sygnału błędu statycznego własnego. Przyjmuje się zatem, że $e_{x,sw}(i) = 0$ oraz $\sigma_{x,sw}^{2} = \qty{0}{V}$. Na podstawie zależności od~\eqref{eq:pom_errx_dyn_self} do~\eqref{eq:pom_errx_rand_prop} wypadkowy sygnał błędu $e_{x,\Sigma}(i)$ opisać można jako sumę zdefiniowanych dotychczas sygnałów błędów cząstkowych w postaci:
 \begin{equation}
 e_{x,\Sigma} \emb{i} = e_{x,sp} \emb{i} + e_{x,dw} \emb{i} + e_{x,dp} \emb{i} + e_{x,rw} \emb{i} + e_{x,rp} \emb{i} \label{eq:pom_errx_sum},
 \end{equation}
@@ -348,9 +348,9 @@ Zgodnie z założeniami danymi równaniami~\eqref{eq:pom_gen_var_rand_sin} oraz~
 \end{equation}
 przy czym w przypadku niespełnienia założenia odnośnie stałej widmowej gęstości mocy stosować należy równanie~\eqref{eq:pom_varx_rand_prop_omega}. W dalszej części rozdziału zakłada się, że rozkład realizacji sygnału błędu $e_{s,r}(t)$ jest rozkładem normalnym o stałej widmowej gęstości mocy. Założenie to może być niewłaściwe dla analizowanego generatora, natomiast bez przeprowadzenia procedury identyfikacji parametrów sygnału błędu $e_{s,r}(t)$ nie jest możliwa weryfikacja jego poprawności.
 
-Maksymalną wartość amplitudy sygnału błędu dynamicznego $e_{s,d}(t)$ dla analizowanych warunków eksperymentu, obejmującą $95\%$ przypadków, można oszacować na podstawie równań~\eqref{eq:pom_gen_shferr_unc} oraz~\eqref{eq:pom_gen_err_dyn_mono}, gdzie wynosi ona:
+Maksymalną wartość amplitudy sygnału błędu dynamicznego $e_{s,d}(t)$ dla analizowanych warunków eksperymentu, obejmującą $95\%$ przypadków, można oszacować na podstawie równań~\eqref{eq:pom_gen_amperr_unc} oraz~\eqref{eq:pom_gen_err_dyn_mono}, gdzie wynosi ona:
 \begin{equation}
-E_{s,e,1} = U_{E} \emb{\dot{E}_{s,o}} = \frac{1.65}{\sqrt{3}} \emb{\num{5e-3} \cdot 0.475 + \num{0.5e-3}} = \qty{2.74}{mV} \label{eq:pom_mono_dyn_amp_in}.
+E_{s,e,1} = U_{E} \emb{\dot{E}_{s,o}} = \frac{1.65}{\sqrt{3}} \emb{\num{1e-2} \cdot 0.475 + \num{1e-3}} = \qty{5.48}{mV} \label{eq:pom_mono_dyn_amp_in}.
 \end{equation}
 Na podstawie treści równania~\eqref{eq:pom_errx_dyn_prop} określić można amplitudę oraz fazę analizowanego sygnału błędu na wejściu algorytmu dyskretnej transformacji falkowej:
 \begin{gather}
@@ -360,7 +360,7 @@ E_{x,ep,1} = \tilde{K}_{s,x} \emb{\omega_{s,o}} E_{s,e,1} \cong E_{s,e,1} \label
 \end{gather}
 przy czym faza $\varphi_{x,ep,1,a}$ jest odpowiednia dla dodatnich realizacji błędu nastawy amplitudy sygnału, natomiast faza $\varphi_{x,ep,1,b}$ odpowiada wartościom ujemnym. 
 
-W przypadku sygnału błędu statycznego, wynikającego z błędu nastawy wartości składowej stałej $\dot{D}_{x,o}$ niepewność związaną z tym sygnałem określa zależność:
+W przypadku sygnału błędu statycznego $e_{x,sp}(i)$, wynikającego z błędu nastawy wartości składowej stałej $\dot{D}_{x,o}$, niepewność związaną z tym sygnałem określa zależność:
 \begin{equation}
 U_{x,sp,a} = U_{x,sp,b} \cong U_{s,s} = \frac{1.65}{\sqrt{3}} \emb{\num{5e-3} \cdot 0.5 + \num{2e-3}} = \qty{4.29}{mV} \label{eq:pom_mono_stat_unc_mid},
 \end{equation}
@@ -369,7 +369,7 @@ wynikająca z treści równań od~\eqref{eq:pom_gen_err_stat} do~\eqref{eq:pom_g
 \sigma_{x,sp,a}^{2} = \sigma_{x,sp,b}^{2} \cong \sigma_{s,s}^{2} = \frac{1}{3} \emb{\num{5e-3} \cdot 0.5 + \num{2e-3}}^{2} = \qty{6.75}{\micro V} \label{eq:pom_mono_stat_var_mid}.
 \end{equation}
 
-Należy zaznaczyć, że równania od~\eqref{eq:pom_mono_dyn_amp_in} do~\eqref{eq:pom_mono_stat_unc_mid} dotyczą przypadku, gdy rzeczywiste wartości parametrów $\tilde{E}_{s,o}$ oraz $\tilde{D}_{s,o}$ nie są znane. Dla znanych wartości tych parametrów przyjmuje się założenie gdzie $E_{s,e,1} = \qty{0}{V}$ oraz $U_{s,s,c} = \qty{0}{V}$, a zatem $\sigma_{x,sp,c}^{2} = \qty{0}{V}$ oraz $\sigma_{x,dp,c}^{2} = \qty{0}{V}$, wobec czego dla rozważanej sytuacji zachodzi $e_{x,sp,c}(i) = e_{x,dp,c}(i) = 0$.
+Należy zaznaczyć, że równania od~\eqref{eq:pom_mono_dyn_amp_in} do~\eqref{eq:pom_mono_stat_unc_mid} dotyczą przypadku, gdy rzeczywiste wartości parametrów $\tilde{E}_{s,o}$ oraz $\tilde{D}_{s,o}$ nie są znane. Dla znanych wartości tych parametrów przyjmuje się założenie gdzie $E_{s,e,1} = \qty{0}{V}$ oraz $U_{s,s,c} = \qty{0}{V}$, a zatem $\sigma_{x,sp,c}^{2} = \qty{0}{V}$ oraz $\sigma_{x,dp,c}^{2} = \qty{0}{V}$, wobec czego dla rozważanej sytuacji zachodzi $e_{x,sp}(i) = e_{x,dp}(i) = 0$.
 
 Na podstawie równania~\eqref{eq:pom_errx_dyn_self} wyróżnić można dwie składowe harmonicznej sygnału błędu dynamicznego własnego na wejściu algorytmu transformacji falkowej. Amplitudy oraz fazy tych harmonicznych w analizowanym przypadku opisać można jako:
 \begin{gather}
@@ -406,43 +406,43 @@ Należy podkreślić, że rzeczywisty przebieg sygnału błędu dynamicznego wł
 
 Poniżej przedstawiono przykład obliczeń dotyczący $12$-tej wielkości wyjściowej toru pomiarowego dla częstotliwości przetwarzanego sygnału wynoszącej $f_{s,o} = \frac{1}{2\pi} \omega_{s,o} = \qty{8}{kHz}$. Ze względu na dużą liczbę $N = 128$ wielkości wejściowych wartości współczynników macierzy transformacji oraz równania opisujące transmitancję analizowanego algorytmu nie zostały przedstawione. Dla zastosowanych parametrów algorytmu transformacji falkowej $A_{12,s} = 0$, natomiast $A_{12,r} = 3.593$. Przedstawione w dalszej części podrozdziału obliczenia zostały wykonane dla trzech wariantów. Przypadek $a$ obejmuje dodatni, natomiast przypadek $b$ obejmuje ujemny błąd nastawy amplitudy sygnału $s(t)$ dla nieznanych rzeczywistych parametrów sygnału $s(t)$. Przypadek $c$ obejmuje znane wartości amplitudy oraz składowej stałej sygnału $s(t)$.
 
-Na podstawie założeń danych w równaniach~\eqref{eq:pom_varout_rand}, \eqref{eq:pom_uncout_rand}, \eqref{eq:pom_varx_rand_prop} oraz~\eqref{eq:pom_mono_rand_var_in}, dotyczących sygnału błędu losowego na wyjściu analizowanego toru pomiarowego, niepewność związaną z tym sygnałem opisać można jako:
+Na podstawie założeń danych w równaniach~\eqref{eq:pom_varx_rand_prop}, \eqref{eq:pom_varout_rand}, \eqref{eq:pom_uncout_rand} oraz~\eqref{eq:pom_mono_rand_var_in}, dotyczących sygnału błędu losowego $e_{12,r}(j)$ na wyjściu analizowanego toru pomiarowego, niepewność związaną z tym sygnałem opisać można jako:
 \begin{equation}
 U_{12,r,*} = c_{n} A_{12,r} \sigma_{x,r} = c_{n} A_{12,r} \sqrt{\sigma_{x,rw}^{2} + \sigma_{s,rw}^{2}} \label{eq:pom_mono_unc_rand_all},
 \end{equation}
 a zatem w przypadku znanej wartości amplitudy przetwarzanego sygnału $s(t)$ istnieje możliwość wykorzystania tej wartości w treści równania~\eqref{eq:pom_mono_rand_var_in}, gdzie otrzymuje się:
 \begin{gather}
-U_{12,r,a} = U_{12,r,b} = 1.96 \cdot 3.593 \cdot \sqrt{\num{0.38e-3}} = \qty{1.37}{mV} \label{eq:pom_mono_unc_rand_ab}, \\
-U_{12,r,c} = 1.96 \cdot 3.593 \cdot \sqrt{\num{0.38e-3}} = \qty{1.37}{mV} \label{eq:pom_mono_unc_rand_c}.
+U_{12,r,a} = U_{12,r,b} = 1.96 \cdot 3.593 \cdot \sqrt{\num{3.76e-8} + \num{2.93e-8}} = \qty{1.82}{mV} \label{eq:pom_mono_unc_rand_ab}, \\
+U_{12,r,c} = 1.96 \cdot 3.593 \cdot \sqrt{\num{3.76e-8} + \num{2.99e-8}} = \qty{1.83}{mV} \label{eq:pom_mono_unc_rand_c}.
 \end{gather}
-W przypadku sygnału błędu statycznego, na podstawie równania~\eqref{eq:pom_uncout_stat} zachodzi:
+W przypadku sygnału błędu statycznego $e_{12,s}(j)$, na podstawie równania~\eqref{eq:pom_uncout_stat} zachodzi:
 \begin{equation}
 U_{12,s,*} = c_{x,s} A_{12,s} \sigma_{x,s,*} = A_{12,s} U_{x,s,*} = \qty{0}{mV} \label{eq:pom_mono_unc_static_all},
 \end{equation}
-a zatem zauważyć można, że w dla analizowanej wielkości wyjściowej toru pomiarowego sygnał błędu związany z błędem nastawy wartości składowej stałej nie występuje niezależnie od rozważanych okoliczności.
+a zatem zauważyć można, że w dla analizowanej wielkości wyjściowej toru pomiarowego, ze względu na wartość współczynnika $A_{12,s} = 0$, sygnał błędu związany z błędem nastawy wartości składowej stałej nie występuje niezależnie od rozważanych okoliczności.
 
 Dla nieznanej rzeczywistej wartości parametrów amplitudy oraz składowej stałej równania od~\eqref{eq:pom_mono_dyn_sum_param_amp_mid} do~\eqref{eq:pom_mono_dyn_sum_param_b_mid} przyjmują w analizowanym przypadku postać:
 \begin{gather}
-e_{x,1,\Sigma,a,a} = 0.475 \cos \emb{-0.0222} + 0.475 \cos \emb{\pi} + \num{2.74e-3} \cos \emb{-0.0222} \label{eq:pom_mono_dyn_sum_param_a_mid_val_a}, \\
-e_{x,1,\Sigma,b,a} = 0.475 \sin \emb{-0.0222} + 0.475 \sin \emb{\pi} + \num{2.74e-3} \sin \emb{-0.0222} \label{eq:pom_mono_dyn_sum_param_b_mid_val_a}, \\
-E_{x,e,1,a} = \sqrt{\emb{\num{2.6207e-3}}^{2} + \emb{\num{-1.0621e-2}}^{2}} = \qty{10.94}{mV} \label{eq:pom_mono_dyn_sum_param_amp_mid_val_a},
+e_{x,1,\Sigma,a,a} = 0.475 \cos \emb{-0.0222} + 0.475 \cos \emb{\pi} + \num{5.48e-3} \cos \emb{-0.0222} \label{eq:pom_mono_dyn_sum_param_a_mid_val_a}, \\
+e_{x,1,\Sigma,b,a} = 0.475 \sin \emb{-0.0222} + 0.475 \sin \emb{\pi} + \num{5.48e-3} \sin \emb{-0.0222} \label{eq:pom_mono_dyn_sum_param_b_mid_val_a}, \\
+E_{x,e,1,a} = \sqrt{\emb{\num{5.359e-3}}^{2} + \emb{\num{-1.068e-2}}^{2}} = \qty{11.95}{mV} \label{eq:pom_mono_dyn_sum_param_amp_mid_val_a},
 \end{gather}
 dla przypadku opisanego w równaniu~\eqref{eq:pom_mono_dyn_prop_phi_mid_a}, natomiast dla przypadku opisanego w równaniu~\eqref{eq:pom_mono_dyn_prop_phi_mid_b} zachodzi:
 \begin{gather}
-e_{x,1,\Sigma,a,b} = 0.475 \cos \emb{-0.0222} + 0.475 \cos \emb{\pi} + \num{2.74e-3} \cos \emb{\pi-0.0222} \label{eq:pom_mono_dyn_sum_param_a_mid_val_b}, \\
-e_{x,1,\Sigma,b,b} = 0.475 \sin \emb{-0.0222} + 0.475 \sin \emb{\pi} + \num{2.74e-3} \sin \emb{\pi-0.0222} \label{eq:pom_mono_dyn_sum_param_b_mid_val_b}, \\
-E_{x,e,1,b} = \sqrt{\emb{\num{-2.8555e-3}}^{2} + \emb{\num{-1.0499e-2}}^{2}} = \qty{10.88}{mV} \label{eq:pom_mono_dyn_sum_param_amp_mid_val_b}, 
+e_{x,1,\Sigma,a,b} = 0.475 \cos \emb{-0.0222} + 0.475 \cos \emb{\pi} + \num{5.48e-3} \cos \emb{\pi-0.0222} \label{eq:pom_mono_dyn_sum_param_a_mid_val_b}, \\
+e_{x,1,\Sigma,b,b} = 0.475 \sin \emb{-0.0222} + 0.475 \sin \emb{\pi} + \num{5.48e-3} \sin \emb{\pi-0.0222} \label{eq:pom_mono_dyn_sum_param_b_mid_val_b}, \\
+E_{x,e,1,b} = \sqrt{\emb{\num{-5.594e-3}}^{2} + \emb{\num{-1.044e-2}}^{2}} = \qty{11.84}{mV} \label{eq:pom_mono_dyn_sum_param_amp_mid_val_b}, 
 \end{gather}
 przy czym zgodnie z równaniem~\eqref{eq:pom_dwtin_phi} $\tilde{\varphi}_{s,x} \emb{\omega_{s,o}} = \qty{-0.0222}{rad}$ dla $\omega_{s,o} = 2\pi \cdot \qty{8000}{rad}$. W warunku przeprowadzonego eksperymentu tj. dla rzeczywistych wartości parametrów sygnału $s(t)$ równych $\tilde{E}_{s,o} = \qty{479.52}{mV}$ oraz $\tilde{D}_{s,o} = \qty{505.92}{mV}$ zachodzi natomiast:
 \begin{gather}
-e_{x,1,\Sigma,a,c} = \qty{479.52e-3} \cos \emb{-0.0222} + \qty{479.52e-3} \cos \emb{\pi} = \num{-1.1850e-4} \label{eq:pom_mono_dyn_sum_param_a_mid_val_c}, \\
-e_{x,1,\Sigma,b,c} = \qty{479.52e-3} \sin \emb{-0.0222} + \qty{479.52e-3} \sin \emb{\pi} = \num{-1.0660e-2} \label{eq:pom_mono_dyn_sum_param_b_mid_val_c}, \\
-E_{x,e,1,c} = \sqrt{\emb{\num{-1.1850e-4}}^{2} + \emb{\num{-1.0660e-2}}^{2}} = \qty{10.66}{mV} \label{eq:pom_mono_dyn_sum_param_amp_mid_val_c}. 
+e_{x,1,\Sigma,a,c} = \qty{479.52e-3} \cos \emb{-0.0222} + \qty{479.52e-3} \cos \emb{\pi} = \num{-1.185e-4} \label{eq:pom_mono_dyn_sum_param_a_mid_val_c}, \\
+e_{x,1,\Sigma,b,c} = \qty{479.52e-3} \sin \emb{-0.0222} + \qty{479.52e-3} \sin \emb{\pi} = \num{-1.066e-2} \label{eq:pom_mono_dyn_sum_param_b_mid_val_c}, \\
+E_{x,e,1,c} = \sqrt{\emb{\num{-1.185e-4}}^{2} + \emb{\num{-1.066e-2}}^{2}} = \qty{10.66}{mV} \label{eq:pom_mono_dyn_sum_param_amp_mid_val_c}. 
 \end{gather}
-Można zauważyć, że dla analizowanej częstotliwości dominującą składową sygnału błędu dynamicznego $e_{x,d}(i)$ jest składowa związana z błędem własnym $e_{x,dw}(i)$, wynikającym z wprowadzanego przez wzmacniacz pomiarowy przesunięcia fazowego $\tilde{\varphi}_{s,x}(\omega)$. Dla rozważanych przypadków, zgodnie z równaniem~\eqref{eq:pom_uncout_dyn}, zapisać można:
+Można zauważyć, że dla analizowanej częstotliwości dominującą składową sygnału błędu dynamicznego $e_{x,d}(i)$ jest składowa związana z błędem własnym $e_{x,dw}(i)$, wynikającym z wprowadzanego przez wzmacniacz pomiarowy przesunięcia fazowego $\tilde{\varphi}_{s,x}(\omega)$. Dla rozważanych przypadków sygnału $e_{12,d}(j)$, zgodnie z równaniem~\eqref{eq:pom_uncout_dyn}, zapisać można:
 \begin{gather}
-U_{12,d,a} = c_{d} \left| H_{12} \emb{e^{j \omega_{s,o} T_{p}}} \right| \frac{E_{x,e,1,a}}{\sqrt{2}} = 1.41 \cdot 4.738 \cdot \frac{10.94}{\sqrt{2}} = \qty{51.67}{mV} \label{eq:pom_mono_dyn_unc_a}, \\
-U_{12,d,b} = c_{d} \left| H_{12} \emb{e^{j \omega_{s,o} T_{p}}} \right| \frac{E_{x,e,1,b}}{\sqrt{2}} = 1.41 \cdot 4.738 \cdot \frac{10.88}{\sqrt{2}} = \qty{51.40}{mV} \label{eq:pom_mono_dyn_unc_b}, \\
+U_{12,d,a} = c_{d} \left| H_{12} \emb{e^{j \omega_{s,o} T_{p}}} \right| \frac{E_{x,e,1,a}}{\sqrt{2}} = 1.41 \cdot 4.738 \cdot \frac{11.95}{\sqrt{2}} = \qty{56.45}{mV} \label{eq:pom_mono_dyn_unc_a}, \\
+U_{12,d,b} = c_{d} \left| H_{12} \emb{e^{j \omega_{s,o} T_{p}}} \right| \frac{E_{x,e,1,b}}{\sqrt{2}} = 1.41 \cdot 4.738 \cdot \frac{11.84}{\sqrt{2}} = \qty{55.94}{mV} \label{eq:pom_mono_dyn_unc_b}, \\
 U_{12,d,c} = c_{d} \left| H_{12} \emb{e^{j \omega_{s,o} T_{p}}} \right| \frac{E_{x,e,1,c}}{\sqrt{2}} = 1.41 \cdot 4.738 \cdot \frac{10.66}{\sqrt{2}} = \qty{50.36}{mV} \label{eq:pom_mono_dyn_unc_c}.
 \end{gather}
 
@@ -466,45 +466,45 @@ gdzie wartości współczynników macierzy koherencji wyznaczane są zgodnie z r
 \begin{gather}
 U_{12,\Sigma,a} = \sqrt{
 \begin{bmatrix}
-0 \\ \num{1.37e-3} \\ \num{5.17e-3}
+0 \\ \num{1.82e-3} \\ \num{56.45e-3}
 \end{bmatrix}^{T}
 \begin{bmatrix}
-1       &       0 &       0 \\
-0       &       1 & 0.04857 \\
-0       & 0.04857 &       1
+1       &      0 &      0 \\
+0       &      1 & 0.0537 \\
+0       & 0.0537 &      1
 \end{bmatrix}
 \begin{bmatrix}
-0 \\ \num{1.37e-3} \\ \num{5.17e-3}
-\end{bmatrix}} = \qty{51.76}{mV}
+0 \\ \num{1.82e-3} \\ \num{56.45e-3}
+\end{bmatrix}} = \qty{56.58}{mV}
 \label{eq:pom_mono_all_unc_a}, \\
 U_{12,\Sigma,b} =  \sqrt{
 \begin{bmatrix}
-0 \\ \num{1.37e-3} \\ \num{5.14e-3}
+0 \\ \num{1.82e-3} \\ \num{55.94e-3}
 \end{bmatrix}^{T}
 \begin{bmatrix}
-1       &       0 &       0 \\
-0       &       1 & 0.04870 \\
-0       & 0.04870 &       1
+1       &      0 &      0 \\
+0       &      1 & 0.0539 \\
+0       & 0.0539 &      1
 \end{bmatrix}
 \begin{bmatrix}
-0 \\ \num{1.37e-3} \\ \num{5.14e-3}
-\end{bmatrix}} = \qty{51.48}{mV}
+0 \\ \num{1.82e-3} \\ \num{55.94e-3}
+\end{bmatrix}} = \qty{56.07}{mV}
 \label{eq:pom_mono_all_unc_b},
 \end{gather}
 a zatem proponuje się w analizowanej sytuacji przyjąć wartość wyznaczoną dla $U_{12,\Sigma,a}$ jako wartość niepewności rozszerzonej. Dla przypadku znanej wartości parametrów sygnału $s(t)$ zachodzi natomiast:
 \begin{equation}
 U_{12,\Sigma,c} = \sqrt{
 \begin{bmatrix}
-0 \\ \num{1.37e-3} \\ \num{5.04e-3}
+0 \\ \num{1.83e-3} \\ \num{50.36e-3}
 \end{bmatrix}^{T}
 \begin{bmatrix}
-1       &       0 &       0 \\
-0       &       1 & 0.04920 \\
-0       & 0.04920 &       1
+1       &        0 &      0 \\
+0       &        1 & 0.0570 \\
+0       &   0.0570 &      1
 \end{bmatrix}
 \begin{bmatrix}
-0 \\ \num{1.37e-3} \\ \num{5.04e-3}
-\end{bmatrix}} = \qty{50.45}{mV}
+0 \\ \num{1.83e-3} \\ \num{50.36e-3}
+\end{bmatrix}} = \qty{50.50}{mV}
 \label{eq:pom_mono_all_unc_c}.
 \end{equation}
 
@@ -514,70 +514,174 @@ W celu weryfikacji przedstawionych rozważań wykonano eksperyment metodą Monte
 \end{equation}
 gdzie $T_{sam} = \qty{12}{\micro s}$ jest czasem kluczowania napięcia wejściowego przetwornika analogowo-cyfrowego. Dla uzyskanych realizacji wektora wielkości wyjściowych, zgodnie z równaniem~\eqref{eq:alg_out_err}, wyznaczano następnie wartości realizacji wektora sygnału błędu, zakładając idealny przebieg sygnału $s(t)$ opisany równaniem~\eqref{eq:pom_gen_out_ideal}. Uzyskane dla kolejnych wielkości wyjściowych toru pomiarowego wartości realizacji wypadkowego sygnału błędu wykorzystano w celu określenia ich wariancji oraz niepewności rozszerzonej, którą wyznaczano zgodnie z równaniem~\eqref{eq:unc_summation}. Uzyskane dla częstotliwości sygnału z zakresu $\hat{f}_{s,o} \in~<0.001;20>~\unit{kHz}$ wyniki dotyczące $12$-tej wielkości wyjściowej przedstawiono w tabeli~\ref{tab:pom_mono_meas_12}, przy czym wyniki uzyskane eksperymentalnie oznaczono indeksem $m$, natomiast indeksem $ab$ oznaczono wartość maksymalną dla przypadków $a$ oraz $b$. Oznaczony symbolem $\delta_{*}$ błąd względny oszacowania wartości wypadkowej niepewności rozszerzonej wyznaczono zgodnie z równaniem~\eqref{eq:unc_error}.
 
+W celu dodatkowej weryfikacji poprawności określenia parametrów zaproponowanego modelu błędu, na podstawie pozyskanych w trakcie eksperymentu pomiarowego wartości realizacji wielkości wejściowych $x(i)$ algorytmu dyskretnej transformacji falkowej wyznaczono parametry związane z sygnałem błędu $e_{x,\Sigma}(i)$, który definiują równania~\eqref{eq:pom_dwtin_real} oraz~\eqref{eq:pom_errx_sum}. W tabeli~\ref{tab:pom_mono_meas_in} zestawiono wyniki dotyczące oszacowanej wartości wypadkowej wariancji oraz niepewności rozszerzonej związane z sygnałem błędu $e_{x,\Sigma}(i)$, przy czym oznaczenia wskazanych wielkości są identyczne, jak to miało miejsce w przypadku tabeli~\ref{tab:pom_mono_meas_12}. 
+
+Szacowane wartości wypadkowe wariancji dla analizowanego sygnału błędu $e_{x,\Sigma}(i)$ wyznaczano na podstawie równania~\eqref{eq:pom_varout_sum}, przy czym w omawianym przypadku:
+\begin{gather}
+\sigma_{x,\Sigma,*}^{2} = \sigma_{x,s,*}^{2} + \sigma_{x,d,*}^{2} + \sigma_{x,r,*}^{2} \label{eq:pom_varx_sum_all}, \\
+\sigma_{x,s,*}^{2} = \sigma_{x,sp,*}^{2} \cong \sigma_{s,s}^{2} \label{eq:pom_varx_sum_stat}, \\
+\sigma_{x,d,*}^{2} = \frac{E_{x,e,1,*}^{2}}{2} \label{eq:pom_varx_sum_dyn}, \\
+\sigma_{x,r,*}^{2} = \sigma_{x,rw}^{2} + \sigma_{x,rp,*}^{2} \cong \sigma_{x,rw}^{2} + \sigma_{s,r,*}^{2} \label{eq:pom_varx_sum_rand},
+\end{gather}
+co wynika z treści założeń~\eqref{eq:pom_varx_stat_prop}, \eqref{eq:pom_varx_rand_prop}, \eqref{eq:pom_varout_rand}, \eqref{eq:pom_mono_dyn_sum_param_amp_mid} oraz założenia o braku korelacji wymienionych sygnałów błędów, przy czym korelacje pomiędzy składowymi sygnału błędu dynamicznego zostały rozpatrzone na etapie wyznaczania wartości wielkości $E_{x,e,1,*}$. Szacowane wartości niepewności rozszerzonej wyznaczano na podstawie równania~\eqref{eq:pom_uncout_sum}, które w rozważanym przypadku przyjmuje postać:
+\begin{gather}
+U_{x,\Sigma,*} = \sqrt{
+\begin{bmatrix}
+U_{x,s,*} \\ U_{x,d,*} \\ U_{x,r,*}
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1           & h_{x,s,r,*} & h_{x,s,d,*} \\
+h_{x,r,s,*} &           1 & h_{x,r,d,*} \\
+h_{x,d,s,*} & h_{x,d,r,*} &           1
+\end{bmatrix}
+\begin{bmatrix}
+U_{x,s,*} \\ U_{x,d,*} \\ U_{x,r,*}
+\end{bmatrix}}
+\label{eq:pom_uncx_sum_all}, \\
+U_{x,s,*} = c_{x,s} \sigma_{x,s} = c_{s,s} \sigma_{s,s} \label{eq:pom_mono_unc_stat_in}, \\
+U_{x,r,*} = \sqrt{U_{x,rw}^{2} + U_{x,rp,*}^{2}} = \sqrt{c_{x,rw}^{2} \sigma_{x,rw}^2 + c_{s,r}^{2} + \sigma_{s,r,*}^{2}} \label{eq:pom_mono_unc_rand_in}, \\
+U_{x,d,*} = c_{d} \sigma_{x,d,*} = c_{d} \frac{E_{x,e,1,*}}{\sqrt{2}} \label{eq:pom_mono_unc_dyn_all},
+\end{gather}
+przy czym uproszczenie przyjęte w równaniu~\eqref{eq:pom_mono_unc_rand_in} wynika z faktu, że sumowane sygnały błędu cechują się normalnym rozkładem ich realizacji. Wartość niepewności rozszerzonej oznaczoną indeksem $m$ obliczano na podstawie równania~\eqref{eq:unc_summation}, natomiast względny błąd oszacowania wartości niepewności rozszerzonej wyznaczano zgodnie z równaniem~\eqref{eq:unc_error}.
+
 \begin{table}[p]
 \begin{center}
 \makecaption{tab:pom_mono_meas_12}{Zestawienie wyników eksperymentu mającego na celu weryfikacje poprawności zastosowanych parametrów modelu błędu dla $12$-tej wielkości wyjściowej toru pomiarowego}
-\begin{tabular}[c]{| c | S[table-format = 4.2] | S[table-format = 4.2] | S[table-format = 4.2] | S[table-format = 3.2] | S[table-format = 3.2] | S[table-format = 3.2] | S[table-format = +2.2] | S[table-format = +2.2] |} \hline
+\begin{tabular}[c]{| c | S[table-format = 4.2] | S[table-format = 4.2] | S[table-format = 4.2] | S[table-format = 3.2] | S[table-format = 3.2] | S[table-format = 3.2] | S[table-format = +3.2] | S[table-format = +3.2] |} \hline
 \multirow{2}{*}{$f_{s,o}$} & \multicolumn{3}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{3}{c|}{\textbf{Niepewność, mV}} & \multicolumn{2}{c|}{\textbf{Błąd, \%}} \\ \cline{2-9}
 & $\sigma_{ab}^{2}$ & $\sigma_{c}^{2}$ & $\sigma_{s}^{2}$ & $U_{ab}$ & $U_{c}$ & $U_{s}$ & $\delta_{ab}$ & $\delta_{c}$ \\ \hline
-1       &       0.49    &       0.49    &       1.20    &       1.37    &       1.37    &       2.15    &       -36.36  &       -36.36  \\ \hline
-5       &       0.49    &       0.49    &       0.90    &       1.37    &       1.37    &       1.87    &       -26.82  &       -26.82  \\ \hline
-50      &       0.49    &       0.49    &       0.85    &       1.37    &       1.37    &       1.81    &       -24.73  &       -24.73  \\ \hline
-100     &       0.49    &       0.49    &       0.89    &       1.37    &       1.37    &       1.85    &       -26.17  &       -26.17  \\ \hline
-200     &       0.49    &       0.49    &       1.09    &       1.37    &       1.37    &       2.05    &       -33.38  &       -33.38  \\ \hline
-300     &       0.49    &       0.49    &       1.37    &       1.37    &       1.37    &       2.31    &       -40.98  &       -40.99  \\ \hline
-400     &       0.49    &       0.49    &       1.41    &       1.37    &       1.37    &       2.32    &       -41.22  &       -41.26  \\ \hline
-500     &       0.49    &       0.49    &       1.43    &       1.37    &       1.37    &       2.35    &       -41.71  &       -41.87  \\ \hline
-600     &       0.49    &       0.49    &       1.38    &       1.38    &       1.37    &       2.29    &       -39.84  &       -40.37  \\ \hline
-700     &       0.51    &       0.49    &       1.27    &       1.40    &       1.37    &       2.19    &       -35.88  &       -37.41  \\ \hline
-800     &       0.55    &       0.49    &       1.35    &       1.46    &       1.38    &       2.29    &       -35.93  &       -39.46  \\ \hline
-900     &       0.66    &       0.51    &       1.13    &       1.59    &       1.41    &       2.08    &       -23.62  &       -31.99  \\ \hline
-1000    &       0.90    &       0.56    &       1.17    &       1.81    &       1.48    &       2.11    &       -14.21  &       -29.96  \\ \hline
-2000    &       141.35  &       69.06   &       43.28   &       16.91   &       11.89   &       10.00   &       +69.02  &       +18.91  \\ \hline
-3000    &       1593.24 &       1091.13 &       703.02  &       56.35   &       46.65   &       38.06   &       +48.08  &       +22.60  \\ \hline
-4000    &       410.78  &       328.00  &       204.65  &       28.68   &       25.65   &       20.90   &       +37.21  &       +22.70  \\ \hline
-5000    &       0.65    &       0.63    &       2.47    &       1.58    &       1.55    &       3.11    &       -49.27  &       -50.04  \\ \hline
-6000    &       0.49    &       0.49    &       0.81    &       1.37    &       1.37    &       1.75    &       -22.08  &       -22.08  \\ \hline
-7000    &       0.83    &       0.80    &       2.31    &       1.75    &       1.73    &       2.95    &       -40.80  &       -41.51  \\ \hline
-8000    &       1343.60 &       1276.14 &       1162.16 &       51.76   &       50.45   &       48.40   &       +6.95   &       +4.23   \\ \hline
-9000    &       4180.35 &       4023.69 &       3564.83 &       91.22   &       89.50   &       83.44   &       +9.32   &       +7.25   \\ \hline
-10000   &       84.28   &       81.92   &       69.75   &       13.11   &       12.93   &       12.41   &       +5.65   &       +4.20   \\ \hline
-11000   &       0.49    &       0.49    &       4.00    &       1.37    &       1.37    &       3.77    &       -63.53  &       -63.54  \\ \hline
-12000   &       0.49    &       0.49    &       0.72    &       1.37    &       1.37    &       1.66    &       -17.55  &       -17.55  \\ \hline
-13000   &       0.49    &       0.49    &       1.50    &       1.38    &       1.38    &       2.40    &       -42.79  &       -42.79  \\ \hline
-14000   &       127.91  &       126.87  &       121.74  &       16.09   &       16.03   &       16.43   &       -2.07   &       -2.46   \\ \hline
-15000   &       7268.11 &       7228.89 &       7017.78 &       120.25  &       119.93  &       119.40  &       +0.72   &       +0.44   \\ \hline
-16000   &       2423.38 &       2415.76 &       2236.64 &       69.47   &       69.37   &       69.78   &       -0.43   &       -0.59   \\ \hline
-17000   &       1.04    &       1.04    &       6.98    &       1.93    &       1.93    &       5.60    &       -65.60  &       -65.61  \\ \hline
-18000   &       0.49    &       0.49    &       0.84    &       1.37    &       1.37    &       1.81    &       -24.44  &       -24.44  \\ \hline
-19000   &       0.60    &       0.60    &       3.68    &       1.52    &       1.52    &       3.97    &       -61.65  &       -61.64  \\ \hline
-20000   &       113.49  &       113.80  &       118.09  &       15.17   &       15.19   &       17.68   &       -14.17  &       -14.05  \\ \hline
+1       &       0.86    &       0.87    &       1.20    &       1.82    &       1.83    &       2.15    &       -15.09  &       -14.74  \\ \hline
+5       &       0.86    &       0.87    &       0.90    &       1.82    &       1.83    &       1.87    &       -2.36   &       -1.95   \\ \hline
+50      &       0.86    &       0.87    &       0.85    &       1.82    &       1.83    &       1.81    &       +0.44   &       +0.86   \\ \hline
+100     &       0.86    &       0.87    &       0.89    &       1.82    &       1.83    &       1.85    &       -1.49   &       -1.08   \\ \hline
+200     &       0.86    &       0.87    &       1.09    &       1.82    &       1.83    &       2.05    &       -11.10  &       -10.73  \\ \hline
+300     &       0.86    &       0.87    &       1.37    &       1.82    &       1.83    &       2.31    &       -21.25  &       -20.93  \\ \hline
+400     &       0.86    &       0.87    &       1.41    &       1.82    &       1.83    &       2.32    &       -21.52  &       -21.29  \\ \hline
+500     &       0.87    &       0.87    &       1.43    &       1.83    &       1.83    &       2.35    &       -22.03  &       -22.12  \\ \hline
+600     &       0.89    &       0.87    &       1.38    &       1.86    &       1.83    &       2.29    &       -19.04  &       -20.14  \\ \hline
+700     &       0.94    &       0.87    &       1.27    &       1.92    &       1.83    &       2.19    &       -12.42  &       -16.27  \\ \hline
+800     &       1.10    &       0.88    &       1.35    &       2.06    &       1.84    &       2.29    &       -9.87   &       -19.30  \\ \hline
+900     &       1.47    &       0.90    &       1.13    &       2.34    &       1.87    &       2.08    &       +12.42  &       -10.07  \\ \hline
+1000    &       2.29    &       0.95    &       1.17    &       2.81    &       1.92    &       2.11    &       +33.01  &       -9.00   \\ \hline
+2000    &       361.68  &       69.45   &       43.28   &       26.99   &       12.03   &       10.00   &       +169.80 &       +20.28  \\ \hline
+3000    &       3149.05 &       1091.51 &       703.02  &       79.22   &       46.71   &       38.06   &       +108.16 &       +22.74  \\ \hline
+4000    &       674.24  &       328.38  &       204.65  &       36.76   &       25.73   &       20.90   &       +75.84  &       +23.08  \\ \hline
+5000    &       1.10    &       1.01    &       2.47    &       2.06    &       1.98    &       3.11    &       -33.74  &       -36.16  \\ \hline
+6000    &       0.86    &       0.87    &       0.81    &       1.82    &       1.83    &       1.75    &       +3.97   &       +4.40   \\ \hline
+7000    &       1.29    &       1.19    &       2.31    &       2.21    &       2.13    &       2.95    &       -25.31  &       -27.83  \\ \hline
+8000    &       1603.78 &       1276.53 &       1162.16 &       56.58   &       50.50   &       48.40   &       +16.90  &       +4.34   \\ \hline
+9000    &       4831.82 &       4024.08 &       3564.83 &       98.09   &       89.53   &       83.44   &       +17.55  &       +7.29   \\ \hline
+10000   &       95.40   &       82.31   &       69.75   &       14.03   &       13.06   &       12.41   &       +13.03  &       +5.24   \\ \hline
+11000   &       0.87    &       0.87    &       4.00    &       1.83    &       1.84    &       3.77    &       -51.44  &       -51.26  \\ \hline
+12000   &       0.86    &       0.87    &       0.72    &       1.82    &       1.83    &       1.66    &       +10.01  &       +10.47  \\ \hline
+13000   &       0.87    &       0.88    &       1.50    &       1.83    &       1.84    &       2.40    &       -23.86  &       -23.57  \\ \hline
+14000   &       137.09  &       127.26  &       121.74  &       16.74   &       16.14   &       16.43   &       +1.84   &       -1.79   \\ \hline
+15000   &       7711.55 &       7229.27 &       7017.78 &       123.89  &       119.96  &       119.40  &       +3.76   &       +0.47   \\ \hline
+16000   &       2555.32 &       2416.15 &       2236.64 &       71.37   &       69.41   &       69.78   &       +2.29   &       -0.53   \\ \hline
+17000   &       1.44    &       1.42    &       6.98    &       2.32    &       2.30    &       5.60    &       -58.64  &       -58.86  \\ \hline
+18000   &       0.86    &       0.87    &       0.84    &       1.82    &       1.83    &       1.81    &       +0.81   &       +1.24   \\ \hline
+19000   &       0.98    &       0.98    &       3.68    &       1.95    &       1.96    &       3.97    &       -50.72  &       -50.64  \\ \hline
+20000   &       118.02  &       114.19  &       118.09  &       15.56   &       15.31   &       17.68   &       -12.00  &       -13.40  \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-Analizując wyniki zestawione w tabeli~\ref{tab:pom_mono_meas_12} zauważyć można, że część uzyskanych wartości znacząco odbiega od tych uzyskanych na drodze eksperymentu. Jak założono w tezie pracy, skuteczność zaproponowanej metody szacowania wartości niepewności rozszerzonej wielkości wyjściowych analizowanego toru pomiarowego jest uzależniona od dokładności wyznaczenia parametrów modelu błędu. W rozważanym przykładzie część parametrów pozyskana została eksperymentalnie, przy czym dodatkowo stosowano aproksymacje ich przebiegu w funkcji częstotliwości sygnału, natomiast pozostałe parametry oszacowano stosując informacje zawarte w dokumentacji producentów stosowanych eksperymencie przyrządów i układów. 
+\begin{table}[p]
+\begin{center}
+\makecaption{tab:pom_mono_meas_in}{Zestawienie wyników eksperymentu mającego na celu weryfikacje poprawności zastosowanych parametrów modelu błędu dla wielkości wejściowej analizowanego algorytmu}
+\begin{tabular}[c]{| c | S[table-format = 3.2] | S[table-format = 3.2] | S[table-format = 3.2] | S[table-format = 2.2] | S[table-format = 2.2] | S[table-format = 2.2] | S[table-format = +3.2] | S[table-format = +3.2] |} \hline
+\multirow{2}{*}{$f_{s,o}$} & \multicolumn{3}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{3}{c|}{\textbf{Niepewność, mV}} & \multicolumn{2}{c|}{\textbf{Błąd, \%}} \\ \cline{2-9}
+& $\sigma_{ab}^{2}$ & $\sigma_{c}^{2}$ & $\sigma_{m}^{2}$ & $U_{ab}$ & $U_{c}$ & $U_{m}$ & $\delta_{ab}$ & $\delta_{c}$ \\ \hline
+1       &       3.82    &       0.07    &       0.21    &       2.84    &       0.51    &       0.89    &       +217.58 &       -43.08  \\ \hline
+5       &       3.82    &       0.07    &       0.25    &       2.84    &       0.51    &       0.94    &       +202.68 &       -45.72  \\ \hline
+50      &       3.82    &       0.07    &       0.22    &       2.84    &       0.52    &       0.90    &       +217.11 &       -41.93  \\ \hline
+100     &       3.83    &       0.08    &       0.13    &       2.84    &       0.55    &       0.69    &       +310.99 &       -21.23  \\ \hline
+200     &       3.85    &       0.10    &       0.10    &       2.85    &       0.62    &       0.61    &       +369.58 &       +2.35   \\ \hline
+300     &       3.90    &       0.15    &       0.12    &       2.87    &       0.72    &       0.68    &       +323.42 &       +6.68   \\ \hline
+400     &       3.96    &       0.21    &       0.12    &       2.89    &       0.83    &       0.66    &       +335.37 &       +25.68  \\ \hline
+500     &       4.03    &       0.29    &       0.11    &       2.92    &       0.93    &       0.64    &       +352.31 &       +44.76  \\ \hline
+600     &       4.13    &       0.38    &       0.19    &       2.95    &       1.04    &       0.83    &       +257.44 &       +25.94  \\ \hline
+700     &       4.24    &       0.50    &       0.27    &       2.99    &       1.15    &       0.95    &       +213.10 &       +20.51  \\ \hline
+800     &       4.37    &       0.63    &       0.36    &       3.03    &       1.26    &       1.08    &       +179.93 &       +16.77  \\ \hline
+900     &       4.52    &       0.78    &       0.31    &       3.08    &       1.38    &       1.02    &       +201.92 &       +35.45  \\ \hline
+1000    &       4.68    &       0.94    &       0.45    &       3.13    &       1.50    &       1.18    &       +165.85 &       +27.39  \\ \hline
+2000    &       7.29    &       3.58    &       2.25    &       3.88    &       2.76    &       2.33    &       +66.10  &       +18.11  \\ \hline
+3000    &       11.63   &       7.99    &       5.21    &       4.87    &       4.05    &       3.42    &       +42.39  &       +18.52  \\ \hline
+4000    &       17.74   &       14.17   &       8.86    &       5.99    &       5.37    &       4.40    &       +36.17  &       +21.94  \\ \hline
+5000    &       25.61   &       22.15   &       18.14   &       7.18    &       6.69    &       6.19    &       +16.04  &       +8.01   \\ \hline
+6000    &       35.25   &       31.92   &       30.22   &       8.42    &       8.01    &       7.81    &       +7.72   &       +2.55   \\ \hline
+7000    &       46.68   &       43.50   &       43.26   &       9.67    &       9.34    &       9.39    &       +3.06   &       -0.49   \\ \hline
+8000    &       59.90   &       56.89   &       51.91   &       10.95   &       10.67   &       10.26   &       +6.71   &       +4.01   \\ \hline
+9000    &       74.92   &       72.11   &       63.95   &       12.24   &       12.01   &       11.37   &       +7.63   &       +5.60   \\ \hline
+10000   &       91.75   &       89.17   &       74.13   &       13.54   &       13.35   &       12.19   &       +11.07  &       +9.51   \\ \hline
+11000   &       110.40  &       108.07  &       105.82  &       14.85   &       14.69   &       14.51   &       +2.29   &       +1.21   \\ \hline
+12000   &       130.88  &       128.82  &       119.26  &       16.16   &       16.03   &       15.17   &       +6.56   &       +5.73   \\ \hline
+13000   &       153.20  &       151.44  &       148.78  &       17.48   &       17.38   &       17.19   &       +1.70   &       +1.12   \\ \hline
+14000   &       177.37  &       175.93  &       167.46  &       18.81   &       18.73   &       18.24   &       +3.13   &       +2.72   \\ \hline
+15000   &       203.39  &       202.30  &       196.77  &       20.14   &       20.08   &       19.78   &       +1.82   &       +1.54   \\ \hline
+16000   &       231.28  &       230.56  &       213.13  &       21.47   &       21.44   &       21.76   &       -1.31   &       -1.47   \\ \hline
+17000   &       261.05  &       260.72  &       255.07  &       22.81   &       22.79   &       22.52   &       +1.26   &       +1.19   \\ \hline
+18000   &       292.70  &       292.79  &       267.88  &       24.15   &       24.15   &       22.99   &       +5.03   &       +5.04   \\ \hline
+19000   &       326.25  &       326.79  &       399.29  &       25.49   &       25.51   &       28.15   &       -9.44   &       -9.36   \\ \hline
+20000   &       361.70  &       362.71  &       328.39  &       26.84   &       26.88   &       25.51   &       +5.22   &       +5.37   \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Analizując wyniki zestawione w tabelach~\ref{tab:pom_mono_meas_12} oraz~\ref{tab:pom_mono_meas_in} zauważyć można, że część uzyskanych wartości znacząco odbiega od tych uzyskanych na drodze eksperymentu. Jak założono w tezie pracy, skuteczność zaproponowanej metody szacowania wartości niepewności rozszerzonej wielkości wyjściowych analizowanego toru pomiarowego jest uzależniona od dokładności wyznaczenia parametrów modelu błędu. W rozważanym przykładzie część parametrów pozyskana została eksperymentalnie, przy czym dodatkowo stosowano aproksymacje ich przebiegu w funkcji częstotliwości sygnału, natomiast pozostałe parametry oszacowano stosując informacje zawarte w dokumentacji producentów stosowanych eksperymencie przyrządów i układów. Można zatem wnioskować, że parametry te nie zostały wyznaczone z odpowiednią dokładnością.
 
 Pierwsze źródło niedokładności dla uzyskanych wyników stanowi niedokładne oszacowane parametrów sygnału błędu losowego $e_{s,r}(t)$. Parametry te pozyskano na podstawie dokumentacji układu, przy czym ze względu na niedostateczne informacje odnośnie charakteru związanych z omawianym sygnałem zjawisk przyjęte założenia mogły okazać się niepoprawne. Omawiane zjawiska widoczne są w szczególności dla przypadku, gdzie dominujące źródło błędów stanowią sygnały błędów losowych, natomiast sygnał błędu dynamicznego cechuje się niską wariancją. W analizowanym przypadku dokładność uzyskiwanych wyników zwiększyć można przeprowadzając identyfikację parametrów wskazanego sygnału błędu za pomocą analizatora widma.
 
 Drugim istotnym powodem niedokładności uzyskanych wyników jest niewłaściwa aproksymacja charakterystyki wartości przesunięcia fazowego $\tilde{\varphi}_{s,x}(\omega)$, w szczególności dla niewielkich wartości pulsacji. W omawianych przypadkach względny błąd oszacowania wartości przesunięcia fazowego jest istotny, co przekłada się na znaczący błąd oszacowania wypadkowej wartości niepewności rozszerzonej. Na podstawie wyników eksperymentu zauważyć można, że dla niskich wartości częstotliwości sygnału oszacowana zgodnie z równaniem~\eqref{eq:pom_dwtin_phi} wartość przesunięcia fazowego $\tilde{\varphi}_{s,x}(\omega)$ jest większa od rzeczywistej. Dokładność uzyskiwanych wyników może zostać zwiększona stosując bardziej dokładną aproksymację charakterystyki wielkości $\tilde{\varphi}_{s,x}(\omega)$ w funkcji pulsacji np. wykorzystując w tym celu wielomian wyższego rzędu lub przeprowadzając odpowiednią symulację w dziedzinie częstotliwości dla zastosowanej konfiguracji części analogowo-cyfrowej toru pomiarowego.
 
-Trzecie możliwe źródło sygnałów błędów, które pominięte zostało w przedstawionych rozważaniach, stanowią krótkotrwałe odchylenia w realizacjach okresu syntezowanego sygnału oraz sygnału taktującego przetwornik analogowo-cyfrowy (tzw. \enquote{Jitter}). Jak założono we wstępie pracy, tematyka obejmująca analizę sygnałów błędów związanych z opóźnieniami nie stanowi obszaru pracy, natomiast przedstawiony model błędu może zostać uzupełniony i obejmować taką analizę. Dla zastosowanego generatora przebiegów arbitralnych moc sygnału błędu związanego z szumem fazowym nie przekracza \qty{-115}{dBc \per Hz}. W przypadku źródła sygnału zegarowego przetwornika analogowo-cyfrowego oraz licznika związanego z generowaniem sygnału wyzwalającego proces przetwarzania analogowo-cyfrowego odchylenie standardowe okresu tego sygnału wynosi typowo \qty{15}{ps}, przy czym należy zauważyć, że omawiany sygnał zegarowy jest podawany na wejście odpowiednio skonfigurowanych dzielników częstotliwości.
+Trzecie możliwe źródło sygnałów błędów, które pominięte zostało w przedstawionych rozważaniach, stanowią krótkotrwałe odchylenia w realizacjach okresu syntezowanego sygnału oraz sygnału zegarowego taktującego przetwornik analogowo-cyfrowy -- tzw. \enquote{Jitter}~\cite{renesans_jitter}. Jak założono we wstępie pracy, tematyka obejmująca analizę sygnałów błędów związanych z opóźnieniami nie stanowi obszaru pracy, natomiast przedstawiony model błędu może zostać uzupełniony i obejmować taką analizę. Dla zastosowanego generatora przebiegów arbitralnych moc sygnału błędu związanego z szumem fazowym nie przekracza \qty{-115}{dBc \per Hz}. W przypadku źródła sygnału zegarowego przetwornika analogowo-cyfrowego oraz licznika związanego z generowaniem sygnału wyzwalającego proces przetwarzania analogowo-cyfrowego odchylenie standardowe okresu tego sygnału wynosi typowo \qty{15}{ps}, przy czym należy zauważyć, że omawiany sygnał zegarowy jest podawany na wejście odpowiednio skonfigurowanych dzielników częstotliwości. Na podstawie wartości parametrów związanych z omawianymi zjawiskami zakładać jednak można, że ich wpływ na budżet niepewności analizowanego toru pomiarowego jest niewielki.
 
-W przypadku, gdy dominujące źródło błędów stanowi wprowadzane przez część analogowo-cyfrową przesunięcie fazowe $\tilde{\varphi}_{s,x}(\omega)$, oszacowane wartości niepewności rozszerzonej są zbieżne z tymi uzyskanymi pomiarowo. Należy zauważyć, że omawiana sytuacja ma miejsce dla sygnałów o częstotliwości powyżej \qty{3}{kHz}, które jednocześnie nie są tłumione przez bank filtrów związany z analizowaną wielkością wyjściową. Zależność względnego błędu oszacowania wartości niepewności rozszerzonej $\delta_{c}$ dla analizowanej w przykładzie wielkości wyjściowej w funkcji częstotliwości sygnału wraz z informacją odnośnie wartości wzmocnienia $|H_{12}(e^{j \omega_{s,o} T_{p}})|$ przedstawiono na rysunku~\ref{fig:mono_freqcomp}. W przypadku sygnałów o częstotliwości powyżej \qty{3}{kHz}, które dla analizowanej wielkości wyjściowej tłumione są przez algorytm dyskretnej transformacji falkowej, dominujące źródło błędów stanowią sygnały o charakterze losowym.
+Dla przypadków, gdzie dominujące źródło błędów stanowi wprowadzane przez część analogowo-cyfrową przesunięcie fazowe $\tilde{\varphi}_{s,x}(\omega)$, oszacowane wartości niepewności rozszerzonej są zbieżne z tymi uzyskanymi pomiarowo. Należy zauważyć, że omawiana sytuacja ma miejsce dla sygnałów o częstotliwości powyżej \qty{5}{kHz}, które jednocześnie nie są tłumione przez bank filtrów związany z analizowaną wielkością wyjściową. Zależność względnego błędu oszacowania wartości niepewności rozszerzonej $\delta_{c}$ dla analizowanej w przykładzie $12$-tej wielkości wyjściowej toru pomiarowego w funkcji częstotliwości sygnału, wraz z informacją odnośnie wartości wzmocnienia $|H_{12}(e^{j \omega_{s,o} T_{p}})|$ przedstawiono na rysunku~\ref{fig:mono_freqcomp}. W przypadku sygnałów o częstotliwości powyżej \qty{5}{kHz}, które dla analizowanej wielkości wyjściowej tłumione są przez algorytm dyskretnej transformacji falkowej, dominujące źródło błędów stanowią sygnały o charakterze losowym.
 
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/mono_freqcomp}
-\makecaption{fig:mono_freqcomp}{Zależność względnego błędu oszacowania wartości niepewności $12$-tej wielkości wyjściowej w funkcji częstotliwości sygnału (oś prawa) oraz zależność wartości wzmocnienia wynikającego z transmitancji algorytmu w funkcji częstotliwości (oś lewa) dla przypadku o znanej wartości amplitudy sygnału}
+\makecaption{fig:mono_freqcomp}{Zależność względnego błędu oszacowania wartości niepewności $12$-tej wielkości wyjściowej toru pomiarowego w funkcji częstotliwości sygnału (oś prawa) oraz zależność wartości wzmocnienia wynikającego z transmitancji analizowanej wielkości wyjściowej algorytmu w funkcji częstotliwości (oś lewa) dla przypadku o znanej wartości amplitudy sygnału ($c$)}
 \end{center}
 \end{figure}
 
-W przypadku, gdzie zakładano nieznane rzeczywiste wartości parametrów sygnału $s(t)$ ze względu na istniejące korelacje pomiędzy zdefiniowanymi składowymi sygnału błędu dynamicznego należało rozważyć dwie opcje, które dotyczyły kolejno dodatniej i ujemnej wartości błędu nastawy amplitudy. W takim przypadku oszacowana wartość niepewności związana z sygnałem błędu dynamicznego była również obarczona błędem wynikającym z niedokładnego oszacowania jednej ze składowych tego sygnału. Należy zauważyć, że w przypadku zastosowanego dla zadanych parametrów syntezowanego sygnału wartość realizacji błędu nastawy amplitudy sygnału była zbliżona do wartości granicznej, zakładanej dla $96\%$ przypadków.
+Na podstawie uzyskanych wyników eksperymentu zauważyć można, że najistotniejsze właściwości analizowanego toru pomiarowego zostały zidentyfikowane poprawnie w przypadku, gdy tor ten przetwarza sygnały o częstotliwości powyżej \qty{5}{kHz}. Dla sygnałów o niższej częstotliwości dominują źródła błędów, których parametry na etapie identyfikacji właściwości zastosowanego w eksperymencie źródła sygnału $s(t)$ wyznaczono niedokładnie, z uwagi na niedostateczne dane zawarte w dokumentacji tego urządzenia. Dla pozostałych wielkości wyjściowych toru pomiarowego sformułować można wnioski zbieżne, jak te dotyczące analizowanej w przykładzie wielkości wyjściowej. Wyniki przeprowadzonego eksperymentu, wraz z wynikami uzyskanymi dla eksperymentu symulacyjnego, przeprowadzonego w poprzednim rozdziale, stanowią potwierdzenie zawartej we wstępie pracy tezy.
 
-Na podstawie uzyskanych wyników eksperymentu zauważyć można, że najistotniejsze właściwości analizowanego toru pomiarowego zostały zidentyfikowane poprawnie w przypadku, gdy tor ten przetwarza sygnały o częstotliwości powyżej \qty{3}{kHz}. Dla sygnałów o niższej częstotliwości dominują źródła błędów, których parametry na etapie identyfikacji właściwości zastosowanego w eksperymencie źródła sygnału $s(t)$ wyznaczono niedokładnie, z uwagi na niedostateczne dane zawarte w dokumentacji tego urządzenia. Dla pozostałych wielkości wyjściowych toru pomiarowego sformułować można wnioski zbieżne, jak te dotyczące analizowanej w przykładzie wielkości wyjściowej. Wyniki przeprowadzonego eksperymentu, wraz z wynikami uzyskanymi dla eksperymentu symulacyjnego, przeprowadzonego w poprzednim rozdziale, stanowią potwierdzenie zawartej we wstępie pracy tezy.
+W przypadku, gdzie zakładano nieznane rzeczywiste wartości parametrów sygnału $s(t)$ ze względu na istniejące korelacje pomiędzy zdefiniowanymi składowymi sygnału błędu dynamicznego należało rozważyć dwie opcje, które dotyczyły kolejno dodatniej i ujemnej wartości błędu nastawy amplitudy. W takim przypadku oszacowana wartość niepewności związana z sygnałem błędu dynamicznego była również obarczona błędem wynikającym z niedokładnego oszacowania jednej ze składowych tego sygnału. Należy jednak zauważyć, że stosowanie wartości wielkości dla przypadku idealnego, podczas szacowania wartości parametru związanego z tą wielkością, nie wprowadza do obliczeń istotnych błędów. Wniosek ten znajduje swoje potwierdzenie między innymi w wynikach uzyskanych dla równań~\eqref{eq:pom_mono_unc_rand_ab} oraz~\eqref{eq:pom_mono_unc_rand_c}, a zatem założenia przyjęte w tej kwestii dla proponowanego w pracy modelu błędu są zasadne. Niemniej jednak, jeżeli znane są rzeczywiste wartości danego parametru, to należy wykorzystać podczas obliczeń.
 
 \section{Przypadek sygnału poliharmonicznego}
+
+Ostatni eksperyment weryfikujący poprawność założeń proponowanego w pracy modelu błędu oraz metody szacowania wypadkowej wartości niepewności rozszerzonych wielkości wyjściowych toru pomiarowego wykorzystującego algorytm dyskretnej transformacji falkowej dotyczy przypadku, gdy opisany w bieżącym rozdziale tor pomiarowy przetwarza sygnał trójkątny opisany w równaniach~\eqref{eq:pom_gen_triangle_ideal} oraz~\eqref{eq:pom_gen_triangle_real}. Podczas eksperymentu źródło napięcia wejściowego $s(t)$ stanowił generator przebiegów arbitralnych RIGOL DG1011~\cite{rigol_fawg}, natomiast zadane parametry sygnału wejściowego wynosiły $\dot{E}_{s,o} = \qty{475}{mV}$ oraz $\dot{D}_{s,o} = \qty{500}{mV}$. Jako, że w poprzednim eksperymencie rozważono przypadek dotyczący nieznanych wartości rzeczywistych wartości parametrów amplitudy oraz składowej stałej, omawiany eksperyment zakłada znajomość tych parametrów, przy czym $\tilde{E}_{s,o} = \qty{479.70}{mV}$ oraz $\tilde{D}_{s,o} = \qty{505.85}{mV}$.
+
+Zgodnie z założeniem~\eqref{eq:pom_gen_var_rand_saw} oraz równaniem~\eqref{eq:pom_varx_rand_prop} w analizowanym przypadku wariancję sygnału błędu losowego $e_{x,rp}(i)$ związanego z nieliniowością stosowanego źródła sygnału $s(t)$ opisać można równaniem:
+\begin{equation}
+\sigma_{x,rp}^{2} \cong \frac{\num{e-6}}{3} \emb{\tilde{E}_{s,o} + \tilde{D}_{s,o}}^{2} = \frac{\num{e-6}}{3} \emb{0.47970 + 0.50585}^{2} = \qty{0.32}{\micro V} \label{eq:pom_multi_rand_var_in},
+\end{equation}
+przy czym zakłada się jednakowe prawdopodobieństwo realizacji każdej z wartości omawianego sygnału błędu, stąd przy założeniu liniowości analizowanego obiektu zachodzi $c_{x,rp} = c_{s,r} = c_{u}$. Należy zaznaczyć, że pomimo zmiany rodzaju rozkładu analizowanego sygnału błędu w stosunku do przypadku opisanego w poprzednim podrozdziale, treść równania~\eqref{eq:pom_mono_unc_rand_all} pozostaje niezmienna dla analizowanego przypadku.
+
+Jako, że rzeczywista wartość parametru składowej stałej jest znana, a dodatkowo eksperyment przeprowadzany był w tych samych warunkach otoczenia, w jakich identyfikowano parametry przedstawionego toru pomiarowego, zakłada się $e_{s,x}(t) = 0$ oraz $e_{x,sw}(i) = 0$. zatem wobec przyjętych założeń zachodzi $U_{i,s} = \qty{0}{V}$. Podobne założenie przyjmuje się odnośnie sygnału błędu dynamicznego $e_{s,d}(t) = 0$, wynikającego z błędu nastawy amplitudy sygnału, a zatem zachodzi $e_{x,dp}(i) = 0$.
+
+Najistotniejszą różnicę, w stosunku do poprzedniego eksperymentu, stanowi przebieg wypadkowego sygnału błędu dynamicznego $e_{x,d}(i) = e_{x,dw}(i)$ na wejściu algorytmu dyskretnej transformacji falkowej. W eksperymencie poprzednim sygnał ten składał się z jednej harmonicznej o pulsacji równej pulsacji sygnału $s(t)$, natomiast w bieżącym eksperymencie sygnał ten składa się z wielu harmonicznych. W dalszej części podrozdziału przyjmuje się, że analizowane będą wszystkie harmoniczne których pulsacja $\omega_{x,j} < \pi f_{p}$. Zgodnie z definicją daną równaniem~\eqref{eq:pom_errx_dyn_self} każda harmoniczna sygnału błędu dynamicznego $e_{x,d}(i)$ złożona jest z dwóch składników, natomiast wartość wariancji związaną z tą harmoniczną, wymaganą w równaniu~\eqref{eq:pom_uncout_dyn}, wyznaczana jest identycznie, jak przedstawiono w przykładzie opisanym równaniami~\eqref{eq:pom_mono_dyn_sum_param_amp_mid_val_c} oraz~\eqref{eq:pom_mono_dyn_unc_c}.
+
+Omawiany eksperyment pomiarowy przeprowadzono stosując metodologię identyczną, jak w przypadku poprzedniego eksperymentu. Wypadkową wartość niepewności rozszerzonej szacowano zgodnie z równaniem~\eqref{eq:pom_uncout_sum}, którego składniki wyznaczano zgodnie z równaniami od~\eqref{eq:pom_uncout_stat} do~\eqref{eq:pom_uncout_dyn}, natomiast wartość wypadkową wariancji szacowano zgodnie z zależnością~\eqref{eq:pom_varout_sum}. W przypadku uzyskanych realizacji sygnału błędu $e_{i,\Sigma}(j)$, zdefiniowanego w równaniu~\eqref{eq:alg_out_err}, wartość niepewności rozszerzonej wyznaczano zgodnie z równaniem~\eqref{eq:unc_summation}. Ze względu na fakt, że obliczenia wykonywane były w sposób identyczny, jak przedstawiano w pracy wielokrotnie dla omawianych wcześniej przykładów, w bieżącym rozdziale nie zostały one przedstawione, co wynika z liczby analizowanych harmonicznych sygnału błędu dynamicznego. W tabeli~\ref{tab:pom_multi_meas_12} zestawiono wyniki przeprowadzonego eksperymentu dla wybranych wartości częstotliwości podstawowej harmonicznej sygnału $s(t)$, dotyczące $12$-tej wielkości wyjściowej toru pomiarowego, natomiast na rysunku~\ref{hist_multi} przedstawione wybrane histogramy uzyskanych realizacji sygnału błędu $e_{12,\Sigma}(j)$. Indeksem $c$ oznaczono wartości oszacowane na podstawie przyjętych założeń, natomiast indeksem $m$ oznaczono wartości uzyskane pomiarowo. Oznaczony symbolem $\delta_{c}$ błąd względny oszacowania wartości wypadkowej niepewności rozszerzonej wyznaczono zgodnie z równaniem~\eqref{eq:unc_error}.
+
+\begin{table}[htb!]
+\begin{center}
+\makecaption{tab:pom_multi_meas_12}{Zestawienie wyników eksperymentu mającego na celu weryfikacje poprawności zastosowanego modelu błędu dla poliharmonicznego sygnału wejściowego}
+\begin{tabular}[c]{| c | S[table-format = 3.2] | S[table-format = 3.2] | S[table-format = 2.2] | S[table-format = 2.2] | S[table-format = 1.2] | S[table-format = 1.2] | S[table-format = +2.2] |} \hline
+\multirow{2}{*}{$f_{s,o}$} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{2}{c|}{\textbf{Niepewność, mV}} & \multicolumn{2}{c|}{\textbf{Kształt}} & \textbf{Błąd, \%} \\ \cline{2-8}
+& $\sigma_{c}^{2}$ & $\sigma_{m}^{2}$ & $U_{c}$ & $U_{m}$ & $c_{c}$ & $c_{s}$ & $\delta_{c}$ \\ \hline
+1       &       3.82    &       0.07    &       0.21    &       2.84    &       0.51    &       0.89    &       -43.08  \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics{obrazki/mono_freqcomp}
+\makecaption{fig:hist_multi}{Uzyskane pomiarowo histogramy realizacji wypadkowego sygnału błędu $12$-tej wielkości wyjściowej toru pomiarowego dla sygnału wejściowego o częstotliwości \textbf{a)}~\qty{123}{Hz}, TODO}
+\end{center}
+\end{figure}
 
 \section{Podsumowanie przeprowadzonego eksperymentu}
 

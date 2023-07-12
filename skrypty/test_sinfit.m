@@ -11,35 +11,32 @@ ADC = @(x) 4097.958 * x/1000 + 3.518818;
 VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
 dat = load("../pomiary/freq.dat");
-fitted = true;
 
-if fitted
-	amp = 479.520163129546;
-	shf = 505.924018640675;
+amp = 479.523403626645;
+shf = 505.924365593676;
 
-	u_s = 0.0;
-	e_d = 0.0;
-	p_d = 0.0;
-else
-	amp = 950/2;
-	shf = 500;
+amp0 = 950/2;
+shf0 = 500;
 
-	u_s = (1.65/sqrt(3))*(5e-3*shf+2);
-	e_d = (1.65/sqrt(3))*(5e-3*amp+0.5);
-	p_d = 0.0;
-end
+u_s = (1.65/sqrt(3))*(5e-3*shf0+2);
+e_d = (1.65/sqrt(3))*(5e-3*amp0+0.5);
 
 det = 144 / 12e6 + 1e-6/5.5;
-u_r = 0.38;
+
+u_rw = 0.38; # 0.38 0.51 1.10
+u_rab = 1.96 * sqrt(0.5*2.6e-7*amp0^2);
+u_rc = 1.96 * sqrt(0.5*2.6e-7*amp^2);
+u_s = 0;
+cv = "uns";
 
 for i = 1 : length(dat)
 
+	if exist(sprintf("../pomiary/sin/%d.txt", dat(i,1)), "file") != 2; continue;
+#	elseif dat(i,1) != 8000; continue;
+	end;
+
 	f = dat(i,1);
 	o = dat(i,2);
-
-	if exist(sprintf("../pomiary/sin/%d.txt", f), "file") != 2; continue;
-#	elseif f != 3000; continue;
-	end;
 
 	ofin = o;
 
@@ -54,22 +51,34 @@ for i = 1 : length(dat)
 	diff = pts - org;
 
 	[u, c, s, w, m] = get_uncertainty(diff);
-	[a, p, u_d, w_d] = get_dynparams([amp amp e_d 0.55], [pi get_filter_phi(o) get_filter_phi(o) get_filter_phi(o)]);
 
-	uv = [u_s, u_r, u_d];
-	cv = "uns";
+	[a, p, u_d, w_d, vx, vy] = get_dynparams([amp amp], [pi get_filter_phi(o)]);
+	uv = [0.0, sqrt(u_rw^2 + u_rc^2), u_d];
+	[uc_c, cc_c, sc_c, wc_c, hm_c] = get_unccalc(uv, cv);
+	dc_c = 100*(uc_c-u)/u;
 
-	[uc, cc, sc, wc] = get_unccalc(uv, cv);
+	[a, p, u_d, w_d, vx, vy] = get_dynparams([amp0 amp0 -e_d], [pi get_filter_phi(o) get_filter_phi(o)]);
+	uv = [u_s, sqrt(u_rw^2 + u_rab^2), u_d];
+	[uc_b, cc_b, sc_b, wc_b, hm_b] = get_unccalc(uv, cv);
 
-	printf("%d\t%f\t%f\t%f\t%f\t%f\t%f\t%1.2f\n", f, u, uc, c, cc, w, wc, 100*(uc-u)/u);
+	[a, p, u_d, w_d, vx, vy] = get_dynparams([amp0 amp0 e_d], [pi get_filter_phi(o) get_filter_phi(o)]);
+	uv = [u_s, sqrt(u_rw^2 + u_rab^2), u_d];
+	[uc_a, cc_a, sc_a, wc_a, hm_a] = get_unccalc(uv, cv);
+
+	uc_ab = max(uc_a, uc_b);
+	wc_ab = max(wc_a, wc_b);
+	dc_ab = 100*(uc_ab-u)/u;
+
+	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
 
 	freq(i) = f;
 	vars(i) = w;
-	werr(i) = 100*(o-2*pi*f)/(2*pi*f);
+	errs(i) = dc_c;
 
-	phi(i) = asin((pts(1) - shf)/amp);
-	cph(i) = get_filter_phi(o);
-	sph(i) = det*o;
+#	werr(i) = 100*(o-2*pi*f)/(2*pi*f);
+#	phi(i) = asin((pts(1) - shf)/amp);
+#	cph(i) = get_filter_phi(o);
+#	sph(i) = det*o;
 
 #	hold on;
 #	plot(org)
@@ -91,4 +100,6 @@ end
 #plot(freq, -cph)
 #plot(freq, phi-sph)
 #hold off
+
+#plot(freq, errs)
 

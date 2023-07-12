@@ -12,24 +12,28 @@ saw = @(x) (2/pi)*asin(sin(x));
 ADC = @(x) 4097.958 * x/1000 + 3.518818;
 VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
+num = get_fwtlevels(128, 5, "midd")(3);
+A = lin_ident(@(x) fwt(x, "spline4:4", 5), 128)(num,:);
+
 dat = load("../pomiary/freq.dat");
+
+amps = freqz(A, [], dat(:,1), 48000);
+amps = abs(amps);
 
 amp = 479.70333667505;
 shf = 505.85509908961;
 
-amp = 479.523403626645;
-shf = 505.924365593676;
-
-
 det = 144 / 12e6 + 1e-6/5.5;
 
-u_rw = 0.38;
-u_rp = 0.75*1.65 * (1e-3)*(amp + shf)/sqrt(3);
+u_rw = 0.38 / 1.96;
+u_rp = 0*(1e-3)*(amp + shf)/sqrt(3);
+
+u_r = 1.96 * sqrt(u_rp^2 + u_rw^2) * get_rowcoef(A, 0, 'r');
 
 for i = 1 : length(dat)
 
 	if exist(sprintf("../pomiary/saw/%d.txt", dat(i,1)), "file") != 2; continue;
-#	elseif dat(i,1) != 50; continue;
+#	elseif dat(i,1) != 8000; continue;
 	end;
 
 	f = dat(i,1);
@@ -43,14 +47,22 @@ for i = 1 : length(dat)
 	t = (0 : (length(pts)-1)) / 48000.0;
 	org = fun(transpose(t) + det);
 
+	difs = zeros(1, length(pts)-128);
 	diff = pts - org;
 
-	[u, c, s, w, m] = get_uncertainty(diff);
-	[yv, av, fv] = gen_sawfun(t + det, o, amp, shf, 5);
+	difs = filter(A, 1, pts - org);
+	difs = difs(length(A):length(difs));
+
+	[u, c, s, w, m] = get_uncertainty(difs);
+
+	[yv, av, fv] = gen_sawfun([1], o, amp, shf, 5);
 	[wc, wv, av, pv] = get_filter_var(fv, av);
 
-	cv = sprintf("nu%s", repmat('s',1,length(wv)));
-	uv = [ u_rw u_rp 1.41*av/sqrt(2) ];
+	cv = sprintf("n%s", repmat('s',1,length(wv)));
+	fv = fv(1:length(wv));
+
+	dv = (1.41*av/sqrt(2)) .* abs(freqz(A, [], fv/2/pi, 48000));
+	uv = [ u_r dv ];
 
 	[uc, cc, sc, wc, hm] = get_unccalc(uv, cv);
 
@@ -58,18 +70,9 @@ for i = 1 : length(dat)
 
 	freq(i) = f;
 	vars(i) = w;
-	errs(i) = 100*(uc-u)/u;
 
-#	hold on;
-#	plot(org)
-#	plot(pts)
-#	plot(yv)
-#	plot(diff)
-#	pause()
-#	clf()
-#	hold off;
-
-#	return
+#	hist(difs, 100, 100)
+#	pause
 
 end
 
