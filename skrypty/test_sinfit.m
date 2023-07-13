@@ -21,24 +21,22 @@ shf0 = 500;
 u_s = (1.65/sqrt(3))*(5e-3*shf0+2);
 e_d = (1.65/sqrt(3))*(5e-3*amp0+0.5);
 
-det = 144 / 12e6 + 1e-6/5.5;
+det = 144 / 12e6;# + 1e-6/6.9 #/6.66; #1e-6/5.5;
 
 u_rw = 0.38; # 0.38 0.51 1.10
 u_rab = 1.96 * sqrt(0.5*2.6e-7*amp0^2);
-u_rc = 1.96 * sqrt(0.5*2.6e-7*amp^2);
-u_s = 0;
+u_rc = 1.96 * sqrt(0.5*2.6e-7*amp^2)
+
 cv = "uns";
 
 for i = 1 : length(dat)
 
 	if exist(sprintf("../pomiary/sin/%d.txt", dat(i,1)), "file") != 2; continue;
-#	elseif dat(i,1) != 8000; continue;
+	elseif dat(i,1) < 50; continue;
 	end;
 
 	f = dat(i,1);
 	o = dat(i,2);
-
-	ofin = o;
 
 	fun = @(x) amp*sin(o*x) + shf;
 
@@ -71,19 +69,30 @@ for i = 1 : length(dat)
 
 	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
 
+#	a = 1; b = c = length(diff)/4-1;
+#
+#	w_1 = var(diff(a:b)); a = a + c; b = b + c; w_1 = 100*(w_1-w)/w;
+#	w_2 = var(diff(a:b)); a = a + c; b = b + c; w_2 = 100*(w_2-w)/w;
+#	w_3 = var(diff(a:b)); a = a + c; b = b + c; w_3 = 100*(w_3-w)/w;
+#	w_4 = var(diff(a:b)); a = a + c; b = b + c; w_4 = 100*(w_4-w)/w;
+#
+#	printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", f, w_1, w_2, w_3, w_4, sum(abs([w_1 w_2 w_3 w_4])));
+
 	freq(i) = f;
 	vars(i) = w;
-	errs(i) = dc_c;
+	du_ab(i) = dc_ab;
+	du_c(i) = dc_c;
 
 #	werr(i) = 100*(o-2*pi*f)/(2*pi*f);
-#	phi(i) = asin((pts(1) - shf)/amp);
+	phi(i) = asin((pts(1) - shf)/amp);
 #	cph(i) = get_filter_phi(o);
-#	sph(i) = det*o;
+	sph(i) = det*o;
 
 #	hold on;
 #	plot(org)
 #	plot(pts)
 #	plot(diff)
+#	plotfftreal(fftreal(diff), 48000, 'linabs', 'flog')
 #	pause()
 #	clf()
 #	hold off;
@@ -91,6 +100,8 @@ for i = 1 : length(dat)
 #	return
 
 end
+
+printf("\\multicolumn{7}{|c|}{Średnia wartość bezwzględna błędu oszacowania}\t&\t%+0.2f\t%+0.2f\t\\\\ \\hline\n", mean(abs(du_ab)), mean(abs(du_c)));
 
 #clf
 #hold on
@@ -101,5 +112,7 @@ end
 #plot(freq, phi-sph)
 #hold off
 
-#plot(freq, errs)
+#plot(freq, du_c)
 
+mn_d = mean(abs(du_c))
+st_d = std(abs(du_c))

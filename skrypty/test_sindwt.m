@@ -10,10 +10,10 @@ addpath("../biblioteki");
 ADC = @(x) 4097.958 * x/1000 + 3.518818;
 VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
-num = get_fwtlevels(128, 5, "midd")(3);
+num = get_fwtlevels(128, 5, "midd")(3)
 A = lin_ident(@(x) fwt(x, "spline4:4", 5), 128)(num,:);
 
-doDraw = false;
+doDraw = true;
 
 dat = load("../pomiary/freq.dat");
 
@@ -29,7 +29,7 @@ shf0 = 500;
 u_s = (1.65/sqrt(3))*(5e-3*shf0+2);
 e_d = (1.65/sqrt(3))*(1e-2*amp0+1);
 
-det = 144 / 12e6 + 1e-6/5.5;
+det = 144 / 12e6; #+ 1e-6/6.66; #1e-6/5.5;
 
 u_rw = 0.38 * get_rowcoef(A, 0, 'r'); # 0.38 0.51 1.10
 u_rab = 1.96 * sqrt(0.5*2.6e-7*amp0^2) * get_rowcoef(A, 0, 'r');
@@ -79,7 +79,7 @@ for i = 1 : length(dat)
 	wc_ab = max(wc_a, wc_b);
 	dc_ab = 100*(uc_ab-u)/u;
 
-	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
+#	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
 
 	freq(i) = f;
 	vars(i) = w;
@@ -90,6 +90,9 @@ for i = 1 : length(dat)
 #	pause
 
 end
+
+mn_d = mean(abs(du_c))
+st_d = std(abs(du_c))
 
 if !doDraw; return; end;
 

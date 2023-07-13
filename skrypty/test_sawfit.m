@@ -21,15 +21,15 @@ amp = 479.523403626645;
 shf = 505.924365593676;
 
 
-det = 144 / 12e6 + 1e-6/5.5;
+det = 144 / 12e6;
 
 u_rw = 0.38;
-u_rp = 0.75*1.65 * (1e-3)*(amp + shf)/sqrt(3);
+u_rp = 0*1.65 * (1e-3)*(amp + shf)/sqrt(3);
 
 for i = 1 : length(dat)
 
 	if exist(sprintf("../pomiary/saw/%d.txt", dat(i,1)), "file") != 2; continue;
-#	elseif dat(i,1) != 50; continue;
+	elseif dat(i,1) < 50; continue;
 	end;
 
 	f = dat(i,1);
@@ -65,6 +65,7 @@ for i = 1 : length(dat)
 #	plot(pts)
 #	plot(yv)
 #	plot(diff)
+#	plotfftreal(fftreal(diff), 48000, 'linabs', 'flog')
 #	pause()
 #	clf()
 #	hold off;
