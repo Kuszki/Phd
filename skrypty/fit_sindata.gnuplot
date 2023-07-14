@@ -2,9 +2,10 @@ set fit limit 1e-100
 set fit maxiter 0
 
 #f = 5;     w = 31.4131795156890;
+f= 50;     w = 314.149942739017;
 #f = 100;   w = 628.299970479762;
 #f = 200;   w = 1256.59971602846;
-f = 1000;  w = 6282.99870459596;
+#f = 1000;  w = 6282.99870459596;
 #f = 10000; w = 62829.9896535270;
 
 src = sprintf('../pomiary/sin/%d.txt', f);
@@ -29,7 +30,7 @@ fb(x) = ADC(sin((x*ts + det)*w) * ((0.98*950-2) / 2.0) + (1.02*500+2))
 fc(x) = ADC(sin((x*ts + det)*w) * ((1.02*950+2) / 2.0) + (0.98*500-2))
 fd(x) = ADC(sin((x*ts + det)*w) * ((1.02*950+2) / 2.0) + (1.02*500+2))
 
-fit f1(x) src via amp1, shf1
+fit f1(x) src via amp1, shf1, det
 
 # set xrange [ 0.618 : 0.6185 ]
 # set xrange [ 0 : 20 ]

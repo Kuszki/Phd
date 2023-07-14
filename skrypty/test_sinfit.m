@@ -12,8 +12,11 @@ VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
 dat = load("../pomiary/freq.dat");
 
-amp = 479.523403626645;
-shf = 505.924365593676;
+amp = 479.89126478775;
+shf = 505.93062479341;
+
+amp = 480.133811123141;
+shf = 506.127237653012;
 
 amp0 = 950/2;
 shf0 = 500;
@@ -25,14 +28,15 @@ det = 144 / 12e6;# + 1e-6/6.9 #/6.66; #1e-6/5.5;
 
 u_rw = 0.38; # 0.38 0.51 1.10
 u_rab = 1.96 * sqrt(0.5*2.6e-7*amp0^2);
-u_rc = 1.96 * sqrt(0.5*2.6e-7*amp^2)
+u_rc = 1.96 * sqrt(0.5*2.6e-7*amp^2);
 
+src_path = "new_sin";
 cv = "uns";
 
 for i = 1 : length(dat)
 
-	if exist(sprintf("../pomiary/sin/%d.txt", dat(i,1)), "file") != 2; continue;
-	elseif dat(i,1) < 50; continue;
+	if exist(sprintf("../pomiary/%s/%d.txt", src_path, dat(i,1)), "file") != 2; continue;
+	elseif dat(i,1) < 100; continue;
 	end;
 
 	f = dat(i,1);
@@ -40,7 +44,7 @@ for i = 1 : length(dat)
 
 	fun = @(x) amp*sin(o*x) + shf;
 
-	pts = load(sprintf("../pomiary/sin/%d.txt", f));
+	pts = load(sprintf("../pomiary/%s/%d.txt", src_path, f));
 	pts = VIN(pts);
 
 	t = (0 : (length(pts)-1)) / 48000.0;
@@ -84,9 +88,9 @@ for i = 1 : length(dat)
 	du_c(i) = dc_c;
 
 #	werr(i) = 100*(o-2*pi*f)/(2*pi*f);
-	phi(i) = asin((pts(1) - shf)/amp);
+#	phi(i) = asin((pts(1) - shf)/amp);
 #	cph(i) = get_filter_phi(o);
-	sph(i) = det*o;
+#	sph(i) = det*o;
 
 #	hold on;
 #	plot(org)
@@ -101,7 +105,7 @@ for i = 1 : length(dat)
 
 end
 
-printf("\\multicolumn{7}{|c|}{Średnia wartość bezwzględna błędu oszacowania}\t&\t%+0.2f\t%+0.2f\t\\\\ \\hline\n", mean(abs(du_ab)), mean(abs(du_c)));
+#printf("\\multicolumn{7}{|c|}{Średnia wartość bezwzględna błędu oszacowania}\t&\t%+0.2f\t%+0.2f\t\\\\ \\hline\n", mean(abs(du_ab)), mean(abs(du_c)));
 
 #clf
 #hold on
