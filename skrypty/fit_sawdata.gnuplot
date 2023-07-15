@@ -1,43 +1,36 @@
+set fit logfile '/dev/null'
 set fit limit 1e-100
 set fit maxiter 0
+set fit quiet
 
-#f = 5;     w = 31.4131795156890;
-f = 100;   w = 628.299970479762;
-#f = 200;   w = 1256.59971602846;
-#f = 1000;  w = 6282.99870459596;
-#f = 10000; w = 62829.9896535270;
+f = int(ARGV[1])
+w = ARGV[2]
+
+wac = (2*pi)/(6.0e+3*7.0e-12);
+
+phi = 1.995e-17*w**3 - 3.118e-12*w**2 - 5.029e-7*w;
+phi = phi + atan(-w/wac);
 
 src = sprintf('../pomiary/saw/%d.txt', f);
 
 ADC(x) = 4097.958 * x/1000 + 3.518818;
 VIN(x) = 1000*(x - 3.518818) / 4097.958;
 
-det = 144 / 12e6 + 1e-6/5.5;
+det = 144 / 12e6;
 ts = 1.0 / 48000.0;
 
-amp0 = 950 / 2.0
-shf0 = 500
+amp = 950 / 2.0
+shf = 500
 
-amp1 = amp0
-shf1 = shf0
+f0(x) = ADC((2/pi)*asin(sin((x*ts + det)*w + phi)) * amp + shf)
 
-f0(x) = ADC((2/pi)*asin(sin((x*ts + det)*w)) * amp0 + shf0)
-f1(x) = ADC((2/pi)*asin(sin((x*ts + det)*w)) * amp1 + shf1)
-
-fit f1(x) src via amp1, shf1
+fit f(x) src via amp, shf
 
 # set xrange [ 0.618 : 0.6185 ]
 # set xrange [ 0 : 20 ]
 
-plot src, f0(x) t 'ideal', f1(x) t 'fit' #, fa(x), fb(x), fc(x), fd(x)
+#plot src, f(x)
 
-print 'f =', f
-print 'w =', w
-print 'amp =', amp1
-print 'shf =', shf1
-print 'det =', det
+print f, w, amp, shf
 
-print 'd_amp =', 100*(amp1-amp0)/amp0, '%'
-print 'd_shf =', 100*(shf1-shf0)/shf0, '%'
-
-pause -1
+#pause -1

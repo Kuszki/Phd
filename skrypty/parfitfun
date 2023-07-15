@@ -1,0 +1,4 @@
+#!/bin/bash
+
+parallel -k --jobs 12 --colsep='\t' --arg-file="$2" gnuplot -c "$1" {1} {2}
+

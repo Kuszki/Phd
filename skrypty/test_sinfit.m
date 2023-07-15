@@ -15,8 +15,10 @@ dat = load("../pomiary/freq.dat");
 amp = 479.89126478775;
 shf = 505.93062479341;
 
-amp = 480.133811123141;
-shf = 506.127237653012;
+amp = 478.604282509783;
+shf = 505.802230319947;
+
+#shf = 506.105303655713;
 
 amp0 = 950/2;
 shf0 = 500;
@@ -30,7 +32,7 @@ u_rw = 0.38; # 0.38 0.51 1.10
 u_rab = 1.96 * sqrt(0.5*2.6e-7*amp0^2);
 u_rc = 1.96 * sqrt(0.5*2.6e-7*amp^2);
 
-src_path = "new_sin";
+src_path = "sin";
 cv = "uns";
 
 for i = 1 : length(dat)
@@ -42,6 +44,9 @@ for i = 1 : length(dat)
 	f = dat(i,1);
 	o = dat(i,2);
 
+	amp = dat(i,3);
+	shf = dat(i,4);
+
 	fun = @(x) amp*sin(o*x) + shf;
 
 	pts = load(sprintf("../pomiary/%s/%d.txt", src_path, f));
@@ -49,7 +54,6 @@ for i = 1 : length(dat)
 
 	t = (0 : (length(pts)-1)) / 48000.0;
 	org = fun(transpose(t) + det);
-
 	diff = pts - org;
 
 	[u, c, s, w, m] = get_uncertainty(diff);
@@ -73,13 +77,13 @@ for i = 1 : length(dat)
 
 	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
 
-#	a = 1; b = c = length(diff)/4-1;
-#
-#	w_1 = var(diff(a:b)); a = a + c; b = b + c; w_1 = 100*(w_1-w)/w;
-#	w_2 = var(diff(a:b)); a = a + c; b = b + c; w_2 = 100*(w_2-w)/w;
-#	w_3 = var(diff(a:b)); a = a + c; b = b + c; w_3 = 100*(w_3-w)/w;
-#	w_4 = var(diff(a:b)); a = a + c; b = b + c; w_4 = 100*(w_4-w)/w;
-#
+	a = 1; b = c = length(diff)/4-1;
+
+	w_1 = var(diff(a:b)); a = a + c; b = b + c; w_1 = 100*(w_1-w)/w;
+	w_2 = var(diff(a:b)); a = a + c; b = b + c; w_2 = 100*(w_2-w)/w;
+	w_3 = var(diff(a:b)); a = a + c; b = b + c; w_3 = 100*(w_3-w)/w;
+	w_4 = var(diff(a:b)); a = a + c; b = b + c; w_4 = 100*(w_4-w)/w;
+
 #	printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", f, w_1, w_2, w_3, w_4, sum(abs([w_1 w_2 w_3 w_4])));
 
 	freq(i) = f;
@@ -95,7 +99,7 @@ for i = 1 : length(dat)
 #	hold on;
 #	plot(org)
 #	plot(pts)
-#	plot(diff)
+	plot(diff)
 #	plotfftreal(fftreal(diff), 48000, 'linabs', 'flog')
 #	pause()
 #	clf()
