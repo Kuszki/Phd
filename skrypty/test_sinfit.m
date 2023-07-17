@@ -12,11 +12,11 @@ VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
 dat = load("../pomiary/freq.dat");
 
-amp = 479.89126478775;
-shf = 505.93062479341;
+amp = 479.98; # agilent
+shf = 505.80;
 
-amp = 478.604282509783;
-shf = 505.802230319947;
+#amp = 478.604282509783;
+#shf = 505.802230319947;
 
 #shf = 506.105303655713;
 
@@ -24,7 +24,7 @@ amp0 = 950/2;
 shf0 = 500;
 
 u_s = (1.65/sqrt(3))*(5e-3*shf0+2);
-e_d = (1.65/sqrt(3))*(5e-3*amp0+0.5);
+e_d = (1.65/sqrt(3))*(1e-2*amp0+1);
 
 det = 144 / 12e6;# + 1e-6/6.9 #/6.66; #1e-6/5.5;
 
@@ -44,8 +44,8 @@ for i = 1 : length(dat)
 	f = dat(i,1);
 	o = dat(i,2);
 
-	amp = dat(i,3);
-	shf = dat(i,4);
+#	amp = dat(i,3);
+#	shf = dat(i,4);
 
 	fun = @(x) amp*sin(o*x) + shf;
 
@@ -75,7 +75,7 @@ for i = 1 : length(dat)
 	wc_ab = max(wc_a, wc_b);
 	dc_ab = 100*(uc_ab-u)/u;
 
-	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
+	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t\\\\ \\hline\n", f, wc_c, w, uc_c, u, cc_c, c, dc_c);
 
 	a = 1; b = c = length(diff)/4-1;
 
