@@ -22,8 +22,7 @@ ts = 1.0 / 48000.0;
 amp = 950 / 2.0
 shf = 500
 
-f0(x) = ADC((2/pi)*asin(sin((x*ts + det)*w + phi)) * amp + shf)
-
+f(x) = ADC((2/pi)*asin(sin((x*ts + det)*w + phi)) * amp + shf)
 fit f(x) src via amp, shf
 
 # set xrange [ 0.618 : 0.6185 ]

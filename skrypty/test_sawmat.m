@@ -7,6 +7,8 @@ pkg load optim
 
 addpath("../biblioteki");
 
+saw = @(x) (2/pi)*asin(sin(x));
+
 ADC = @(x) 4097.958 * x/1000 + 3.518818;
 VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
@@ -15,34 +17,25 @@ A = lin_ident(@(x) fwt(x, "spline4:4", 5), 128);
 
 dat = load("../pomiary/freq.dat");
 
-amp = 479.98; # agilent
-shf = 505.80;
+amp = 479.65; # agilent
+shf = 505.85;
 
-amp0 = 950/2;
-shf0 = 500;
+det = 144 / 12e6;
 
-u_s = (1.65/sqrt(3))*(5e-3*shf0+2);
-e_d = (1.65/sqrt(3))*(1e-2*amp0+1);
+u_r = sqrt(0.38^2 + 0*0.9388^2);
 
-det = 144 / 12e6; #+ 1e-6/6.66; #1e-6/5.5;
-
-u_rw = 0.38; # 0.38 0.51 1.10
-u_rc = 1.96 * sqrt(0.5*2.6e-7*amp^2);
-
-cv = "ns";
 i = 0;
 
 for j = 1 : length(num)
 
 	cr = R(j,:) = A(num(j),:);
 	K_r(j) = get_rowcoef(cr, 0, 'r');
-	K_d(j,:) = abs(freqz(cr, [], dat(:,1), 48000));
 
 end
 
 for j = 1 : length(dat)
 
-	if exist(sprintf("../pomiary/sin/%d.txt", dat(j,1)), "file") != 2; continue;
+	if exist(sprintf("../pomiary/saw/%d.txt", dat(j,1)), "file") != 2; continue;
 	elseif dat(j,1) < 100; continue;
 	end;
 
@@ -50,16 +43,20 @@ for j = 1 : length(dat)
 	f = dat(j,1);
 	o = dat(j,2);
 
-	fun = @(x) amp*sin(o*x) + shf;
+	fun = @(x) amp*saw(o*x) + shf;
 
-	pts = load(sprintf("../pomiary/sin/%d.txt", f));
+	pts = load(sprintf("../pomiary/saw/%d.txt", f));
 	pts = VIN(pts);
 
 	t = (0 : (length(pts)-1)) / 48000.0;
 	org = fun(transpose(t) + det);
 
-	difs = zeros(1, length(pts)-128);
-	diff = pts - org;
+	[yv, av, fv] = gen_sawfun([1], o, amp, shf, 15);
+	[wc, wv, av, pv] = get_filter_var(fv, av);
+
+	cv = sprintf("n%s", repmat('s',1,length(wv)));
+	fv = fv(1:length(wv));
+	dv = 1.41*av/sqrt(2);
 
 	printf("%d\t", f);
 
@@ -72,19 +69,19 @@ for j = 1 : length(dat)
 
 		[u, c, s, w, m] = get_uncertainty(difs);
 
-		[a, p, u_d, w_d, vx, vy] = get_dynparams([amp amp], [pi get_filter_phi(o)]);
-		uv = [K_r(l) * sqrt(u_rw^2 + u_rc^2), u_d * K_d(l, j)];
-		[uc_c, cc_c, sc_c, wc_c, hm_c] = get_unccalc(uv, cv);
-		dc_c(i, l) = 100*(uc_c-u)/u;
+		K_d = abs(freqz(crow, [], fv/2/pi, 48000));
+
+		uv = [ u_r*K_r(l) dv .* K_d ];
+
+		[uc, cc, sc, wc, hm] = get_unccalc(uv, cv);
+
+		dc_c(i, l) = 100*(uc-u)/u;
 
 		printf("&\t%+0.2f\t", dc_c(i, l));
 
 	end
 
 	printf("\\\\ \\hline\n");
-
-#	hist(difs, 100, 100)
-#	pause
 
 end
 

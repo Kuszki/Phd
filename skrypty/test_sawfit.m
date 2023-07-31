@@ -14,18 +14,21 @@ VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
 dat = load("../pomiary/freq.dat");
 
+amp = 479.65; # agilent
+shf = 505.80;
+
 amp = 479.98; # agilent
 shf = 505.80;
 
 det = 144 / 12e6;
 
 u_rw = 0.38;
-u_rp = 1.65 * (1e-3)*(amp + shf)/sqrt(3);
+u_rp = 0*1.65 * (1e-3)*(amp + shf)/sqrt(3);
 
 for i = 1 : length(dat)
 
 	if exist(sprintf("../pomiary/saw/%d.txt", dat(i,1)), "file") != 2; continue;
-	elseif dat(i,1) < 50; continue;
+	elseif dat(i,1) < 100; continue;
 	end;
 
 	f = dat(i,1);
@@ -50,11 +53,22 @@ for i = 1 : length(dat)
 
 	[uc, cc, sc, wc, hm] = get_unccalc(uv, cv);
 
-	printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%+0.2f\t%+0.2f\n", f, wc, w, uc, u, cc, c, 100*(wc-w)/w, 100*(uc-u)/u);
+	du_c(i) = 100*(uc-u)/u;
+	dw_c(i) = 100*(wc-w)/w;
 
-	freq(i) = f;
-	vars(i) = w;
-	errs(i) = 100*(uc-u)/u;
+	printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%+0.2f\t%+0.2f\n", f, wc, w, uc, u, cc, c, dw_c(i), du_c(i));
+
+	a = 1; b = c = length(diff)/4-1;
+
+	w_1 = var(diff(a:b)); a = a + c; b = b + c; w_1 = 100*(w_1-w)/w;
+	w_2 = var(diff(a:b)); a = a + c; b = b + c; w_2 = 100*(w_2-w)/w;
+	w_3 = var(diff(a:b)); a = a + c; b = b + c; w_3 = 100*(w_3-w)/w;
+	w_4 = var(diff(a:b)); a = a + c; b = b + c; w_4 = 100*(w_4-w)/w;
+
+#	printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", f, w_1, w_2, w_3, w_4, sum([w_1 w_2 w_3 w_4]), sum(abs([w_1 w_2 w_3 w_4])));
+
+#	freq(i) = f;
+#	vars(i) = w;
 
 #	hold on;
 #	plot(org)
@@ -70,3 +84,5 @@ for i = 1 : length(dat)
 
 end
 
+mn_u = mean(abs(du_c))
+mn_w = mean(abs(dw_c))
