@@ -15,11 +15,6 @@ dat = load("../pomiary/freq.dat");
 amp = 479.98; # agilent
 shf = 505.80;
 
-#amp = 478.604282509783;
-#shf = 505.802230319947;
-
-#shf = 506.105303655713;
-
 amp0 = 950/2;
 shf0 = 500;
 
@@ -34,18 +29,17 @@ u_rc = 1.96 * sqrt(0.5*2.6e-7*amp^2);
 
 src_path = "sin";
 cv = "uns";
+i = 0;
 
-for i = 1 : length(dat)
+for j = 1 : length(dat)
 
-	if exist(sprintf("../pomiary/%s/%d.txt", src_path, dat(i,1)), "file") != 2; continue;
-	elseif dat(i,1) < 100; continue;
+	if exist(sprintf("../pomiary/%s/%d.txt", src_path, dat(j,1)), "file") != 2; continue;
+	elseif dat(j,1) < 100; continue;
 	end;
 
-	f = dat(i,1);
-	o = dat(i,2);
-
-#	amp = dat(i,3);
-#	shf = dat(i,4);
+	i = i + 1;
+	f = dat(j,1);
+	o = dat(j,2);
 
 	fun = @(x) amp*sin(o*x) + shf;
 
@@ -75,7 +69,7 @@ for i = 1 : length(dat)
 	wc_ab = max(wc_a, wc_b);
 	dc_ab = 100*(uc_ab-u)/u;
 
-	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t\\\\ \\hline\n", f, wc_c, w, uc_c, u, cc_c, c, dc_c);
+	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
 
 	a = 1; b = c = length(diff)/4-1;
 
@@ -84,7 +78,9 @@ for i = 1 : length(dat)
 	w_3 = var(diff(a:b)); a = a + c; b = b + c; w_3 = 100*(w_3-w)/w;
 	w_4 = var(diff(a:b)); a = a + c; b = b + c; w_4 = 100*(w_4-w)/w;
 
-#	printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", f, w_1, w_2, w_3, w_4, sum(abs([w_1 w_2 w_3 w_4])));
+#	printf("%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n", f, w_1, w_2, w_3, w_4, sum([w_1 w_2 w_3 w_4]), sum(abs([w_1 w_2 w_3 w_4])));
+
+#	printf("%d\t%0.2f\t%0.2f\t%0.2f\n", f, dc_c, sum([w_1 w_2 w_3 w_4]), sum(abs([w_1 w_2 w_3 w_4])));
 
 	freq(i) = f;
 	vars(i) = w;
@@ -99,17 +95,15 @@ for i = 1 : length(dat)
 #	hold on;
 #	plot(org)
 #	plot(pts)
-	plot(diff)
+#	plot(diff)
 #	plotfftreal(fftreal(diff), 48000, 'linabs', 'flog')
 #	pause()
 #	clf()
 #	hold off;
 
-#	return
-
 end
 
-#printf("\\multicolumn{7}{|c|}{Średnia wartość bezwzględna błędu oszacowania}\t&\t%+0.2f\t%+0.2f\t\\\\ \\hline\n", mean(abs(du_ab)), mean(abs(du_c)));
+printf("\\multicolumn{7}{|c|}{Średnia wartości bezwzględnych wielkości $\\delta_{*}$}\t\t\t\t&\t%0.2f\t&\t%0.2f\t\\\\ \\hline\n", mean(abs(du_ab)), mean(abs(du_c)));
 
 #clf
 #hold on

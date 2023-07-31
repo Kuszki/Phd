@@ -3,7 +3,7 @@ set fit maxiter 0
 
 data = '../pomiary/dynp.dat'
 
-fran = 2*pi*100000
+fran = 2*pi*50000
 
 wca = 2*pi*175e3
 wcb = 2*pi*175e3
@@ -12,8 +12,8 @@ ks = 3.27
 pa = 0 # -1.70052e-30;
 pb = 0 # 6.51751e-24;
 pc = 0 # -7.93226e-18;
-pd =  2.92126e-12;
-pe = -2.6935e-6;
+pd = -6.821e-13;
+pe = -5.462e-7;
 pf = 0
 
 ka = 0.125 #+5.420e-03/0.5

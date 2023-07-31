@@ -10,7 +10,7 @@ addpath("../biblioteki");
 ADC = @(x) 4097.958 * x/1000 + 3.518818;
 VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
-num = get_fwtlevels(128, 5, "midd")(3)
+num = get_fwtlevels(128, 5, "midd")(4)
 A = lin_ident(@(x) fwt(x, "spline4:4", 5), 128)(num,:);
 
 doDraw = true;
@@ -20,8 +20,8 @@ dat = load("../pomiary/freq.dat");
 amps = freqz(A, [], dat(:,1), 48000);
 amps = abs(amps);
 
-amp = 479.523403626645;
-shf = 505.924365593676;
+amp = 479.98; # agilent
+shf = 505.80;
 
 amp0 = 950/2;
 shf0 = 500;
@@ -36,15 +36,18 @@ u_rab = 1.96 * sqrt(0.5*2.6e-7*amp0^2) * get_rowcoef(A, 0, 'r');
 u_rc = 1.96 * sqrt(0.5*2.6e-7*amp^2) * get_rowcoef(A, 0, 'r');
 u_s = u_s * get_rowcoef(A, 0, 's');
 cv = "uns";
+i = 0;
 
-for i = 1 : length(dat)
+for j = 1 : length(dat)
 
-	if exist(sprintf("../pomiary/sin/%d.txt", dat(i,1)), "file") != 2; continue;
-#	elseif dat(i,1) != 8000; continue;
+	if exist(sprintf("../pomiary/sin/%d.txt", dat(j,1)), "file") != 2; continue;
+	elseif dat(j,1) < 100; continue;
 	end;
 
-	f = dat(i,1);
-	o = dat(i,2);
+	i = i + 1;
+	f = dat(j,1);
+	o = dat(j,2);
+	k = amps(j);
 
 	fun = @(x) amp*sin(o*x) + shf;
 
@@ -63,23 +66,23 @@ for i = 1 : length(dat)
 	[u, c, s, w, m] = get_uncertainty(difs);
 
 	[a, p, u_d, w_d, vx, vy] = get_dynparams([amp amp], [pi get_filter_phi(o)]);
-	uv = [0.0, sqrt(u_rw^2 + u_rc^2), u_d*amps(i)];
+	uv = [0.0, sqrt(u_rw^2 + u_rc^2), u_d*k];
 	[uc_c, cc_c, sc_c, wc_c, hm_c] = get_unccalc(uv, cv);
 	dc_c = 100*(uc_c-u)/u;
 
 	[a, p, u_d, w_d, vx, vy] = get_dynparams([amp0 amp0 -e_d], [pi get_filter_phi(o) get_filter_phi(o)]);
-	uv = [u_s, sqrt(u_rw^2 + u_rab^2), u_d*amps(i)];
+	uv = [u_s, sqrt(u_rw^2 + u_rab^2), u_d*k];
 	[uc_b, cc_b, sc_b, wc_b, hm_b] = get_unccalc(uv, cv);
 
 	[a, p, u_d, w_d, vx, vy] = get_dynparams([amp0 amp0 e_d], [pi get_filter_phi(o) get_filter_phi(o)]);
-	uv = [u_s, sqrt(u_rw^2 + u_rab^2), u_d*amps(i)];
+	uv = [u_s, sqrt(u_rw^2 + u_rab^2), u_d*k];
 	[uc_a, cc_a, sc_a, wc_a, hm_a] = get_unccalc(uv, cv);
 
 	uc_ab = max(uc_a, uc_b);
 	wc_ab = max(wc_a, wc_b);
 	dc_ab = 100*(uc_ab-u)/u;
 
-#	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
+	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
 
 	freq(i) = f;
 	vars(i) = w;
@@ -91,12 +94,14 @@ for i = 1 : length(dat)
 
 end
 
+printf("\\multicolumn{7}{|c|}{Średnia wartości bezwzględnych wielkości $\\delta_{*}$}\t\t\t\t&\t%0.2f\t&\t%0.2f\t\\\\ \\hline\n", mean(abs(du_ab)), mean(abs(du_c)));
+
 mn_d = mean(abs(du_c))
 st_d = std(abs(du_c))
 
 if !doDraw; return; end;
 
-afrq = linspace(min(freq), max(freq), 256);
+afrq = linspace(0, max(freq), 128);
 amps = freqz(A, [], afrq, 48000);
 amps = abs(amps);
 
@@ -116,8 +121,8 @@ set(0, "defaulttextcolor", "black")
 [ax, h1, h2] = plotyy(afrq, amps, freq, du_c);
 xlabel("Częstotliwość, Hz");
 ylabel(ax(1), "Wartość wzmocnienia, V/V");
-ylabel(ax(2), "Błąd oszacowania, %");
-legend("Wartość wzmocnienia", "Błąd oszacowania", "location", 'northeast')
+ylabel(ax(2), "Względny błąd oszacowania, %");
+legend("Wzmocnienie", "Błąd", "location", 'northeast', 'orientation', 'horizontal')
 grid on;
 box on;
 
@@ -125,4 +130,4 @@ set(ax, "ycolor", "black");
 set(h2, "marker", "x");
 set(h2, "linestyle", "none");
 
-print("../obrazki/mono_freqcomp.svg", "-svgconvert", "-r300");
+#print("../obrazki/mono_freqcomp.svg", "-svgconvert", "-r300");

@@ -14,17 +14,13 @@ VIN = @(x) 1000*(x - 3.518818) / 4097.958;
 
 dat = load("../pomiary/freq.dat");
 
-amp = 479.70333667505;
-shf = 505.85509908961;
-
-amp = 479.523403626645;
-shf = 505.924365593676;
-
+amp = 479.98; # agilent
+shf = 505.80;
 
 det = 144 / 12e6;
 
 u_rw = 0.38;
-u_rp = 0*1.65 * (1e-3)*(amp + shf)/sqrt(3);
+u_rp = 1.65 * (1e-3)*(amp + shf)/sqrt(3);
 
 for i = 1 : length(dat)
 

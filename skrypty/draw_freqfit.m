@@ -34,7 +34,7 @@ pv = data(:,8);
 phi0 = @(x) atan(-x/wc);
 amp0 = @(x) ks ./ sqrt((x .^ 2) ./ (wc .^ 2) + 1);
 
-phi1 = @(x) -5.995e-14*x.^2-4.125e-7*x;
+phi1 = @(x) -2.121e-13*x.^2 - 5.862e-7*x;
 amp1 = @(x) ks*ones(rows(x), columns(x));
 
 xv = logspace(2, log10(50000), 50);
