@@ -1,12 +1,13 @@
 \ProvidesPackage{thesis}
 
+\RequirePackage[a-3u, allxmp, pdf17]{pdfx}
+
 \RequirePackage[backend = biber, style = alphabetic, sorting = nyt, sortcites = true]{biblatex}
 \RequirePackage[font = small, labelfont = bf, textfont = it, singlelinecheck = false]{caption}
 \RequirePackage[inner = 2.5cm, outer = 2.5cm, top = 2.5cm, bottom = 2.5cm]{geometry}
 \RequirePackage[leftmargin = 16pt, rightmargin = 16pt, font = itshape]{quoting}
-\RequirePackage[unicode = true, hidelinks]{hyperref}
-
 \RequirePackage[noheader, nopdfinfo]{gitver}
+
 \RequirePackage[autostyle]{csquotes}
 \RequirePackage[chapter]{tocbibind}
 \RequirePackage[section]{placeins}
@@ -34,12 +35,8 @@
 \RequirePackage{comment}
 \RequirePackage{calc}
 
-\directlua{pdf.setminorversion(7)}
-
-\makeatletter
-
-\allowdisplaybreaks[1]
 \babelprovide[transforms = oneletter.nobreak]{polish}
+\hypersetup{hidelinks}
 
 \titleformat{name=\chapter, numberless}[block]{\normalfont\bfseries}{}{0pt}{\Huge}
 \titleformat{name=\chapter}[block]{\normalfont\bfseries}{}{0pt}{\Huge\thechapter.~}
@@ -169,10 +166,9 @@
 	exponent-product     = \cdot
 }
 
-\hypersetup
-{
-	pdfpagemode		= UseOutlines,
-}
+% to allow break long gathers
+\allowdisplaybreaks[1]
+% --------------------
 
 % to avoid line breaks
 \emergencystretch=\maxdimen
@@ -194,4 +190,6 @@
 \setcounter{MaxMatrixCols}{15}
 % --------------------
 
-\makeatother
+% to force pdf version
+\directlua{pdf.setminorversion(7)}
+% --------------------
