@@ -1,6 +1,8 @@
 \ProvidesPackage{thesis}
 
+\directlua{pdf.setminorversion(7)}
 \RequirePackage[a-3u, allxmp, pdf17]{pdfx}
+\pdfminorversion=7
 
 \RequirePackage[backend = biber, style = alphabetic, sorting = nyt, sortcites = true]{biblatex}
 \RequirePackage[font = small, labelfont = bf, textfont = it, singlelinecheck = false]{caption}
@@ -188,8 +190,4 @@
 
 % for wider matrices
 \setcounter{MaxMatrixCols}{15}
-% --------------------
-
-% to force pdf version
-%\directlua{pdf.setminorversion(7)}
 % --------------------
