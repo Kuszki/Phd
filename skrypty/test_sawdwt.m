@@ -82,7 +82,7 @@ for j = 1 : length(dat)
 
 end
 
-printf("\\multicolumn{6}{|c|}{Średnia wartości bezwzględnych wielkości $\\delta_{c}$}\t\t\t\t&\t%0.2f\t\\\\ \\hline\n", mean(abs(du_c)));
+printf("\\multicolumn{7}{|c|}{Średnia wartości bezwzględnych wielkości $\\delta_{c}$}\t\t\t\t&\t%0.2f\t\\\\ \\hline\n", mean(abs(du_c)));
 
 mn_u = mean(abs(du_c))
 st_u = std(abs(du_c))

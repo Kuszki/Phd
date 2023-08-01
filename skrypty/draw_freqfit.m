@@ -24,8 +24,10 @@ set(0, "defaulttextcolor", "black")
 
 data = load("-ascii", "../pomiary/dynp.dat");
 
-wc = 175e+4; #(1.0659e+06 + 1.09369e+06) / 2.0;
+wc = 165e+4; #(1.0659e+06 + 1.09369e+06) / 2.0; 138321.270475229
 ks = 3.28;
+
+flim = 30e3;
 
 fv = data(:,1);
 av = data(:,10);
@@ -37,7 +39,7 @@ amp0 = @(x) ks ./ sqrt((x .^ 2) ./ (wc .^ 2) + 1);
 phi1 = @(x) -2.121e-13*x.^2 - 5.862e-7*x;
 amp1 = @(x) ks*ones(rows(x), columns(x));
 
-xv = logspace(2, log10(50000), 50);
+xv = logspace(2, log10(flim), 50);
 aa = amp0(xv*2*pi);
 ab = amp1(xv*2*pi);
 pa = phi0(xv*2*pi);
@@ -52,7 +54,7 @@ hold off;
 ylabel("Wzmocnienie, V/V");
 xlabel("Częstotliwość sygnału, Hz");
 legend("location", 'northwest')
-xlim([0.1 50]*1000)
+xlim([100 flim])
 ylim([-0.03 0.03]+ks)
 grid on
 box on
@@ -66,8 +68,8 @@ hold off;
 ylabel("Przesunięcie fazowe, rad");
 xlabel("Częstotliwość sygnału, Hz");
 legend("location", 'southwest')
-xlim([0.1 50]*1000)
-ylim([-0.15 0])
+xlim([100 flim])
+ylim([-0.12 0])
 grid on
 box on
 

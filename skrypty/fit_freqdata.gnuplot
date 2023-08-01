@@ -32,15 +32,18 @@ phi1(x) = pa*(x-pf)**5 + pb*(x-pf)**4 + pc*(x-pf)**3 + pd*(x-pf)**2 + pe*(x-pf)
 fit[0:fran] phi1(x) data using 2:8 via pe, pd #, pb, pa, pf, pd
 
 amp1(x) = kc - ka*exp(kb*x)
-#fit amp1(x) data using 2:10 via ka, kb
+fit amp1(x) data using 2:10 via ka, kb
 
 set logscale x
 #set yrange [ 1.2 : 3.3 ]
 
-plot[1:fran] data using 2:8 t'data', phi1(x) t 'model b' #, phi0(x) t 'model a'
+#plot[1:fran] data using 2:8 t'data', phi1(x) t 'model b' #, phi0(x) t 'model a'
 #plot data using 2:10 t'data', amp1(x) t 'model b' #, amp0(x) t 'model a'
 
 print 'fc =', (wca+wcb)/4/pi
 print 'ks =', ks
+
+print 'fca = ', wca/2/pi
+print 'fcb = ', wcb/2/pi
 
 pause -1
