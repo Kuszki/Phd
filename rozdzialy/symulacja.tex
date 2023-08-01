@@ -363,7 +363,7 @@ Kolejną część toru pomiarowego stanowi wzmacniacz, którego zadaniem jest do
 \begin{equation}
 \dot{f}_{b} \emb{x} = s_{b} x = 3.3 x \label{eq:sym_partb_function},
 \end{equation}
-przy czym przyjmuje się, że nieliniowość przedstawionej charakterystyki jest pomijalnie mała i nie została rozważona w przedstawionym eksperymencie, a zatem przyjąć można założenie, gdzie $\tilde{f}_{b}(x) = \dot{f}_{b}(x)$. Wobec powyższych wielkość wyjściową analizowanego obiektu opisać można jako:
+przy czym przyjmuje się, że nieliniowość przedstawionej charakterystyki jest pomijalnie mała i nie została rozważona w przedstawionym eksperymencie, a zatem przyjąć można założenie, gdzie $\tilde{f}_{b}(x) \cong \dot{f}_{b}(x)$. Wobec powyższych wielkość wyjściową analizowanego obiektu opisać można jako:
 \begin{gather}
 \dot{y}_{b} \emb{t} = \dot{f}_{b} \emb{\dot{y}_{a} \emb{t}} = 3.3 \dot{y}_{a} \emb{t} \label{eq:sym_partb_out_ideal}, \\
 \tilde{y}_{b} \emb{t} = \dot{y}_{b} \emb{t} + e_{b,\Sigma} \emb{t} \label{eq:sym_partb_out_real},
@@ -668,7 +668,7 @@ Kolejnym elementem wchodzącym w skład analizowanego toru pomiarowego jest prze
 \tilde{x}_{c} \emb{n} = \tilde{y}_{b} \emb{nT_{p}} + e_{c,q} \left( \tilde{y}_{b} \emb{nT_{p}} \right) = \dot{x}_{c} \emb{n} + e_{c,\Sigma} \emb{n} \label{eq:sym_partc_out_real}, \\
 e_{c,\Sigma} \emb{n} = e_{b,\Sigma} \emb{nT_{p}} + e_{c,q} \left( \tilde{y}_{b} \emb{nT_{p}} \right) \label{eq:sym_partc_error_sum},
 \end{gather}
-gdzie $T_{p} = \frac{1}{\qty{48}{kHz}} = \qty{20.8(3)}{\micro s}$ jest okresem próbkowania. Na podstawie zależności danych równaniami od~\eqref{eq:adc_function} do~\eqref{eq:adc_qerrrange} zapisać można nierówność określającą przedział, w jakim znajdować się mogą wartości realizacji sygnału błędu kwantowania $e_{c,q}(x)$ jako:
+gdzie $T_{p} = \frac{1}{f_{p}} = \qty{20.8(3)}{\micro s}$ jest okresem próbkowania. Na podstawie zależności danych równaniami od~\eqref{eq:adc_function} do~\eqref{eq:adc_qerrrange} zapisać można nierówność określającą przedział, w jakim znajdować się mogą wartości realizacji sygnału błędu kwantowania $e_{c,q}(x)$ jako:
 \begin{equation}
 \qty{-11.72}{mV} \le e_{c,q} \emb{x} \le \qty{11.72}{mV} \label{eq:sym_partc_error_quant}.
 \end{equation}
