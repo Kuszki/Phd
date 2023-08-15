@@ -1,8 +1,9 @@
 #!/bin/bash
 
-REMOVE=false
-CONVERT=false
-BUILD=true
+DO_REMOVE=false
+DO_CONVERT=false
+DO_BUILD=true
+DO_DIFF=false
 
 while [ "$1" != "" ]; do
 	
@@ -12,15 +13,20 @@ while [ "$1" != "" ]; do
 	case $PARAM in
 	
 		-r | --remove)
-			REMOVE=true
+			DO_REMOVE=true
 			;;
 			
 		-c | --convert)
-			CONVERT=true
+			DO_CONVERT=true
 			;;
 			
 		-s | --skip)
-			BUILD=false
+			DO_BUILD=false
+			;;
+			
+		-d | --diff)
+			DO_DIFF=true
+			DO_REMOVE=true
 			;;
 			
 	esac
@@ -28,8 +34,10 @@ while [ "$1" != "" ]; do
 	
 done
 
-[ $REMOVE == true ] && rm budowa/*
-[ $CONVERT == true ] && libreoffice --convert-to pdf obrazki/*.odg --outdir obrazki 
-[ $CONVERT == true ] && inkscape -D obrazki/*.svg --export-type pdf
-[ $BUILD == true ] && latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
+[ $DO_REMOVE == true ] && rm budowa/*
+[ $DO_CONVERT == true ] && libreoffice --convert-to pdf obrazki/*.odg --outdir obrazki 
+[ $DO_CONVERT == true ] && inkscape -D obrazki/*.svg --export-type pdf
+[ $DO_BUILD == true ] && latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
+[ $DO_DIFF == true ] && git-latexdiff --main thesis.tex --prepare "./build.sh -c -s" --filter "CLSI=1" --output "budowa/diff.pdf" --no-flatten --latexmk --latexopt "--shell-escape -output-directory=budowa -pdflua" -- HEAD
 
+exit 0
