@@ -8,13 +8,16 @@ run() {
 	fi
 }
 
+CURR_PATH="$(dirname $(realpath $0))"
+
+STY_DIFF="sdiff.sty"
+VER_DIFF="HEAD"
+
 DO_REMOVE=false
 DO_CONVERT=false
 DO_BUILD=true
 DO_DIFF=false
 DO_QUIET=false
-
-VER_DIFF=""
 
 while [ "$1" != "" ]; do
 
@@ -22,6 +25,10 @@ while [ "$1" != "" ]; do
 	VALUE=`echo $1 | awk -F= '{print $2}'`
 
 	case $PARAM in
+
+		-f | --full)
+			STY_DIFF="fdiff.sty"
+			;;
 
 		-q | --quiet)
 			DO_QUIET=true
@@ -41,6 +48,9 @@ while [ "$1" != "" ]; do
 
 		-d | --diff)
 			DO_DIFF=true
+			;;
+
+		-v | --version)
 			VER_DIFF=$VALUE
 			;;
 
@@ -49,12 +59,11 @@ while [ "$1" != "" ]; do
 
 done
 
-[ "$VER_DIFF" == "" ] && VER_DIFF="HEAD"
-
 [ $DO_REMOVE == true ] && run rm budowa/*
 [ $DO_CONVERT == true ] && run libreoffice --convert-to pdf obrazki/*.odg --outdir obrazki
 [ $DO_CONVERT == true ] && run inkscape -D obrazki/*.svg --export-type pdf
-[ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
-[ $DO_DIFF == true ] && run git-latexdiff --main thesis.tex --prepare "./build.sh -c -s -q" --filter "export CLSI=1" --output "budowa/diff.pdf" --latexmk --latexopt "--shell-escape -pdflua -f" -- $VER_DIFF
+
+[ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
+[ $DO_DIFF == true ] && CLSI=1 run git-latexdiff -p "$CURR_PATH/style/$STY_DIFF" -o budowa/diff.pdf --latexmk --main thesis.tex --prepare "./build.sh -c -s -q" --latexopt "--shell-escape -pdflua -f" -- "$VER_DIFF"
 
 exit 0

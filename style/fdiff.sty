@@ -1,0 +1,21 @@
+\ProvidesPackage{fdiff}
+
+\RequirePackage{pdfcomment}
+\RequirePackage{color}
+
+\providecommand{\DIFadd}[1]{\pdfmarkupcomment[color=blue, author=Teraz, opacity=0.25]{#1}{#1}}
+\providecommand{\DIFdel}[1]{\pdfmarkupcomment[color=red, author=Dawniej, opacity=0.45]{*}{#1}}
+
+\providecommand{\DIFaddbegin}{}
+\providecommand{\DIFaddend}{}
+\providecommand{\DIFdelbegin}{}
+\providecommand{\DIFdelend}{}
+\providecommand{\DIFmodbegin}{}
+\providecommand{\DIFmodend}{}
+
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}}
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}}
+\providecommand{\DIFaddbeginFL}{}
+\providecommand{\DIFaddendFL}{}
+\providecommand{\DIFdelbeginFL}{}
+\providecommand{\DIFdelendFL}{}
