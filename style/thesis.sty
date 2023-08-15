@@ -9,6 +9,7 @@
 \RequirePackage[inner = 2.5cm, outer = 2.5cm, top = 2.5cm, bottom = 2.5cm]{geometry}
 \RequirePackage[leftmargin = 16pt, rightmargin = 16pt, font = itshape]{quoting}
 \RequirePackage[noheader, nopdfinfo]{gitver}
+\RequirePackage[locale = PL]{siunitx}
 
 \RequirePackage[autostyle]{csquotes}
 \RequirePackage[chapter]{tocbibind}
@@ -33,9 +34,10 @@
 \RequirePackage{tocloft}
 \RequirePackage{parskip}
 \RequirePackage{gensymb}
-\RequirePackage{siunitx}
 \RequirePackage{comment}
 \RequirePackage{calc}
+
+\DeclareSIUnit[quantity-product = ]\percent{\char`\%}
 
 \babelprovide[transforms = oneletter.nobreak]{polish}
 \hypersetup{hidelinks}
