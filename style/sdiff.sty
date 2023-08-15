@@ -10,18 +10,18 @@
 \renewcommand{\label}[1]{\zref@wrapper@immediate{\oldlabel{#1}}}
 \makeatother
 
-\providecommand{\DIFadd}[1]{{\protect\color{blue}#1}}
+\providecommand{\DIFadd}[1]{\texorpdfstring{{\protect\color{blue}#1}}{#1}}
 \providecommand{\DIFdel}[1]{}
 
 \newbool{DIFkeeppage}\boolfalse{DIFkeeppage}
 \newbool{DIFchange}\boolfalse{DIFchange}
 
-\providecommand{\DIFaddbegin}{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}
-\providecommand{\DIFaddend}{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}
-\providecommand{\DIFdelbegin}{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}
-\providecommand{\DIFdelend}{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}
-\providecommand{\DIFmodbegin}{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}
-\providecommand{\DIFmodend}{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}
+\providecommand{\DIFaddbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}{}}
+\providecommand{\DIFaddend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}{}}
+\providecommand{\DIFdelbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}{}}
+\providecommand{\DIFdelend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}{}}
+\providecommand{\DIFmodbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}{}}
+\providecommand{\DIFmodend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}{}}
 
 \providecommand{\DIFaddFL}[1]{\DIFadd{#1}}
 \providecommand{\DIFdelFL}[1]{\DIFdel{#1}}
