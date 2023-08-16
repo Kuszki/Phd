@@ -3,8 +3,8 @@
 \RequirePackage{pdfcomment}
 \RequirePackage{color}
 
-\providecommand{\DIFadd}[1]{\texorpdfstring{\pdfmarkupcomment[color=blue, author=Teraz, opacity=0.25]{#1}{#1}}{#1}}
-\providecommand{\DIFdel}[1]{\texorpdfstring{\pdfmarkupcomment[color=red, author=Dawniej, opacity=0.45]{*}{#1}}{}}
+\providecommand{\DIFadd}[1]{{\pdfmarkupcomment[author = Teraz, color = blue, opacity = 0.25, mathstyle = \displaystyle]{#1}{#1}}}
+\providecommand{\DIFdel}[1]{{\pdfmargincomment[author = Dawniej, color = red, opacity = 0.25, hoffset = -12.5pt]{#1}} {}}
 
 \providecommand{\DIFaddbegin}{}
 \providecommand{\DIFaddend}{}

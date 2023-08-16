@@ -10,9 +10,6 @@ run() {
 
 CURR_PATH="$(dirname $(realpath $0))"
 
-STY_DIFF="sdiff.sty"
-VER_DIFF="HEAD"
-
 DO_REMOVE=false
 DO_CONVERT=false
 DO_BUILD=true
@@ -26,8 +23,16 @@ while [ "$1" != "" ]; do
 
 	case $PARAM in
 
-		-f | --full)
+		-fd | --full-diff)
 			STY_DIFF="fdiff.sty"
+			VER_DIFF=$VALUE
+			DO_DIFF=true
+			;;
+			
+		-sd | --short-diff)
+			STY_DIFF="sdiff.sty"
+			VER_DIFF=$VALUE
+			DO_DIFF=true
 			;;
 
 		-q | --quiet)
@@ -46,24 +51,23 @@ while [ "$1" != "" ]; do
 			DO_BUILD=false
 			;;
 
-		-d | --diff)
-			DO_DIFF=true
-			;;
-
-		-v | --version)
-			VER_DIFF=$VALUE
-			;;
-
 	esac
 	shift
 
 done
+
+[ "$VER_DIFF" == "" ] && VER_DIFF="HEAD"
 
 [ $DO_REMOVE == true ] && run rm budowa/*
 [ $DO_CONVERT == true ] && run libreoffice --convert-to pdf obrazki/*.odg --outdir obrazki
 [ $DO_CONVERT == true ] && run inkscape -D obrazki/*.svg --export-type pdf
 
 [ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
-[ $DO_DIFF == true ] && CLSI=1 run git-latexdiff -p "$CURR_PATH/style/$STY_DIFF" -o budowa/diff.pdf --latexmk --main thesis.tex --prepare "./build.sh -c -s -q" --latexopt "--shell-escape -pdflua -f" -- "$VER_DIFF"
+[ $DO_DIFF == true ] && CLSI=1 run git-latexdiff --main thesis.tex --output budowa/diff.pdf --encoding=utf8 \
+						--preamble="$CURR_PATH/style/$STY_DIFF" \
+						--packages="hyperref,biblatex" \
+						--prepare "./build.sh -c -s -q" \
+						--latexopt "--shell-escape -pdflua -f" \
+						--latexdiff-flatten --latexmk -- "$VER_DIFF"
 
 exit 0

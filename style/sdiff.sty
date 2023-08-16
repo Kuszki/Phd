@@ -3,18 +3,17 @@
 \RequirePackage{pdfcomment}
 \RequirePackage{color}
 \RequirePackage{zref}
-\RequirePackage{ulem}
 
 \makeatletter
 \let\oldlabel\label
 \renewcommand{\label}[1]{\zref@wrapper@immediate{\oldlabel{#1}}}
 \makeatother
 
-\providecommand{\DIFadd}[1]{\texorpdfstring{{\protect\color{blue}#1}}{#1}}
-\providecommand{\DIFdel}[1]{}
-
 \newbool{DIFkeeppage}\boolfalse{DIFkeeppage}
 \newbool{DIFchange}\boolfalse{DIFchange}
+
+\providecommand{\DIFadd}[1]{{\protect\color{blue}#1}}
+\providecommand{\DIFdel}[1]{{\pdfmargincomment[author = Dawniej, color = red, opacity = 0.25, hoffset = -12.5pt]{#1}} {}}
 
 \providecommand{\DIFaddbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}{}}
 \providecommand{\DIFaddend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}{}}
@@ -25,10 +24,10 @@
 
 \providecommand{\DIFaddFL}[1]{\DIFadd{#1}}
 \providecommand{\DIFdelFL}[1]{\DIFdel{#1}}
-\providecommand{\DIFaddbeginFL}{\DIFaddbegin}
-\providecommand{\DIFaddendFL}{\DIFaddend}
-\providecommand{\DIFdelbeginFL}{\DIFdelbegin}
-\providecommand{\DIFdelendFL}{\DIFdelend}
+\providecommand{\DIFaddbeginFL}{}
+\providecommand{\DIFaddendFL}{}
+\providecommand{\DIFdelbeginFL}{}
+\providecommand{\DIFdelendFL}{}
 
 \AtBeginShipout{
 	\ifbool{DIFkeeppage}
