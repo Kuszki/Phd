@@ -87,24 +87,26 @@ hold on;
 plot(pts / 1000, mns, '.');
 plot(x, y);
 hold off;
-title(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g{\\itx} + %1.6g", P(2), P(1)))
+title(strrep(sprintf("\\rm{\\itf_{c}}({\\itf_{y}}({\\itx})) = %1.7g{\\itx} + %1.6g", P(2), P(1)), '.', ','));
 ylabel("Wyjście układu A/C, LSB");
 xlabel("Napięcie na wejściu toru pomiarowego, V");
 yticks(0 : 512 : 4096);
-xlim([0 1])
-ylim([0 4096])
-grid on
-box on
+xlim([0 1]);
+ylim([0 4096]);
+set_comma(gca, 'XY');
+grid on;
+box on;
 
 subplot(1, 2, 2)
-hist(data, 300, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title("asdasdasdasd")
-title(sprintf("\\rm{\\itU_{x,rw}} = %1.3g, {\\itc_{x,rw}} = %1.2f", uq, cq))
+hist(data, 300, 100, "facecolor", fcolor, "edgecolor", ecolor);
+title(strrep(sprintf("\\rm{\\itU_{x,rw}} = %1.3g, {\\itc_{x,rw}} = %1.2f", uq, cq), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, LSB");
-xlim([-4 4])
-ylim([0 4])
-grid on
-box on
+xlim([-4 4]);
+ylim([0 4]);
+set_comma(gca, 'XY');
+grid on;
+box on;
 
 print("../obrazki/static_adcout.svg", "-svgconvert", "-r300");
+

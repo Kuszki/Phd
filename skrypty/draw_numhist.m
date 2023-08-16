@@ -30,52 +30,56 @@ x = load("-ascii", "../archiwa/fwterr/f16_coif5_6_2048.dat");
 
 subplot(2, 2, 1)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("a) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
+title(strrep(sprintf("a) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
-xlim([-0.015 0.015])
-ylim([0 6])
-grid on
-box on
+xlim([-0.015 0.015]);
+ylim([0 6]);
+set_comma(gca, 'XY');
+grid on;
+box on;
 
 x = load("-ascii", "../archiwa/fwterr/f16_coif5_6_256.dat");
 [u, c, s, w] = get_uncertainty(x)
 
 subplot(2, 2, 2)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("b) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
+title(strrep(sprintf("b) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
-xlim([-0.01 0.01])
-ylim([0 6])
-grid on
-box on
+xlim([-0.01 0.01]);
+ylim([0 6]);
+set_comma(gca, 'XY');
+grid on;
+box on;
 
 x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_2048.dat");
 [u, c, s, w] = get_uncertainty(x)
 
 subplot(2, 2, 3)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("\nc) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
+title(strrep(sprintf("\nc) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
-xlim([-2e-6 2e-6])
-ylim([0 6])
-grid on
-box on
+xlim([-2e-6 2e-6]);
+ylim([0 6]);
+set_comma(gca, 'XY');
+grid on;
+box on;
 
 x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_256.dat");
 [u, c, s, w] = get_uncertainty(x)
 
 subplot(2, 2, 4)
 hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("\nd) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c))
+title(strrep(sprintf("\nd) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
-xlim([-1e-6 1e-6])
-ylim([0 6])
-grid on
-box on
+xlim([-1e-6 1e-6]);
+ylim([0 6]);
+set_comma(gca, 'XY');
+grid on;
+box on;
 
 print("../obrazki/hist_numerr_coif5.svg", "-svgconvert", dim);
 

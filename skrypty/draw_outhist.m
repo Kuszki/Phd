@@ -8,7 +8,7 @@ pkg load parallel
 addpath("~/Projekty/Octave-FWT-Utils")
 
 dim = "-r300";
-part = "T";
+part = "a";
 
 fcolor = "#333333";
 ecolor = "#333333";
@@ -38,14 +38,16 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c))
+title(strrep(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
-#xlim([-s*5 s*5])
-#ylim([0 0.7])
-#yticks([0 : 0.1 : 0.7])
-grid on
-box on
+#xlim([-s*5 s*5]);
+#ylim([0 0.7]);
+#yticks([0 : 0.1 : 0.7]);
+set_comma(gca, 'Y', '%0.1f');
+set_comma(gca, 'X');
+grid on;
+box on;
 pos = pos + 1;
 end;
 
@@ -57,14 +59,16 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c))
+title(strrep(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
-#xlim([-s*5 s*5])
-#ylim([0 1.2])
-#yticks([0 : 0.2 : 1.2])
-grid on
-box on
+#xlim([-s*5 s*5]);
+#ylim([0 1.2]);
+#yticks([0 : 0.2 : 1.2]);
+set_comma(gca, 'Y', '%0.1f');
+set_comma(gca, 'X');
+grid on;
+box on;
 pos = pos + 1;
 end;
 
@@ -76,14 +80,16 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c))
+title(strrep(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
-#xlim([-s*5 s*5])
-#ylim([0 1.2])
-#yticks([0 : 0.2 : 1.2])
-grid on
-box on
+#xlim([-s*5 s*5]);
+#ylim([0 1.2]);
+#yticks([0 : 0.2 : 1.2]);
+set_comma(gca, 'Y', '%0.1f');
+set_comma(gca, 'X');
+grid on;
+box on;
 pos = pos + 1;
 end;
 
@@ -95,14 +101,16 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c))
+title(strrep(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
-#xlim([-s*5 s*5])
-#ylim([0 1.2])
-#yticks([0 : 0.2 : 1.2])
-grid on
-box on
+#xlim([-s*5 s*5]);
+#ylim([0 1.2]);
+#yticks([0 : 0.2 : 1.2]);
+set_comma(gca, 'Y', '%0.1f');
+set_comma(gca, 'X');
+grid on;
+box on;
 pos = pos + 1;
 end;
 

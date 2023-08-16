@@ -57,11 +57,12 @@ ylabel("Wariancja błędu zaokrągleń");
 xlabel("Liczba wielkości wejściowych algorytmu");
 xticks(2 .^ texp);
 xticklabels({lab});
-xlim([8 4096])
-ylim([1e-15 3e-13])
-grid on
-grid minor off
-box on
+xlim([8 4096]);
+ylim([1e-15 3e-13]);
+set_comma(gca, 'XY');
+grid on;
+grid minor off;
+box on;
 
 set (gca, "yminorgrid", "on");
 

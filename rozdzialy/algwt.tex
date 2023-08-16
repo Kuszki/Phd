@@ -306,7 +306,7 @@ T_{1,3} = a_{7,0} x_{0} + a_{7,1} x_{1} + a_{7,2} x_{2} + a_{7,3} x_{3} + a_{7,4
 
 Powyższe zależności pozwalają wyznaczyć wartości współczynników macierzy transformacji dla analizowanego algorytmu dyskretnej transformacji falkowej. Po podstawieniu wartości zgodnie z zależnością~\eqref{eq:db2_coefs} oraz biorąc pod uwagę równania od~\eqref{eq:db2_outvect_s_2_0_row} do~\eqref{eq:db2_outvect_t_1_3_row} macierz transformacji przyjmuje postać:
 \begin{equation}
-\mathbf{A} = 
+\mathbf{A} =
 \begin{bmatrix}
 \frac{5 - \sqrt{3}}{16} & \frac{5 + \sqrt{3}}{16} & \frac{3 + 3 \sqrt{3}}{16} & \frac{5 + 3 \sqrt{3}}{16} & \frac{3 + \sqrt{3}}{16} & \frac{3 - \sqrt{3}}{16} & \frac{5 - 3 \sqrt{3}}{16} & \frac{3 - 3 \sqrt{3}}{16} \\
 \frac{3 + \sqrt{3}}{16} & \frac{3 - \sqrt{3}}{16} & \frac{5 - 3 \sqrt{3}}{16} & \frac{3 - 3 \sqrt{3}}{16} & \frac{5 - \sqrt{3}}{16} & \frac{5 + \sqrt{3}}{16} & \frac{3 + 3 \sqrt{3}}{16} & \frac{5 + 3 \sqrt{3}}{16} \\
@@ -344,7 +344,7 @@ Parametry rozkładu sygnału błędów własnych algorytmu wyznaczyć można eks
 
 Jako, że przeprowadzenie opisywanego eksperymentu jest w zasadzie niemożliwe w rzeczywistych warunkach, ponieważ wszystkie operacje związane z jego przeprowadzeniem są w rzeczywistości również obarczone błędami numerycznymi, to podczas eksperymentu przyjmuje się za wartości prawidłowe $\dot{X}(j)$ wartości wyznaczone przy użyciu liczb rzeczywistych o długości słowa równej 128-bitów. Parametry rozkładu błędów własnych algorytmu będą zatem wyznaczane dla słów o długości 32-bitów oraz 16-bitów, ponieważ te we współczesnych mikrokontrolerach stosowane są najczęściej. Do przeprowadzenia eksperymentu zastosowano program komputerowy przetłumaczony na kod maszynowy kompilatorem \enquote{GNU GCC}~\cite{gcc_manual}. Wybór wskazanego kompilatora podyktowany był faktem, że jest on również stosowany do generowania kodu maszynowego dla mikrokontrolerów rodzin \enquote{ARM} oraz \enquote{AVR}~\cite{kim_compilers}.
 
-Poniżej, w tabelach od~\ref{tab:varnum_db2_2_f16} do~\ref{tab:varnum_spline4_4_5_f32}, zamieszczono wyniki eksperymentu dla wybranych zestawów parametrów algorytmu dyskretnej transformacji falkowej. Tabele~\ref{tab:varnum_db2_2_f16} oraz~\ref{tab:varnum_db2_2_f32} zawierają wyniki dla wyznaczonej we wcześniejszej cześć rozdziału, przykładowej macierzy transformacji opisanej równaniem~\eqref{eq:db2_2_8_matrix} oraz uwzględniają zmianę zakresu wartości wielkości wejściowych algorytmu. Rysunek~\ref{fig:dwt_rerror_coif5} przedstawia zależność wariancji sygnału błędów własnych algorytmu od liczby wielkości wejściowych dla wybranych parametrów falki \enquote{coif5} oraz liczby poziomów dekompozycji sygnału, przy czym na omawianym rysunku wskazano wariancję błędu zaokrągleń dla ostatniej skali detali sygnału. Rysunek~\ref{fig:dwt_rhist_coif5} przedstawia histogramy dla wybranych parametrów eksperymentu przy zastosowaniu falki \enquote{coif5}, przy czym podczas wyznaczania niepewności rozszerzonej przyjęto poziom ufności $\alpha = 95\%$. Ze względu na fakt, że dla każdego poziomu dekompozycji wartości współczynników macierzy transformacji są jedynie przesunięte względem poprzedniego wiersza o dwie kolumny, co wynika z przesunięcia okna pomiarowego na kolejną pozycję, można przyjąć że wariancja sygnału błędu zaokrągleń będzie z zadowalającym przybliżeniem stała dla tego samego numeru skali. Opisywaną właściwość zaobserwować można analizując wartości zestawione w tabelach~\ref{tab:varnum_db2_2_f16} oraz~\ref{tab:varnum_db2_2_f32}. 
+Poniżej, w tabelach od~\ref{tab:varnum_db2_2_f16} do~\ref{tab:varnum_spline4_4_5_f32}, zamieszczono wyniki eksperymentu dla wybranych zestawów parametrów algorytmu dyskretnej transformacji falkowej. Tabele~\ref{tab:varnum_db2_2_f16} oraz~\ref{tab:varnum_db2_2_f32} zawierają wyniki dla wyznaczonej we wcześniejszej cześć rozdziału, przykładowej macierzy transformacji opisanej równaniem~\eqref{eq:db2_2_8_matrix} oraz uwzględniają zmianę zakresu wartości wielkości wejściowych algorytmu. Rysunek~\ref{fig:dwt_rerror_coif5} przedstawia zależność wariancji sygnału błędów własnych algorytmu od liczby wielkości wejściowych dla wybranych parametrów falki \enquote{coif5} oraz liczby poziomów dekompozycji sygnału, przy czym na omawianym rysunku wskazano wariancję błędu zaokrągleń dla ostatniej skali detali sygnału. Rysunek~\ref{fig:dwt_rhist_coif5} przedstawia histogramy dla wybranych parametrów eksperymentu przy zastosowaniu falki \enquote{coif5}, przy czym podczas wyznaczania niepewności rozszerzonej przyjęto poziom ufności $\alpha = \qty{95}{\percent}$. Ze względu na fakt, że dla każdego poziomu dekompozycji wartości współczynników macierzy transformacji są jedynie przesunięte względem poprzedniego wiersza o dwie kolumny, co wynika z przesunięcia okna pomiarowego na kolejną pozycję, można przyjąć że wariancja sygnału błędu zaokrągleń będzie z zadowalającym przybliżeniem stała dla tego samego numeru skali. Opisywaną właściwość zaobserwować można analizując wartości zestawione w tabelach~\ref{tab:varnum_db2_2_f16} oraz~\ref{tab:varnum_db2_2_f32}.
 
 \begin{figure}[htb!]
 \begin{center}
@@ -356,17 +356,17 @@ Poniżej, w tabelach od~\ref{tab:varnum_db2_2_f16} do~\ref{tab:varnum_spline4_4_
 \begin{table}[htb!]
 \begin{center}
 \makecaption{tab:varnum_db2_2_f16}{Wariancja błędu zaokrągleń kolejnych wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy dwóch iteracjach procesu dekompozycji, dla liczb o długości 16-bitów, w zależności od zakresu wielkości wejściowych}
-\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+1]} |} \hline
 \multirow{2}{*}{$X$} & \multicolumn{6}{ c |}{\textbf{Zakres wielkości wejściowych algorytmu}} \\ \cline{2-7}
-& $<-1;1>$ & $<-2;2>$ & $<-3;3>$ & $<0;2>$ & $<0;4>$ & $<3;9>$ \\ \hline
-$S_{2,0}$ & \num{1.03e-7} & \num{4.12e-7} & \num{9.74e-7} & \num{7.08e-7} & \num{2.83e-6} & \num{2.16e-5} \\ \hline
-$S_{2,1}$ & \num{1.11e-7} & \num{4.43e-7} & \num{1.01e-6} & \num{9.55e-7} & \num{3.82e-6} & \num{2.75e-5} \\ \hline
-$T_{2,0}$ & \num{1.31e-7} & \num{5.24e-7} & \num{1.21e-6} & \num{2.87e-7} & \num{1.15e-6} & \num{7.06e-6} \\ \hline
-$T_{2,1}$ & \num{1.07e-7} & \num{4.29e-7} & \num{9.73e-7} & \num{3.36e-7} & \num{1.34e-6} & \num{9.30e-6} \\ \hline
-$T_{1,0}$ & \num{7.09e-8} & \num{2.85e-7} & \num{6.99e-7} & \num{1.65e-7} & \num{3.56e-7} & \num{4.29e-6} \\ \hline
-$T_{1,1}$ & \num{5.83e-8} & \num{2.33e-7} & \num{5.87e-7} & \num{1.49e-7} & \num{5.95e-7} & \num{4.05e-6} \\ \hline
-$T_{1,2}$ & \num{5.84e-8} & \num{2.34e-7} & \num{5.85e-7} & \num{1.49e-7} & \num{5.97e-7} & \num{4.05e-6} \\ \hline
-$T_{1,3}$ & \num{5.53e-8} & \num{2.21e-7} & \num{5.41e-7} & \num{1.78e-7} & \num{7.08e-7} & \num{5.26e-6} \\ \hline
+& \text{$<-1;1>$} & \text{$<-2;2>$} & \text{$<-3;3>$} & \text{$<0;2>$} & \text{$<0;4>$} & \text{$<3;9>$} \\ \hline
+$S_{2,0}$ & 1.03e-7 & 4.12e-7 & 9.74e-7 & 7.08e-7 & 2.83e-6 & 2.16e-5 \\ \hline
+$S_{2,1}$ & 1.11e-7 & 4.43e-7 & 1.01e-6 & 9.55e-7 & 3.82e-6 & 2.75e-5 \\ \hline
+$T_{2,0}$ & 1.31e-7 & 5.24e-7 & 1.21e-6 & 2.87e-7 & 1.15e-6 & 7.06e-6 \\ \hline
+$T_{2,1}$ & 1.07e-7 & 4.29e-7 & 9.73e-7 & 3.36e-7 & 1.34e-6 & 9.30e-6 \\ \hline
+$T_{1,0}$ & 7.09e-8 & 2.85e-7 & 6.99e-7 & 1.65e-7 & 3.56e-7 & 4.29e-6 \\ \hline
+$T_{1,1}$ & 5.83e-8 & 2.33e-7 & 5.87e-7 & 1.49e-7 & 5.95e-7 & 4.05e-6 \\ \hline
+$T_{1,2}$ & 5.84e-8 & 2.34e-7 & 5.85e-7 & 1.49e-7 & 5.97e-7 & 4.05e-6 \\ \hline
+$T_{1,3}$ & 5.53e-8 & 2.21e-7 & 5.41e-7 & 1.78e-7 & 7.08e-7 & 5.26e-6 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -374,17 +374,17 @@ $T_{1,3}$ & \num{5.53e-8} & \num{2.21e-7} & \num{5.41e-7} & \num{1.78e-7} & \num
 \begin{table}[htb!]
 \begin{center}
 \makecaption{tab:varnum_db2_2_f32}{Wariancja błędu zaokrągleń kolejnych wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy dwóch iteracjach procesu dekompozycji, dla liczb o długości 32-bitów, w zależności od zakresu wielkości wejściowych}
-\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+2]} |} \hline
 \multirow{2}{*}{$X$} & \multicolumn{6}{ c |}{\textbf{Zakres wielkości wejściowych algorytmu}} \\ \cline{2-7}
-& $<-1;1>$ & $<-2;2>$ & $<-3;3>$ & $<0;2>$ & $<0;4>$ & $<3;9>$ \\ \hline
-$S_{2,0}$ & \num{1.40e-15} & \num{5.57e-15} & \num{1.30e-14} & \num{9.29e-15} & \num{3.71e-14} & \num{2.78e-13} \\ \hline
-$S_{2,1}$ & \num{1.40e-15} & \num{5.61e-15} & \num{1.29e-14} & \num{1.25e-14} & \num{5.00e-14} & \num{3.54e-13} \\ \hline
-$T_{2,0}$ & \num{1.71e-15} & \num{6.83e-15} & \num{1.58e-14} & \num{3.33e-15} & \num{1.33e-14} & \num{7.78e-14} \\ \hline
-$T_{2,1}$ & \num{1.39e-15} & \num{5.56e-15} & \num{1.29e-14} & \num{4.27e-15} & \num{1.71e-14} & \num{1.16e-13} \\ \hline
-$T_{1,0}$ & \num{8.28e-16} & \num{3.54e-15} & \num{8.38e-15} & \num{1.70e-15} & \num{6.84e-15} & \num{4.25e-14} \\ \hline
-$T_{1,1}$ & \num{6.82e-16} & \num{2.72e-15} & \num{6.67e-15} & \num{1.46e-15} & \num{5.84e-15} & \num{4.02e-14} \\ \hline
-$T_{1,2}$ & \num{6.82e-16} & \num{2.72e-15} & \num{6.66e-15} & \num{1.47e-15} & \num{5.86e-15} & \num{4.02e-14} \\ \hline
-$T_{1,3}$ & \num{6.68e-16} & \num{2.67e-15} & \num{6.48e-15} & \num{2.02e-15} & \num{8.10e-15} & \num{6.15e-14} \\ \hline
+& \text{$<-1;1>$} & \text{$<-2;2>$} & \text{$<-3;3>$} & \text{$<0;2>$} & \text{$<0;4>$} & \text{$<3;9>$} \\ \hline
+$S_{2,0}$ & 1.40e-15 & 5.57e-15 & 1.30e-14 & 9.29e-15 & 3.71e-14 & 2.78e-13 \\ \hline
+$S_{2,1}$ & 1.40e-15 & 5.61e-15 & 1.29e-14 & 1.25e-14 & 5.00e-14 & 3.54e-13 \\ \hline
+$T_{2,0}$ & 1.71e-15 & 6.83e-15 & 1.58e-14 & 3.33e-15 & 1.33e-14 & 7.78e-14 \\ \hline
+$T_{2,1}$ & 1.39e-15 & 5.56e-15 & 1.29e-14 & 4.27e-15 & 1.71e-14 & 1.16e-13 \\ \hline
+$T_{1,0}$ & 8.28e-16 & 3.54e-15 & 8.38e-15 & 1.70e-15 & 6.84e-15 & 4.25e-14 \\ \hline
+$T_{1,1}$ & 6.82e-16 & 2.72e-15 & 6.67e-15 & 1.46e-15 & 5.84e-15 & 4.02e-14 \\ \hline
+$T_{1,2}$ & 6.82e-16 & 2.72e-15 & 6.66e-15 & 1.47e-15 & 5.86e-15 & 4.02e-14 \\ \hline
+$T_{1,3}$ & 6.68e-16 & 2.67e-15 & 6.48e-15 & 2.02e-15 & 8.10e-15 & 6.15e-14 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -392,16 +392,16 @@ $T_{1,3}$ & \num{6.68e-16} & \num{2.67e-15} & \num{6.48e-15} & \num{2.02e-15} & 
 \begin{table}[htb!]
 \begin{center}
 \makecaption{tab:varnum_db2_5_f16}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 16-bitów, w zależności od liczby wielkości wejściowych}
-\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+1]} |} \hline
 \multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
-& $S_5$ & $T_5$ & $T_4$ & $T_3$ & $T_2$ & $T_1$ \\ \hline
-\textbf{64}   & \num{4.91e-7} & \num{5.31e-7} & \num{3.94e-7} & \num{2.09e-7} & \num{1.23e-7} & \num{5.86e-8} \\ \hline
-\textbf{128}  & \num{7.51e-7} & \num{7.08e-7} & \num{3.87e-7} & \num{2.07e-7} & \num{1.22e-7} & \num{5.85e-8} \\ \hline
-\textbf{256}  & \num{8.59e-7} & \num{6.99e-7} & \num{3.85e-7} & \num{2.05e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
-\textbf{512}  & \num{9.19e-7} & \num{6.89e-7} & \num{3.81e-7} & \num{2.04e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
-\textbf{1024} & \num{9.47e-7} & \num{6.85e-7} & \num{3.80e-7} & \num{2.04e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
-\textbf{2048} & \num{9.58e-7} & \num{6.84e-7} & \num{3.80e-7} & \num{2.04e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
-\textbf{4096} & \num{9.66e-7} & \num{6.83e-7} & \num{3.80e-7} & \num{2.04e-7} & \num{1.21e-7} & \num{5.84e-8} \\ \hline
+& \text{$S_5$} & \text{$T_5$} & \text{$T_4$} & \text{$T_3$} & \text{$T_2$} & \text{$T_1$} \\ \hline
+\textbf{64}   & 4.91e-7 & 5.31e-7 & 3.94e-7 & 2.09e-7 & 1.23e-7 & 5.86e-8 \\ \hline
+\textbf{128}  & 7.51e-7 & 7.08e-7 & 3.87e-7 & 2.07e-7 & 1.22e-7 & 5.85e-8 \\ \hline
+\textbf{256}  & 8.59e-7 & 6.99e-7 & 3.85e-7 & 2.05e-7 & 1.21e-7 & 5.84e-8 \\ \hline
+\textbf{512}  & 9.19e-7 & 6.89e-7 & 3.81e-7 & 2.04e-7 & 1.21e-7 & 5.84e-8 \\ \hline
+\textbf{1024} & 9.47e-7 & 6.85e-7 & 3.80e-7 & 2.04e-7 & 1.21e-7 & 5.84e-8 \\ \hline
+\textbf{2048} & 9.58e-7 & 6.84e-7 & 3.80e-7 & 2.04e-7 & 1.21e-7 & 5.84e-8 \\ \hline
+\textbf{4096} & 9.66e-7 & 6.83e-7 & 3.80e-7 & 2.04e-7 & 1.21e-7 & 5.84e-8 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -409,16 +409,16 @@ $T_{1,3}$ & \num{6.68e-16} & \num{2.67e-15} & \num{6.48e-15} & \num{2.02e-15} & 
 \begin{table}[htb!]
 \begin{center}
 \makecaption{tab:varnum_db2_5_f32}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 32-bitów, w zależności od liczby wielkości wejściowych}
-\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+2]} |} \hline
 \multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
-& $S_5$ & $T_5$ & $T_4$ & $T_3$ & $T_2$ & $T_1$ \\ \hline
-\textbf{64}   & \num{6.83e-15} & \num{7.93e-15} & \num{5.42e-15} & \num{2.86e-15} & \num{1.62e-15} & \num{7.12e-16} \\ \hline
-\textbf{128}  & \num{1.15e-14} & \num{1.02e-14} & \num{5.39e-15} & \num{2.79e-15} & \num{1.58e-15} & \num{6.98e-16} \\ \hline
-\textbf{256}  & \num{1.34e-14} & \num{1.03e-14} & \num{5.30e-15} & \num{2.76e-15} & \num{1.56e-15} & \num{6.90e-16} \\ \hline
-\textbf{512}  & \num{1.44e-14} & \num{1.03e-14} & \num{5.25e-15} & \num{2.73e-15} & \num{1.55e-15} & \num{6.85e-16} \\ \hline
-\textbf{1024} & \num{1.49e-14} & \num{1.03e-14} & \num{5.23e-15} & \num{2.72e-15} & \num{1.55e-15} & \num{6.84e-16} \\ \hline
-\textbf{2048} & \num{1.51e-14} & \num{1.03e-14} & \num{5.22e-15} & \num{2.72e-15} & \num{1.55e-15} & \num{6.84e-16} \\ \hline
-\textbf{4096} & \num{1.52e-14} & \num{1.03e-14} & \num{5.22e-15} & \num{2.72e-15} & \num{1.55e-15} & \num{6.84e-16} \\ \hline
+& \text{$S_5$} & \text{$T_5$} & \text{$T_4$} & \text{$T_3$} & \text{$T_2$} & \text{$T_1$} \\ \hline
+\textbf{64}   & 6.83e-15 & 7.93e-15 & 5.42e-15 & 2.86e-15 & 1.62e-15 & 7.12e-16 \\ \hline
+\textbf{128}  & 1.15e-14 & 1.02e-14 & 5.39e-15 & 2.79e-15 & 1.58e-15 & 6.98e-16 \\ \hline
+\textbf{256}  & 1.34e-14 & 1.03e-14 & 5.30e-15 & 2.76e-15 & 1.56e-15 & 6.90e-16 \\ \hline
+\textbf{512}  & 1.44e-14 & 1.03e-14 & 5.25e-15 & 2.73e-15 & 1.55e-15 & 6.85e-16 \\ \hline
+\textbf{1024} & 1.49e-14 & 1.03e-14 & 5.23e-15 & 2.72e-15 & 1.55e-15 & 6.84e-16 \\ \hline
+\textbf{2048} & 1.51e-14 & 1.03e-14 & 5.22e-15 & 2.72e-15 & 1.55e-15 & 6.84e-16 \\ \hline
+\textbf{4096} & 1.52e-14 & 1.03e-14 & 5.22e-15 & 2.72e-15 & 1.55e-15 & 6.84e-16 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -428,16 +428,16 @@ Na podstawie rysunku~\ref{fig:dwt_rerror_coif5} zauważyć można liniowy wzrost
 \begin{table}[htb!]
 \begin{center}
 \makecaption{tab:varnum_spline4_4_5_f16}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{spline2:4} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 16-bitów, w zależności od liczby wielkości wejściowych}
-\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+1]} |} \hline
 \multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
-& $S_5$ & $T_5$ & $T_4$ & $T_3$ & $T_2$ & $T_1$ \\ \hline
-\textbf{64}   & \num{1.07e-6} & \num{1.02e-6} & \num{8.94e-7} & \num{5.05e-7} & \num{1.83e-7} & \num{4.76e-8} \\ \hline
-\textbf{128}  & \num{1.75e-6} & \num{1.59e-6} & \num{9.22e-7} & \num{4.96e-7} & \num{1.80e-7} & \num{4.64e-8} \\ \hline
-\textbf{256}  & \num{2.61e-6} & \num{1.67e-6} & \num{9.11e-7} & \num{4.91e-7} & \num{1.77e-7} & \num{4.58e-8} \\ \hline
-\textbf{512}  & \num{2.60e-6} & \num{1.69e-6} & \num{9.05e-7} & \num{4.89e-7} & \num{1.76e-7} & \num{4.55e-8} \\ \hline
-\textbf{1024} & \num{2.58e-6} & \num{1.71e-6} & \num{9.02e-7} & \num{4.88e-7} & \num{1.75e-7} & \num{4.53e-8} \\ \hline
-\textbf{2048} & \num{2.58e-6} & \num{1.71e-6} & \num{9.00e-7} & \num{4.87e-7} & \num{1.75e-7} & \num{4.53e-8} \\ \hline
-\textbf{4096} & \num{2.58e-6} & \num{1.72e-6} & \num{9.00e-7} & \num{4.87e-7} & \num{1.75e-7} & \num{4.53e-8} \\ \hline
+& \text{$S_5$} & \text{$T_5$} & \text{$T_4$} & \text{$T_3$} & \text{$T_2$} & \text{$T_1$} \\ \hline
+\textbf{64}   & 1.07e-6 & 1.02e-6 & 8.94e-7 & 5.05e-7 & 1.83e-7 & 4.76e-8 \\ \hline
+\textbf{128}  & 1.75e-6 & 1.59e-6 & 9.22e-7 & 4.96e-7 & 1.80e-7 & 4.64e-8 \\ \hline
+\textbf{256}  & 2.61e-6 & 1.67e-6 & 9.11e-7 & 4.91e-7 & 1.77e-7 & 4.58e-8 \\ \hline
+\textbf{512}  & 2.60e-6 & 1.69e-6 & 9.05e-7 & 4.89e-7 & 1.76e-7 & 4.55e-8 \\ \hline
+\textbf{1024} & 2.58e-6 & 1.71e-6 & 9.02e-7 & 4.88e-7 & 1.75e-7 & 4.53e-8 \\ \hline
+\textbf{2048} & 2.58e-6 & 1.71e-6 & 9.00e-7 & 4.87e-7 & 1.75e-7 & 4.53e-8 \\ \hline
+\textbf{4096} & 2.58e-6 & 1.72e-6 & 9.00e-7 & 4.87e-7 & 1.75e-7 & 4.53e-8 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -445,21 +445,21 @@ Na podstawie rysunku~\ref{fig:dwt_rerror_coif5} zauważyć można liniowy wzrost
 \begin{table}[htb!]
 \begin{center}
 \makecaption{tab:varnum_spline4_4_5_f32}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{spline2:4} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 32-bitów, w zależności od liczby wielkości wejściowych}
-\begin{tabular}[c]{| c | c | c | c | c | c | c |} \hline
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+2]} |} \hline
 \multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
-& $S_5$ & $T_5$ & $T_4$ & $T_3$ & $T_2$ & $T_1$ \\ \hline
-\textbf{64}   & \num{1.51e-14} & \num{1.44e-14} & \num{1.26e-14} & \num{6.54e-15} & \num{2.33e-15} & \num{5.44e-16} \\ \hline
-\textbf{128}  & \num{2.52e-14} & \num{2.37e-14} & \num{1.45e-14} & \num{6.50e-15} & \num{2.27e-15} & \num{5.29e-16} \\ \hline
-\textbf{256}  & \num{4.72e-14} & \num{2.91e-14} & \num{1.45e-14} & \num{6.40e-15} & \num{2.24e-15} & \num{5.22e-16} \\ \hline
-\textbf{512}  & \num{4.72e-14} & \num{2.98e-14} & \num{1.44e-14} & \num{6.36e-15} & \num{2.23e-15} & \num{5.17e-16} \\ \hline
-\textbf{1024} & \num{4.71e-14} & \num{3.01e-14} & \num{1.43e-14} & \num{6.35e-15} & \num{2.22e-15} & \num{5.16e-16} \\ \hline
-\textbf{2048} & \num{4.72e-14} & \num{3.03e-14} & \num{1.43e-14} & \num{6.35e-15} & \num{2.22e-15} & \num{5.16e-16} \\ \hline
-\textbf{4096} & \num{4.72e-14} & \num{3.04e-14} & \num{1.43e-14} & \num{6.35e-15} & \num{2.22e-15} & \num{5.16e-16} \\ \hline
+& \text{$S_5$} & \text{$T_5$} & \text{$T_4$} & \text{$T_3$} & \text{$T_2$} & \text{$T_1$} \\ \hline
+\textbf{64}   & 1.51e-14 & 1.44e-14 & 1.26e-14 & 6.54e-15 & 2.33e-15 & 5.44e-16 \\ \hline
+\textbf{128}  & 2.52e-14 & 2.37e-14 & 1.45e-14 & 6.50e-15 & 2.27e-15 & 5.29e-16 \\ \hline
+\textbf{256}  & 4.72e-14 & 2.91e-14 & 1.45e-14 & 6.40e-15 & 2.24e-15 & 5.22e-16 \\ \hline
+\textbf{512}  & 4.72e-14 & 2.98e-14 & 1.44e-14 & 6.36e-15 & 2.23e-15 & 5.17e-16 \\ \hline
+\textbf{1024} & 4.71e-14 & 3.01e-14 & 1.43e-14 & 6.35e-15 & 2.22e-15 & 5.16e-16 \\ \hline
+\textbf{2048} & 4.72e-14 & 3.03e-14 & 1.43e-14 & 6.35e-15 & 2.22e-15 & 5.16e-16 \\ \hline
+\textbf{4096} & 4.72e-14 & 3.04e-14 & 1.43e-14 & 6.35e-15 & 2.22e-15 & 5.16e-16 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-Analizując przedstawione na rysunku~\ref{fig:dwt_rhist_coif5} histogramy zauważyć można, że kształt rozkładu sygnału błędów własnych jest zbliżony do kształtu rozkładu normalnego, natomiast dla poziomu ufności $\alpha = 95\%$ współczynnik kształtu wynosi około $2.16$. Wobec powyższych, aby możliwe było oszacowanie wartości współczynników koherencji zgodnie z równaniem~\eqref{eq:unc_coher}, konieczne jest wyznaczenie wartości współczynników kształtu, analogicznie jak miało to miejsce w poprzednim rozdziale. Zgodnie z równaniem~\eqref{eq:unc_shapertwo}, stosując metodę Monte-Carlo, oszacowano wartości współczynników kształtu dla sygnału błędu własnego oraz sygnałów błędów o typowych kształtach funkcji gęstości prawdopodobieństwa, a uzyskane wyniki zestawiono w tabeli~\ref{tab:unc_shapedwt}. Z uwagi na fakt, że uzyskane rozkłady sygnałów błędów własnych cechowały się bardzo zbliżonym kształtem, przedstawione wyniki stanowią uśrednione wartości dla wszystkich przeprowadzonych wcześniej eksperymentów.
+Analizując przedstawione na rysunku~\ref{fig:dwt_rhist_coif5} histogramy zauważyć można, że kształt rozkładu sygnału błędów własnych jest zbliżony do kształtu rozkładu normalnego, natomiast dla poziomu ufności $\alpha = \qty{95}{\percent}$ współczynnik kształtu wynosi około~\num{2.16}. Wobec powyższych, aby możliwe było oszacowanie wartości współczynników koherencji zgodnie z równaniem~\eqref{eq:unc_coher}, konieczne jest wyznaczenie wartości współczynników kształtu, analogicznie jak miało to miejsce w poprzednim rozdziale. Zgodnie z równaniem~\eqref{eq:unc_shapertwo}, stosując metodę Monte-Carlo, oszacowano wartości współczynników kształtu dla sygnału błędu własnego oraz sygnałów błędów o typowych kształtach funkcji gęstości prawdopodobieństwa, a uzyskane wyniki zestawiono w tabeli~\ref{tab:unc_shapedwt}. Z uwagi na fakt, że uzyskane rozkłady sygnałów błędów własnych cechowały się bardzo zbliżonym kształtem, przedstawione wyniki stanowią uśrednione wartości dla wszystkich przeprowadzonych wcześniej eksperymentów.
 
 Stosowanie liczb rzeczywistych o długości słowa 16-bitów pozwala zmniejszyć czas obliczeń oraz rozmiar wymaganej pamięci operacyjnej w stosunku do analogicznego przypadku wykorzystującego liczby o długości słowa 32-bitów~\cite{reay_dsp, gcc_manual}. Wariant ten wprowadza jednak znacznie większe błędy związane z zaokrągleniami ze względu na ograniczoną precyzję stosowanego zapisu liczb. Należy zatem tak dobrać długość słowa, aby wariancja sygnału błędu zaokrągleń była możliwie mała w stosunku do wariancji pozostałych sygnałów błędów obecnych w przetwarzanym sygnale, przez co w efekcie sygnał błędu własnego nie wpływał znacząco na wypadkowy sygnał błędu.
 
@@ -468,7 +468,7 @@ Jako, że zakres wielkości wejściowych algorytmu transformacji falkowej równi
 \begin{table}[htb!]
 \begin{center}
 \makecaption{tab:unc_shapedwt}{Wartości współczynników kształtu dla typowych kształtów rozkładów oraz rozkładu błędu zaokrągleń algorytmu transformacji falkowej, gdzie kolejne symbole oznaczają rozkład: (n)~normalny, (u)~jednostajny, (t)~trójkątny, (d)~dwumodalny, (r)~zaokrągleń}
-\begin{tabular}[c]{| c | S[table-format = +1.3] | S[table-format = +1.3] | S[table-format = +1.3] | S[table-format = +1.3] | S[table-format = +1.3] |} \hline
+\begin{tabular}[c]{| c *{5}{| S[table-format = +1.3] } |} \hline
 $s_{r,*}$ & \textbf{$n$} & \textbf{$u$} & \textbf{$t$} & \textbf{$d$} & \textbf{$r$} \\ \hline
 $r$       & -0.009       & 0.066        & -0.010       & 0.197        & 0.027        \\ \hline
 \end{tabular}
@@ -482,7 +482,7 @@ $r$       & -0.009       & 0.066        & -0.010       & 0.197        & 0.027   
 \end{center}
 \end{figure}
 
-Ze względu na fakt, że przeprowadzone eksperymenty wykazały zbliżone kształty rozkładu realizacji sygnału błędu zaokrągleń niezależnie od parametrów analizowanego algorytmu, w dalszej cześć pracy przyjmuje się, że współczynnik kształtu oznaczony symbolem $c_{z} = 2.16$ odpowiadać będzie sygnałowi błędu zaokrągleń.
+Ze względu na fakt, że przeprowadzone eksperymenty wykazały zbliżone kształty rozkładu realizacji sygnału błędu zaokrągleń niezależnie od parametrów analizowanego algorytmu, w dalszej cześć pracy przyjmuje się, że współczynnik kształtu oznaczony symbolem $c_{z} = \num{2.16}$ odpowiadać będzie sygnałowi błędu zaokrągleń.
 
 \section{Implementacja okna pomiarowego}
 
@@ -501,13 +501,13 @@ Wybrane okna pomiarowe opisane w literaturze~\cite{oppenheim_dsp, oppenheim_sns,
 w_{tr} \emb{n} = 1 - \left| \frac{n - \frac{N-1}{2}}{\frac{N}{2}} \right| \label{eq:wnd_triang}, \\
 w_{sn} \emb{n} = \sin \left( \frac{\pi n}{N} \right) \label{eq:wnd_sine}, \\
 w_{ga} \emb{n} = \exp \left(-\frac{1}{2} \left( \frac{n - \frac{N-1}{2}}{\sigma \frac{\emb{N-1}}{2}} \right)^{2} \right) \label{eq:wnd_gauss}, \\
-w_{hm} \emb{n} = 0.5384 - 0.4616 \cos \left( \frac{2 \pi n}{N} \right) \label{eq:wnd_hamming}, \\
-w_{hn} \emb{n} = 0.5 \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eq:wnd_hann}, \\
+w_{hm} \emb{n} = \num{0.5384} - \num{0.4616} \cos \left( \frac{2 \pi n}{N} \right) \label{eq:wnd_hamming}, \\
+w_{hn} \emb{n} = \num{0.5} \left(1 - \cos \left( \frac{2 \pi n}{N} \right) \right) \label{eq:wnd_hann}, \\
 w_{wh} \emb{n} = 1 - \left( \frac{n - \frac{N}{2}}{\frac{N}{2}} \right)^{2} \label{eq:wnd_welch}.
 \end{gather}
 W dalszej części pracy stosuje się okno prostokątne, w którym $w(n) = 1$, o ile nie został zaznaczony fakt stosowania innego okna pomiarowego.
 
-Implementacja okna pomiarowego, z punktu widzenia przedstawionych w pracy założeń, mogłaby również zostać opisana jako zastosowanie dodatkowego algorytmu. Algorytm ten przetwarzałby $N$ wielkości wejściowych na $M$ wielkości wyjściowych, gdzie $N = M$. Macierz transformacji omawianego algorytmu byłaby macierzą diagonalną, przy czym wartości kolejnych współczynników odpowiadałyby wyznaczonym wagom dla $i$-tej wielkości okna. Z praktycznego punktu widzenia zaproponowana metoda modyfikacji wartości współczynników transformacji algorytmu transformacji falkowej wydaje się jednak bardziej korzystna. Na tej samej zasadzie istnieje możliwość implementacji innych modyfikacji, np. wprowadzenia dodatkowego filtru. Jako, że algorytm dyskretnej transformacji sam w sobie implementuje dla kolejnych wielkości wyjściowych podział tych wielkości na odpowiadające im okna pomiarowe, stosowanie dodatkowego okna pomiarowego nie jest tak popularne, jak w przypadku innych algorytmów (np. algorytmu \enquote{DFT}). 
+Implementacja okna pomiarowego, z punktu widzenia przedstawionych w pracy założeń, mogłaby również zostać opisana jako zastosowanie dodatkowego algorytmu. Algorytm ten przetwarzałby $N$ wielkości wejściowych na $M$ wielkości wyjściowych, gdzie $N = M$. Macierz transformacji omawianego algorytmu byłaby macierzą diagonalną, przy czym wartości kolejnych współczynników odpowiadałyby wyznaczonym wagom dla $i$-tej wielkości okna. Z praktycznego punktu widzenia zaproponowana metoda modyfikacji wartości współczynników transformacji algorytmu transformacji falkowej wydaje się jednak bardziej korzystna. Na tej samej zasadzie istnieje możliwość implementacji innych modyfikacji, np. wprowadzenia dodatkowego filtru. Jako, że algorytm dyskretnej transformacji sam w sobie implementuje dla kolejnych wielkości wyjściowych podział tych wielkości na odpowiadające im okna pomiarowe, stosowanie dodatkowego okna pomiarowego nie jest tak popularne, jak w przypadku innych algorytmów (np. algorytmu \enquote{DFT}).
 
 Jako, że wprowadzenie okna pomiarowego objawia się zmianą wypadkowej transmitancji związanej z wielkościami wyjściowymi algorytmu, działanie to wpływa na przenoszone z wejścia na wyjście algorytmu sygnały błędów. Aplikację omawianej metody oraz wpływ parametrów okna pomiarowego na przenoszenie błędów losowych przez algorytmy dyskretnej transformacji falkowej opisano w pracy~\cite{auth_window}.
 

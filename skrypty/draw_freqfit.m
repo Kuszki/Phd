@@ -53,11 +53,14 @@ semilogx(xv, ab, ';Model "b";');
 hold off;
 ylabel("Wzmocnienie, V/V");
 xlabel("Częstotliwość sygnału, Hz");
-legend("location", 'northwest')
-xlim([100 flim])
-ylim([-0.03 0.03]+ks)
-grid on
-box on
+legend("location", 'northwest');
+xlim([100 flim]);
+ylim([-0.03 0.03]+ks);
+yticks((-0.03 : 0.01 : 0.3)+ks);
+set_comma(gca, 'Y', '%0.2f');
+set_comma(gca, 'X');
+grid on;
+box on;
 
 subplot(1, 2, 2)
 hold on;
@@ -67,11 +70,13 @@ semilogx(xv, pb, ';Model "b";');
 hold off;
 ylabel("Przesunięcie fazowe, rad");
 xlabel("Częstotliwość sygnału, Hz");
-legend("location", 'southwest')
-xlim([100 flim])
-ylim([-0.12 0])
-grid on
-box on
+legend("location", 'southwest');
+xlim([100 flim]);
+ylim([-0.12 0]);
+set_comma(gca, 'Y', '%0.2f');
+set_comma(gca, 'X');
+grid on;
+box on;
 
 print("../obrazki/dynamic_ampout.svg", "-svgconvert", "-r300");
 
