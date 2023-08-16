@@ -325,7 +325,7 @@ W analogiczny sposób wyznaczyć można wartości elementów macierzy transforma
 
 Jako, że algorytm transformacji falkowej przedstawić można w formie macierzowej, istnieje możliwość analizy jego właściwości metrologicznych zgodnie z metodą przedstawioną w poprzednim rozdziale pracy. Należy zauważyć, że parametry macierzy transformacji wynikające z charakterystyki zastosowanej falki-matki są kluczowym czynnikiem mającym wpływ na związek pomiędzy wariancją błędu analizowanej wielkości wyjściowej, a wariancją błędu wielkości wejściowych~\cite{auth_electronics}. Zgodnie z centralnym twierdzeniem granicznym, bez względu na rozkład błędów losowych wielkości wejściowych algorytmu, kształt rozkładu błędu losowego będzie zbliżony do rozkładu normalnego~\cite{jcgm_guide}. Powyższe założenie jest prawdziwe wtedy, gdy algorytm przetwarza wielokrotnie błędy losowe o tych samych parametrach.
 
-Analizując macierz transformacji przedstawioną w równaniu~\eqref{eq:db2_2_8_matrix} zauważyć można, że jest ona podzielona z punktu widzenia wierszy na kilka charakterystycznych obszarów, gdzie liczba obszarów zależna jest od liczby iteracji procesu dekompozycji sygnału. Każdy z obszarów odpowiada kolejnemu wyjściu algorytmu dekompozycji sygnału, przedstawionemu na rysunku~\ref{fig:dwt_decomposition}. W obrębie danego obszaru zakres wartości współczynników macierzy nie ulega zmianie, przy czym pozycje poszczególnych wartości są przesunięte o dwie kolumny w prawo w stosunku do wiersza poprzedniego. Zjawisko to wynika z przesunięcia okna pomiarowego (zmiany parametru przesunięcia falki), a wartość dwa wynika z przeprowadzenia procesu decymacji (do druga wartość jest odrzucana). Z punktu widzenia analizy metrologicznej zauważyć można, że wielkości wyjściowe związane z tym samym parametrem skali mogą być analizowane równocześnie, gdyż odpowiada im filtr o tych samych parametrach, przez co wartości określone równaniami~\eqref{eq:alg_trans_stat} oraz \eqref{eq:alg_trans_rand} będą identyczne~\cite{auth_electronics}.
+Analizując macierz transformacji przedstawioną w równaniu~\eqref{eq:db2_2_8_matrix} zauważyć można, że jest ona podzielona z punktu widzenia wierszy na kilka charakterystycznych obszarów, gdzie liczba obszarów zależna jest od liczby iteracji procesu dekompozycji sygnału. Każdy z obszarów odpowiada kolejnemu wyjściu algorytmu dekompozycji sygnału, przedstawionemu na rysunku~\ref{fig:dwt_decomposition}. W obrębie danego obszaru zakres wartości współczynników macierzy nie ulega zmianie, przy czym pozycje poszczególnych wartości są przesunięte o dwie kolumny w prawo w stosunku do wiersza poprzedniego. Zjawisko to wynika z przesunięcia okna pomiarowego (zmiany parametru przesunięcia falki), a wartość dwa wynika z przeprowadzenia procesu decymacji (do druga wartość jest odrzucana). Z punktu widzenia analizy metrologicznej zauważyć można, że wielkości wyjściowe związane z tym samym parametrem skali mogą być analizowane równocześnie, gdyż odpowiada im filtr o tych samych parametrach, przez co wartości określone równaniami~\eqref{eq:alg_trans_stat} oraz~\eqref{eq:alg_trans_rand} będą identyczne~\cite{auth_electronics}.
 
 W przypadku falek z rodziny \enquote{Daubechies}, a także ich pochodnych \enquote{Symleth} oraz \enquote{Coiflets}, niezależnie od liczby poziomów dekompozycji, wartość współczynnika $A_{r,i}$ dla wszystkich wielkości wyjściowych każdorazowo wynosić będzie jeden, natomiast wartość współczynnika $A_{s,i}$ dla aproksymacji sygnału wynosić będzie dwa. Zależności te wynikają bezpośrednio z równań~\eqref{eq:dwt_scalefunsum} oraz~\eqref{eq:db_musthave}~\cite{vonesch_dbbasics, wei_coiflet}. Nie oznacza to jednak, że dalsza analiza może zostać pominięta, a algorytm transformacji falkowej nie ma wpływu na przenoszone błędy wielkości wejściowych, ponieważ wciąż istnieje potrzeba analizy pozostałych rodzajów błędów. Ze względu na fakt, że tylko jedna grupa wielkości wyjściowych, związana z aproksymacją sygnału, stanowić będzie filtr dolno-przepustowy, dla pozostałych grup wielkości wyjściowych wartość współczynnika $A_{s,i}$ będzie zwykle zerowa. Wynika to z faktu, że błędy statyczne stanowią składową stałą sygnału, a zatem nie będą przenoszone przez filtry inne, niż dolno-przepustowe.
 
@@ -342,21 +342,21 @@ Parametry rozkładu sygnału błędów własnych algorytmu wyznaczyć można eks
 \end{center}
 \end{figure}
 
-Jako, że przeprowadzenie opisywanego eksperymentu jest w zasadzie niemożliwe w rzeczywistych warunkach, ponieważ wszystkie operacje związane z jego przeprowadzeniem są w rzeczywistości również obarczone błędami numerycznymi, to podczas eksperymentu przyjmuje się za wartości prawidłowe $\dot{X}(j)$ wartości wyznaczone przy użyciu liczb rzeczywistych o długości słowa równej 128-bitów. Parametry rozkładu błędów własnych algorytmu będą zatem wyznaczane dla słów o długości 32-bitów oraz 16-bitów, ponieważ te we współczesnych mikrokontrolerach stosowane są najczęściej. Do przeprowadzenia eksperymentu zastosowano program komputerowy przetłumaczony na kod maszynowy kompilatorem \enquote{GNU GCC}~\cite{gcc_manual}. Wybór wskazanego kompilatora podyktowany był faktem, że jest on również stosowany do generowania kodu maszynowego dla mikrokontrolerów rodzin \enquote{ARM} oraz \enquote{AVR}~\cite{kim_compilers}.
+Jako, że przeprowadzenie opisywanego eksperymentu jest w zasadzie niemożliwe w rzeczywistych warunkach, ponieważ wszystkie operacje związane z jego przeprowadzeniem są w rzeczywistości również obarczone błędami numerycznymi, to podczas eksperymentu przyjmuje się za wartości prawidłowe $\dot{X}(j)$ wartości wyznaczone przy użyciu liczb rzeczywistych o długości słowa równej~\qty{128}{bitów}. Parametry rozkładu błędów własnych algorytmu będą zatem wyznaczane dla słów o długości~\qty{32}{\bitOw} oraz~\qty{16}{\bitOw}, ponieważ te we współczesnych mikrokontrolerach stosowane są najczęściej. Do przeprowadzenia eksperymentu zastosowano program komputerowy przetłumaczony na kod maszynowy kompilatorem \enquote{GNU GCC}~\cite{gcc_manual}. Wybór wskazanego kompilatora podyktowany był faktem, że jest on również stosowany do generowania kodu maszynowego dla mikrokontrolerów rodzin \enquote{ARM} oraz \enquote{AVR}~\cite{kim_compilers}.
 
 Poniżej, w tabelach od~\ref{tab:varnum_db2_2_f16} do~\ref{tab:varnum_spline4_4_5_f32}, zamieszczono wyniki eksperymentu dla wybranych zestawów parametrów algorytmu dyskretnej transformacji falkowej. Tabele~\ref{tab:varnum_db2_2_f16} oraz~\ref{tab:varnum_db2_2_f32} zawierają wyniki dla wyznaczonej we wcześniejszej cześć rozdziału, przykładowej macierzy transformacji opisanej równaniem~\eqref{eq:db2_2_8_matrix} oraz uwzględniają zmianę zakresu wartości wielkości wejściowych algorytmu. Rysunek~\ref{fig:dwt_rerror_coif5} przedstawia zależność wariancji sygnału błędów własnych algorytmu od liczby wielkości wejściowych dla wybranych parametrów falki \enquote{coif5} oraz liczby poziomów dekompozycji sygnału, przy czym na omawianym rysunku wskazano wariancję błędu zaokrągleń dla ostatniej skali detali sygnału. Rysunek~\ref{fig:dwt_rhist_coif5} przedstawia histogramy dla wybranych parametrów eksperymentu przy zastosowaniu falki \enquote{coif5}, przy czym podczas wyznaczania niepewności rozszerzonej przyjęto poziom ufności $\alpha = \qty{95}{\percent}$. Ze względu na fakt, że dla każdego poziomu dekompozycji wartości współczynników macierzy transformacji są jedynie przesunięte względem poprzedniego wiersza o dwie kolumny, co wynika z przesunięcia okna pomiarowego na kolejną pozycję, można przyjąć że wariancja sygnału błędu zaokrągleń będzie z zadowalającym przybliżeniem stała dla tego samego numeru skali. Opisywaną właściwość zaobserwować można analizując wartości zestawione w tabelach~\ref{tab:varnum_db2_2_f16} oraz~\ref{tab:varnum_db2_2_f32}.
 
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/dwt_rerror_coif5}
-\makecaption{fig:dwt_rerror_coif5}{Zależność wariancji błędu zaokrągleń od liczby iteracji procesu dekompozycji sygnału oraz liczby wielkości wejściowych dla falki \enquote{coif5} i długości słowa 32-bitów}
+\makecaption{fig:dwt_rerror_coif5}{Zależność wariancji błędu zaokrągleń od liczby iteracji procesu dekompozycji sygnału oraz liczby wielkości wejściowych dla falki \enquote{coif5} i długości słowa~\qty{32}{\bitOw}}
 \end{center}
 \end{figure}
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:varnum_db2_2_f16}{Wariancja błędu zaokrągleń kolejnych wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy dwóch iteracjach procesu dekompozycji, dla liczb o długości 16-bitów, w zależności od zakresu wielkości wejściowych}
-\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+1]} |} \hline
+\makecaption{tab:varnum_db2_2_f16}{Wariancja błędu zaokrągleń kolejnych wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy dwóch iteracjach procesu dekompozycji, dla liczb o długości~\qty{16}{\bitOw}, w zależności od zakresu wielkości wejściowych}
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+1, mode = math]} |} \hline
 \multirow{2}{*}{$X$} & \multicolumn{6}{ c |}{\textbf{Zakres wielkości wejściowych algorytmu}} \\ \cline{2-7}
 & \text{$<-1;1>$} & \text{$<-2;2>$} & \text{$<-3;3>$} & \text{$<0;2>$} & \text{$<0;4>$} & \text{$<3;9>$} \\ \hline
 $S_{2,0}$ & 1.03e-7 & 4.12e-7 & 9.74e-7 & 7.08e-7 & 2.83e-6 & 2.16e-5 \\ \hline
@@ -373,8 +373,8 @@ $T_{1,3}$ & 5.53e-8 & 2.21e-7 & 5.41e-7 & 1.78e-7 & 7.08e-7 & 5.26e-6 \\ \hline
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:varnum_db2_2_f32}{Wariancja błędu zaokrągleń kolejnych wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy dwóch iteracjach procesu dekompozycji, dla liczb o długości 32-bitów, w zależności od zakresu wielkości wejściowych}
-\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+2]} |} \hline
+\makecaption{tab:varnum_db2_2_f32}{Wariancja błędu zaokrągleń kolejnych wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy dwóch iteracjach procesu dekompozycji, dla liczb o długości~\qty{32}{\bitOw}, w zależności od zakresu wielkości wejściowych}
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+2, mode = math]} |} \hline
 \multirow{2}{*}{$X$} & \multicolumn{6}{ c |}{\textbf{Zakres wielkości wejściowych algorytmu}} \\ \cline{2-7}
 & \text{$<-1;1>$} & \text{$<-2;2>$} & \text{$<-3;3>$} & \text{$<0;2>$} & \text{$<0;4>$} & \text{$<3;9>$} \\ \hline
 $S_{2,0}$ & 1.40e-15 & 5.57e-15 & 1.30e-14 & 9.29e-15 & 3.71e-14 & 2.78e-13 \\ \hline
@@ -391,8 +391,8 @@ $T_{1,3}$ & 6.68e-16 & 2.67e-15 & 6.48e-15 & 2.02e-15 & 8.10e-15 & 6.15e-14 \\ \
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:varnum_db2_5_f16}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 16-bitów, w zależności od liczby wielkości wejściowych}
-\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+1]} |} \hline
+\makecaption{tab:varnum_db2_5_f16}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości~\qty{16}{\bitOw}, w zależności od liczby wielkości wejściowych}
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+1, mode = math]} |} \hline
 \multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
 & \text{$S_5$} & \text{$T_5$} & \text{$T_4$} & \text{$T_3$} & \text{$T_2$} & \text{$T_1$} \\ \hline
 \textbf{64}   & 4.91e-7 & 5.31e-7 & 3.94e-7 & 2.09e-7 & 1.23e-7 & 5.86e-8 \\ \hline
@@ -408,8 +408,8 @@ $T_{1,3}$ & 6.68e-16 & 2.67e-15 & 6.48e-15 & 2.02e-15 & 8.10e-15 & 6.15e-14 \\ \
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:varnum_db2_5_f32}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 32-bitów, w zależności od liczby wielkości wejściowych}
-\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+2]} |} \hline
+\makecaption{tab:varnum_db2_5_f32}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{db2} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości~\qty{32}{\bitOw}, w zależności od liczby wielkości wejściowych}
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+2, mode = math]} |} \hline
 \multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
 & \text{$S_5$} & \text{$T_5$} & \text{$T_4$} & \text{$T_3$} & \text{$T_2$} & \text{$T_1$} \\ \hline
 \textbf{64}   & 6.83e-15 & 7.93e-15 & 5.42e-15 & 2.86e-15 & 1.62e-15 & 7.12e-16 \\ \hline
@@ -427,8 +427,8 @@ Na podstawie rysunku~\ref{fig:dwt_rerror_coif5} zauważyć można liniowy wzrost
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:varnum_spline4_4_5_f16}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{spline2:4} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 16-bitów, w zależności od liczby wielkości wejściowych}
-\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+1]} |} \hline
+\makecaption{tab:varnum_spline4_4_5_f16}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{spline2:4} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości~\qty{16}{\bitOw}, w zależności od liczby wielkości wejściowych}
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+1, mode = math]} |} \hline
 \multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
 & \text{$S_5$} & \text{$T_5$} & \text{$T_4$} & \text{$T_3$} & \text{$T_2$} & \text{$T_1$} \\ \hline
 \textbf{64}   & 1.07e-6 & 1.02e-6 & 8.94e-7 & 5.05e-7 & 1.83e-7 & 4.76e-8 \\ \hline
@@ -444,8 +444,8 @@ Na podstawie rysunku~\ref{fig:dwt_rerror_coif5} zauważyć można liniowy wzrost
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:varnum_spline4_4_5_f32}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{spline2:4} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości 32-bitów, w zależności od liczby wielkości wejściowych}
-\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+2]} |} \hline
+\makecaption{tab:varnum_spline4_4_5_f32}{Wariancja błędu zaokrągleń kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej dla falki \enquote{spline2:4} przy pięciu iteracjach procesu dekompozycji, dla liczb o długości~\qty{32}{\bitOw}, w zależności od liczby wielkości wejściowych}
+\begin{tabular}[c]{| c *{6}{|S[table-format = 1.2e+2, mode = math]} |} \hline
 \multirow{2}{*}{$N$} & \multicolumn{6}{ c |}{\textbf{Skala wielkości wyjściowych algorytmu}} \\ \cline{2-7}
 & \text{$S_5$} & \text{$T_5$} & \text{$T_4$} & \text{$T_3$} & \text{$T_2$} & \text{$T_1$} \\ \hline
 \textbf{64}   & 1.51e-14 & 1.44e-14 & 1.26e-14 & 6.54e-15 & 2.33e-15 & 5.44e-16 \\ \hline
@@ -461,7 +461,7 @@ Na podstawie rysunku~\ref{fig:dwt_rerror_coif5} zauważyć można liniowy wzrost
 
 Analizując przedstawione na rysunku~\ref{fig:dwt_rhist_coif5} histogramy zauważyć można, że kształt rozkładu sygnału błędów własnych jest zbliżony do kształtu rozkładu normalnego, natomiast dla poziomu ufności $\alpha = \qty{95}{\percent}$ współczynnik kształtu wynosi około~\num{2.16}. Wobec powyższych, aby możliwe było oszacowanie wartości współczynników koherencji zgodnie z równaniem~\eqref{eq:unc_coher}, konieczne jest wyznaczenie wartości współczynników kształtu, analogicznie jak miało to miejsce w poprzednim rozdziale. Zgodnie z równaniem~\eqref{eq:unc_shapertwo}, stosując metodę Monte-Carlo, oszacowano wartości współczynników kształtu dla sygnału błędu własnego oraz sygnałów błędów o typowych kształtach funkcji gęstości prawdopodobieństwa, a uzyskane wyniki zestawiono w tabeli~\ref{tab:unc_shapedwt}. Z uwagi na fakt, że uzyskane rozkłady sygnałów błędów własnych cechowały się bardzo zbliżonym kształtem, przedstawione wyniki stanowią uśrednione wartości dla wszystkich przeprowadzonych wcześniej eksperymentów.
 
-Stosowanie liczb rzeczywistych o długości słowa 16-bitów pozwala zmniejszyć czas obliczeń oraz rozmiar wymaganej pamięci operacyjnej w stosunku do analogicznego przypadku wykorzystującego liczby o długości słowa 32-bitów~\cite{reay_dsp, gcc_manual}. Wariant ten wprowadza jednak znacznie większe błędy związane z zaokrągleniami ze względu na ograniczoną precyzję stosowanego zapisu liczb. Należy zatem tak dobrać długość słowa, aby wariancja sygnału błędu zaokrągleń była możliwie mała w stosunku do wariancji pozostałych sygnałów błędów obecnych w przetwarzanym sygnale, przez co w efekcie sygnał błędu własnego nie wpływał znacząco na wypadkowy sygnał błędu.
+Stosowanie liczb rzeczywistych o długości słowa~\qty{16}{bitów} pozwala zmniejszyć czas obliczeń oraz rozmiar wymaganej pamięci operacyjnej w stosunku do analogicznego przypadku wykorzystującego liczby o długości słowa~\qty{32}{\bitOw}~\cite{reay_dsp, gcc_manual}. Wariant ten wprowadza jednak znacznie większe błędy związane z zaokrągleniami ze względu na ograniczoną precyzję stosowanego zapisu liczb. Należy zatem tak dobrać długość słowa, aby wariancja sygnału błędu zaokrągleń była możliwie mała w stosunku do wariancji pozostałych sygnałów błędów obecnych w przetwarzanym sygnale, przez co w efekcie sygnał błędu własnego nie wpływał znacząco na wypadkowy sygnał błędu.
 
 Jako, że zakres wielkości wejściowych algorytmu transformacji falkowej również wpływa na wprowadzane błędy zaokrągleń, należy brać ten czynnik pod uwagę podczas analizy projektowanego toru pomiarowego. Należy zatem tak dobrać warunki eksperymentu mającego na celu identyfikacje parametrów sygnału błędu zaokrągleń, aby w jak największym stopniu były one zbieżne z warunkami rzeczywistymi. Analizując przedstawione wyniki zauważyć można, że wraz ze wzrostem zakresu wielkości wejściowych wariancja błędu zaokrągleń wzrasta. Zależność ta wynika bezpośrednio z właściwości stosowanej metody zapisu liczb zmiennoprzecinkowych i została szerzej opisana w publikacji~\cite{benz_floats}.
 
@@ -478,7 +478,7 @@ $r$       & -0.009       & 0.066        & -0.010       & 0.197        & 0.027   
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/hist_numerr_coif5}
-\makecaption{fig:dwt_rhist_coif5}{Histogramy błędu własnego zaokrągleń dla falki \enquote{coif5} przy sześciu iteracjach procesu dekompozycji, dla $N$ wielkości wejściowych, przy długości słowa równej \textbf{a)}, \textbf{b)}~16-bitów, \textbf{c)}, \textbf{d)}~32-bitów}
+\makecaption{fig:dwt_rhist_coif5}{Histogramy błędu własnego zaokrągleń dla falki \enquote{coif5} przy sześciu iteracjach procesu dekompozycji, dla $N$ wielkości wejściowych, przy długości słowa równej \textbf{a)}, \textbf{b)}~\qty{16}{\bitOw}, \textbf{c)}, \textbf{d)}~\qty{32}{\bitOw}}
 \end{center}
 \end{figure}
 

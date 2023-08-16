@@ -1,0 +1,15 @@
+#!/bin/fish
+
+for i in ../rozdzialy/*.tex
+
+	echo "===== $i =====" # --only-matching
+
+	nl -ba -nln "$i" | \
+		grep -P -e "[+-]?\\d+\\.\\d+(?:e[+-]\\d+)?(?!.*[&\\\\])" | \
+		grep -P -v -e "\\\\(?:num|qty)\\{[^\\\\}]+\\}" | \
+		grep -P -e "[+-]?\\d+\\.\\d+(?:e[+-]\\d+)?" || \
+	nl -ba -nln "$i" | \
+		grep -P -e "\\\$[+-]?\\d+(?:\\.\\d+)?(?:e[+-]\\d+)?\\\$" || \
+	echo "brak"
+
+end
