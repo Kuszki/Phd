@@ -9,9 +9,11 @@ run() {
 }
 
 CURR_PATH="$(dirname $(realpath $0))"
+CURR_NAME="$(basename $0)"
 
 DO_REMOVE=false
 DO_CONVERT=false
+DO_OCTAVE=false
 DO_BUILD=true
 DO_DIFF=false
 DO_QUIET=false
@@ -24,19 +26,19 @@ while [ "$1" != "" ]; do
 	case $PARAM in
 
 		-cd | --comment-diff)
-			STY_DIFF="comment.sty"
+			STY_DIFF="comment"
 			VER_DIFF=$VALUE
 			DO_DIFF=true
 			;;
 
 		-dd | --detail-diff)
-			STY_DIFF="detail.sty"
+			STY_DIFF="detail"
 			VER_DIFF=$VALUE
 			DO_DIFF=true
 			;;
 
 		-sd | --short-diff)
-			STY_DIFF="short.sty"
+			STY_DIFF="short"
 			VER_DIFF=$VALUE
 			DO_DIFF=true
 			;;
@@ -53,6 +55,10 @@ while [ "$1" != "" ]; do
 			DO_CONVERT=true
 			;;
 
+		-o | --octave)
+			DO_OCTAVE=true
+			;;
+
 		-s | --skip)
 			DO_BUILD=false
 			;;
@@ -61,6 +67,18 @@ while [ "$1" != "" ]; do
 	shift
 
 done
+
+if $DO_OCTAVE; then
+
+	cd "$CURR_PATH/skrypty"
+
+	for i in draw_*.m; do
+		run octave "$i"
+	done
+
+	cd "$CURR_PATH"
+
+fi
 
 [ $DO_BUILD == true ] && [ $DO_REMOVE == true ] && DO_CONVERT=true
 [ "$VER_DIFF" == "" ] && VER_DIFF="HEAD"
@@ -71,12 +89,12 @@ done
 
 [ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
 [ $DO_DIFF == true ] && CLSI=1 run git-latexdiff --main thesis.tex --output budowa/diff.pdf \
-						--preamble="$CURR_PATH/style/$STY_DIFF" \
+						--preamble="$CURR_PATH/style/$STY_DIFF.sty" \
 						--packages="hyperref,biblatex" \
-						--math-markup="coarse" \
 						--graphics-markup="none" \
-						--prepare "./build.sh -c -s -q" \
+						--math-markup="coarse" \
+						--prepare "$0 -c -s -q" \
 						--latexopt "--shell-escape -pdflua -f" \
-						--latexdiff-flatten --latexmk -- "$VER_DIFF"
+						--latexmk -- "$VER_DIFF"
 
 exit 0

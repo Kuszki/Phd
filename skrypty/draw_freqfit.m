@@ -24,10 +24,11 @@ set(0, "defaulttextcolor", "black")
 
 data = load("-ascii", "../pomiary/dynp.dat");
 
-wc = 165e+4; #(1.0659e+06 + 1.09369e+06) / 2.0; 138321.270475229
+wc = 165e+4;
 ks = 3.28;
 
 flim = 30e3;
+c = lines(10);
 
 fv = data(:,1);
 av = data(:,10);
@@ -48,8 +49,8 @@ pb = phi1(xv*2*pi);
 subplot(1, 2, 1)
 hold on;
 semilogx(fv, av, 'x;;');
-semilogx(xv, aa, ';Model "a";');
-semilogx(xv, ab, ';Model "b";');
+semilogx(xv, aa, ';Model "a";', 'color', [c(2,:)]);
+semilogx(xv, ab, ';Model "b";', 'color', [c(5,:)]);
 hold off;
 ylabel("Wzmocnienie, V/V");
 xlabel("Częstotliwość sygnału, Hz");
@@ -65,8 +66,8 @@ box on;
 subplot(1, 2, 2)
 hold on;
 semilogx(fv, pv, 'x;;');
-semilogx(xv, pa, ';Model "a";');
-semilogx(xv, pb, ';Model "b";');
+semilogx(xv, pa, ';Model "a";', 'color', [c(2,:)]);
+semilogx(xv, pb, ';Model "b";', 'color', [c(5,:)]);
 hold off;
 ylabel("Przesunięcie fazowe, rad");
 xlabel("Częstotliwość sygnału, Hz");

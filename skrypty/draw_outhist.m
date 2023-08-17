@@ -1,5 +1,4 @@
 clear;
-h = figure;
 
 pkg load communications
 pkg load ltfat
@@ -8,13 +7,34 @@ pkg load parallel
 addpath("~/Projekty/Octave-FWT-Utils")
 
 dim = "-r300";
-part = "a";
+
+parts = {"a", "b", "c", "T", "S"};
+nrows = [ 2 2 1 2 2 ];
+lims = [ ...
+	0.8 1.0 1.4 1.2; ...
+	0.8 1.0 1.4 1.0; ...
+	0.5 1.2 0.5 1.2; ...
+	1e1 1.2 1.2 0.8; ...
+	0.8 1.2 1.4 1.0; ...
+]
+
+ticks = [ ...
+	0.2 0.2 0.2 0.2; ...
+	0.2 0.2 0.2 0.2; ...
+	0.1 0.2 0.1 0.2; ...
+	2e0 0.2 0.2 0.2; ...
+	0.2 0.2 0.2 0.2; ...
+]
 
 fcolor = "#333333";
 ecolor = "#333333";
 nbins = 300;
 
-nr = 2;
+for j = 1 : length(parts)
+
+part = parts{j};
+h = figure;
+nr = nrows(j);
 nc = 2;
 tot = nr*nc;
 pos = 1;
@@ -41,9 +61,8 @@ hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(strrep(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
-#xlim([-s*5 s*5]);
-#ylim([0 0.7]);
-#yticks([0 : 0.1 : 0.7]);
+ylim([0 lims(j,pos)]);
+yticks([0 : ticks(j,pos) : lims(j,pos)]);
 set_comma(gca, 'Y', '%0.1f');
 set_comma(gca, 'X');
 grid on;
@@ -62,9 +81,8 @@ hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(strrep(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
-#xlim([-s*5 s*5]);
-#ylim([0 1.2]);
-#yticks([0 : 0.2 : 1.2]);
+ylim([0 lims(j,pos)]);
+yticks([0 : ticks(j,pos) : lims(j,pos)]);
 set_comma(gca, 'Y', '%0.1f');
 set_comma(gca, 'X');
 grid on;
@@ -83,9 +101,8 @@ hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(strrep(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
-#xlim([-s*5 s*5]);
-#ylim([0 1.2]);
-#yticks([0 : 0.2 : 1.2]);
+ylim([0 lims(j,pos)]);
+yticks([0 : ticks(j,pos) : lims(j,pos)]);
 set_comma(gca, 'Y', '%0.1f');
 set_comma(gca, 'X');
 grid on;
@@ -104,9 +121,8 @@ hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(strrep(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
-#xlim([-s*5 s*5]);
-#ylim([0 1.2]);
-#yticks([0 : 0.2 : 1.2]);
+ylim([0 lims(j,pos)]);
+yticks([0 : ticks(j,pos) : lims(j,pos)]);
 set_comma(gca, 'Y', '%0.1f');
 set_comma(gca, 'X');
 grid on;
@@ -116,3 +132,4 @@ end;
 
 print(sprintf("../obrazki/hist_part_%s.svg", part), "-svgconvert", dim);
 
+end
