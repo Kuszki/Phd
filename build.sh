@@ -37,8 +37,14 @@ while [ "$1" != "" ]; do
 			DO_DIFF=true
 			;;
 
-		-sd | --short-diff)
-			STY_DIFF="short"
+		-sd | --simple-diff)
+			STY_DIFF="simple"
+			VER_DIFF=$VALUE
+			DO_DIFF=true
+			;;
+
+		-fd | --filter-diff)
+			STY_DIFF="filter"
 			VER_DIFF=$VALUE
 			DO_DIFF=true
 			;;
@@ -88,13 +94,13 @@ fi
 [ $DO_CONVERT == true ] && run inkscape -D obrazki/*.svg --export-type pdf
 
 [ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
-[ $DO_DIFF == true ] && CLSI=1 run git-latexdiff --main thesis.tex --output budowa/diff.pdf \
+[ $DO_DIFF == true ] && CLSI=1 run git-latexdiff --main thesis.tex --output budowa/diff.pdf -e utf8 \
 						--preamble="$CURR_PATH/style/$STY_DIFF.sty" \
 						--packages="hyperref,biblatex" \
 						--graphics-markup="none" \
 						--math-markup="coarse" \
 						--prepare "$0 -c -s -q" \
 						--latexopt "--shell-escape -pdflua -f" \
-						--latexmk -- "$VER_DIFF"
+						--latexdiff-flatten --latexmk -- "$VER_DIFF"
 
 exit 0

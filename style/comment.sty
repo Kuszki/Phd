@@ -1,11 +1,18 @@
 \RequirePackage{pdfcomment}
 \RequirePackage{color}
 
-\providecommand{\DIFadd}[1]{\pdfmarkupcomment[author = Zmiana, color = blue, opacity = 0.25]
-	{\relax\ifmmode\else$[+]$\fi}{\luaescapestring{#1}}\relax\ifmmode\else~\fi{\protect\color{blue}#1}}
+\providecommand{\DIFauthor}{Korekta}
+\providecommand{\DIFaddsub}{Wstawiono}
+\providecommand{\DIFdelsub}{Skasowano}
 
-\providecommand{\DIFdel}[1]{\pdfmarkupcomment[author = Zmiana, color = red, opacity = 0.25]
-	{\relax\ifmmode\else$[-]$\fi}{\luaescapestring{#1}}{\relax\ifmmode\protect\color{red}#1\else\fi}}
+\providecommand{\DIFaddsym}{$[+]$}
+\providecommand{\DIFdelsym}{$[-]$}
+
+\providecommand{\DIFadd}[1]{\pdfmarkupcomment[author = {\DIFauthor}, subject = {\DIFaddsub}, color = blue, opacity = 0.25]
+	{\relax\ifmmode\else\DIFaddsym\fi}{\DIFaddsub:~\luaescapestring{#1}}\relax\ifmmode\else~\fi{\protect\color{blue}#1}}
+
+\providecommand{\DIFdel}[1]{\pdfmarkupcomment[author = {\DIFauthor}, subject = {\DIFdelsub}, color = red, opacity = 0.25]
+	{\relax\ifmmode\else\DIFdelsym\fi}{\DIFdelsub:~\luaescapestring{#1}}{\relax\ifmmode\protect\color{red}#1\else\fi}}
 
 \providecommand{\DIFaddFL}[1]{\DIFadd{#1}}
 \providecommand{\DIFdelFL}[1]{\DIFdel{#1}}
