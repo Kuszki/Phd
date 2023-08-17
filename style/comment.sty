@@ -1,10 +1,10 @@
 \RequirePackage{pdfcomment}
 \RequirePackage{color}
 
-\providecommand{\DIFadd}[1]{\pdfmarkupcomment[author = Teraz, color = blue, opacity = 0.25]
+\providecommand{\DIFadd}[1]{\pdfmarkupcomment[author = Zmiana, color = blue, opacity = 0.25]
 	{\relax\ifmmode\else$[+]$\fi}{\luaescapestring{#1}}\relax\ifmmode\else~\fi{\protect\color{blue}#1}}
 
-\providecommand{\DIFdel}[1]{\pdfmarkupcomment[author = Dawniej, color = red, opacity = 0.25]
+\providecommand{\DIFdel}[1]{\pdfmarkupcomment[author = Zmiana, color = red, opacity = 0.25]
 	{\relax\ifmmode\else$[-]$\fi}{\luaescapestring{#1}}{\relax\ifmmode\protect\color{red}#1\else\fi}}
 
 \providecommand{\DIFaddFL}[1]{\DIFadd{#1}}

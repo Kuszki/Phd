@@ -1,8 +1,11 @@
 \RequirePackage[normalem]{ulem}
 \RequirePackage{color}
 
-\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}}
-\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}
+\providecommand{\DIFadd}[1]{\pdfmarkupcomment[author = Zmiana, subject = $[-]$, color = blue, opacity = 0.25]
+	{\relax\ifmmode\else$[+]$\fi}{\luaescapestring{#1}}{\protect\color{blue}\uwave{#1}}}
+
+\providecommand{\DIFdel}[1]{\pdfmarkupcomment[author = Zmiana, subject = $[+]$, color = red, opacity = 0.25]
+	{\relax\ifmmode\else$[-]$\fi}{\luaescapestring{#1}}{\protect\color{red}\sout{#1}}}
 
 \providecommand{\DIFaddFL}[1]{\DIFadd{#1}}
 \providecommand{\DIFdelFL}[1]{\DIFdel{#1}}
