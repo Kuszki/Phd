@@ -1,6 +1,4 @@
-\ProvidesPackage{sdiff}
-
-\RequirePackage{pdfcomment}
+\RequirePackage[normalem]{ulem}
 \RequirePackage{color}
 \RequirePackage{zref}
 
@@ -12,22 +10,22 @@
 \newbool{DIFkeeppage}\boolfalse{DIFkeeppage}
 \newbool{DIFchange}\boolfalse{DIFchange}
 
-\providecommand{\DIFadd}[1]{{\protect\color{blue}#1}}
-\providecommand{\DIFdel}[1]{{\pdfmargincomment[author = Dawniej, color = red, opacity = 0.25, hoffset = -12.5pt]{#1}} {}}
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}}
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}
 
-\providecommand{\DIFaddbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}{}}
-\providecommand{\DIFaddend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}{}}
-\providecommand{\DIFdelbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}{}}
-\providecommand{\DIFdelend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}{}}
-\providecommand{\DIFmodbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}}{}}
-\providecommand{\DIFmodend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}}{}}
+\providecommand{\DIFaddbegin}{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}\ignorespaces}
+\providecommand{\DIFaddend}{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}\ignorespaces}
+\providecommand{\DIFdelbegin}{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}\ignorespaces}
+\providecommand{\DIFdelend}{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}\ignorespaces}
+\providecommand{\DIFmodbegin}{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}\ignorespaces}
+\providecommand{\DIFmodend}{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}\ignorespaces}
 
 \providecommand{\DIFaddFL}[1]{\DIFadd{#1}}
 \providecommand{\DIFdelFL}[1]{\DIFdel{#1}}
-\providecommand{\DIFaddbeginFL}{}
-\providecommand{\DIFaddendFL}{}
-\providecommand{\DIFdelbeginFL}{}
-\providecommand{\DIFdelendFL}{}
+\providecommand{\DIFaddbeginFL}{\ignorespaces}
+\providecommand{\DIFaddendFL}{\ignorespaces}
+\providecommand{\DIFdelbeginFL}{\ignorespaces}
+\providecommand{\DIFdelendFL}{\ignorespaces}
 
 \AtBeginShipout{
 	\ifbool{DIFkeeppage}

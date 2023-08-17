@@ -1,21 +1,22 @@
-\ProvidesPackage{fdiff}
-
 \RequirePackage{pdfcomment}
 \RequirePackage{color}
 
-\providecommand{\DIFadd}[1]{{\pdfmarkupcomment[author = Teraz, color = blue, opacity = 0.25, mathstyle = \displaystyle]{#1}{#1}}}
-\providecommand{\DIFdel}[1]{{\pdfmargincomment[author = Dawniej, color = red, opacity = 0.25, hoffset = -12.5pt]{#1}} {}}
+\providecommand{\DIFadd}[1]{\pdfmarkupcomment[author = Teraz, color = blue, opacity = 0.25]
+	{\relax\ifmmode\else[+]\fi}{\luaescapestring{#1}}\relax\ifmmode\else~\fi{\protect\color{blue}#1}}
 
-\providecommand{\DIFaddbegin}{}
-\providecommand{\DIFaddend}{}
-\providecommand{\DIFdelbegin}{}
-\providecommand{\DIFdelend}{}
-\providecommand{\DIFmodbegin}{}
-\providecommand{\DIFmodend}{}
+\providecommand{\DIFdel}[1]{\pdfmarkupcomment[author = Dawniej, color = red, opacity = 0.25]
+	{\relax\ifmmode\else[-]\fi}{\luaescapestring{#1}}{\relax\ifmmode\protect\color{red}#1\else\fi}}
+
+\providecommand{\DIFaddbegin}{\ignorespaces}
+\providecommand{\DIFaddend}{\ignorespaces}
+\providecommand{\DIFdelbegin}{\ignorespaces}
+\providecommand{\DIFdelend}{\ignorespaces}
+\providecommand{\DIFmodbegin}{\ignorespaces}
+\providecommand{\DIFmodend}{\ignorespaces}
 
 \providecommand{\DIFaddFL}[1]{\DIFadd{#1}}
 \providecommand{\DIFdelFL}[1]{\DIFdel{#1}}
-\providecommand{\DIFaddbeginFL}{\DIFaddbegin}
-\providecommand{\DIFaddendFL}{\DIFaddend}
-\providecommand{\DIFdelbeginFL}{\DIFdelbegin}
-\providecommand{\DIFdelendFL}{\DIFdelend}
+\providecommand{\DIFaddbeginFL}{\ignorespaces}
+\providecommand{\DIFaddendFL}{\ignorespaces}
+\providecommand{\DIFdelbeginFL}{\ignorespaces}
+\providecommand{\DIFdelendFL}{\ignorespaces}

@@ -56,16 +56,19 @@ while [ "$1" != "" ]; do
 
 done
 
+[ $DO_BUILD == true ] && [ $DO_REMOVE == true ] && DO_CONVERT=true
 [ "$VER_DIFF" == "" ] && VER_DIFF="HEAD"
 
-[ $DO_REMOVE == true ] && run rm budowa/*
+[ $DO_REMOVE == true ] && run rm budowa/* obrazki/*.pdf
 [ $DO_CONVERT == true ] && run libreoffice --convert-to pdf obrazki/*.odg --outdir obrazki
 [ $DO_CONVERT == true ] && run inkscape -D obrazki/*.svg --export-type pdf
 
 [ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
-[ $DO_DIFF == true ] && CLSI=1 run git-latexdiff --main thesis.tex --output budowa/diff.pdf --encoding=utf8 \
+[ $DO_DIFF == true ] && CLSI=1 run git-latexdiff --main thesis.tex --output budowa/diff.pdf \
 						--preamble="$CURR_PATH/style/$STY_DIFF" \
 						--packages="hyperref,biblatex" \
+						--math-markup="coarse" \
+						--graphics-markup="none" \
 						--prepare "./build.sh -c -s -q" \
 						--latexopt "--shell-escape -pdflua -f" \
 						--latexdiff-flatten --latexmk -- "$VER_DIFF"
