@@ -11,7 +11,7 @@ Przykładowy tor pomiarowy składa się z przetwornika pomiarowego, który przek
 \end{center}
 \end{figure}
 
-Podczas eksperymentu przyjęto, że przetwarzany sygnał pomiarowy obarczony jest błędem związanym z szumem białym o stałej widmowej gęstości mocy. Przetwornik pomiarowy, zastosowany w celu przetworzenia analizowanego sygnału wejściowego na postać napięciową, cechuje się pewną częstotliwość graniczną, a jego charakterystyka nie jest idealnie liniowa. Zastosowany wzmacniacz pomiarowy również charakteryzuje się pewną częstotliwością graniczną, natomiast założono, że nieliniowość charakterystyki jest w jego przypadku pomijalnie mała. Przyjęto, że temperatura otoczenia miała wpływ na dryf zera przetwornika pomiarowego oraz wzmacniacza, przy czym temperatura ta nie była mierzona, zatem jej wpływ na wyniki pomiarów nie był korygowany. Przyjęto, że zastosowany przetwornik analogowo-cyfrowy wprowadzał do sygnału wyjściowego jedynie błąd związany z kwantowaniem przetwarzanej wielkości, natomiast algorytm transformacji falkowej wprowadzał do wielkości wyjściowych błąd własny związany z wykonywaniem operacji na liczbach zmiennoprzecinkowych.
+Podczas eksperymentu przyjęto, że przetwarzany sygnał pomiarowy obarczony jest błędem związanym z szumem białym o stałej widmowej gęstości mocy. Przetwornik pomiarowy, zastosowany w celu przetworzenia analizowanego sygnału wejściowego na postać napięciową, cechuje się pewną częstotliwość graniczną, a jego charakterystyka nie jest idealnie liniowa. Zastosowany wzmacniacz pomiarowy również charakteryzuje się pewną częstotliwością graniczną, natomiast założono, że nieliniowość charakterystyki jest w jego przypadku pomijalnie mała. Przyjęto, że temperatura otoczenia miała wpływ na dryft zera przetwornika pomiarowego oraz wzmacniacza, przy czym temperatura ta nie była mierzona, zatem jej wpływ na wyniki pomiarów nie był korygowany. Przyjęto, że zastosowany przetwornik analogowo-cyfrowy wprowadzał do sygnału wyjściowego jedynie błąd związany z kwantowaniem przetwarzanej wielkości, natomiast algorytm transformacji falkowej wprowadzał do wielkości wyjściowych błąd własny związany z wykonywaniem operacji na liczbach zmiennoprzecinkowych.
 
 W dalszej części rozdziału omówiono kolejne elementy toru pomiarowego, wskazano ich wpływ na przetwarzany sygnał oraz relacje pomiędzy sygnałami błędów na wejściu i wyjściu tych fragmentów. Przedstawiono również szczegółowe założenia odnośnie właściwości opisanych we wprowadzeniu fragmentów toru pomiarowego. Dla przeprowadzonego eksperymentu przyjęto, że przetwarzany sygnał $s(t)$ określony został w dziedzinie czasu jako:
 \begin{gather}
@@ -191,7 +191,7 @@ Na podstawie parametrów wymienionych sygnałów określono budżet niepewności
 \makecaption{tab:sym_parta_params_unc_list}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika pomiarowego}
 \begin{tabular}[c]{| c | c | S[table-format = 1.2] | S[table-format = 2.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
-1 & ${a,sw}$       & 3.49  &  3.38   & trójkątny                    & dryf temperatury                           \\ \hline
+1 & ${a,sw}$       & 3.49  &  3.38   & trójkątny                    & dryft temperatury                           \\ \hline
 2 & ${a,rw}$       & 3.01  &  3.33   & jednostajny                  & nieliniowość obiektu                       \\ \hline
 3 & ${a,rp}$       & 5.06  &  6.67   & normalny                     & szum wielkości wejściowej                  \\ \hline
 4 & ${a,dw,1}$     & 1.87  &  1.77   & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja wzmacniacza} \\ \cline{1-4}
@@ -408,11 +408,11 @@ gdzie $E_{b,o}(\omega)$ jest amplitudą oraz $\varphi_{b,o}(\omega)$ fazą harmo
 \end{center}
 \end{table}
 
-Pierwszą omawianą grupę sygnałów błędów stanowią błędy własne, wprowadzane przez analizowany obiekt. Przyjmuje się, że temperatura otoczenia $\vartheta(t)$ wpływa na dryf zera analizowanego wzmacniacza zgodnie z zależnością opisaną równaniem:
+Pierwszą omawianą grupę sygnałów błędów stanowią błędy własne, wprowadzane przez analizowany obiekt. Przyjmuje się, że temperatura otoczenia $\vartheta(t)$ wpływa na dryft zera analizowanego wzmacniacza zgodnie z zależnością opisaną równaniem:
 \begin{equation}
 f_{b,z} \left( \vartheta \emb{t} \right) = \frac{7}{2} \left( \vartheta \emb{t} - \qty{20}{\degreeCelsius} \right)~\unit{\frac{mV}{K}} \label{eq:sym_partb_temp_err},
 \end{equation}
-oraz że w czasie wykonywania pojedynczej serii pomiarowej zmiany tej temperatury będą zbliżone do zera. Błąd statyczny własny, wynikający z dryfu zera spowodowanego zmianą temperatury otoczenia, zgodnie z równaniem~\eqref{eq:out_cont_err_env_self} opisać można jako:
+oraz że w czasie wykonywania pojedynczej serii pomiarowej zmiany tej temperatury będą zbliżone do zera. Błąd statyczny własny, wynikający z dryftu zera spowodowanego zmianą temperatury otoczenia, zgodnie z równaniem~\eqref{eq:out_cont_err_env_self} opisać można jako:
 \begin{equation}
 e_{b,sw} \emb{t} = f_{b,z} \left( \vartheta \emb{t} \right) \label{eq:sym_partb_err_sw}.
 \end{equation}
@@ -502,8 +502,8 @@ gdzie $c_{b,rp,1} = c_{a,rw} = c_{u} = \num{1.65}$ oraz $c_{b,rp,2} = c_{a,rp} =
 \makecaption{tab:sym_partb_params_unc_list}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego, gdzie (a)~oznacza przetwornik pomiarowy oraz (b)~oznacza wzmacniacz pomiarowy}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
-1  & ${b,sp}$       & 11.52 &  36.75  & trójkątny                    & dryf temperatury (a)                       \\ \hline
-2  & ${b,sw}$       & 8.15  &  18.38  & trójkątny                    & dryf temperatury (b)                       \\ \hline
+1  & ${b,sp}$       & 11.52 &  36.75  & trójkątny                    & dryft temperatury (a)                       \\ \hline
+2  & ${b,sw}$       & 8.15  &  18.38  & trójkątny                    & dryft temperatury (b)                       \\ \hline
 3  & ${b,rp,1}$     & 9.93  &  36.26  & jednostajny                  & nieliniowość obiektu (a)                   \\ \hline
 4  & ${b,rp,2}$     & 16.70 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
 5  & ${b,dp,1}$     & 6.21  &  19.14  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-4}
@@ -516,7 +516,7 @@ gdzie $c_{b,rp,1} = c_{a,rw} = c_{u} = \num{1.65}$ oraz $c_{b,rp,2} = c_{a,rp} =
 \end{center}
 \end{table}
 
-Dla źródeł błędów wymienionych w budżecie niepewności, zestawionym w tabeli~\ref{tab:sym_partb_params_unc_list}, konieczne jest określenie wzajemnych korelacji pomiędzy sygnałami błędów. Należy zauważyć, że składowe związane z dryfem temperaturowym przetwornika pomiarowego oraz dryfem temperaturowym wzmacniacza zależą od tej samej wielkości fizycznej -- temperatury otoczenia. Jako, że wymienione sygnały błędów nie zależą od żadnej innej wielkości, a dodatkowo równania~\eqref{eq:sym_parta_stat_err} oraz~\eqref{eq:sym_partb_temp_err} cechują się dodatnią czułością względem tej wielkości, można założyć pełną dodatnią korelacje analizowanych sygnałów błędów, zatem $r_{b,sw,b,sp} = r_{b,sp,b,sw} = 1$. W przypadku kolejnych harmonicznych sygnałów błędów dynamicznych wartość współczynnika korelacji tych składowych może być obliczona zgodnie z równaniem~\eqref{eq:dyn_corr}. Można zauważyć, że wartość tego współczynnika dla par składowych o różnej pulsacji każdorazowo wyniesie zero. W przypadku par harmonicznych sygnałów błędów dynamicznych o identycznej pulsacji, na podstawie danych zawartych w tabelach~\ref{tab:sym_partb_params_dyn_self} oraz~\ref{tab:sym_partb_params_dyn_prop}, zauważyć można, że współczynnik korelacji zbliżony będzie od jedności, ze względu na zbliżoną do zera różnicę w fazach tych sygnałów. W przypadku pozostałych par sygnałów wartości współczynników korelacji będą zerowe.
+Dla źródeł błędów wymienionych w budżecie niepewności, zestawionym w tabeli~\ref{tab:sym_partb_params_unc_list}, konieczne jest określenie wzajemnych korelacji pomiędzy sygnałami błędów. Należy zauważyć, że składowe związane z dryftem temperaturowym przetwornika pomiarowego oraz dryftem temperaturowym wzmacniacza zależą od tej samej wielkości fizycznej -- temperatury otoczenia. Jako, że wymienione sygnały błędów nie zależą od żadnej innej wielkości, a dodatkowo równania~\eqref{eq:sym_parta_stat_err} oraz~\eqref{eq:sym_partb_temp_err} cechują się dodatnią czułością względem tej wielkości, można założyć pełną dodatnią korelacje analizowanych sygnałów błędów, zatem $r_{b,sw,b,sp} = r_{b,sp,b,sw} = 1$. W przypadku kolejnych harmonicznych sygnałów błędów dynamicznych wartość współczynnika korelacji tych składowych może być obliczona zgodnie z równaniem~\eqref{eq:dyn_corr}. Można zauważyć, że wartość tego współczynnika dla par składowych o różnej pulsacji każdorazowo wyniesie zero. W przypadku par harmonicznych sygnałów błędów dynamicznych o identycznej pulsacji, na podstawie danych zawartych w tabelach~\ref{tab:sym_partb_params_dyn_self} oraz~\ref{tab:sym_partb_params_dyn_prop}, zauważyć można, że współczynnik korelacji zbliżony będzie od jedności, ze względu na zbliżoną do zera różnicę w fazach tych sygnałów. W przypadku pozostałych par sygnałów wartości współczynników korelacji będą zerowe.
 
 Biorąc pod uwagę przedstawione informacje na temat istniejących korelacji pomiędzy analizowanymi sygnałami błędów należy zauważyć, że zastosowanie opisanej równaniem~\eqref{eq:unc_matrix} metody wyznaczania wypadkowej wartości niepewności rozszerzonej nie będzie możliwe dla wartości współczynników koherencji wyznaczanych zgodnie z równaniem~\eqref{eq:unc_coher}. Ograniczenie to wynika z faktu, że opisane w równaniach~\eqref{eq:unc_cohercorra} oraz~\eqref{eq:unc_cohercorrb} korekty nie są odpowiednie dla sytuacji, gdzie pomiędzy analizowanymi sygnałami występuje korelacja. Proponuje się zatem, w celu umożliwienia zastosowania przedstawionej metody analizy, wyznaczenie wypadkowych parametrów wariancji i niepewności rozszerzonych dla skorelowanych grup sygnałów. Jako, że zaproponowana operacja prowadzi do redukcji liczby analizowanych sygnałów błędów poprzez wprowadzenie wypadkowych sygnałów dla analizowanych grup, proponuje się równolegle określić budżet niepewności dla rozważanego fragmentu toru pomiarowego, który zorientowany będzie pod kątem charakteru realizacji wymienionych w nim sygnałów.
 
@@ -640,7 +640,7 @@ Korzystając zależności przedstawionych równaniami od~\eqref{eq:sym_partb_sta
 \makecaption{tab:sym_partb_params_unc_sum}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego uwzględniający wypadkowe parametry sygnałów błędów}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
-1 & ${b,s}$        & 19.67 &  107.12 & trójkątny                    & wypadkowy dryf temperatury                 \\ \hline
+1 & ${b,s}$        & 19.67 &  107.12 & trójkątny                    & wypadkowy dryft temperatury                 \\ \hline
 2 & ${b,r}$        & 20.43 &  108.90 & normalny                     & szum i nieliniowość obiektu                \\ \hline
 3 & ${b,d,1}$      & 9.20  &  42.60  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{wypadkowa transmitancja}   \\ \cline{1-4}
 4 & ${b,d,2}$      & 23.01 &  266.34 &                              &                                            \\ \cline{1-4}
@@ -706,8 +706,8 @@ a zatem zachowają one swoje oryginalne parametry. Na podstawie przedstawionych 
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
 1  & ${c,rw,q}$     & 11.16 &  45.78  & jednostajny                  & proces kwantowania (c)                     \\ \hline
-2  & ${c,sp,1}$     & 11.52 &  36.75  & trójkątny                    & dryf temperatury (a)                       \\ \hline
-3  & ${c,sp,2}$     & 8.15  &  18.38  & trójkątny                    & dryf temperatury (b)                       \\ \hline
+2  & ${c,sp,1}$     & 11.52 &  36.75  & trójkątny                    & dryft temperatury (a)                       \\ \hline
+3  & ${c,sp,2}$     & 8.15  &  18.38  & trójkątny                    & dryft temperatury (b)                       \\ \hline
 4  & ${c,rp,1}$     & 9.93  &  36.26  & jednostajny                  & nieliniowość obiektu (a)                   \\ \hline
 5  & ${c,rp,2}$     & 16.70 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
 6  & ${c,dp,a,1}$   & 6.21  &  19.14  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-4}
@@ -764,7 +764,7 @@ Na podstawie wyznaczonej w równaniu~\eqref{eq:sym_partc_rand_factor} wartości 
 \makecaption{tab:sym_partc_params_unc_sum}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego z uwzględnieniem podziału na wypadkowe sygnały błędów statycznych, dynamicznych oraz losowych}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
-1 & ${c,s}$        & 19.67 &  107.12 & trójkątny                    & wypadkowy dryf temperatury                 \\ \hline
+1 & ${c,s}$        & 19.67 &  107.12 & trójkątny                    & wypadkowy dryft temperatury                 \\ \hline
 2 & ${c,r}$        & 24.53 &  154.68 & normalny                     & szum, nieliniowość, konwersja              \\ \hline
 3 & ${c,d,1}$      & 9.20  &  42.60  & \multirow{3}{*}{dwumodalny}  & \multirow{3}{*}{wypadkowa transmitancja}   \\ \cline{1-4}
 4 & ${c,d,2}$      & 23.01 &  266.34 &                              &                                            \\ \cline{1-4}
@@ -1078,7 +1078,7 @@ Na podstawie powyższych rozważań, w tabelach~\ref{tab:sym_partd_params_unc_su
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 4.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
 1 & ${z}$                      & 2.13  &  0.99    & zaokrągleń   & operacje zmiennoprzecinkowe    \\ \hline
-2 & ${s}$                      & 39.31 &  428.04  & trójkątny    & wypadkowy dryf temperatury     \\ \hline
+2 & ${s}$                      & 39.31 &  428.04  & trójkątny    & wypadkowy dryft temperatury     \\ \hline
 3 & ${r}$                      & 24.38 &  154.68  & normalny     & szum, nieliniowość, konwersja  \\ \hline
 4 & ${d}$                      & 49.89 &  880.66  & nieokreślony & wypadkowa transmitancja        \\ \hline
 \multicolumn{2}{|c|}{$\Sigma$} & 74.00 &  1464.80 & normalny*    & błąd wypadkowy                 \\ \hline
@@ -1092,7 +1092,7 @@ Na podstawie powyższych rozważań, w tabelach~\ref{tab:sym_partd_params_unc_su
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
 1 & ${z}$                      & 1.81  &  0.70    & zaokrągleń   & operacje zmiennoprzecinkowe    \\ \hline
-2 & ${s}$                      & 0.00  &  0.00    & nieokreślony & wypadkowy dryf temperatury     \\ \hline
+2 & ${s}$                      & 0.00  &  0.00    & nieokreślony & wypadkowy dryft temperatury     \\ \hline
 3 & ${r}$                      & 24.38 &  154.68  & normalny     & szum, nieliniowość, konwersja  \\ \hline
 4 & ${d}$                      & 30.84 &  427.37  & nieokreślony & wypadkowa transmitancja        \\ \hline
 \multicolumn{2}{|c|}{$\Sigma$} & 43.61 &  582.68  & nieokreślony & błąd wypadkowy                 \\ \hline
@@ -1153,8 +1153,8 @@ Identyczną analizę wykonano wykorzystując budżet niepewności zestawiony w t
 2  & ${rp,q}$     & 13.26 &  45.78  & normalny                     & proces kwantowania (c)                     \\ \hline
 3  & ${rp,1}$     & 11.80 &  36.26  & normalny                     & nieliniowość obiektu (a)                   \\ \hline
 4  & ${rp,2}$     & 16.70 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
-5  & ${sp,1}$     & 23.04 &  147.00 & trójkątny                    & dryf temperatury (a)                       \\ \hline
-6  & ${sp,2}$     & 16.29 &  73.52  & trójkątny                    & dryf temperatury (b)                       \\ \hline
+5  & ${sp,1}$     & 23.04 &  147.00 & trójkątny                    & dryft temperatury (a)                       \\ \hline
+6  & ${sp,2}$     & 16.29 &  73.52  & trójkątny                    & dryft temperatury (b)                       \\ \hline
 7  & ${dp,a,1}$   & 12.32 &  76.40  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-4}
 8  & ${dp,a,2}$   & 25.08 &  316.38 &                              &                                            \\ \cline{1-4}
 9  & ${dp,a,3}$   & 2.35  &  2.77   &                              &                                            \\ \cline{1-4} \cline{6-6}
@@ -1174,8 +1174,8 @@ Identyczną analizę wykonano wykorzystując budżet niepewności zestawiony w t
 2  & ${rp,q}$     & 13.26 &  45.78  & normalny                     & proces kwantowania (c)                     \\ \hline
 3  & ${rp,1}$     & 11.80 &  36.26  & normalny                     & nieliniowość obiektu (a)                   \\ \hline
 4  & ${rp,2}$     & 16.71 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
-5  & ${sp,1}$     & 0.00  &  0.00   & trójkątny                    & dryf temperatury (a)                       \\ \hline
-6  & ${sp,2}$     & 0.00  &  0.00   & trójkątny                    & dryf temperatury (b)                       \\ \hline
+5  & ${sp,1}$     & 0.00  &  0.00   & trójkątny                    & dryft temperatury (a)                       \\ \hline
+6  & ${sp,2}$     & 0.00  &  0.00   & trójkątny                    & dryft temperatury (b)                       \\ \hline
 7  & ${dp,a,1}$   & 0.06  &  0.00   & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-4}
 8  & ${dp,a,2}$   & 3.77  &  7.13   &                              &                                            \\ \cline{1-4}
 9  & ${dp,a,3}$   & 19.16 &  184.65 &                              &                                            \\ \cline{1-4} \cline{6-6}
