@@ -23,14 +23,20 @@ while [ "$1" != "" ]; do
 
 	case $PARAM in
 
-		-fd | --full-diff)
-			STY_DIFF="fdiff.sty"
+		-cd | --comment-diff)
+			STY_DIFF="comment.sty"
 			VER_DIFF=$VALUE
 			DO_DIFF=true
 			;;
-			
+
+		-dd | --detail-diff)
+			STY_DIFF="detail.sty"
+			VER_DIFF=$VALUE
+			DO_DIFF=true
+			;;
+
 		-sd | --short-diff)
-			STY_DIFF="sdiff.sty"
+			STY_DIFF="short.sty"
 			VER_DIFF=$VALUE
 			DO_DIFF=true
 			;;

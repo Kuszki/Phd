@@ -1,0 +1,38 @@
+\RequirePackage[normalem]{ulem}
+\RequirePackage{color}
+\RequirePackage{zref}
+
+\makeatletter
+\let\oldlabel\label
+\renewcommand{\label}[1]{\zref@wrapper@immediate{\oldlabel{#1}}}
+\makeatother
+
+\newbool{DIFkeeppage}\boolfalse{DIFkeeppage}
+\newbool{DIFchange}\boolfalse{DIFchange}
+
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}}
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}
+
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}}
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}}
+
+\providecommand{\DIFaddbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}\ignorespaces}{}}
+\providecommand{\DIFaddend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}\ignorespaces}{}}
+\providecommand{\DIFdelbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}\ignorespaces}{}}
+\providecommand{\DIFdelend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}\ignorespaces}{}}
+\providecommand{\DIFmodbegin}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\booltrue{DIFchange}\ignorespaces}{}}
+\providecommand{\DIFmodend}{\texorpdfstring{\global\booltrue{DIFkeeppage}\global\boolfalse{DIFchange}\ignorespaces}{}}
+
+\providecommand{\DIFaddbeginFL}{\texorpdfstring{\ignorespaces}{}}
+\providecommand{\DIFaddendFL}{\texorpdfstring{\ignorespaces}{}}
+\providecommand{\DIFdelbeginFL}{\texorpdfstring{\ignorespaces}{}}
+\providecommand{\DIFdelendFL}{\texorpdfstring{\ignorespaces}{}}
+
+\AtBeginShipout{
+	\ifbool{DIFkeeppage}
+		{\global\boolfalse{DIFkeeppage}}
+		{\ifbool{DIFchange}
+			{\global\boolfalse{DIFkeeppage}}
+			{\global\boolfalse{DIFkeeppage}\AtBeginShipoutDiscard}
+		}
+}
