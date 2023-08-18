@@ -99,8 +99,9 @@ fi
 
 [ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua thesis.tex
 [ $DO_DIFF == true ] && CLSI=1 run git-latexdiff --main thesis.tex --output budowa/diff.pdf \
-						--prepare "$0 -c -s -q" --preamble="$CURR_PATH/style/$STY_DIFF.sty" \
 						--latexopt "--shell-escape -f -pdflua -usepretex=$VER_CMD" \
+						--prepare "$0 --convert --skip --quiet || exit 0" \
+						--preamble="$CURR_PATH/style/$STY_DIFF.sty" \
 						--graphics-markup="none" --math-markup="coarse" \
 						--packages="hyperref,biblatex" --encoding="utf8" \
 						--latexdiff-flatten --latexmk -- "$VER_DIFF"
