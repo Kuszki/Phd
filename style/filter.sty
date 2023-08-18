@@ -2,6 +2,8 @@
 \RequirePackage{color}
 \RequirePackage{zref}
 
+\fancyhead[ER]{\nouppercase{\small Zmiany dla wersji \DIFrevdesc}}
+
 \makeatletter
 \let\oldlabel\label
 \renewcommand{\label}[1]{\zref@wrapper@immediate{\oldlabel{#1}}}
