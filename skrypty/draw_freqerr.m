@@ -1,9 +1,21 @@
 clear
+h = figure;
 
 pkg load communications
 pkg load ltfat
 pkg load parallel
 pkg load optim
+
+set(h, "paperunits", "centimeters")
+set(h, "papersize", [16 11.3*2/3])
+set(h, "paperposition", [0, 0, [16 11.3*2/3]])
+
+set(0, "defaultaxesposition", [0.085, 0.125, 0.820, 0.835])
+set(0, "defaultaxesfontsize", 11)
+set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontname", "Latin Modern Roman")
+set(0, "defaultaxesfontname", "Latin Modern Roman")
+set(0, "defaulttextcolor", "black")
 
 addpath("../biblioteki");
 
@@ -68,32 +80,27 @@ for j = 1 : length(dat)
 	[uc_c, cc_c, sc_c, wc_c, hm_c] = get_unccalc(uv, cv);
 	dc_c = 100*(uc_c-u)/u;
 
-	[a, p, u_d, w_d, vx, vy] = get_dynparams([amp0 amp0 -e_d], [pi get_filter_phi(o) get_filter_phi(o)]);
-	uv = [u_s, sqrt(u_rw^2 + u_rab^2), u_d*k];
-	[uc_b, cc_b, sc_b, wc_b, hm_b] = get_unccalc(uv, cv);
-
-	[a, p, u_d, w_d, vx, vy] = get_dynparams([amp0 amp0 e_d], [pi get_filter_phi(o) get_filter_phi(o)]);
-	uv = [u_s, sqrt(u_rw^2 + u_rab^2), u_d*k];
-	[uc_a, cc_a, sc_a, wc_a, hm_a] = get_unccalc(uv, cv);
-
-	uc_ab = max(uc_a, uc_b);
-	wc_ab = max(wc_a, wc_b);
-	dc_ab = 100*(uc_ab-u)/u;
-
-	printf("%d\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%0.2f\t&\t%+0.2f\t&\t%+0.2f\t\\\\ \\hline\n", f, wc_ab, wc_c, w, uc_ab, uc_c, u, dc_ab, dc_c);
-
 	freq(i) = f;
 	vars(i) = w;
-	du_ab(i) = dc_ab;
 	du_c(i) = dc_c;
-
-#	hist(difs, 100, 100)
-#	pause
 
 end
 
-printf("\\multicolumn{7}{|c|}{Średnia wartości bezwzględnych wielkości $\\delta_{*}$}\t\t\t\t&\t%0.2f\t&\t%0.2f\t\\\\ \\hline\n", mean(abs(du_ab)), mean(abs(du_c)));
+afrq = linspace(0, max(freq), 128);
+amps = freqz(A, [], afrq, 48000);
+amps = abs(amps);
 
-mn_d = mean(abs(du_c))
-st_d = std(abs(du_c))
+[ax, h1, h2] = plotyy(afrq, amps, freq, du_c);
+xlabel("Częstotliwość, Hz");
+ylabel(ax(1), "Wartość wzmocnienia, V/V");
+ylabel(ax(2), "Względny błąd oszacowania, %");
+legend("Wzmocnienie", "Błąd", "location", 'northeast', 'orientation', 'horizontal')
+grid on;
+box on;
+
+set(ax, "ycolor", "black");
+set(h2, "marker", "x");
+set(h2, "linestyle", "none");
+
+print("../obrazki/mono_freqcomp.svg", "-svgconvert", "-r300");
 

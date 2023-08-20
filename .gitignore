@@ -3,5 +3,7 @@ archiwa/*
 budowa/*
 
 *.pdf
+*.svg
+
 *.aux
 *.log
