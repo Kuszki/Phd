@@ -88,17 +88,7 @@ done
 [ "$VER_DIFF" == "HEAD" ] && VER_CMD="\\def\\DIFrevdesc{$CURR_REV}" \
                           || VER_CMD="\\def\\DIFrevdesc{$VER_DIFF/$CURR_REV}"
 
-if $DO_OCTAVE; then
-
-	cd "$CURR_PATH/skrypty"
-
-	for i in draw_*.m; do
-		run octave "$i"
-	done
-
-	cd "$CURR_PATH"
-
-fi
+if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; fi
 
 [ $DO_CONVERT == true ] && run libreoffice --convert-to pdf obrazki/*.odg --outdir obrazki
 [ $DO_CONVERT == true ] && run inkscape -D obrazki/*.svg --export-type pdf
