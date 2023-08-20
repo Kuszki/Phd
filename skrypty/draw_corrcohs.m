@@ -25,7 +25,7 @@ set(0, "defaulttextcolor", "black")
 hold on;
 for i = 1 : length(list)
 
-	x = load("-ascii", sprintf("../archiwa/corrs/cor_%s.txt", list(i)));
+	x = load("-ascii", sprintf("../pomiary/cor/%s.txt", list(i)));
 	plot(x(:,1), x(:,2), sprintf(";\\it%s;", list(i)));
 
 end
