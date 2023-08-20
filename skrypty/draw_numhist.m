@@ -5,7 +5,8 @@ pkg load communications
 pkg load ltfat
 pkg load parallel
 
-addpath("~/Projekty/Octave-FWT-Utils")
+addpath("~/Projekty/Octave-FWT-Utils");
+load("../archiwa/f16_coif5_hist.dat");
 
 dim = "-r300";
 
@@ -25,11 +26,10 @@ set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
-x = load("-ascii", "../archiwa/fwterr/f16_coif5_6_2048.dat");
-[u, c, s, w] = get_uncertainty(x)
+[u, c, s, w] = get_uncertainty(x1)
 
 subplot(2, 2, 1)
-hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
+hist(x1, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(strrep(sprintf("a) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
@@ -39,11 +39,10 @@ set_comma(gca, 'XY');
 grid on;
 box on;
 
-x = load("-ascii", "../archiwa/fwterr/f16_coif5_6_256.dat");
-[u, c, s, w] = get_uncertainty(x)
+[u, c, s, w] = get_uncertainty(x2)
 
 subplot(2, 2, 2)
-hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
+hist(x2, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(strrep(sprintf("b) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
@@ -53,11 +52,10 @@ set_comma(gca, 'XY');
 grid on;
 box on;
 
-x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_2048.dat");
-[u, c, s, w] = get_uncertainty(x)
+[u, c, s, w] = get_uncertainty(x3)
 
 subplot(2, 2, 3)
-hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
+hist(x3, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(strrep(sprintf("\nc) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");
@@ -67,11 +65,10 @@ set_comma(gca, 'XY');
 grid on;
 box on;
 
-x = load("-ascii", "../archiwa/fwterr/f32_coif5_6_256.dat");
-[u, c, s, w] = get_uncertainty(x)
+[u, c, s, w] = get_uncertainty(x4)
 
 subplot(2, 2, 4)
-hist(x, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
+hist(x4, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
 title(strrep(sprintf("\nd) \\rm\\it N{\\rm = 2^{11}}, U{\\rm = %0.2e}, c{\\rm = %1.2f}", u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu");

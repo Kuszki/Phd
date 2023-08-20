@@ -24,8 +24,8 @@ set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
-m = load('-ascii', '../archiwa/fwterr/rerror_coif5_fun.dat');
-v = load('-ascii', '../archiwa/fwterr/rerror_coif5_plot.dat');
+m = load('-ascii', '../archiwa/rerror_coif5_fun.dat');
+v = load('-ascii', '../archiwa/rerror_coif5_plot.dat');
 c = lines(rows(m));
 p = '+x*+x*';
 pl = length(p);
