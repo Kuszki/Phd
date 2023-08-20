@@ -80,13 +80,16 @@ while [ "$1" != "" ]; do
 
 done
 
-[ $DO_BUILD == true ] && [ $DO_REMOVE == true ] && DO_CONVERT=true && DO_OCTAVE=true
-[ $DO_REMOVE == true ] && run rm budowa/* obrazki/*.svg obrazki/*.pdf
-
 [ "$VER_DIFF" == "" ] && VER_DIFF="HEAD" || VER_DIFF=${VER_DIFF:0:6}
 
 [ "$VER_DIFF" == "HEAD" ] && VER_CMD="\\def\\DIFrevdesc{$CURR_REV}" \
                           || VER_CMD="\\def\\DIFrevdesc{$VER_DIFF/$CURR_REV}"
+
+[ $DO_REMOVE == true ] && run rm budowa/* obrazki/*.svg obrazki/*.pdf
+
+[ $DO_BUILD == true ] && [ $(ls obrazki/*.svg 2> /dev/null | wc -l) -eq 0 ] && DO_OCTAVE=true && DO_CONVERT=true
+[ $DO_BUILD == true ] && [ $(ls obrazki/*.pdf 2> /dev/null | wc -l) -eq 0 ] && DO_CONVERT=true
+[ $DO_BUILD == true ] && [ $DO_REMOVE == true ] && DO_CONVERT=true && DO_OCTAVE=true
 
 if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; fi
 
