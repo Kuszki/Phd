@@ -53,11 +53,12 @@
 \DeclareSIUnit\degreeCelsius{\char"2103}
 
 \babelprovide[transforms = oneletter.nobreak]{polish}
+\babelprovide[justification = unhyphenated]{polish}
 \hypersetup{hidelinks}
 
-\titleformat{name=\chapter, numberless}[block]{\normalfont\bfseries}{}{0pt}{\Huge}
-\titleformat{name=\chapter}[block]{\normalfont\bfseries}{}{0pt}{\Huge\thechapter.~}
-\titleformat{name=\section}[block]{\normalfont\bfseries}{}{0pt}{\Large\thesection.~}
+\titleformat{name = \chapter, numberless}[block]{\normalfont\bfseries\huge}{}{0pt}{}
+\titleformat{name = \chapter}[block]{\normalfont\bfseries\huge}{}{0pt}{\thechapter.~}
+\titleformat{name = \section}[block]{\normalfont\bfseries\large}{}{0pt}{\thesection.~}
 
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % for chapters
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % for sections
@@ -189,13 +190,6 @@
 
 % to allow break long gathers
 \allowdisplaybreaks[1]
-% --------------------
-
-% to avoid line breaks
-\emergencystretch=\maxdimen
-\hyphenpenalty=10000
-\hbadness=10000
-\tolerance=1
 % --------------------
 
 % to avoid widows and clubs

@@ -58,7 +58,7 @@ Zaproponowany dotychczas podział sygnałów błędów, wynikający z charakteru
 
 Ostateczne przypisanie sygnału błędu do odpowiedniej dla niego kategorii będzie uwzględniało charakter tego błędu oraz genezę jego powstania określaną z punktu widzenia analizowanego fragmentu toru pomiarowego.
 
-\section{Model błędów części analogowej}
+\section{Model błędów części analogowej toru pomiarowego}
 
 Zgodnie z poprzednimi założeniami, aby ujednolicić analizę pojedynczego fragmentu części analogowej toru pomiarowego, element ten można przedstawić za pomocą transmitancji odpowiadającej właściwościom dynamicznym oraz odpowiedniej dla niego funkcji przetwarzania. Na rysunku~\ref{fig:chain_cont} przedstawiono schemat fragmentu części analogowej toru pomiarowego, którego kompletny schemat został przedstawiony na rysunku~\ref{fig:chain_trans}. W dalszej części podrozdziału zakłada się, że analizowany fragment toru pomiarowego przetwarza ciągły w czasie sygnał $s(t)$, opisany we wstępie rozdziału równaniami od~\eqref{eq:in_cont_sum_ideal} do~\eqref{eq:in_cont_sum_real}, na sygnał wyjściowy $y(t)$. Dodatkowo przyjmuje się, że funkcja $f_{y}(x)$ stanowi równanie przetwarzania opisywanego obiektu, natomiast transmitancja obiektu oznaczona symbolem $G_{y}(j\omega)$ jest liniowa i niezależna od czasu.
 
@@ -226,7 +226,7 @@ przy czym $e_{AC,rp}(i)$ stanowi propagowany sygnał błędu losowego, natomiast
 
 Należy zauważyć, że rzeczywisty przetwornik analogowo-cyfrowy wprowadzać będzie do sygnału wyjściowego dodatkowe błędy związane między innymi z nieliniowością charakterystyki przetwarzania, przesunięciem tej charakterystyki, niedoskonałością źródła napięcia referencyjnego, impedancją wejściową układu próbkująco-pamiętającego, niejednorodnością właściwości wzorca, czy wpływem czynników zewnętrznych. Dodatkowo sygnały błędów na wyjściu takiego przetwornika mogą być skorelowane z wielkością wejściową oraz sygnałem szumu zawartym w tej wielkości, przy czym zwykle korelacja ta jest pomijalnie mała~\cite{sienkowski_adc}. Analizę właściwości wybranych przetworników cyfrowo-analogowych przedstawiają szczegółowo między innymi prace~\cite{jakubiec_przetwarzanie, jakubiec_system, sienkowski_adc, sienkowski_kwant, arpaia_deltasigma}. Należy zatem określić budżet niepewności dla zastosowanego w torze pomiarowym przetwornika, a następnie na jego podstawie zdefiniować dokładną postać składników równań~\eqref{eq:adc_outerr} oraz~\eqref{eq:adc_rerr}.
 
-\section{Model błędów części cyfrowej}
+\section{Model błędów części cyfrowej toru pomiarowego}
 
 Opis właściwości metrologicznych części cyfrowej toru pomiarowego może być wykonany w sposób analogiczny, jak w przypadku części analogowej. Transmitancję części cyfrowej wyrazić można odpowiednią dla opisu dyskretnych obiektów transmitancją $H_{X}(z)$, przy czym zakłada się, że transmitancja ta jest liniowa oraz niezmienna w czasie. Związaną z właściwościami statycznymi funkcję przetwarzania oznaczyć można symbolem $f_{X}(x)$, natomiast ciągłą zmienną $t$ reprezentującą czas należy zastąpić zmienną $i$, oznaczającą numer próbki sygnału, przy czym $i \in \mathbb{N}$. Schemat blokowy cyfrowej części toru pomiarowego przedstawiono na rysunku~\ref{fig:chain_disc}. Przykładem omawianego obiektu może być filtr cyfrowy lub dowolny algorytm jednopunktowy realizujący odtwarzanie statyczne bądź dynamiczne spełniający podane założenia.
 
