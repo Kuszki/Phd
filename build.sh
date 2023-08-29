@@ -105,4 +105,5 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 						--packages="hyperref,biblatex" --encoding="utf8" \
 						--latexdiff-flatten --latexmk -- "$VER_DIFF"
 
+rm thesis*.aux
 exit 0
