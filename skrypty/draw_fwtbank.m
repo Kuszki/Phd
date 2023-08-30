@@ -169,4 +169,3 @@ grid on;
 box on;
 
 print("../obrazki/bank_dden_demo.svg", "-svgconvert", dim);
-

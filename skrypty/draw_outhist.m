@@ -14,7 +14,7 @@ lims = [ ...
 	0.8 1.0 1.4 1.2; ...
 	0.8 1.0 1.4 1.0; ...
 	0.5 1.2 0.5 1.2; ...
-	1e1 1.2 1.2 0.8; ...
+	8e0 1.2 1.2 0.8; ...
 	0.8 1.2 1.4 1.0; ...
 ]
 
@@ -58,7 +58,7 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
+title(strrep(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 ylim([0 lims(j,pos)]);
@@ -78,7 +78,7 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
+title(strrep(sprintf("%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 ylim([0 lims(j,pos)]);
@@ -98,7 +98,7 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
+title(strrep(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 ylim([0 lims(j,pos)]);
@@ -118,7 +118,7 @@ errs = errs * 1000;
 
 subplot(nr, nc, pos)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}\n", char('a'+pos-1), u, c), '.', ','));
+title(strrep(sprintf("\n%s) \\rm\\it U{\\rm = %0.2f mV}, c{\\rm = %1.2f}", char('a'+pos-1), u, c), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, mV");
 ylim([0 lims(j,pos)]);

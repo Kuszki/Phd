@@ -2,7 +2,7 @@
 
 run() {
 	if $DO_QUIET; then
-		"$@" &>/dev/null
+		"$@" &> /dev/null
 	else
 		"$@"
 	fi
@@ -85,7 +85,7 @@ done
 [ "$VER_DIFF" == "HEAD" ] && VER_CMD="\\def\\DIFrevdesc{$CURR_REV}" \
                           || VER_CMD="\\def\\DIFrevdesc{$VER_DIFF/$CURR_REV}"
 
-[ $DO_REMOVE == true ] && run rm budowa/* obrazki/*.svg obrazki/*.pdf
+[ $DO_REMOVE == true ] && rm budowa/* obrazki/*.svg obrazki/*.pdf &> /dev/null
 
 [ $DO_BUILD == true ] && [ $(ls obrazki/*.svg 2> /dev/null | wc -l) -eq 0 ] && DO_OCTAVE=true && DO_CONVERT=true
 [ $DO_BUILD == true ] && [ $(ls obrazki/*.pdf 2> /dev/null | wc -l) -eq 0 ] && DO_CONVERT=true
@@ -105,5 +105,5 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 						--packages="hyperref,biblatex" --encoding="utf8" \
 						--latexdiff-flatten --latexmk -- "$VER_DIFF"
 
-rm thesis*.aux
+rm thesis*.aux &> /dev/null
 exit 0

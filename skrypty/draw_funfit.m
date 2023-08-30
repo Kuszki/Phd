@@ -98,15 +98,15 @@ grid on;
 box on;
 
 subplot(1, 2, 2)
-hist(data, 300, 100, "facecolor", fcolor, "edgecolor", ecolor);
-title(strrep(sprintf("\\rm{\\itU_{x,rw}} = %1.3g, {\\itc_{x,rw}} = %1.2f", uq, cq), '.', ','));
+hist(data, 175, 100, "facecolor", fcolor, "edgecolor", ecolor);
+title(strrep(sprintf("\\rm{\\itU} = %1.3g LSB, {\\itc} = %1.2f", uq, cq), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, LSB");
-xlim([-4 4]);
-ylim([0 4]);
+xticks([-3 -1.5 0 1.5 3]);
+xlim([-3 3]);
+ylim([0 5]);
 set_comma(gca, 'XY');
 grid on;
 box on;
 
 print("../obrazki/static_adcout.svg", "-svgconvert", "-r300");
-
