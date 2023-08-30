@@ -79,4 +79,3 @@ grid on;
 box on;
 
 print("../obrazki/hist_numerr_coif5.svg", "-svgconvert", dim);
-

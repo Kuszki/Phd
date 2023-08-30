@@ -86,4 +86,3 @@ grid on;
 box on;
 
 print("../obrazki/hist_reductive.svg", "-svgconvert", dim);
-

@@ -103,4 +103,3 @@ set(h2, "marker", "x");
 set(h2, "linestyle", "none");
 
 print("../obrazki/mono_freqcomp.svg", "-svgconvert", "-r300");
-

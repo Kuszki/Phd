@@ -57,4 +57,3 @@ for i = 1 : length(list)
 end
 
 print("../obrazki/shapes.svg", "-svgconvert", dim);
-

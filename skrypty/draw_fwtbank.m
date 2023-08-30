@@ -47,7 +47,7 @@ box on;
 [g,a] = wfbt2filterbank({'db2', 6, 'dwt'});
 subplot(2, 2, 3)
 filterbankfreqz(g, a, 2048, 'linabs', 'posfreq', 'plot', 'inf', 'flog');
-title("c) \\rm falka db2, 6 iteracji");
+title("\nc) \\rm falka db2, 6 iteracji");
 ylabel("Wzmocnienie");
 xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1]);
@@ -59,7 +59,7 @@ box on;
 [g,a] = wfbt2filterbank({'db8', 6, 'dwt'});
 subplot(2, 2, 4)
 filterbankfreqz(g, a, 2048, 'linabs', 'posfreq', 'plot', 'inf', 'flog');
-title("d) \\rm falka db8, 6 iteracji");
+title("\nd) \\rm falka db8, 6 iteracji");
 ylabel("Wzmocnienie");
 xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1]);
@@ -97,7 +97,7 @@ box on;
 [g,a] = wfbt2filterbank({'ana:spline2:4', 6, 'dwt'});
 subplot(2, 2, 3)
 filterbankfreqz(g, a, 2048, 'linabs', 'posfreq', 'plot', 'inf', 'flog');
-title("c) \\rm falka spline2:4, 6 iteracji");
+title("\nc) \\rm falka spline2:4, 6 iteracji");
 ylabel("Wzmocnienie");
 xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1]);
@@ -109,7 +109,7 @@ box on;
 [g,a] = wfbt2filterbank({'ana:spline4:4', 6, 'dwt'});
 subplot(2, 2, 4)
 filterbankfreqz(g, a, 2048, 'linabs', 'posfreq', 'plot', 'inf', 'flog');
-title("d) \\rm falka spline4:4, 6 iteracji");
+title("\nd) \\rm falka spline4:4, 6 iteracji");
 ylabel("Wzmocnienie");
 xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1]);
@@ -147,7 +147,7 @@ box on;
 [g,a] = wfbt2filterbank({'dden2', 6, 'dwt'});
 subplot(2, 2, 3)
 filterbankfreqz(g, a, 2048, 'linabs', 'posfreq', 'plot', 'inf', 'flog');
-title("c) \\rm falka dden2, 6 iteracji");
+title("\nc) \\rm falka dden2, 6 iteracji");
 ylabel("Wzmocnienie");
 xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1]);
@@ -159,7 +159,7 @@ box on;
 [g,a] = wfbt2filterbank({'dden6', 6, 'dwt'});
 subplot(2, 2, 4)
 filterbankfreqz(g, a, 2048, 'linabs', 'posfreq', 'plot', 'inf', 'flog');
-title("d) \\rm falka dden6, 6 iteracji");
+title("\nd) \\rm falka dden6, 6 iteracji");
 ylabel("Wzmocnienie");
 xlabel("Częstotliwość znormalizowana");
 xlim([0.01 1]);

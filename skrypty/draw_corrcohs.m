@@ -40,4 +40,3 @@ grid on
 box on
 
 print("../obrazki/cohers.svg", "-svgconvert", dim);
-

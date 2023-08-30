@@ -80,4 +80,3 @@ grid on;
 box on;
 
 print("../obrazki/dynamic_ampout.svg", "-svgconvert", "-r300");
-

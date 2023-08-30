@@ -67,4 +67,3 @@ box on;
 set (gca, "yminorgrid", "on");
 
 print("../obrazki/dwt_rerror_coif5.svg", "-svgconvert", dim);
-
