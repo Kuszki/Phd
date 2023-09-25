@@ -32,7 +32,7 @@ przy czym $f_{1} = \qty{1}{kHz}$ jest częstotliwością podstawowej harmoniczne
 
 \section{Analiza przetwornika pomiarowego}
 
-Zastosowany w przykładzie przetwornik pomiarowy przekształca sygnał $s(t)$, związany z mierzoną wielkością fizyczną, na wyjściowy sygnał napięciowy $y_{a}(t)$. Przyjmuje się, że mierzona wielkość zmieniać się może w zakresie $\hat{s}(t) \in~<0;1>$, przy czym czułość przetwornika pomiarowego jest równa $s_{a} = \qty{1}{V \per 1}$, a jego częstotliwość graniczna wynosi $f_{a,g} = \qty{320}{kHz}$. Wobec powyższych, wartość wielkości wyjściowej $y_{a}(t)$ mieści się w przedziale $\hat{y}_{a}(t) \in~<0;1>\unit{V}$. Charakterystyka omawianego obiektu jest zależna od temperatury otoczenia, przy czym temperatura ta nie jest znana.
+Zastosowany przetwornik pomiarowy przekształca sygnał $s(t)$, związany z mierzoną wielkością fizyczną, na wyjściowy sygnał napięciowy $y_{a}(t)$. Przyjęto, że wartości realizacji wielkości mierzonej zawierają się w zakresie $\hat{s}(t) \in~<0;1>$, natomiast czułość przetwornika pomiarowego jest równa $s_{a} = \qty{1}{V \per 1}$, a jego częstotliwość graniczna wynosi $f_{a,g} = \qty{320}{kHz}$. Wobec powyższych, wartości realizacji wielkości wyjściowej $y_{a}(t)$ mieszczą się w przedziale $\hat{y}_{a}(t) \in~<0;1>\unit{V}$. Charakterystyka omawianego obiektu jest zależna od temperatury otoczenia, przy czym temperatura ta nie jest znana.
 
 Stosując zaproponowany model błędów i przedstawione założenia, na podstawie równań~\eqref{eq:out_cont_ideal_all} oraz~\eqref{eq:out_cont_real_all}, opisać można przebieg wielkości wyjściowej $y_{a}(t)$ jako:
 \begin{gather}
@@ -43,7 +43,7 @@ przy czym sygnały błędów zawarte w sygnale błędu wypadkowego $e_{a,\Sigma}
 \begin{equation}
 \dot{f}_{a} \emb{x} = s_{a} x = x \label{eq:sym_parta_statfun}.
 \end{equation}
-Przyjmuje się, że rzeczywista funkcja przetwarzania obiektu $\tilde{f}_{a}(x)$ nie jest znana, natomiast realizacje sygnału błędu $e_{a,zw}(t)$ wynikającego z nieliniowości charakterystyki przyjmują wartości z przedziału $\hat{e}_{a,fw}(t) \in~<-\sqrt{10};\sqrt{10}>\unit{mV}$, a uzyskanie każdej z nich jest jednakowo prawdopodobne. Przyjmuje się, że charakter rozważanego sygnału błędu jest zbliżony do charakteru sygnału błędu kwantowania, zatem błąd ten zaliczyć można do grupy błędów losowych. Wariancję oraz niepewność rozszerzoną, związane z omawianym sygnałem błędu $e_{a,rw}(t) = e_{a,fw}(t)$, wyrazić można w postaci~\cite{jcgm_guide}:
+Przyjmuje się, że rzeczywista funkcja przetwarzania obiektu $\tilde{f}_{a}(x)$ nie jest znana, natomiast realizacje sygnału błędu $e_{a,zw}(t)$ wynikającego z nieliniowości charakterystyki przyjmują wartości z przedziału $\hat{e}_{a,fw}(t) \in~<-\sqrt{10};\sqrt{10}>\unit{mV}$, a uzyskanie każdej z nich jest jednakowo prawdopodobne. Zakłada się, że charakter rozważanego sygnału błędu jest zbliżony do charakteru sygnału błędu kwantowania, zatem błąd ten zaliczyć można do grupy błędów losowych. Wariancję oraz niepewność rozszerzoną, związane z omawianym sygnałem błędu $e_{a,rw}(t) = e_{a,fw}(t)$, wyrazić można w postaci~\cite{jcgm_guide}:
 \begin{gather}
 \sigma_{a,rw}^{2} = \frac{\left( \left( \sqrt{10} \cdot 10^{-3} \right) + \left( \sqrt{10} \cdot 10^{-3} \right) \right)^{2}}{12} = 3 \frac{1}{3}~\unit{\micro V} \label{eq:sym_parta_rand_self_var}, \\
 U_{a,rw} = c_{u} \sigma_{a,rw} = \frac{\num{1.65} \sqrt{30}}{3}~\unit{mV} \label{eq:sym_parta_rand_self_unc},
@@ -105,7 +105,7 @@ e_{a,dw} \emb{t,\omega} =~
 \end{split}
 \label{eq:sym_parta_dyn_self_err}.
 \end{equation}
-Jako, że sygnał wejściowy $s(t)$ analizowanego obiektu nie jest obarczony błędem dynamicznym, nie ma potrzeby wykonywania analizy dla sygnału błędu dynamicznego propagowanego. Aby umożliwić analizę propagacji sygnałów błędów dynamicznych przez kolejne fragmenty toru pomiarowego, minimalizując jednocześnie liczbę analizowanych składowych błędu dynamicznego, wyznaczono na podstawie równań~\eqref{eq:dyn_vect_amp} oraz~\eqref{eq:dyn_vect_phi} wypadkowe parametry amplitudy oraz fazy dla kolejnych harmonicznych tego sygnału. Należy zauważyć, że relacje pomiędzy amplitudą, a wariancją analizowanej harmonicznej opisuje równanie~\eqref{eq:dyn_var}. Analizując równanie~\eqref{eq:sym_parta_dyn_self_err} można zauważyć, że dla każdej harmonicznej błąd ten ma dwie składowe o przeciwnych znakach. Korzystając z właściwości funkcji \enquote{sinus} można odwrócić znak wybranej składowej oraz dodać kąt $\pi~\unit{rad}$ do argumentu tej funkcji, zachowując przy tym oryginalną wartość tej składowej.
+Jako, że sygnał wejściowy $s(t)$ analizowanego obiektu nie jest obarczony błędem dynamicznym, nie ma potrzeby wykonywania analizy dla sygnału błędu dynamicznego propagowanego. Aby umożliwić analizę propagacji sygnałów błędów dynamicznych przez kolejne fragmenty toru pomiarowego, minimalizując jednocześnie liczbę analizowanych składowych błędu dynamicznego, wyznaczono na podstawie równań~\eqref{eq:dyn_vect_amp} oraz~\eqref{eq:dyn_vect_phi} wypadkowe parametry amplitudy oraz fazy dla kolejnych harmonicznych tego sygnału. Należy zauważyć, że relacje pomiędzy amplitudą i wariancją analizowanej harmonicznej opisuje równanie~\eqref{eq:dyn_var}. Analizując równanie~\eqref{eq:sym_parta_dyn_self_err} można zauważyć, że dla każdej harmonicznej błąd ten ma dwie składowe o przeciwnych znakach. Korzystając z właściwości funkcji \enquote{sinus} można odwrócić znak wybranej składowej oraz dodać kąt $\pi~\unit{rad}$ do argumentu tej funkcji, zachowując przy tym oryginalną wartość tej składowej.
 
 Stosując podane założenia, przebieg składowej sygnału błędu dynamicznego własnego o częstotliwości~\qty{1}{kHz} przedstawić można następującym równaniem:
 \begin{equation}
@@ -133,7 +133,7 @@ Dla pozostałych harmonicznych należy opisane powyżej wielkości wyznaczyć w 
 \sigma_{a,dw,1}^{2} = \frac{E_{a,e,1}^{2}}{2} = \qty{1.77}{\micro V} \label{eq:sym_parta_dyn_self_var}, \\
 U_{a,dw,1} = c_{d} \sigma_{a,rw} = \qty{1.87}{mV} \label{eq:sym_parta_dyn_self_unc},
 \end{gather}
-przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla deklarowanego poziomu ufności $\alpha = \qty{95}{\percent}$ jest równy~\num{1.42}~\cite{jakubiec_system}.
+przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla deklarowanego poziomu ufności $\alpha = \qty{95}{\percent}$ jest równy~\num{1.41}~\cite{jakubiec_system, jcgm_guide}.
 
 \begin{table}[htb!]
 \begin{center}
@@ -357,11 +357,11 @@ Wobec przedstawionych rozważań i wyników przeprowadzonego eksperymentu stwier
 
 \section{Analiza wzmacniacza pomiarowego}
 
-Kolejną część toru pomiarowego stanowi wzmacniacz, którego zadaniem jest dopasowanie poziomu sygnału napięciowego $y_{a}(t)$, reprezentującego mierzoną wielkość fizyczną $s(t)$, do zakresu napięcia wejściowego $y_{b}(t)$ przetwornika analogowo-cyfrowego. Zakładane wzmocnienie układu wynosi $s_{b} = \qty{3.3}{V \per V}$, zatem w przypadku idealnym jego funkcję przetwarzania $\dot{f}_{b}(x)$ stanowi addytywna funkcja liniowa opisana równaniem:
+Kolejną część toru pomiarowego stanowi wzmacniacz, którego zadaniem jest dopasowanie poziomu sygnału napięciowego $y_{a}(t)$, reprezentującego mierzoną wielkość fizyczną $s(t)$, do zakresu napięcia wejściowego $y_{b}(t)$ przetwornika analogowo-cyfrowego. Zakładane wzmocnienie układu wynosi $s_{b} = \qty{3.3}{V \per V}$, zatem w przypadku idealnym jego funkcję przetwarzania $\dot{f}_{b}(x)$ stanowi liniowa, addytywna funkcja opisana równaniem:
 \begin{equation}
 \dot{f}_{b} \emb{x} = s_{b} x = \num{3.3} x \label{eq:sym_partb_function},
 \end{equation}
-przy czym przyjmuje się, że nieliniowość przedstawionej charakterystyki jest pomijalnie mała i nie została rozważona w przedstawionym eksperymencie, a zatem przyjąć można założenie, gdzie $\tilde{f}_{b}(x) \cong \dot{f}_{b}(x)$. Wobec powyższych wielkość wyjściową analizowanego obiektu opisać można jako:
+przy czym przyjęto, że nieliniowość przedstawionej charakterystyki jest pomijalnie mała i nie została rozważona w przedstawionym eksperymencie. Przyjąć można zatem założenie, że $\tilde{f}_{b}(x) \cong \dot{f}_{b}(x)$. Wobec powyższych, wielkość wyjściową analizowanego obiektu w przypadku idealnym oraz rzeczywistym opisać można jako:
 \begin{gather}
 \dot{y}_{b} \emb{t} = \dot{f}_{b} \emb{\dot{y}_{a} \emb{t}} = \num{3.3} \dot{y}_{a} \emb{t} \label{eq:sym_partb_out_ideal}, \\
 \tilde{y}_{b} \emb{t} = \dot{y}_{b} \emb{t} + e_{b,\Sigma} \emb{t} \label{eq:sym_partb_out_real},
@@ -387,7 +387,7 @@ Wobec przyjętych dotychczas założeń, opisanych w równaniach~\eqref{eq:sym_p
 \begin{equation}
 \dot{y}_{b} \emb{t} = \sum _{i=1} ^{3} E_{b,o} \emb{\omega_{b,i}} \sin \emb{\omega_{b,i} t + \varphi_{b,i}} \label{eq:sym_partb_out_ideal_sum},
 \end{equation}
-natomiast parametry kolejnych harmonicznych przedstawionego sygnału opisać można dla przypadku idealnego, jako:
+natomiast parametry kolejnych harmonicznych przedstawionego sygnału opisać można dla przypadku idealnego za pomocą równań:
 \begin{gather}
 E_{b,o} \emb{\omega} = \dot{f}_{b} \emb{\dot{K}_{b} \emb{\omega} E_{a,o} \emb{\omega}} = \num{3.3} E_{a,o} \emb{\omega} \label{eq:sym_partb_amp_out_ideal}, \\
 \varphi_{b,o} \emb{\omega} = \varphi_{a,o} \emb{\omega} + \dot{\varphi}_{b} \emb{\omega} = \varphi_{a,o} \emb{\omega} \label{eq:sym_partb_phi_out_ideal},
