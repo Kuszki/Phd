@@ -198,7 +198,7 @@ Opisując funkcję przetwarzania $f_{AC}(x)$, z uwzględnieniem korekcji błędu
 \begin{equation}
 f_{AC} \emb{x} = n_{q} \emb{x} = \left\lfloor \frac{x}{q} + \num{0.5} \right\rfloor \label{eq:adc_function},
 \end{equation}
-gdzie $\lfloor x \rfloor$ oznacza część całkowitą liczby $x$, a następnie opisując wskazanie analizowanego przetwornika w jednostce wielkości wyjściowej jako:
+gdzie $\lfloor x \rfloor$ oznacza część całkowitą liczby $x$, a następnie opisując wskazanie analizowanego przetwornika w jednostce wielkości wejściowej jako:
 \begin{equation}
 \breve{u}_{AC} \emb{x} = q f_{AC} \emb{x} = q \left\lfloor \frac{x}{q} + \num{0.5} \right\rfloor \label{eq:adc_output},
 \end{equation}
@@ -216,7 +216,7 @@ Zakładając, że uzyskanie każdej z możliwych wartości realizacji wielkości
 \sigma_{AC,q}^{2} = \frac{q^{2}}{12} \label{eq:adc_errvar}.
 \end{equation}
 
-Jako, że funkcja przetwarzania opisana równaniem~\eqref{eq:adc_function} nie jest addytywna, analiza przetwarzanych przez analizowany obiekt sygnałów błędów z wykorzystaniem metody superpozycji nie jest możliwa. Proponuje się zatem przyjęcie modelu, w którym niezależnie od przebiegu przetwarzanego przez obiekt sygnału $y(t)$ obiekt ten wprowadza do sygnału wyjściowego $x(i)$ losowy błąd własny $e_{AC,q}(i)$ wynikający z zaokrągleń stosowanych w równaniu~\eqref{eq:adc_function} oraz przyjęcie zastępczej funkcji przetwarzania dla analizowanego obiektu, którą opisuje równanie:
+Jako, że funkcja przetwarzania opisana równaniem~\eqref{eq:adc_function} nie jest addytywna, analiza przetwarzanych przez analizowany obiekt sygnałów błędów z wykorzystaniem metody superpozycji nie jest możliwa. Proponuje się zatem przyjęcie modelu, w którym niezależnie od przebiegu przetwarzanego przez obiekt sygnału $y(t)$ obiekt ten wprowadza do sygnału wyjściowego $x(i)$ losowy błąd własny $e_{AC,q}(i)$ wynikający z zaokrągleń stosowanych w równaniu~\eqref{eq:adc_function} oraz przyjęcie zastępczej funkcji przetwarzania dla analizowanego obiektu, którą dla wielkości $x(i)$ wyrażonej w jednostce wielkości wejściowej $y(t)$ opisuje równanie:
 \begin{equation}
 f_{AC'} \emb{x} = x \label{eq:adc_simplify}.
 \end{equation}
