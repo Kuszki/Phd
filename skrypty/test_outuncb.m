@@ -36,6 +36,8 @@ w_c = @(w1, w2) (sqrt(w1) + sqrt(w2)) .^ 2;
 
 for N = from : to
 
+	if N != 3; continue; end;
+
   [h, f] = freqz(A(N,:), [], [1000, 5000, 15000], 48000);
 
   amp = abs(h);
