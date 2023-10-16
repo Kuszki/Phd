@@ -5,7 +5,7 @@ Ostatni etap weryfikacji postawionej w pracy tezy stanowi analiza właściwości
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/schemat_real}
-\makecaption{fig:chain_real}{Schemat blokowy stworzonego na potrzeby pracy toru pomiarowego będącego obiektem przeprowadzanego eksperymentu}
+\makecaption{fig:chain_real}{Schemat blokowy stworzonego na potrzeby pracy toru pomiarowego, będącego obiektem przeprowadzanego eksperymentu}
 \end{center}
 \end{figure}
 
@@ -45,7 +45,7 @@ W przypadku sygnału błędu statycznego $e_{s,s}(t)$ przyjąć można, że bł�
 \begin{gather}
 e_{s,s} \emb{t} = E_{s,e,0} \emb{\dot{D}_{s,o}} = \tilde{D}_{s,o} - \dot{D}_{s,o} \label{eq:pom_gen_err_stat}, \\
 \sigma_{s,s}^{2} = \sigma_{D}^{2} \emb{\dot{D}_{s,o}} = \frac{\left| \delta_{D,gr} \emb{\dot{D}_{s,o}} \right|^{2}}{3} \label{eq:pom_gen_var_stat}, \\
-U_{s,s} = c_{u} \cdot \sigma_{D} \emb{\dot{D}_{s,o}} \label{eq:pom_gen_unc_stat}.
+U_{s,s} = c_{u} \cdot \sigma_{D} \emb{\dot{D}_{s,o}} \label{eq:pom_gen_unc_stat},
 \end{gather}
 gdzie $\tilde{D}_{s,o}$ jest rzeczywistą wartością składowej stałej dla wartości zadanej równej $\dot{D}_{s,o}$. Po przeprowadzeniu kalibracji istnieje możliwość deterministycznego opisu sygnału $e_{s,s}(t)$ w funkcji zadanej wartości $\dot{D}_{s,o}$, przy czym wartość tego sygnału jest stała w czasie. Po wykonaniu korekty założyć można, że sygnał ten nie występuje, zatem $e_{s,s}(t) = 0$.
 
@@ -164,7 +164,7 @@ Pierwszy filtr przedstawiony na rysunku~\ref{fig:pom_schemat_adc} składa się z
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/schemat_adc}
-\makecaption{fig:pom_schemat_adc}{Schemat zastępczy modelu przetwornika analogowo-cyfrowego zastosowanego w analizowanym torze pomiarowym zgodny z dokumentacją producenta układu~\cite{stm_f411}}
+\makecaption{fig:pom_schemat_adc}{Schemat zastępczy modelu przetwornika analogowo-cyfrowego zastosowanego w analizowanym torze pomiarowym, zgodny z dokumentacją producenta układu~\cite{stm_f411}}
 \end{center}
 \end{figure}
 
@@ -174,7 +174,7 @@ W najmniej korzystnym przypadku, filtr drugi stanowi połączenie rezystancji $R
 \end{equation}
 oraz przyjąć stałe wzmocnienie dla analizowanego fragmentu przetwornika równe jedności:
 \begin{equation}
-\tilde{K}_{c} \emb{\omega} \approx \qty{1}{V \per V} \label{eq:pom_adcin_amp},
+\tilde{K}_{c} \emb{\omega} \approx \qty{1}{V \per V} \label{eq:pom_adcin_amp}.
 \end{equation}
 Jako, że analizowany układ stanowi rozwiązanie typu \enquote{SoC}, rzeczywiste wartości parametrów $R_{adc}$ oraz $C_{adc}$ są niemożliwe do wyznaczenia. Na podstawie dokumentacji układu możliwe jest jedynie oszacowanie stałej czasowej omawianego filtru. Należy również zauważyć, że zintegrowany z przetwornikiem analogowo-cyfrowym układ próbkująco-pamiętający wprowadzać będzie do sygnału $c(i)$ dodatkowe opóźnienie względem sygnału $y(t)$ wynikające z czasu trwania stanu śledzenia, który w analizowanym przypadku wynosi $T_{sam} = \qty{12}{\micro s}$. Jako, że docelowo tor pomiarowy pracuje w trybie ciągłym, wpływ omawianego zjawiska nie jest istotny i można go odpowiednio skompensować, co przedstawiono w dalszej części rozdziału, a zatem zjawisko to nie jest uwzględniane w równaniu~\eqref{eq:pom_adcin_phi}.
 
@@ -509,7 +509,7 @@ U_{24,\Sigma,c} = \sqrt{
 
 W celu weryfikacji przedstawionych rozważań wykonano eksperyment metodą Monte-Carlo, w którym wyznaczano \num{30000} razy wektor wielkości wyjściowych $\mathbf{X}(j)$. Podczas eksperymentu losowano początkową fazę sygnału $s(t+t_{0})$, przy czym $t_{0} = n_{s} T_{p}$ oraz $\hat{n}_{s} \in~<0;128>$. Dyskretny zbiór wartości realizacji wielkości $t_{0}$ wynika wykorzystania sygnału synchronizującego generatora w celu określenia fazy przetwarzanego sygnału $s(t)$. W rzeczywistości początek próbkowania wyzwalany był sygnałem synchronizującym generatora, po czym pomijano $n_{s}$ pierwszych próbek. W ten sposób istniała możliwość dokładnego wyznaczenia fazy przetwarzanego sygnału $s(t+t_{0})$ w sposób deterministyczny:
 \begin{equation}
-\varphi_{s,o} = \omega_{s,o} \emb{t_{0} + T_{sam}} = \omega_{s,o} \emb{n_{s} T_{p} + T_{sam}} \label{eq:pom_mono_delay}
+\varphi_{s,o} = \omega_{s,o} \emb{t_{0} + T_{sam}} = \omega_{s,o} \emb{n_{s} T_{p} + T_{sam}} \label{eq:pom_mono_delay},
 \end{equation}
 gdzie $T_{sam} = \qty{12}{\micro s}$ jest czasem trwania stanu śledzenia napięcia wejściowego $y(t)$. Dla uzyskanych realizacji wektora wielkości wyjściowych, zgodnie z równaniem~\eqref{eq:alg_out_err}, wyznaczano następnie wartości realizacji wektora sygnału błędu, zakładając idealny przebieg sygnału $s(t)$ opisany równaniem~\eqref{eq:pom_gen_out_ideal}. Uzyskane dla kolejnych wielkości wyjściowych toru pomiarowego wartości realizacji wypadkowego sygnału błędu wykorzystano w celu określenia ich wariancji oraz niepewności rozszerzonej, którą wyznaczano zgodnie z równaniem~\eqref{eq:unc_summation}. Uzyskane dla częstotliwości sygnału z zakresu $\hat{f}_{s,o} \in~<\num{0.1};\num{21}>~\unit{kHz}$ wyniki dotyczące~\qty{24}{\numTej} wielkości wyjściowej przedstawiono w tabeli~\ref{tab:pom_mono_meas_24}, przy czym wyniki uzyskane eksperymentalnie oznaczono indeksem $m$, natomiast indeksem $ab$ oznaczono wartość maksymalną dla przypadków $a$ oraz $b$. Oznaczony symbolem $\delta_{*}$ błąd względny oszacowania wartości wypadkowej niepewności rozszerzonej wyznaczono zgodnie z równaniem~\eqref{eq:unc_error}.
 

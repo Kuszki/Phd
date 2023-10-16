@@ -20,7 +20,7 @@ przy czym $f_{1} = \qty{1}{kHz}$ jest częstotliwością podstawowej harmoniczne
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:sym_in_params_ideal}{Parametry kolejnych harmonicznych przetwarzanego sygnału przyjęte w przeprowadzanym eksperymencie symulacyjnym dla sytuacji idealnej}
+\makecaption{tab:sym_in_params_ideal}{Parametry kolejnych harmonicznych przetwarzanego sygnału $s(t)$ przyjęte w przeprowadzanym eksperymencie symulacyjnym dla sytuacji idealnej}
 \begin{tabular}[c]{| c | c | c | c |} \hline
 \textbf{$i$} & \textbf{Pulsacja $\omega_{s,i}$, rad/s} & \textbf{Amplituda $E_{s,o}(\omega_{s,i})$} & \textbf{Faza $\varphi_{s,o}(\omega_{s,i})$, rad} \\ \hline
 1 & $1000  \cdot 2\pi$ &  \num{0.6} & $0$           \\ \hline
@@ -203,7 +203,7 @@ Ostatnim możliwym krokiem pozostaje zatem określenie wypadkowej wartości niep
 
 Uwzględniając podział rodzajów sygnałów błędów zorientowany ze względu na charakter ich realizacji, równanie~\eqref{eq:sym_parta_error_cat} zapisać można również w postaci:
 \begin{gather}
-e_{a,\Sigma} \emb{t} = e_{a,s} \emb{t} + e_{a,d} \emb{t} + e_{a,r} \emb{t} \label{eq:sym_parta_error_cat}. \\
+e_{a,\Sigma} \emb{t} = e_{a,s} \emb{t} + e_{a,d} \emb{t} + e_{a,r} \emb{t} \label{eq:sym_parta_error_cat}, \\
 e_{a,s} \emb{t} = e_{a,sw} \emb{t} \label{eq:sym_parta_error_stat}, \\
 e_{a,d} \emb{t} = e_{a,dw} \emb{t} \label{eq:sym_parta_error_dyn}, \\
 e_{a,s} \emb{t} = e_{a,rw} \emb{t} + e_{a,rp} \emb{t} \label{eq:sym_parta_error_rand},
@@ -345,7 +345,7 @@ Weryfikacja poprawności przeprowadzonych rozważań i zaproponowanego modelu b�
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/hist_part_a}
-\makecaption{fig:symul_parta_hist}{Histogramy realizacji sygnałów błędów \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego, wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika pomiarowego uzyskane metodą Monte-Carlo}
+\makecaption{fig:symul_parta_hist}{Histogramy realizacji sygnałów błędów \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika pomiarowego uzyskane metodą Monte-Carlo}
 \end{center}
 \end{figure}
 
@@ -431,7 +431,7 @@ Wypadkowe wartości parametrów amplitudy oraz fazy dla kolejnych harmonicznych 
 
 Drugą grupę sygnałów błędów stanowią błędy propagowane, przenoszone z wejścia na wyjście obiektu. Sygnał błędu statycznego $e_{a,sw}(t)$ jest przenoszony na wyjście obiektu zgodnie równaniami~\eqref{eq:mid_cont_err_stat_prop} oraz~\eqref{eq:out_cont_err_stat_prop}, zatem:
 \begin{equation}
-e_{b,sp} \emb{t} = \tilde{f}_{b} \left( \tilde{K}_{b} \emb{0} e_{a,sw} \emb{t} \right) = \num{3.3} e_{a,sw} \emb{t} \label{eq:sym_partb_stat_prop_err},
+e_{b,sp} \emb{t} = \tilde{f}_{b} \left( \tilde{K}_{b} \emb{0} e_{a,sw} \emb{t} \right) = \num{3.3} e_{a,sw} \emb{t} \label{eq:sym_partb_stat_prop_err}.
 \end{equation}
 Sygnały błędów losowych $e_{a,rw}(t)$ oraz $e_{a,rp}(t)$ wielkości wejściowej są propagowane zgodnie z zależnością~\eqref{eq:out_cont_err_rand_prop}, przy czym ze względu na niedeterministyczny opis tych sygnałów nie ma możliwości zdefiniowania postaci tych sygnałów w funkcji czasu. Stosując zaproponowany model błędów należy jedynie zdefiniować parametry tych sygnałów na wyjściu obiektu, zatem przyjmuje się, że sygnał błędu $e_{b,rp,1}(t)$ na wyjściu obiektu związany jest z sygnałem $e_{a,rw}(t)$ na jego wejściu, oraz że sygnał $e_{b,rp,2}(t)$ na wyjściu obiektu jest powiązany z sygnałem $e_{a,rp}(t)$. Na podstawie wprowadzonych założeń wypadkowy sygnał propagowanego błędu losowego wyrazić można w postaci:
 \begin{equation}
@@ -652,7 +652,7 @@ W celu weryfikacji poprawności założeń zastosowanego modelu błędów oraz p
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/hist_part_b}
-\makecaption{fig:symul_partb_hist}{Histogramy realizacji sygnałów błędów \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego, wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego uzyskane metodą Monte-Carlo}
+\makecaption{fig:symul_partb_hist}{Histogramy realizacji sygnałów błędów \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego uzyskane metodą Monte-Carlo}
 \end{center}
 \end{figure}
 
@@ -684,7 +684,7 @@ Aby zweryfikować poprawność przedstawionych zależności przeprowadzono ekspe
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/hist_part_c}
-\makecaption{fig:symul_partc_hist}{Histogramy realizacji sygnałów błędów \textbf{a)}~kwantowania, \textbf{b)}~wypadkowego, wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego uzyskane metodą Monte-Carlo}
+\makecaption{fig:symul_partc_hist}{Histogramy realizacji sygnałów błędów \textbf{a)}~kwantowania, \textbf{b)}~wypadkowego wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego uzyskane metodą Monte-Carlo}
 \end{center}
 \end{figure}
 
@@ -975,6 +975,11 @@ h_{S_{2,0},d,3,z} & h_{S_{2,0},d,3,s} & h_{S_{2,0},d,3,r} & h_{S_{2,0},d,3,1} & 
 \end{equation}
 Podstawiając do powyższych zależności wyprowadzone w równaniach od~\eqref{eq:sym_partd_output_unc_roun_S_2_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_S_2_0} wielkości oraz wyznaczając zgodnie z równaniem~\eqref{eq:unc_coher} kolejne wartości współczynników koherencji dla analizowanych danych oraz wartości współczynników kształtu zestawionych w tabelach~\ref{tab:unc_shapefac} oraz~\ref{tab:unc_shapedwt} otrzymuje się:
 \begin{gather}
+\mathbf{U}_{S_{2,0}} =
+\begin{bmatrix}
+\num{2.13} & \num{39.31} & \num{24.38} & \num{18.39} & \num{37.42} & \num{3.50}
+\end{bmatrix} \cdot \num{e-3}
+\label{eq:sym_partd_output_unc_sumuvectval_S_2_0_a}, \\
 \mathbf{h}_{S_{2,0}} =
 \begin{bmatrix}
 \num{1.000} & \num{0.000} & \num{0.000} & \num{0.006} & \num{0.017} & \num{0.001} \\
@@ -985,16 +990,11 @@ Podstawiając do powyższych zależności wyprowadzone w równaniach od~\eqref{e
 \num{0.001} & \num{0.042} & \num{0.018} & \num{0.028} & \num{0.079} & \num{1.000} \\
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_sumcoherval_S_2_0_a}, \\
-\mathbf{U}_{S_{2,0}} =
-\begin{bmatrix}
-\num{2.13} & \num{39.31} & \num{24.38} & \num{18.39} & \num{37.42} & \num{3.50}
-\end{bmatrix} \cdot \num{e-3}
-\label{eq:sym_partd_output_unc_sumuvectval_S_2_0_a}, \\
 U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{74.00}{mV} \label{eq:sym_partd_output_unc_total_a_S_2_0}.
 \end{gather}
 Jako, że w analizowanej sytuacji spełnione zostały warunki centralnego twierdzenia granicznego, wyznaczenie wypadkowej wartości niepewności rozszerzonej jest możliwe przyjmując założenie zbliżonego do normalnego kształtu rozkładu wypadkowego sygnału błędu. Wobec przedstawionego założenia wartość wypadkowej niepewności rozszerzonej może zostać oszacowana zgodnie z równaniem~\eqref{eq:unc_sum} dla $c_{S_{2,0},\Sigma} = c_{n}$, zatem:
 \begin{equation}
-U_{S_{2,0},\Sigma} = c_{n} \cdot \sigma_{S_{2,0},\Sigma} = \num{1.96} \cdot \num{38.27e-3} = \qty{75.01}{mV} \label{eq:sym_partd_output_unc_total_b_S_2_0}.
+U_{S_{2,0},\Sigma} = c_{n} \sigma_{S_{2,0},\Sigma} = \num{1.96} \cdot \num{38.27e-3} = \qty{75.01}{mV} \label{eq:sym_partd_output_unc_total_b_S_2_0}.
 \end{equation}
 Porównując wartości otrzymane stosując zależność~\eqref{eq:sym_partd_output_unc_total_b_S_2_0} z wynikami uzyskanymi w równaniu~\eqref{eq:sym_partd_output_unc_total_a_S_2_0} zauważyć można, że obydwie metody zapewniają podobne wyniki, przy czym metoda pierwsza jest znacznie bardziej skomplikowana i wymaga oszacowania wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi. W dalszej cześć podrozdziału wyznaczone wartości zostały porównane z wynikami eksperymentu przeprowadzonego metodą Monte-Carlo w celu weryfikacji ich poprawności.
 
@@ -1043,6 +1043,11 @@ h_{T_{1,0},d,3,z} & h_{T_{1,0},d,3,s} & h_{T_{1,0},d,3,r} & h_{T_{1,0},d,3,1} & 
 \end{gather}
 Na podstawie wartości wyznaczonych zgodnie z zależnościami od~\eqref{eq:sym_partd_output_unc_roun_T_1_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_T_1_0} wyznaczono zgodnie z równaniem~\eqref{eq:unc_coher} kolejne wartości współczynników koherencji dla macierzy opisanej w równaniu~\eqref{eq:sym_partd_output_unc_sumcoher_T_1_0_a}, przy czym w obliczeniach stosowano wartości współczynników kształtu zestawione w tabelach~\ref{tab:unc_shapefac} oraz~\ref{tab:unc_shapedwt}. Ostatecznie, po podstawieniu do równania~\eqref{eq:sym_partd_output_unc_summul_T_1_0} uzyskanych wartości cząstkowych niepewności rozszerzonych oraz wartości współczynników koherencji otrzymuje się:
 \begin{gather}
+\mathbf{U}_{T_{1,0}} =
+\begin{bmatrix}
+\num{1.81} & \num{0.00} & \num{24.38} & \num{0.073} & \num{5.62} & \num{28.60}
+\end{bmatrix} \cdot \num{e-3}
+\label{eq:sym_partd_output_unc_sumuvectval_T_1_0}, \\
 \mathbf{h}_{T_{1,0}} =
 \begin{bmatrix}
 \num{1.000} & \num{0.000} & \num{0.000} & \num{0.000} & \num{0.003} & \num{0.028} \\
@@ -1052,12 +1057,7 @@ Na podstawie wartości wyznaczonych zgodnie z zależnościami od~\eqref{eq:sym_p
 \num{0.003} & \num{0.000} & \num{0.062} & \num{0.002} & \num{1.000} & \num{0.186} \\
 \num{0.028} & \num{0.000} & \num{0.269} & \num{0.023} & \num{0.186} & \num{1.000} \\
 \end{bmatrix}
-\label{eq:sym_partd_output_unc_sumcoherval_T_1_0_a}. \\
-\mathbf{U}_{T_{1,0}} =
-\begin{bmatrix}
-\num{1.81} & \num{0.00} & \num{24.38} & \num{0.073} & \num{5.62} & \num{28.60}
-\end{bmatrix} \cdot \num{e-3}
-\label{eq:sym_partd_output_unc_sumuvectval_T_1_0}, \\
+\label{eq:sym_partd_output_unc_sumcoherval_T_1_0_a}, \\
 U_{T_{1,0},\Sigma} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} = \qty{43.61}{mV} \label{eq:sym_partd_output_unc_total_b_T_1_0}.
 \end{gather}
 Zakładając zbliżony do normalnego kształt rozkładu sygnału błędu wypadkowego wielkości wyjściowej $T_{1,0}$, wartość niepewności rozszerzonej tej wielkości oszacować można zgodnie z równaniem~\eqref{eq:unc_sum} jako:
