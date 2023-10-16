@@ -337,7 +337,7 @@ Zakładając, że analizowana $j$-ta wielkość wyjściowa algorytmu obarczona j
 \begin{equation}
 e_{X,z} \emb{j} = \tilde{X} \emb{j} - \dot{X} \emb{j} \label{eq:fwt_outerr_self}.
 \end{equation}
-Należy zauważyć, że zależność~\eqref{eq:fwt_outerr_self} jest prawdziwa tylko wtedy, gdy wielkości wejściowe $x(i)$ algorytmu nie są obarczone żadnymi błędami, tj. dla $\tilde{x}(i) = \dot{x}(i)$. Dodatkowo zakłada się, że w przypadku algorytmu idealnego sygnały błędu własnego $e_{X,z}(j)$ nie występują, a zatem dla takiego algorytmu zachodzi $e_{X,z}(j) = 0$. 
+Należy zauważyć, że zależność~\eqref{eq:fwt_outerr_self} jest prawdziwa tylko wtedy, gdy wielkości wejściowe $x(i)$ algorytmu nie są obarczone żadnymi błędami, tj. dla $\tilde{x}(i) = \dot{x}(i)$. Dodatkowo zakłada się, że w przypadku algorytmu idealnego sygnały błędu własnego $e_{X,z}(j)$ nie występują, a zatem dla takiego algorytmu zachodzi $e_{X,z}(j) = 0$.
 
 Parametry rozkładu sygnałów błędów własnych kolejnych wielkości wyjściowych algorytmu wyznaczyć można eksperymentalnie, stosując metodę Monte-Carlo~\cite{jcgm_montecarlo}. Należy w tym celu wielokrotnie podawać na wejście algorytmu wektor wielkości wejściowych, którego wartości kolejnych elementów będą liczbami losowymi. Schemat blokowy pojedynczej iteracji omawianego eksperymentu przedstawia rysunek~\ref{fig:schemat_dwt_ew}, przy czym symbolem $e_{X,z}(j)$ oznaczono sygnał związany z błędami własnymi zaokrągleń algorytmu dla $j$-tej wielkości wyjściowej, natomiast symbolem $x(i)$ kolejne elementy wektora wielkości wejściowych. Parametry rozkładu realizacji wielkości $x(i)$ powinny być zbliżone do rzeczywistych parametrów realizacji wielkości wejściowych algorytmu dla analizowanego toru pomiarowego.
 
