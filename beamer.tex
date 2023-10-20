@@ -43,8 +43,142 @@ Stosując przedstawiony w pracy model błędów oraz zaproponowaną metodę szac
 
 \section{Przedstawienie najważniejszych właściwości metrologicznych algorytmów transformacji falkowej}
 
-\begin{frame}{TODO}
-TODO
+\begin{frame}{Algorytm transformacji falkowej}
+\begin{equation}
+w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac{t-b}{a}} dt \label{eq:cwt}
+\end{equation}
+\begin{itemize}
+\item Wykorzystuje funkcję \enquote{falki-matki}, oznaczoną jako $\psi(t)$
+\item Umożliwia analizę sygnału $x(t)$ w dziedzinie skala-czas
+\item Parametr skali $a$ określa zakres częstotliwości harmonicznych analizowanego sygnału
+\item Współczynniki transformacji $w_{a,b}$ wyznaczane są dla kolejnych okien pomiarowych, przesuniętych o czas $b$
+\item Występuje w kilku głównych odmianach:
+	\begin{itemize}
+	\item[CWT] ciągła transformacja falkowa
+	\item[DWT] dyskretna transformacja falkowa
+	\item[UFWT] dyskretna transformacja falkowa bez decymacji
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Obszary zastosowań algorytmu}
+\begin{itemize}
+\item Umożliwiają detekcję, czy zjawisko o określonym widmie częstotliwościowym miało miejsce w danym czasie
+\end{itemize}
+\begin{itemize}
+\item Przetwarzanie, kompresja oraz analiza obrazów i dźwięków
+\item Redukcja szumu w sygnale pomiarowym
+\item Analiza sygnałów EKG oraz EEG
+\item Analiza przebiegu drgań sejsmicznych
+\item Bezinwazyjna analiza stanu elementów mechanicznych
+\item Algorytmy stratnej kompresji danych
+\item Analiza zwarć wysoko prądowych
+\item Analiza procesów hydrologicznych
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Algorytm dyskretnej transformacji falkowej}
+\begin{equation}
+w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac{t - n 2^{m}}{2^{m}}} dt \label{eq:dwt}
+\end{equation}
+\begin{itemize}
+\item Wyznaczenie nieskończonej liczby współczynników transformacji jest niemożliwe, a wyznaczanie nadmiarowej liczby współczynników transformacji nie jest konieczne
+\item Wprowadzenie ograniczenia dostępnych wartości dla parametrów skali $a$ oraz przesunięcia w czasie $b$, gdzie $a = 2^m$, $b = n2^m$ dla $m, n \in \mathbb{N}$ zapewnia:
+	\begin{itemize}
+	\item brak nadmiarowych współczynników transformacji
+	\item możliwość rekonstrukcji sygnału
+	\item dynamiczną rozdzielczość w skali czasu
+	\end{itemize}
+\item Symbol $n$ oznacza numer okna pomiarowego, natomiast $m$ oznacza numer skali dla współczynnika $w_{m,n}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Algorytm dyskretnej transformacji falkowej}
+\begin{itemize}
+\item Dla kolejnych numerów skali algorytm stanowi filtr pasmowo-przepustowy, którego częstotliwość charakterystyczna zmniejsza się w stosunku do poprzedniego numeru skali
+\item W celu wyodrębnienia z sygnału wszystkich zakresów częstotliwości należy wyznaczyć współczynniki transformacji dla nieskończonej liczby parametrów skali
+\item Jako, że to niemożliwe, stosuje się funkcję skalującą, która tworzy filtr dolno-przepustowy dla wyodrębnienia z sygnału pozostałych zakresów częstotliwości
+\item Funkcja skalująca, zwana również \enquote{falką-ojcem}, musi być zdefiniowana dla stosowanej funkcji \enquote{falki-matki}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Algorytm dyskretnej transformacji falkowej}
+\begin{itemize}
+\item Proces dekompozycji sygnału przeprowadzany jest rekurencyjnie w celu wyznaczenia wartości współczynników transformacji dla kolejnych wartości parametru skali
+\item Zwykle nie jest znana bezpośrednia postać funkcji falki-matki $\psi(t)$ oraz funkcji skalującej $\phi(t)$
+\item Dla wybranej rodziny falek istnieje możliwość stworzenia falki o zadanym rzędzie oraz przeprowadzenie dowolnej* liczby iteracji procesu dekompozycji sygnału
+\item Podczas projektowania toru pomiarowego często zachodzi potrzeba zmiany parametrów algorytmu, w tym zmiany falki-matki, jej rzędu, liczby iteracji procesu dekompozycji sygnału, czy liczby próbek wielkości wejściowej
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Proces dekompozycji sygnału}
+\begin{figure}
+\includegraphics[width = 0.95\textwidth]{obrazki/dwt_dekompozycja}
+\caption{Przykład trzech iteracji procesu dekompozycji sygnału}
+\end{figure}
+\begin{itemize}
+\item $S_{0}$ to kolejne próbki przetwarzanego sygnału $x(i)$
+\item $S_{m}$ to kolejne próbki aproksymacji sygnału dla skali $m$
+\item $T_{m}$ to kolejne próbki detali sygnału dla skali $m$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bank filtrów algorytmu}
+\begin{figure}
+\includegraphics[width = 0.95\textwidth]{obrazki/bank_db_demo}
+\caption{Przykładowe banki filtrów dla rodziny \enquote{Daubechies}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Właściwości metrologiczne algorytmu}
+\begin{itemize}
+\item Algorytm przetwarza sygnały błędów obecne w sygnale wejściowym zgodnie z charakterystyką banku filtrów
+\item Rzeczywista implementacja algorytmu wprowadza błędy własne, związane z operacjami arytmetycznymi
+\item Proponowane w literaturze metody analizy są skomplikowane, a dodatkowo ich aplikacja w przypadku zmiany parametrów algorytmu wiąże się z powtórnym procesem analizy, co jest czasochłonne
+\item Nie zawsze znane są jawne postaci funkcji skalującej oraz falki-matki dla wybranej rodziny
+\item Projektant toru pomiarowego nie jest zwykle ekspertem z dziedziny falek, a jedynie użytkownikiem stosującym gotową implementację algorytmu
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Błędy własne algorytmu}
+\begin{equation}
+e_{X,z} \emb{j} = \tilde{X} \emb{j} - \dot{X} \emb{j} \label{eq:fwt_outerr_self}
+\end{equation}
+\begin{itemize}
+\item Sygnał błędu własnego $e_{X,z}(j)$ związany z $j$-tą wielkością wyjściową wynika z zaokrągleń wykonywanych podczas operacji arytmetycznych
+\item Parametry sygnału błędu własnego zaokrągleń powinny być wyznaczane dla rzeczywistej implementacji algorytmu o wybranych parametrach
+\item Eksperyment należy przeprowadzić zakładając, że wielkości wejściowe $x(i)$ algorytmu nie są obarczone żadnymi błędami
+\item Dla algorytmu idealnego sygnał $e_{X,z}(j)$ nie występuje
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Błędy własne algorytmu}
+\begin{figure}
+\includegraphics[width = 0.95\textwidth]{obrazki/schemat_dwt_ew}
+\caption{Schemat blokowy procedury wyznaczania pojedynczej realizacji sygnału błędu własnego algorytmu transformacji falkowej}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Wariancja sygnału błędu własnego zaokrągleń}
+\begin{figure}
+\includegraphics[width = 0.95\textwidth]{obrazki/dwt_rerror_coif5}
+\caption{Zależność wartości wariancji sygnału błędu własnego zaokrągleń od liczby iteracji procesu dekompozycji sygnału oraz liczby wielkości wejściowych dla falki \enquote{coif5} przy stosowaniu liczb zmiennoprzecinkowych o długości słowa~\qty{32}{\bitOw}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Wariancja sygnału błędu własnego zaokrągleń}
+\begin{itemize}
+\item Zależy od liczby przeprowadzanych operacji arytmetycznych, a zatem:
+	\begin{itemize}
+	\item wzrasta wraz ze wzrostem liczby iteracji procesu dekompozycji sygnału
+	\item wzrasta wraz ze wzrostem rzędu falki (wzrostem liczby współczynników skalujących)
+	\item wzrasta wraz ze wzrostem liczby wielkości wejściowych
+	\end{itemize}
+\item Zależy od długości słowa liczb zmiennoprzecinkowych
+\item Zależy od zakresu wartości wielkości wejściowych
+\item Powinna być wyznaczana w warunkach zbliżonych do warunków pracy rzeczywistego algorytmu
+\item Długość słowa należy dobrać tak, aby wariancja sygnału błędu własnego była niewielka w stosunku do wariancji wypadkowego sygnału błędu przetwarzanych wielkości
+\end{itemize}
 \end{frame}
 
 \section{Omówienie najważniejszych założeń odnośnie zaproponowanego w pracy modelu błędów}
