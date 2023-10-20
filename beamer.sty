@@ -1,0 +1,65 @@
+\ProvidesPackage{beamer}
+
+\RequirePackage[noheader, nopdfinfo]{gitver}
+\RequirePackage[locale = PL]{siunitx}
+
+\RequirePackage[autostyle]{csquotes}
+\RequirePackage[polish]{babel}
+
+\RequirePackage{unicode-math}
+\RequirePackage{ragged2e}
+\RequirePackage{fontspec}
+\RequirePackage{graphicx}
+\RequirePackage{lmodern}
+\RequirePackage{gensymb}
+\RequirePackage{comment}
+\RequirePackage{calc}
+
+\DeclareSIUnit[quantity-product=-]\bitOwych{bitowych}
+\DeclareSIUnit[quantity-product=-]\bitOwego{bitowego}
+\DeclareSIUnit[quantity-product=-]\bitOwaa{bitową}
+\DeclareSIUnit[quantity-product=-]\bitOwa{bitowa}
+\DeclareSIUnit[quantity-product=-]\bitOwe{bitowe}
+\DeclareSIUnit[quantity-product=-]\bitOwy{bitowy}
+\DeclareSIUnit[quantity-product=-]\bitOw{bitów}
+\DeclareSIUnit[quantity-product=-]\bitY{bity}
+\DeclareSIUnit[quantity-product=-]\bit{bit}
+
+\DeclareSIUnit[quantity-product=-]\numTej{tej}
+\DeclareSIUnit[quantity-product=]\percent{\char"0025}
+\DeclareSIUnit\degreeCelsius{\char"2103}
+
+\babelprovide[transforms = oneletter.nobreak]{polish}
+\babelprovide[justification = unhyphenated]{polish}
+\hypersetup{hidelinks}
+
+\usetheme{boxes}
+\usecolortheme{seahorse}
+\useinnertheme{rectangles}
+
+\newcommand{\makecaption}[2]{\caption{\label{#1}#2}}
+\newcommand{\emb}[1]{\left(#1\right)}
+\newcommand{\bsigma}{\char"1D6D4}
+
+\sisetup
+{
+	retain-explicit-plus = true,
+	reset-text-family    = false,
+	reset-text-series    = false,
+	reset-text-shape     = false,
+	space-before-unit    = true,
+	tight-spacing        = true,
+	use-xspace           = true,
+	per-mode             = fraction,
+	inline-per-mode      = fraction,
+	list-exponents       = combine-bracket,
+	list-units           = single,
+	range-exponents      = combine-bracket,
+	range-units          = bracket,
+	range-phrase         = \,;\,,
+	quantity-product     = ~,
+	exponent-product     = \cdot,
+	mode                 = match
+}
+
+\beamertemplatenavigationsymbolsempty

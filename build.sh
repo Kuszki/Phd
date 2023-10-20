@@ -96,7 +96,9 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 [ $DO_CONVERT == true ] && run libreoffice --convert-to pdf obrazki/*.odg --outdir obrazki
 [ $DO_CONVERT == true ] && run inkscape -D obrazki/*.svg --export-type pdf
 
+[ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua -f beamer.tex
 [ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua -f thesis.tex
+
 [ $DO_DIFF == true ] && CLSI=1 run git-latexdiff --main thesis.tex --output budowa/diff.pdf \
 						--latexopt "--shell-escape -f -pdflua -usepretex=$VER_CMD" \
 						--prepare "$0 --convert --skip --quiet --draws || exit 0" \
@@ -105,5 +107,5 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 						--packages="hyperref,biblatex" --encoding="utf8" \
 						--latexdiff-flatten --latexmk -- "$VER_DIFF"
 
-rm thesis*.aux &> /dev/null
+rm *_desc.aux &> /dev/null
 exit 0
