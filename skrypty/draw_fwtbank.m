@@ -169,3 +169,32 @@ grid on;
 box on;
 
 print("../obrazki/bank_dden_demo.svg", "-svgconvert", dim);
+
+set(h, "papersize", [18 7])
+set(h, "paperposition", [0, 0, [18 7]])
+
+[g,a] = wfbt2filterbank({'db2', 3, 'dwt'});
+subplot(1, 2, 1)
+filterbankfreqz(g, a, 2048, 'linabs', 'posfreq', 'plot', 'inf', 'flog');
+title("a) \\rm falka db2, 3 iteracje");
+ylabel("Wzmocnienie");
+xlabel("Częstotliwość znormalizowana\n");
+xlim([0.01 1]);
+ylim([0 1]);
+set_comma(gca, 'XY');
+grid on;
+box on;
+
+[g,a] = wfbt2filterbank({'db8', 4, 'dwt'});
+subplot(1, 2, 2)
+filterbankfreqz(g, a, 2048, 'linabs', 'posfreq', 'plot', 'inf', 'flog');
+title("b) \\rm falka db8, 4 iteracje");
+ylabel("Wzmocnienie");
+xlabel("Częstotliwość znormalizowana\n");
+xlim([0.01 1]);
+ylim([0 1]);
+set_comma(gca, 'XY');
+grid on;
+box on;
+
+print("../obrazki/bank_db_short.svg", "-svgconvert", dim);

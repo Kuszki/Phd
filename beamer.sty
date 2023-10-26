@@ -7,7 +7,9 @@
 \RequirePackage[polish]{babel}
 
 \RequirePackage{unicode-math}
+\RequirePackage{setspace}
 \RequirePackage{ragged2e}
+\RequirePackage{textcomp}
 \RequirePackage{fontspec}
 \RequirePackage{graphicx}
 \RequirePackage{lmodern}
@@ -40,6 +42,17 @@
 \newcommand{\makecaption}[2]{\caption{\label{#1}#2}}
 \newcommand{\emb}[1]{\left(#1\right)}
 \newcommand{\bsigma}{\char"1D6D4}
+
+\setlength{\parskip}{3pt}
+\setlength{\floatsep}{6pt}
+\setlength{\intextsep}{6pt}
+\setlength{\textfloatsep}{6pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{-8pt}
+
+\setlength{\headheight}{6pt}
+\setlength{\tabcolsep}{6pt}
+\setlength{\jot}{6pt}
 
 \sisetup
 {

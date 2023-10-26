@@ -1,4 +1,4 @@
-\documentclass[12pt, polish]{beamer}
+\documentclass[12pt, polish, aspectratio = 169]{beamer}
 \usepackage{beamer}
 
 \date{Wersja \gitVer{} z \today{}}
@@ -25,7 +25,11 @@
 
 \begin{frame}{Teza pracy}
 \justifying
-Stosując przedstawiony w pracy model błędów oraz zaproponowaną metodę szacowania wypadkowej wartości niepewności rozszerzonej istnieje możliwość oszacowania wartości niepewności rozszerzonych dla wielkości wyjściowych toru pomiarowego wykorzystującego algorytm dyskretnej transformacji falkowej. Oszacowanie wartości niepewności rozszerzonych dla omawianych wielkości jest możliwe w trakcie działania systemu pomiarowego, również w przypadku zmiany parametrów pracy tego systemu i wynikającej z tego tytułu zmiany parametrów modelu błędów. Skuteczność zaproponowanej metody szacowania wypadkowej wartości niepewności rozszerzonej wynika z dokładności określenia parametrów modelu błędów, a uzyskiwane wyniki są zbieżne z uzyskiwanymi metodą Monte-Carlo.
+Stosując przedstawiony w pracy model błędów oraz zaproponowaną metodę szacowania wypadkowej wartości niepewności rozszerzonej istnieje możliwość oszacowania wartości niepewności rozszerzonych dla wielkości wyjściowych toru pomiarowego wykorzystującego algorytm dyskretnej transformacji falkowej.
+
+Oszacowanie wartości niepewności rozszerzonych dla omawianych wielkości jest możliwe w trakcie działania systemu pomiarowego, również w przypadku zmiany parametrów pracy tego systemu i wynikającej z tego tytułu zmiany parametrów modelu błędów.
+
+Skuteczność zaproponowanej metody szacowania wypadkowej wartości niepewności rozszerzonej wynika z dokładności określenia parametrów modelu błędów, a uzyskiwane wyniki są zbieżne z uzyskiwanymi metodą Monte-Carlo.
 \end{frame}
 
 \begin{frame}{Podsumowanie tezy}
@@ -34,9 +38,9 @@ Stosując przedstawiony w pracy model błędów oraz zaproponowaną metodę szac
 \item Propozycja metody szacowania wartości wypadkowej niepewności rozszerzonej, która:
 	\begin{itemize}
 	\item cechuje się niską złożonością obliczeniową i jest możliwa do stosowania w czasie pracy systemu pomiarowego
-	\item daje możliwość zmiany parametrów modelu błędów podczas pracy systemu pomiarowego
+	\item daje możliwość zmiany parametrów modelu błędów podczas pracy systemu pomiarowego, zachowując niską złożoność obliczeniową
 	\end{itemize}
-\item Wyniki uzyskiwane przy użyciu zaproponowanej metody powinny być zbieżne z uzyskiwanymi metodą Monte-Carlo
+\item Wyniki uzyskiwane przy użyciu zaproponowanej metody powinny być zbieżne z wynikami uzyskiwanymi metodą Monte-Carlo
 \item Dokładność uzyskiwanych wyników może zależeć od dokładności wyznaczenia parametrów modelu błędu
 \end{itemize}
 \end{frame}
@@ -50,8 +54,8 @@ w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac
 \begin{itemize}
 \item Wykorzystuje funkcję \enquote{falki-matki}, oznaczoną jako $\psi(t)$
 \item Umożliwia analizę sygnału $x(t)$ w dziedzinie skala-czas
-\item Parametr skali $a$ określa zakres częstotliwości harmonicznych analizowanego sygnału
-\item Współczynniki transformacji $w_{a,b}$ wyznaczane są dla kolejnych okien pomiarowych, przesuniętych o czas $b$
+\item Dla wybranej skali $a$ współczynniki transformacji $w_{a,b}$ wyznaczane są dla kolejnych okien pomiarowych, przesuniętych o czas $b$
+\item Parametr skali $a$ określa zakres częstotliwości harmonicznych sygnału $x(t)$
 \item Występuje w kilku głównych odmianach:
 	\begin{itemize}
 	\item[CWT] ciągła transformacja falkowa
@@ -82,39 +86,41 @@ w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac
 w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac{t - n 2^{m}}{2^{m}}} dt \label{eq:dwt}
 \end{equation}
 \begin{itemize}
-\item Wyznaczenie nieskończonej liczby współczynników transformacji jest niemożliwe, a wyznaczanie nadmiarowej liczby współczynników transformacji nie jest konieczne
+\item Wyznaczenie nieskończonej liczby współczynników transformacji jest niemożliwe, a wyznaczanie nadmiarowej liczby współczynników transformacji nie jest konieczne w celu analizy i rekonstrukcji sygnału
 \item Wprowadzenie ograniczenia dostępnych wartości dla parametrów skali $a$ oraz przesunięcia w czasie $b$, gdzie $a = 2^m$, $b = n2^m$ dla $m, n \in \mathbb{N}$ zapewnia:
 	\begin{itemize}
-	\item brak nadmiarowych współczynników transformacji
-	\item możliwość rekonstrukcji sygnału
-	\item dynamiczną rozdzielczość w skali czasu
+	\item eliminację nadmiarowych współczynników transformacji $w_{m,n}$
+	\item możliwość rekonstrukcji oryginalnego sygnału $x(t)$
+	\item dynamiczną rozdzielczość podstawy czasu dla kolejnych skal
 	\end{itemize}
-\item Symbol $n$ oznacza numer okna pomiarowego, natomiast $m$ oznacza numer skali dla współczynnika $w_{m,n}$
+\item Symbol $m$ oznacza numer skali (zakres częstotliwości)
+\item Symbol $n$ oznacza numer okna pomiarowego
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Algorytm dyskretnej transformacji falkowej}
 \begin{itemize}
-\item Dla kolejnych numerów skali algorytm stanowi filtr pasmowo-przepustowy, którego częstotliwość charakterystyczna zmniejsza się w stosunku do poprzedniego numeru skali
-\item W celu wyodrębnienia z sygnału wszystkich zakresów częstotliwości należy wyznaczyć współczynniki transformacji dla nieskończonej liczby parametrów skali
-\item Jako, że to niemożliwe, stosuje się funkcję skalującą, która tworzy filtr dolno-przepustowy dla wyodrębnienia z sygnału pozostałych zakresów częstotliwości
-\item Funkcja skalująca, zwana również \enquote{falką-ojcem}, musi być zdefiniowana dla stosowanej funkcji \enquote{falki-matki}
+\item Dla kolejnych numerów skali algorytm stanowi filtr pasmowo-przepustowy, którego częstotliwość charakterystyczna zmniejsza się w stosunku do poprzedniego numeru skali o połowę
+\item W celu wyodrębnienia z sygnału wszystkich zakresów częstotliwości należy wyznaczyć współczynniki transformacji dla nieskończonej liczby skal
+\item Jako, że to niemożliwe, stosuje się funkcję skalującą, która tworzy filtr dolno-przepustowy, przenoszący pozostałą cześć widma sygnału
+\item Funkcja skalująca, zwana również \enquote{falką-ojcem}, musi być zdefiniowana dla stosowanej funkcji \enquote{falki-matki} i jest oznaczana symbolem $\phi(t)$
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Algorytm dyskretnej transformacji falkowej}
 \begin{itemize}
-\item Proces dekompozycji sygnału przeprowadzany jest rekurencyjnie w celu wyznaczenia wartości współczynników transformacji dla kolejnych wartości parametru skali
-\item Zwykle nie jest znana bezpośrednia postać funkcji falki-matki $\psi(t)$ oraz funkcji skalującej $\phi(t)$
-\item Dla wybranej rodziny falek istnieje możliwość stworzenia falki o zadanym rzędzie oraz przeprowadzenie dowolnej* liczby iteracji procesu dekompozycji sygnału
+\item Proces dekompozycji sygnału przeprowadzany jest rekurencyjnie w celu wyznaczenia wartości współczynników transformacji dla kolejnych wartości parametru skali (rys.~\ref{fig:fwt_decomp})
+\item Zwykle nie jest znana bezpośrednia postać funkcji falki-matki $\psi(t)$ oraz funkcji skalującej $\phi(t)$ w dziedzinie czasu -- zdefiniowane są \enquote{współczynniki skalujące} $c_{k}$ umożliwiające opis funkcji $\psi_{m,n}(t)$ oraz $\phi_{m,n}(t)$
+\item Dla wybranej rodziny falek istnieje możliwość stworzenia falki o zadanym rzędzie oraz wykonanie dowolnej* liczby iteracji procesu dekompozycji
 \item Podczas projektowania toru pomiarowego często zachodzi potrzeba zmiany parametrów algorytmu, w tym zmiany falki-matki, jej rzędu, liczby iteracji procesu dekompozycji sygnału, czy liczby próbek wielkości wejściowej
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Proces dekompozycji sygnału}
 \begin{figure}
-\includegraphics[width = 0.95\textwidth]{obrazki/dwt_dekompozycja}
+\includegraphics[scale = 0.75]{obrazki/dwt_dekompozycja}
 \caption{Przykład trzech iteracji procesu dekompozycji sygnału}
+\label{fig:fwt_decomp}
 \end{figure}
 \begin{itemize}
 \item $S_{0}$ to kolejne próbki przetwarzanego sygnału $x(i)$
@@ -125,8 +131,8 @@ w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\
 
 \begin{frame}{Bank filtrów algorytmu}
 \begin{figure}
-\includegraphics[width = 0.95\textwidth]{obrazki/bank_db_demo}
-\caption{Przykładowe banki filtrów dla rodziny \enquote{Daubechies}}
+\includegraphics[scale = 0.75]{obrazki/bank_db_short}
+\caption{Przykładowe banki filtrów dla rodziny \enquote{Daubechies}, częstotliwość znormalizowano do połowy częstotliwości próbkowania, wartość wzmocnienia znormalizowano do maksymalnej wartości wzmocnienia dla każdego filtru z osobna}
 \end{figure}
 \end{frame}
 
@@ -135,7 +141,7 @@ w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\
 \item Algorytm przetwarza sygnały błędów obecne w sygnale wejściowym zgodnie z charakterystyką banku filtrów
 \item Rzeczywista implementacja algorytmu wprowadza błędy własne, związane z operacjami arytmetycznymi
 \item Proponowane w literaturze metody analizy są skomplikowane, a dodatkowo ich aplikacja w przypadku zmiany parametrów algorytmu wiąże się z powtórnym procesem analizy, co jest czasochłonne
-\item Nie zawsze znane są jawne postaci funkcji skalującej oraz falki-matki dla wybranej rodziny
+\item Nie zawsze znane są jawne postaci funkcji falki-matki $\psi(t)$ oraz funkcji skalującej $\phi(t)$ dla wybranej rodziny, co utrudnia analizę
 \item Projektant toru pomiarowego nie jest zwykle ekspertem z dziedziny falek, a jedynie użytkownikiem stosującym gotową implementację algorytmu
 \end{itemize}
 \end{frame}
@@ -147,22 +153,22 @@ e_{X,z} \emb{j} = \tilde{X} \emb{j} - \dot{X} \emb{j} \label{eq:fwt_outerr_self}
 \begin{itemize}
 \item Sygnał błędu własnego $e_{X,z}(j)$ związany z $j$-tą wielkością wyjściową wynika z zaokrągleń wykonywanych podczas operacji arytmetycznych
 \item Parametry sygnału błędu własnego zaokrągleń powinny być wyznaczane dla rzeczywistej implementacji algorytmu o wybranych parametrach
-\item Eksperyment należy przeprowadzić zakładając, że wielkości wejściowe $x(i)$ algorytmu nie są obarczone żadnymi błędami
-\item Dla algorytmu idealnego sygnał $e_{X,z}(j)$ nie występuje
+\item Eksperyment należy przeprowadzić zakładając, że wielkości wejściowe $x(i)$ algorytmu nie są obarczone żadnymi błędami, zatem $\tilde{x}(t) = \dot{x}(t)$
+\item Dla algorytmu idealnego sygnał ten nie występuje, wtedy $e_{X,z}(j) = 0$
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Błędy własne algorytmu}
 \begin{figure}
-\includegraphics[width = 0.95\textwidth]{obrazki/schemat_dwt_ew}
-\caption{Schemat blokowy procedury wyznaczania pojedynczej realizacji sygnału błędu własnego algorytmu transformacji falkowej}
+\includegraphics[scale = 0.75]{obrazki/schemat_dwt_ew}
+\caption{Schemat blokowy procedury wyznaczania pojedynczej realizacji sygnału błędu własnego $e_{X,z}(j)$ algorytmu transformacji falkowej}
 \end{figure}
 \end{frame}
 
 \begin{frame}{Wariancja sygnału błędu własnego zaokrągleń}
 \begin{figure}
-\includegraphics[width = 0.95\textwidth]{obrazki/dwt_rerror_coif5}
-\caption{Zależność wartości wariancji sygnału błędu własnego zaokrągleń od liczby iteracji procesu dekompozycji sygnału oraz liczby wielkości wejściowych dla falki \enquote{coif5} przy stosowaniu liczb zmiennoprzecinkowych o długości słowa~\qty{32}{\bitOw}}
+\includegraphics[scale = 0.75]{obrazki/dwt_rerror_coif5}
+\caption{Wartość wariancji sygnału błędu $e_{X,z}(j)$ w funkcji wybranych parametrów algorytmu DWT, falka \enquote{coif5}, liczby o długości~\qty{32}{\bitOw}, ostatni etap dekompozycji}
 \end{figure}
 \end{frame}
 
@@ -171,7 +177,7 @@ e_{X,z} \emb{j} = \tilde{X} \emb{j} - \dot{X} \emb{j} \label{eq:fwt_outerr_self}
 \item Zależy od liczby przeprowadzanych operacji arytmetycznych, a zatem:
 	\begin{itemize}
 	\item wzrasta wraz ze wzrostem liczby iteracji procesu dekompozycji sygnału
-	\item wzrasta wraz ze wzrostem rzędu falki (wzrostem liczby współczynników skalujących)
+	\item wzrasta wraz ze wzrostem rzędu falki -- wzrostem liczby niezerowych współczynników skalujących
 	\item wzrasta wraz ze wzrostem liczby wielkości wejściowych
 	\end{itemize}
 \item Zależy od długości słowa liczb zmiennoprzecinkowych
