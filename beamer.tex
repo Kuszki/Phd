@@ -177,7 +177,7 @@ e_{X,z} \emb{j} = \tilde{X} \emb{j} - \dot{X} \emb{j} \label{eq:fwt_outerr_self}
 \item Zależy od liczby przeprowadzanych operacji arytmetycznych, a zatem:
 	\begin{itemize}
 	\item wzrasta wraz ze wzrostem liczby iteracji procesu dekompozycji sygnału
-	\item wzrasta wraz ze wzrostem rzędu falki -- wzrostem liczby niezerowych współczynników skalujących
+	\item wzrasta wraz ze wzrostem rzędu falki
 	\item wzrasta wraz ze wzrostem liczby wielkości wejściowych
 	\end{itemize}
 \item Zależy od długości słowa liczb zmiennoprzecinkowych
@@ -189,8 +189,146 @@ e_{X,z} \emb{j} = \tilde{X} \emb{j} - \dot{X} \emb{j} \label{eq:fwt_outerr_self}
 
 \section{Omówienie najważniejszych założeń odnośnie zaproponowanego w pracy modelu błędów}
 
-\begin{frame}{TODO}
-TODO
+\begin{frame}{Podstawowe założenia modelu błędów}
+\begin{itemize}
+\item Możliwość analizy sygnałów błędów opisanych deterministycznie i niedeterministycznie
+\item Uwzględnienie wpływu widma przetwarzanego sygnału na właściwości metrologiczne toru pomiarowego
+\item Sygnał błędu opisany jako różnica pomiędzy idealnym i rzeczywistym przebiegiem analizowanej wielkości
+\item Idealny przebieg analizowanej wielkości wynika z założeń odnośnie realizowanego przez tor pomiarowy zadania
+\item Każdy fragment toru pomiarowego przetwarza sygnały błędów obecne w sygnale wejściowym oraz wprowadza sygnały błędów własnych
+\item Tor pomiarowy może składać się z wielu obiektów przetwarzających ciągły w czasie sygnał lub kolejne próbki sygnału
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Podział sygnałów błędów}
+\begin{itemize}
+\item Podział sygnałów błędów ze względu na charakter realizacji:
+	\begin{itemize}
+	\item \strong{sygnały błędów statycznych}, których wartości realizacji nie zmieniają się dla analizowanej serii pomiarowej
+	\item \strong{sygnały błędów dynamicznych}, których wartości realizacji zmieniają się dla analizowanej serii pomiarowej i są opisane deterministycznie
+	\item \strong{sygnały błędów statycznych}, których wartości realizacji zmieniają się dla analizowanej serii pomiarowej zgodnie z regułami probabilistycznymi
+	\end{itemize}
+\item Podział sygnałów błędów ze względu na genezę:
+	\begin{itemize}
+	\item \strong{sygnały błędów własnych}, wprowadzanie przez analizowany obiekt
+	\item \strong{sygnały błędów propagowanych}, przenoszone z wejścia na wyjście obiektu
+	\end{itemize}
+\item Termin \enquote{seria pomiarowa} odnosi się zwykle do pojedynczego okna pomiarowego lub zbioru próbek, stanowiących wejście dla pojedynczej realizacji algorytmu przetwarzania danych
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Model błędu toru pomiarowego}
+\begin{figure}
+\includegraphics[scale = 0.75]{obrazki/schemat_trans}
+\caption{Schemat blokowy toru pomiarowego, na który przedstawiono proces wyznaczania wartości realizacji pojedynczej wielkości wyjściowej}
+\end{figure}
+\begin{itemize}
+\item Wielkość fizyczna $s(t)$ jest przetwarzana na wielkość $y(t)$
+\item Kolejne próbki wielkości $y(t)$ reprezentowane są przez wielkość $x(i)$
+\item Na podstawie wielkości $x(i)$ wyznaczane są wartości wielkości $X(i)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Analizowane fragmenty toru pomiarowego}
+\begin{itemize}
+\item \strong{Część analogowa}, która przetwarza ciągły w czasie sygnał $s(t)$
+\item \strong{Część cyfrowa}, która przetwarza próbki sygnału $y(t_{i})$
+\item \strong{Przetwornik analogowo-cyfrowy}:
+	\begin{itemize}
+	\item zamienia ciągły w czasie sygnał $y(t)$ na jego dyskretną reprezentację $x(i)$
+	\item opisywany jako kaskadowe połączenie modelu części analogowej, idealnego kwantyzatora oraz części cyfrowej
+	\end{itemize}
+\item Każdy fragment toru pomiarowego posiada właściwości:
+	\begin{itemize}
+	\item \strong{statyczne}, niezależne od widma przetwarzanego sygnału
+	\item \strong{dynamiczne}, zależne od widma przetwarzanego sygnału
+	\end{itemize}
+\item Tor pomiarowy może składać się z wielu obiektów połączonych kaskadowo
+\item Tor pomiarowy może dostarczać na wyjściu wiele wielkości wyjściowych
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Część analogowa toru pomiarowego}
+\begin{figure}
+\includegraphics[scale = 0.75]{obrazki/schemat_ciagly}
+\caption{Model fragmentu części analogowej toru pomiarowego}
+\end{figure}
+\begin{itemize}
+\item Obiekt przetwarza ciągłą w czasie wielkość $s(t)$ na wielkość $y(t)$
+\item Właściwości dynamiczne opisuje transmitancja $G_{y}(j\omega)$
+\item Właściwości statyczne opisuje funkcja przetwarzania $f_{y}(x)$
+\item Przykładem obiektu może być filtr analogowy, przetwornik pomiarowy, wzmacniacz pomiarowy lub układ próbkująco-pamiętający
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Część analogowa toru pomiarowego}
+\begin{itemize}
+\item Parametry $G_{y}(j\omega)$ oraz $f_{y}(x)$ mogą być opisane:
+	\begin{itemize}
+	\item dla warunków idealnych, jako $\dot{G}_{y}(j\omega)$ oraz $\dot{f}_{y}(x)$
+	\item dla warunków rzeczywistych, jako $\tilde{G}_{y}(j\omega)$ oraz $\tilde{f}_{y}(x)$
+	\end{itemize}
+\item Z uwagi na fakt, że rzeczywiste właściwości obiektu odbiegają od idealnych, obiekt wprowadza błędy własne
+\item Obiekt przetwarza sygnały błędów zawarte w wielkości wejściowej zgodnie z jego rzeczywistymi właściwościami
+\item Dla właściwości dynamicznych opisać można wzmocnienie $K_{y}(\omega)$ oraz przesunięcie fazowe $\varphi_{y}(\omega)$ w funkcji pulsacji $\omega$ jako:
+\begin{gather}
+K_{y} \emb{\omega} = \left| G_{y} \emb{j\omega} \right| =
+	\sqrt{\left( \Re \left( G_{y} \emb{j\omega} \right) \right)^{2} +
+	\left( \Im \left( G_{y} \emb{j\omega} \right) \right)^{2}}
+\label{eq:mid_cont_amp}, \\
+\varphi_{y} \emb{\omega} = \arctan \left( \frac{\Im \left( G_{y} \emb{j\omega} \right)}{\Re \left( G_{y} \emb{j\omega} \right)} \right) \label{eq:mid_cont_phi}.
+\end{gather}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Część analogowa toru pomiarowego}
+\begin{itemize}
+\item Wielkość wejściowa $s(t)$ w przypadku idealnym opisana równaniem:
+\begin{equation}
+\dot{s} \emb{t} = \sum _{i = 0} ^{\infty} E_{s,o} \emb{\omega_{i}} \sin \left( \omega_{i} t + \varphi_{s,o} \emb{\omega_{i}} \right) \label{eq:in_cont_omega_ideal}
+\end{equation}
+\item Wielkość wyjściowa $y(t)$ w przypadku idealnym opisana jako:
+\begin{equation}
+\dot{y} \emb{t} = \dot{f}_{y} \emb{ \sum _{i = 0} ^{\infty} \dot{K}_{y} \emb{\omega_{i}} E_{s,o} \emb{\omega_{i}} \sin \left( \omega_{i} t + \varphi_{s,o} \emb{\omega_{i}} + \dot{\varphi}_{y} \emb{\omega_{i}} \right) } \label{eq:out_cont_omega_ideal}
+\end{equation}
+\item $E_{s,o}(\omega)$ jest amplitudą harmonicznej sygnału $\dot{s}(t)$
+\item $\varphi_{s,o}(\omega)$ jest fazą harmonicznej sygnału $\dot{s}(t)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Część analogowa toru pomiarowego}
+\begin{itemize}
+\item Wielkość wejściowa $s(t)$ w przypadku rzeczywistym opisana równaniem:
+\begin{equation}
+\tilde{s} \emb{t} = \dot{s} \emb{t} + e_{s,r} \emb{t} + \sum _{i = 0} ^{\infty} E_{s,e} \emb{\omega} \sin \left( \omega t + \varphi_{s,e} \emb{\omega} \right) \label{eq:in_cont_omega_real}
+\end{equation}
+\item Wielkość wyjściowa $y(t)$ w przypadku rzeczywistym opisana jako:
+\begin{equation}
+\tilde{y} \emb{t} = \tilde{f}_{y} \left( \dot{u} \emb{t} + e_{u,\Sigma} \emb{t} \right) + f_{z} \emb{\mathbf{z} \emb{t}} = \dot{y} \emb{t} + e_{y,\Sigma} \emb{t} \label{eq:out_cont_real_all}
+\end{equation}
+\item $E_{s,e}(\omega)$ jest amplitudą harmonicznej sygnału błędu wielkości wejściowej
+\item $\varphi_{s,e}(\omega)$ jest fazą harmonicznej sygnału błędu wielkości wejściowej
+\item $f_{z}(\mathbf{z})$ jest funkcją uwzględniającą wielkości zakłócające $\mathbf{z}(t)$
+\item $e_{y,\Sigma}(t)$ jest wypadkowym sygnałem błędu wielkości wyjściowej $y(t)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Część analogowa toru pomiarowego}
+\begin{itemize}
+\item Wielkość wyjściowa $u(t)$ fragmentu opisującego właściwości dynamiczne:
+\begin{gather}
+\dot{u} \emb{t} = \sum _{i = 0} ^{\infty} \dot{K}_{y} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \dot{\varphi}_{y} \emb{\omega} \right) \label{eq:mid_cont_sum_ideal} \\
+\tilde{u} \emb{t} = \dot{u} \emb{t} + e_{u,r} \emb{t} + \sum _{i = 0} ^{\infty} \tilde{u} \left( t, \omega_{u,i} \right) = \dot{u} \emb{t} + e_{u,\Sigma} \emb{t} \label{eq:mid_cont_sum_real} \\
+\begin{split}
+\tilde{u} \emb{t,\omega} =~
+& \tilde{K}_{y} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \tilde{\varphi}_{y} \emb{\omega} \right) + \\
+& \tilde{K}_{y} \emb{\omega} E_{s,e} \emb{\omega} \sin \left( \omega t + \varphi_{s,e} \emb{\omega} + \tilde{\varphi}_{y} \emb{\omega} \right)
+\end{split}
+\label{eq:mid_cont_omega_real}
+\end{gather}
+\item $e_{u,r}(t)$ jest sygnałem błędu losowego wielkości $u(t)$
+\item $e_{u,\Sigma}(t)$ jest wypadkowym sygnałem błędu wielkości $u(t)$
+\end{itemize}
 \end{frame}
 
 \section{Omówienie zaproponowanej metody szacowania wypadkowej wartości niepewności rozszerzonej}
@@ -213,8 +351,10 @@ TODO
 
 \section*{Zakończenie}
 
-\begin{frame}{Dziękuję za uwagę}
+\begin{frame}
 \centering
+\strong{Dziękuję za uwagę}
+\vskip 24pt
 mgr inż. Łukasz Dróżdż \\ \href{mailto:lukasz.drozdz@polsl.pl}{lukasz.drozdz@polsl.pl}
 \vskip 16pt
 Politechnika Śląska, Wydział Elektryczny \\ Katedra Metrologii, Elektroniki i Automatyki
