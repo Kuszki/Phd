@@ -75,5 +75,23 @@
 	mode                 = match
 }
 
+\setbeamertemplate{title page}
+{
+	\vbox{}
+	\vfill
+	\begingroup
+		\centering
+		\usebeamertemplate{title}
+		\vskip1em\par
+		\usebeamertemplate{author}
+		\usebeamertemplate{institute}
+		\usebeamertemplate{date}
+		\vskip1em\par
+		\usebeamertemplate{titlegraphic}
+	\endgroup
+	\vfill
+}
+
 \beamertemplatenavigationsymbolsempty
 \setbeamertemplate{caption}[numbered]
+\setbeamertemplate{footline}[frame number]

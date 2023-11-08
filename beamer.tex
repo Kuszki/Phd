@@ -1,7 +1,6 @@
 \documentclass[12pt, polish, aspectratio = 169]{beamer}
 \usepackage{beamer}
 
-\date{Wersja \gitVer{} z \today{}}
 \title{Rozprawa Doktorska}
 \author{mgr inż. Łukasz Dróżdż}
 \subject{Analiza metrologiczna algorytmów dyskretnej transformacji falkowej}
@@ -9,11 +8,14 @@
 \institute{Politechnika Śląska, Wydział Elektryczny \\ Katedra Metrologii, Elektroniki i Automatyki}
 \keywords{dyskretna transformacja falkowa, cyfrowe przetwarzanie sygnałów, szacowanie niepewności wyniku pomiaru, analiza właściwości metrologicznych toru pomiarowego}
 
+\titlegraphic{\includegraphics[height = 1cm]{obrazki/polsl_logo}}
+\date{Wersja \gitVer{} z \today{}}
+
 \begin{document}
 
 \section*{Wstęp}
 
-\begin{frame}
+\begin{frame}[plain]
 \titlepage
 \end{frame}
 
@@ -351,13 +353,13 @@ TODO
 
 \section*{Zakończenie}
 
-\begin{frame}
-\centering
-\strong{Dziękuję za uwagę}
-\vskip 24pt
-mgr inż. Łukasz Dróżdż \\ \href{mailto:lukasz.drozdz@polsl.pl}{lukasz.drozdz@polsl.pl}
-\vskip 16pt
-Politechnika Śląska, Wydział Elektryczny \\ Katedra Metrologii, Elektroniki i Automatyki
+\begin{frame}[plain]
+\centering\strong{\Huge Dziękuję za uwagę}
+\vskip3em\par
+\usebeamertemplate{author}
+\usebeamertemplate{institute}
+\vskip1em\par
+\usebeamertemplate{titlegraphic}
 \end{frame}
 
 \end{document}
