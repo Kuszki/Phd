@@ -49,8 +49,8 @@ pb = phi1(xv*2*pi);
 subplot(1, 2, 1)
 hold on;
 semilogx(fv, av, 'x;;');
-semilogx(xv, aa, ';Model "a";', 'color', [c(2,:)]);
-semilogx(xv, ab, ';Model "b";', 'color', [c(5,:)]);
+semilogx(xv, aa, ';Model \it{}a;', 'color', [c(2,:)]);
+semilogx(xv, ab, ';Model \it{}b;', 'color', [c(5,:)]);
 hold off;
 ylabel("Wzmocnienie, V/V");
 xlabel("Częstotliwość sygnału, Hz");
@@ -66,12 +66,12 @@ box on;
 subplot(1, 2, 2)
 hold on;
 semilogx(fv, pv, 'x;;');
-semilogx(xv, pa, ';Model "a";', 'color', [c(2,:)]);
-semilogx(xv, pb, ';Model "b";', 'color', [c(5,:)]);
+semilogx(xv, pa, ';Model \it{}a;', 'color', [c(2,:)]);
+semilogx(xv, pb, ';Model \it{}b;', 'color', [c(5,:)]);
 hold off;
 ylabel("Przesunięcie fazowe, rad");
 xlabel("Częstotliwość sygnału, Hz");
-legend("location", 'southwest');
+legend("location", 'southwest', 'interpreter', 'tex');
 xlim([100 flim]);
 ylim([-0.12 0]);
 set_comma(gca, 'Y', '%0.2f');

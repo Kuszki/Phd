@@ -39,6 +39,7 @@
 \usecolortheme{seahorse}
 \useinnertheme{rectangles}
 
+\newcommand{\lastpage}{\usebeamertemplate{last page}}
 \newcommand{\makecaption}[2]{\caption{\label{#1}#2}}
 \newcommand{\emb}[1]{\left(#1\right)}
 \newcommand{\bsigma}{\char"1D6D4}
@@ -86,6 +87,22 @@
 		\usebeamertemplate{author}
 		\usebeamertemplate{institute}
 		\usebeamertemplate{date}
+		\vskip1em\par
+		\usebeamertemplate{titlegraphic}
+	\endgroup
+	\vfill
+}
+
+\setbeamertemplate{last page}
+{
+	\vbox{}
+	\vfill
+	\begingroup
+		\centering
+		\strong{\Huge Dziękuję za uwagę}
+		\vskip3em\par
+		\usebeamertemplate{author}
+		\usebeamertemplate{institute}
 		\vskip1em\par
 		\usebeamertemplate{titlegraphic}
 	\endgroup
