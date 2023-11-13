@@ -26,9 +26,9 @@ Jako, że wybrane właściwości kolejnych fragmentów toru pomiarowego będą z
 \dot{s} \emb{t} = \sum _{i = 0} ^{\infty} \dot{s} \left( t, \omega_{s,i} \right) \label{eq:in_cont_sum_ideal}, \\
 \dot{s} \left( t, \omega \right) = E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} \right) \label{eq:in_cont_omega_ideal},
 \end{gather}
-gdzie $\omega_{s,i}$ jest pulsacją $i$-tej harmonicznej tego sygnału, $E_{s,o}(\omega)$ amplitudą oraz $\varphi_{s,o}(\omega)$ przesunięciem w fazie wybranej harmonicznej tego sygnału o pulsacji $\omega$. W przypadku rzeczywistym zakłada się natomiast, że zaburzony sygnałami błędów sygnał $s(t)$ przedstawić można jako:
+gdzie $\omega_{s,i}$ jest pulsacją $i$-tej harmonicznej tego sygnału, $E_{s,o}(\omega)$ amplitudą oraz $\varphi_{s,o}(\omega)$ przesunięciem w fazie wybranej harmonicznej tego sygnału o pulsacji $\omega$. W przypadku rzeczywistym zakłada się natomiast, że zaburzony wypadkowym sygnałem błędu $e_{s,\Sigma}(t)$ sygnał $s(t)$ przedstawić można jako:
 \begin{gather}
-\tilde{s} \emb{t} = e_{s,r} \emb{t} + \sum _{i = 0} ^{\infty} \tilde{s} \left( t, \omega_{s,i} \right) \label{eq:in_cont_sum_real}, \\
+\tilde{s} \emb{t} = \dot{s} \emb{t} + e_{s,\Sigma} \emb{t} = e_{s,r} \emb{t} + \sum _{i = 0} ^{\infty} \tilde{s} \left( t, \omega_{s,i} \right) \label{eq:in_cont_sum_real}, \\
 \tilde{s} \left( t, \omega \right) = \dot{s} \left( t, \omega \right) + E_{s,e} \emb{\omega} \sin \left( \omega t + \varphi_{s,e} \emb{\omega} \right) \label{eq:in_cont_omega_real},
 \end{gather}
 gdzie $E_{s,e}(\omega)$ jest amplitudą oraz $ \varphi_{s,e}(\omega)$ przesunięciem w fazie wybranej harmonicznej sygnału błędu, natomiast $e_{s,r}(t)$ sygnałem związanym z błędem o charakterze losowym. Przyjmuje się, że w równaniach~\eqref{eq:in_cont_sum_ideal} oraz~\eqref{eq:in_cont_sum_real} składowa stała opisywanych sygnałów stanowi harmoniczną o indeksie $i = 0$, gdzie $\omega_{s,0} = 0$ oraz $\varphi_{s,0} = \pi$.
@@ -129,7 +129,7 @@ Wyznaczenie wariancji sygnału propagowanego błędu losowego $e_{u,rp}(t)$ moż
 \begin{equation}
 \sigma_{u,rp}^{2} = \frac{1}{a - b} \int _{b} ^{a} \tilde{K}_{y}^{2} \emb{\omega} \sigma_{s,r}^{2} \emb{\omega} d\omega \label{eq:mid_cont_var_rand},
 \end{equation}
-przy czym $<a;b>$ jest zakresem pulsacji, dla którego szacowana jest średnia wariancja propagowanego błędu losowego. Jeżeli analizowany sygnał będzie przetwarzany przez kolejne fragmenty toru pomiarowego, których właściwości wpłynąć mogą na jego widmo, należy stosować opis dany równaniem~\eqref{eq:mid_cont_var_omega} w celu wyznaczenia wariancji $\sigma_{u,rp}^{2}(\omega)$. Jeżeli natomiast sygnał ten nie będzie dalej przetwarzany lub jego widmo na etapie tego przetwarzania nie zmieni się, w celu uproszczenia analizy może zostać wykorzystana zależność dana równaniem~\eqref{eq:mid_cont_var_rand}. W przypadku wystąpienia błędów losowych własnych w analizowanym fragmencie należy wskazać ich wariancję, opisaną jako $\sigma_{u,rw}^{2}(\omega)$.
+przy czym $<b;a>$ jest zakresem pulsacji, dla którego szacowana jest średnia wariancja propagowanego błędu losowego. Jeżeli analizowany sygnał będzie przetwarzany przez kolejne fragmenty toru pomiarowego, których właściwości wpłynąć mogą na jego widmo, należy stosować opis dany równaniem~\eqref{eq:mid_cont_var_omega} w celu wyznaczenia wariancji $\sigma_{u,rp}^{2}(\omega)$. Jeżeli natomiast sygnał ten nie będzie dalej przetwarzany lub jego widmo na etapie tego przetwarzania nie zmieni się, w celu uproszczenia analizy może zostać wykorzystana zależność dana równaniem~\eqref{eq:mid_cont_var_rand}. W przypadku istnienia sygnału błędu losowego własnego $e_{u,rw}(t)$ należy wskazać jego wariancję, opisaną jako $\sigma_{u,rw}^{2}(\omega)$.
 
 Ostatecznie, sumując wszystkie omówione sygnały błędów wielkości wyjściowej analizowanej części właściwości dynamicznych obiektu, otrzymuje się zależność opisującą wypadkowy sygnał błędu $e_{u,\Sigma}(t)$ w postaci równania:
 \begin{equation}
@@ -177,7 +177,7 @@ Wpływ funkcji przetwarzania na wariancję sygnałów błędów wielkości $u(t)
 \begin{equation}
 \sigma_{y}^{2} = \text{Var}\emb{f_{y} \emb{e_{u} \emb{t}}} = E \left[ \left( f_{y} \emb{e_{u} \emb{t}} - E \left[ f_{y} \emb{e_{u} \emb{t}} \right] \right)^2 \right] \label{eq:out_cont_var_function},
 \end{equation}
-gdzie $E[e(t)]$ oznacza wartość oczekiwaną realizacji sygnału $e(t)$. Przedstawiona analiza upraszcza się w przypadku, gdy funkcję przetwarzania obiektu stanowi równanie liniowe w postaci $f(x) = ax+b$. Zakładając, że symbolem $s_{y}$ oznaczono współczynnik kierunkowy przedstawionego równania, który utożsamić można z czułością analizowanego obiektu, równanie~\eqref{eq:out_cont_var_function} przyjmuje postać~\cite{oppenheim_sns}:
+gdzie $E[e(t)]$ oznacza wartość oczekiwaną realizacji sygnału $e(t)$. Przedstawiona analiza upraszcza się w przypadku, gdy funkcję przetwarzania obiektu stanowi równanie liniowe w postaci $f(x) = ax + b$. Zakładając, że symbolem $s_{y}$ oznaczono współczynnik kierunkowy przedstawionego równania, który utożsamić można z czułością analizowanego obiektu, równanie~\eqref{eq:out_cont_var_function} przyjmuje postać~\cite{oppenheim_sns}:
 \begin{equation}
 \sigma_{y}^{2} = s_{y}^{2} \sigma_{u}^{2} \label{eq:out_cont_var_sense}.
 \end{equation}
@@ -211,18 +211,18 @@ przy czym dla kolejnych realizacji $\hat{e}_{AC,q}(x)$ błędu kwantowania oraz 
 -\frac{q}{2} \le \hat{e}_{AC,q} \emb{x} \le \frac{q}{2} \label{eq:adc_qerrrange}.
 \end{equation}
 
-Zakładając, że uzyskanie każdej z możliwych wartości realizacji wielkości wejściowej $y(t)$ jest jednakowo prawdopodobne, rozkład realizacji błędu kwantowania będzie rozkładem jednostajnym, symetrycznym względem osi rzędnych, gdzie $\hat{e}_{AC,q} \in~<-\frac{1}{2} q;\frac{1}{2} q>$~\cite{jakubiec_przetwarzanie, jakubiec_system, sienkowski_kwant}. Wobec powyższych przyjmuje się, że model błędu kwantowania zbliżony jest do modelu nieskorelowanego szumu addytywnego, przy czym zakłada się jednakowe prawdopodobieństwo uzyskania wszystkich możliwych wartości realizacji oraz stałą widmową gęstość mocy tego sygnału~\cite{gray_quantization, widrow_quantization}. Wariancję błędu kwantowania opisuje zatem następujące równanie~\cite{jcgm_guide}:
+Zakładając, że uzyskanie każdej z możliwych wartości realizacji wielkości wejściowej $y(t)$ jest jednakowo prawdopodobne, rozkład realizacji błędu kwantowania będzie rozkładem jednostajnym, symetrycznym względem osi rzędnych, gdzie $\hat{e}_{AC,q} \in~<-\frac{1}{2} q;\frac{1}{2} q>$~\cite{jakubiec_przetwarzanie, jakubiec_system, sienkowski_kwant}. Wobec powyższych przyjmuje się, że model błędu kwantowania zbliżony jest do modelu nieskorelowanego szumu addytywnego, przy czym zakłada się jednakowe prawdopodobieństwo uzyskania wszystkich możliwych wartości realizacji oraz stałą widmową gęstość mocy tego sygnału~\cite{gray_quantization, widrow_quantization}. Wariancję sygnału błędu kwantowania opisuje zatem następujące równanie~\cite{jcgm_guide}:
 \begin{equation}
 \sigma_{AC,q}^{2} = \frac{q^{2}}{12} \label{eq:adc_errvar}.
 \end{equation}
 
-Jako, że funkcja przetwarzania opisana równaniem~\eqref{eq:adc_function} nie jest addytywna, analiza przetwarzanych przez analizowany obiekt sygnałów błędów z wykorzystaniem metody superpozycji nie jest możliwa. Proponuje się zatem przyjęcie modelu, w którym niezależnie od przebiegu przetwarzanego przez obiekt sygnału $y(t)$ obiekt ten wprowadza do sygnału wyjściowego $x(i)$ losowy błąd własny $e_{AC,q}(i)$ wynikający z zaokrągleń stosowanych w równaniu~\eqref{eq:adc_function} oraz przyjęcie zastępczej funkcji przetwarzania dla analizowanego obiektu, którą dla wielkości $x(i)$ wyrażonej w jednostce wielkości wejściowej $y(t)$ opisuje równanie:
+Jako, że funkcja przetwarzania opisana równaniem~\eqref{eq:adc_function} nie jest addytywna, analiza przetwarzanych przez analizowany obiekt sygnałów błędów z wykorzystaniem metody superpozycji nie jest możliwa. Proponuje się zatem przyjęcie modelu, w którym niezależnie od przebiegu przetwarzanego przez obiekt sygnału $y(t)$ obiekt ten wprowadza do sygnału wyjściowego $x(i)$ wynikający z zaokrągleń stosowanych w równaniu~\eqref{eq:adc_function} losowy sygnał błędu własnego $e_{x,q}(i)$ oraz przyjęcie zastępczej funkcji przetwarzania dla analizowanego obiektu, którą dla wielkości $x(i)$ wyrażonej w jednostce wielkości wejściowej $y(t)$ opisuje równanie:
 \begin{equation}
 f_{AC'} \emb{x} = x \label{eq:adc_simplify}.
 \end{equation}
 Wobec założeń danych równaniem~\eqref{eq:adc_simplify} przyjąć można uproszczenie, że analizowany obiekt cechuje się jednostkowym wzmocnieniem oraz nie wprowadza przesunięcia fazowego do sygnału wyjściowego. Oznacza to, że w przypadku wszystkich przenoszonych z wejścia na wyjście obiektu sygnałów błędów, parametry tych sygnałów pozostają niezmienne na wyjściu obiektu, co znacznie ułatwia jego analizę.
 
-Przedstawione powyżej założenia pozwalają na określenie wariancji sygnałów na wyjściu idealnego przetwornika analogowo-cyfrowego w funkcji wariancji sygnałów na jego wejściu jako:
+Przedstawione powyżej założenia pozwalają na określenie wariancji sygnałów na wyjściu analizowanego przetwornika analogowo-cyfrowego w funkcji wariancji sygnałów na jego wejściu jako:
 \begin{equation}
 \sigma_{x}^{2} \cong \sigma_{y}^{2} \label{eq:adc_varout},
 \end{equation}
@@ -331,7 +331,7 @@ natomiast propagowany przez analizowany fragment części cyfrowej błąd dynami
 e_{v,dp} \emb{i} = \sum _{j = 1} ^{\infty} \tilde{K}_{X} \emb{\omega_{x,j}} E_{x,e} \emb{\omega_{x,j}} \sin \left( \omega_{x,j} iT_{p} + \varphi_{x,e} \emb{\omega_{x,j}} + \tilde{\varphi}_{X} \emb{\omega_{x,j}} \right) \label{eq:mid_disc_err_dyn_prop}.
 \end{equation}
 
-Wariancja $\sigma_{v,rp}^{2}$ propagowanych przez analizowany fragment obiektu sygnałów błędów losowych $e_{x,r}(i)$ może zostać oszacowana zgodnie z metodologią zaproponowaną w równaniu~\eqref{eq:mid_cont_var_rand} i opisana zależnością:
+Wariancja $\sigma_{v,rp}^{2}$ propagowanych przez analizowany fragment obiektu sygnałów błędów losowych $e_{x,r}(i)$ w przedziale pulsacji $<b,a>$ może zostać oszacowana zgodnie z metodologią zaproponowaną w równaniu~\eqref{eq:mid_cont_var_rand} i opisana zależnością:
 \begin{equation}
 \sigma_{v,rp}^{2} = \frac{1}{a - b} \int _{b} ^{a} \tilde{K}_{X}^{2} \emb{\omega} \sigma_{x,r}^{2} \emb{\omega} d\omega \label{eq:mid_disc_var_rand},
 \end{equation}
