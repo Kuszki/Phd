@@ -20,6 +20,7 @@
 \RequirePackage{indentfirst}
 \RequirePackage{longtable}
 \RequirePackage{emptypage}
+\RequirePackage{interval}
 \RequirePackage{setspace}
 \RequirePackage{titlesec}
 \RequirePackage{fontspec}
@@ -186,6 +187,15 @@
 	quantity-product     = ~,
 	exponent-product     = \cdot,
 	mode                 = match
+}
+
+\intervalconfig
+{
+	left closed fence = [,
+	right closed fence = ],
+	left open fence = (,
+	right open fence = ),
+	separator symbol = ;
 }
 
 % to allow break long gathers

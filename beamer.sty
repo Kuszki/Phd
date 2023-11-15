@@ -7,6 +7,7 @@
 \RequirePackage[polish]{babel}
 
 \RequirePackage{unicode-math}
+\RequirePackage{interval}
 \RequirePackage{setspace}
 \RequirePackage{ragged2e}
 \RequirePackage{textcomp}
@@ -76,6 +77,15 @@
 	mode                 = match
 }
 
+\intervalconfig
+{
+	left closed fence = [,
+	right closed fence = ],
+	left open fence = (,
+	right open fence = ),
+	separator symbol = ;,
+}
+
 \setbeamertemplate{title page}
 {
 	\vbox{}
@@ -83,11 +93,11 @@
 	\begingroup
 		\centering
 		\usebeamertemplate{title}
-		\vskip1em\par
+		\vskip 1em \par
 		\usebeamertemplate{author}
 		\usebeamertemplate{institute}
 		\usebeamertemplate{date}
-		\vskip1em\par
+		\vskip 1em \par
 		\usebeamertemplate{titlegraphic}
 	\endgroup
 	\vfill
@@ -100,10 +110,10 @@
 	\begingroup
 		\centering
 		\strong{\Huge Dziękuję za uwagę}
-		\vskip3em\par
+		\vskip 3em \par
 		\usebeamertemplate{author}
 		\usebeamertemplate{institute}
-		\vskip1em\par
+		\vskip 1em \par
 		\usebeamertemplate{titlegraphic}
 	\endgroup
 	\vfill
