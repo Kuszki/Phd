@@ -35,6 +35,7 @@
 \RequirePackage{parskip}
 \RequirePackage{gensymb}
 \RequirePackage{comment}
+\RequirePackage{xpatch}
 \RequirePackage{calc}
 
 \DeclareSIUnit[quantity-product=-]\bitOwych{bitowych}
@@ -59,12 +60,14 @@
 \titleformat{name = \chapter}[block]{\normalfont\bfseries\huge}{}{0pt}{\thechapter.~}
 \titleformat{name = \section}[block]{\normalfont\bfseries\large}{}{0pt}{\thesection.~}
 
-\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % for chapters
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % for sections
+\xpatchcmd{\interval}{interval,}{interval,scaled,}{}{}
 
-\renewcommand{\cftchapaftersnum}{.} % for chapters
-\renewcommand{\cftsecaftersnum}{.} % for sections
-\renewcommand{\arraystretch}{1.30} % larger tables
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\renewcommand{\cftchapaftersnum}{.}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\arraystretch}{1.30}
 
 \renewcommand\floatpagefraction{0.85}
 \renewcommand\topfraction{0.85}

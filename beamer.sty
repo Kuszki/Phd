@@ -16,6 +16,7 @@
 \RequirePackage{lmodern}
 \RequirePackage{gensymb}
 \RequirePackage{comment}
+\RequirePackage{xpatch}
 \RequirePackage{calc}
 
 \DeclareSIUnit[quantity-product=-]\bitOwych{bitowych}
@@ -39,6 +40,8 @@
 \usetheme{boxes}
 \usecolortheme{seahorse}
 \useinnertheme{rectangles}
+
+\xpatchcmd{\interval}{interval,}{interval,scaled,}{}{}
 
 \newcommand{\lastpage}{\usebeamertemplate{last page}}
 \newcommand{\makecaption}[2]{\caption{\label{#1}#2}}
@@ -83,7 +86,7 @@
 	right closed fence = ],
 	left open fence = (,
 	right open fence = ),
-	separator symbol = ;,
+	separator symbol = ;
 }
 
 \setbeamertemplate{title page}
