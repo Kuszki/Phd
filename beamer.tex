@@ -23,7 +23,7 @@
 \tableofcontents
 \end{frame}
 
-\section{Przedstawienie tezy pracy oraz jej najważniejszych założeń}
+\newsection{Teza pracy}{Przedstawienie tezy pracy oraz jej najważniejszych założeń}
 
 \begin{frame}{Teza pracy}
 \justifying
@@ -47,7 +47,7 @@ Skuteczność zaproponowanej metody oraz dokładność uzyskiwanych wyników zal
 \end{itemize}
 \end{frame}
 
-\section{Przedstawienie najważniejszych właściwości metrologicznych algorytmów transformacji falkowej}
+\newsection{Algorytm transformacji falkowej}{Przedstawienie najważniejszych właściwości metrologicznych algorytmów transformacji falkowej}
 
 \begin{frame}{Algorytm transformacji falkowej}
 \begin{equation}
@@ -189,7 +189,7 @@ e_{X,z} \emb{j} = \tilde{X} \emb{j} - \dot{X} \emb{j} \label{eq:fwt_outerr_self}
 \end{itemize}
 \end{frame}
 
-\section{Omówienie najważniejszych założeń odnośnie zaproponowanego w pracy modelu błędów}
+\newsection{Model błędów}{Omówienie najważniejszych założeń odnośnie zaproponowanego w pracy modelu błędów}
 
 \begin{frame}{Podstawowe założenia modelu błędów}
 \begin{itemize}
@@ -270,7 +270,7 @@ e_{X,z} \emb{j} = \tilde{X} \emb{j} - \dot{X} \emb{j} \label{eq:fwt_outerr_self}
 	\item dla warunków idealnych, jako $\dot{G}_{y}(j\omega)$ oraz $\dot{f}_{y}(x)$
 	\item dla warunków rzeczywistych, jako $\tilde{G}_{y}(j\omega)$ oraz $\tilde{f}_{y}(x)$
 	\end{itemize}
-\item Jeżeli rzeczywiste właściwości obiektu odbiegają od idealnych, obiekt wprowadza błędy własne
+\item Jeżeli rzeczywiste właściwości obiektu odbiegają od idealnych, obiekt wprowadza do sygnału wyjściowego błędy własne
 \item Obiekt przetwarza sygnały błędów zawarte w wielkości wejściowej
 \item Dla właściwości dynamicznych opisać można wzmocnienie $K_{y}(\omega)$ oraz przesunięcie fazowe $\varphi_{y}(\omega)$ w funkcji pulsacji $\omega$ jako:
 \begin{gather}
@@ -333,7 +333,80 @@ K_{y} \emb{\omega} = \left| G_{y} \emb{j\omega} \right| =
 \end{itemize}
 \end{frame}
 
-\section{Omówienie zaproponowanej metody szacowania wypadkowej wartości niepewności rozszerzonej}
+\begin{frame}{Parametry sygnałów błędów na wyjściu obiektu}
+\begin{itemize}
+\item Dla sygnałów błędów propagowanych części związanej z właściwościami dynamicznymi obiektu zachodzi:
+\begin{equation}
+\sigma_{u}^{2} \emb{\omega} = \tilde{K}_{y}^{2} \emb{\omega} \sigma_{s}^{2} \emb{\omega} \label{eq:mid_cont_var_omega}
+\end{equation}
+\item $\sigma_{s}^{2}$ jest wariancją sygnału na wejściu obiektu, natomiast $\sigma_{u}^{2}$ wariancją tego sygnału na wyjściu fragmentu związanego z właściwościami dynamicznymi
+\item W przypadku sygnałów błędów losowych istnieje możliwość oszacowania średniej wariancji tych sygnałów w zadanym zakresie pulsacji:
+\begin{equation}
+\sigma_{u,rp}^{2} = \frac{1}{a - b} \int _{b} ^{a} \tilde{K}_{y}^{2} \emb{\omega} \sigma_{s,r}^{2} \emb{\omega} d\omega \label{eq:mid_cont_var_rand},
+\end{equation}
+\item $\sigma_{u,rp}^{2}$ jest średnią wariancją sygnału $e_{s,r}(t)$ przeniesionego na wyjście fragmentu związanego z właściwościami dynamicznymi dla $\omega \in \interval{b}{a}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Parametry sygnałów błędów na wyjściu obiektu}
+\begin{itemize}
+\item Wariancję sygnału błędu na wyjściu obiektu opisuje równanie:
+\begin{equation}
+\sigma_{y}^{2} = \text{Var}\emb{\tilde{f}_{y} \emb{e_{u} \emb{t}}} = E \left[ \left( \tilde{f}_{y} \emb{e_{u} \emb{t}} - E \left[ \tilde{f}_{y} \emb{e_{u} \emb{t}} \right] \right)^2 \right] \label{eq:out_cont_var_function}
+\end{equation}
+\item $e_{u}(t)$ jest analizowanym sygnałem błędu na wyjściu fragmentu obiektu opisującego jego właściwości dynamiczne
+\item Jeżeli funkcja przetwarzania $f_{y}(x)$ jest addytywna (tj. zachodzi $f_{y}(a+b) = f_{y}(a) + f_{y}(b)$) istnieje możliwość stosowania zasady superpozycji i analizy wszystkich składowych sygnału błędu $e_{y,\Sigma}(t)$ z osobna
+\item Jeżeli funkcja przetwarzania $f_{y}(x)$ jest liniowa (tj. opisana jest w postaci $f_{y}(x) = s_{y} x + b_{y}$) równanie \eqref{eq:out_cont_var_function} upraszcza się do postaci $\sigma_{y}^{2} = s_{y}^{2} \sigma_{u}^{2}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Parametry sygnałów błędów na wyjściu obiektu}
+\begin{itemize}
+\item W przypadku liniowej funkcji przetwarzania wariancję sygnału błędu na wyjściu obiektu opisuje równanie:
+\begin{equation}
+\sigma_{y}^{2} \emb{\omega} = \tilde{s}_{y}^{2} \tilde{K}_{y}^{2} \emb{\omega} \sigma_{s}^{2} \emb{\omega} \label{eq:out_cont_var_omega}
+\end{equation}
+\item $s_{y}$ jest współczynnikiem kierunkowym równania przetwarzania obiektu
+\item Jeżeli rzeczywiste wartości wielkości $s_{y}$, $K_{y}(\omega)$, lub rzeczywista postać funkcji przetwarzania $f_{y}(x)$ nie są znane, należy w obliczeniach przyjąć wartości odpowiednie dla idealnych wielkości
+\item Kształt funkcji gęstości prawdopodobieństwa analizowanych sygnałów na wyjściu jest identyczny, jak na wejściu obiektu, w przypadku liniowej transmitancji obiektu i liniowej funkcji przetwarzania
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Przetwornik analogowo-cyfrowy}
+\begin{itemize}
+\item Przekształca ciągły sygnał wejściowy $y(t)$ na jego dyskretną reprezentację $x(t_{i})$, gdzie $t_{i}$ jest wybraną wartością czasu
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Część cyfrowa toru pomiarowego}
+\begin{figure}
+\includegraphics[scale = 0.75]{obrazki/schemat_dyskretny}
+\caption{Model fragmentu części cyfrowej toru pomiarowego}
+\end{figure}
+\begin{itemize}
+\item Obiekt przetwarza kolejne próbki wielkości $x(i)$ na próbki wielkości $X(i)$
+\item Właściwości dynamiczne opisuje transmitancja $H_{X}(z)$
+\item Właściwości statyczne opisuje funkcja przetwarzania $f_{X}(x)$
+\item Przykładem obiektu może być filtr cyfrowy, algorytm korekcji statycznej lub dynamicznej oraz jednopunktowy algorytm przetwarzania danych
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Część cyfrowa toru pomiarowego}
+\begin{itemize}
+\item Metoda analizy i opisu właściwości części cyfrowej toru pomiarowego jest identyczna, jak w przypadku części analogowej
+\item Transmitancję $G_{X}(j\omega)$ obiektu odpowiednią dla okresu próbkowania $T_{p}$ opisuje równanie:
+\begin{equation}
+G_{X} \emb{j\omega} = H_{X} \emb{e^{j\omega T_{p}}} \label{eq:trans_disc_tocont}
+\end{equation}
+\item Parametry związane z fragmentem obiektu opisującym jego właściwości dynamiczne opisują równania:
+\begin{gather}
+K_{X} \emb{\omega} = \sqrt{\left( \Re \left( H_{X} \emb{e^{j\omega T_{p}}} \right) \right)^{2} + \left( \Im \left( H_{X} \emb{e^{j\omega T_{p}}} \right) \right)^{2}} \label{eq:mid_disc_amp} \\
+\varphi_{X} \emb{\omega} = \arctan \left( \frac{\Im \left( H_{X} \emb{e^{j\omega T_{p}}} \right)}{\Re \left( H_{X} \emb{e^{j\omega T_{p}}} \right)} \right) \label{eq:mid_disc_phi}
+\end{gather}
+\end{itemize}
+\end{frame}
+
+\newsection{Metoda szacowania wypadkowej wartości niepewności rozszerzonej}{Omówienie zaproponowanej metody szacowania wypadkowej wartości niepewności rozszerzonej}
 
 \begin{frame}{TODO}
 TODO
@@ -345,7 +418,7 @@ TODO
 TODO
 \end{frame}
 
-\section{Przedstawienie najważniejszych wniosków płynących z pracy}
+\newsection{Podsumowanie}{Przedstawienie najważniejszych wniosków płynących z pracy}
 
 \begin{frame}{TODO}
 TODO
