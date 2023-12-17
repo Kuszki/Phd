@@ -375,6 +375,89 @@ K_{y} \emb{\omega} = \left| G_{y} \emb{j\omega} \right| =
 \begin{frame}{Przetwornik analogowo-cyfrowy}
 \begin{itemize}
 \item Przekształca ciągły sygnał wejściowy $y(t)$ na jego dyskretną reprezentację $x(t_{i})$, gdzie $t_{i}$ jest wybraną wartością czasu
+\item Właściwości obiektu opisać można stosując:
+	\begin{itemize}
+	\item model części analogowej do opisu właściwości układu P/P
+	\item model części cyfrowej do opisu właściwości układu A/C
+	\end{itemize}
+\item W przypadku idealnego przetwornika A/C transmitancja $G_{AC}(j\omega) = 1$
+\item Funkcję przetwarzania idealnego układu kwantyzatora opisuje równanie:
+\begin{equation}
+f_{AC} \emb{x} = n_{q} \emb{x} = \left\lfloor \frac{x}{q} + \num{0.5} \right\rfloor \label{eq:adc_function}
+\end{equation}
+\item $n_{q}(x)$ jest wartością wyjściową przetwornika dla wartości $x$
+\item $q$ jest wartością kwantu przetwornika
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Przetwornik analogowo-cyfrowy}
+\begin{itemize}
+\item Wielkość wyjściową przetwornika, wyrażoną w jednostce wielkości wejściowej, opisuje równanie:
+\begin{equation}
+\breve{u}_{AC} \emb{x} = q f_{AC} \emb{x} = q \left\lfloor \frac{x}{q} + \num{0.5} \right\rfloor \label{eq:adc_output}
+\end{equation}
+\item Błąd kwantowania wyrazić można w postaci:
+\begin{equation}
+e_{AC,q} \emb{x} = x - \breve{u}_{AC} \emb{x} = x - q \left\lfloor \frac{x}{q} + \num{0.5} \right\rfloor \label{eq:adc_qerror}
+\end{equation}
+\item Zakres wartości realizacji błędu kwantowania opisuje relacja:
+\begin{equation}
+-\frac{q}{2} \le \hat{e}_{AC,q} \emb{x} \le \frac{q}{2} \label{eq:adc_qerrrange}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Przetwornik analogowo-cyfrowy}
+\begin{itemize}
+\item Funkcja przetwarzania dana równaniem \eqref{eq:adc_function} nie jest addytywna
+\item Wartości realizacji sygnału błędu kwantowania mogą być skorelowane z przetwarzanym sygnałem
+\item Aby zastosować model błędu opisany w pracy proponuje się przyjąć:
+\begin{equation}
+f_{AC'} \emb{x} = x \label{eq:adc_simplify}
+\end{equation}
+\item Sygnał błędu kwantowania, wynikający z postaci funkcji przetwarzania opisanej równaniem \eqref{eq:adc_function}, traktować jako sygnał losowy:
+	\begin{itemize}
+	\item stosując modelu nieskorelowanego sygnału szumu, o charakterze addytywnym i stałej widmowej gęstości mocy
+	\item przyjmując jednakowe prawdopodobieństwo uzyskania każdej z wartości realizacji tego sygnału, co opisano relacją \eqref{eq:adc_output}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Przetwornik analogowo-cyfrowy}
+\begin{itemize}
+\item Z treści równania \eqref{eq:adc_simplify} i przyjętych założeń wynika:
+\begin{equation}
+\dot{x} \emb{i} = \dot{y} \emb{t_{i}} \label{eq:adc_out_ideal}
+\end{equation}
+\item $x(i)$ stanowi kolejne próbki sygnału na wyjściu przetwornika
+\item $y(t)$ jest sygnałem na wejściu przetwornika
+\begin{gather}
+\tilde{x} \emb{i} = \dot{x} \emb{i} + e_{x,\Sigma} \emb{i} \label{eq:adc_out_real} \\
+e_{x,\Sigma} \emb{i} \cong e_{y,\Sigma} \emb{t_{i}} + e_{x,q} \emb{i} + e_{x,w} \emb{i} \label{eq:adc_out_error}
+\end{gather}
+\item $e_{x,\Sigma}(i)$ jest wypadkowym sygnałem błędu przetwornika
+\item $e_{x,q}(i)$ jest sygnałem związanym z błędem kwantowania
+\item $e_{x,w}(i)$ dla rzeczywistego przetwornika jest sygnałem błędu własnego
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Przetwornik analogowo-cyfrowy}
+\begin{itemize}
+\item Z uwagi na przyjęte założenia, sygnały błędów na wyjściu przetwornika opisać można jako:
+\begin{equation}
+e_{x} \emb{i} \cong e_{y} \emb{t_{i}} \label{eq:adc_errout}
+\end{equation}
+\item Parametry sygnałów błędów na wyjściu przetwornika opisuje zależność:
+\begin{equation}
+\sigma_{x}^{2} \cong \sigma_{y}^{2} \label{eq:adc_varout}
+\end{equation}
+\item Przetwarzane sygnały błędów zachowują swoje oryginalne parametry
+\item Pomija się korelacje sygnału błędu kwantowania z przetwarzanymi sygnałami
+\item W przypadku modelowania właściwości rzeczywistego przetwornika:
+	\begin{itemize}
+	\item należy określić postać sygnału błędu własnego $e_{x,w}(i)$ wynikającego z właściwości układu P/P i właściwości układu A/C
+	\item należy wskazać korelacje tego sygnału z pozostałymi sygnałami przetwarzanymi i wprowadzanymi przez analizowany obiekt
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -406,13 +489,289 @@ K_{X} \emb{\omega} = \sqrt{\left( \Re \left( H_{X} \emb{e^{j\omega T_{p}}} \righ
 \end{itemize}
 \end{frame}
 
-\newsection{Metoda szacowania wypadkowej wartości niepewności rozszerzonej}{Omówienie zaproponowanej metody szacowania wypadkowej wartości niepewności rozszerzonej}
-
-\begin{frame}{TODO}
-TODO
+\begin{frame}{Algorytm jako fragment toru pomiarowego}
+\begin{itemize}
+\item Przetwarza $N$ kolejnych próbek wielkości wejściowych $x(j)$ na $M$ próbek wielkości wyjściowych $X(i)$
+\item Sygnały związane z kolejnymi wielkościami wyjściowymi modelować można stosując opis zaproponowany dla części cyfrowej toru pomiarowego
+\item W przypadku liniowych algorytmów przetwarzania danych, działanie algorytmu przedstawia równanie:
+\begin{equation}
+\begin{bmatrix}
+X \emb{0}   \\
+X \emb{1}   \\
+\vdots      \\
+X \emb{M-1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{0, 0}   &   a_{0, 1} &   \cdots   &   a_{0, N-1}      \\
+a_{1, 0}   &   \ddots   &            &   a_{1, N-1}      \\
+\vdots     &            &   \ddots   &   \vdots          \\
+a_{M-1, 0} &   \cdots   &   \cdots   &   a_{M-1, N-1}
+\end{bmatrix}
+\begin{bmatrix}
+x \emb{0}   \\
+x \emb{1}   \\
+\vdots      \\
+x \emb{N-1}
+\end{bmatrix}
+\label{eq:alg_out_mat}
+\end{equation}
+\item $a_{i,j}$ to kolejne współczynniki macierzy transformacji algorytmu
+\end{itemize}
 \end{frame}
 
-\section{Przedstawienie wyników badań symulacyjnych i pomiarowych, weryfikujących zasadność tezy pracy}
+\begin{frame}{Algorytm jako fragment toru pomiarowego}
+\begin{itemize}
+\item Pojedynczą $i$-tą wielkość wyjściową opisuje równanie:
+\begin{equation}
+X \emb{i} = a_{i, 0} x \emb{0} + \hdots + a_{i, N-1} x \emb{N-1} = \sum _{j = 0} ^{N-1} a_{i,j} x \emb{j} \label{eq:alg_out_single}
+\end{equation}
+\item Sygnał błędu propagowanego, związany z $i$-tą wielkością wyjściową:
+\begin{equation}
+e_{X,p} \emb{i} = a_{i, 0} e_{x,\Sigma} \emb{0} + \hdots + a_{i, N-1} e_{x,\Sigma} \emb{N-1} = \sum _{j = 0} ^{N-1} a_{i,j} e_{x,\Sigma} \emb{j} \label{eq:alg_outerr}
+\end{equation}
+\item Transmitancja związana z $i$-tą wielkością wyjściową wynosi:
+\begin{equation}
+H_{i} \emb{z} = a_{i, 0} + \hdots + a_{i, N-1} z^{-N+1} = \sum _{k = 0} ^{N-1} a_{i, k} z^{-k} \label{eq:alg_trans_single}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Algorytm jako fragment toru pomiarowego}
+\begin{itemize}
+\item Wartości współczynników macierzy transformacji mogą być wyznaczane:
+	\begin{itemize}
+	\item na podstawie znajomości transmitancji algorytmu
+	\item stosując algorytm identyfikacji
+	\end{itemize}
+\item Identyfikacja wartości elementów macierzy transformacji:
+	\begin{itemize}
+	\item polega na wyznaczaniu realizacji wektora wielkości wyjściowych algorytmu podając na jego wejście odpowiedni wektor wielkości wejściowych
+	\item odbywa się dla gotowej implementacji algorytmu
+	\item struktura numeryczna algorytmu nie musi być znana
+	\end{itemize}
+\item Dla $n \in \interval{0}{N-1}$ wektor wielkości wejściowych:
+\begin{equation}
+x \emb{n} =
+\begin{cases}
+	1 & $gdy$~n = j \\
+	0 & $gdy$~n \neq j
+\end{cases}
+\label{eq:wt_ident}
+\end{equation}
+\item Odpowiedź algorytmu stanowi $n$-tą kolumnę identyfikowanej macierzy
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wariancja sygnałów błędów na wyjściu algorytmu}
+\begin{itemize}
+\item W przypadku sygnałów błędów statycznych:
+\begin{equation}
+\sigma_{X,sp}^{2} \emb{i} = \sigma_{x,s}^{2} \left( a_{i, 0} + \hdots + a_{i, N-1} \right)^{2} = \sigma_{x,s}^{2} \left( \sum _{j = 0} ^{N-1} a_{i, j} \right)^{2} \label{eq:alg_outvar_stat}
+\end{equation}
+\item W przypadku sygnałów błędów dynamicznych:
+\begin{equation}
+\sigma_{X,dp}^{2} \emb{i, \omega} = \frac{1}{2} E_{x,e}^{2} \emb{\omega} \left| H_{i} \emb{e^{j\omega T_{p}}} \right|^{2} \label{eq:alg_outvar_dyn}
+\end{equation}
+\item W przypadku sygnałów błędów losowych o stałej widmowej gęstości mocy:
+\begin{equation}
+\sigma_{rp}^{2} \emb{i} = a_{i, 0}^{2} \sigma_{x,r}^{2} + \hdots + a_{i, N-1}^{2} \sigma_{x,r}^{2} = \sigma_{x,r}^{2} \sum _{j=0} ^{N-1} {a_{i, j}^{2}} \label{eq:alg_outvar_rand}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Model błędów algorytmu}
+\begin{itemize}
+\item Dla pojedynczej wielkości wyjściowej analiza jest identyczna, jak w przypadku części cyfrowej toru pomiarowego
+\item Sygnały na wyjściu algorytmu opisane w postaci:
+\begin{gather}
+\dot{X} \emb{i} = \sum _{j = 0} ^{N-1} \dot{a}_{i,j} \dot{x} \emb{j} \label{eq:alg_out_ideal} \\
+\tilde{X} \emb{i} = \dot{X} \emb{i} + e_{X,\Sigma} \emb{i} \label{eq:alg_out_real} \\
+e_{X,\Sigma} \emb{i} = e_{X,w} \emb{i} + e_{X,p} \emb{i} \label{eq:alg_out_err}
+\end{gather}
+\item $e_{X,\Sigma}(i)$ jest sygnałem błędu wypadkowego
+\item $e_{X,w}(i)$ jest sygnałem błędu własnego
+\item $e_{X,p}(i)$ jest sygnałem błędu propagowanego
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Algorytmy transformacji falkowej}
+\begin{itemize}
+\item Algorytm można przedstawić za pomocą $K+1$ fragmentów części cyfrowej toru pomiarowego, gdzie $K$ oznacza liczbę iteracji procesu dekompozycji sygnału, przy czym dla każdego etapu dekompozycji:
+	\begin{itemize}
+	\item transmitancja związana ze wszystkimi wielkościami wyjściowymi algorytmu jest identyczna
+	\item parametry sygnału błędu własnego zaokrągleń są identyczne
+	\item powyższe właściwości dotyczą sytuacji, gdy nie stosuje się okna pomiarowego
+	\end{itemize}
+\item Przyjmuje się, że transmitancja algorytmu jest idealna, stąd:
+	\begin{itemize}
+	\item algorytm nie wprowadza sygnałów błędów statycznego i dynamicznego
+	\item błędy własne algorytmu wynikają jedynie z operacji na liczbach zmiennoprzecinkowych
+	\end{itemize}
+\item Dla założeń innych, niż przedstawiono, należy stosować analizę odpowiednią dla części cyfrowej, w której nie stosuje się wskazanych uproszczeń
+\end{itemize}
+\end{frame}
+
+\newsection{Metoda szacowania wypadkowej wartości niepewności rozszerzonej}{Omówienie zaproponowanej metody szacowania wypadkowej wartości niepewności rozszerzonej}
+
+\begin{frame}{Ilościowy opis niedokładności wyniku pomiaru}
+\begin{itemize}
+\item Stosując miarę niepewności standardowej lub wariancji:
+	\begin{itemize}
+	\item możliwość powiązania wartości wariancji z mocą sygnału błędu
+	\item niewielki stopień skomplikowania obliczeń w przypadku wyznaczania parametrów wypadkowych dla sumy sygnałów błędów
+	\item nie zawsze istnieje możliwość wskazania, w jakim przedziale i z jakim prawdopodobieństwem znajdują się wartości realizacji sygnału błędu 
+	\end{itemize}
+\item Stosując miarę niepewności rozszerzonej:
+	\begin{itemize}
+	\item możliwość powiązania wartości niepewności standardowej z rozszerzoną dla sygnałów o typowych kształtach funkcji gęstości prawdopodobieństwa wartości realizacji tych sygnałów (współczynnik rozszerzenia)
+	\item możliwość wskazania przedziału, w jakim z określonym prawdopodobieństwem znajdują się wartości realizacji sygnału błędu
+	\item wysoki stopień skomplikowania obliczeń w przypadku wyznaczania parametrów wypadkowego sygnału błędu
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Parametry sygnałów o charakterze deterministycznym}
+\begin{itemize}
+\item Dla sygnałów opisanych zgodnie z równaniem:
+\begin{equation}
+e_{i} \emb{t} = E_{i} \sin \left( \omega_{i} t + \varphi_{i} \right) \label{eq:dyn_harm}
+\end{equation}
+\item Wartość wariancji może być wyznaczana w postaci:
+\begin{equation}
+\sigma_{i}^{2} = \frac{E_{i}^{2}}{2} \label{eq:dyn_var}
+\end{equation}
+\item Wartość współczynnika korelacji Pearsona wynosi:
+\begin{equation}
+r_{i,j} =
+\begin{cases}
+\cos \left( \varphi_{j} - \varphi_{i} \right) & $dla $ \omega_{i} = \omega_{j} \\
+0                                             & $dla $ \omega_{i} \ne \omega_{j}
+\end{cases}
+\label{eq:dyn_corr}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Parametry sygnałów o charakterze deterministycznym}
+\begin{itemize}
+\item W przypadku wielu harmonicznych sygnału błędu dynamicznego o jednakowej pulsacji:
+\begin{gather}
+\mathbf{e}_{i} =
+\begin{bmatrix}
+e_{i,a} & e_{i,b}
+\end{bmatrix}
+=
+\begin{bmatrix}
+E_{i} \cos \emb{\varphi_{i}} & E_{i} \sin \emb{\varphi_{i}}
+\end{bmatrix}
+\label{eq:dyn_vect}, \\
+\mathbf{e}_{\Sigma} =
+\begin{bmatrix}
+e_{\Sigma,a} & e_{\Sigma,b}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\sum _{i = 0} ^{N-1} e_{i,a} & \sum _{i = 0} ^{N-1} e_{i,b}
+\end{bmatrix}
+\label{eq:dyn_vect_sum} \\
+E_{\Sigma} = \sqrt{e_{\Sigma,a}^{2} + e_{\Sigma,b}^{2}} \label{eq:dyn_vect_amp} \\
+\varphi_{\Sigma} = \arctan \emb{\frac{e_{\Sigma,b}}{e_{\Sigma,a}}} \label{eq:dyn_vect_phi}
+\end{gather}
+\item Wyznaczenie wypadkowych parametrów dla harmonicznych o jednakowej pulsacji znacznie upraszcza analizę
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Parametry sygnałów błędów}
+\begin{itemize}
+\item W przypadku, gdy wartość realizacji sygnału błędu nie zmienia się dla analizowanego okna pomiarowego, sygnał zaliczany jest do grupy statycznych
+\item Jeżeli nie jest możliwy deterministyczny opis sygnału błędu, sygnał ten zalicza się do grupy błędów losowych
+\item Powtarzając proces pomiaru wielokrotnie istnieje możliwość wskazania parametrów wariancji oraz niepewności rozszerzonej, związanych z analizowanym sygnałem
+\item W przypadku sygnałów błędów opisanych deterministycznie istnieje możliwość analizy tych sygnałów w dziedzinie pulsacji
+\item Zadaniem projektanta toru pomiarowego jest identyfikacja parametrów sygnałów błędów, wynikających z właściwości toru pomiarowego, oraz ich parametrów
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wyznaczanie parametrów wypadkowego sygnału błędu}
+\begin{itemize}
+\item Definiując wypadkowy sygnał błędu w postaci:
+\begin{equation}
+e_{\Sigma} \emb{t} = e_{0} \emb{t} + e_{1} \emb{t} + \hdots + e_{N-1} \emb{t} \label{eq:err_sum}
+\end{equation}
+\item Wariancja tego sygnału wynosi:
+\begin{equation}
+\sigma_{\Sigma}^{2} =
+\begin{bmatrix}
+\sigma_{0} \\ \sigma_{1} \\ \vdots \\ \sigma_{N-1}
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1         & r_{0,1} & \cdots & r_{0,N-1} \\
+r_{1,0}   & 1       &        & r_{1,N-1} \\
+\vdots    &         & \ddots & \vdots    \\
+r_{N-1,0} & \cdots  & \cdots & 1
+\end{bmatrix}
+\begin{bmatrix}
+\sigma_{0} \\ \sigma_{1} \\ \vdots \\ \sigma_{N-1}
+\end{bmatrix}
+\label{eq:var_matrix}
+\end{equation}
+\item Wartości współczynnika korelacji Pearsona wynoszą kolejno:
+\begin{equation}
+r_{i,j} = r_{j,i} = \frac{\sigma_{i,j}^{2} - \sigma_{i}^{2} - \sigma_{j}^{2}}{2 \sigma_{i} \sigma_{j}} \label{eq:var_corr}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Nipewność rozszerzona wypadkowego sygnału błędu}
+\begin{itemize}
+\item Jeżeli spełnione zostały warunki centralnego twierdzenia granicznego:
+\begin{equation}
+U_{\Sigma} = c_{n} \sigma_{\Sigma} \label{eq:unc_sum}
+\end{equation}
+\item $c_{n}$ jest współczynnikiem rozszerzenia dla poziomu ufności $\alpha$
+\item Wyniki są nieprawidłowe, jeśli przyjęto błędne założenia
+\end{itemize}
+\begin{itemize}
+\item W pozostałych przypadkach:
+	\begin{itemize}
+	\item symulacja metodą Monte-Carlo
+	\item metoda propagacji dystrybuant
+	\item metoda rozszerzonej reguły kombinacji niepewności
+	\item metoda bazująca na zbiorach rozmytych
+	\item zastosowanie redukcyjnej arytmetyki interwałowej
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Metoda redukcyjnej arytmetyki interwałowej}
+\begin{equation}
+U_{\Sigma} = \sqrt{
+\begin{bmatrix}
+U_{0} \\ U_{1} \\ \vdots \\ U_{N-1}
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1         & h_{0,1} & \cdots & h_{0,N-1} \\
+h_{1,0}   & 1       &        & h_{1,N-1} \\
+\vdots    &         & \ddots & \vdots    \\
+h_{N-1,0} & \cdots  & \cdots & 1
+\end{bmatrix}
+\begin{bmatrix}
+U_{0} \\ U_{1} \\ \vdots \\ U_{N-1}
+\end{bmatrix}}
+\label{eq:unc_matrix}
+\end{equation}
+\begin{itemize}
+\item $h_{i,j} = h_{j,i}$ to współczynnik koherencji dla pary sygnałów $e_{i}(t)$ oraz $e_{j}(t)$
+\item Metoda wymaga wyznaczenia wartości współczynników koherencji:
+	\begin{itemize}
+	\item stosując metodę analityczną lub symulacyjną -- nie jest uniwersalna
+	\item szacując ich wartości -- wyniki mogą być niedokładne
+	\end{itemize}
+\item Wartość współczynnika koherencji zależy od parametrów wszystkich analizowanych sygnałów
+\end{itemize}
+\end{frame}
+
+\newsection{Weryfikacja przedstawionej tezy}{Przedstawienie wyników badań symulacyjnych i pomiarowych, weryfikujących zasadność tezy pracy}
 
 \begin{frame}{TODO}
 TODO
