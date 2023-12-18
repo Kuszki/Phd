@@ -771,10 +771,320 @@ U_{0} \\ U_{1} \\ \vdots \\ U_{N-1}
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Przypadek dla dwóch sygnałów}
+\begin{gather}
+U_{a,b} = \sqrt{
+\begin{bmatrix}
+U_{a} \\ U_{b}
+\end{bmatrix}^{T}
+\begin{bmatrix}
+1         & h_{a,b} \\
+h_{b,a}   & 1       \\
+\end{bmatrix}
+\begin{bmatrix}
+U_{a} \\ U_{b}
+\end{bmatrix}} =
+\sqrt{U_{a}^{2} + U_{b}^{2} + 2 U_{a} U_{b} h_{a,b}}
+\label{eq:unc_mattwo} \\
+h_{a,b} = h_{b,a} = \frac{U_{a,b}^{2} - U_{a}^{2} - U_{b}^{2}}{2 U_{a} U_{b}} \label{eq:unc_cohertwo}
+\end{gather}
+\begin{itemize}
+\item Wartość współczynnika $h_{a,b} = h_{b,a}$ zmienia się w przypadku zmiany:
+	\begin{itemize}
+	\item parametrów funkcji gęstości prawdopodobieństwa rozkładu realizacji sygnałów $e_{a}(t)$, $e_{b}(t)$
+	\item wartości współczynnika korelacji Pearsona analizowanych sygnałów
+	\item wartości niepewności rozszerzonych $U_{a}$ oraz $U_{b}$
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aplikacja omawianej metody}
+\begin{itemize}
+\item Wyznaczenie wartości \enquote{współczynników kształtu} $s_{a,b}$ dla pary sygnałów o znanych parametrach:
+	\begin{itemize}
+	\item identyczne wartości parametrów niepewności rozszerzonej ($U_{a} = U_{b} = 1$)
+	\item sygnały nie są ze sobą skorelowane ($r_{a,b} = r_{b,a} = 0$)
+	\item sygnały różnią się parametrami funkcji gęstości prawdopodobieństwa rozkładu ich realizacji
+	\item operacja może być przeprowadzona analitycznie (konieczne stosowanie splotu) lub symulacyjne (konieczność stosowania metody Monte-Carlo)
+	\end{itemize}
+\item Stosowanie w równaniu \eqref{eq:unc_matrix} skorygowanych wartości współczynników kształtu, jako oszacowanych wartości współczynników koherencji:
+	\begin{itemize}
+	\item uwzględnienie założeń centralnego twierdzenia granicznego
+	\item uwzględnienie dysproporcji pomiędzy wartościami niepewności rozszerzonych
+	\end{itemize}
+\item W przypadku korelacji analizowanych sygnałów należy:
+	\begin{itemize}
+	\item wyznaczać wartości współczynników koherencji w inny sposób
+	\item zastosować metodę dla wypadkowych parametrów skorelowanych sygnałów
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aplikacja omawianej metody}
+\begin{itemize}
+\item Wartości współczynników kształtu wyznaczane na podstawie równania:
+\begin{equation}
+s_{a,b} = s_{b,a} = \frac{U_{a,b}^{2} - U_{a}^{2} - U_{b}^{2}}{2 U_{a} U_{b}} = \frac{U^{2}}{2 U_{a,b}} - 1 \label{eq:unc_shapertwo}
+\end{equation}
+\item Korekta wynikająca z centralnego twierdzenie granicznego:
+\begin{equation}
+k_{i,j} = k_{j,i} = \frac{U_{i}^{2} + U_{j}^{2}}{\sum _{k = 0} ^{N-1} U_{k}^{2}} \label{eq:unc_cohercorrb}
+\end{equation}
+\item Korekta wynikająca z dysproporcji wartości niepewności rozszerzonych:
+\begin{equation}
+p_{a,b} = p_{b,a} = \sqrt{\frac{\min \emb{U_{a}, U_{b}}}{\max \emb{U_{a}, U_{b}}}} \label{eq:unc_cohercorra}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aplikacja omawianej metody}
+\begin{itemize}
+\item Wartości współczynników koherencji szacowane zgodnie z równaniem:
+\begin{equation}
+h_{i,j} = h_{j,i} = s_{i,j} p_{i,j} k_{i,j} = s_{i,j} \sqrt{\frac{\min \emb{U_{i}, U_{j}}}{\max \emb{U_{i}, U_{j}}}} \left( \frac{U_{i}^{2} + U_{j}^{2}}{\sum _{k = 0} ^{N-1} U_{k}^{2}} \right) \label{eq:unc_coher}
+\end{equation}
+\item W celu aplikacji metody należy:
+	\begin{itemize}
+	\item wyznaczyć wartości współczynników kształtu -- operacja jednorazowa
+	\item skorygować wartości współczynników kształtu dla obecnych parametrów
+	\item zastosować równanie \eqref{eq:unc_matrix} dla uzyskanych wartości
+	\end{itemize}
+\item Najistotniejsze cechy metody:
+	\begin{itemize}
+	\item niska złożoność obliczeniowa -- możliwość stosowania w czasie rzeczywistym
+	\item możliwość zmiany parametrów modelu błędów
+	\item wartości niepewności rozszerzonej szacowane z dokładnością \qty{\pm 5}{\percent}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
 \newsection{Weryfikacja przedstawionej tezy}{Przedstawienie wyników badań symulacyjnych i pomiarowych, weryfikujących zasadność tezy pracy}
 
-\begin{frame}{TODO}
-TODO
+\begin{frame}{Symulacyjna weryfikacja tezy}
+\begin{figure}
+\includegraphics[scale = 0.75]{obrazki/schemat_symul}
+\caption{Schemat blokowy toru pomiarowego będącego obiektem eksperymentu symulacyjnego}
+\label{fig:chain_symul}
+\end{figure}
+\begin{itemize}
+\item $s(t)$ to fizyczna, zmienna w czasie wielkość wejściowa
+\item $y_{a}(t)$ to napięciowa reprezentacja wielkości mierzonej
+\item $y_{b}(t)$ to wielkość wejściowa przetwornika A/C z wbudowanym układem P/P
+\item $x_{c}(t)$ to dyskretna reprezentacja wielkości $s(t)$
+\item $X(k)$ to kolejne wielkości wyjściowe wyznaczane dla $j$-tej realizacji pomiaru
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Założenia eksperymentu symulacyjnego}
+\begin{gather}
+\dot{s} \emb{t} = \frac{6}{10} \sin \left( 2 \pi f_{1} t \right) - \frac{3}{10} \sin \left( 10 \pi f_{1} t + \frac{\pi}{8} \right) + \frac{1}{10} \sin \left( 30 \pi f_{1} t + \frac{\pi}{6} \right) \label{eq:sym_in_ideal} \\
+\tilde{s} \emb{t} = \dot{s} \emb{t} + e_{s,r} \emb{t} = e_{s,r} \emb{t} + \sum _{i=1} ^{3} E_{s,o} \emb{\omega_{s,i}} \sin \emb{\omega_{s,i} t + \varphi_{s,i}} \label{eq:sym_in_real}
+\end{gather}
+\begin{itemize}
+\item Częstotliwość podstawowej harmonicznej sygnału $s(t)$ wynosi $f_{1} = \qty{1}{kHz}$
+\item Częstotliwość próbkowania wynosi $f_{s} = \qty{48}{kHz}$
+\item Algorytm DWT przetwarza $N=8$ próbek wielkości wejściowych na $M=8$ próbek wielkości wyjściowych stosując falkę \enquote{db4} dla dwóch iteracji procesu dekompozycji sygnału
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Założenia eksperymentu symulacyjnego}
+\begin{itemize}
+\item Sygnał $s(t)$ jest zakłócony sygnałem szumu białego $e_{s,r}(t)$
+\item Przetwornik pomiarowy wprowadza błąd związany z nieliniowością
+\item Temperatura otoczenia ma wpływ na dryft zera wzmacniacza i przetwornika pomiarowego, natomiast nie jest ona mierzona
+\item Właściwości dynamiczne przetwornika oraz wzmacniacza pomiarowego są nieidealne i opisują je parametry częstotliwości granicznej
+\item Przetwornik A/C wprowadza błąd związany z kwantowaniem, natomiast układ P/P jest idealny
+\item Algorytm DWT wprowadza błąd związany z operacjami arytmetycznymi
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Analiza właściwości metrologicznych toru pomiarowego}
+\begin{itemize}
+\item Na podstawie właściwości każdego z obiektów określono:
+	\begin{itemize}
+	\item idealne oraz rzeczywiste parametry transmitancji i funkcji przetwarzania
+	\item parametry sygnałów błędów wprowadzane przez obiekt
+	\item wpływ obiektu na parametry przetwarzanych sygnałów błędów
+	\end{itemize}
+\item Dla każdego fragmentu toru pomiarowego określono budżet niepewności:
+	\begin{itemize}
+	\item wskazujący wypadkowe parametry dla analizowanych grup sygnałów błędów
+	\item wskazujący parametry wszystkich sygnałów błędów z osobna
+	\end{itemize}
+\item Dla każdej wielkości wyprowadzano odpowiednie zależności na podstawie wynikających z przyjętego modelu błędu założeń
+\item Podczas analizy wyznaczano wartości wybranych wielkości w celu weryfikacji poprawności stosowanej metody
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Analiza właściwości metrologicznych toru pomiarowego}
+\begin{itemize}
+\item Dla każdej wielkości wyjściowej wyznaczano niepewności rozszerzone:
+	\begin{itemize}
+	\item $U_{a}$ zakładając, że spełnione są warunki centralnego twierdzenia granicznego
+	\item $U_{b}$ stosując zaproponowaną metodę dla budżetu niepewności uwzględniającego wypadkowe parametry sygnałów błędów
+	\item $U_{c}$ stosując zaproponowaną metodę dla budżetu niepewności uwzględniającego wszystkie sygnały błędów z osobna
+	\item $U_{d}$ wyznaczone dla budżetu niepewności stosowanego dla $U_{c}$, natomiast bez uwzględniania korekty opisanej równaniem \eqref{eq:unc_cohercorrb}
+	\item $U_{s}$ wykonując symulację metodą Monte-Carlo
+	\end{itemize}
+\item Dla każdej wielkości wyjściowej wyznaczano wariancję sygnału błędu:
+	\begin{itemize}
+	\item $\sigma^{2}_{ab}$ zgodnie z równaniem \eqref{eq:var_matrix}
+	\item $\sigma^{2}_{s}$ stosując metodę Monte-Carlo
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Analiza właściwości metrologicznych toru pomiarowego}
+\begin{itemize}
+\item Wartości $U_{*}$ uzyskane analitycznie porównywano z wartościami $U_{s}$ uzyskanymi metodą Monte-Carlo
+\item Względny błąd oszacowania wartości niepewności rozszerzonej wynosił:
+\begin{equation}
+\delta_{U} = 100 \frac{U_{*} - U_{s}}{U_{s}}~\unit{\percent} \label{eq:unc_error}
+\end{equation}
+\item Wartość współczynnika rozszerzenia szacowano zgodnie z równaniem:
+\begin{equation}
+c_{*} = \frac{U_{*}}{\sigma_{ab}} \label{eq:unc_coverfact}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wyniki eksperymentu}
+\begin{table}
+\begin{center}
+\caption{Wyniki przeprowadzonego eksperymentu symulacyjnego}
+\footnotesize
+\label{tab:sym_partd_params_unc_sum_b}
+\begin{tabular}[c]{| c *{5}{|S[table-format = 2.2]} *{4}{|S[table-format = +1.2]} |} \hline
+\multirow{2}{*}{\textbf{Wielkość}} & \multicolumn{5}{c|}{\textbf{Niepewność, mV}} & \multicolumn{4}{c|}{\textbf{Błąd, \%}} \\ \cline{2-10}
+& $U_{a}$ & $U_{b}$ & $U_{c}$ & $U_{d}$ & $U_{s}$ & $\delta_{a}$ & $\delta_{b}$ & $\delta_{c}$ & $\delta_{d}$ \\ \hline
+$S_{2,0}$ & 75.01 & 74.00 & 74.10 & 77.32 & 72.87 & +2.94 & +1.55 & +1.69 & +6.11 \\ \hline
+$S_{2,1}$ & 68.19 & 68.44 & 68.43 & 71.52 & 67.09 & +1.64 & +2.01 & +2.00 & +6.60 \\ \hline
+$T_{2,0}$ & 57.29 & 56.26 & 55.91 & 57.58 & 53.89 & +6.31 & +4.40 & +3.75 & +6.85 \\ \hline
+$T_{2,1}$ & 58.86 & 55.59 & 55.60 & 59.47 & 54.92 & +7.17 & +1.22 & +1.24 & +8.28 \\ \hline
+$T_{1,0}$ & 47.31 & 43.61 & 43.37 & 46.09 & 43.76 & +8.11 & -0.34 & -0.89 & +5.32 \\ \hline
+$T_{1,1}$ & 47.31 & 43.60 & 43.37 & 46.08 & 43.74 & +8.16 & -0.32 & -0.85 & +5.35 \\ \hline
+$T_{1,2}$ & 47.31 & 43.60 & 43.37 & 46.08 & 43.76 & +8.11 & -0.37 & -0.89 & +5.30 \\ \hline
+$T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.24 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{frame}
+
+\begin{frame}{Pomiarowa weryfikacja tezy}
+\begin{figure}
+\includegraphics[scale = 0.75]{obrazki/schemat_real}
+\caption{Schemat blokowy toru pomiarowego będącego obiektem eksperymentu pomiarowego}
+\label{fig:chain_real}
+\end{figure}
+\begin{itemize}
+\item $s(t)$ to zmienne w czasie napięcie mierzone
+\item $x(i)$ to wyrażona w jednostce $s(t)$ dyskretna reprezentacja tej wielkości
+\item $\mathbf{X}(j)$ to wektory wielkości wyjściowych dla $j$-tej realizacji pomiaru
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Założenia eksperymentu pomiarowego}
+\begin{itemize}
+\item Sygnał $s(t)$ pochodził z generatora RIGOL DG1011, gdzie stosowano:
+	\begin{itemize}
+	\item przebieg sinusoidalny
+	\item przebieg trójkątny
+	\end{itemize}
+\item Dla sygnału $s(t)$ stosowano model błędów uwzględniający parametry generatora oraz syntezowanego sygnału
+\item Parametry toru pomiarowego identyfikowano pomiarowo lub szacowano na podstawie dokumentacji fragmentów tego toru
+\item Temperatura była stała i wynosiła \qty{21}{\degreeCelsius}
+\item Częstotliwość próbkowania sygnału wynosiła $f_{s} = \qty{48}{kHz}$
+\item Tor pomiarowy pobierał $N=128$ próbek wielkości wejściowych i wyznaczał na ich podstawie $M=128$ próbek wielkości wyjściowych
+\item Dla algorytmu DWT stosowano falkę \enquote{spline4:4} oraz pięć iteracji procesu dekompozycji sygnału
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Identyfikacja właściwości toru pomiarowego}
+\begin{itemize}
+\item Właściwości dynamiczne wzmacniacza pomiarowego:
+	\begin{itemize}
+	\item zidentyfikowano pomiarowo stosując generator RIGOL DG1011 oraz oscyloskop DS5062MA
+	\item mierzono przesunięcie fazowe oraz wzmocnienie dla sygnału sinusoidalnego
+	\item charakterystykę fazową aproksymowano wielomianem
+	\item przyjęto stałe wzmocnienie dla częstotliwości $\hat{f} \in \interval{0}{f_{s}}$
+	\item dla filtru RC znajdującego się na wyjściu wzmacniacza zastosowano model wynikający z parametrów filtru
+	\end{itemize}
+\item Właściwości dynamiczne układu A/C oraz P/P:
+	\begin{itemize}
+	\item zastosowano model filtru RC pierwszego rzędu
+	\item parametry filtru przyjęto zgodnie z dokumentacją 
+	\end{itemize}
+\item Właściwości statyczne fragmentu przetwarzającego $s(t)$ na $x(i)$:
+	\begin{itemize}
+	\item zweryfikowano pomiarowo stosując kalibrator FLUKE 5700A
+	\item zidentyfikowane sygnały błędów zaliczono do sygnałów błędów losowych
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Właściwości statyczne toru pomiarowego}
+\begin{figure}
+\begin{center}
+\includegraphics[scale = 0.75]{obrazki/static_adcout}
+\caption{Zależność wartości wielkości wyjściowej przetwornika analogowo-cyfrowego w funkcji wartości napięcia wejściowego analizowanego toru pomiarowego oraz histogram uzyskanych realizacji błędu losowego wielkości wyjściowej $c(i)$ przetwornika analogowo-cyfrowego}
+\label{fig:pom_static_fun}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Właściwości statyczne toru pomiarowego}
+\begin{gather}
+\overline{c} \emb{k} = f_{c} \emb{f_{y} \emb{\hat{s} \emb{k}}} \approx \num{4097.96} \cdot \hat{s} \emb{k} + \num{3.519} \label{eq:pom_func_static} \\
+\overline{x} \emb{k} = f_{x} \emb{\overline{c} \emb{k}} = f_{x} \emb{f_{c} \emb{f_{y} \emb{\hat{s} \emb{k}}}} = \frac{\overline{c} \emb{k} - \num{3.519}}{\num{4097.96}} \approx \hat{s} \emb{k} \label{eq:pom_funx_static}
+\end{gather}
+\begin{itemize}
+\item $\overline{c}(k)$ to średnia wartości realizacji sygnału $c(i)$ dla $k$-tej serii pomiarowej
+\item $\overline{x}(k)$ to średnia wartości realizacji sygnału $x(i)$ dla $k$-tej serii pomiarowej
+\item Dla $k$-tej serii pomiarowej stosowano stałą wartość wielkości $\hat{s}(t)$
+\item Sygnał błędu $e_{x,rw}(i)$ jest związany z właściwościami statycznymi obiektu
+	\begin{itemize}
+	\item na podstawie wykonanych pomiarów przyjęto $U_{x,rw} = \qty{0.38}{mV}$
+	\item założono model sygnału zgodny z modelem addytywnego szumu białego
+	\item sygnał uwzględnia wszystkie źródła błędów dla właściwości statycznych
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Właściwości dynamiczne wzmacniacza pomiarowego}
+\begin{figure}
+\begin{center}
+\includegraphics[scale = 0.75]{obrazki/dynamic_ampout}
+\caption{Zależność wartości wzmocnienia oraz przesunięcia fazowego w funkcji częstotliwości dla zastosowanej konfiguracji wzmacniacza pomiarowego}
+\label{fig:pom_dynamic_ampout}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Właściwości dynamiczne wzmacniacza pomiarowego}
+\begin{gather}
+\tilde{K}_{s,x} \emb{\omega} = \tilde{K}_{y} \emb{\omega} \tilde{K}_{c} \emb{\omega} \tilde{K}_{x} \emb{\omega} \label{eq:pom_dwtin_amp} \\
+\tilde{K}_{s,x} \emb{\omega} \approx \dot{K}_{s,x} \emb{\omega} = \qty{1}{V \per V} \label{eq:pom_dwtin_ampideal} \\
+\tilde{\varphi}_{s,x} \emb{\omega} = \tilde{\varphi}_{y} \emb{\omega} + \tilde{\varphi}_{s,x} \emb{\omega} \approx -\frac{\num{6.82}}{\num{e13}} \omega^{2} - \frac{\num{5.46}}{\num{e07}} \omega - \arctan \emb{\frac{\num{6.69}}{\num{e9}} \omega} \label{eq:pom_dwtin_phi} \\
+\dot{\varphi}_{s,x}(\omega) = \qty{0}{rad} \label{eq:pom_dwtin_phiideal}
+\end{gather}
+\begin{itemize}
+\item $K_{s,x}(\omega)$ jest wzmocnieniem sygnału $x(i)$ w stosunku do sygnału $s(t)$
+\item $\varphi_{s,x}(\omega)$ jest przesunięciem sygnału $x(i)$ w stosunku do sygnału $s(t)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Zdefiniowane sygnały błędów}
+\begin{itemize}
+\item $e_{x,rw}(i)$ -- losowy własny, związany ze zidentyfikowanymi właściwościami statycznymi
+\item $e_{x,dw}(i)$ -- dynamiczny własny, związany z właściwościami dynamicznymi
+\item $e_{x,dp}(i)$ -- dynamiczny propagowany, związany z sygnałem błędu zawartym w $s(t)$
+\item $e_{x,sp}(i)$ -- statyczny propagowany, związany z sygnałem błędu zawartym w $s(t)$
+\item $e_{x,rp}(i)$ -- losowy propagowany, związany z sygnałem szumu wielkości $s(t)$
+\end{itemize}
+\begin{itemize}
+\item W przypadku, gdy znane są rzeczywiste parametry sygnału $s(t)$ zachodzi $e_{x,dp}(i) = e_{x,sp}(i) = 0$
+\item Rzeczywiste parametry sygnału $s(t)$ weryfikowano stosując multimetr Agilent 3458A lub pozostawiano nieznane
+\end{itemize}
 \end{frame}
 
 \newsection{Podsumowanie}{Przedstawienie najważniejszych wniosków płynących z pracy}
