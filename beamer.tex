@@ -1075,22 +1075,74 @@ $T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.2
 
 \begin{frame}{Zdefiniowane sygnały błędów}
 \begin{itemize}
-\item $e_{x,rw}(i)$ -- losowy własny, związany ze zidentyfikowanymi właściwościami statycznymi
-\item $e_{x,dw}(i)$ -- dynamiczny własny, związany z właściwościami dynamicznymi
-\item $e_{x,dp}(i)$ -- dynamiczny propagowany, związany z sygnałem błędu zawartym w $s(t)$
-\item $e_{x,sp}(i)$ -- statyczny propagowany, związany z sygnałem błędu zawartym w $s(t)$
-\item $e_{x,rp}(i)$ -- losowy propagowany, związany z sygnałem szumu wielkości $s(t)$
+\item $e_{x,rw}(i)$ -- losowy własny, zidentyfikowane właściwości statyczne
+\item $e_{x,dw}(i)$ -- dynamiczny własny, zidentyfikowane właściwości dynamiczne
+\item $e_{x,dp}(i)$ -- dynamiczny propagowany, sygnał błędu dynamicznego w $s(t)$
+\item $e_{x,sp}(i)$ -- statyczny propagowany, sygnał błędu statycznego w $s(t)$
+\item $e_{x,rp}(i)$ -- losowy propagowany, sygnał szumu wielkości $s(t)$
 \end{itemize}
 \begin{itemize}
-\item W przypadku, gdy znane są rzeczywiste parametry sygnału $s(t)$ zachodzi $e_{x,dp}(i) = e_{x,sp}(i) = 0$
 \item Rzeczywiste parametry sygnału $s(t)$ weryfikowano stosując multimetr Agilent 3458A lub pozostawiano nieznane
+\item W przypadku, gdy znane są rzeczywiste parametry sygnału $s(t)$ zachodzi $e_{x,dp}(i) = e_{x,sp}(i) = 0$
+\item Dla nieznanych wartości parametrów sygnału $s(t)$ definiowano sygnały błędów obecne w tym sygnale na podstawie dokumentacji generatora
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Pomiarowa weryfikacja tezy}
+\begin{itemize}
+\item Na wejście toru pomiarowego podawano sygnał sinusoidalny/trójkątny o zadanych parametrach
+\item Parametry sygnału weryfikowano multimetrem Agilent 3458A lub pozostawiano nieznane
+\item Wyjście synchronizujące generatora wykorzystywano do ustalania fazy sygnału $s(t)$
+\item Dla losowej wartości fazy pobierano wektor realizacji wielkości wejściowych
+\item Dla uzyskanego wektora wyznaczano wartości wielkości wyjściowych algorytmu
+\item Na podstawie modelu matematycznego syntezowanego sygnału w przypadku idealnym wyznaczano idealne wartości realizacji wektorów wielkości wejściowych i wyjściowych
+\item Powtarzając eksperyment \num{30000} razy wyznaczano niepewności rozszerzone dla wielkości wejściowych i wyjściowych algorytmu DWT
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Przypadek sygnału monoharmonicznego}
+\begin{figure}
+\begin{center}
+\includegraphics[scale = 0.75]{obrazki/sinfit_error}
+\caption{Zależność wartości względnego błędu oszacowania wartości niepewności rozszerzonej wielkości wejściowych algorytmu DWT w funkcji częstotliwości sygnału wejściowego $s(t)$, średnia wartość bezwzględna wynosi \qty{4.38}{\percent}}
+\label{fig:sinfit_error}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Przypadek sygnału monoharmonicznego}
+\begin{figure}
+\begin{center}
+\includegraphics[scale = 0.75]{obrazki/mono_freqcomp}
+\caption{Zależność wartości względnego błędu oszacowania wartości niepewności rozszerzonej \qty{24}{\numTej} wielkości wyjściowej algorytmu DWT w funkcji częstotliwości sygnału wejściowego $s(t)$, średnia wartość bezwzględna wynosi \qty{11.74}{\percent}}
+\label{fig:mono_freqcomp}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Przypadek sygnału monoharmonicznego}
+\begin{itemize}
+\item Niedokładne oszacowane parametrów sygnału błędu losowego $e_{s,r}(t)$ -- dokumentacja układu, widoczne gdy dominujące źródło błędów stanowią sygnały błędów losowych
+\item Niewłaściwa aproksymacja charakterystyki wartości przesunięcia fazowego $\tilde{\varphi}_{s,x}(\omega)$ -- pomiary, wartość przeszacowana dla niskich wartości pulsacji
+\item Pominięcie zjawiska \enquote{Jitter} -- problematyka opóźnień nie stanowiła tematyki pracy
+\end{itemize}
+\begin{itemize}
+\item Średnia wariancja sygnału błędu wypadkowego dla analizowanego zakresu częstotliwości została oszacowana prawidłowo
+\item Algorytm DWT wzmacnia/tłumi wybrane zakresy częstotliwości, stąd różnice w szacowanej/wyznaczonej wartości niepewności rozszerzonej
+\item Dla sygnału poliharmonicznego wyciągnąć można podobne wnioski
 \end{itemize}
 \end{frame}
 
 \newsection{Podsumowanie}{Przedstawienie najważniejszych wniosków płynących z pracy}
 
-\begin{frame}{TODO}
-TODO
+\begin{frame}{Wnioski}
+\begin{itemize}
+\item Zaproponowany model błędów może być stosowany dla torów pomiarowych wykorzystujących algorytmy transformacji falkowej
+\item Zaproponowana metoda szacowania wypadkowej wartości niepewności rozszerzonej zapewnia wyniki zbliżone do uzyskiwanych metodą Monte-Carlo
+\item Niska złożoność obliczeniowa umożliwia aplikację metody w czasie rzeczywistym, również w przypadku zmiany parametrów modelu błędów
+\item Dokładność uzyskiwanych wyników zależy od dokładności określenia parametrów modelu błędów
+\item Aby uzyskać bardziej dokładne wyniki należy przeprowadzić odpowiednie badania w celu ustalenia dokładnych parametrów modelu błędów, w szczególności dla stosowanego generatora
+\end{itemize}
 \end{frame}
 
 \section*{Zakończenie}
