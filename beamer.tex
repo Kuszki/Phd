@@ -100,24 +100,6 @@ w_{m,n} = \frac{1}{\sqrt{2^{m}}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Algorytm dyskretnej transformacji falkowej}
-\begin{itemize}
-\item Dla kolejnych numerów skali algorytm stanowi filtr pasmowo-przepustowy, którego częstotliwość charakterystyczna zmniejsza się w stosunku do poprzedniego numeru skali o połowę
-\item W celu wyodrębnienia z sygnału wszystkich zakresów częstotliwości należy wyznaczyć współczynniki transformacji dla nieskończonej liczby skal
-\item Jako, że to niemożliwe, stosuje się funkcję skalującą, która tworzy filtr dolno-przepustowy, przenoszący pozostałą cześć widma sygnału
-\item Funkcja skalująca, zwana również \enquote{falką-ojcem}, musi być zdefiniowana dla stosowanej funkcji \enquote{falki-matki} i jest oznaczana symbolem $\phi(t)$
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Algorytm dyskretnej transformacji falkowej}
-\begin{itemize}
-\item Proces dekompozycji sygnału przeprowadzany jest rekurencyjnie w celu wyznaczenia wartości współczynników transformacji dla kolejnych wartości parametru skali (rys.~\ref{fig:fwt_decomp})
-\item Zwykle nie jest znana bezpośrednia postać funkcji falki-matki $\psi(t)$ oraz funkcji skalującej $\phi(t)$ w dziedzinie czasu -- zdefiniowane są \enquote{współczynniki skalujące} $c_{k}$ umożliwiające opis funkcji $\psi_{m,n}(t)$ oraz $\phi_{m,n}(t)$
-\item Dla wybranej rodziny falek istnieje możliwość stworzenia falki o zadanym rzędzie oraz wykonanie dowolnej* liczby iteracji procesu dekompozycji
-\item Podczas projektowania toru pomiarowego często zachodzi potrzeba zmiany parametrów algorytmu, w tym zmiany falki-matki, jej rzędu, liczby iteracji procesu dekompozycji sygnału, czy liczby próbek wielkości wejściowej
-\end{itemize}
-\end{frame}
-
 \begin{frame}{Proces dekompozycji sygnału}
 \begin{figure}
 \includegraphics[scale = 0.75]{obrazki/dwt_dekompozycja}
@@ -312,24 +294,6 @@ K_{y} \emb{\omega} = \left| G_{y} \emb{j\omega} \right| =
 \item $\varphi_{s,e}(\omega)$ jest fazą harmonicznej sygnału błędu wielkości wejściowej
 \item $f_{z}(\mathbf{z})$ jest funkcją uwzględniającą wielkości zakłócające $\mathbf{z}(t)$
 \item $e_{y,\Sigma}(t)$ jest wypadkowym sygnałem błędu wielkości wyjściowej $y(t)$
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Część analogowa toru pomiarowego}
-\begin{itemize}
-\item Wielkość wyjściowa $u(t)$ fragmentu opisującego właściwości dynamiczne:
-\begin{gather}
-\dot{u} \emb{t} = \sum _{i = 0} ^{\infty} \dot{K}_{y} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \dot{\varphi}_{y} \emb{\omega} \right) \label{eq:mid_cont_sum_ideal} \\
-\tilde{u} \emb{t} = \dot{u} \emb{t} + e_{u,r} \emb{t} + \sum _{i = 0} ^{\infty} \tilde{u} \left( t, \omega_{u,i} \right) = \dot{u} \emb{t} + e_{u,\Sigma} \emb{t} \label{eq:mid_cont_sum_real} \\
-\begin{split}
-\tilde{u} \emb{t,\omega} =~
-& \tilde{K}_{y} \emb{\omega} E_{s,o} \emb{\omega} \sin \left( \omega t + \varphi_{s,o} \emb{\omega} + \tilde{\varphi}_{y} \emb{\omega} \right) + \\
-& \tilde{K}_{y} \emb{\omega} E_{s,e} \emb{\omega} \sin \left( \omega t + \varphi_{s,e} \emb{\omega} + \tilde{\varphi}_{y} \emb{\omega} \right)
-\end{split}
-\label{eq:mid_cont_omega_real}
-\end{gather}
-\item $e_{u,r}(t)$ jest sygnałem błędu losowego wielkości $u(t)$
-\item $e_{u,\Sigma}(t)$ jest wypadkowym sygnałem błędu wielkości $u(t)$
 \end{itemize}
 \end{frame}
 
@@ -542,11 +506,12 @@ H_{i} \emb{z} = a_{i, 0} + \hdots + a_{i, N-1} z^{-N+1} = \sum _{k = 0} ^{N-1} a
 \item Wartości współczynników macierzy transformacji mogą być wyznaczane:
 	\begin{itemize}
 	\item na podstawie znajomości transmitancji algorytmu
+	\item na podstawie założeń odnośnie algorytmu
 	\item stosując algorytm identyfikacji
 	\end{itemize}
 \item Identyfikacja wartości elementów macierzy transformacji:
 	\begin{itemize}
-	\item polega na wyznaczaniu realizacji wektora wielkości wyjściowych algorytmu podając na jego wejście odpowiedni wektor wielkości wejściowych
+	\item polega na wyznaczaniu realizacji wektora wielkości wyjściowych algorytmu
 	\item odbywa się dla gotowej implementacji algorytmu
 	\item struktura numeryczna algorytmu nie musi być znana
 	\end{itemize}
@@ -682,16 +647,6 @@ E_{\Sigma} = \sqrt{e_{\Sigma,a}^{2} + e_{\Sigma,b}^{2}} \label{eq:dyn_vect_amp} 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Parametry sygnałów błędów}
-\begin{itemize}
-\item W przypadku, gdy wartość realizacji sygnału błędu nie zmienia się dla analizowanego okna pomiarowego, sygnał zaliczany jest do grupy statycznych
-\item Jeżeli nie jest możliwy deterministyczny opis sygnału błędu, sygnał ten zalicza się do grupy błędów losowych
-\item Powtarzając proces pomiaru wielokrotnie istnieje możliwość wskazania parametrów wariancji oraz niepewności rozszerzonej, związanych z analizowanym sygnałem
-\item W przypadku sygnałów błędów opisanych deterministycznie istnieje możliwość analizy tych sygnałów w dziedzinie pulsacji
-\item Zadaniem projektanta toru pomiarowego jest identyfikacja parametrów sygnałów błędów, wynikających z właściwości toru pomiarowego, oraz ich parametrów
-\end{itemize}
-\end{frame}
-
 \begin{frame}{Wyznaczanie parametrów wypadkowego sygnału błędu}
 \begin{itemize}
 \item Definiując wypadkowy sygnał błędu w postaci:
@@ -794,28 +749,6 @@ h_{a,b} = h_{b,a} = \frac{U_{a,b}^{2} - U_{a}^{2} - U_{b}^{2}}{2 U_{a} U_{b}} \l
 	\item parametrów funkcji gęstości prawdopodobieństwa rozkładu realizacji sygnałów $e_{a}(t)$, $e_{b}(t)$
 	\item wartości współczynnika korelacji Pearsona analizowanych sygnałów
 	\item wartości niepewności rozszerzonych $U_{a}$ oraz $U_{b}$
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Aplikacja omawianej metody}
-\begin{itemize}
-\item Wyznaczenie wartości \enquote{współczynników kształtu} $s_{a,b}$ dla pary sygnałów o znanych parametrach:
-	\begin{itemize}
-	\item identyczne wartości parametrów niepewności rozszerzonej ($U_{a} = U_{b} = 1$)
-	\item sygnały nie są ze sobą skorelowane ($r_{a,b} = r_{b,a} = 0$)
-	\item sygnały różnią się parametrami funkcji gęstości prawdopodobieństwa rozkładu ich realizacji
-	\item operacja może być przeprowadzona analitycznie (konieczne stosowanie splotu) lub symulacyjne (konieczność stosowania metody Monte-Carlo)
-	\end{itemize}
-\item Stosowanie w równaniu \eqref{eq:unc_matrix} skorygowanych wartości współczynników kształtu, jako oszacowanych wartości współczynników koherencji:
-	\begin{itemize}
-	\item uwzględnienie założeń centralnego twierdzenia granicznego
-	\item uwzględnienie dysproporcji pomiędzy wartościami niepewności rozszerzonych
-	\end{itemize}
-\item W przypadku korelacji analizowanych sygnałów należy:
-	\begin{itemize}
-	\item wyznaczać wartości współczynników koherencji w inny sposób
-	\item zastosować metodę dla wypadkowych parametrów skorelowanych sygnałów
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -1092,9 +1025,9 @@ $T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.2
 \begin{itemize}
 \item Na wejście toru pomiarowego podawano sygnał sinusoidalny/trójkątny o zadanych parametrach
 \item Parametry sygnału weryfikowano multimetrem Agilent 3458A lub pozostawiano nieznane
-\item Wyjście synchronizujące generatora wykorzystywano do ustalania fazy sygnału $s(t)$
+\item Wyjście synchronizujące generatora wykorzystywano do ustalania fazy początkowej $\hat{t}_{0}$ sygnału $s(t+\hat{t}_{0})$
 \item Dla losowej wartości fazy pobierano wektor realizacji wielkości wejściowych
-\item Dla uzyskanego wektora wyznaczano wartości wielkości wyjściowych algorytmu
+\item Wyznaczano wartości wielkości wyjściowych algorytmu
 \item Na podstawie modelu matematycznego syntezowanego sygnału w przypadku idealnym wyznaczano idealne wartości realizacji wektorów wielkości wejściowych i wyjściowych
 \item Powtarzając eksperyment \num{30000} razy wyznaczano niepewności rozszerzone dla wielkości wejściowych i wyjściowych algorytmu DWT
 \end{itemize}
@@ -1104,7 +1037,7 @@ $T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.2
 \begin{figure}
 \begin{center}
 \includegraphics[scale = 0.75]{obrazki/sinfit_error}
-\caption{Zależność wartości względnego błędu oszacowania wartości niepewności rozszerzonej wielkości wejściowych algorytmu DWT w funkcji częstotliwości sygnału wejściowego $s(t)$, średnia wartość bezwzględna wynosi \qty{4.38}{\percent}}
+\caption{Zależność wartości względnego błędu oszacowania wartości niepewności rozszerzonej wielkości wejściowych algorytmu DWT w funkcji częstotliwości sygnału wejściowego $s(t)$, średnia wartości bezwzględnych wynosi \qty{4.38}{\percent}}
 \label{fig:sinfit_error}
 \end{center}
 \end{figure}
@@ -1114,7 +1047,7 @@ $T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.2
 \begin{figure}
 \begin{center}
 \includegraphics[scale = 0.75]{obrazki/mono_freqcomp}
-\caption{Zależność wartości względnego błędu oszacowania wartości niepewności rozszerzonej \qty{24}{\numTej} wielkości wyjściowej algorytmu DWT w funkcji częstotliwości sygnału wejściowego $s(t)$, średnia wartość bezwzględna wynosi \qty{11.74}{\percent}}
+\caption{Zależność wartości względnego błędu oszacowania wartości niepewności rozszerzonej \qty{24}{\numTej} wielkości wyjściowej algorytmu DWT w funkcji częstotliwości sygnału wejściowego $s(t)$, średnia wartości bezwzględnych wynosi \qty{11.74}{\percent}}
 \label{fig:mono_freqcomp}
 \end{center}
 \end{figure}
