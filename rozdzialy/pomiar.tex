@@ -218,9 +218,9 @@ przy czym zgodnie z treścią równań~\eqref{eq:pom_aprox_amp} oraz~\eqref{eq:p
 \dot{K}_{s,x} \emb{\omega} = \qty{1}{V \per V} \label{eq:pom_dwtin_ampideal}.
 \end{equation}
 
-Przesunięcie fazowe $\tilde{\varphi}_{s,x}(\omega)$ sygnału $x(i)$ względem sygnału $s(t)$, wynikające z przesunięcia $\tilde{\varphi}_{y}(\omega)$ wprowadzanego przez wzmacniacz oraz wprowadzanego przez przetwornik analogowo-cyfrowy przesunięcia $\tilde{\varphi}_{s,x}(\omega)$ opisać można jako:
+Przesunięcie fazowe $\tilde{\varphi}_{s,x}(\omega)$ sygnału $x(i)$ względem sygnału $s(t)$, wynikające z przesunięcia $\tilde{\varphi}_{y}(\omega)$ wprowadzanego przez wzmacniacz oraz wprowadzanego przez przetwornik analogowo-cyfrowy przesunięcia $\tilde{\varphi}_{c}(\omega)$ opisać można jako:
 \begin{equation}
-\tilde{\varphi}_{s,x} \emb{\omega} = \tilde{\varphi}_{y} \emb{\omega} + \tilde{\varphi}_{s,x} \emb{\omega} \approx -\frac{\num{6.821}}{\num{e13}} \omega^{2} - \frac{\num{5.462}}{\num{e07}} \omega - \arctan \emb{\frac{\num{6.685}}{\num{e9}} \omega} \label{eq:pom_dwtin_phi},
+\tilde{\varphi}_{s,x} \emb{\omega} = \tilde{\varphi}_{y} \emb{\omega} + \tilde{\varphi}_{c} \emb{\omega} \approx -\frac{\num{6.821}}{\num{e13}} \omega^{2} - \frac{\num{5.462}}{\num{e07}} \omega - \arctan \emb{\frac{\num{6.685}}{\num{e9}} \omega} \label{eq:pom_dwtin_phi},
 \end{equation}
 co wynika z równań~\eqref{eq:pom_aprox_phi} oraz~\eqref{eq:pom_adcin_phi}. W rozważaniach nie uwzględniono przesunięcia fazowego wprowadzanego przez algorytm odtwarzania statycznego, ponieważ algorytm ten nie wprowadza żadnego przesunięcia w fazie dla przetwarzanego sygnału. Przyjmuje się, że w przypadku idealnym sygnał $x(i)$ powinien cechować się fazą identyczną, jak przetwarzany sygnał $s(t)$, zatem:
 \begin{equation}

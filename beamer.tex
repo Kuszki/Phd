@@ -382,7 +382,7 @@ f_{AC'} \emb{x} = x \label{eq:adc_simplify}
 \item Sygnał błędu kwantowania, wynikający z postaci funkcji przetwarzania opisanej równaniem \eqref{eq:adc_function}, traktować jako sygnał losowy:
 	\begin{itemize}
 	\item stosując modelu nieskorelowanego sygnału szumu, o charakterze addytywnym i stałej widmowej gęstości mocy
-	\item przyjmując jednakowe prawdopodobieństwo uzyskania każdej z wartości realizacji tego sygnału, co opisano relacją \eqref{eq:adc_output}
+	\item przyjmując jednakowe prawdopodobieństwo uzyskania każdej z wartości realizacji tego sygnału
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -609,7 +609,7 @@ e_{X,\Sigma} \emb{i} = e_{X,w} \emb{i} + e_{X,p} \emb{i} \label{eq:alg_out_err}
 \item W przypadku sygnałów błędów dynamicznych:
 	\begin{itemize}
 	\item wskazać wypadkowe wartości amplitudy i fazy sygnałów o tej samej pulsacji
-	\item parametry wypadkowe wyznaczać tylko dla ostatniego etapu analizy
+	\item parametry wypadkowe sygnału błędu dynamicznego uwzględniającego wszystkie jego harmoniczne wyznaczać tylko dla ostatniego etapu analizy
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -945,7 +945,7 @@ $T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.2
 \item Parametry toru pomiarowego identyfikowano pomiarowo lub szacowano na podstawie dokumentacji fragmentów tego toru
 \item Temperatura była stała i wynosiła \qty{21}{\degreeCelsius}
 \item Częstotliwość próbkowania sygnału wynosiła $f_{s} = \qty{48}{kHz}$
-\item Tor pomiarowy pobierał $N=128$ próbek wielkości wejściowych i wyznaczał na ich podstawie $M=128$ próbek wielkości wyjściowych
+\item Tor pomiarowy pobierał $N=128$ próbek wielkości wejściowej i wyznaczał na ich podstawie $M=128$ próbek wielkości wyjściowych
 \item Dla algorytmu DWT stosowano falkę \enquote{spline4:4} oraz pięć iteracji procesu dekompozycji sygnału
 \end{itemize}
 \end{frame}
@@ -1015,7 +1015,7 @@ $T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.2
 \begin{gather}
 \tilde{K}_{s,x} \emb{\omega} = \tilde{K}_{y} \emb{\omega} \tilde{K}_{c} \emb{\omega} \tilde{K}_{x} \emb{\omega} \label{eq:pom_dwtin_amp} \\
 \tilde{K}_{s,x} \emb{\omega} \approx \dot{K}_{s,x} \emb{\omega} = \qty{1}{V \per V} \label{eq:pom_dwtin_ampideal} \\
-\tilde{\varphi}_{s,x} \emb{\omega} = \tilde{\varphi}_{y} \emb{\omega} + \tilde{\varphi}_{s,x} \emb{\omega} \approx -\frac{\num{6.82}}{\num{e13}} \omega^{2} - \frac{\num{5.46}}{\num{e07}} \omega - \arctan \emb{\frac{\num{6.69}}{\num{e9}} \omega} \label{eq:pom_dwtin_phi} \\
+\tilde{\varphi}_{s,x} \emb{\omega} = \tilde{\varphi}_{y} \emb{\omega} + \tilde{\varphi}_{c} \emb{\omega} \approx -\frac{\num{6.82}}{\num{e13}} \omega^{2} - \frac{\num{5.46}}{\num{e07}} \omega - \arctan \emb{\frac{\num{6.69}}{\num{e9}} \omega} \label{eq:pom_dwtin_phi} \\
 \dot{\varphi}_{s,x}(\omega) = \qty{0}{rad} \label{eq:pom_dwtin_phiideal}
 \end{gather}
 \begin{itemize}
@@ -1078,8 +1078,8 @@ $T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.2
 \item Pominięcie zjawiska \enquote{Jitter} -- problematyka opóźnień nie stanowiła tematyki pracy
 \end{itemize}
 \begin{itemize}
-\item Średnia wariancja sygnału błędu wypadkowego dla analizowanego zakresu częstotliwości została oszacowana prawidłowo
-\item Algorytm DWT wzmacnia/tłumi wybrane zakresy częstotliwości, stąd różnice w szacowanej/wyznaczonej wartości niepewności rozszerzonej
+\item Wypadkowe parametry sygnału błędu wielkości $x(i)$ dla analizowanego zakresu częstotliwości zostały oszacowane prawidłowo
+\item Algorytm DWT wzmacnia/tłumi wybrane harmoniczne, stąd różnice w szacowanej/wyznaczonej wartości niepewności rozszerzonej
 \item Dla sygnału poliharmonicznego wyciągnąć można podobne wnioski
 \end{itemize}
 \end{frame}
