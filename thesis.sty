@@ -84,10 +84,6 @@
 \newcommand{\emb}[1]{\left(#1\right)}
 \newcommand{\bsigma}{\char"1D6D4}
 
-\setlist[itemize]{noitemsep}
-\setenumerate{leftmargin = 32pt}
-\setdescription{leftmargin = 32pt}
-
 \setlength{\parskip}{12pt plus 5pt minus 2pt}
 \setlength{\floatsep}{16pt plus 3pt minus 3pt}
 \setlength{\intextsep}{16pt plus 3pt minus 3pt}
@@ -100,6 +96,10 @@
 \setlength{\tabcolsep}{6pt}
 \setlength{\itemsep}{6pt}
 \setlength{\jot}{6pt}
+
+\setlist{leftmargin = \parindent}
+\setenumerate{noitemsep}
+\setitemize{noitemsep}
 
 \fancyhead{}
 \fancyhead[EL]{\nouppercase{\small\leftmark}}

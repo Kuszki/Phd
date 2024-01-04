@@ -1,5 +1,5 @@
 clear
-h = figure;
+h = figure('visible', ifelse(isguirunning(), 'on', 'off'));
 
 pkg load communications
 pkg load ltfat

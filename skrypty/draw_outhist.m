@@ -33,7 +33,7 @@ nbins = 300;
 for j = 1 : length(parts)
 
 part = parts{j};
-h = figure;
+h = figure('visible', ifelse(isguirunning(), 'on', 'off'));
 nr = nrows(j);
 nc = 2;
 tot = nr*nc;
