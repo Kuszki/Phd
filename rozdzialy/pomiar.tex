@@ -188,8 +188,8 @@ Zaproponowany algorytm identyfikacji właściwości metrologicznych analizowaneg
 
 Przyjmując założoną wcześniej czułość dla wielkości $x(i)$ w stosunku do przetwarzanego sygnału $s(t)$ równą $s_{s,x} = \qty{1}{V \per V}$, idealny oraz zakłócony sygnałem błędu przebieg wielkości $x(i)$ opisać można w postaci:
 \begin{gather}
-\dot{x} \emb{i} = s_{s,x} \dot{s} \emb{kT_{p}} = \dot{s} \emb{kT_{p}} \label{eq:pom_dwtin_ideal}, \\
-\tilde{x} \emb{i} = \dot{s} \emb{kT_{p}} + e_{x,\Sigma} \emb{i} \label{eq:pom_dwtin_real},
+\dot{x} \emb{i} = s_{s,x} \dot{s} \emb{iT_{p}} = \dot{s} \emb{kT_{p}} \label{eq:pom_dwtin_ideal}, \\
+\tilde{x} \emb{i} = \dot{s} \emb{iT_{p}} + e_{x,\Sigma} \emb{i} \label{eq:pom_dwtin_real},
 \end{gather}
 przy czym składowe sygnału błędu $e_{x,\Sigma}(i)$ opisano w dalszej części podrozdziału. Zgodnie z równaniami~\eqref{eq:mid_disc_sum_real} oraz~\eqref{eq:out_disc_real_all}, w przypadku sygnału $s(t)$ o charakterze deterministycznym, którego kolejne harmoniczne mogą być opisane postaci równania:
 \begin{equation}
@@ -197,13 +197,13 @@ przy czym składowe sygnału błędu $e_{x,\Sigma}(i)$ opisano w dalszej częśc
 \end{equation}
 rzeczywisty przebieg wybranej harmonicznej sygnału $x(i)$ stanowiącego wejście algorytmu transformacji falkowej opisać można w postaci:
 \begin{equation}
-\tilde{x} \emb{i,\omega} =  s_{s,x} \sum_{k = 0} ^{\infty} \tilde{K}_{s,x} \emb{\omega_{k}} E_{s} \emb{\omega_{k}} \sin \emb{\omega_{k} i T_{p} + \varphi_{s}(\omega_{k}) + \tilde{\varphi}_{s,x} \emb{\omega_{k}}} \label{eq:pom_dwtin_harmsum}.
+\tilde{x} \emb{i,\omega} =  s_{s,x} \sum_{j = 0} ^{\infty} \tilde{K}_{s,x} \emb{\omega_{s,j}} E_{s} \emb{\omega_{s,j}} \sin \emb{\omega_{s,j} i T_{p} + \varphi_{s}(\omega_{s,j}) + \tilde{\varphi}_{s,x} \emb{\omega_{s,j}}} \label{eq:pom_dwtin_harmsum}.
 \end{equation}
 Wariancję sygnału $x(i)$ na wejściu algorytmu transformacji falkowej w funkcji pulsacji opisać można w przypadku przetwarzanego sygnału $s(t)$ na podstawie równań~\eqref{eq:mid_disc_var_omega} oraz~\eqref{eq:out_disc_var_sense} jako:
 \begin{equation}
-\sigma_{x}^{2} \emb{\omega} = s_{s,x}^{2} \tilde{K}_{s,x}^{2} \emb{\omega} \sigma_{y}^{2} \emb{\omega} \label{eq:pom_dwtin_var},
+\sigma_{x}^{2} \emb{\omega} = s_{s,x}^{2} \tilde{K}_{s,x}^{2} \emb{\omega} \sigma_{s}^{2} \emb{\omega} \label{eq:pom_dwtin_var},
 \end{equation}
-gdzie $\sigma_{y}^{2}(\omega)$ jest wariancją sygnału $s(t)$. Zależność~\eqref{eq:pom_dwtin_var} jest odpowiednia zarówno w przypadku sygnałów deterministycznych, jak i niedeterministycznych.
+gdzie $\sigma_{s}^{2}(\omega)$ jest wariancją sygnału $s(t)$. Zależność~\eqref{eq:pom_dwtin_var} jest odpowiednia zarówno w przypadku sygnałów deterministycznych, jak i niedeterministycznych.
 
 Wartość wzmocnienia $K_{s,x}(\omega)$ jest wypadkową wartością wzmocnienia uzyskaną dla kaskadowego połączenia wzmacniacza pomiarowego, którego wzmocnienie oznaczono symbolem $K_{y}(\omega)$, przetwornika analogowo-cyfrowego, którego wzmocnienie oznaczono jako $K_{c}(\omega)$ oraz algorytmu odtwarzania statycznego, którego nieomówione dotychczas wzmocnienie oznaczono symbolem $K_{x}(\omega)$. Wobec powyższych założeń zapisać można:
 \begin{equation}
@@ -233,8 +233,8 @@ Drugi składnik sygnału błędu $e_{x,\Sigma}(i)$ stanowi sygnał związany z w
 \begin{gather}
 \begin{split}
 e_{x,dw} \emb{i} =~
-& \sum _{j = 1} ^{\infty} E_{s,o} \emb{\omega_{x,j}} \sin \left( \omega_{s,j} iT_{p} + \varphi_{s,o} \emb{\omega_{s,j}} + \tilde{\varphi}_{s,x} \emb{\omega_{s,j}} \right) - \\
-& \sum _{j = 1} ^{\infty} E_{s,o} \emb{\omega_{x,j}} \sin \left( \omega_{s,j} iT_{p} + \varphi_{s,o} \emb{\omega_{s,j}} + \dot{\varphi}_{s,x} \emb{\omega_{s,j}} \right)
+& \sum _{j = 1} ^{\infty} E_{s,o} \emb{\omega_{s,j}} \sin \left( \omega_{s,j} iT_{p} + \varphi_{s,o} \emb{\omega_{s,j}} + \tilde{\varphi}_{s,x} \emb{\omega_{s,j}} \right) - \\
+& \sum _{j = 1} ^{\infty} E_{s,o} \emb{\omega_{s,j}} \sin \left( \omega_{s,j} iT_{p} + \varphi_{s,o} \emb{\omega_{s,j}} + \dot{\varphi}_{s,x} \emb{\omega_{s,j}} \right)
 \end{split}
 \label{eq:pom_errx_dyn_self}, \\
 e_{x,dp} \emb{i} = \sum _{j = 1} ^{\infty} E_{s,e} \emb{\omega_{s,j}} \sin \left( \omega_{s,j} iT_{p} + \varphi_{s,e} \emb{\omega_{s,j}} + \tilde{\varphi}_{s,x} \emb{\omega_{s,j}} \right) \label{eq:pom_errx_dyn_prop}.
@@ -271,7 +271,7 @@ przy czym wypadkowe sygnały błędów z uwzględnieniem podziału na zaproponow
 \begin{gather}
 e_{x,s} \emb{i} = e_{x,sp} \emb{i} \label{eq:pom_errx_stat}, \\
 e_{x,r} \emb{i} = e_{x,rw} \emb{i} + e_{x,rp} \emb{i} \label{eq:pom_errx_rand}, \\
-e_{x,d} \emb{i} = e_{x,dw} \emb{i} + e_{x,dp} \emb{i} = \sum _{j=1} ^{\infty} E_{x,e} \emb{\omega_{x,j}} \sin \emb{i T_{p} \omega_{x,j} + \varphi_{x,e} \emb{\omega_{x,j}}} \label{eq:pom_errx_dyn},
+e_{x,d} \emb{i} = e_{x,dw} \emb{i} + e_{x,dp} \emb{i} = \sum _{j=1} ^{\infty} E_{x,e} \emb{\omega_{x,j}} \sin \emb{\omega_{x,j} iT_{p} + \varphi_{x,e} \emb{\omega_{x,j}}} \label{eq:pom_errx_dyn},
 \end{gather}
 gdzie wypadkowe parametry amplitudy $E_{x,e}(\omega_{x,j})$ oraz fazy $\varphi_{x,e}(\omega_{x,j})$ dla kolejnych harmonicznych sygnału wypadkowego błędu dynamicznego $e_{x,d}(i)$ zależne będą od widma przetwarzanego sygnału, natomiast ich wyznaczenie przebiegać będzie zgodnie z metodologią opisaną w równaniach od~\eqref{eq:dyn_vect} do~\eqref{eq:dyn_vect_phi}. Wariancję kolejnych harmonicznych sygnału $e_{x,d}(i)$ wyznaczyć można zgodnie z zależnością~\eqref{eq:dyn_var}.
 
@@ -310,7 +310,7 @@ Wartość współczynnika rozszerzenia $c_{i,s} = c_{s,s} = c_{u} = \num{1.65}$ 
 
 Wobec powyższych, wypadkowa wartość niepewności rozszerzonej na wyjściu algorytmu dla $i$-tej wielkości wyjściowej może być opisana zgodnie z równaniem~\eqref{eq:unc_matrix}, przy czym wektor niepewności rozszerzonych dla $K$ harmonicznych sygnału błędu dynamicznego opisać można w postaci:
 \begin{equation}
-\mathbf{U}_{i}^{T} =
+\mathbf{U}_{i} =
 \begin{bmatrix}
 U_{i,s} & U_{i,r} & U_{i,d,1} & U_{i,d,2} & \hdots & U_{i,d,K}
 \end{bmatrix}
@@ -331,7 +331,7 @@ h_{i,d,K,1} & \cdots      & \cdots      & \cdots      & \cdots & 1           \\
 \end{equation}
 gdzie kolejne wartości wymienionych współczynników koherencji są wyznaczane zgodnie z równaniem~\eqref{eq:unc_coher}. Wobec przedstawionych założeń, wartość wypadkowej niepewności rozszerzonej dla analizowanego przypadku wynosi:
 \begin{equation}
-U_{i,\Sigma} = \sqrt{\mathbf{U}_{i}^{T} \mathbf{h}_{i} \mathbf{U}_{i}} \label{eq:pom_uncout_sum}.
+U_{i,\Sigma} = \sqrt{\mathbf{U}_{i} \mathbf{h}_{i} \mathbf{U}_{i}^{T}} \label{eq:pom_uncout_sum}.
 \end{equation}
 
 Zgodnie z założeniami odnośnie bardzo niskiej w stosunku do pozostałych sygnałów błędów wariancji błędu własnego zaokrągleń $e_{i,z}(j)$, udział tego sygnału pominięto w rozważaniach. Jako, że dla każdego żądania konwersji przetwornik analogowo-cyfrowy wprowadza do sygnału wyjściowego $c(i)$ stałe opóźnienie $T_{sam}$ wynikające z czasu trwania procesu śledzenia, zdefiniować można dodatkowy składnik sygnału błędu dynamicznego. Z uwagi na fakt, że opóźnienie to cechuje się stałą wartością, jego udział skorygować można przyjmując założenie, gdzie $\varphi_{s,o} = \omega_{s,o} T_{sam}$. Sygnał ten nie jest zatem wliczany do budżetu niepewności wielkości wyjściowych.
@@ -468,9 +468,9 @@ U_{24,\Sigma,a} = \sqrt{
 \num{0.00} \\ \num{1.39e-3} \\ \num{60.02e-3}
 \end{bmatrix}^{T}
 \begin{bmatrix}
-\num{1} & \num{0} & \num{0} \\
-\num{0} & \num{1} & \num{0.0454} \\
-\num{0} & \num{0.0454} & \num{1}
+\num{1.000} & \num{0.000} & \num{0.000} \\
+\num{0.000} & \num{1.000} & \num{0.045} \\
+\num{0.000} & \num{0.045} & \num{1.000}
 \end{bmatrix}
 \begin{bmatrix}
 \num{0.00} \\ \num{1.39e-3} \\ \num{60.02e-3}
@@ -481,9 +481,9 @@ U_{24,\Sigma,b} =  \sqrt{
 \num{0.00} \\ \num{1.39e-3} \\ \num{59.53e-3}
 \end{bmatrix}^{T}
 \begin{bmatrix}
-\num{1} & \num{0} & \num{0} \\
-\num{0} & \num{1} & \num{0.0456} \\
-\num{0} & \num{0.0456} & \num{1}
+\num{1.000} & \num{0.000} & \num{0.000} \\
+\num{0.000} & \num{1.000} & \num{0.046} \\
+\num{0.000} & \num{0.046} & \num{1.000}
 \end{bmatrix}
 \begin{bmatrix}
 \num{0.00} \\ \num{1.39e-3} \\ \num{59.53e-3}
@@ -497,9 +497,9 @@ U_{24,\Sigma,c} = \sqrt{
 \num{0.00} \\ \num{1.39e-3} \\ \num{50.89e-3}
 \end{bmatrix}^{T}
 \begin{bmatrix}
-\num{1} & \num{0} & \num{0} \\
-\num{0} & \num{1} & \num{0.0494} \\
-\num{0} & \num{0.0494} & \num{1}
+\num{1.000} & \num{0.000} & \num{0.000} \\
+\num{0.000} & \num{1.000} & \num{0.049} \\
+\num{0.000} & \num{0.049} & \num{1.000}
 \end{bmatrix}
 \begin{bmatrix}
 \num{0.00} \\ \num{1.39e-3} \\ \num{50.89e-3}

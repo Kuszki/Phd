@@ -131,7 +131,7 @@ E_{\Sigma,a,e,1} = \sqrt{\emb{\num{-5.86e-6}}^{2} + \emb{\num{-1.88e-3}}^{2}} = 
 Dla pozostałych harmonicznych należy opisane powyżej wielkości wyznaczyć w sposób analogiczny, przy czym wartości tych wielkości zestawiono w tabeli~\ref{tab:sym_parta_params_dyn_summary}. Na podstawie równania~\eqref{eq:dyn_var} możliwe jest wyznaczenie wartości wariancji kolejnych składowych błędu dynamicznego oraz na podstawie równania~\eqref{eq:unc_sum} wartości ich niepewności rozszerzonej:
 \begin{gather}
 \sigma_{a,dw,1}^{2} = \frac{E_{a,e,1}^{2}}{2} = \qty{1.77}{\micro V} \label{eq:sym_parta_dyn_self_var}, \\
-U_{a,dw,1} = c_{d} \sigma_{a,rw} = \qty{1.87}{mV} \label{eq:sym_parta_dyn_self_unc},
+U_{a,dw,1} = c_{d} \sigma_{a,dw,1} = \qty{1.87}{mV} \label{eq:sym_parta_dyn_self_unc},
 \end{gather}
 przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla deklarowanego poziomu ufności $\alpha = \qty{95}{\percent}$ jest równy~\num{1.41}~\cite{jakubiec_system, jcgm_guide}.
 
@@ -164,7 +164,7 @@ przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla dek
 
 Wyprowadzone dotychczas zależności oraz dane zestawione w tabeli~\ref{tab:sym_parta_params_dyn_summary} pozwalają zgodnie z równaniem~\eqref{eq:mid_cont_err_dyn_self} zdefiniować wypadkowy sygnał błędu dynamicznego własnego w postaci sumy kolejnych harmonicznych tego sygnału:
 \begin{equation}
-e_{a,dw} \emb{t} = \sum _{j=1} ^{3} E_{a,e} \emb{\omega_{a,e}} \sin \emb{\omega_{a,j} t + \varphi_{a,e} \emb{\omega_{a,j}}} \label{eq:sym_parta_dyn_self_sum}.
+e_{a,dw} \emb{t} = \sum _{j=1} ^{3} E_{a,e} \emb{\omega_{a,j}} \sin \emb{\omega_{a,j} t + \varphi_{a,e} \emb{\omega_{a,j}}} \label{eq:sym_parta_dyn_self_sum}.
 \end{equation}
 Należy zauważyć, że ze względu na fakt, że sygnał ten będzie przetwarzany przez kolejne fragmenty toru pomiarowego, dalsza analiza wykorzystująca wypadkowe parametry kolejnych harmonicznych tego sygnału wydaje się być najbardziej przystępna.
 
@@ -254,7 +254,7 @@ U_{a,rw} \\ U_{a,rp}
 \end{bmatrix}^{T}
 \begin{bmatrix}
 1           & h_{a,rw,rp} \\
-h_{a,rw,rp} & 1
+h_{a,rp,rw} & 1
 \end{bmatrix}
 \begin{bmatrix}
 U_{a,rw} \\ U_{a,rp}
@@ -282,11 +282,11 @@ Końcowym etapem przeprowadzanej analizy jest wyznaczenie wypadkowych parametró
 
 Wobec powyższych, wykorzystując budżet niepewności dany w tabeli~\ref{tab:sym_parta_params_unc_list}, wypadkową niepewność rozszerzoną wyznaczyć można zapisując równanie~\eqref{eq:unc_matrix} jako:
 \begin{equation}
-U_{a,\Sigma} = \sqrt{\mathbf{U}_{a}^{T} \cdot \mathbf{h}_{a} \cdot \mathbf{U}_{a}} \label{eq:sym_parta_uncert_sum},
+U_{a,\Sigma} = \sqrt{\mathbf{U}_{a} \cdot \mathbf{h}_{a} \cdot \mathbf{U}_{a}^{T}} \label{eq:sym_parta_uncert_sum},
 \end{equation}
 gdzie wektor niepewności cząstkowych oznaczony symbolem $\mathbf{U}_{a}$ oraz macierz współczynników koherencji oznaczona jako $\mathbf{h}_{a}$ przyjmują postać:
 \begin{gather}
-\mathbf{U}_{a}^{T} =
+\mathbf{U}_{a} =
 \begin{bmatrix}
 U_{a,sw} & U_{a,rw} & U_{a,rp} & U_{a,dw,1} & U_{a,dw,2} & U_{a,dw,3}
 \end{bmatrix}
@@ -294,7 +294,7 @@ U_{a,sw} & U_{a,rw} & U_{a,rp} & U_{a,dw,1} & U_{a,dw,2} & U_{a,dw,3}
 \mathbf{h}_{a} =
 \begin{bmatrix}
 1             & h_{a,sw,rw}   & h_{a,sw,rp}   & h_{a,sw,dw,1} & h_{a,sw,dw,2} & h_{a,sw,dw,3} \\
-h_{a,rw,sw}   & 1             & h_{a,rw,pw}   & h_{a,rw,dw,1} & h_{a,rw,dw,2} & h_{a,rw,dw,3} \\
+h_{a,rw,sw}   & 1             & h_{a,rw,rp}   & h_{a,rw,dw,1} & h_{a,rw,dw,2} & h_{a,rw,dw,3} \\
 h_{a,rp,sw}   & h_{a,rp,rw}   & 1             & h_{a,rp,dw,1} & h_{a,rp,dw,2} & h_{a,rp,dw,3} \\
 h_{a,dw,1,sw} & h_{a,dw,1,rw} & h_{a,dw,1,rp} & 1             & h_{a,dw,1,2}  & h_{a,dw,1,3}  \\
 h_{a,dw,2,sw} & h_{a,dw,2,rw} & h_{a,dw,2,rp} & h_{a,dw,2,1}  & 1             & h_{a,dw,2,3}  \\
@@ -308,7 +308,7 @@ h_{a,sw,rw} = s_{u,t} \sqrt{\frac{\num{3.01e-3}}{\num{3.49e-3}}} \left( \frac{\n
 \end{equation}
 Po podstawieniu do równania~\eqref{eq:sym_parta_uncert_vector} wartości z tabeli~\ref{tab:sym_parta_params_unc_list} oraz po podstawieniu wyznaczonych wartości współczynników koherencji do równania~\eqref{eq:sym_parta_uncert_coher} otrzymuje się:
 \begin{gather}
-\mathbf{U}_{a}^{T} =
+\mathbf{U}_{a} =
 \begin{bmatrix}
 \num{3.49} & \num{3.01} & \num{5.06} & \num{1.87} & \num{4.68} & \num{4.67}
 \end{bmatrix} \cdot \qty{e-3}{V}
@@ -323,7 +323,7 @@ Po podstawieniu do równania~\eqref{eq:sym_parta_uncert_vector} wartości z tabe
 \num{0.109} & \num{0.141} & \num{0.145} & \num{0.122} & \num{0.331} & \num{1.000}
 \end{bmatrix}
 \label{eq:sym_parta_uncert_coher_val}, \\
-U_{a,\Sigma} = \sqrt{\mathbf{U}_{a}^{T} \cdot \mathbf{h}_{a} \cdot \mathbf{U}_{a}} = \qty{12.09}{mV} \label{eq:sym_parta_uncert_value_a}.
+U_{a,\Sigma} = \sqrt{\mathbf{U}_{a} \cdot \mathbf{h}_{a} \cdot \mathbf{U}_{a}^{T}} = \qty{12.09}{mV} \label{eq:sym_parta_uncert_value_a}.
 \end{gather}
 Wartość wariancji wypadkowego sygnału błędu $e_{a,\Sigma}(t)$ wyznaczyć można stosując równanie~\eqref{eq:var_sum}, które w analizowanym przypadku przyjmuje postać:
 \begin{equation}
@@ -416,7 +416,7 @@ e_{b,sw} \emb{t} = f_{b,z} \left( \vartheta \emb{t} \right) \label{eq:sym_partb_
 \end{equation}
 Sygnał błędu dynamicznego własnego, zdefiniowany w równaniach~\eqref{eq:mid_cont_err_dyn_prop} oraz~\eqref{eq:out_cont_err_dyn_prop}, opisać można na podstawie założeń danych równaniem~\eqref{eq:sym_parta_out_ideal_sum} w postaci:
 \begin{equation}
-e_{b,dw} \emb{t} = \sum _{i = j} ^{3} e_{b,dw} \emb{t,\omega_{a,j}} = \sum _{i = j} ^{3} E_{b,ew} \emb{\omega_{b,j}} \sin \emb{\omega t + \varphi_{b,ew} \emb{\omega_{b,j}}} \label{eq:sym_partb_dyn_self_sum},
+e_{b,dw} \emb{t} = \sum _{i = 1} ^{3} e_{b,dw} \emb{t,\omega_{a,i}} = \sum _{i = 1} ^{3} E_{b,ew} \emb{\omega_{b,i}} \sin \emb{\omega t + \varphi_{b,ew} \emb{\omega_{b,i}}} \label{eq:sym_partb_dyn_self_sum},
 \end{equation}
 natomiast kolejne harmoniczne przedstawionego sygnału mogą być opisane następująco:
 \begin{equation}
@@ -448,7 +448,7 @@ e_{b,dp} \emb{t,\omega} =~
 \end{equation}
 natomiast wypadkowe parametry kolejnych harmonicznych przetwarzanego sygnału błędu dynamicznego $e_{a,dw}(t)$ zestawiono w tabeli~\ref{tab:sym_parta_params_dyn_summary}. Wypadkowy sygnał błędu dynamicznego propagowanego $e_{b,dp}(t)$ na wyjściu analizowanego obiektu zdefiniować można zatem jako:
 \begin{equation}
-e_{b,dp} \emb{t} = \sum _{j = 1} ^{3} e_{b,dp} \emb{t,\omega_{a,j}} = \sum _{i = j} ^{3} E_{b,ep} \emb{\omega_{b,j}} \sin \emb{\omega t + \varphi_{b,ep} \emb{\omega_{b,j}}} \label{eq:sym_partb_dyn_prop_sum},
+e_{b,dp} \emb{t} = \sum _{j = 1} ^{3} e_{b,dp} \emb{t,\omega_{a,j}} = \sum _{j = 1} ^{3} E_{b,ep} \emb{\omega_{b,j}} \sin \emb{\omega t + \varphi_{b,ep} \emb{\omega_{b,j}}} \label{eq:sym_partb_dyn_prop_sum},
 \end{equation}
 przy czym omówiony przypadek dotyczy założeń przyjętych w równaniu~\eqref{eq:sym_parta_dyn_self_sum}, które wynikają z założonej w równaniu~\eqref{eq:sym_in_ideal} postaci sygnału $s(t)$.
 
@@ -497,17 +497,17 @@ gdzie $c_{b,rp,1} = c_{a,rw} = c_{u} = \num{1.65}$ oraz $c_{b,rp,2} = c_{a,rp} =
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:sym_partb_params_unc_list}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego, gdzie (a)~oznacza przetwornik pomiarowy oraz (b)~oznacza wzmacniacz pomiarowy}
+\makecaption{tab:sym_partb_params_unc_list}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego, gdzie ($a$)~oznacza przetwornik pomiarowy oraz ($b$)~oznacza wzmacniacz pomiarowy}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
-1  & ${b,sp}$       & 11.52 &  36.75  & trójkątny                    & dryft temperatury (a)                      \\ \hline
-2  & ${b,sw}$       & 8.15  &  18.38  & trójkątny                    & dryft temperatury (b)                      \\ \hline
-3  & ${b,rp,1}$     & 9.93  &  36.26  & jednostajny                  & nieliniowość obiektu (a)                   \\ \hline
+1  & ${b,sp}$       & 11.52 &  36.75  & trójkątny                    & dryft temperatury ($a$)                    \\ \hline
+2  & ${b,sw}$       & 8.15  &  18.38  & trójkątny                    & dryft temperatury ($b$)                    \\ \hline
+3  & ${b,rp,1}$     & 9.93  &  36.26  & jednostajny                  & nieliniowość obiektu ($a$)                 \\ \hline
 4  & ${b,rp,2}$     & 16.70 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
-5  & ${b,dp,1}$     & 6.21  &  19.14  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-4}
+5  & ${b,dp,1}$     & 6.21  &  19.14  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja ($a$)}       \\ \cline{1-4}
 6  & ${b,dp,2}$     & 15.53 &  119.62 &                              &                                            \\ \cline{1-4}
 7  & ${b,dp,3}$     & 15.52 &  119.44 &                              &                                            \\ \cline{1-4} \cline{6-6}
-8  & ${b,dw,1}$     & 3.06  &  4.64   &                              & \multirow{3}{*}{transmitancja (b)}         \\ \cline{1-4}
+8  & ${b,dw,1}$     & 3.06  &  4.64   &                              & \multirow{3}{*}{transmitancja ($b$)}       \\ \cline{1-4}
 9  & ${b,dw,2}$     & 7.65  &  29.00  &                              &                                            \\ \cline{1-4}
 10 & ${b,dw,3}$     & 7.65  &  28.99  &                              &                                            \\ \hline
 \end{tabular}
@@ -555,7 +555,7 @@ Parametry wypadkowego sygnału błędu statycznego $e_{b,s}(t)$, zdefiniowanego 
 \end{bmatrix}^{T}
 \begin{bmatrix}
 1 & r_{b,sw,sp} \\
-r_{b,sp,rw} & 1
+r_{b,sp,sw} & 1
 \end{bmatrix}
 \begin{bmatrix}
 \sigma_{b,sw} \\ \sigma_{b,sp}
@@ -579,7 +579,7 @@ U_{b,sw} \\ U_{b,sp}
 \end{bmatrix}^{T}
 \begin{bmatrix}
 1 & h_{b,sw,sp} \\
-h_{b,sp,rw} & 1
+h_{b,sp,sw} & 1
 \end{bmatrix}
 \begin{bmatrix}
 U_{b,sw} \\ U_{b,sp}
@@ -701,18 +701,18 @@ opisujące sygnały błędów na wyjściu analizowanego obiektu i związane z ni
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:sym_partc_params_unc_list}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego, gdzie (a) oznacza przetwornik pomiarowy, (b) oznacza wzmacniacz pomiarowy oraz (c) oznacza przetwornik analogowo-cyfrowy}
+\makecaption{tab:sym_partc_params_unc_list}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego, gdzie ($a$) oznacza przetwornik pomiarowy, ($b$) oznacza wzmacniacz pomiarowy oraz ($c$) oznacza przetwornik analogowo-cyfrowy}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
-1  & ${c,rw,q}$     & 11.16 &  45.78  & jednostajny                  & proces kwantowania (c)                     \\ \hline
-2  & ${c,sp,1}$     & 11.52 &  36.75  & trójkątny                    & dryft temperatury (a)                      \\ \hline
-3  & ${c,sp,2}$     & 8.15  &  18.38  & trójkątny                    & dryft temperatury (b)                      \\ \hline
-4  & ${c,rp,1}$     & 9.93  &  36.26  & jednostajny                  & nieliniowość obiektu (a)                   \\ \hline
+1  & ${c,rw,q}$     & 11.16 &  45.78  & jednostajny                  & proces kwantowania ($c$)                   \\ \hline
+2  & ${c,sp,1}$     & 11.52 &  36.75  & trójkątny                    & dryft temperatury ($a$)                    \\ \hline
+3  & ${c,sp,2}$     & 8.15  &  18.38  & trójkątny                    & dryft temperatury ($b$)                    \\ \hline
+4  & ${c,rp,1}$     & 9.93  &  36.26  & jednostajny                  & nieliniowość obiektu ($a$)                 \\ \hline
 5  & ${c,rp,2}$     & 16.70 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
-6  & ${c,dp,a,1}$   & 6.21  &  19.14  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-4}
+6  & ${c,dp,a,1}$   & 6.21  &  19.14  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja ($a$)}       \\ \cline{1-4}
 7  & ${c,dp,a,2}$   & 15.53 &  119.62 &                              &                                            \\ \cline{1-4}
 8  & ${c,dp,a,3}$   & 15.52 &  119.44 &                              &                                            \\ \cline{1-4} \cline{6-6}
-9  & ${c,dp,b,1}$   & 3.06  &  4.64   &                              & \multirow{3}{*}{transmitancja (b)}         \\ \cline{1-4}
+9  & ${c,dp,b,1}$   & 3.06  &  4.64   &                              & \multirow{3}{*}{transmitancja ($b$)}       \\ \cline{1-4}
 10 & ${c,dp,b,2}$   & 7.65  &  29.00  &                              &                                            \\ \cline{1-4}
 11 & ${c,dp,b,3}$   & 7.65  &  28.99  &                              &                                            \\ \hline
 \end{tabular}
@@ -1147,15 +1147,15 @@ Identyczną analizę wykonano wykorzystując budżet niepewności zestawiony w t
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
 1  & ${rw,z}$     & 2.13  &   0.97  & zaokrągleń                   & operacje zmiennoprzecinkowe                \\ \hline
-2  & ${rp,q}$     & 13.26 &  45.78  & normalny                     & proces kwantowania (c)                     \\ \hline
-3  & ${rp,1}$     & 11.80 &  36.26  & normalny                     & nieliniowość obiektu (a)                   \\ \hline
+2  & ${rp,q}$     & 13.26 &  45.78  & normalny                     & proces kwantowania ($c$)                   \\ \hline
+3  & ${rp,1}$     & 11.80 &  36.26  & normalny                     & nieliniowość obiektu ($a$)                 \\ \hline
 4  & ${rp,2}$     & 16.70 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
-5  & ${sp,1}$     & 23.04 &  147.00 & trójkątny                    & dryft temperatury (a)                      \\ \hline
-6  & ${sp,2}$     & 16.29 &  73.52  & trójkątny                    & dryft temperatury (b)                      \\ \hline
-7  & ${dp,a,1}$   & 12.32 &  76.40  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-4}
+5  & ${sp,1}$     & 23.04 &  147.00 & trójkątny                    & dryft temperatury ($a$)                    \\ \hline
+6  & ${sp,2}$     & 16.29 &  73.52  & trójkątny                    & dryft temperatury ($b$)                    \\ \hline
+7  & ${dp,a,1}$   & 12.32 &  76.40  & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja ($a$)}       \\ \cline{1-4}
 8  & ${dp,a,2}$   & 25.08 &  316.38 &                              &                                            \\ \cline{1-4}
 9  & ${dp,a,3}$   & 2.35  &  2.77   &                              &                                            \\ \cline{1-4} \cline{6-6}
-10 & ${dp,b,1}$   & 6.07  &  18.52  &                              & \multirow{3}{*}{transmitancja (b)}         \\ \cline{1-4}
+10 & ${dp,b,1}$   & 6.07  &  18.52  &                              & \multirow{3}{*}{transmitancja ($b$)}       \\ \cline{1-4}
 11 & ${dp,b,2}$   & 12.35 &  76.70  &                              &                                            \\ \cline{1-4}
 12 & ${dp,b,3}$   & 1.16  &  0.67   &                              &                                            \\ \hline
 \end{tabular}
@@ -1168,15 +1168,15 @@ Identyczną analizę wykonano wykorzystując budżet niepewności zestawiony w t
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
 1  & ${rw,z}$     & 1.81  &  0.70   & zaokrągleń                   & operacje zmiennoprzecinkowe                \\ \hline
-2  & ${rp,q}$     & 13.26 &  45.78  & normalny                     & proces kwantowania (c)                     \\ \hline
-3  & ${rp,1}$     & 11.80 &  36.26  & normalny                     & nieliniowość obiektu (a)                   \\ \hline
+2  & ${rp,q}$     & 13.26 &  45.78  & normalny                     & proces kwantowania ($c$)                   \\ \hline
+3  & ${rp,1}$     & 11.80 &  36.26  & normalny                     & nieliniowość obiektu ($a$)                 \\ \hline
 4  & ${rp,2}$     & 16.71 &  72.64  & normalny                     & szum wielkości wejściowej                  \\ \hline
-5  & ${sp,1}$     & 0.00  &  0.00   & trójkątny                    & dryft temperatury (a)                      \\ \hline
-6  & ${sp,2}$     & 0.00  &  0.00   & trójkątny                    & dryft temperatury (b)                      \\ \hline
-7  & ${dp,a,1}$   & 0.06  &  0.00   & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja (a)}         \\ \cline{1-4}
+5  & ${sp,1}$     & 0.00  &  0.00   & trójkątny                    & dryft temperatury ($a$)                    \\ \hline
+6  & ${sp,2}$     & 0.00  &  0.00   & trójkątny                    & dryft temperatury ($b$)                    \\ \hline
+7  & ${dp,a,1}$   & 0.06  &  0.00   & \multirow{6}{*}{dwumodalny}  & \multirow{3}{*}{transmitancja ($a$)}       \\ \cline{1-4}
 8  & ${dp,a,2}$   & 3.77  &  7.13   &                              &                                            \\ \cline{1-4}
 9  & ${dp,a,3}$   & 19.16 &  184.65 &                              &                                            \\ \cline{1-4} \cline{6-6}
-10 & ${dp,b,1}$   & 0.03  &  0.00   &                              & \multirow{3}{*}{transmitancja (b)}         \\ \cline{1-4}
+10 & ${dp,b,1}$   & 0.03  &  0.00   &                              & \multirow{3}{*}{transmitancja ($b$)}       \\ \cline{1-4}
 11 & ${dp,b,2}$   & 1.85  &  1.73   &                              &                                            \\ \cline{1-4}
 12 & ${dp,b,3}$   & 9.44  &  44.82  &                              &                                            \\ \hline
 \end{tabular}
