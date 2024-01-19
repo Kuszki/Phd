@@ -8,8 +8,6 @@ run() {
 	fi
 }
 
-CURR_REV="$(git describe --always --dirty --abbrev=6 || echo unknown)"
-
 DO_REMOVE=false
 DO_CONVERT=false
 DO_OCTAVE=false
@@ -78,10 +76,12 @@ while [ "$1" != "" ]; do
 
 done
 
+[ $DO_DIFF == true ] && CURR_REV="$(git describe --always --dirty --abbrev=6 || echo unknown)"
+
 [ "$VER_DIFF" == "" ] && VER_DIFF="HEAD" || VER_DIFF=${VER_DIFF:0:6}
 
 [ "$VER_DIFF" == "HEAD" ] && VER_CMD="\\def\\DIFrevdesc{$CURR_REV}" \
-                          || VER_CMD="\\def\\DIFrevdesc{$VER_DIFF/$CURR_REV}"
+					 || VER_CMD="\\def\\DIFrevdesc{$VER_DIFF/$CURR_REV}"
 
 [ $DO_REMOVE == true ] && rm budowa/* obrazki/*.svg obrazki/*.pdf &> /dev/null
 
