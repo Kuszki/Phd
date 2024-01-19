@@ -9,8 +9,6 @@ run() {
 }
 
 CURR_REV="$(git describe --always --dirty --abbrev=6 || echo unknown)"
-CURR_PATH="$(dirname $(realpath $0))"
-CURR_NAME="$(basename $0)"
 
 DO_REMOVE=false
 DO_CONVERT=false
@@ -99,13 +97,13 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 [ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua -f beamer.tex
 [ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua -f thesis.tex
 
-[ $DO_DIFF == true ] && CLSI=1 run git-latexdiff --main thesis.tex --output budowa/diff.pdf \
-						--latexopt "--shell-escape -f -pdflua -usepretex=$VER_CMD" \
-						--prepare "$0 --convert --skip --quiet --draws || exit 0" \
-						--preamble="$CURR_PATH/style/$STY_DIFF.sty" \
+[ $DO_DIFF == true ] && run latexdiff-git --flatten --revision="$VER_DIFF" \
 						--graphics-markup="none" --math-markup="coarse" \
 						--packages="hyperref,biblatex" --encoding="utf8" \
-						--latexdiff-flatten --latexmk -- "$VER_DIFF"
+						--preamble="style/$STY_DIFF.sty" thesis.tex \
+				 && run latexmk --shell-escape -output-directory=budowa -pdflua -f \
+						-usepretex="$VER_CMD" "thesis-diff$VER_DIFF.tex"
 
+rm thesis-diff*.tex &> /dev/null
 rm *_desc.aux &> /dev/null
 exit 0
