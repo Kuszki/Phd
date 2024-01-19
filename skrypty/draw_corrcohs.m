@@ -9,7 +9,6 @@ addpath("~/Projekty/Octave-FWT-Utils")
 
 names = {"Rozkład normalny", "Rozkład jednostajny", "Rozkład trójkątny", "Rozkład dwumodalny"};
 list = 'nuts';
-dim = "-r300";
 
 set(h, "paperunits", "centimeters")
 set(h, "papersize", [16 11.3/2])
@@ -39,4 +38,4 @@ ylim([-1 1])
 grid on
 box on
 
-print("../obrazki/cohers.svg", "-svgconvert", dim);
+print("../obrazki/cohers.svg");

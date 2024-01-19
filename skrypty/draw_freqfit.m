@@ -79,4 +79,4 @@ set_comma(gca, 'X');
 grid on;
 box on;
 
-print("../obrazki/dynamic_ampout.svg", "-svgconvert", "-r300");
+print("../obrazki/dynamic_ampout.svg");

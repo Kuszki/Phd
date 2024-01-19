@@ -19,7 +19,6 @@ set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
-dim = "-r300";
 
 ADC = @(x) 4097.958 * x/1000 + 3.518818;
 VIN = @(x) 1000*(x - 3.518818) / 4097.958;
@@ -104,4 +103,4 @@ ylim([-20 10]);
 grid on;
 box on;
 
-print("../obrazki/sinfit_error.svg", "-svgconvert", dim);
+print("../obrazki/sinfit_error.svg");

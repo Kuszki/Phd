@@ -8,7 +8,6 @@ pkg load parallel
 addpath("~/Projekty/Octave-FWT-Utils");
 load("../archiwa/f16_coif5_hist.dat");
 
-dim = "-r300";
 
 fcolor = "#333333";
 ecolor = "#333333";
@@ -78,4 +77,4 @@ set_comma(gca, 'XY');
 grid on;
 box on;
 
-print("../obrazki/hist_numerr_coif5.svg", "-svgconvert", dim);
+print("../obrazki/hist_numerr_coif5.svg");

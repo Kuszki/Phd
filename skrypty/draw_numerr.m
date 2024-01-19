@@ -8,7 +8,6 @@ pkg load parallel
 addpath("~/Projekty/Octave-FWT-Utils")
 
 list = 'nuts';
-dim = "-r300";
 
 texp = [3 : 12];
 lab = num2str([2 .^ texp](:), '%d');
@@ -66,4 +65,4 @@ box on;
 
 set (gca, "yminorgrid", "on");
 
-print("../obrazki/dwt_rerror_coif5.svg", "-svgconvert", dim);
+print("../obrazki/dwt_rerror_coif5.svg");

@@ -7,7 +7,6 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
-dim = "-r300";
 
 fcolor = "#333333";
 ecolor = "#333333";
@@ -85,4 +84,4 @@ set_comma(gca, 'X');
 grid on;
 box on;
 
-print("../obrazki/hist_reductive.svg", "-svgconvert", dim);
+print("../obrazki/hist_reductive.svg");

@@ -6,7 +6,6 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
-dim = "-r300";
 
 parts = {"a", "b", "c", "T", "S"};
 nrows = [ 2 2 1 2 2 ];
@@ -130,6 +129,6 @@ box on;
 pos = pos + 1;
 end;
 
-print(sprintf("../obrazki/hist_part_%s.svg", part), "-svgconvert", dim);
+print(sprintf("../obrazki/hist_part_%s.svg", part));
 
 end

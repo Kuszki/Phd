@@ -9,7 +9,6 @@ addpath("~/Projekty/Octave-FWT-Utils")
 
 names = {"Rozkład normalny", "Rozkład jednostajny", "Rozkład trójkątny", "Rozkład dwumodalny"};
 list = 'nuts';
-dim = "-r300";
 yl = [ 0.6 0.8 0.6 1.0 ];
 
 set(h, "paperunits", "centimeters")
@@ -56,4 +55,4 @@ for i = 1 : length(list)
 
 end
 
-print("../obrazki/shapes.svg", "-svgconvert", dim);
+print("../obrazki/shapes.svg");

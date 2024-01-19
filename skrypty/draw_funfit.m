@@ -109,4 +109,4 @@ set_comma(gca, 'XY');
 grid on;
 box on;
 
-print("../obrazki/static_adcout.svg", "-svgconvert", "-r300");
+print("../obrazki/static_adcout.svg");

@@ -7,7 +7,6 @@ pkg load parallel
 
 addpath("~/Projekty/Octave-FWT-Utils")
 
-dim = "-r300";
 
 set(h, "paperunits", "centimeters")
 set(h, "papersize", [16 11.3])
@@ -68,7 +67,7 @@ set_comma(gca, 'XY');
 grid on;
 box on;
 
-print("../obrazki/bank_db_demo.svg", "-svgconvert", dim);
+print("../obrazki/bank_db_demo.svg");
 
 [g,a] = wfbt2filterbank({'ana:spline2:4', 3, 'dwt'});
 subplot(2, 2, 1)
@@ -118,7 +117,7 @@ set_comma(gca, 'XY');
 grid on;
 box on;
 
-print("../obrazki/bank_spline_demo.svg", "-svgconvert", dim);
+print("../obrazki/bank_spline_demo.svg");
 
 [g,a] = wfbt2filterbank({'dden2', 3, 'dwt'});
 subplot(2, 2, 1)
@@ -168,7 +167,7 @@ set_comma(gca, 'XY');
 grid on;
 box on;
 
-print("../obrazki/bank_dden_demo.svg", "-svgconvert", dim);
+print("../obrazki/bank_dden_demo.svg");
 
 set(h, "papersize", [18 7])
 set(h, "paperposition", [0, 0, [18 7]])
@@ -197,4 +196,4 @@ set_comma(gca, 'XY');
 grid on;
 box on;
 
-print("../obrazki/bank_db_short.svg", "-svgconvert", dim);
+print("../obrazki/bank_db_short.svg");
