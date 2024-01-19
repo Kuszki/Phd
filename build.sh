@@ -104,6 +104,7 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 				 && run latexmk --shell-escape -output-directory=budowa -pdflua -f \
 						-usepretex="$VER_CMD" "thesis-diff$VER_DIFF.tex"
 
+rm budowa/thesis-diff* &> /dev/null
 rm thesis-diff*.tex &> /dev/null
 rm *_desc.aux &> /dev/null
 exit 0
