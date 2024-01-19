@@ -84,6 +84,7 @@ done
 					 || VER_CMD="\\def\\DIFrevdesc{$VER_DIFF/$CURR_REV}"
 
 [ $DO_REMOVE == true ] && rm budowa/* obrazki/*.svg obrazki/*.pdf &> /dev/null
+[ $DO_DIFF == true ] rm budowa/thesis-diff* &> /dev/null
 
 [ $DO_BUILD == true ] && [ $(ls obrazki/*.svg 2> /dev/null | wc -l) -eq 0 ] && DO_OCTAVE=true && DO_CONVERT=true
 [ $DO_BUILD == true ] && [ $(ls obrazki/*.pdf 2> /dev/null | wc -l) -eq 0 ] && DO_CONVERT=true
@@ -104,7 +105,7 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 				 && run latexmk --shell-escape -output-directory=budowa -pdflua -f \
 						-usepretex="$VER_CMD" "thesis-diff$VER_DIFF.tex"
 
-rm budowa/thesis-diff* &> /dev/null
 rm thesis-diff*.tex &> /dev/null
 rm *_desc.aux &> /dev/null
+
 exit 0
