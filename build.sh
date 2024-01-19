@@ -95,8 +95,8 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 [ $DO_CONVERT == true ] && run libreoffice --convert-to pdf obrazki/*.odg --outdir obrazki
 [ $DO_CONVERT == true ] && run inkscape -D obrazki/*.svg --export-type pdf
 
-[ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua -f beamer.tex
-[ $DO_BUILD == true ] && CLSI=0 run latexmk --shell-escape -output-directory=budowa -pdflua -f thesis.tex
+[ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua -f beamer.tex
+[ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua -f thesis.tex
 
 [ $DO_DIFF == true ] && run latexdiff-git --flatten --revision="$VER_DIFF" \
 						--graphics-markup="none" --math-markup="coarse" \
