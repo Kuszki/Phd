@@ -76,9 +76,9 @@ while [ "$1" != "" ]; do
 
 done
 
-[ $DO_DIFF == true ] && CURR_REV="$(git describe --always --dirty --abbrev=6 || echo unknown)"
+[ $DO_DIFF == true ] && CURR_REV="$(git describe --always --dirty --abbrev=8 || echo unknown)"
 
-[ "$VER_DIFF" == "" ] && VER_DIFF="HEAD" || VER_DIFF=${VER_DIFF:0:6}
+[ "$VER_DIFF" == "" ] && VER_DIFF="HEAD" || VER_DIFF=${VER_DIFF:0:8}
 
 [ "$VER_DIFF" == "HEAD" ] && VER_CMD="\\def\\DIFrevdesc{$CURR_REV}" \
 					 || VER_CMD="\\def\\DIFrevdesc{$VER_DIFF/$CURR_REV}"
@@ -103,7 +103,7 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 						--packages="hyperref,biblatex" --encoding="utf8" \
 						--preamble="style/$STY_DIFF.sty" thesis.tex \
 				 && run latexmk --shell-escape -output-directory=budowa -pdflua -f \
-						-usepretex="$VER_CMD" "thesis-diff$VER_DIFF.tex"
+						-usepretex="$VER_CMD" -jobname="diff" "thesis-diff$VER_DIFF.tex"
 
 rm thesis-diff*.tex &> /dev/null
 rm *_desc.aux &> /dev/null

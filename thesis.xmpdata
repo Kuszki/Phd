@@ -1,7 +1,17 @@
 \Title{Rozprawa Doktorska}
 \Author{Łukasz Dróżdż}
+\Contributor{Jerzy Roj}
+
 \Subject{Analiza metrologiczna algorytmów dyskretnej transformacji falkowej}
-\Keywords{dyskretna transformacja falkowa\sep cyfrowe przetwarzanie sygnałów\sep szacowanie niepewności wyniku pomiaru\sep analiza właściwości metrologicznych toru pomiarowego}
-\Publisher{Politechnika Śląska, Wydział Elektryczny}
+\Publisher{Politechnika Śląska; Wydział Elektryczny; Katedra Metrologii, Elektroniki i Automatyki}
+
 \PublicationType{book}
 \Language{pl}
+
+\Keywords{%
+	model błędów toru pomiarowego\sep%
+	dyskretna transformacja falkowa\sep%
+	cyfrowe przetwarzanie sygnałów\sep%
+	szacowanie niepewności wyniku pomiaru\sep%
+	analiza właściwości metrologicznych toru pomiarowego%
+}
