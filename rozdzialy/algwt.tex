@@ -8,7 +8,18 @@ gdzie $w_{a,b}$ jest współczynnikiem transformacji wyznaczonym dla parametrów
 
 Główny podział rodzajów falek rozważający ich właściwości obejmuje obecność najważniejszych cech charakterystycznych dla danej rodziny: ortogonalność, symetrię oraz biortogonalność. Ortogonalność oznacza, że dla wybranych parametrów skali i przesunięcia w czasie kolejne falki powstałe na bazie falki-matki będą wobec siebie ortogonalne. Jest to cecha w większości przypadków wymagana i pożądana. Symetria funkcji falki-matki jest cenną cechą w przypadku przetwarzania wybranych sygnałów, np. obrazów i dźwięku -- nie wszystkie rodziny falek posiadają tą cechę, stąd wiele prac skupiało się na \enquote{udoskonalaniu} istniejących rodzin pod katem możliwości jej wprowadzenia~\cite{reddy_compression}. Biortogonalność oznacza, że w celu rekonstrukcji sygnału należy zastosować odpowiednią dla użytej falki-matki, powiązaną z nią falkę~\cite{sweldens_bior}.
 
-Ze względu na swoje właściwości, algorytmy transformacji falkowej są wykorzystywane w wielu dziedzinach~\cite{akujuobi_applications}, przy czym w zależności od właściwości analizowanego sygnału stosuje się odpowiednią w danym przypadku falkę-matkę. W medycynie transformacja falkowa wykorzystywana jest między innymi do analizy sygnału EEG oraz EKG~\cite{ocak_medicine, unser_medicine}. Algorytm transformacji falkowej znajduje również zastosowanie w przetwarzaniu obrazu oraz dźwięku~\cite{kotteri_imagecomp}, ze względu na możliwość zastosowania go w algorytmach kompresji danych~\cite{reddy_compression}. Zapewniając możliwości analizy sygnału zarówno w dziedzinie częstotliwości, jak i czasu, algorytmy transformacji falkowej stosowane są w analizie drgań sejsmicznych~\cite{anping_seismic}. Analiza falkowa wykorzystywana jest również w mechanice, gdzie istnieje możliwość oszacowania stanu zużycia elementów mechanicznych maszyn na podstawie wielkości wyjściowych algorytmu transformacji falkowej~\cite{yan_mechanics}, czy w elektroenergetyce w celu analizy zwarć wysokoprądowych~\cite{niedopytalski_zwar}. Jednym z istotnych zastosowań jest także redukcja szumu w sygnale pomiarowym~\cite{auth_denoise}, gdzie wykorzystywane są w dużej mierze falki podwójnej gęstości \enquote{dden}~\cite{vimala_ddendenoise}. Ze względu na fakt, że algorytmy te stanowią istotną część toru pomiarowego, ich właściwości metrologiczne nie mogą być pomijane podczas analizy właściwości metrologicznych tego obiektu.
+Ze względu możliwość analizy sygnału jednocześnie w dziedzinie częstotliwości oraz w dziedzinie czasu, algorytmy transformacji falkowej są wykorzystywane w wielu dziedzinach~\cite{akujuobi_applications, ahmad_wavelet, wallen_handbook}, przy czym między innymi stosuje się je:
+\begin{itemize}
+\item w medycynie, do analizy sygnału EEG oraz EKG~\cite{ocak_medicine, unser_medicine},
+\item w przetwarzaniu obrazu oraz dźwięku~\cite{kotteri_imagecomp, averbuch_spline},
+\item w algorytmach kompresji danych~\cite{reddy_compression},
+\item w analizie drgań sejsmicznych~\cite{anping_seismic},
+\item w celu oszacowania stanu zużycia elementów maszyn~\cite{yan_mechanics},
+\item w celu detekcji rodzaju materiałów~\cite{xie_metals},
+\item w energetyce, podczas analizy zwarć wysokoprądowych~\cite{niedopytalski_zwar},
+\item w procesie redukcji szumu w sygnale pomiarowym~\cite{auth_denoise, vimala_ddendenoise}.
+\end{itemize}
+W zależności od właściwości analizowanego sygnału, stosuje się odpowiednią w danym przypadku falkę-matkę, której właściwości pozwalają na detekcję analizowanego zjawiska. Ze względu na fakt, że algorytmy te stanowią istotną część toru pomiarowego, ich właściwości metrologiczne nie mogą być pomijane podczas analizy właściwości metrologicznych tego obiektu, co zaznaczono we wstępie do pracy.
 
 \section{Algorytm ciągłej transformacji falkowej}
 
