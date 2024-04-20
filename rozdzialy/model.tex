@@ -538,7 +538,7 @@ Jako, że wyznaczona wartość współczynnika $h_{a,b}$ będzie odpowiednia jed
 
 Wobec powyższych zaproponować należy algorytm umożliwiający wyznaczenie, dla typowych par sygnałów, wartości współczynników kształtu $s_{a,b}$, które następnie zostaną skorygowane w celu zastosowania ich jako aproksymacji współczynników koherencji w równaniu~\eqref{eq:unc_matrix}, dla aktualnych parametrów i liczby analizowanych sygnałów. Zgodnie z propozycją omówioną w pracy~\cite{jakubiec_model}, wartość współczynnika kształtu $s_{a,b}$ wyznaczyć można zgodnie z równaniem~\eqref{eq:unc_cohertwo}, dla nieskorelowanej pary sygnałów $e_{a}(t)$ oraz $e_{b}(t)$ cechujących się identyczną wartością niepewności rozszerzonej $U = U_{a} = U_{b}$ przy założeniu jednakowego poziomu ufności, w postaci równania:
 \begin{equation}
-s_{a,b} = s_{b,a} = \frac{U_{a,b}^{2} - U_{a}^{2} - U_{b}^{2}}{2 U_{a} U_{b}} = \frac{U^{2}}{2 U_{a,b}} - 1 \label{eq:unc_shapertwo}.
+s_{a,b} = s_{b,a} = \frac{U_{a,b}^{2} - U_{a}^{2} - U_{b}^{2}}{2 U_{a} U_{b}} = \frac{U_{a,b}^{2}}{2 U^{2}} - 1 \label{eq:unc_shapertwo}.
 \end{equation}
 W tabeli~\ref{tab:unc_shapefac} przedstawiono zestawienie wyznaczonych przy użyciu metody Monte-Carlo, zgodnie z równaniem~\eqref{eq:unc_shapertwo}, wartości współczynników kształtu dla par sygnałów o typowych rodzajach funkcji gęstości prawdopodobieństwa, gdzie założono $\gamma = \qty{95}{\percent}$.
 
