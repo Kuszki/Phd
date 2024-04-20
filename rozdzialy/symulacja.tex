@@ -48,7 +48,7 @@ Przyjmuje się, że rzeczywista funkcja przetwarzania obiektu $\tilde{f}_{a}(x)$
 \sigma_{a,rw}^{2} = \frac{\left( \left( \sqrt{10} \cdot 10^{-3} \right) + \left( \sqrt{10} \cdot 10^{-3} \right) \right)^{2}}{12} = 3 \frac{1}{3}~\unit{\micro V} \label{eq:sym_parta_rand_self_var}, \\
 U_{a,rw} = c_{u} \sigma_{a,rw} = \frac{\num{1.65} \sqrt{30}}{3}~\unit{mV} \label{eq:sym_parta_rand_self_unc},
 \end{gather}
-przy czym $c_{u}$ jest współczynnikiem rozszerzenia dla rozkładu jednostajnego i przy poziomie ufności $\alpha = \qty{95}{\percent}$ wynosi~\num{1.65}. Ze względu na nieznaną postać rzeczywistej funkcji przetwarzania, w dalszych rozważaniach przyjmuje się, że $\tilde{f}_{a}(x)  \cong  \dot{f}_{a}(x)$.
+przy czym $c_{u}$ jest współczynnikiem rozszerzenia dla rozkładu jednostajnego i przy poziomie ufności $\gamma = \qty{95}{\percent}$ wynosi~\num{1.65}. Ze względu na nieznaną postać rzeczywistej funkcji przetwarzania, w dalszych rozważaniach przyjmuje się, że $\tilde{f}_{a}(x)  \cong  \dot{f}_{a}(x)$.
 
 Zmiany temperatury otoczenia, ujęte w założeniach eksperymentu, rozważać można jako bardzo niewielkie w obrębie pojedynczej serii pomiarowej (dla $k$-tego okna pomiarowego). Można zatem przyjąć, że błąd wynikający z wpływu tej temperatury na wartość wielkości wyjściowej analizowanego obiektu jest niezmienny w obrębie pojedynczego okna pomiarowego, a zatem, zgodnie z przyjętym modelem, kwalifikować go można jako błąd statyczny. Sygnał błędu statycznego własnego $e_{a,sw}(t)$ związany z omawianym zjawiskiem, zgodnie z równaniem~\eqref{eq:out_cont_err_env_self} jest zatem zdefiniowany jako:
 \begin{equation}
@@ -59,7 +59,7 @@ gdzie $\vartheta(t)$ jest rzeczywistą temperaturą otoczenia wyrażoną w stopn
 \sigma_{a,sw}^{2} = \frac{\left( -\frac{9}{2} \cdot 10^{-3} \right)^{2} + \left( \frac{9}{2} \cdot 10^{-3} \right)^{2} - \left( -\frac{9}{2} \cdot 10^{-3} \right) \left( \frac{9}{2} \cdot 10^{-3} \right)}{18} = 3 \frac{3}{8}~\unit{\micro V} \label{eq:sym_parta_stat_var}, \\
 U_{a,sw} = c_{t} \sigma_{a,rw} = \frac{\num{5.7} \sqrt{6}}{4}~\unit{mV} \label{eq:sym_parta_stat_unc},
 \end{gather}
-gdzie $c_{t}$ jest współczynnikiem rozszerzenia dla rozkładu trójkątnego i przy poziomie ufności $\alpha = \qty{95}{\percent}$ wynosi~\num{1.90}.
+gdzie $c_{t}$ jest współczynnikiem rozszerzenia dla rozkładu trójkątnego i przy poziomie ufności $\gamma = \qty{95}{\percent}$ wynosi~\num{1.90}.
 
 Kolejną grupę właściwości obiektu stanowią właściwości dynamiczne, związane z jego częstotliwością graniczną. Przypadek idealny zakłada, że analizowany obiekt nie powinien mieć żadnego wpływu na widmo przetwarzanego sygnału, a zatem transmitancja tego obiektu powinna wynosić $\dot{G}_{a}(j\omega) = 1$. Na podstawie założonych parametrów rzeczywistych obiektu przyjmuje się, że transmitancja $\tilde{G}_{a}(j\omega)$ wynosi:
 \begin{equation}
@@ -133,7 +133,7 @@ Dla pozostałych harmonicznych należy opisane powyżej wielkości wyznaczyć w 
 \sigma_{a,dw,1}^{2} = \frac{E_{a,e,1}^{2}}{2} = \qty{1.77}{\micro V} \label{eq:sym_parta_dyn_self_var}, \\
 U_{a,dw,1} = c_{d} \sigma_{a,dw,1} = \qty{1.87}{mV} \label{eq:sym_parta_dyn_self_unc},
 \end{gather}
-przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla deklarowanego poziomu ufności $\alpha = \qty{95}{\percent}$ jest równy~\num{1.41}~\cite{jakubiec_system, jcgm_guide}.
+przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla deklarowanego poziomu ufności $\gamma = \qty{95}{\percent}$ jest równy~\num{1.41}~\cite{jakubiec_system, jcgm_guide}.
 
 \begin{table}[htb!]
 \begin{center}
@@ -176,7 +176,7 @@ Jako, że w zakresie częstotliwości $\hat{f} \in \interval{0}{\frac{1}{2} f_{p
 \begin{equation}
 U_{a,rp} = c_{u} \sigma_{a,rp} = \frac{\num{3.92} \sqrt{15}}{3}~\unit{mV} \label{eq:sym_parta_rand_prop_unc},
 \end{equation}
-gdzie $c_{u}$ to współczynnik rozszerzenia rozkładu normalnego, równy~\num{1.96} dla $\alpha = \qty{95}{\percent}$.
+gdzie $c_{u}$ to współczynnik rozszerzenia rozkładu normalnego, równy~\num{1.96} dla $\gamma = \qty{95}{\percent}$.
 
 Zdefiniowane dotychczas sygnały błędów stanowią kolejne składniki wypadkowego sygnału błędu $e_{a,\Sigma}(t)$ wielkości wyjściowej analizowanego obiektu, wprowadzonego wcześniej w równaniu~\eqref{eq:sym_parta_out_real}. Ostatecznie, sygnał ten opisać można w postaci:
 \begin{equation}
