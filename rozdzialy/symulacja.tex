@@ -2,7 +2,7 @@
 
 Weryfikacja przedstawionego w pracy modelu błędów i wynikających z niego założeń w pierwszej kolejności przeprowadzona została metodą symulacyjną. W bieżącym rozdziale przedstawiono przykładowy tor pomiarowy, a następnie wymieniono i opisano obecne w nim źródła błędów. Na podstawie przedstawionego wcześniej modelu błędów opisano związki zachodzące pomiędzy zidentyfikowanymi sygnałami błędów oraz oszacowano wartości niepewności rozszerzonych wielkości wyjściowych analizowanego toru pomiarowego. Wyniki uzyskane za pomocą zaproponowanego modelu porównano z wynikami uzyskanymi metodą Monte-Carlo. Aby zapewnić możliwość bieżącej weryfikacji poprawności stosowanych założeń, podczas analizy wyznaczano wartości dla wszystkich wyprowadzanych wielkości, co umożliwiało porównywanie uzyskanych wyników z wynikami symulacji uzyskiwanymi metodą Monet-Carlo. Wybrane wartości liczbowe dla analizowanych wielkości przedstawiano jedynie w celu możliwości weryfikacji każdego etapu analizy, natomiast ostateczne wyniki wyznaczane były na podstawie wyprowadzonych wcześniej zależności.
 
-Przykładowy tor pomiarowy składa się z przetwornika pomiarowego, który przekształca ciągłą w czasie fizyczną wielkość mierzoną $s(t)$ na reprezentujący ją sygnał napięciowy $y_{a}(t)$, który następnie przetwarzany jest przez wzmacniacz pomiarowy, w celu dopasowania jego poziomu do zakresu napięcia wejściowego zintegrowanego z układem próbkująco-pamiętającym przetwornika analogowo-cyfrowego. Wzmocniony sygnał $y_{b}(t)$ stanowi wejście przetwornika analogowo-cyfrowego, którego wielkości wyjściowe wyrażone w jednostce wielkości $y_{b}(t)$ oznaczono symbolem $x_{c}(i)$. Ostatecznie sygnał wyjściowy przetwornika analogowo-cyfrowego trafia na wejście algorytmu dyskretnej transformacji falkowej, a na jego podstawie wyznaczany jest wektor wielkości wyjściowych, oznaczonych jako $X(k)$. Schemat blokowy opisanego toru pomiarowego przedstawiono na rysunku~\ref{fig:chain_symul}. Podczas eksperymentu przyjęto, że przetwarzany sygnał pomiarowy obarczony jest błędem związanym z szumem białym o stałej widmowej gęstości mocy. Przetwornik pomiarowy, zastosowany w celu przetworzenia analizowanego sygnału wejściowego na postać napięciową, cechuje się pewną częstotliwość graniczną, a jego charakterystyka nie jest idealnie liniowa. Zastosowany wzmacniacz pomiarowy również charakteryzuje się pewną częstotliwością graniczną, natomiast założono, że nieliniowość charakterystyki jest w jego przypadku pomijalnie mała. Przyjęto, że temperatura otoczenia miała wpływ na dryft zera przetwornika pomiarowego oraz wzmacniacza, przy czym temperatura ta nie była mierzona, zatem jej wpływ na wyniki pomiarów nie był korygowany. Przyjęto, że zastosowany przetwornik analogowo-cyfrowy wprowadzał do sygnału wyjściowego jedynie błąd związany z kwantowaniem przetwarzanej wielkości, natomiast algorytm transformacji falkowej wprowadzał do wielkości wyjściowych błąd własny związany z wykonywaniem operacji arytmetycznych.
+Przykładowy tor pomiarowy składa się z przetwornika pomiarowego, który przekształca ciągłą w czasie fizyczną wielkość mierzoną $s(t)$ na reprezentujący ją sygnał napięciowy $y_{a}(t)$, który następnie przetwarzany jest przez wzmacniacz pomiarowy, w celu dopasowania jego poziomu do zakresu napięcia wejściowego zintegrowanego z układem próbkująco-pamiętającym przetwornika analogowo-cyfrowego. Wzmocniony sygnał $y_{b}(t)$ stanowi wejście przetwornika analogowo-cyfrowego, którego wielkości wyjściowe wyrażone w jednostce wielkości $y_{b}(t)$ oznaczono symbolem $x_{c}(i)$. Ostatecznie sygnał wyjściowy przetwornika analogowo-cyfrowego trafia na wejście algorytmu dyskretnej transformacji falkowej, a na jego podstawie wyznaczany jest wektor wielkości wyjściowych, oznaczonych jako $\mathbfit{X}(k)$. Schemat blokowy opisanego toru pomiarowego przedstawiono na rysunku~\ref{fig:chain_symul}. Podczas eksperymentu przyjęto, że przetwarzany sygnał pomiarowy obarczony jest błędem związanym z szumem białym o stałej widmowej gęstości mocy. Przetwornik pomiarowy, zastosowany w celu przetworzenia analizowanego sygnału wejściowego na postać napięciową, cechuje się pewną częstotliwość graniczną, a jego charakterystyka nie jest idealnie liniowa. Zastosowany wzmacniacz pomiarowy również charakteryzuje się pewną częstotliwością graniczną, natomiast założono, że nieliniowość charakterystyki jest w jego przypadku pomijalnie mała. Przyjęto, że temperatura otoczenia miała wpływ na dryft zera przetwornika pomiarowego oraz wzmacniacza, przy czym temperatura ta nie była mierzona, zatem jej wpływ na wyniki pomiarów nie był korygowany. Przyjęto, że zastosowany przetwornik analogowo-cyfrowy wprowadzał do sygnału wyjściowego jedynie błąd związany z kwantowaniem przetwarzanej wielkości, natomiast algorytm transformacji falkowej wprowadzał do wielkości wyjściowych błąd własny związany z wykonywaniem operacji arytmetycznych.
 
 \begin{figure}[htb!]
 \begin{center}
@@ -16,7 +16,7 @@ W dalszej części rozdziału omówiono kolejne elementy toru pomiarowego, wskaz
 \dot{s} \emb{t} = \frac{6}{10} \sin \left( 2 \pi f_{1} t \right) - \frac{3}{10} \sin \left( 10 \pi f_{1} t + \frac{\pi}{8} \right) + \frac{1}{10} \sin \left( 30 \pi f_{1} t + \frac{\pi}{6} \right) \label{eq:sym_in_ideal}, \\
 \tilde{s} \emb{t} = \dot{s} \emb{t} + e_{s,r} \emb{t} = e_{s,r} \emb{t} + \sum _{i=1} ^{3} E_{s,o} \emb{\omega_{s,i}} \sin \emb{\omega_{s,i} t + \varphi_{s,i}} \label{eq:sym_in_real},
 \end{gather}
-przy czym $f_{1} = \qty{1}{kHz}$ jest częstotliwością podstawowej harmonicznej tego sygnału, natomiast $\sigma_{s,r}^{2}(\omega) = \frac{2}{3} \cdot 10^{-5}$ wariancją sygnału szumu $e_{s,r}(t)$. Parametry kolejnych harmonicznych przetwarzanego sygnału zostały zestawione w tabeli~\ref{tab:sym_in_params_ideal}. Do wyznaczenia wektora wielkości wyjściowych algorytmu dyskretnej transformacji falkowej koniecznych było $N = 8$ próbek wielkości wejściowych $x_{c}(i)$ tego algorytmu, na podstawie których wyznaczano $M = 8$ próbek wektora wielkości wyjściowych $\mathbf{X}(k)$ obiektu dla każdej $k$-tej realizacji pomiaru. Eksperyment zakładał stały dla każdej $i$-tej próbki przetwarzanego sygnału okres próbkowania $T_{p} = \frac{1}{f_{s}}$, gdzie $f_{s} = \qty{48}{kHz}$, natomiast okno pomiarowe usytuowane było losowo względem przebiegu przetwarzanego sygnału $s(t)$. Założono, że temperatura otoczenia $\vartheta(t)$ przyjmowała w funkcji czasu dowolną wartość z zakresu $\hat{\vartheta}(t) \in \interval{17}{23}~\unit{\degreeCelsius}$, wartością oczekiwaną temperatury była wartość~\qty{20}{\degreeCelsius} oraz w obrębie wskazanego przedziału rozkład wartości tej wielkości był rozkładem trójkątnym.
+przy czym $f_{1} = \qty{1}{kHz}$ jest częstotliwością podstawowej harmonicznej tego sygnału, natomiast $\sigma_{s,r}^{2}(\omega) = \frac{2}{3} \cdot 10^{-5}$ wariancją sygnału szumu $e_{s,r}(t)$. Parametry kolejnych harmonicznych przetwarzanego sygnału zostały zestawione w tabeli~\ref{tab:sym_in_params_ideal}. Do wyznaczenia wektora wielkości wyjściowych algorytmu dyskretnej transformacji falkowej koniecznych było $N = 8$ próbek wielkości wejściowych $x_{c}(i)$ tego algorytmu, na podstawie których wyznaczano $M = 8$ próbek wektora wielkości wyjściowych $\mathbfit{X}(k)$ obiektu dla każdej $k$-tej realizacji pomiaru. Eksperyment zakładał stały dla każdej $i$-tej próbki przetwarzanego sygnału okres próbkowania $T_{p} = \frac{1}{f_{s}}$, gdzie $f_{s} = \qty{48}{kHz}$, natomiast okno pomiarowe usytuowane było losowo względem przebiegu przetwarzanego sygnału $s(t)$. Założono, że temperatura otoczenia $\vartheta(t)$ przyjmowała w funkcji czasu dowolną wartość z zakresu $\hat{\vartheta}(t) \in \interval{17}{23}~\unit{\degreeCelsius}$, wartością oczekiwaną temperatury była wartość~\qty{20}{\degreeCelsius} oraz w obrębie wskazanego przedziału rozkład wartości tej wielkości był rozkładem trójkątnym.
 
 \begin{table}[htb!]
 \begin{center}
@@ -120,7 +120,7 @@ e_{a,dw} \emb{t,\omega} \left|_{\omega = 1000 \cdot 2 \pi} \right. =~
 \end{equation}
 przy czym opisane w podany sposób parametry kolejnych harmonicznych sygnału błędu dynamicznego zestawiono w tabeli~\ref{tab:sym_parta_params_dyn_list}. Przedstawiając składowe równania~\eqref{eq:sym_parta_dyn_self_example_harm} za pomocą wektorów, zgodnie z równaniem~\eqref{eq:dyn_vect}, a następnie zgodnie z równaniem~\eqref{eq:dyn_vect_sum} sumując opisane składniki, wyznaczyć można wypadkowe parametry harmonicznych sygnału błędu $e_{a,dw}(t)$ zgodnie z zależnościami~\eqref{eq:dyn_vect_amp} oraz~\eqref{eq:dyn_vect_phi}. Dla przedstawionej w równaniu~\eqref{eq:sym_parta_dyn_self_example_harm} harmonicznej sygnału błędu dynamicznego, parametry te wynoszą:
 \begin{gather}
-\mathbf{e}_{a,e,1} =
+\mathbfit{e}_{a,e,1} =
 \begin{bmatrix}
 \num{0.6} \cos \emb{\num{-3.13e-3}} + \num{0.6} \cos \emb{\pi} & \num{0.6} \sin \emb{\num{-3.13e-3}} + \num{0.6} \sin \emb{\pi}
 \end{bmatrix}
@@ -282,16 +282,16 @@ Końcowym etapem przeprowadzanej analizy jest wyznaczenie wypadkowych parametró
 
 Wobec powyższych, wykorzystując budżet niepewności dany w tabeli~\ref{tab:sym_parta_params_unc_list}, wypadkową niepewność rozszerzoną wyznaczyć można zapisując równanie~\eqref{eq:unc_matrix} jako:
 \begin{equation}
-U_{a,\Sigma} = \sqrt{\mathbf{U}_{a} \cdot \mathbf{h}_{a} \cdot \mathbf{U}_{a}^{T}} \label{eq:sym_parta_uncert_sum},
+U_{a,\Sigma} = \sqrt{\mathbfit{U}_{a} \cdot \mathbfit{h}_{a} \cdot \mathbfit{U}_{a}^{T}} \label{eq:sym_parta_uncert_sum},
 \end{equation}
-gdzie wektor niepewności cząstkowych oznaczony symbolem $\mathbf{U}_{a}$ oraz macierz współczynników koherencji oznaczona jako $\mathbf{h}_{a}$ przyjmują postać:
+gdzie wektor niepewności cząstkowych oznaczony symbolem $\mathbfit{U}_{a}$ oraz macierz współczynników koherencji oznaczona jako $\mathbfit{h}_{a}$ przyjmują postać:
 \begin{gather}
-\mathbf{U}_{a} =
+\mathbfit{U}_{a} =
 \begin{bmatrix}
 U_{a,sw} & U_{a,rw} & U_{a,rp} & U_{a,dw,1} & U_{a,dw,2} & U_{a,dw,3}
 \end{bmatrix}
 \label{eq:sym_parta_uncert_vector}, \\
-\mathbf{h}_{a} =
+\mathbfit{h}_{a} =
 \begin{bmatrix}
 1             & h_{a,sw,rw}   & h_{a,sw,rp}   & h_{a,sw,dw,1} & h_{a,sw,dw,2} & h_{a,sw,dw,3} \\
 h_{a,rw,sw}   & 1             & h_{a,rw,rp}   & h_{a,rw,dw,1} & h_{a,rw,dw,2} & h_{a,rw,dw,3} \\
@@ -308,12 +308,12 @@ h_{a,sw,rw} = s_{u,t} \sqrt{\frac{\num{3.01e-3}}{\num{3.49e-3}}} \left( \frac{\n
 \end{equation}
 Po podstawieniu do równania~\eqref{eq:sym_parta_uncert_vector} wartości z tabeli~\ref{tab:sym_parta_params_unc_list} oraz po podstawieniu wyznaczonych wartości współczynników koherencji do równania~\eqref{eq:sym_parta_uncert_coher} otrzymuje się:
 \begin{gather}
-\mathbf{U}_{a} =
+\mathbfit{U}_{a} =
 \begin{bmatrix}
 \num{3.49} & \num{3.01} & \num{5.06} & \num{1.87} & \num{4.68} & \num{4.67}
 \end{bmatrix} \cdot \qty{e-3}{V}
 \label{eq:sym_parta_uncert_vector_val}, \\
-\mathbf{h}_{a} =
+\mathbfit{h}_{a} =
 \begin{bmatrix}
 \num{1.000} & \num{0.037} & \num{0.008} & \num{0.043} & \num{0.110} & \num{0.109} \\
 \num{0.037} & \num{1.000} & \num{0.044} & \num{0.056} & \num{0.141} & \num{0.141} \\
@@ -323,7 +323,7 @@ Po podstawieniu do równania~\eqref{eq:sym_parta_uncert_vector} wartości z tabe
 \num{0.109} & \num{0.141} & \num{0.145} & \num{0.122} & \num{0.331} & \num{1.000}
 \end{bmatrix}
 \label{eq:sym_parta_uncert_coher_val}, \\
-U_{a,\Sigma} = \sqrt{\mathbf{U}_{a} \cdot \mathbf{h}_{a} \cdot \mathbf{U}_{a}^{T}} = \qty{12.09}{mV} \label{eq:sym_parta_uncert_value_a}.
+U_{a,\Sigma} = \sqrt{\mathbfit{U}_{a} \cdot \mathbfit{h}_{a} \cdot \mathbfit{U}_{a}^{T}} = \qty{12.09}{mV} \label{eq:sym_parta_uncert_value_a}.
 \end{gather}
 Wartość wariancji wypadkowego sygnału błędu $e_{a,\Sigma}(t)$ wyznaczyć można stosując równanie~\eqref{eq:var_sum}, które w analizowanym przypadku przyjmuje postać:
 \begin{equation}
@@ -774,16 +774,16 @@ Na podstawie wyznaczonej w równaniu~\eqref{eq:sym_partc_rand_factor} wartości 
 
 \section{Analiza algorytmu transformacji falkowej}
 
-Ostatnim, przy czym najistotniejszym z punktu widzenia pracy, fragmentem analizowanego toru pomiarowego jest algorytm dyskretnej transformacji falkowej. Zakłada się, że dla każdej $k$-tej realizacji pomiaru na wejście algorytmu podawany jest wektor wielkości wejściowych $\mathbf{x}_{d}(k)$ złożony z $N = 8$ występujących po sobie próbek wielkości wyjściowej $x_{c}(i)$ przetwornika analogowo-cyfrowego. Wyjście analizowanego algorytmu stanowi wektor $\mathbf{X}(k)$ składający się z $M = 8$ wielkości, które stanowią ostateczne wielkości wyjściowe analizowanego toru pomiarowego. Omawiany algorytm wykorzystuje falkę \enquote{db2}, przy czym na jego realizację składają się dwie iteracje procesu dekompozycji sygnału. Macierz transformacji $\mathbf{A}$ omawianego algorytmu przedstawia równanie~\eqref{eq:db2_2_8_matrix}. Zakłada się, że implementacja stosowanego algorytmu wykorzystuje liczby zmiennoprzecinkowe połowicznej precyzji, o długości słowa~\qty{16}{\bitOw}~\cite{gcc_manual}.
+Ostatnim, przy czym najistotniejszym z punktu widzenia pracy, fragmentem analizowanego toru pomiarowego jest algorytm dyskretnej transformacji falkowej. Zakłada się, że dla każdej $k$-tej realizacji pomiaru na wejście algorytmu podawany jest wektor wielkości wejściowych $\mathbfit{x}_{d}(k)$ złożony z $N = 8$ występujących po sobie próbek wielkości wyjściowej $x_{c}(i)$ przetwornika analogowo-cyfrowego. Wyjście analizowanego algorytmu stanowi wektor $\mathbfit{X}(k)$ składający się z $M = 8$ wielkości, które stanowią ostateczne wielkości wyjściowe analizowanego toru pomiarowego. Omawiany algorytm wykorzystuje falkę \enquote{db2}, przy czym na jego realizację składają się dwie iteracje procesu dekompozycji sygnału. Macierz transformacji $\mathbfit{A}$ omawianego algorytmu przedstawia równanie~\eqref{eq:db2_2_8_matrix}. Zakłada się, że implementacja stosowanego algorytmu wykorzystuje liczby zmiennoprzecinkowe połowicznej precyzji, o długości słowa~\qty{16}{\bitOw}~\cite{gcc_manual}.
 
 Wobec powyższych założeń oraz modelu zaproponowanego w równaniach od~\eqref{eq:alg_out_mat} do~\eqref{eq:alg_out_single} wektor wielkości wejściowych analizowanego algorytmu opisać można w postaci:
 \begin{gather}
-\dot{\mathbf{x}}_{d}^{T} \emb{k} =
+\dot{\mathbfit{x}}_{d}^{T} \emb{k} =
 \begin{bmatrix}
 \dot{x}_{c} \emb{kNT_{p}} & \dot{x}_{c} \left( \emb{kN+1} T_{p} \right) & \hdots & \dot{x}_{c} \left( \emb{kN+7} T_{p} \right)
 \end{bmatrix}
 \label{eq:sym_partd_input_ideal}, \\
-\tilde{\mathbf{x}}_{d}^{T} \emb{k} =
+\tilde{\mathbfit{x}}_{d}^{T} \emb{k} =
 \begin{bmatrix}
 \tilde{x}_{c} \emb{kNT_{p}} & \tilde{x}_{c} \left( \emb{kN+1} T_{p} \right) & \hdots & \tilde{x}_{c} \left( \emb{kN+7} T_{p} \right)
 \end{bmatrix}
@@ -791,7 +791,7 @@ Wobec powyższych założeń oraz modelu zaproponowanego w równaniach od~\eqref
 \end{gather}
 zatem wektor sygnałów błędów wielkości wyjściowych może być zdefiniowany jako:
 \begin{equation}
-\mathbf{e}_{d,\Sigma}^{T} \emb{k} =
+\mathbfit{e}_{d,\Sigma}^{T} \emb{k} =
 \begin{bmatrix}
 e_{c,\Sigma} \emb{kMT_{p}} & e_{c,\Sigma} \left( \emb{kM+1} T_{p} \right) & \hdots & e_{c,\Sigma} \left( \emb{kM+7} T_{p} \right)
 \end{bmatrix}
@@ -799,17 +799,17 @@ e_{c,\Sigma} \emb{kMT_{p}} & e_{c,\Sigma} \left( \emb{kM+1} T_{p} \right) & \hdo
 \end{equation}
 Dodatkowo zdefiniować można kolejne wektory sygnałów błędów, rozpatrując zaproponowany podział na błędy statyczne, losowe oraz dynamiczne, gdzie:
 \begin{gather}
-\mathbf{e}_{d,s}^{T} \emb{k} =
+\mathbfit{e}_{d,s}^{T} \emb{k} =
 \begin{bmatrix}
 e_{c,s} \emb{kMT_{p}} & e_{c,s} \left( \emb{kM+1} T_{p} \right) & \hdots & e_{c,s} \left( \emb{kM+7} T_{p} \right)
 \end{bmatrix}
 \label{eq:sym_partd_input_error_stat}, \\
-\mathbf{e}_{d,r}^{T} \emb{k} =
+\mathbfit{e}_{d,r}^{T} \emb{k} =
 \begin{bmatrix}
 e_{c,r} \emb{kMT_{p}} & e_{c,r} \left( \emb{kM+1} T_{p} \right) & \hdots & e_{c,r} \left( \emb{kM+7} T_{p} \right)
 \end{bmatrix}
 \label{eq:sym_partd_input_error_rand}, \\
-\mathbf{e}_{d,d}^{T} \emb{k} =
+\mathbfit{e}_{d,d}^{T} \emb{k} =
 \begin{bmatrix}
 e_{c,d} \emb{kMT_{p}} & e_{c,d} \left( \emb{kM+1} T_{p} \right) & \hdots & e_{c,d} \left( \emb{kM+7} T_{p} \right)
 \end{bmatrix}
@@ -817,33 +817,33 @@ e_{c,d} \emb{kMT_{p}} & e_{c,d} \left( \emb{kM+1} T_{p} \right) & \hdots & e_{c,
 \end{gather}
 przy czym w analogiczny sposób rozpatrywać można wektory sygnałów błędów cząstkowych, których parametry zestawiono w tabeli~\ref{tab:sym_partc_params_unc_list}. Wobec powyższego, zgodnie z równaniem~\eqref{eq:alg_out_mul}, wektor wielkości wyjściowych opisać można jako:
 \begin{gather}
-\dot{\mathbf{X}} \emb{k} = \mathbf{A} \cdot \dot{\mathbf{x}}_{d} \emb{k} \label{eq:sym_partd_output_ideal}, \\
-\tilde{\mathbf{X}} \emb{k} = \mathbf{A} \cdot \tilde{\mathbf{x}}_{d} \emb{k} + \mathbf{e}_{d,z} \emb{k} = \dot{\mathbf{X}} \emb{k} + \mathbf{e}_{X,\Sigma} \emb{k} \label{eq:sym_partd_output_real},
+\dot{\mathbfit{X}} \emb{k} = \mathbfit{A} \cdot \dot{\mathbfit{x}}_{d} \emb{k} \label{eq:sym_partd_output_ideal}, \\
+\tilde{\mathbfit{X}} \emb{k} = \mathbfit{A} \cdot \tilde{\mathbfit{x}}_{d} \emb{k} + \mathbfit{e}_{d,z} \emb{k} = \dot{\mathbfit{X}} \emb{k} + \mathbfit{e}_{X,\Sigma} \emb{k} \label{eq:sym_partd_output_real},
 \end{gather}
-gdzie $\mathbf{e}_{d,z}(k)$ jest wektorem sygnałów błędów własnych zaokrągleń, natomiast kolejne wektory sygnałów błędów wielkości wyjściowej są opisane w postaci:
+gdzie $\mathbfit{e}_{d,z}(k)$ jest wektorem sygnałów błędów własnych zaokrągleń, natomiast kolejne wektory sygnałów błędów wielkości wyjściowej są opisane w postaci:
 \begin{gather}
-\mathbf{e}_{X,\Sigma} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,\Sigma} \emb{k} = \mathbf{e}_{X,s} \emb{k} + \mathbf{e}_{X,d} \emb{k} + \mathbf{e}_{X,r} \emb{k} + \mathbf{e}_{d,z} \emb{k} \label{eq:sym_partd_output_error_sum}, \\
-\mathbf{e}_{X,s} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,s} \emb{k} \label{eq:sym_partd_output_error_stat}, \\
-\mathbf{e}_{X,r} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,r} \emb{k} \label{eq:sym_partd_output_error_rand}, \\
-\mathbf{e}_{X,d} \emb{k} = \mathbf{A} \cdot \mathbf{e}_{d,d} \emb{k} \label{eq:sym_partd_output_error_dyn}.
+\mathbfit{e}_{X,\Sigma} \emb{k} = \mathbfit{A} \cdot \mathbfit{e}_{d,\Sigma} \emb{k} = \mathbfit{e}_{X,s} \emb{k} + \mathbfit{e}_{X,d} \emb{k} + \mathbfit{e}_{X,r} \emb{k} + \mathbfit{e}_{d,z} \emb{k} \label{eq:sym_partd_output_error_sum}, \\
+\mathbfit{e}_{X,s} \emb{k} = \mathbfit{A} \cdot \mathbfit{e}_{d,s} \emb{k} \label{eq:sym_partd_output_error_stat}, \\
+\mathbfit{e}_{X,r} \emb{k} = \mathbfit{A} \cdot \mathbfit{e}_{d,r} \emb{k} \label{eq:sym_partd_output_error_rand}, \\
+\mathbfit{e}_{X,d} \emb{k} = \mathbfit{A} \cdot \mathbfit{e}_{d,d} \emb{k} \label{eq:sym_partd_output_error_dyn}.
 \end{gather}
 
-Należy zauważyć, że tak jak w przypadku wektora wielkości wejściowych, tak i w przypadku wektora wielkości wyjściowych, wyróżnić można również osobne wektory realizacji sygnałów błędów dla każdego z opisanych w tabeli~\ref{tab:sym_partc_params_unc_list} sygnałów. Zgodnie z oznaczeniami przyjętymi w równaniach~\eqref{eq:db2_invect} oraz~\eqref{eq:db2_outvect}, wektory wielkości wejściowych $\mathbf{x}(k)$ i wyjściowych $\mathbf{X}(k)$ pojedynczej realizacji algorytmu dla $k$-tego okna pomiarowego są w dalszej części rozdziału oznaczane symbolami:
+Należy zauważyć, że tak jak w przypadku wektora wielkości wejściowych, tak i w przypadku wektora wielkości wyjściowych, wyróżnić można również osobne wektory realizacji sygnałów błędów dla każdego z opisanych w tabeli~\ref{tab:sym_partc_params_unc_list} sygnałów. Zgodnie z oznaczeniami przyjętymi w równaniach~\eqref{eq:db2_invect} oraz~\eqref{eq:db2_outvect}, wektory wielkości wejściowych $\mathbfit{x}(k)$ i wyjściowych $\mathbfit{X}(k)$ pojedynczej realizacji algorytmu dla $k$-tego okna pomiarowego są w dalszej części rozdziału oznaczane symbolami:
 \begin{gather}
-\mathbf{x}_{d}^{T} =
+\mathbfit{x}_{d}^{T} =
 \begin{bmatrix}
 S_{0,0} & S_{0,1} & S_{0,2} & S_{0,3} & S_{0,4} & S_{0,5} & S_{0,6} & S_{0,7}
 \end{bmatrix}
 \label{eq:sym_partd_invect}, \\
-\mathbf{X}^{T} =
+\mathbfit{X}^{T} =
 \begin{bmatrix}
 S_{2,0} & S_{2,1} & T_{2,0} & T_{2,1} & T_{1,0} & T_{1,1} & T_{1,2} & T_{1,3}
 \end{bmatrix}
 \label{eq:sym_partd_outvect},
 \end{gather}
-natomiast wektor sygnałów błędów wielkości wyjściowej $\mathbf{e}_{X,*}(k)$ dla wybranej $k$-tej iteracji realizacji algorytmu jest oznaczany w postaci:
+natomiast wektor sygnałów błędów wielkości wyjściowej $\mathbfit{e}_{X,*}(k)$ dla wybranej $k$-tej iteracji realizacji algorytmu jest oznaczany w postaci:
 \begin{equation}
-\mathbf{e}_{X,*}^{T} =
+\mathbfit{e}_{X,*}^{T} =
 \begin{bmatrix}
 e_{S_{2,0},*} & e_{S_{2,1},*} & e_{T_{2,0},*} & e_{T_{2,1},*} & e_{T_{1,0},*} & e_{T_{1,1},*} & e_{T_{1,2},*} & e_{T_{1,3},*}
 \end{bmatrix}
@@ -864,7 +864,7 @@ A_{T_{1,0},r} = \sqrt{\sum _{j = 0} ^{N-1} a_{4, j}^{2}} = 1 \label{eq:sym_partd
 \end{gather}
 Należy zauważyć, że zgodnie z oczekiwaniami wielkość wyjściowa $T_{1,0}$ nie będzie obarczona błędem statycznym w związku z faktem, że jest ona związana z filtrem pasmowo-przepustowym. Dodatkowo zauważyć można, że dla wszystkich wielkości wyjściowych współczynnik $A_{r}$ każdorazowo będzie równy jedności, co wynika z założenia rodziny \enquote{Daubechies} odnośnie normalizacji energii~\cite{vonesch_dbbasics, wei_coiflet}.
 
-Zgodnie z równaniem~\eqref{eq:alg_trans_single} oraz postacią macierzy $\mathbf{A}$ daną równaniem~\eqref{eq:db2_2_8_matrix}, transmitancje algorytmu związane z omawianymi wielkościami wyjściowymi w dziedzinie $\mathcal{Z}$ przedstawiają następujące równania:
+Zgodnie z równaniem~\eqref{eq:alg_trans_single} oraz postacią macierzy $\mathbfit{A}$ daną równaniem~\eqref{eq:db2_2_8_matrix}, transmitancje algorytmu związane z omawianymi wielkościami wyjściowymi w dziedzinie $\mathcal{Z}$ przedstawiają następujące równania:
 \begin{gather}
 \begin{split}
 H_{S_{2,0}} \emb{z} = ~
@@ -950,19 +950,19 @@ Przedstawione zależności stanowią dane niezbędne do wyznaczenia wypadkowej w
 
 Wyznaczenie wypadkowej wartości niepewności rozszerzonej odbywa się zgodnie z zależnością~\eqref{eq:unc_matrix}. Wymagane jest zatem wyznaczenie wzajemnych relacji pomiędzy składanymi niepewnościami cząstkowymi w postaci macierzy koherencji, której wartości są wyznaczane zgodnie z równaniem~\eqref{eq:unc_coher}. Można zatem zapisać, że:
 \begin{equation}
-U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} \label{eq:sym_partd_output_unc_summul_S_2_0},
+U_{S_{2,0},\Sigma} = \sqrt{\mathbfit{U}_{S_{2,0}} \cdot \mathbfit{h}_{S_{2,0}} \cdot \mathbfit{U}_{S_{2,0}}^{T}} \label{eq:sym_partd_output_unc_summul_S_2_0},
 \end{equation}
-gdzie symbolem $\mathbf{U}_{S_{2,0}}$ oznaczono wektor cząstkowych niepewności rozszerzonych:
+gdzie symbolem $\mathbfit{U}_{S_{2,0}}$ oznaczono wektor cząstkowych niepewności rozszerzonych:
 \begin{equation}
-\mathbf{U}_{S_{2,0}} =
+\mathbfit{U}_{S_{2,0}} =
 \begin{bmatrix}
 U_{S_{2,0},z} & U_{S_{2,0},s} & U_{S_{2,0},r} & U_{S_{2,0},d,1} & U_{S_{2,0},d,2} & U_{S_{2,0},d,3}
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_sumuvect_S_2_0_a},
 \end{equation}
-natomiast macierz koherencji oznaczona symbolem $\mathbf{h}_{S_{2,0}}$ jest dana w postaci:
+natomiast macierz koherencji oznaczona symbolem $\mathbfit{h}_{S_{2,0}}$ jest dana w postaci:
 \begin{equation}
-\mathbf{h}_{S_{2,0}} =
+\mathbfit{h}_{S_{2,0}} =
 \begin{bmatrix}
 1                 & h_{S_{2,0},z,s}   & h_{S_{2,0},z,r}   & h_{S_{2,0},z,d,1} & h_{S_{2,0},z,d,2} & h_{S_{2,0},z,d,3} \\
 h_{S_{2,0},s,z}   & 1                 & h_{S_{2,0},s,r}   & h_{S_{2,0},s,d,1} & h_{S_{2,0},s,d,2} & h_{S_{2,0},s,d,3} \\
@@ -975,12 +975,12 @@ h_{S_{2,0},d,3,z} & h_{S_{2,0},d,3,s} & h_{S_{2,0},d,3,r} & h_{S_{2,0},d,3,1} & 
 \end{equation}
 Podstawiając do powyższych zależności wyprowadzone w równaniach od~\eqref{eq:sym_partd_output_unc_roun_S_2_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_S_2_0} wielkości oraz wyznaczając zgodnie z równaniem~\eqref{eq:unc_coher} kolejne wartości współczynników koherencji dla analizowanych danych oraz wartości współczynników kształtu zestawionych w tabelach~\ref{tab:unc_shapefac} oraz~\ref{tab:unc_shapedwt} otrzymuje się:
 \begin{gather}
-\mathbf{U}_{S_{2,0}} =
+\mathbfit{U}_{S_{2,0}} =
 \begin{bmatrix}
 \num{2.13} & \num{39.31} & \num{24.38} & \num{18.39} & \num{37.42} & \num{3.50}
 \end{bmatrix} \cdot \num{e-3}
 \label{eq:sym_partd_output_unc_sumuvectval_S_2_0_a}, \\
-\mathbf{h}_{S_{2,0}} =
+\mathbfit{h}_{S_{2,0}} =
 \begin{bmatrix}
 \num{1.000} & \num{0.000} & \num{0.000} & \num{0.006} & \num{0.017} & \num{0.001} \\
 \num{0.000} & \num{1.000} & \num{0.011} & \num{0.116} & \num{0.259} & \num{0.042} \\
@@ -990,7 +990,7 @@ Podstawiając do powyższych zależności wyprowadzone w równaniach od~\eqref{e
 \num{0.001} & \num{0.042} & \num{0.018} & \num{0.028} & \num{0.079} & \num{1.000} \\
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_sumcoherval_S_2_0_a}, \\
-U_{S_{2,0},\Sigma} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{74.00}{mV} \label{eq:sym_partd_output_unc_total_a_S_2_0}.
+U_{S_{2,0},\Sigma} = \sqrt{\mathbfit{U}_{S_{2,0}} \cdot \mathbfit{h}_{S_{2,0}} \cdot \mathbfit{U}_{S_{2,0}}^{T}} = \qty{74.00}{mV} \label{eq:sym_partd_output_unc_total_a_S_2_0}.
 \end{gather}
 Jako, że w analizowanej sytuacji spełnione zostały warunki centralnego twierdzenia granicznego, wyznaczenie wypadkowej wartości niepewności rozszerzonej jest możliwe przyjmując założenie zbliżonego do normalnego kształtu rozkładu wypadkowego sygnału błędu. Wobec przedstawionego założenia wartość wypadkowej niepewności rozszerzonej może zostać oszacowana zgodnie z równaniem~\eqref{eq:unc_sum} dla $c_{S_{2,0},\Sigma} = c_{n}$, zatem:
 \begin{equation}
@@ -1022,15 +1022,15 @@ U_{T_{1,0},d,1} = c_{d} \sigma_{T_{1,0},d,1} = \num{1.41} \cdot \num{0.065e-3} =
 U_{T_{1,0},d,2} = c_{d} \sigma_{T_{1,0},d,2} = \num{1.41} \cdot \num{3.99e-3} = \qty{5.62}{mV} \label{eq:sym_partd_output_unc_dyn_2_T_1_0}, \\
 U_{T_{1,0},d,3} = c_{d} \sigma_{T_{1,0},d,3} = \num{1.41} \cdot \num{20.28e-3} = \qty{28.60}{mV} \label{eq:sym_partd_output_unc_dyn_3_T_1_0}.
 \end{gather}
-Oznaczając symbolem $\mathbf{U}_{T_{1,0}}$ wektor niepewności cząstkowych oraz symbolem  $\mathbf{h}_{S_{2,0}}$ macierz koherencji związane z analizowaną wielkością $T_{1,0}$, wartość wypadkowej niepewności rozszerzonej tej wielkości wyznaczyć można zgodnie z równaniem~\eqref{eq:unc_matrix}:
+Oznaczając symbolem $\mathbfit{U}_{T_{1,0}}$ wektor niepewności cząstkowych oraz symbolem  $\mathbfit{h}_{S_{2,0}}$ macierz koherencji związane z analizowaną wielkością $T_{1,0}$, wartość wypadkowej niepewności rozszerzonej tej wielkości wyznaczyć można zgodnie z równaniem~\eqref{eq:unc_matrix}:
 \begin{gather}
-U_{T_{1,0},\Sigma} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} \label{eq:sym_partd_output_unc_summul_T_1_0}, \\
-\mathbf{U}_{T_{1,0}} =
+U_{T_{1,0},\Sigma} = \sqrt{\mathbfit{U}_{T_{1,0}} \cdot \mathbfit{h}_{T_{1,0}} \cdot \mathbfit{U}_{T_{1,0}}^{T}} \label{eq:sym_partd_output_unc_summul_T_1_0}, \\
+\mathbfit{U}_{T_{1,0}} =
 \begin{bmatrix}
 U_{T_{1,0},z} & U_{T_{1,0},s} & U_{T_{1,0},r} & U_{T_{1,0},d,1} & U_{T_{1,0},d,2} & U_{T_{1,0},d,3}
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_sumuvect_T_1_0_a}, \\
-\mathbf{h}_{T_{1,0}} =
+\mathbfit{h}_{T_{1,0}} =
 \begin{bmatrix}
 1                 & h_{T_{1,0},z,s}   & h_{T_{1,0},z,r}   & h_{T_{1,0},z,d,1} & h_{T_{1,0},z,d,2} & h_{T_{1,0},z,d,3} \\
 h_{T_{1,0},s,z}   & 1                 & h_{T_{1,0},s,r}   & h_{T_{1,0},s,d,1} & h_{T_{1,0},s,d,2} & h_{T_{1,0},s,d,3} \\
@@ -1043,12 +1043,12 @@ h_{T_{1,0},d,3,z} & h_{T_{1,0},d,3,s} & h_{T_{1,0},d,3,r} & h_{T_{1,0},d,3,1} & 
 \end{gather}
 Na podstawie wartości wyznaczonych zgodnie z zależnościami od~\eqref{eq:sym_partd_output_unc_roun_T_1_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_T_1_0} wyznaczono zgodnie z równaniem~\eqref{eq:unc_coher} kolejne wartości współczynników koherencji dla macierzy opisanej w równaniu~\eqref{eq:sym_partd_output_unc_sumcoher_T_1_0_a}, przy czym w obliczeniach stosowano wartości współczynników kształtu zestawione w tabelach~\ref{tab:unc_shapefac} oraz~\ref{tab:unc_shapedwt}. Ostatecznie, po podstawieniu do równania~\eqref{eq:sym_partd_output_unc_summul_T_1_0} uzyskanych wartości cząstkowych niepewności rozszerzonych oraz wartości współczynników koherencji otrzymuje się:
 \begin{gather}
-\mathbf{U}_{T_{1,0}} =
+\mathbfit{U}_{T_{1,0}} =
 \begin{bmatrix}
 \num{1.81} & \num{0.00} & \num{24.38} & \num{0.073} & \num{5.62} & \num{28.60}
 \end{bmatrix} \cdot \num{e-3}
 \label{eq:sym_partd_output_unc_sumuvectval_T_1_0}, \\
-\mathbf{h}_{T_{1,0}} =
+\mathbfit{h}_{T_{1,0}} =
 \begin{bmatrix}
 \num{1.000} & \num{0.000} & \num{0.000} & \num{0.000} & \num{0.003} & \num{0.028} \\
 \num{0.000} & \num{1.000} & \num{0.000} & \num{0.000} & \num{0.000} & \num{0.000} \\
@@ -1058,7 +1058,7 @@ Na podstawie wartości wyznaczonych zgodnie z zależnościami od~\eqref{eq:sym_p
 \num{0.028} & \num{0.000} & \num{0.269} & \num{0.023} & \num{0.186} & \num{1.000} \\
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_sumcoherval_T_1_0_a}, \\
-U_{T_{1,0},\Sigma} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} = \qty{43.61}{mV} \label{eq:sym_partd_output_unc_total_b_T_1_0}.
+U_{T_{1,0},\Sigma} = \sqrt{\mathbfit{U}_{T_{1,0}} \cdot \mathbfit{h}_{T_{1,0}} \cdot \mathbfit{U}_{T_{1,0}}^{T}} = \qty{43.61}{mV} \label{eq:sym_partd_output_unc_total_b_T_1_0}.
 \end{gather}
 Zakładając zbliżony do normalnego kształt rozkładu sygnału błędu wypadkowego wielkości wyjściowej $T_{1,0}$, wartość niepewności rozszerzonej tej wielkości oszacować można zgodnie z równaniem~\eqref{eq:unc_sum} jako:
 \begin{equation}
@@ -1183,14 +1183,14 @@ Identyczną analizę wykonano wykorzystując budżet niepewności zestawiony w t
 \end{center}
 \end{table}
 
-Ze względu na korelacje wybranych sygnałów błędów wielkości wejściowych rozważanego algorytmu, wyznaczenie wypadkowych wartości wariancji sygnałów błędów dla kolejnych wielkości wyjściowych przeprowadzane jest zgodnie z zależnością~\eqref{eq:var_matrix}. W dalszej części rozważań przyjęto, że symbol $\bsigma_{*}$ oznacza wektor złożony z odchyleń standardowych sygnałów błędów składowych wielkości wyjściowej algorytmu, przy czym \enquote{$*$} oznacza symbol analizowanej wielkości wyjściowej. Macierz korelacji oznaczona symbolem $\mathbf{r}_{d}$ jest jednakowa dla wszystkich wielkości wyjściowych tego algorytmu i składa się z dwunastu wierszy i kolumn, co wynika z liczby analizowanych sygnałów błędów. Przyjmuje się, że kolejne wielkości zawarte w wektorze $\bsigma_{*}$ oraz kolejne elementy macierzy $\mathbf{r}_{d}$ są związane z sygnałami błędów zestawionymi w tabelach~\ref{tab:sym_partd_params_unc_list_S_2_0} oraz~\ref{tab:sym_partd_params_unc_list_T_1_0}, a dodatkowo kolejność wyrazów omawianych wielkości jest zgodna z tą daną w tabelach. Wobec powyższych, równanie~\eqref{eq:var_matrix} przyjmuje postać:
+Ze względu na korelacje wybranych sygnałów błędów wielkości wejściowych rozważanego algorytmu, wyznaczenie wypadkowych wartości wariancji sygnałów błędów dla kolejnych wielkości wyjściowych przeprowadzane jest zgodnie z zależnością~\eqref{eq:var_matrix}. W dalszej części rozważań przyjęto, że symbol $\mathbfit{\sigma}_{*}$ oznacza wektor złożony z odchyleń standardowych sygnałów błędów składowych wielkości wyjściowej algorytmu, przy czym \enquote{$*$} oznacza symbol analizowanej wielkości wyjściowej. Macierz korelacji oznaczona symbolem $\mathbfit{r}_{d}$ jest jednakowa dla wszystkich wielkości wyjściowych tego algorytmu i składa się z dwunastu wierszy i kolumn, co wynika z liczby analizowanych sygnałów błędów. Przyjmuje się, że kolejne wielkości zawarte w wektorze $\mathbfit{\sigma}_{*}$ oraz kolejne elementy macierzy $\mathbfit{r}_{d}$ są związane z sygnałami błędów zestawionymi w tabelach~\ref{tab:sym_partd_params_unc_list_S_2_0} oraz~\ref{tab:sym_partd_params_unc_list_T_1_0}, a dodatkowo kolejność wyrazów omawianych wielkości jest zgodna z tą daną w tabelach. Wobec powyższych, równanie~\eqref{eq:var_matrix} przyjmuje postać:
 \begin{equation}
-\sigma_{*,\Sigma}^{2} = \bsigma_{*}^{T} \cdot \mathbf{r}_{d} \cdot \bsigma_{*} \label{eq:sym_partd_output_varmat_list}.
+\sigma_{*,\Sigma}^{2} = \mathbfit{\sigma}_{*}^{T} \cdot \mathbfit{r}_{d} \cdot \mathbfit{\sigma}_{*} \label{eq:sym_partd_output_varmat_list}.
 \end{equation}
 
-Uwzględniając pełną dodatnią korelacje pary sygnałów błędów statycznych wzmacniacza i przetwornika pomiarowego przyjmuje się, że $r_{d,sp,1,2} = 1$. Dodatkowo na podstawie danych zawartych w tabelach~\ref{tab:sym_partb_params_dyn_self} oraz~\ref{tab:sym_partb_params_dyn_prop}, współczynniki korelacji kolejnych harmonicznych sygnału błędu dynamicznego o jednakowej częstotliwości są zbliżone do jedności, co wynika z równania~\eqref{eq:dyn_corr}, a zatem $r_{d,dp,a,b,n} = 1$ dla $n \in \{ 1, 2, 3 \}$. Wobec powyższych, kolejne elementy macierzy korelacji $\mathbf{r}_{d}$ przyjmują wartości:
+Uwzględniając pełną dodatnią korelacje pary sygnałów błędów statycznych wzmacniacza i przetwornika pomiarowego przyjmuje się, że $r_{d,sp,1,2} = 1$. Dodatkowo na podstawie danych zawartych w tabelach~\ref{tab:sym_partb_params_dyn_self} oraz~\ref{tab:sym_partb_params_dyn_prop}, współczynniki korelacji kolejnych harmonicznych sygnału błędu dynamicznego o jednakowej częstotliwości są zbliżone do jedności, co wynika z równania~\eqref{eq:dyn_corr}, a zatem $r_{d,dp,a,b,n} = 1$ dla $n \in \{ 1, 2, 3 \}$. Wobec powyższych, kolejne elementy macierzy korelacji $\mathbfit{r}_{d}$ przyjmują wartości:
 \begin{equation}
-\mathbf{r}_{d} =
+\mathbfit{r}_{d} =
 \begin{bmatrix}
 \num{1.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} \\
 \num{0.0} & \num{1.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} & \num{0.0} \\
@@ -1210,8 +1210,8 @@ Uwzględniając pełną dodatnią korelacje pary sygnałów błędów statycznyc
 
 Zgodnie z zależnościami~\eqref{eq:sym_partd_output_varmat_list} oraz~\eqref{eq:sym_partd_output_coher_list}, po podstawieniu danych z tabel~\ref{tab:sym_partd_params_unc_list_S_2_0} oraz~\ref{tab:sym_partd_params_unc_list_T_1_0}, otrzymuje się wartości wariancji wypadkowych sygnałów błędów wielkości wyjściowych $S_{2,0}$ oraz $T_{1,0}$, przy czym kolejno:
 \begin{gather}
-\sigma_{S_{2,0},\Sigma}^{2} = \bsigma_{S_{2,0}}^{T} \cdot \mathbf{r}_{d} \cdot \bsigma_{S_{2,0}} = \qty{1464.79}{\micro V} \label{eq:sym_partd_output_varmat_S_2_0}, \\
-\sigma_{T_{1,0},\Sigma}^{2} = \bsigma_{T_{1,0}}^{T} \cdot \mathbf{r}_{d} \cdot \bsigma_{T_{1,0}} = \qty{582.68}{\micro V} \label{eq:sym_partd_output_varmat_T_1_0}.
+\sigma_{S_{2,0},\Sigma}^{2} = \mathbfit{\sigma}_{S_{2,0}}^{T} \cdot \mathbfit{r}_{d} \cdot \mathbfit{\sigma}_{S_{2,0}} = \qty{1464.79}{\micro V} \label{eq:sym_partd_output_varmat_S_2_0}, \\
+\sigma_{T_{1,0},\Sigma}^{2} = \mathbfit{\sigma}_{T_{1,0}}^{T} \cdot \mathbfit{r}_{d} \cdot \mathbfit{\sigma}_{T_{1,0}} = \qty{582.68}{\micro V} \label{eq:sym_partd_output_varmat_T_1_0}.
 \end{gather}
 Można zauważyć, że wyznaczone w ten sposób wartości są identyczne, jak te wyznaczone wcześniej w równaniach~\eqref{eq:sym_partd_output_var_sum_S_2_0} oraz~\eqref{eq:sym_partd_output_var_sum_T_1_0}.
 
@@ -1251,7 +1251,7 @@ gdzie ze względu na pełną dodatnią korelację zachodzi $h_{d,dp,a,b,n} = 1$.
 
 Wobec powyższych, wektor niepewności rozszerzonych kolejnych sygnałów błędów dla wielkości wyjściowych analizowanego toru pomiarowego przedstawić można jako:
 \begin{equation}
-\mathbf{U}_{*} =
+\mathbfit{U}_{*} =
 \begin{bmatrix}
 U_{*,rw,z} & U_{*,rp,q} & U_{*,rp,1} & U_{*,rp,2} & U_{*,sp} & U_{*,dp,1} & U_{*,dp,2} & U_{*,dp,3}
 \end{bmatrix}
@@ -1259,7 +1259,7 @@ U_{*,rw,z} & U_{*,rp,q} & U_{*,rp,1} & U_{*,rp,2} & U_{*,sp} & U_{*,dp,1} & U_{*
 \end{equation}
 natomiast macierz koherencji, której wartości wyznaczane są zgodnie z równaniem~\eqref{eq:unc_coher}, opisać można dla kolejnych wielkości wyjściowych w postaci:
 \begin{equation}
-\mathbf{h}_{*} =
+\mathbfit{h}_{*} =
 \begin{bmatrix}
 1 & h_{*,0,1} & h_{*,0,2} & h_{*,0,3} & h_{*,0,4} & h_{*,0,5} & h_{*,0,6} & h_{*,0,7} \\
 h_{*,1,0} & 1 & h_{*,1,2} & h_{*,1,3} & h_{*,1,4} & h_{*,1,5} & h_{*,1,6} & h_{*,1,7} \\
@@ -1274,7 +1274,7 @@ h_{*,7,0} & h_{*,7,1} & h_{*,7,2} & h_{*,7,3} & h_{*,7,4} & h_{*,7,5} & h_{*,7,6
 \end{equation}
 przy czym kolejność elementów przedstawionej macierzy odpowiada kolejności elementów w wektorze niepewności rozszerzonych opisanym równaniem~\eqref{eq:sym_partd_output_unc_sumuvect}, gdzie przykładowo $h_{*,0,1} = h_{*,rw,z,rp,q}$. Ostatecznie, wartość wypadkowej niepewności rozszerzonej może być oszacowana zgodnie z równaniem~\eqref{eq:unc_matrix}:
 \begin{equation}
-U_{*} = \sqrt{\mathbf{U}_{*} \cdot \mathbf{h}_{*} \cdot \mathbf{U}_{*}^{T}} \label{eq:sym_partd_output_unc_totalmat}.
+U_{*} = \sqrt{\mathbfit{U}_{*} \cdot \mathbfit{h}_{*} \cdot \mathbfit{U}_{*}^{T}} \label{eq:sym_partd_output_unc_totalmat}.
 \end{equation}
 
 Podstawiając do równania~\eqref{eq:sym_partd_output_static_corrunc} wartości z tabel~\ref{tab:sym_partd_params_unc_list_S_2_0} oraz~\ref{tab:sym_partd_params_unc_list_T_1_0} otrzymuje się wypadkowe wartości niepewności rozszerzonych dla sygnałów wypadkowych skorelowanych błędów statycznych wielkości $S_{2,0}$ oraz $T_{1,0}$, które wynoszą odpowiednio:
@@ -1381,12 +1381,12 @@ U_{T_{1,0},dp,a,1} \\ U_{T_{1,0},dp,b,1}
 \end{gather}
 Parametry pozostałych harmonicznych sygnałów błędów dynamicznych wyznaczono w analogiczny sposób, zatem obliczenia z nimi związane nie zostały przedstawione. Po podstawieniu uzyskanych wyników do równania~\eqref{eq:sym_partd_output_unc_sumuvect} otrzymuje się wektory składowych niepewności rozszerzonych dla analizowanych wielkości wyjściowych:
 \begin{gather}
-\mathbf{U}_{S_{2,0}} =
+\mathbfit{U}_{S_{2,0}} =
 \begin{bmatrix}
 \num{2.13} & \num{13.26} & \num{11.80} & \num{16.71} & \num{39.33} & \num{18.39} & \num{37.42} & \num{3.50}
 \end{bmatrix} \cdot \num{e-3}
 \label{eq:sym_partd_output_unc_sumuvect_S_2_0_b}, \\
-\mathbf{U}_{T_{1,0}} =
+\mathbfit{U}_{T_{1,0}} =
 \begin{bmatrix}
 \num{1.81} & \num{13.26} & \num{11.80} & \num{16.71} & \num{0.00} & \num{0.092} & \num{5.62} & \num{28.60}
 \end{bmatrix} \cdot \num{e-3}
@@ -1394,7 +1394,7 @@ Parametry pozostałych harmonicznych sygnałów błędów dynamicznych wyznaczon
 \end{gather}
 przy czym kolejne wyrazy macierzy koherencji dla analizowanych wielkości wyjściowych wyznaczane są zgodnie z równaniem~\eqref{eq:unc_coher}, a zatem przyjmują wartości:
 \begin{gather}
-\mathbf{h}_{S_{2,0}} =
+\mathbfit{h}_{S_{2,0}} =
 \begin{bmatrix}
 \num{1.000}  & \num{0.000} & \num{0.000} & \num{0.000} & \num{-0.001} & \num{0.006} & \num{0.017} & \num{0.001} \\
 \num{0.000}  & \num{1.000} & \num{0.000} & \num{0.000} & \num{0.006}  & \num{0.033} & \num{0.072} & \num{0.007} \\
@@ -1406,7 +1406,7 @@ przy czym kolejne wyrazy macierzy koherencji dla analizowanych wielkości wyjśc
 \num{0.001}  & \num{0.007} & \num{0.006} & \num{0.010} & \num{0.042}  & \num{0.028} & \num{0.079} & \num{1.000}
 \end{bmatrix}
 \label{eq:sym_partd_output_unc_cohermat_S_2_0_b}, \\
-\mathbf{h}_{T_{1,0}} =
+\mathbfit{h}_{T_{1,0}} =
 \begin{bmatrix}
 \num{1.000} & \num{0.000} & \num{0.000} & \num{0.000} & \num{0.000} & \num{0.000} & \num{0.021} & \num{0.021} \\
 \num{0.000} & \num{1.000} & \num{0.000} & \num{0.000} & \num{0.000} & \num{0.006} & \num{0.093} & \num{0.092} \\
@@ -1421,8 +1421,8 @@ przy czym kolejne wyrazy macierzy koherencji dla analizowanych wielkości wyjśc
 \end{gather}
 Po podstawieniu powyższych wartości do równania~\eqref{eq:sym_partd_output_unc_totalmat} otrzymuje się wartości wypadkowych niepewności rozszerzonych analizowanych wielkości wyjściowych toru pomiarowego, gdzie kolejno wynoszą one:
 \begin{gather}
-U_{S_{2,0}} = \sqrt{\mathbf{U}_{S_{2,0}} \cdot \mathbf{h}_{S_{2,0}} \cdot \mathbf{U}_{S_{2,0}}^{T}} = \qty{74.10}{mV} \label{eq:sym_partd_output_unc_totalmat_S_2_0}, \\
-U_{T_{1,0}} = \sqrt{\mathbf{U}_{T_{1,0}} \cdot \mathbf{h}_{T_{1,0}} \cdot \mathbf{U}_{T_{1,0}}^{T}} = \qty{43.37}{mV} \label{eq:sym_partd_output_unc_totalmat_T_1_0}.
+U_{S_{2,0}} = \sqrt{\mathbfit{U}_{S_{2,0}} \cdot \mathbfit{h}_{S_{2,0}} \cdot \mathbfit{U}_{S_{2,0}}^{T}} = \qty{74.10}{mV} \label{eq:sym_partd_output_unc_totalmat_S_2_0}, \\
+U_{T_{1,0}} = \sqrt{\mathbfit{U}_{T_{1,0}} \cdot \mathbfit{h}_{T_{1,0}} \cdot \mathbfit{U}_{T_{1,0}}^{T}} = \qty{43.37}{mV} \label{eq:sym_partd_output_unc_totalmat_T_1_0}.
 \end{gather}
 
 Przedstawione w równaniach~\eqref{eq:sym_partd_output_unc_totalmat_S_2_0} oraz~\eqref{eq:sym_partd_output_unc_totalmat_T_1_0} obliczenia wykonano ponownie, dla macierzy koherencji których wartości wyznaczone zostały bez uwzględnienia korekty zaproponowanej w równaniu~\eqref{eq:unc_cohercorra}, tj. kiedy w równaniu~\eqref{eq:unc_coher} przyjmuje się $p_{i,j} = 1$ dla dowolnej pary $i$ oraz $j$. Otrzymane wartości wyniosły kolejno $U_{S_{2,0}} = \qty{77.32}{mV}$ oraz $U_{T_{1,0}} = \qty{46.09}{mV}$. Podobne obliczenia wykonano dla pozostałych wielkości wyjściowych.

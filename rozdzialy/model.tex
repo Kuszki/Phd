@@ -143,12 +143,12 @@ Uwzględniając równanie przetwarzania $f_{y}(x)$ analizowanego obiektu i przyj
 \end{equation}
 gdzie $\dot{f}_{y}(x)$ jest idealnym równaniem przetwarzania obiektu. Po uwzględnieniu równania~\eqref{eq:mid_cont_err_sum}, wielkość tą w przypadku rzeczywistym wyrazić można w postaci:
 \begin{equation}
-\tilde{y} \emb{t} = \tilde{f}_{y} \left( \dot{u} \emb{t} + e_{u,\Sigma} \emb{t} \right) + f_{z} \emb{\mathbf{z} \emb{t}} = \dot{y} \emb{t} + e_{y,\Sigma} \emb{t} \label{eq:out_cont_real_all},
+\tilde{y} \emb{t} = \tilde{f}_{y} \left( \dot{u} \emb{t} + e_{u,\Sigma} \emb{t} \right) + f_{z} \emb{\mathbfit{z} \emb{t}} = \dot{y} \emb{t} + e_{y,\Sigma} \emb{t} \label{eq:out_cont_real_all},
 \end{equation}
-gdzie $\tilde{f}_{y}(x)$ jest rzeczywistym równaniem przetwarzania, natomiast $f_{z}(\mathbf{z})$ funkcją uwzględniającą wybrane wielkości zakłócające proces wyznaczania wartości wielkości $y(t)$. Na podstawie równania~\eqref{eq:out_cont_real_all} wyróżnić można sygnał błędu własnego $e_{y,fw}(t)$, wynikający z niedoskonałości funkcji przetwarzania obiektu, oraz sygnał błędu własnego $e_{y,zw}(t)$, wynikający z udziału czynników zakłócających, przy czym zapisać można:
+gdzie $\tilde{f}_{y}(x)$ jest rzeczywistym równaniem przetwarzania, natomiast $f_{z}(\mathbfit{z})$ funkcją uwzględniającą wybrane wielkości zakłócające proces wyznaczania wartości wielkości $y(t)$. Na podstawie równania~\eqref{eq:out_cont_real_all} wyróżnić można sygnał błędu własnego $e_{y,fw}(t)$, wynikający z niedoskonałości funkcji przetwarzania obiektu, oraz sygnał błędu własnego $e_{y,zw}(t)$, wynikający z udziału czynników zakłócających, przy czym zapisać można:
 \begin{gather}
 e_{y,fw} \emb{t} = \tilde{f}_{y} \left( \dot{u} \emb{t} \right) - \dot{f}_{y} \left( \dot{u} \emb{t} \right) \label{eq:out_cont_err_funct_self}, \\
-e_{y,zw} \emb{t} = f_{z} \emb{\mathbf{z} \emb{t}} \label{eq:out_cont_err_env_self}.
+e_{y,zw} \emb{t} = f_{z} \emb{\mathbfit{z} \emb{t}} \label{eq:out_cont_err_env_self}.
 \end{gather}
 Sygnał błędu własnego $e_{y,fw}(t)$ wynikający z niedoskonałości funkcji przetwarzania będzie miał charakter deterministyczny, jeśli znana jest postać funkcji $\tilde{f}_{y}(x)$. W przeciwnym wypadku istnieje możliwość opisu jego parametrów w kategorii probabilistycznej, co przedstawiono na przykładzie w dalszej części pracy. Charakter sygnału błędu $e_{y,zw}(t)$ związanego z czynnikami zakłócającymi proces wyznaczania wartości wielkości $y(t)$ zależeć będzie od właściwości analizowanego obiektu, przy czym można zwykle zakładać, że parametry otoczenia zakłócające proces pomiaru będą wolno-zmienne, stąd sygnał ten zaliczany będzie do grupy sygnałów błędów statycznych.
 
@@ -343,9 +343,9 @@ e_{v,\Sigma} \emb{i} = e_{v,sw} \emb{i} + e_{v,sp} \emb{i} + e_{v,dw} \emb{i} + 
 W kolejnej części analizowanego fragmentu toru pomiarowego sygnał $v(i)$ przetwarzany jest zgodnie z charakterystyką funkcji przetwarzania $f_{X}(x)$, wobec czego wielkość wyjściową $X(i)$ obiektu opisać można w postaci:
 \begin{gather}
 \dot{X} \emb{i} = \dot{f}_{X} \left( \dot{v} \emb{i} \right) \label{eq:out_disc_ideal_all}, \\
-\tilde{X} \emb{i} = \tilde{f}_{X} \left( \dot{v} \emb{i} + e_{v,\Sigma} \emb{i} \right) + f_{z} \emb{\mathbf{z} \emb{i}} = \dot{X} \emb{i} + e_{X,\Sigma} \emb{i} \label{eq:out_disc_real_all},
+\tilde{X} \emb{i} = \tilde{f}_{X} \left( \dot{v} \emb{i} + e_{v,\Sigma} \emb{i} \right) + f_{z} \emb{\mathbfit{z} \emb{i}} = \dot{X} \emb{i} + e_{X,\Sigma} \emb{i} \label{eq:out_disc_real_all},
 \end{gather}
-przy czym $\tilde{f}_{X}(x)$ jest rzeczywistym oraz $\dot{f}_{X}(x)$ idealnym równaniem przetwarzania analizowanego obiektu, natomiast $f_{z}(\mathbf{z})$ funkcją uwzględniającą wielkości zakłócające. W zależności od charakteru funkcji przetwarzania obiektu, funkcja ta może modyfikować widmo przetwarzanego sygnału, podobnie jak miało to miejsce w przypadku części analogowej. Jeżeli analizowana funkcja przetwarzania jest addytywna, tj. zachodzi $f_{X}(a + b) = f_{X}(a) + f_{X}(b)$ dla dowolnych $a$ oraz $b$ należących do dziedziny tej funkcji, wszystkie przetwarzane sygnały błędów analizować można oddzielnie, analogiczne jak w przypadku równań od~\eqref{eq:out_cont_err_stat_self} do~\eqref{eq:out_cont_err_rand_prop}. Można w takim przypadku zapisać:
+przy czym $\tilde{f}_{X}(x)$ jest rzeczywistym oraz $\dot{f}_{X}(x)$ idealnym równaniem przetwarzania analizowanego obiektu, natomiast $f_{z}(\mathbfit{z})$ funkcją uwzględniającą wielkości zakłócające. W zależności od charakteru funkcji przetwarzania obiektu, funkcja ta może modyfikować widmo przetwarzanego sygnału, podobnie jak miało to miejsce w przypadku części analogowej. Jeżeli analizowana funkcja przetwarzania jest addytywna, tj. zachodzi $f_{X}(a + b) = f_{X}(a) + f_{X}(b)$ dla dowolnych $a$ oraz $b$ należących do dziedziny tej funkcji, wszystkie przetwarzane sygnały błędów analizować można oddzielnie, analogiczne jak w przypadku równań od~\eqref{eq:out_cont_err_stat_self} do~\eqref{eq:out_cont_err_rand_prop}. Można w takim przypadku zapisać:
 \begin{gather}
 e_{X,sw} \emb{i} = \tilde{f}_{X} \left( e_{v,sw} \emb{i} \right) \label{eq:out_disc_err_stat_self}, \\
 e_{X,sp} \emb{i} = \tilde{f}_{X} \left( e_{v,sp} \emb{i} \right) \label{eq:out_disc_err_stat_prop}, \\
@@ -357,7 +357,7 @@ e_{X,rp} \emb{i} = \tilde{f}_{X} \left( e_{v,rp} \emb{i} \right) \label{eq:out_d
 gdzie $e_{X,sp}(i)$ jest błędem statycznym własnym, $e_{X,sp}(i)$ statycznym propagowanym, $e_{X,dw}(i)$ dynamicznym własnym, $e_{X,dp}(i)$ dynamicznym propagowanym, $e_{X,rw}(i)$ losowym własnym oraz $e_{X,rp}(i)$ losowym propagowanym wielkości wyjściowej obiektu. Uwzględniając udział wielkości zakłócających oraz niedoskonałość charakterystyki przetwarzania obiektu zdefiniować można również sygnały błędów:
 \begin{gather}
 e_{X,fw} \emb{i} = \tilde{f}_{X} \left( \dot{v} \emb{i} \right) - \dot{f}_{X} \left( \dot{v} \emb{i} \right) \label{eq:out_disc_err_funct_self}, \\
-e_{X,zw} \emb{i} = f_{z} \emb{\mathbf{z} \emb{i}} \label{eq:out_disc_err_env_self},
+e_{X,zw} \emb{i} = f_{z} \emb{\mathbfit{z} \emb{i}} \label{eq:out_disc_err_env_self},
 \end{gather}
 gdzie $e_{X,fw}(i)$ jest sygnałem błędu własnego związanego z niedoskonałością funkcji przetwarzania, natomiast $e_{X,zw}(i)$ sygnałem błędu wynikającym z udziału wielkości zakłócających. Wypadkowy sygnał błędu wielkości wyjściowej analizowanego fragmentu toru pomiarowego opisać można w postaci sumy wszystkich wymienionych sygnałów:
 \begin{equation}
@@ -459,7 +459,7 @@ Brak korelacji kolejnych składowych sygnałów błędów w przypadku różnych 
 
 Przedstawione dotychczas zależności pozwalają na wyznaczenie wypadkowej wartości wariancji dowolnej liczby przebiegów sinusoidalnie zmiennych sygnałów błędów o znanych parametrach, natomiast nie dostarczają informacji o fazie wybranej harmonicznej wypadkowego sygnału błędu. W pewnych przypadkach znajomość wartości tego parametru jest konieczna, np. gdy na kolejnym etapie analizy rozpatrywane będą dodatkowe harmoniczne sygnału błędu. Problem ten rozwiązać można przechodząc na rachunek wektorowy, oznaczając kolejne wektory sygnałów błędów opisanych równaniem~\eqref{eq:dyn_harm} o jednakowej pulsacji w postaci:
 \begin{gather}
-\mathbf{e}_{i} =
+\mathbfit{e}_{i} =
 \begin{bmatrix}
 e_{i,a} & e_{i,b}
 \end{bmatrix}
@@ -468,7 +468,7 @@ e_{i,a} & e_{i,b}
 E_{i} \cos \emb{\varphi_{i}} & E_{i} \sin \emb{\varphi_{i}}
 \end{bmatrix}
 \label{eq:dyn_vect}, \\
-\mathbf{e}_{\Sigma} =
+\mathbfit{e}_{\Sigma} =
 \begin{bmatrix}
 e_{\Sigma,a} & e_{\Sigma,b}
 \end{bmatrix}
@@ -478,7 +478,7 @@ e_{\Sigma,a} & e_{\Sigma,b}
 \end{bmatrix}
 \label{eq:dyn_vect_sum},
 \end{gather}
-gdzie $\mathbf{e}_{\Sigma}$ jest wektorem opisującym wypadkowy sygnał błędu, natomiast $N$ oznacza liczbę analizowanych harmonicznych sygnałów błędów o jednakowej pulsacji. W takim przypadku amplituda wypadkowego sygnału błędu oraz jego faza wynoszą:
+gdzie $\mathbfit{e}_{\Sigma}$ jest wektorem opisującym wypadkowy sygnał błędu, natomiast $N$ oznacza liczbę analizowanych harmonicznych sygnałów błędów o jednakowej pulsacji. W takim przypadku amplituda wypadkowego sygnału błędu oraz jego faza wynoszą:
 \begin{gather}
 E_{\Sigma} = \sqrt{e_{\Sigma,a}^{2} + e_{\Sigma,b}^{2}} \label{eq:dyn_vect_amp}, \\
 \varphi_{\Sigma} = \arctan \emb{\frac{e_{\Sigma,b}}{e_{\Sigma,a}}} \label{eq:dyn_vect_phi}.
@@ -645,17 +645,17 @@ x \emb{N-1}
 \end{equation}
 gdzie $a_{i,j}$ to kolejne współczynniki macierzy transformacji, $X(i)$ to kolejne wielkości wyjściowe, natomiast $x(j)$ to kolejne wielkości wejściowe analizowanego algorytmu. Równanie~\eqref{eq:alg_out_mat} można przedstawić również w postaci iloczynu~\cite{jakubiec_algorithms}:
 \begin{equation}
-\mathbf{X} = \mathbf{A} \cdot \mathbf{x} \label{eq:alg_out_mul},
+\mathbfit{X} = \mathbfit{A} \cdot \mathbfit{x} \label{eq:alg_out_mul},
 \end{equation}
-gdzie $\mathbf{X}$ jest wektorem wielkości wyjściowych, $\mathbf{A}$ macierzą transformacji oraz $\mathbf{x}$ wektorem wielkości wejściowych. Wobec powyższych zależności, pojedynczą wielkość wyjściową algorytmu przedstawić można w postaci:
+gdzie $\mathbfit{X}$ jest wektorem wielkości wyjściowych, $\mathbfit{A}$ macierzą transformacji oraz $\mathbfit{x}$ wektorem wielkości wejściowych. Wobec powyższych zależności, pojedynczą wielkość wyjściową algorytmu przedstawić można w postaci:
 \begin{equation}
 X \emb{i} = a_{i, 0} x \emb{0} + a_{i, 1} x \emb{1} + \hdots + a_{i, N-1} x \emb{N-1} = \sum _{j = 0} ^{N-1} a_{i,j} x \emb{j} \label{eq:alg_out_single}.
 \end{equation}
 Na podstawie równania~\eqref{eq:alg_out_single} zauważyć można, że analizowany obiekt stanowi zbiór filtrów o skończonej odpowiedzi impulsowej \enquote{FIR} (ang. \enquote{Finite Impulse Response}). Przedstawione metody analizy będą zatem przypominały metody analizy opisywanego typu filtru~\cite{mehrnia_fir}. Przedstawione założenie odnośnie stałej transmitancji algorytmu implikuje niezmienność wartości elementów macierzy transformacji analizowanego algorytmu. W przypadku, gdy istnieje konieczność analizy algorytmu o zmiennej transmitancji, przy zmianie tej transmitancji należy każdorazowo wyznaczyć wartości wszystkich wielkości od niej zależnych.
 
-Jako, że w procesie przetwarzania danych stosuje się zwykle gotowe algorytmy, zaimplementowane np. w środowiskach \enquote{GNU Octave} czy \enquote{Matlab}~\cite{pruuvsa_dwt, lee_pywavelets}, wartości współczynników macierzy transformacji $\mathbf{A}$ stosowanej w równaniach~\eqref{eq:alg_out_mat} oraz~\eqref{eq:alg_out_mul} mogą nie być znane. Jeżeli znana jest transmitancja $H_{i}(z)$ dla kolejnych wielkości wyjściowych, wyznaczenie wartości współczynników macierzy transformacji odbywać się będzie poprzez przekształcenie tej transmitancji na postać zgodną z równaniem~\eqref{eq:alg_out_single}, przy czym zabieg ten nie jest konieczny. Analiza właściwości metrologicznych w omawianym przypadku przebiegać może identycznie, jak miało to miejsce w przypadku cyfrowego fragmentu toru pomiarowego, natomiast wyznaczenie wartości współczynników macierzy transformacji przy znajomości transmitancji algorytmu pozwoli w pewnym stopniu uprościć analizę, co przedstawiono w dalszej części podrozdziału. Innym przypadkiem jest sytuacja, gdzie wartości współczynników macierzy transformacji mogą być wyznaczone analitycznie, za pomocą odpowiednich zależności opisujących stosowany algorytm, jak ma to zwykle miejsce w przypadku algorytmów dyskretnej transformacji falkowej~\cite{vonesch_dbbasics}. Ostatnim analizowanym w pracy przypadkiem jest sytuacja, w której dostępna jest implementacja stosowanego algorytmu, natomiast nie jest znana jego struktura numeryczna~\cite{misiti_matlabwav}.
+Jako, że w procesie przetwarzania danych stosuje się zwykle gotowe algorytmy, zaimplementowane np. w środowiskach \enquote{GNU Octave} czy \enquote{Matlab}~\cite{pruuvsa_dwt, lee_pywavelets}, wartości współczynników macierzy transformacji $\mathbfit{A}$ stosowanej w równaniach~\eqref{eq:alg_out_mat} oraz~\eqref{eq:alg_out_mul} mogą nie być znane. Jeżeli znana jest transmitancja $H_{i}(z)$ dla kolejnych wielkości wyjściowych, wyznaczenie wartości współczynników macierzy transformacji odbywać się będzie poprzez przekształcenie tej transmitancji na postać zgodną z równaniem~\eqref{eq:alg_out_single}, przy czym zabieg ten nie jest konieczny. Analiza właściwości metrologicznych w omawianym przypadku przebiegać może identycznie, jak miało to miejsce w przypadku cyfrowego fragmentu toru pomiarowego, natomiast wyznaczenie wartości współczynników macierzy transformacji przy znajomości transmitancji algorytmu pozwoli w pewnym stopniu uprościć analizę, co przedstawiono w dalszej części podrozdziału. Innym przypadkiem jest sytuacja, gdzie wartości współczynników macierzy transformacji mogą być wyznaczone analitycznie, za pomocą odpowiednich zależności opisujących stosowany algorytm, jak ma to zwykle miejsce w przypadku algorytmów dyskretnej transformacji falkowej~\cite{vonesch_dbbasics}. Ostatnim analizowanym w pracy przypadkiem jest sytuacja, w której dostępna jest implementacja stosowanego algorytmu, natomiast nie jest znana jego struktura numeryczna~\cite{misiti_matlabwav}.
 
-Jeżeli analizowany algorytm jest liniowy oraz jego transmitancja jest liniowa i niezmienna w czasie, związek pomiędzy transmitancją $H_{i}(z)$ dla $i$-tej wielkości wyjściowej oraz $i$-tym wierszem macierzy transformacji $\mathbf{A}$ może być opisany równaniem:
+Jeżeli analizowany algorytm jest liniowy oraz jego transmitancja jest liniowa i niezmienna w czasie, związek pomiędzy transmitancją $H_{i}(z)$ dla $i$-tej wielkości wyjściowej oraz $i$-tym wierszem macierzy transformacji $\mathbfit{A}$ może być opisany równaniem:
 \begin{equation}
 H_{i} \emb{z} = a_{i, 0} + a_{i, 1} z^{-1} + \hdots + a_{i, N-1} z^{-N+1} = \sum _{k = 0} ^{N-1} a_{i, k} z^{-k} \label{eq:alg_trans_single}.
 \end{equation}

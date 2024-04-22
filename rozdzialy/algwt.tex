@@ -198,7 +198,7 @@ przy czym analogicznie postąpić należy w przypadku wyższych rzędów opisywa
 
 Zgodnie z założeniami odnośnie długości wektora wielkości wejściowych oraz liczby poziomów dekompozycji zauważyć można, że wektor wielkości wyjściowych zawierać będzie dwie próbki związane z aproksymacją sygnału dla skali $m = 2$, dwie próbki związane z detalami sygnału dla skali $m = 2$ oraz cztery próbki związane z detalami dla skali $m = 1$. Oznaczając wektor wielkości wejściowych jako:
 \begin{equation}
-\mathbf{x}^{T} =
+\mathbfit{x}^{T} =
 \begin{bmatrix}
 S_{0,0} & S_{0,1} & S_{0,2} & S_{0,3} & S_{0,4} & S_{0,5} & S_{0,6} & S_{0,7}
 \end{bmatrix}
@@ -206,7 +206,7 @@ S_{0,0} & S_{0,1} & S_{0,2} & S_{0,3} & S_{0,4} & S_{0,5} & S_{0,6} & S_{0,7}
 \end{equation}
 wektor wielkości wyjściowych można opisać w postaci:
 \begin{equation}
-\mathbf{X}^{T} =
+\mathbfit{X}^{T} =
 \begin{bmatrix}
 S_{2,0} & S_{2,1} & T_{2,0} & T_{2,1} & T_{1,0} & T_{1,1} & T_{1,2} & T_{1,3}
 \end{bmatrix}
@@ -315,7 +315,7 @@ T_{1,3} = a_{7,0} x_{0} + a_{7,1} x_{1} + a_{7,2} x_{2} + a_{7,3} x_{3} + a_{7,4
 
 Powyższe zależności pozwalają wyznaczyć wartości współczynników macierzy transformacji dla analizowanego algorytmu dyskretnej transformacji falkowej. Po podstawieniu wartości zgodnie z zależnością~\eqref{eq:db2_coefs} oraz biorąc pod uwagę równania od~\eqref{eq:db2_outvect_s_2_0_row} do~\eqref{eq:db2_outvect_t_1_3_row} macierz transformacji przyjmuje postać:
 \begin{equation}
-\mathbf{A} =
+\mathbfit{A} =
 \begin{bmatrix}
 \frac{5 - \sqrt{3}}{16} & \frac{5 + \sqrt{3}}{16} & \frac{3 + 3 \sqrt{3}}{16} & \frac{5 + 3 \sqrt{3}}{16} & \frac{3 + \sqrt{3}}{16} & \frac{3 - \sqrt{3}}{16} & \frac{5 - 3 \sqrt{3}}{16} & \frac{3 - 3 \sqrt{3}}{16} \\
 \frac{3 + \sqrt{3}}{16} & \frac{3 - \sqrt{3}}{16} & \frac{5 - 3 \sqrt{3}}{16} & \frac{3 - 3 \sqrt{3}}{16} & \frac{5 - \sqrt{3}}{16} & \frac{5 + \sqrt{3}}{16} & \frac{3 + 3 \sqrt{3}}{16} & \frac{5 + 3 \sqrt{3}}{16} \\
