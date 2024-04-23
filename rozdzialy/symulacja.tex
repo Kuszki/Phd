@@ -69,8 +69,8 @@ zatem równania~\eqref{eq:mid_cont_amp} oraz~\eqref{eq:mid_cont_phi}, określaj�
 \begin{gather}
 \tilde{K}_{a} \emb{\omega} = \sqrt{\left( \Re \left( \tilde{G}_{a} \emb{j\omega} \right) \right)^{2} + \left( \Im \left( \tilde{G}_{a} \emb{j\omega} \right) \right)^{2}} = \left( \frac{\omega^{2}}{4 \pi^{2} f_{a,g}^{2}} + 1 \right)^{-\frac{1}{2}} \label{eq:sym_parta_amp_real}, \\
 \tilde{\varphi}_{a} \emb{\omega} = \arctan \left( \frac{\Im \left( \tilde{G}_{a} \emb{j\omega} \right)}{\Re \left( \tilde{G}_{a} \emb{j\omega} \right)} \right) = \arctan \left( -\frac{\omega}{2 \pi f_{a,g}} \right) \label{eq:sym_parta_phi_real}, \\
-\dot{K}_{a} \emb{\omega} = \sqrt{\left( \Re \left( \dot{G}_{a} \emb{j\omega} \right) \right)^{2} + \left( \Im \left( \dot{G}_{a} \emb{j\omega} \right) \right)^{2}} = 1 \label{eq:sym_parta_amp_ideal}, \\
-\dot{\varphi}_{a} \emb{\omega} = \arctan \left( \frac{\Im \left( \dot{G}_{a} \emb{j\omega} \right)}{\Re \left( \dot{G}_{a} \emb{j\omega} \right)} \right) = 0 \label{eq:sym_parta_phi_ideal}.
+\dot{K}_{a} \emb{\omega} = \sqrt{\left( \Re \left( \dot{G}_{a} \emb{j\omega} \right) \right)^{2} + \left( \Im \left( \dot{G}_{a} \emb{j\omega} \right) \right)^{2}} = \qty{1}{V \per 1} \label{eq:sym_parta_amp_ideal}, \\
+\dot{\varphi}_{a} \emb{\omega} = \arctan \left( \frac{\Im \left( \dot{G}_{a} \emb{j\omega} \right)}{\Re \left( \dot{G}_{a} \emb{j\omega} \right)} \right) = \qty{0}{rad} \label{eq:sym_parta_phi_ideal}.
 \end{gather}
 
 Na podstawie powyższych zależności określających parametry transmitancji obiektu w sytuacji idealnej, a także założeń~\eqref{eq:mid_cont_omega_ideal}, \eqref{eq:mid_cont_sum_ideal}, \eqref{eq:out_cont_ideal_all} oraz~\eqref{eq:sym_parta_out_ideal}, opisać można idealne parametry kolejnych harmonicznych sygnału $y_{a}(t)$ w funkcji pulsacji jako:
@@ -379,8 +379,8 @@ Wobec przedstawionego założenia, równania~\eqref{eq:mid_cont_amp} oraz~\eqref
 \end{gather}
 natomiast w przypadku idealnej transmitancji $\dot{G}_{b}(j\omega) = 1$ parametry te wynoszą kolejno:
 \begin{gather}
-\dot{K}_{b} \emb{\omega} = \sqrt{\left( \Re \left( \dot{G}_{b} \emb{j\omega} \right) \right)^{2} + \left( \Im \left( \dot{G}_{b} \emb{j\omega} \right) \right)^{2}} = 1 \label{eq:sym_partb_amp_ideal}, \\
-\dot{\varphi}_{b} \emb{\omega} = \arctan \left( \frac{\Im \left( \dot{G}_{b} \emb{j\omega} \right)}{\Re \left( \dot{G}_{b} \emb{j\omega} \right)} \right) = 0 \label{eq:sym_partb_phi_ideal}.
+\dot{K}_{b} \emb{\omega} = \sqrt{\left( \Re \left( \dot{G}_{b} \emb{j\omega} \right) \right)^{2} + \left( \Im \left( \dot{G}_{b} \emb{j\omega} \right) \right)^{2}} = \qty{1}{V \per V} \label{eq:sym_partb_amp_ideal}, \\
+\dot{\varphi}_{b} \emb{\omega} = \arctan \left( \frac{\Im \left( \dot{G}_{b} \emb{j\omega} \right)}{\Re \left( \dot{G}_{b} \emb{j\omega} \right)} \right) = \qty{0}{rad} \label{eq:sym_partb_phi_ideal}.
 \end{gather}
 
 Wobec przyjętych dotychczas założeń, opisanych w równaniach~\eqref{eq:sym_partb_out_ideal}, \eqref{eq:sym_partb_amp_ideal}, \eqref{eq:sym_partb_phi_ideal} oraz założenia określającego idealny przebieg przetwarzanej wielkości wejściowej $y_{a}(t)$, opisanego równaniem~\eqref{eq:sym_parta_out_ideal_sum}, idealny przebieg wielkości wyjściowej $y_{b}(t)$ w analizowanym przypadku określa równanie:
@@ -978,7 +978,7 @@ Podstawiając do powyższych zależności wyprowadzone w równaniach od~\eqref{e
 \mathbfit{U}_{S_{2,0}} =
 \begin{bmatrix}
 \num{2.13} & \num{39.31} & \num{24.38} & \num{18.39} & \num{37.42} & \num{3.50}
-\end{bmatrix} \cdot \num{e-3}
+\end{bmatrix} \cdot \qty{e-3}{V}
 \label{eq:sym_partd_output_unc_sumuvectval_S_2_0_a}, \\
 \mathbfit{h}_{S_{2,0}} =
 \begin{bmatrix}
@@ -1046,7 +1046,7 @@ Na podstawie wartości wyznaczonych zgodnie z zależnościami od~\eqref{eq:sym_p
 \mathbfit{U}_{T_{1,0}} =
 \begin{bmatrix}
 \num{1.81} & \num{0.00} & \num{24.38} & \num{0.073} & \num{5.62} & \num{28.60}
-\end{bmatrix} \cdot \num{e-3}
+\end{bmatrix} \cdot \qty{e-3}{V}
 \label{eq:sym_partd_output_unc_sumuvectval_T_1_0}, \\
 \mathbfit{h}_{T_{1,0}} =
 \begin{bmatrix}
@@ -1384,12 +1384,12 @@ Parametry pozostałych harmonicznych sygnałów błędów dynamicznych wyznaczon
 \mathbfit{U}_{S_{2,0}} =
 \begin{bmatrix}
 \num{2.13} & \num{13.26} & \num{11.80} & \num{16.71} & \num{39.33} & \num{18.39} & \num{37.42} & \num{3.50}
-\end{bmatrix} \cdot \num{e-3}
+\end{bmatrix} \cdot \qty{e-3}{V}
 \label{eq:sym_partd_output_unc_sumuvect_S_2_0_b}, \\
 \mathbfit{U}_{T_{1,0}} =
 \begin{bmatrix}
 \num{1.81} & \num{13.26} & \num{11.80} & \num{16.71} & \num{0.00} & \num{0.092} & \num{5.62} & \num{28.60}
-\end{bmatrix} \cdot \num{e-3}
+\end{bmatrix} \cdot \qty{e-3}{V}
 \label{eq:sym_partd_output_unc_sumuvect_T_1_0_b},
 \end{gather}
 przy czym kolejne wyrazy macierzy koherencji dla analizowanych wielkości wyjściowych wyznaczane są zgodnie z równaniem~\eqref{eq:unc_coher}, a zatem przyjmują wartości:

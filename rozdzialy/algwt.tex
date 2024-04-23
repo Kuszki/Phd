@@ -4,22 +4,22 @@ Algorytm transformacji falkowej, oznaczany skrótem \enquote{WT} (ang. \enquote{
 \begin{equation}
 w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac{t-b}{a}} dt \label{eq:cwt},
 \end{equation}
-gdzie $w_{a,b}$ jest współczynnikiem transformacji wyznaczonym dla parametrów skali $a$ oraz przesunięcia w czasie $b$, przy czym $a \in \ointerval{0}{\infty}$ oraz $b \in \ointerval{-\infty}{\infty}$, $\psi(t)$ jest równaniem falki-matki, natomiast $x(t)$ przetwarzanym sygnałem. Wyskalowana falka-matka stanowi filtr pasmowo-przepustowy, którego częstotliwość charakterystyczną określa parametr skali. Im większa wartość tego parametru, tym falka staje się bardziej \enquote{rozciągnięta}, co odpowiada niższym częstotliwościom, natomiast w przypadku wartości niskich falka staje się bardziej \enquote{zwarta}, co odpowiada wyższym zakresom częstotliwości. Parametr przesunięcia w czasie określa okno pomiarowe dla wybranego współczynnika. Wybór równania falki-matki zależy od charakteru przetwarzanego sygnału oraz pożądanych właściwości falki. Literatura opisuje bardzo wiele różnych rodzajów falek, wraz z odpowiednimi dla nich obszarami zastosowań~\cite{wallen_handbook, akujuobi_applications, lord_guide}.
+gdzie $w_{a,b}$ jest współczynnikiem transformacji wyznaczonym dla parametrów skali $a$ oraz przesunięcia w czasie $b$, przy czym $a \in \ointerval{0}{\infty}$ oraz $b \in \ointerval{-\infty}{\infty}$, $\psi(t)$ jest równaniem falki-matki, natomiast $x(t)$ przetwarzanym sygnałem. Wyskalowana falka-matka stanowi filtr pasmowo-przepustowy, którego częstotliwość charakterystyczną określa parametr skali. Im większa wartość tego parametru, tym falka staje się bardziej \enquote{rozciągnięta}, co odpowiada niższym częstotliwościom, natomiast w przypadku wartości niskich falka staje się bardziej \enquote{zwarta}, co odpowiada wyższym zakresom częstotliwości. Parametr przesunięcia w czasie określa okno pomiarowe dla wybranego współczynnika. Wybór równania falki-matki zależy od charakteru przetwarzanego sygnału oraz pożądanych właściwości falki. Literatura opisuje bardzo wiele różnych rodzajów falek, wraz z odpowiednimi dla nich obszarami zastosowań~\cite{wallen_handbook, akujuobi_applications, lord_guide}, przy czym zbiór ten stale się powiększa.
 
 Główny podział rodzajów falek rozważający ich właściwości obejmuje obecność najważniejszych cech charakterystycznych dla danej rodziny: ortogonalność, symetrię oraz biortogonalność. Ortogonalność oznacza, że dla wybranych parametrów skali i przesunięcia w czasie kolejne falki powstałe na bazie falki-matki będą wobec siebie ortogonalne. Jest to cecha w większości przypadków wymagana i pożądana. Symetria funkcji falki-matki jest cenną cechą w przypadku przetwarzania wybranych sygnałów, np. obrazów i dźwięku -- nie wszystkie rodziny falek posiadają tą cechę, stąd wiele prac skupiało się na \enquote{udoskonalaniu} istniejących rodzin pod katem możliwości jej wprowadzenia~\cite{reddy_compression}. Biortogonalność oznacza, że w celu rekonstrukcji sygnału należy zastosować odpowiednią dla użytej falki-matki, powiązaną z nią falkę~\cite{sweldens_bior}.
 
-Ze względu możliwość analizy sygnału jednocześnie w dziedzinie częstotliwości oraz w dziedzinie czasu, algorytmy transformacji falkowej są wykorzystywane w wielu dziedzinach~\cite{akujuobi_applications, ahmad_wavelet, wallen_handbook}, przy czym między innymi stosuje się je:
+Ze względu możliwość analizy sygnału jednocześnie w dziedzinie częstotliwości oraz w dziedzinie czasu, algorytmy transformacji falkowej są wykorzystywane w wielu dziedzinach~\cite{akujuobi_applications, ahmad_wavelet, wallen_handbook, singh_mexican, unser_medicine, wei_coiflet}, przy czym stanowią one zwykle ostatni fragment toru pomiarowego. W zależności od właściwości analizowanego sygnału, stosuje się odpowiednią w danym przypadku falkę-matkę, której właściwości pozwalają na detekcję analizowanego zjawiska. Przykładowe aplikacje algorytmów transformacji falkowej obejmują zastosowania:
 \begin{itemize}
-\item w medycynie, do analizy sygnału EEG oraz EKG~\cite{ocak_medicine, unser_medicine},
-\item w przetwarzaniu obrazu oraz dźwięku~\cite{kotteri_imagecomp, averbuch_spline},
+\item podczas analizy sygnału EEG oraz EKG~\cite{ocak_medicine},
+\item podczas analizy zwarć wysokoprądowych~\cite{niedopytalski_zwar, niedopytalski_ene},
+\item podczas przetwarzania obrazu oraz dźwięku~\cite{kotteri_imagecomp, averbuch_spline},
+\item podczas analizy drgań sejsmicznych~\cite{anping_seismic},
 \item w algorytmach kompresji danych~\cite{reddy_compression},
-\item w analizie drgań sejsmicznych~\cite{anping_seismic},
 \item w celu oszacowania stanu zużycia elementów maszyn~\cite{yan_mechanics},
 \item w celu detekcji rodzaju materiałów~\cite{xie_metals},
-\item w energetyce, podczas analizy zwarć wysokoprądowych~\cite{niedopytalski_zwar},
-\item w procesie redukcji szumu w sygnale pomiarowym~\cite{auth_denoise, vimala_ddendenoise}.
+\item w procesie redukcji szumu w sygnale pomiarowym~\cite{auth_denoise, vimala_ddendenoise},
+\item w celu detekcji wycieków z rurociągów~\cite{siddique_leaks}.
 \end{itemize}
-W zależności od właściwości analizowanego sygnału, stosuje się odpowiednią w danym przypadku falkę-matkę, której właściwości pozwalają na detekcję analizowanego zjawiska. Ze względu na fakt, że algorytmy te stanowią istotną część toru pomiarowego, ich właściwości metrologiczne nie mogą być pomijane podczas analizy właściwości metrologicznych tego obiektu, co zaznaczono we wstępie do pracy.
 
 \section{Algorytm ciągłej transformacji falkowej}
 
