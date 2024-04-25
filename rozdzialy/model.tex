@@ -597,12 +597,11 @@ Ze względu na dużą zmienność parametrów związanych z sumowanymi sygnałam
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:comp_reductive}{Zestawienie wartości niepewności względnego błędu szacowania wypadkowej wartości niepewności rozszerzonej w zależności od stosowania zaproponowanej w pracy korekty współczynnika kształtu uzyskane metodą Monte-Carlo dla poziomu ufności~\qty{95}{\percent}}
-\begin{tabular}[c]{| c *{8}{|S[table-format = +1.2]} |} \hline
-\textbf{$U_{i}$} & \multicolumn{2}{c|}{\textbf{a) $\interval{1}{3}$}} & \multicolumn{2}{c|}{\textbf{b) $\interval{1}{6}$}} & \multicolumn{2}{c|}{\textbf{c) $\interval{1}{10}$}} & \multicolumn{2}{c|}{\textbf{d) $\interval{1}{20}$}} \\ \hline
-\textbf{$\delta_{U}$} & \textbf{$U_{-}$} & \textbf{$U_{+}$} & \textbf{$U_{-}$} & \textbf{$U_{+}$} & \textbf{$U_{-}$} & \textbf{$U_{+}$} & \textbf{$U_{-}$} & \textbf{$U_{+}$} \\ \hline
-Z korektą   & -2.23 & +4.83 & -2.43 & +4.59 & -2.54 & +4.52 & -2.62 & +4.45 \\ \hline
-Bez korekty & -1.14 & +7.96 & -1.13 & +8.69 & -1.09 & +8.80 & -1.13 & +8.86 \\ \hline
+\makecaption{tab:comp_reductive}{Zestawienie uzyskanych metodą Monte-Carlo przedziałów wartości realizacji względnego błędu oszacowania wypadkowej wartości niepewności rozszerzonej obejmujących~\qty{95}{\percent} wartości realizacji tej wielkości w zależności od stosowania zaproponowanej w pracy korekty współczynnika kształtu (wartości wyników wyrażone w procentach)}
+\begin{tabular}[c]{| c | c | c | c | c |} \hline
+\textbf{Przypadek}   & \textbf{a) $U_{i} \in \interval{1}{3}$} & \textbf{b) $U_{i} \in \interval{1}{6}$} & \textbf{c) $U_{i} \in \interval{1}{10}$} & \textbf{d) $U_{i} \in \interval{1}{20}$} \\ \hline
+\textbf{Z korektą}   & $\interval{-2.24}{+4.82}$ & $\interval{-2.44}{+4.60}$ & $\interval{-2.55}{+4.51}$ & $\interval{-2.63}{+4.42}$ \\ \hline
+\textbf{Bez korekty} & $\interval{-1.14}{+7.96}$ & $\interval{-1.13}{+8.69}$ & $\interval{-1.09}{+8.80}$ & $\interval{-1.13}{+8.86}$ \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -610,7 +609,7 @@ Bez korekty & -1.14 & +7.96 & -1.13 & +8.69 & -1.09 & +8.80 & -1.13 & +8.86 \\ \
 \begin{figure}[htb!]
 \begin{center}
 \includegraphics{obrazki/hist_reductive}
-\makecaption{fig:hist_reductive}{Histogramy względnego błędu oszacowania wypadkowej wartości niepewności rozszerzonej dla zaproponowanej w pracy metody odpowiadające danym zestawionym w tabeli~\ref{tab:comp_reductive}}
+\makecaption{fig:hist_reductive}{Histogramy wartości realizacji względnego błędu oszacowania wypadkowej wartości niepewności rozszerzonej dla zaproponowanej w pracy metody odpowiadające danym zestawionym w tabeli~\ref{tab:comp_reductive} dla przypadku stosowania zaproponowanej w pracy korekty}
 \end{center}
 \end{figure}
 

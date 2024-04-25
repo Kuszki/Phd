@@ -646,10 +646,10 @@ Na podstawie uzyskanych wyników eksperymentu zauważyć można, że najistotnie
 
 \begin{table}[p]
 \begin{center}
-\makecaption{tab:pom_mono_meas_out}{Zestawienie uzyskanych na drodze eksperymentu pomiarowego wartości względnego błędu oszacowania wartości niepewności rozszerzonej dla kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej wraz z zestawieniem średniej dla wartości bezwzględnych tej wielkości w przypadku sygnału monoharmonicznego}
-\begin{tabular}[c]{| c *{6}{|S[table-format = +4.2]} |} \hline
+\makecaption{tab:pom_mono_meas_out}{Zestawienie uzyskanych na drodze eksperymentu pomiarowego wartości względnego błędu oszacowania wartości niepewności rozszerzonej dla kolejnych grup wielkości wyjściowych analizowanego algorytmu wraz z zestawieniem średniej dla wartości bezwzględnych tej wielkości w przypadku sygnału monoharmonicznego (wartości wyników wyrażone w procentach)}
+\begin{tabular}[c]{| c *{6}{|S[table-format = +3.3]} |} \hline
 \multirow{2}{*}{\textbf{$f_{s,o}$, Hz}} & \multicolumn{6}{c|}{\textbf{Zakres wielkości wyjściowych $X_{j}$ algorytmu}} \\ \cline{2-7}
-& $\interval{0}{3}$ & $\interval{4}{7}$ & $\interval{8}{15}$ & $\interval{16}{31}$ & $\interval{32}{63}$ & $\interval{64}{127}$ \\ \hline
+& $j \in \interval{0}{3}$ & $j \in \interval{4}{7}$ & $j \in \interval{8}{15}$ & $j \in \interval{16}{31}$ & $j \in \interval{32}{63}$ & $j \in \interval{64}{127}$ \\ \hline
 100     &       -11.40  &       +5.19   &       -1.85   &       +10.75  &       -35.19  &       -16.81  \\ \hline
 200     &       +30.14  &       +6.93   &       -4.68   &       +14.92  &       -35.74  &       +9.16   \\ \hline
 300     &       +0.14   &       -7.79   &       -20.90  &       +2.02   &       -26.73  &       -24.13  \\ \hline
@@ -710,7 +710,7 @@ W tabeli~\ref{tab:pom_multi_meas_24} zestawiono wyniki przeprowadzonego eksperym
 \begin{table}[htb!]
 \begin{center}
 \makecaption{tab:pom_multi_meas_24}{Zestawienie wyników eksperymentu pomiarowego mającego na celu weryfikacje poprawności zastosowanych parametrów modelu błędów oraz skuteczności zaproponowanej metody wyznaczania wypadkowej niepewności rozszerzonej dla~\qty{24}{\numTej} wielkości wyjściowej algorytmu dyskretnej transformacji falkowej w przypadku sygnału poliharmonicznego}
-\begin{tabular}[c]{| c *{4}{|S[table-format = 5.2]} *{2}{|S[table-format = 2.2]} | S[table-format = +3.2] |} \hline
+\begin{tabular}[c]{| c *{2}{|S[table-format = 4.3]} *{2}{|S[table-format = 4.4]} *{2}{|S[table-format = 2.3]} | S[table-format = +3.2] |} \hline
 \multirow{2}{*}{$f_{s,o}$} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{2}{c|}{\textbf{Niepewność, mV}} & \multicolumn{2}{c|}{\textbf{Kształt}} & \textbf{Błąd, \%} \\ \cline{2-8}
 & $\sigma_{c}^{2}$ & $\sigma_{m}^{2}$ & $U_{c}$ & $U_{m}$ & $c_{c}$ & $c_{m}$ & $\delta_{c}$ \\ \hline
 100     &       2.70    &       0.34    &       3.22    &       1.15    &       1.96    &       1.97    &       +181.14 \\ \hline
@@ -738,10 +738,10 @@ Aby zweryfikować zasadność przedstawionej hipotezy obliczenia wykonano ponown
 
 \begin{table}[htb!]
 \begin{center}
-\makecaption{tab:pom_multi_meas_out}{Zestawienie uzyskanych na drodze eksperymentu pomiarowego wartości względnego błędu oszacowania wartości niepewności rozszerzonej dla kolejnych grup wielkości wyjściowych algorytmu dyskretnej transformacji falkowej wraz z zestawieniem średniej dla wartości bezwzględnych tej wielkości w przypadku sygnału poliharmonicznego i założenia gdzie $e_{s,r}(t) = 0$}
-\begin{tabular}[c]{| c *{6}{|S[table-format = +4.2]} |} \hline
+\makecaption{tab:pom_multi_meas_out}{Zestawienie uzyskanych na drodze eksperymentu pomiarowego wartości względnego błędu oszacowania wartości niepewności rozszerzonej dla kolejnych grup wielkości wyjściowych analizowanego algorytmu wraz z zestawieniem średniej dla wartości bezwzględnych tej wielkości w przypadku sygnału poliharmonicznego i założenia o pominięciu w analizie obecności sygnału błędu $e_{s,r}(t)$ (wartości wyników wyrażone w procentach)}
+\begin{tabular}[c]{| c *{6}{|S[table-format = +3.3]} |} \hline
 \multirow{2}{*}{\textbf{$f_{s,o}$, Hz}} & \multicolumn{6}{c|}{\textbf{Zakres wielkości wyjściowych $X_{j}$ algorytmu}} \\ \cline{2-7}
-& $\interval{0}{3}$ & $\interval{4}{7}$ & $\interval{8}{15}$ & $\interval{16}{31}$ & $\interval{32}{63}$ & $\interval{64}{127}$ \\ \hline
+& $j \in \interval{0}{3}$ & $j \in \interval{4}{7}$ & $j \in \interval{8}{15}$ & $j \in \interval{16}{31}$ & $j \in \interval{32}{63}$ & $j \in \interval{64}{127}$ \\ \hline
 100     &       -31.16  &       -18.18  &       -25.28  &       -9.30   &       -40.48  &       -34.87  \\ \hline
 200     &       -4.90   &       +2.83   &       -22.41  &       -10.17  &       -51.03  &       -23.34  \\ \hline
 300     &       +23.42  &       +22.18  &       -0.41   &       +1.50   &       -49.61  &       -18.57  \\ \hline
