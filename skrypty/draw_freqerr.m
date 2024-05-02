@@ -94,7 +94,7 @@ amps = abs(amps);
 xlabel("Częstotliwość, Hz");
 ylabel(ax(1), "Wartość wzmocnienia, V/V");
 ylabel(ax(2), "Względny błąd oszacowania, %");
-legend("Wzmocnienie", "Błąd", "location", 'northeast', 'orientation', 'horizontal')
+legend("Wzmocnienie", "Błąd", "location", 'southwest', 'orientation', 'horizontal')
 grid on;
 box on;
 
