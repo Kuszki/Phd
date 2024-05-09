@@ -106,16 +106,21 @@
 \def\maketitle
 {
 	\begin{titlepage}
-		{\Large \bf Politechnika Śląska}
+		\includegraphics[height = 3.5cm]{obrazki/polsl_logo}
 		\vskip 32pt
 		{\Large Wydział Elektryczny \\ Katedra Metrologii, Elektroniki i Automatyki}
-		\vskip 128pt
+		\vskip 96pt
 		{\Huge \bf Rozprawa Doktorska}
 		\vskip 32pt
 		{\Large \@title}
-		\vskip 256pt
-		{\Large \@author}
-		\vfil
+		\vskip 128pt
+		\normallinespacing
+		\begin{tabular}[c]{r @{~:~} l}
+		\textbf{Autor}        & \@author                    \\
+		\textbf{Promotor}     & dr inż. Jerzy Roj, prof. PŚ \\
+		\textbf{Rok złożenia} & 2024                        \\
+		\end{tabular}
+		\vfill
 	\end{titlepage}
 }
 
