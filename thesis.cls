@@ -1,4 +1,5 @@
-\ProvidesPackage{thesis}
+\LoadClass[a4paper, 12pt, twoside, polish]{report}
+\ProvidesClass{thesis}
 
 \directlua{pdf.setminorversion(7)}
 \RequirePackage[a-3u, allxmp, pdf17]{pdfx}

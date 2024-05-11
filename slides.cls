@@ -1,4 +1,5 @@
-\ProvidesPackage{beamer}
+\LoadClass[12pt, polish, aspectratio = 169]{beamer}
+\ProvidesClass{slides}
 
 \directlua{pdf.setminorversion(7)}
 
