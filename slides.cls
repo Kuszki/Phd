@@ -4,9 +4,7 @@
 
 \directlua{pdf.setminorversion(7)}
 
-\RequirePackage[noheader, nopdfinfo]{gitver}
 \RequirePackage[locale = PL]{siunitx}
-
 \RequirePackage[autostyle]{csquotes}
 \RequirePackage[polish]{babel}
 
