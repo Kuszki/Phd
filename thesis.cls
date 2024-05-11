@@ -1,4 +1,6 @@
 \LoadClass[a4paper, 12pt, twoside, polish]{report}
+
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{thesis}
 
 \directlua{pdf.setminorversion(7)}
