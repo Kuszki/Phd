@@ -8,6 +8,9 @@
 \PublicationType{book}
 \Language{pl}
 
+\Copyright{CC BY-SA 4.0; Licencja umożliwia użytkownikom rozpowszechnianie, modyfikowanie, dostosowywanie niniejszej pracy i tworzenie materiałów na dowolnym nośniku lub w dowolnym formacie, również w zastosowaniach komercyjnych, pod warunkiem wskazania twórcy oryginalnej pracy oraz zachowania identycznych warunków licencji na działo pochodne.}
+\CopyrightURL{https://creativecommons.org/licenses/by-sa/4.0/}
+
 \Keywords{%
 	model błędów toru pomiarowego\sep%
 	dyskretna transformacja falkowa\sep%
