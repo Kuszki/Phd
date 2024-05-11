@@ -1,7 +1,6 @@
-\LoadClass[a4paper, 12pt, twoside, polish]{report}
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{thesis}
+\LoadClassWithOptions{report}
 
 \directlua{pdf.setminorversion(7)}
 \RequirePackage[a-3u, allxmp, pdf17]{pdfx}
