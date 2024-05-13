@@ -120,8 +120,9 @@
 		\begin{tabular}[c]{r @{~:~} l}
 		\textbf{Autor}        & \@author                    \\
 		\textbf{Promotor}     & dr inż. Jerzy Roj, prof. PŚ \\
-		\textbf{Rok złożenia} & 2024                        \\
 		\end{tabular}
+		\vskip 48pt
+		{\large Gliwice, 2024}
 		\vfill
 	\end{titlepage}
 }
