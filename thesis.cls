@@ -119,8 +119,8 @@
 		\vskip 128pt
 		\normallinespacing
 		\begin{tabular}[c]{r @{~:~} l}
-		\textbf{Autor}        & \@author                    \\
-		\textbf{Promotor}     & dr inż. Jerzy Roj, prof. PŚ \\
+		\textbf{Autor}        & \@author                         \\
+		\textbf{Promotor}     & dr hab. inż. Jerzy Roj, prof. PŚ \\
 		\end{tabular}
 		\vskip 48pt
 		{\large Gliwice, 2024}
