@@ -55,7 +55,7 @@
 
 \babelprovide[transforms = oneletter.nobreak]{polish}
 \babelprovide[justification = unhyphenated]{polish}
-\hypersetup{hidelinks}
+\hypersetup{hidelinks, breaklinks = true}
 
 \titleformat{name = \chapter, numberless}[block]{\normalfont\bfseries\huge}{}{0pt}{}
 \titleformat{name = \chapter}[block]{\normalfont\bfseries\huge}{}{0pt}{\thechapter.~}
