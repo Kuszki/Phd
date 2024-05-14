@@ -38,6 +38,7 @@
 \RequirePackage{comment}
 \RequirePackage{xpatch}
 \RequirePackage{calc}
+\RequirePackage{xurl}
 
 \DeclareSIUnit[quantity-product=-]\bitOwych{bitowych}
 \DeclareSIUnit[quantity-product=-]\bitOwego{bitowego}
