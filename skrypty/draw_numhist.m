@@ -5,7 +5,7 @@ pkg load communications
 pkg load ltfat
 pkg load parallel
 
-addpath("~/Projekty/Octave-FWT-Utils");
+addpath("../biblioteki");;
 load("../archiwa/f16_coif5_hist.dat");
 
 

@@ -4,7 +4,7 @@ pkg load communications
 pkg load ltfat
 pkg load parallel
 
-addpath("~/Projekty/Octave-FWT-Utils")
+addpath("../biblioteki");
 
 list = {'uu', 'ss', 'tt', 'un', 'us', 'ut', 'ns', 'nt', 'st'};
 list = {'ut'};
