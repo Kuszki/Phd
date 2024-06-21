@@ -76,6 +76,8 @@
 \renewcommand\bottomfraction{0.35}
 \renewcommand\textfraction{0.25}
 
+\renewbibmacro{in:}{}
+
 \newcommand{\hugelinespacing}{\renewcommand{\baselinestretch}{1.60} \normalsize}
 
 \newcommand{\normallinespacing}{\renewcommand{\baselinestretch}{1.30} \normalsize}
