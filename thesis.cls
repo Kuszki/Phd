@@ -121,11 +121,11 @@
 		\vskip 128pt
 		\normallinespacing
 		\begin{tabular}[c]{r @{~:~} l}
-		\textbf{Autor}        & \@author                         \\
-		\textbf{Promotor}     & dr hab. inż. Jerzy Roj, prof. PŚ \\
+		\textbf{Autor}        & \fullauthor   \\
+		\textbf{Promotor}     & \fullpromoter \\
 		\end{tabular}
 		\vskip 48pt
-		{\large Gliwice, 2024}
+		{\large \fulldate}
 		\vfill
 	\end{titlepage}
 }
