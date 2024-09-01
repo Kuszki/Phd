@@ -79,4 +79,10 @@ set_comma(gca, 'X');
 grid on;
 box on;
 
+std_pa = std(phi0(fv*2*pi) - pv)
+std_pb = std(phi1(fv*2*pi) - pv)
+
+std_aa = std(amp0(fv*2*pi) - av)
+std_ab = std(amp1(fv*2*pi) - av)
+
 print("../obrazki/dynamic_ampout.svg");
