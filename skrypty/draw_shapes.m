@@ -8,7 +8,7 @@ pkg load parallel
 addpath("../biblioteki");
 
 names = {"Rozkład normalny", "Rozkład jednostajny", "Rozkład trójkątny", "Rozkład dwumodalny"};
-list = 'nuts';
+list = 'nutd';
 yl = [ 0.6 0.8 0.6 1.0 ];
 
 set(h, "paperunits", "centimeters")
