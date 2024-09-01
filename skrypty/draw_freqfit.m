@@ -41,6 +41,7 @@ phi1 = @(x) -2.121e-13*x.^2 - 5.862e-7*x;
 amp1 = @(x) ks*ones(rows(x), columns(x));
 
 xv = logspace(2, log10(flim), 50);
+xv = fv;
 aa = amp0(xv*2*pi);
 ab = amp1(xv*2*pi);
 pa = phi0(xv*2*pi);
@@ -79,10 +80,14 @@ set_comma(gca, 'X');
 grid on;
 box on;
 
-std_pa = std(phi0(fv*2*pi) - pv)
-std_pb = std(phi1(fv*2*pi) - pv)
+fvf = fv(1:21);
+pvf = pv(1:21);
+avf = av(1:21);
 
-std_aa = std(amp0(fv*2*pi) - av)
-std_ab = std(amp1(fv*2*pi) - av)
+std_pa = std(phi0(fvf*2*pi) - pvf)
+std_pb = std(phi1(fvf*2*pi) - pvf)
+
+std_aa = std(amp0(fvf*2*pi) - avf)
+std_ab = std(amp1(fvf*2*pi) - avf)
 
 print("../obrazki/dynamic_ampout.svg");
