@@ -22,11 +22,77 @@
 \tableofcontents
 \end{frame}
 
+\newsection{Motywacja pracy}{Przedstawienie motywacji pracy i aktualnego stanu wiedzy}
+
+\begin{frame}{Algorytm transformacji falkowej}
+\begin{equation}
+w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac{t-b}{a}} dt \label{eq:cwt}
+\end{equation}
+\begin{itemize}
+\item Wykorzystuje funkcję \enquote{falki-matki}, oznaczoną jako $\psi(t)$.
+\item Umożliwia analizę sygnału $x(t)$ w dziedzinie skala-czas.
+\item Dla wybranej skali $a$ współczynniki transformacji $w_{a,b}$ wyznaczane są dla kolejnych okien pomiarowych, przesuniętych o czas $b$.
+\item Parametr skali $a$ określa zakres częstotliwości harmonicznych sygnału $x(t)$.
+\item Występuje w kilku głównych odmianach:
+	\begin{itemize}
+	\item[CWT] ciągła transformacja falkowa,
+	\item[DWT] dyskretna transformacja falkowa,
+	\item[UFWT] dyskretna transformacja falkowa bez decymacji.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Obszary zastosowań algorytmu}
+\begin{itemize}
+\item Przetwarzanie, kompresja oraz analiza obrazów i dźwięków.
+\item Redukcja szumu w sygnale pomiarowym.
+\item Analiza sygnałów EKG oraz EEG.
+\item Analiza przebiegu drgań sejsmicznych.
+\item Bezinwazyjna analiza stanu elementów mechanicznych.
+\item Algorytmy stratnej kompresji danych.
+\item Analiza zwarć wysoko prądowych.
+\item Analiza procesów hydrologicznych.
+\item Wiele innych zastosowań.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Problem analizy właściwości metrologicznych}
+\begin{itemize}
+\item Możliwość parametryzacji stosowanego algorytmu:
+	\begin{itemize}
+	\item zmiana rodzaju stosowanej falki-matki,
+	\item zmiana liczby iteracji procesu dekompozycji,
+	\item zmiana liczby wielkości wejściowych algorytmu.
+	\end{itemize}
+\item Nie wszystkie falki są opisane równaniem $\psi(t)$.
+\item Wyprowadzenie odpowiednich zależności jest czasochłonne.
+\item Zmiana parametrów stosowanego algorytmu wymusza ponowną analizę.
+\item Wymagana jest ekspercka wiedza na temat stosowanej rodziny falek.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aktualne potrzeby i problemy}
+\begin{itemize}
+\item Aktualne problemy:
+	\begin{itemize}
+	\item brak jednolitej metody umożliwiającej wyznaczenie wartości niepewności wielkości wyjściowych algorytmu,
+	\item analiza budżetu niepewności wielkości wyjściowych jest najczęściej pomijana.
+	\end{itemize}
+\item Aktualne potrzeby:
+	\begin{itemize}
+	\item przedstawienie narzędzia umożliwiającego opracowanie budżetu niepewności wielkości wyjściowych algorytmów transformacji falkowej,
+	\item zaproponowanie jednolitego modelu błędów, umożliwiającego opis właściwości metrologicznych toru pomiarowego,
+	\item zaproponowanie metody umożliwiającej oszacowanie wartości wypadkowej niepewności rozszerzonej,
+	\item proponowane metody muszą być przystępne dla projektanta toru pomiarowego, niebędącego ekspertem w dziedzinie transformacji falkowej.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
 \newsection{Teza pracy}{Przedstawienie tezy pracy oraz jej najważniejszych założeń}
 
 \begin{frame}{Teza pracy}
 \justifying
-Stosując przedstawiony model błędów oraz zaproponowaną metodę szacowania wypadkowej wartości niepewności rozszerzonej istnieje możliwość oszacowania wartości niepewności rozszerzonych dla wielkości wyjściowych toru pomiarowego wykorzystującego algorytm dyskretnej transformacji falkowej.
+Stosując przedstawiony model błędów oraz zaproponowaną metodę szacowania wartości wypadkowej niepewności rozszerzonej istnieje możliwość oszacowania wartości niepewności rozszerzonych dla wielkości wyjściowych toru pomiarowego wykorzystującego algorytm dyskretnej transformacji falkowej.
 
 Oszacowanie wartości niepewności rozszerzonych dla omawianych wielkości jest możliwe w trakcie działania systemu pomiarowego, również w przypadku zmiany parametrów pracy tego systemu oraz zmiany parametrów modelu błędów.
 
@@ -46,6 +112,25 @@ Skuteczność zaproponowanej metody oraz dokładność uzyskiwanych wyników zal
 \end{itemize}
 \end{frame}
 
+\newsection{Model błędów}{Przedstawienie najważniejszych założeń dla zaproponowanego modelu błędów}
+
+\newsection{Niepewność rozszerzona}{Omówienie stosowanej metody wyznaczania wartości wypadkowej niepewności rozszerzonej}
+
+\newsection{Weryfikacja tezy}{Przedstawienie najważniejszych wyników badań, weryfikujących tezę pracy}
+
+\newsection{Podsumowanie}{Przedstawienie najważniejszych wniosków płynących z pracy}
+
+\begin{frame}{Wnioski}
+\begin{itemize}
+\item Zaproponowany model błędów może być stosowany dla torów pomiarowych wykorzystujących algorytmy transformacji falkowej
+\item Zaproponowana metoda szacowania wypadkowej wartości niepewności rozszerzonej zapewnia wyniki zbliżone do uzyskiwanych metodą Monte-Carlo
+\item Niska złożoność obliczeniowa umożliwia aplikację metody w czasie rzeczywistym, również w przypadku zmiany parametrów modelu błędów
+\item Dokładność uzyskiwanych wyników zależy od dokładności określenia parametrów modelu błędów
+\item Aby uzyskać bardziej dokładne wyniki należy przeprowadzić odpowiednie badania w celu ustalenia dokładnych parametrów modelu błędów, w szczególności dla stosowanego generatora
+\end{itemize}
+\end{frame}
+
+\begin{comment}
 \newsection{Algorytm transformacji falkowej}{Przedstawienie najważniejszych właściwości metrologicznych algorytmów transformacji falkowej}
 
 \begin{frame}{Algorytm transformacji falkowej}
@@ -1082,18 +1167,7 @@ $T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.2
 \item Dla sygnału poliharmonicznego wyciągnąć można podobne wnioski
 \end{itemize}
 \end{frame}
-
-\newsection{Podsumowanie}{Przedstawienie najważniejszych wniosków płynących z pracy}
-
-\begin{frame}{Wnioski}
-\begin{itemize}
-\item Zaproponowany model błędów może być stosowany dla torów pomiarowych wykorzystujących algorytmy transformacji falkowej
-\item Zaproponowana metoda szacowania wypadkowej wartości niepewności rozszerzonej zapewnia wyniki zbliżone do uzyskiwanych metodą Monte-Carlo
-\item Niska złożoność obliczeniowa umożliwia aplikację metody w czasie rzeczywistym, również w przypadku zmiany parametrów modelu błędów
-\item Dokładność uzyskiwanych wyników zależy od dokładności określenia parametrów modelu błędów
-\item Aby uzyskać bardziej dokładne wyniki należy przeprowadzić odpowiednie badania w celu ustalenia dokładnych parametrów modelu błędów, w szczególności dla stosowanego generatora
-\end{itemize}
-\end{frame}
+\end{comment}
 
 \section*{Zakończenie}
 
