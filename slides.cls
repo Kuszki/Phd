@@ -16,6 +16,7 @@
 \RequirePackage{fontspec}
 \RequirePackage{graphicx}
 \RequirePackage{multirow}
+\RequirePackage{multicol}
 \RequirePackage{lmodern}
 \RequirePackage{gensymb}
 \RequirePackage{comment}

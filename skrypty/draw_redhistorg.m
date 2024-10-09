@@ -7,7 +7,6 @@ pkg load parallel
 
 addpath("../biblioteki");
 
-
 fcolor = "#333333";
 ecolor = "#333333";
 nbins = 300;
@@ -24,7 +23,7 @@ set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
-load('../archiwa/rederr_mod_1_3.txt.gz');
+load('../archiwa/rederr_org_1_3.txt.gz');
 [up, um, s, w] = get_uncertainty(errs, 95, false)
 
 subplot(2, 2, 1)
@@ -39,7 +38,7 @@ set_comma(gca, 'X');
 grid on;
 box on;
 
-load('../archiwa/rederr_mod_1_6.txt.gz');
+load('../archiwa/rederr_org_1_6.txt.gz');
 [up, um, s, w] = get_uncertainty(errs, 95, false)
 
 subplot(2, 2, 2)
@@ -54,7 +53,7 @@ set_comma(gca, 'X');
 grid on;
 box on;
 
-load('../archiwa/rederr_mod_1_10.txt.gz');
+load('../archiwa/rederr_org_1_10.txt.gz');
 [up, um, s, w] = get_uncertainty(errs, 95, false)
 
 subplot(2, 2, 3)
@@ -69,7 +68,7 @@ set_comma(gca, 'X');
 grid on;
 box on;
 
-load('../archiwa/rederr_mod_1_20.txt.gz');
+load('../archiwa/rederr_org_1_20.txt.gz');
 [up, um, s, w] = get_uncertainty(errs, 95, false)
 
 subplot(2, 2, 4)
@@ -84,4 +83,4 @@ set_comma(gca, 'X');
 grid on;
 box on;
 
-print("../obrazki/hist_reductive.svg");
+print("../obrazki/hist_redorginal.svg");
