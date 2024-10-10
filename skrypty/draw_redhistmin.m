@@ -23,7 +23,7 @@ set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
-files = glob('../archiwa/rederr_all_1_*.txt.gz');
+files = glob('../archiwa/rederr_all_*_*_1_*.txt.gz');
 
 for i = 1 : numel(files)
 
