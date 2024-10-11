@@ -69,8 +69,8 @@
 \setlength{\floatsep}{6pt}
 \setlength{\intextsep}{6pt}
 \setlength{\textfloatsep}{6pt}
-\setlength{\abovecaptionskip}{3pt}
-\setlength{\belowcaptionskip}{3pt}
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
 
 \setlength{\headheight}{6pt}
 \setlength{\tabcolsep}{6pt}
