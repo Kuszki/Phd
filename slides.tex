@@ -12,7 +12,7 @@
 
 \begin{document}
 
-\section*{Wstęp}
+\section*{Wstęp do prezentacji oraz plan wystąpienia}
 
 \begin{frame}[plain]
 \titlepage
@@ -281,7 +281,7 @@ x _{N-1}
 \end{columns}
 \end{frame}
 
-\newsection{Niepewność rozszerzona}{Omówienie stosowanej metody wyznaczania wartości wypadkowej niepewności rozszerzonej}
+\newsection{Niepewność rozszerzona}{Omówienie stosowanej w pracy metody wyznaczania wartości wypadkowej niepewności rozszerzonej oraz sposobu jej aplikacji}
 
 \begin{frame}{Miara niepewności rozszerzonej}
 \begin{columns}
@@ -430,12 +430,12 @@ h_{i,j} = h_{j,i} = s_{i,j} p_{i,j} k_{i,j} = s_{i,j} \sqrt{\frac{\min \emb{U_{i
 
 \begin{frame}{Założenia eksperymentu symulacyjnego}
 \begin{itemize}
-\item Przetwarzana wielkość $s(t)$ zakłócona szumem białym.
+\item Przetwarzana wielkość $s(t)$ o przebiegu poliharmonicznym, zakłócona addytywnym szumem białym o stałej widmowej gęstości mocy.
 \item Nieidealne właściwości dynamiczne wzmacniacza oraz przetwornika pomiarowego (inercja pierwszego rzędu).
-\item Dryft zera wzmacniacza zależny liniowo od wolnozmiennej temperatury otoczenia.
-\item Nieidealna charakterystyka statyczna wzmacniacza (nieliniowość charakterystyki).
+\item Dryft zera wzmacniacza oraz przetwornika zależne liniowo od wolnozmiennej temperatury otoczenia (skorelowane sygnały błędów).
+\item Nieidealna charakterystyka statyczna stosowanego wzmacniacza (nieliniowość charakterystyki statycznej).
+\item Algorytm transformacji falkowej wprowadza błąd własny wynikający z operacji arytmetycznych (transmitancja algorytmu idealna).
 \item Przetwarzanie A/C obarczone błędem kwantowania.
-\item Algorytm transformacji falkowej wprowadza błąd własny wynikający z operacji arytmetycznych.
 \end{itemize}
 \end{frame}
 
@@ -466,12 +466,12 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Aplikacja zaproponowanego modelu błędów}
+\begin{frame}{Aplikacja zaproponowanej metody analizy}
 \begin{enumerate}
-\item Określenie, w jaki sposób fragmenty propagują sygnały błędów na wejściu.
-\item Identyfikacja źródeł błędów własnych:
+\item Określenie, w jaki sposób fragmenty propagują sygnały błędów.
+\item Identyfikacja źródeł sygnałów błędów własnych:
 	\begin{itemize}
-	\item zawartych w sygnale $s(t)$ (parametrów generatora RIGOL DG1011),
+	\item zawartych w sygnale $s(t)$ (parametrów generatora),
 	\item wzmacniacza (właściwości statyczne i dynamiczne),
 	\item przetwornika A/C (kwantowanie, dynamika układu P/P),
 	\item algorytmu transformacji falkowej (operacje zaokrągleń).
@@ -524,25 +524,33 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 
 \begin{frame}{Identyfikacja parametrów modelu błędów}
 \begin{itemize}
-\item Właściwości statyczne:
+\item Właściwości statyczne toru pomiarowego:
 	\begin{itemize}
 	\item zastosowanie kalibratora DC (FLUKE 5700A),
 	\item badania wykonano dla wielkości $x(i)$,
 	\item eksperymenty wykonywano dla stałych warunków otoczenia.
 	\end{itemize}
-\item Właściwości dynamiczne:
+\item Właściwości dynamiczne toru pomiarowego:
 	\begin{itemize}
 	\item pomiar charakterystyki dynamicznej wzmacniacza (oscyloskop RIGOL DS5062MA oraz generator RIGOL DG1011),
 	\item model dynamiczny pierwszego rzędu dla układu P/P (parametry na podstawie dokumentacji układu).
 	\end{itemize}
-\item Algorytm transformacji falkowej:
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Identyfikacja parametrów modelu błędów}
+\begin{itemize}
+\item Błędy własne algorytmu transformacji falkowej:
 	\begin{itemize}
-	\item symulacja Monte Carlo, zgodnie z zaproponowaną metodą.
+	\item parametry wyznaczono zgodnie z zaproponowaną w pracy metodą,
+	\item założono, że transmitancja algorytmu jest idealna,
+	\item udział sygnałów błędów własnych okazał się pomijalnie mały.
 	\end{itemize}
-\item Generator przebiegów arbitralnych:
+\item Właściwości generatora przebiegów arbitralnych:
 	\begin{itemize}
-	\item parametry oszacowane na podstawie dokumentacji urządzenia,
-	\item opcjonalnie stosowanie dodatkowego multimetru (Agilent 3458A).
+	\item dokładne badania nie zostały przeprowadzone,
+	\item parametry oszacowano na podstawie dokumentacji urządzenia,
+	\item opcjonalnie stosowano dodatkowy multimetr (Agilent 3458A).
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -611,25 +619,26 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 
 \begin{frame}{Najważniejsze osiągnięcia pracy}
 \begin{itemize}
-\item Zaproponowanie jednolitego modelu błędów, opisującego właściwości toru pomiarowego (zarówno części cyfrowej, jak i analogowej).
-\item Przedstawienie algorytmu transformacji falkowej w postaci macierzowej i wskazanie jego właściwości metrologicznych.
-\item Wskazanie, w jaki sposób algorytm transformacji falkowej przetwarza sygnały błędów z wejścia na wyjście oraz opis sygnałów błędów własnych tego algorytmu.
-\item Zaproponowanie przystępnej w aplikacji metody szacowania wartości wypadkowej niepewności rozszerzonej, możliwej do aplikacji w czasie rzeczywistym.
+\item Zaproponowanie jednolitego modelu błędów, opisującego właściwości toru pomiarowego, zarówno części cyfrowej oraz analogowej.
+\item Przedstawienie algorytmu transformacji falkowej w postaci macierzowej wraz z metodami identyfikacji wartości współczynników macierzy transformacji.
+\item Wskazanie, w jaki sposób algorytm transformacji falkowej przetwarza sygnały błędów z wejścia na wyjście.
+\item Opis sygnałów błędów własnych algorytmu transformacji falkowej oraz sposobu identyfikacji ich parametrów.
+\item Zaproponowanie przystępnej w aplikacji metody szacowania wartości wypadkowej niepewności rozszerzonej, możliwej do stosowania w czasie rzeczywistym dla zmiennych parametrów modelu błędów.
 \item Symulacyjna oraz pomiarowa weryfikacja przedstawionych w pracy zależności oraz wskazanie przykładu aplikacji proponowanej metody analizy.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Wnioski}
 \begin{itemize}
-\item Zaproponowany model błędów może być stosowany dla torów pomiarowych wykorzystujących algorytmy transformacji falkowej.
-\item Zaproponowana metoda szacowania wartości wypadkowej niepewności rozszerzonej zapewnia wyniki zbliżone do uzyskiwanych metodą Monte Carlo, a niska złożoność obliczeniowa umożliwia jej aplikację w czasie rzeczywistym, również w przypadku zmiany parametrów modelu błędów
+\item Zaproponowany model błędów jest zasadny w przypadku analizy torów pomiarowych wykorzystujących algorytmy transformacji falkowej.
+\item Zaproponowana metoda szacowania wartości wypadkowej niepewności rozszerzonej zapewnia wyniki zbliżone do uzyskiwanych metodą Monte Carlo, a niska złożoność obliczeniowa umożliwia jej aplikację w czasie rzeczywistym, również w przypadku zmiany parametrów modelu błędów.
 \item Stosowanie zaproponowanej metody uzasadnione jest wtedy, gdy nie są spełnione warunki centralnego twierdzenia granicznego.
 \item Mimo spełnienia warunków centralnego twierdzenia granicznego dla wielkości wejściowych, warunki te mogą nie być spełnione dla wielkości wyjściowych algorytmu transformacji falkowej.
 \item Dokładność oszacowania wartości wypadkowej niepewności rozszerzonej zależy od dokładności określenia parametrów modelu błędów.
 \end{itemize}
 \end{frame}
 
-\section*{Zakończenie}
+\section*{Zakończenie prezentacji i podziękowania}
 
 \begin{frame}[plain]
 \lastpage
