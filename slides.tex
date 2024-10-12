@@ -42,16 +42,16 @@
 w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac{t-b}{a}} dt \label{eq:cwt}
 \end{equation}
 \begin{itemize}
-\item Wykorzystuje funkcję \enquote{falki-matki}, oznaczoną jako $\psi(t)$.
-\item Umożliwia analizę sygnału $x(t)$ w dziedzinie skala-czas.
-\item Dla wybranej skali $a$ współczynniki transformacji $w_{a,b}$ wyznaczane są dla kolejnych okien pomiarowych, przesuniętych o czas $b$.
-\item Parametr skali $a$ określa zakres częstotliwości harmonicznych sygnału $x(t)$.
-\item Występuje w kilku głównych odmianach:
-	\begin{itemize}
-	\item[CWT] ciągła transformacja falkowa (w praktyce niemożliwa do implementacji),
-	\item[DWT] dyskretna transformacja falkowa (dla $a = 2^m$, $b = n2^m$ dla $m, n \in \mathbb{N}$),
-	\item[UFWT] dyskretna transformacja falkowa bez decymacji.
-	\end{itemize}
+\item Umożliwia analizę sygnału $x(t)$ w dziedzinie skala-czas (informacja o czasie).
+\item Wykorzystuje funkcję \enquote{falki-matki}, oznaczaną jako $\psi(t)$.
+\item Parametr skali $a$ określa wyodrębniany zakres częstotliwości.
+\item Parametr $b$ określa przesunięcie falki w czasie (okno pomiarowe).
+\item Współczynniki $w_{a,b}$ stanowią wielkości wyjściowe algorytmu.
+\end{itemize}
+\begin{itemize}
+\item[CWT] ciągła transformacja falkowa (w praktyce niemożliwa do realizacji),
+\item[DWT] dyskretna transformacja falkowa (dla $a = 2^m$, $b = n2^m$, gdzie $m, n \in \mathbb{N}$),
+\item[UFWT] dyskretna transformacja falkowa bez decymacji (bez odrzucania próbek).
 \end{itemize}
 \end{frame}
 
@@ -66,7 +66,7 @@ w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac
 \item Algorytmy stratnej kompresji danych.
 \item Analiza zwarć wysoko prądowych.
 \item Analiza procesów hydrologicznych.
-\item Wiele innych zastosowań.
+\item Wiele innych zastosowań oraz ciągły ich rozwój.
 \end{itemize}
 \end{frame}
 
@@ -84,6 +84,7 @@ w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac
 \item Metody analityczne są skomplikowane i nie są uniwersalne.
 \item Metoda Monte Carlo jest czasochłonna.
 \item Brak wskazówek w przewodniku JCGM.
+\item Analiza właściwości metrologicznych jest pomijana.
 \end{itemize}
 \end{frame}
 
@@ -117,8 +118,8 @@ Skuteczność zaproponowanej metody oraz dokładność uzyskiwanych wyników zal
 
 \begin{frame}{Podsumowanie tezy}
 \begin{itemize}
-\item Propozycja modelu błędów umożliwiającego opis właściwości metrologicznych torów pomiarowych wykorzystujących algorytmy transformacji falkowej.
-\item Propozycja metody szacowania wartości wypadkowej niepewności rozszerzonej, która:
+\item Propozycja modelu błędów umożliwiającego opis właściwości metrologicznych torów pomiarowych wykorzystujących analizowane algorytmy oraz przedstawienie ich budżetu niepewności.
+\item Propozycja alternatywnej dla metody Monte Carlo metody szacowania wartości wypadkowej niepewności rozszerzonej, która:
 	\begin{itemize}
 	\item cechuje się niską złożonością obliczeniową i jest możliwa do stosowania w czasie pracy systemu pomiarowego,
 	\item daje możliwość zmiany parametrów modelu błędów podczas pracy systemu pomiarowego, zachowując niską złożoność obliczeniową.
@@ -166,7 +167,7 @@ Skuteczność zaproponowanej metody oraz dokładność uzyskiwanych wyników zal
 \item $e(t)$ -- przebieg czasowy sygnału.
 \item $E[e(t)]$ -- wartość oczekiwana sygnału.
 \item $\sigma^{2}_{e}$ -- wariancja sygnału.
-\item $\sigma_{e}$ -- niepewność standardowa .
+\item $\sigma_{e}$ -- niepewność standardowa.
 \item $g(e)$ -- funkcja gęstości prawdopodobieństwa rozkładu wartości realizacji.
 \item $U_{e}$ -- niepewność rozszerzona, gdzie $U_{e} = c_{e} \sigma_{e}$.
 \item $c_{e}$ -- współczynnik rozszerzenia dla poziomu ufności $1 - \alpha$.
@@ -242,7 +243,7 @@ x _{N-1}
 
 \begin{frame}{Geneza sygnałów błędów własnych}
 \begin{enumerate}
-\item Wynikające z niedoskonałości transmitancji związanych z wielkościami wyjściowymi:
+\item Wynikające z niedoskonałości transmitancji algorytmu:
 	\begin{itemize}
 	\item istnieje możliwość deterministycznego opisu przebiegu sygnałów błędów,
 	\item sygnały te występują gdy $\tilde{H}_{i}(z) \ne \dot{H}_{i}(z)$,
@@ -254,10 +255,24 @@ x _{N-1}
 	\end{itemize}
 \item Wynikające z niedoskonałości wyznaczenia wartości współczynników macierzy transformacji:
 	\begin{itemize}
-	\item dla błędów numerycznych można zaliczyć je do grupy 2,
-	\item w pozostałych przypadkach można zaliczyć je do grupy 1.
+	\item dla błędów numerycznych można zaliczyć je do grupy [2],
+	\item w pozostałych przypadkach można zaliczyć je do grupy [1].
 	\end{itemize}
 \end{enumerate}
+\end{frame}
+
+\begin{frame}{Sygnały związane z operacjami numerycznymi}
+\begin{figure}
+\includegraphics[scale = 0.85]{obrazki/dwt_rerror_coif5_32_pl}
+\caption{Zależność wariancji sygnału błędu własnego zaokrągleń od parametrów algorytmu (falka \enquote{coif5}, słowa o długości~\qty{32}{\bitOw})}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Sygnały związane z operacjami numerycznymi}
+\begin{figure}
+\includegraphics[scale = 0.85]{obrazki/rerror_db2_2_128_32_pl}
+\caption{Zależność wariancji sygnału błędu zaokrągleń od zakresu wartości wielkości wejściowych (falka \enquote{db2}, 2 iteracje dekompozycji, słowa o długości~\qty{32}{\bitOw})}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Parametry sygnałów błędów własnych}
@@ -611,7 +626,7 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 \begin{frame}{Weryfikacja przyczyny rozbieżności wartości $U_{X_{24},\Sigma}$}
 \begin{figure}
 \includegraphics[scale = 0.85]{obrazki/mono_freqcomp}
-\caption{Błąd oszacowania wartości niepewności rozszerzonej w funkcji częstotliwości}
+\caption{Błąd oszacowania wartości niepewności rozszerzonej dla wielkości $X_{24}(i)$}
 \end{figure}
 \end{frame}
 
@@ -635,6 +650,26 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 \item Stosowanie zaproponowanej metody uzasadnione jest wtedy, gdy nie są spełnione warunki centralnego twierdzenia granicznego.
 \item Mimo spełnienia warunków centralnego twierdzenia granicznego dla wielkości wejściowych, warunki te mogą nie być spełnione dla wielkości wyjściowych algorytmu transformacji falkowej.
 \item Dokładność oszacowania wartości wypadkowej niepewności rozszerzonej zależy od dokładności określenia parametrów modelu błędów.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Podsumowanie dorobku naukowego}
+\begin{itemize}
+\item 13 współautorskich artykułów naukowych w czasopismach:
+	\begin{itemize}
+	\item[6:] Przegląd Elektrotechniczny (IF 0,5),
+	\item[3:] Applied Sciences-Basel (IF 2,5),
+	\item[1:] Electronics (Switzerland) (IF 2,69),
+	\item[1:] International Journal of Electronics and Telecommunications (IF 0,5),
+	\item[2:] Zesz. Nauk. Wydziału Elektrotechniki i Automatyki Politechniki Gdańskiej.
+	\end{itemize}
+\item 9 referatów wygłoszonych na konferencjach krajowych:
+	\begin{itemize}
+	\item[3:] Podstawowe Problemy Metrologii (2024, 2023, 2022),
+	\item[3:] Systemy pomiarowe w badaniach naukowych i przemyśle (2024, 2022, 2018),
+	\item[3:] Międzyuczelniana Konferencja Metrologów (2024, 2020, 2019).
+	\end{itemize}
+\item 6 rozdziałów w monografiach współautorskich.
 \end{itemize}
 \end{frame}
 

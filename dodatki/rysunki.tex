@@ -1,0 +1,40 @@
+\RequirePackage[locale = PL]{siunitx}
+
+\RequirePackage{lualatex-math}
+\RequirePackage{unicode-math}
+\RequirePackage{interval}
+\RequirePackage{fontspec}
+\RequirePackage{lmodern}
+\RequirePackage{gensymb}
+
+\sisetup
+{
+	retain-explicit-plus = true,
+	reset-text-family    = false,
+	reset-text-series    = false,
+	reset-text-shape     = false,
+	space-before-unit    = true,
+	tight-spacing        = true,
+	use-xspace           = true,
+	per-mode             = fraction,
+	inline-per-mode      = fraction,
+	list-exponents       = combine-bracket,
+	list-units           = single,
+	range-exponents      = combine-bracket,
+	range-units          = bracket,
+	range-phrase         = \,;\,,
+	quantity-product     = ~,
+	exponent-product     = \cdot,
+	mode                 = match
+}
+
+\intervalconfig
+{
+	left closed fence    = [,
+	right closed fence   = ],
+	left open fence      = (,
+	right open fence     = ),
+	separator symbol     = ;
+}
+
+\renewcommand{\arraystretch}{1.30}

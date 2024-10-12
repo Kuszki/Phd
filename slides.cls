@@ -44,6 +44,7 @@
 \usetheme{boxes}
 \usecolortheme{seahorse}
 \useinnertheme{rectangles}
+\usefonttheme{professionalfonts}
 
 \xpatchcmd{\interval}{interval,}{interval,scaled,}{}{}
 
