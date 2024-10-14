@@ -36,7 +36,7 @@ load(files{i});
 
 subplot(1, 3, 1)
 hist(errs_a, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("\\textbf{a)} $U_{\\delta} \\in [%0.2f; %0.2f] \\%%$", um, up), '.', ','), 'interpreter', 'latex');
+title(strrep(sprintf("{\\bfa)}\\rm {\\itU_{\\delta}} = [%0.2f; %0.2f] %%", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 #xlim([-10 10]);
@@ -50,7 +50,7 @@ box on;
 
 subplot(1, 3, 2)
 hist(errs_b, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("\\textbf{b)} $U_{\\delta} \\in [%0.2f; %0.2f] \\%%$", um, up), '.', ','), 'interpreter', 'latex');
+title(strrep(sprintf("{\\bfb)}\\rm {\\itU_{\\delta}} = [%0.2f; %0.2f] %%", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 #xlim([-10 10]);
@@ -64,7 +64,7 @@ box on;
 
 subplot(1, 3, 3)
 hist(errs_c, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("\\textbf{c)} $U_{\\delta} \\in [%0.2f; %0.2f] \\%%$", um, up), '.', ','), 'interpreter', 'latex');
+title(strrep(sprintf("{\\bfc)}\\rm {\\itU_{\\delta}} = [%0.2f; %0.2f] %%", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 #xlim([-10 10]);
