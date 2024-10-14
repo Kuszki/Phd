@@ -146,34 +146,6 @@ Skuteczność zaproponowanej metody oraz dokładność uzyskiwanych wyników zal
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Podział sygnałów błędów}
-\begin{itemize}
-\item Ze względu na charakter realizacji:
-	\begin{itemize}
-	\item[statyczne] wartość realizacji nie zmienia się w obrębie jednej serii pomiarowej,
-	\item[dynamiczne] wartość realizacji zmienia się w obrębie jednej serii pomiarowej oraz można opisać ich przebieg deterministycznie,
-	\item[losowe] wartość realizacji zmienia się w obrębie jednej serii pomiarowej oraz nie ma możliwości opisania ich przebiegu deterministycznie.
-	\end{itemize}
-\item Ze względu na genezę:
-	\begin{itemize}
-	\item [własne] wprowadzane do sygnału wyjściowego przez analizowany obiekt,
-	\item [propagowane] przenoszone z wejścia na wyjście przez analizowany obiekt.
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Parametry sygnałów błędów}
-\begin{itemize}
-\item $e(t)$ -- przebieg czasowy sygnału.
-\item $E[e(t)]$ -- wartość oczekiwana sygnału.
-\item $\sigma^{2}_{e}$ -- wariancja sygnału.
-\item $\sigma_{e}$ -- niepewność standardowa.
-\item $g(e)$ -- funkcja gęstości prawdopodobieństwa rozkładu wartości realizacji.
-\item $U_{e}$ -- niepewność rozszerzona, gdzie $U_{e} = c_{e} \sigma_{e}$.
-\item $c_{e}$ -- współczynnik rozszerzenia dla poziomu ufności $1 - \alpha$.
-\end{itemize}
-\end{frame}
-
 \begin{frame}{Algorytm transformacji falkowej}
 \begin{equation}
 \begin{bmatrix}
@@ -259,20 +231,6 @@ x _{N-1}
 	\item w pozostałych przypadkach można zaliczyć je do grupy [1].
 	\end{itemize}
 \end{enumerate}
-\end{frame}
-
-\begin{frame}{Sygnały związane z operacjami numerycznymi}
-\begin{figure}
-\includegraphics[scale = 0.85]{obrazki/dwt_rerror_coif5_32_pl}
-\caption{Zależność wariancji sygnału błędu własnego zaokrągleń od parametrów algorytmu (falka \enquote{coif5}, słowa o długości~\qty{32}{\bitOw})}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Sygnały związane z operacjami numerycznymi}
-\begin{figure}
-\includegraphics[scale = 0.85]{obrazki/rerror_db2_2_128_32_pl}
-\caption{Zależność wariancji sygnału błędu zaokrągleń od zakresu wartości wielkości wejściowych (falka \enquote{db2}, 2 iteracje dekompozycji, słowa o długości~\qty{32}{\bitOw})}
-\end{figure}
 \end{frame}
 
 \begin{frame}{Parametry sygnałów błędów własnych}
@@ -568,27 +526,6 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 	\item parametry oszacowano na podstawie dokumentacji urządzenia,
 	\item opcjonalnie stosowano dodatkowy multimetr (Agilent 3458A).
 	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Budżet niepewności wielkości $x(i)$}
-\begin{itemize}
-\item Niezależne od sygnału $s(t)$:
-	\begin{enumerate}
-	\item $U_{x,rw} = \qty{0.38}{mV}$ -- właściwości statyczne, rozkład normalny.
-	\end{enumerate}
-\item Dla monoharmonicznego sygnału $s(t)$:
-	\begin{enumerate}
-	\item $U_{x,rp}$ -- zniekształcenia harmoniczne generatora, rozkład normalny,
-	\item $U_{x,dp}$ -- wypadkowy błąd dynamiczny, rozkład dwumodalny,
-	\item $U_{x,sp}$ -- wypadkowy błąd statyczny, rozkład jednostajny.
-	\end{enumerate}
-\item Dla poliharmonicznego sygnału $s(t)$:
-	\begin{enumerate}
-	\item $U_{x,rp}$ -- nieliniowość generatora, rozkład jednostajny,
-	\item $U_{x,dp}$ -- wypadkowy błąd dynamiczny, splot rozkładów dwumodalnych,
-	\item $U_{x,sp}$ -- wypadkowy błąd statyczny, rozkład jednostajny.
-	\end{enumerate}
 \end{itemize}
 \end{frame}
 
