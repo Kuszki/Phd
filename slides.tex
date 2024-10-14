@@ -88,23 +88,6 @@ w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Aktualne potrzeby i problemy}
-\begin{itemize}
-\item Aktualne problemy:
-	\begin{itemize}
-	\item brak jednolitej metody umożliwiającej wyznaczenie wartości niepewności wielkości wyjściowych algorytmu i opracowanie budżetu niepewności,
-	\item dostępne metody są czasochłonne, skomplikowane oraz nie są uniwersalne.
-	\end{itemize}
-\item Aktualne potrzeby:
-	\begin{itemize}
-	\item przedstawienie narzędzia umożliwiającego opracowanie budżetu niepewności wielkości wyjściowych algorytmów transformacji falkowej,
-	\item zaproponowanie jednolitego modelu błędów, umożliwiającego opis właściwości metrologicznych toru pomiarowego,
-	\item zaproponowanie metody umożliwiającej oszacowanie wartości wypadkowej niepewności rozszerzonej dla sporządzonego budżetu niepewności,
-	\item proponowane metody muszą być przystępne dla projektanta toru pomiarowego, niebędącego ekspertem w dziedzinie transformacji falkowej.
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
 \newsection{Teza pracy}{Przedstawienie tezy pracy oraz jej najważniejszych założeń}
 
 \begin{frame}{Teza pracy}
@@ -116,20 +99,7 @@ Oszacowanie wartości niepewności rozszerzonych dla omawianych wielkości jest 
 Skuteczność zaproponowanej metody oraz dokładność uzyskiwanych wyników zależą od dokładności przyjętych parametrów modelu błędów, przy czym uzyskiwane wyniki są zbieżne z uzyskiwanymi metodą Monte Carlo.
 \end{frame}
 
-\begin{frame}{Podsumowanie tezy}
-\begin{itemize}
-\item Propozycja modelu błędów umożliwiającego opis właściwości metrologicznych torów pomiarowych wykorzystujących analizowane algorytmy oraz przedstawienie ich budżetu niepewności.
-\item Propozycja alternatywnej dla metody Monte Carlo metody szacowania wartości wypadkowej niepewności rozszerzonej, która:
-	\begin{itemize}
-	\item cechuje się niską złożonością obliczeniową i jest możliwa do stosowania w czasie pracy systemu pomiarowego,
-	\item daje możliwość zmiany parametrów modelu błędów podczas pracy systemu pomiarowego, zachowując niską złożoność obliczeniową.
-	\end{itemize}
-\item Wyniki uzyskiwane przy użyciu zaproponowanej metody analizy powinny być zbieżne z wynikami uzyskiwanymi metodą Monte Carlo.
-\item Dokładność uzyskiwanych wyników może zależeć od dokładności wyznaczenia parametrów modelu błędu.
-\end{itemize}
-\end{frame}
-
-\newsection{Model błędów}{Przedstawienie najważniejszych założeń dla zaproponowanego modelu błędów}
+\newsection{Model błędów}{Omówienie najważniejszych właściwości zaproponowanego modelu błędów}
 
 \begin{frame}{Model błędów toru pomiarowego}
 \begin{figure}
@@ -256,12 +226,12 @@ x _{N-1}
 
 \newsection{Niepewność rozszerzona}{Omówienie stosowanej w pracy metody wyznaczania wartości wypadkowej niepewności rozszerzonej oraz sposobu jej aplikacji}
 
-\begin{frame}{Miara niepewności rozszerzonej}
+\begin{frame}{Miara niedokładności wyniku pomiaru}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 	\begin{figure}
 	\includegraphics[scale = 0.85]{obrazki/hist_test}
-	\caption{Graficzna interpretacja miary niepewności rozszerzonej}
+	\caption{Graficzna interpretacja miary niepewności rozszerzonej jako parametru sygnału błędu $e(t)$}
 	\end{figure}
 \end{column}
 \begin{column}{0.5\textwidth}
@@ -279,7 +249,7 @@ x _{N-1}
 
 \begin{frame}{Wypadkowa niepewność rozszerzona}
 \begin{itemize}
-\item Analizowana wielkość zakłócona wieloma sygnałami błędów.
+\item Analizowana wielkość $y(t)$ zakłócona wieloma sygnałami błędów $e_{y,i}(t)$, gdzie $e_{y,\Sigma}(t) = e_{y,0}(t) + \hdots + e_{y,N-1}(t)$.
 \item Rozważane przypadki:
 	\begin{itemize}
 	\item warunki centralnego twierdzenia granicznego są spełnione,
@@ -289,11 +259,11 @@ x _{N-1}
 \item Właściwości algorytmu transformacji falkowej:
 	\begin{itemize}
 	\item wzmocnia/tłumi sygnały błędów o określonym widmie,
-	\item wiele grup wielkości wyjściowych.
+	\item wiele grup wielkości wyjściowych -- wiele iteracji analizy.
 	\end{itemize}
 \item Problemy:
 	\begin{itemize}
-	\item metoda Monte Carlo jest skuteczna, jednak bardzo czasochłonna,
+	\item metoda Monte Carlo jest przystępna, jednak bardzo czasochłonna,
 	\item metody analityczne są skomplikowane (operacja splotu).
 	\end{itemize}
 \end{itemize}
@@ -364,7 +334,7 @@ h_{i,j} = h_{j,i} = s_{i,j} p_{i,j} k_{i,j} = s_{i,j} \sqrt{\frac{\min \emb{U_{i
 \end{itemize}
 \end{frame}
 
-\newsection{Weryfikacja tezy}{Przedstawienie najważniejszych wyników badań, weryfikujących tezę pracy}
+\newsection{Weryfikacja tezy}{Przedstawienie wybranych wyników badań, weryfikujących tezę pracy}
 
 \begin{frame}{Weryfikacja założeń przedstawionych w tezie}
 \begin{itemize}

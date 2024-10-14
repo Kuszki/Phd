@@ -52,17 +52,7 @@
 \newcommand{\makecaption}[2]{\caption{\label{#1}#2}}
 \newcommand{\emb}[1]{\left(#1\right)}
 \newcommand{\bsigma}{\char"1D6D4}
-\newcommand{\newsection}[2]{
-	\section{#2}
-	\begin{frame}[plain]
-		\vfill
-		\centering
-		\begin{beamercolorbox}[sep = 8pt, center]{title}
-			\usebeamerfont{title}#1\par
-		\end{beamercolorbox}
-		\vfill
-	\end{frame}
-}
+\newcommand{\newsection}[2]{\section{#2}}
 
 \renewcommand{\arraystretch}{1.30}
 
