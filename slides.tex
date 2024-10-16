@@ -174,12 +174,12 @@ x _{N-1}
 \item Algorytm przetwarza sygnały błędów obecne w sygnale wejściowym zgodnie z charakterystyką banku filtrów.
 \item Rzeczywista implementacja algorytmu wprowadza błędy własne, związane z operacjami arytmetycznymi.
 \item Transmitancje obiektów związanych z kolejnymi wielkościami wyjściowymi są ściśle powiązane z macierzą transformacji algorytmu.
+\item Algorytm może tłumić lub wzmacniać sygnały błędów o określonym widmie.
 \item Konieczne jest określenie:
 	\begin{itemize}
 	\item parametrów sygnałów błędów na wejściu algorytmu,
 	\item parametrów sygnałów błędów własnych algorytmu.
 	\end{itemize}
-\item Algorytm może tłumić lub wzmacniać sygnały błędów o określonym widmie.
 \end{itemize}
 \end{frame}
 
@@ -188,12 +188,13 @@ x _{N-1}
 \item Wynikające z niedoskonałości transmitancji algorytmu:
 	\begin{itemize}
 	\item istnieje możliwość deterministycznego opisu przebiegu sygnałów błędów,
-	\item sygnały te występują gdy $\tilde{H}_{i}(z) \ne \dot{H}_{i}(z)$,
+	\item projektant toru pomiarowego definiuje postać transmitancji $\dot{H}_{i}(z)$,
+	\item sygnały te występują gdy $\tilde{H}_{i}(z) \ne \dot{H}_{i}(z)$.
 	\end{itemize}
 \item Wynikające z rzeczywistej implementacji algorytmu:
 	\begin{itemize}
-	\item istnieje możliwość opisu parametrów tych sygnałów w kategoriach probabilistycznych,
-	\item występują z uwagi na ograniczone możliwości precyzji zapisu liczb zmiennoprzecinkowych.
+	\item genezą są ograniczone możliwości precyzji zapisu liczb zmiennoprzecinkowych,
+	\item możliwość opisu parametrów w kategoriach probabilistycznych.
 	\end{itemize}
 \item Wynikające z niedoskonałości wyznaczenia wartości współczynników macierzy transformacji:
 	\begin{itemize}
@@ -290,9 +291,9 @@ U_{0} \\ U_{1} \\ \vdots \\ U_{N-1}
 \item $U_{i}$ -- wartość niepewności rozszerzonej $i$-tego sygnału błędu.
 \item $h_{i,j} = h_{j,i}$ -- współczynnik koherencji dla pary sygnałów $e_{i}(t)$ oraz $e_{j}(t)$:
 	\begin{itemize}
+	\item wartości zależą od parametrów analizowanych sygnałów błędów,
 	\item wyznaczane stosując metodę analityczną lub symulacyjną,
-	\item szacowane stosując odpowiednią metodę,
-	\item wartości zależą od parametrów analizowanych sygnałów błędów.
+	\item szacowane stosując odpowiednią metodę.
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -323,8 +324,7 @@ h_{i,j} = h_{j,i} = s_{i,j} p_{i,j} k_{i,j} = s_{i,j} \sqrt{\frac{\min \emb{U_{i
 \item W celu aplikacji metody należy:
 	\begin{itemize}
 	\item wyznaczyć wartości współczynników kształtu -- operacja jednorazowa,
-	\item skorygować wartości współczynników kształtu dla obecnych parametrów,
-	\item zastosować równanie \eqref{eq:unc_matrix} dla uzyskanych wartości.
+	\item skorygować wartości współczynników kształtu dla obecnych parametrów.
 	\end{itemize}
 \item Najistotniejsze cechy metody:
 	\begin{itemize}
@@ -369,17 +369,6 @@ h_{i,j} = h_{j,i} = s_{i,j} p_{i,j} k_{i,j} = s_{i,j} \sqrt{\frac{\min \emb{U_{i
 \item $y_{*}(t)$ -- napięciowa reprezentacja wielkości $s(t)$.
 \item $x_{*}(i)$ -- dyskretne próbki napięcia reprezentującego wielkość $s(t)$.
 \item $\mathbfit{X}(k)$ -- wielkości wyjściowe dla $k$-tej realizacji pomiaru.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Założenia eksperymentu symulacyjnego}
-\begin{itemize}
-\item Przetwarzana wielkość $s(t)$ o przebiegu poliharmonicznym, zakłócona addytywnym szumem białym o stałej widmowej gęstości mocy.
-\item Nieidealne właściwości dynamiczne wzmacniacza oraz przetwornika pomiarowego (inercja pierwszego rzędu).
-\item Dryft zera wzmacniacza oraz przetwornika zależne liniowo od wolnozmiennej temperatury otoczenia (skorelowane sygnały błędów).
-\item Nieidealna charakterystyka statyczna stosowanego wzmacniacza (nieliniowość charakterystyki statycznej).
-\item Algorytm transformacji falkowej wprowadza błąd własny wynikający z operacji arytmetycznych (transmitancja algorytmu idealna).
-\item Przetwarzanie A/C obarczone błędem kwantowania.
 \end{itemize}
 \end{frame}
 
@@ -431,80 +420,11 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 \end{enumerate}
 \end{frame}
 
-\begin{frame}{Identyfikacja żródeł błędów}
-\begin{itemize}
-\item Wzmacniacz operacyjny w konfiguracji nieodwracającej:
-	\begin{itemize}
-	\item niedoskonała dynamika obiektu -- $\tilde{K}_{y}(\omega) \cong \dot{K}_{y}(\omega)$, $\tilde{\varphi}_{y}(\omega) \ne \dot{\varphi}_{y}(\omega)$,
-	\item niedoskonała statyka obiektu -- przesunięcie charakterystyki, nieliniowość charakterystyki,
-	\item inne czynniki - szum na wyjściu, źródło zasilania, zmienna temperatura.
-	\end{itemize}
-\item Przetwornik A/C oraz układ P/P:
-	\begin{itemize}
-	\item niedoskonała dynamika obiektu -- $\tilde{K}_{c}(\omega) \cong \dot{K}_{c}(\omega)$, $\tilde{\varphi}_{c}(\omega) \ne \dot{\varphi}_{c}(\omega)$,
-	\item niedoskonała statyka obiektu -- błąd wzmocnienia, błędy nieliniowości, błąd przesunięcia zera,
-	\item inne czynniki - źródło napięcia referencyjnego, zmienna temperatura.
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Identyfikacja żródeł błędów}
-\begin{itemize}
-\item Algorytm transformacji falkowej:
-	\begin{itemize}
-	\item dokładność wyznaczenia wartości współczynników macierzy transformacji,
-	\item operacje arytmetyczne (FPU, instrukcje DSP, słowo~\qty{32}{\bitOwe}).
-	\end{itemize}
-\item Generator (RIGOL DG1011):
-	\begin{itemize}
-	\item rozdzielczość przetwornika C/A,
-	\item częstotliwość próbek napięcia na wyjściu,
-	\item błąd amplitudy oraz składowej stałej,
-	\item zniekształcenia harmoniczne,
-	\item nieliniowość przetwornika C/A,
-	\item zjawisko \enquote{jitter}.
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Identyfikacja parametrów modelu błędów}
-\begin{itemize}
-\item Właściwości statyczne toru pomiarowego:
-	\begin{itemize}
-	\item zastosowanie kalibratora DC (FLUKE 5700A),
-	\item badania wykonano dla wielkości $x(i)$,
-	\item eksperymenty wykonywano dla stałych warunków otoczenia.
-	\end{itemize}
-\item Właściwości dynamiczne toru pomiarowego:
-	\begin{itemize}
-	\item pomiar charakterystyki dynamicznej wzmacniacza (oscyloskop RIGOL DS5062MA oraz generator RIGOL DG1011),
-	\item model dynamiczny pierwszego rzędu dla układu P/P (parametry na podstawie dokumentacji układu).
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Identyfikacja parametrów modelu błędów}
-\begin{itemize}
-\item Błędy własne algorytmu transformacji falkowej:
-	\begin{itemize}
-	\item parametry wyznaczono zgodnie z zaproponowaną w pracy metodą,
-	\item założono, że transmitancja algorytmu jest idealna,
-	\item udział sygnałów błędów własnych okazał się pomijalnie mały.
-	\end{itemize}
-\item Właściwości generatora przebiegów arbitralnych:
-	\begin{itemize}
-	\item dokładne badania nie zostały przeprowadzone,
-	\item parametry oszacowano na podstawie dokumentacji urządzenia,
-	\item opcjonalnie stosowano dodatkowy multimetr (Agilent 3458A).
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
 \begin{frame}{Weryfikacja wartości niepewności wielkości $x(i)$}
 \begin{table}[p]
 \small\caption{Zmierzone oraz oszacowane wartości wypadkowej niepewności rozszerzonej wielkości $x(i)$ (znane parametry sygnału $s(t)$, średnia dla całego eksperymentu)}
 \begin{tabular}[c]{| c *{2}{|S[table-format = 4.3]} *{2}{|S[table-format = 4.4]} | S[table-format = +2.2] |} \hline
-\multirow{2}{*}{\textbf{$f_{s,o}$, Hz}} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{2}{c|}{\textbf{Niepewność, mV}} & \textbf{Błąd, \%} \\ \cline{2-6}
+\multirow{2}{*}{\textbf{$f_{s,o}$, Hz}} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V\textsuperscript{2}}} & \multicolumn{2}{c|}{\textbf{Niepewność, mV}} & \textbf{Błąd, \%} \\ \cline{2-6}
 & $\sigma_{c}^{2}$ & $\sigma_{m}^{2}$ & $U_{c}$ & $U_{m}$ & $\delta_{c}$ \\ \hline
 600     &       0.59    &       0.44    &       1.24    &       1.16    &       +6.74    \\ \hline
 4000    &       24.71   &       20.51   &       7.06    &       6.57    &       +7.48    \\ \hline
@@ -520,7 +440,7 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 \begin{table}[p]
 \small\caption{Zmierzone oraz oszacowane wartości wypadkowej niepewności rozszerzonej wielkości $X_{24}(i)$ (znane parametry sygnału $s(t)$, średnia dla całego eksperymentu)}
 \begin{tabular}[c]{| c *{2}{|S[table-format = 4.3]} *{2}{|S[table-format = 4.4]} | S[table-format = +2.2] |} \hline
-\multirow{2}{*}{\textbf{$f_{s,o}$, Hz}} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{2}{c|}{\textbf{Niepewność, mV}} & \textbf{Błąd, \%} \\ \cline{2-6}
+\multirow{2}{*}{\textbf{$f_{s,o}$, Hz}} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V\textsuperscript{2}}} & \multicolumn{2}{c|}{\textbf{Niepewność, mV}} & \textbf{Błąd, \%} \\ \cline{2-6}
 & $\sigma_{c}^{2}$ & $\sigma_{m}^{2}$ & $U_{c}$ & $U_{m}$ & $\delta_{c}$ \\ \hline
 600     &       0.51    &       0.48    &       1.39    &       1.37    &       +1.90     \\ \hline
 4000    &       224.98  &       186.66  &       21.28   &       19.68   &       +8.12     \\ \hline
