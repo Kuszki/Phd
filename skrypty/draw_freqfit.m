@@ -41,7 +41,6 @@ phi1 = @(x) -2.121e-13*x.^2 - 5.862e-7*x;
 amp1 = @(x) ks*ones(rows(x), columns(x));
 
 xv = logspace(2, log10(flim), 50);
-xv = fv;
 aa = amp0(xv*2*pi);
 ab = amp1(xv*2*pi);
 pa = phi0(xv*2*pi);
