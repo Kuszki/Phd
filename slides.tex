@@ -184,21 +184,21 @@ x _{N-1}
 
 \begin{frame}{Geneza sygnałów błędów własnych}
 \begin{enumerate}
-\item Wynikające z niedoskonałości transmitancji algorytmu:
+\item \label{item:trans_err_group} Wynikające z niedoskonałości transmitancji algorytmu:
 	\begin{itemize}
 	\item istnieje możliwość deterministycznego opisu przebiegu sygnałów błędów,
 	\item projektant toru pomiarowego definiuje postać transmitancji $\dot{H}_{i}(z)$,
 	\item sygnały te występują gdy $\tilde{H}_{i}(z) \ne \dot{H}_{i}(z)$.
 	\end{itemize}
-\item Wynikające z rzeczywistej implementacji algorytmu:
+\item \label{item:numeric_err_group} Wynikające z rzeczywistej implementacji algorytmu:
 	\begin{itemize}
 	\item genezą są ograniczone możliwości precyzji zapisu liczb zmiennoprzecinkowych,
 	\item możliwość opisu parametrów w kategoriach probabilistycznych.
 	\end{itemize}
 \item Wynikające z niedoskonałości wyznaczenia wartości współczynników macierzy transformacji:
 	\begin{itemize}
-	\item dla błędów numerycznych można zaliczyć je do grupy [2],
-	\item w pozostałych przypadkach można zaliczyć je do grupy [1].
+	\item dla błędów numerycznych można zaliczyć je do grupy~\itemref{item:numeric_err_group},
+	\item w pozostałych przypadkach można zaliczyć je do grupy~\itemref{item:trans_err_group}.
 	\end{itemize}
 \end{enumerate}
 \end{frame}

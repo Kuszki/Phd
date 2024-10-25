@@ -4,6 +4,7 @@
 
 \directlua{pdf.setminorversion(7)}
 
+\RequirePackage[backend = biber, style = numeric, sortcites = true, maxnames = 9]{biblatex}
 \RequirePackage[locale = PL]{siunitx}
 \RequirePackage[autostyle]{csquotes}
 \RequirePackage[polish]{babel}
@@ -132,6 +133,11 @@
 	\vfill
 }
 
+\newcommand\itemref[1]{{\renewcommand{\insertenumlabel}{\ref{#1}}\usebeamertemplate{enumerate item}}}
+
+\setbeamerfont{subsection in toc}{size = \scriptsize}
+
 \beamertemplatenavigationsymbolsempty
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{footline}[frame number]
+\setbeamertemplate{frametitle continuation}{}

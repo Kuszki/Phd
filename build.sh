@@ -97,6 +97,7 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 
 [ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua -f slides.tex
 [ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua -f thesis.tex
+[ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua -f answers.tex
 
 [ $DO_DIFF == true ] && run latexdiff-git --flatten --revision="$VER_DIFF" \
 						--graphics-markup="none" --math-markup="coarse" \

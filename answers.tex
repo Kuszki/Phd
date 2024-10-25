@@ -1,0 +1,249 @@
+\documentclass[12pt, polish, aspectratio = 169]{slides}
+
+\title{Odpowiedzi na pytania Recenzentów}
+\author{mgr inż. Łukasz Dróżdż}
+\subject{Analiza metrologiczna algorytmów dyskretnej transformacji falkowej}
+\subtitle{Analiza metrologiczna algorytmów dyskretnej transformacji falkowej}
+\institute{Politechnika Śląska, Wydział Elektryczny \\ Katedra Metrologii, Elektroniki i Automatyki}
+\keywords{dyskretna transformacja falkowa, cyfrowe przetwarzanie sygnałów, szacowanie niepewności wyniku pomiaru, analiza właściwości metrologicznych toru pomiarowego}
+
+\bibliography{dodatki/dorobek.bib}
+\date{30 października 2024}
+
+\begin{document}
+
+\section*{Wstęp do odpowiedzi i tytuł prezentacji}
+
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+\section*{Spis pytań zawartych w treści recenzji}
+
+\begin{frame}{Spis treści}
+\tableofcontents
+\end{frame}
+
+\newsection{Ryszard Rybski}{Pytania Pana prof. dr hab. inż. Ryszarda Rybskiego}
+
+\subsection{Pytanie 1 -- Motywacja stosowania metody redukcyjnej arytmetyki interwałowej}
+
+\begin{frame}{Pytanie 1 -- prof. dr hab. inż. Ryszard Rybski}\large
+\begin{justify}
+W rozprawie zaproponowano metodę szacowania wypadkowej niepewności rozszerzonej w oparciu redukcyjną arytmetykę interwałową, nie wskazano jednak w sposób bezpośredni motywacji dla stosowania tej metody w miejsce stosowanego najczęściej podejścia zaproponowanego w Przewodniku JCGM.
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 1 -- prof. dr hab. inż. Ryszard Rybski}\small
+\begin{justify}
+Niestety, w pracy zabrakło jawnego i jasnego podkreślenia motywacji stosowania metody redukcyjnej arytmetyki interwałowej w celu wyznaczania wartości wypadkowej niepewności rozszerzonej. Wskazaną motywacją jest potrzeba uzyskania wyników bardziej dokładnych, niż w przypadku stosowania podejścia zaproponowanego w Przewodniku JCGM, natomiast nie zostały uzasadnione dokładne okoliczności, w których zaproponowana metoda miałaby zapewniać znacznie bardziej dokładne wyniki, niż podejście klasyczne. Z uwagi na dużą objętość rozprawy, nie zamieszczano w niej szczegółowych wyników badań odnośnie proponowanej metody. Niemniej jednak sama motywacja stosowania tej metody powinna być w pracy jasno określona i uzasadniona bardziej szczegółowo.
+
+Analizując przedstawione w pracy wyniki (w szczególności dotyczące eksperymentów pomiarowych) zauważyć można jednak kilka istotnych wniosków, pozwalających uzasadnić stosowanie zaproponowanej metody. W przypadku torów pomiarowych, w których występują algorytmy transformacji falkowej, algorytmy te mogą wzmacniać lub tłumić sygnały błędów o wybranym widmie częstotliwościowym. Oznacza to w praktyce, że dla wielkości wejściowej tych algorytmów, mimo braku występowania dominującego sygnału błędu oraz występowania wielu sygnałów błędów (a zatem przy spełnieniu warunków centralnego twierdzenia granicznego dla budżetu niepewności tej wielkości), na wyjściu algorytmu warunki te mogą być zupełnie inne. Wobec powyższego okazać się może, że w budżecie niepewności wielkości wyjściowej będzie dało się wyróżnić dominujący sygnał błędu. Omawiana właściwość wynika z transmitancji związanej z analizowaną wielkością wyjściową.
+
+Powyższe właściwości powodują, że stosowanie metody klasycznej, która z góry zakłada spełnione warunki centralnego twierdzenia granicznego, związane jest ze znaczną rozbieżnością pomiędzy rzeczywistą, a oszacowaną wartością niepewności rozszerzonej. Stosowanie zaproponowanej w pracy metody pozwala uzyskać znacznie bardziej dokładne wyniki, co wykazano w pracach autora (pierwszą z wymienionych prac opublikowano po złożeniu rozprawy):
+
+\begin{itemize}
+\item \fullcite{auth_uncertainty}
+\item \fullcite{auth_estimation}
+\item \fullcite{auth_reductive}
+\end{itemize}
+\end{justify}
+\end{frame}
+
+\subsection{Pytanie 2 -- Możliwość stosowania innej wartości parametru poziomu ufności}
+
+\begin{frame}{Pytanie 2 -- prof. dr hab. inż. Ryszard Rybski}\large
+\begin{justify}
+Autor w rozprawie wskazuje, że zaproponowana metoda szacowania wypadkowej niepewności rozszerzonej może być stosowana dla dowolnego poziomu ufności, przy czym w pracy stosowany jest wyłącznie poziom ufności \qty{95}{\percent}. Jak można wyjaśnić tą sytuację?
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 2 -- prof. dr hab. inż. Ryszard Rybski}\small
+\begin{justify}
+Faktycznie, zaproponowana metoda szacowania wartości wypadkowej niepewności rozszerzonej może być stosowana dla dowolnego poziomu ufności (przy czym przeprowadzone przez autora szczegółowe badania wykazują, że osiągnięcie zakładanego w pracy względnego błędu oszacowania tej wartości jest możliwe dla poziomów ufności w zakresie \num{60}-\qty{98}{\percent}). Ze względu na objętość pracy nie zawarto w niej szczegółowych wyników badań w omawianym temacie, natomiast wyniki te opublikowano w pracach autora (wskazane poniżej prace opublikowano po złożeniu rozprawy):
+
+\begin{itemize}
+\item \fullcite{auth_uncertainty}
+\item \fullcite{auth_estimation}
+\end{itemize}
+
+Wybór poziomu ufności, który każdorazowo wynosi \qty{95}{\percent}, został przyjęty w pracy z uwagi na fakt, że wartość ta jest bardzo często spotykana w literaturze oraz w Przewodniku JCGM. Trudno jednak jednoznacznie wskazać motywację przyjęcia dokładnie takiej wartości poziomu ufności. Można w tym miejscu wspomnieć słowa Pana prof. PW dr hab. Michała Urbańskiego, wypowiedziane podczas wystąpienia w czasie XVI Konferencji PPM, w których sam Pan Profesor podkreśla brak jednoznacznej odpowiedzi na pytanie odnośnie przyjęcia właśnie takiej wartości dla poziomu ufności w swojej pracy.
+\end{justify}
+\end{frame}
+
+\subsection{Pytanie 3 -- Stosowanie zaproponowanej metody analizy w przypadku skorelowanych sygnałów błędów}
+
+\begin{frame}{Pytanie 3 -- prof. dr hab. inż. Ryszard Rybski}\large
+\begin{justify}
+W pracy nie poruszono szczegółowo zagadnienia, w którym analizowane sygnały błędów są ze sobą skorelowane, natomiast nie występuje pełna korelacja tych sygnałów, jak również przypadku sygnałów błędów o niesymetrycznym rozkładzie wartości ich realizacji i niezerowej wartości oczekiwanej. Nasuwa się wobec tego pytanie, czy również w wymienionych sytuacjach zaproponowana metoda może być wykorzystana?
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 3 -- prof. dr hab. inż. Ryszard Rybski}\small
+\begin{justify}
+Odpowiedź na wskazane pytanie należy rozważyć z osobna dla zaproponowanego w pracy modelu błędów oraz dla zaproponowanej metody szacowania wartości wypadkowej niepewności rozszerzonej. W przypadku modelu błędów aplikacja tego modelu możliwa jest bez żadnych przeszkód, zarówno w przypadku niesymetrycznych rozkładów wartości realizacji sygnałów błędów, ich niezerowej wartości oczekiwanej oraz dowolnej korelacji. W tym przypadku model ten pozwala wyznaczyć wariancję wypadkowego sygnału błędu oraz wartość niepewności standardowej. W przypadku metody szacowania wartości wypadkowej niepewności rozszerzonej stosowanie tej metody jest możliwe z pewnymi ograniczeniami lub wzrostem stopnia skomplikowania tej metody.
+
+Analizując przypadek niezerowej wartości oczekiwanej należy stosować zaproponowaną metodę bez modyfikacji, natomiast należy uwzględnić składową stałą sygnału błędu (jego wartość oczekiwaną). Składowa ta nie ma wpływu na wartość niepewności rozszerzonej (nie wpływa na wariancję sygnału błędu), natomiast stanowi jego składową systematyczną, możliwą do skorygowania.
+
+W przypadku niepełnej korelacji wybranych sygnałów błędów proponuje się (podobnie jak postępowano w pracy w przypadku pełnej korelacji) w pierwszej kolejności oszacować parametry wypadkowego sygnału błędu dla skorelowanej grupy sygnałów, a następnie zastosować bezpośrednio proponowaną metodę. W tym miejscu pojawić się jednak może ograniczenie w postaci nietypowego kształtu omawianego wypadkowego sygnału błędu. Rozwiązaniem tej sytuacji może być wyznaczenie współczynnika kształtu tego sygnału (co pokazano w pracy na przykładzie sygnału błędu zaokrągleń) lub zastosowanie innej metody wyznaczania wartości współczynnika koherencji dla skorelowanych sygnałów, co pokazano w pracy (wskazaną poniżej pracę opublikowano po złożeniu rozprawy, a zatem nie została w niej zacytowana):
+
+\begin{itemize}
+\item \fullcite{auth_uncertainty}
+\end{itemize}
+
+Należy jednak zaznaczyć, że przypadek skorelowanych sygnałów jest zwykle skomplikowany z punktu widzenia kształtu rozkładu wartości realizacji wypadkowego sygnału błędu, przez co bardzo trudno wskazać uniwersalną metodę analizy -- tym bardziej w przypadku więcej niż dwóch istotnie skorelowanych sygnałów.
+
+Ostatnim przypadkiem jest niesymetryczny rozkład wartości realizacji sygnałów błędów. W tym przypadku bezpośrednie zastosowanie zaproponowanej metody wyznaczania wartości wypadkowej niepewności rozszerzonej nie jest obecnie możliwe. Planowane są jednak prace badawcze, których celem będzie rozszerzenie omawianej metody oraz weryfikacja możliwości stosowania jej w omawianych okolicznościach.
+\end{justify}
+\end{frame}
+
+\subsection{Pytanie 4 -- Dokładność oszacowania parametrów modelu błędów dla właściwości dynamicznych}
+
+\begin{frame}{Pytanie 4 -- prof. dr hab. inż. Ryszard Rybski}\large
+\begin{justify}
+Podczas pomiarowej weryfikacji tezy pracy parametry statyczne badanego toru pomiarowego zostały wyznaczone z wystarczającą dla zaplanowanego eksperymentu dokładnością -- zastosowano odpowiedni kalibrator i multimetr. Właściwości dynamiczne wyznaczono znacznie mniej dokładnie, stosując generator przebiegów sinusoidalnych i oscyloskop, co miało istotny wpływ na uzyskaną stosunkowo dużą wartość względnego błędu oszacowania wartości niepewności wielkości wyjściowych algorytmu. Czy w zaistniałej sytuacji nie należało dokładniej zidentyfikować parametrów charakteryzujących właściwości dynamiczne toru pomiarowego?
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 4 -- prof. dr hab. inż. Ryszard Rybski}\small
+\begin{justify}
+Istotnie, parametry opisujące właściwości statyczne analizowanego toru pomiarowego zostały wyznaczone z dużo większą dokładnością, niż w przypadku parametrów dynamicznych. Należy jednak zauważyć, że stosowanie wskazanych przyrządów (generatora przebiegów arbitralnych i oscyloskopu) było jedynie jednym z czynników, wpływających na dokładność wyznaczenia omawianych parametrów. Dodatkowym czynnikiem, którego wpływ jest niezwykle istotny, było stosowanie wielomianu w celu aproksymacji zależności wartości przesunięcia fazowego w funkcji pulsacji przetwarzanego sygnału dla stosowanego wzmacniacza operacyjnego -- to właśnie ten czynnik był niezwykle istotny. Należy również zauważyć, że z uwagi na niezwykle duży stopień integracji układu próbkująco-pamiętającego oraz przetwornika analogowo-cyfrowego, parametry opisujące modele tych układów zostały zaczerpnięte z ich dokumentacji -- weryfikacja poprawności wartości tych parametrów była zatem niemożliwa. Wobec powyższych, poprawę dokładności wyznaczania wartości wielkości opisujących parametry dynamiczne toru pomiarowego należałoby przeprowadzić stosując bardziej dokładne odwzorowanie charakterystyki przesunięcia fazowego w funkcji częstotliwości dla wzmacniacza operacyjnego, przy czym w przypadku przedstawionym w pracy w pierwszej kolejności należałoby zaproponować bardziej dokładną aproksymacje tej charakterystyki (np. stosując wielomian wyższego rzędu).
+
+Niemniej jednak, opracowany na podstawie sporządzonego modelu budżet niepewności pozwolił oszacować wartość wypadkowej niepewności rozszerzonej wielkości wejściowych algorytmu transformacji falkowej z względnym błędem około \qty{5}{\percent}. Należy podkreślić, że na ostateczną wartość względnego błędu oszacowania wartości niepewności rozszerzonych wielkości wyjściowych toru pomiarowego najbardziej istotny wpływ miało niewłaściwe oszacowanie budżetu niepewności wielkości wejściowych analizowanego toru pomiarowego. Analiza właściwości stosowanego generatora nie stanowiła jednak tematyki pracy, zatem nie została przeprowadzona w sposób odpowiednio dokładny.
+\end{justify}
+\end{frame}
+
+\newsection{Ryszard Rybski}{Pytania Pana prof. dr hab. inż. Waldemara Minkiny}
+
+\subsection{Pytanie 1 -- Wskazanie ograniczeń pracy i nieporuszanych w niej zagadnień}
+
+\begin{frame}{Pytanie 1 -- prof. dr hab. inż. Waldemar Minkina}\large
+\begin{justify}
+Standardowo, na początku pracy powinno się podać ograniczenia pracy -- np. znam dany problem, ale go nie rozwiązując, gdyż jest on bardzo szeroki. Tego nie podano, a szkoda, gdyż wtedy możnaby uniknąć ewentualnych uwag recenzentów dotyczących braków pewnych analiz i eksperymentów.
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 1 -- prof. dr hab. inż. Waldemar Minkina}\small
+\begin{justify}
+Rzeczywiście, we wstępie do pracy nie sprecyzowano wszystkich jej ograniczeń. Część z nich była kolejno omawiana w dalszych rozdziałach pracy, co jednak z punktu widzenia czytelnika nie było do końca przystępnym rozwiązaniem.
+
+Należy zauważyć, że na etapie tworzenia pracy nie wszystkie problemy zostały pominięte przez autora świadomie. Ewentualne pytania w tym temacie stanowią zatem dla autora pracy bardzo cenne wskazówki, jakie problemy należy poruszyć w przyszłych badaniach. W tym miejscu chciałbym podziękować za wskazanie problemu analizy sygnałów o losowej wartości realizacji amplitudy/fazy oraz przypadku zmiennej czułości obiektu w funkcji temperatury. Tematyka ta z pewnością zostanie poruszona w przyszłych publikacjach, w tym dotyczących sygnałów błędów związanych z opóźnieniami w systemach pomiarowo-sterujących.
+\end{justify}
+\end{frame}
+
+\subsection{Pytanie 2 -- Obszary zastosowań algorytmu transformacji falkowej}
+
+\begin{frame}{Pytanie 2 -- prof. dr hab. inż. Waldemar Minkina}\large
+\begin{justify}
+(\dots) recenzent czuje pewien niedosyt dotyczący opisania przez Doktoranta możliwości aplikacji praktycznych (utylitarnych) opracowanych algorytmów.
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 2 -- prof. dr hab. inż. Waldemar Minkina}\small
+\begin{justify}
+Obszar zastosowań omawianych algorytmów jest bardzo rozległy, przy czym jest on ciągle uzupełniany o kolejne propozycje zastosowań tych algorytmów. Jak zauważono, w pracy nie opisano szczegółowo zastosowań algorytmów transformacji falkowej -- wypunktowano jedynie wybrane obszary ich zastosowań, odwołując się do istniejącej literatury. W pracy podkreślano mnogość zastosowań analizowanych algorytmów, wskazując między innymi zastosowania związane z analizą sygnału EEG oraz EKG, analizą zwarć wysokoprądowych, przetwarzaniem obrazu oraz dźwięku, analizą drgań sejsmicznych, algorytmami kompresji danych, szacowaniem stanu zużycia elementów maszyn, detekcji rodzaju materiałów, redukcją szumu w sygnale pomiarowym oraz detekcją wycieków z rurociągów. Obszar zastosowań omawianych algorytmów stale się powiększa, o czym świadczy przede wszystkim duża liczba publikacji poświęcona omawianej tematyce. Niestety, jak podkreślano w treści rozprawy, w przypadku omawianych prac analiza właściwości metrologicznych tych algorytmów nie jest przeprowadzana.
+\end{justify}
+\end{frame}
+
+\newsection{Ryszard Rybski}{Pytania Pana dr hab. inż. Jerzego Augustyna, prof. PŚk}
+
+\subsection{Pytanie 1 -- Wybór rodzajów falek podczas eksperymentów i przedstawiania ich wyników}
+
+\begin{frame}{Pytanie 1 -- dr hab. inż. Jerzy Augustyn, prof. PŚk : pytanie 1}\large
+\begin{justify}
+Autor rozprawy wykorzystuje różne rodzaje falek podczas analizy błędów własnych algorytmu DWT, podczas realizacji badań symulacyjnych oraz pomiarowej weryfikacji tezy pracy. Analiza wariancji błędu zaokrągleń dotyczy falki \enquote{coif5}, badania symulacyjne przeprowadzono dla falki \enquote{db2}, a pomiarowa weryfikacja została zrealizowana dla falki \enquote{spline4:4}. Ponadto zastosowane falki charakteryzują się różną liczbą wielkości wyjściowych. Wydaje się, że wnioski wynikające z przeprowadzonych badań zyskałyby na wiarygodności, gdyby zostały oparte na jednakowych falkach.
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 1 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\small
+\begin{justify}
+Rzeczywiście, w kolejnych fragmentach pracy stosowane są różne rodzaje falek oraz różne parametry algorytmu transformacji falkowej. Fakt ten podyktowany jest chęcią podkreślenia uniwersalności proponowanej metody analizy, niezależnie od stosowanej falki-matki oraz parametrów algorytmu. Ze względu na objętość pracy, nie umieszczono w niej tak wielu szczegółowych wyników badań, natomiast wyniki te znaleźć można w pracach autora (pierwsza ze wskazanych prac została opublikowana po złożeniu rozprawy):
+
+\begin{itemize}
+\item \fullcite{auth_dwtownerr}
+\item \fullcite{auth_estimation}
+\end{itemize}
+
+W opinii autora, stosowanie jednej wybranej konfiguracji algorytmu w całej pracy mogłoby budzić wątpliwości odnośnie uniwersalności zaproponowanej metody analizy. Z drugiej strony wykonywanie z osobna szczegółowej analizy dla kilku wybranych konfiguracji algorytmu miałoby negatywny wpływ na objętość pracy. Niemniej jednak, jak słusznie zauważono, brak kompletu wyników dla jednej konfiguracji algorytmu może budzić pewne wątpliwości.
+\end{justify}
+\end{frame}
+
+\subsection{Pytanie 2 -- Kolejność analizy właściwości statycznych i dynamicznych obiektu}
+
+\begin{frame}{Pytanie 2 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\large
+\begin{justify}
+W przedstawionym na rysunku 2.2 modelu części analogowej toru pomiarowego, w pierwszej kolejności, na podstawie transmitancji obiektu, analizowane są właściwości dynamiczne, a następnie, na podstawie równania przetwarzania jego właściwości statyczne. Wprawdzie w treści rozprawy analizowany jest jedynie przypadek liniowej funkcji przetwarzania, jednak Autor w jej treści dopuszcza również możliwość wystąpienia nieliniowości. W tym kontekście nasuwa się pytanie o właściwą kolejność analizy właściwości obiektu. Nieliniowa funkcja przetwarzania spowoduje pojawienie się dodatkowych składowych w widmie analizowanego sygnału.
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 2 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\small
+\begin{justify}
+Zaproponowany model obiektu bazuje na koncepcji modelu Wienera dla obiektu nieliniowego. Model ten często stosowany jest do obiektów realizujących proces pomiaru, których odpowiedź na zmianę wartości realizacji analizowanej wielkości fizycznej charakteryzuje w pierwszej kolejności pewna inercja (właściwości dynamiczne), a następnie przetwarzają one tą wielkość na inną, zgodnie z pewną charakterystyką (właściwości statyczne). W opinii autora model ten jest bardziej odpowiedni dla większości elementów toru pomiarowego, niż model Hammersteina, w którym kolejność analizy jest odwrotna (model ten stosowany jest w przypadku elementów wykonawczych). Należy zauważyć, że na podstawie treści pracy i przedstawionych w rozdziale drugim równań istnieje możliwość przeprowadzenia analizy również w przypadku modelu Hammersteina, wyprowadzając odpowiednie zależności analogicznie, jak wskazano w pracy.
+
+Jak słusznie zauważono w omawianej uwadze, obecność nieliniowej funkcji przetwarzania zaowocuje zmianą widma sygnału (pojawieniem się dodatkowych harmonicznych) na wyjściu obiektu. Jako, że omawiana zmiana zależeć będzie od postaci funkcji przetwarzania obiektu, uniwersalny opis tego zjawiska, stosując łatwe w aplikacji równania, przystępne dla inżyniera będącego projektantem toru pomiarowego, nie jest możliwy. W pracy nie poruszano zatem szczegółowo tego zagadnienia, niemniej jednak wskazano, w jaki sposób wyznaczyć wariancję sygnału błędu na wyjściu takiego obiektu.
+\end{justify}
+\end{frame}
+
+\subsection{Pytanie 3 -- Możliwość stosowania modelu błędu w przypadku sygnałów nieharmonicznych}
+
+\begin{frame}{Pytanie 3 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\large
+\begin{justify}
+W badaniach weryfikujących tezę rozprawy, jej Autor wykorzystuje sygnał mono- i poliharmoniczny. Czy przedstawione w pracy wnioski z ich analizy dotyczą również sygnałów nieharmonicznych?
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 3 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\small
+\begin{justify}
+Przypadek sygnału nieharmonicznego również może być analizowany stosując zaproponowany model błędów. W przypadku sygnałów błędów statycznych oraz losowych analiza jest identyczna, jak w przypadku sygnałów harmonicznych. W przypadku sygnałów błędów dynamicznych należy potraktować analizowany fragment sygnału (ciąg realizacji tego sygnału, stanowiący wektor wielkości wejściowych dla pojedynczej iteracji algorytmu), związanego z wielkością wejściową algorytmu, jak sygnał harmoniczny. Na podstawie widma omawianego sygnału oszacować należy następnie parametry sygnału błędu dynamicznego.
+
+Niestety, w pracy nie przedstawiono przykładu takiej analizy. Planowana jest natomiast publikacja, w której analiza ta zostanie szczegółowo omówiona.
+\end{justify}
+\end{frame}
+
+\subsection{Pytanie 4 -- Transmitancja obiektu i jej związek z wielkościami wyjściowymi tego obiektu}
+
+\begin{frame}{Pytanie 4 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\large
+\begin{justify}
+W kilku fragmentach pracy Autor używa niefortunnego sformułowania wiążącego pojecie transmitancji z sygnałem, a nie z obiektem. Na przykład na stronie 39 poniżej wzoru (2.106) używa sformułowania \enquote{\dots transmitancji wielkości wyjściowych algorytmu\dots}, a na stronie 75, w ostatnim zdaniu punktu 3.7, pisze: \enquote{\dots każda z wielkości wyjściowych cechować się będzie inną transmitancją\dots}.
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 4 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\small
+\begin{justify}
+Niestety, wskazane sformułowanie rzeczywiście występuje w pracy, przy czym wynika ono z niedostatecznej redakcji pracy i nie zostało użyte celowo. Jak słusznie wskazano, prawidłowym sformułowaniem jest \enquote{transmitancja związana z obiektem, który przetwarza pewną wielkość wejściową na wielkość wyjściową}.
+\end{justify}
+\end{frame}
+
+\subsection{Pytanie 5 -- Stosowanie identycznych sond pomiarowych podczas wyznaczania wartości wzmocnienia i fazy}
+
+\begin{frame}{Pytanie 5 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\large
+\begin{justify}
+Omawiając, na stronie 138 rozprawy elementy zastosowanego układu pomiarowego, Autor stwierdza, że \enquote{\dots zastosowano oscyloskop RIGOL\dots w połączeniu z dwiema identycznymi sondami P61009}, Wyciąga z tego wniosek o identyczności błędów pomiaru napięć i przesunięć fazowych obu kanałów pomiarowych oscyloskopu i o ich wzajemnym skompensowaniu. Należy zwrócić uwagę, że, z punktu widzenia metrologii, wszystkie elementy układu pomiarowego, nawet o nominalnie takich samych parametrach, różnią się, co jest oceniane poprzez podawanie wartości ich niepewności aparaturowych. Stąd ich pełna kompensacja w omawianym przypadku jest mało prawdopodobna.
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 5 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\small
+\begin{justify}
+We wskazanym fragmencie pracy użyto niefortunnego skrótu myślowego. Intencją autora było wskazanie, że z uwagi na identyczny model, zastosowane sondy cechować się będą bardzo podobnymi parametrami tłumienia i przesunięcia fazowego w funkcji pulsacji. Ewentualna rozbieżność tych parametrów pomiędzy sondami wprowadzi do wyniku pomiaru na tyle mały błąd, że jego udział może zostać pominięty w dalszej analizie. Jak jednak słusznie zauważono, przedstawiony fragment wprowadza czytelnika w błąd i powinien być zastąpiony odpowiednim wyjaśnieniem.
+\end{justify}
+\end{frame}
+
+\subsection{Pytanie 6 -- Wskaźniki ilościowe opisujące jakość doboru parametrów modelu błędów}
+
+\begin{frame}{Pytanie 6 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\large
+\begin{justify}
+Analizując wyniki pomiarów charakterystyk częstotliwościowych wzmacniacza pomiarowego przedstawionych na rysunku 5.3, Autor stwierdza, że \enquote{model zaproponowany w równaniach (5.26) oraz (5.27) stanowi akceptowalne przybliżenie charakterystyki analizowanego wzmacniacza pomiarowego, natomiast model dany równaniem (5.25) odbiega od niej znacząco, przez co nie może być stosowany}. Powyższe subiektywne stwierdzenia Autora powinny zostać poparte odpowiednimi wskaźnikami ilościowymi.
+\end{justify}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Odpowiedź 6 -- dr hab. inż. Jerzy Augustyn, prof. PŚk}\small
+\begin{justify}
+Wskazane stwierdzenia zostały sformułowane na podstawie ilościowych wskaźników, przy czym te nie zostały niestety zawarte w treści pracy. Podczas badań posłużono się miarą odchylenia standardowego różnic pomiędzy wartością aproksymacji uzyskaną dla wskazanego modelu oraz wartości uzyskanej pomiarowo.
+
+W przypadku modelu opisanego w pracy jako \enquote{bardziej dokładny}, wartość ta wynosiła w przypadku fazy \qty{2.06E-3}{rad} oraz \qty{0.14E-1}{V \per V} w przypadku wzmocnienia. Dla modelu \enquote{mniej dokładnego} wartości te wynosiły odpowiednio \qty{2.26E-3}{rad} oraz \qty{0.25E-1}{V \per V}.
+
+Jak słusznie zauważono, wartości te oraz sposób ich wyznaczania koniecznie powinny znaleźć się w pracy. Brak wskazanych informacji sugeruje bowiem, że autor bezpodstawnie oraz subiektywnie ocenia zasadność stosowania wybranego modelu.
+\end{justify}
+\end{frame}
+
+\end{document}
