@@ -49,6 +49,7 @@
 
 \xpatchcmd{\interval}{interval,}{interval,scaled,}{}{}
 
+\newcommand\itemref[1]{{\renewcommand{\insertenumlabel}{\ref{#1}}\usebeamertemplate{enumerate item}}}
 \newcommand{\lastpage}{\usebeamertemplate{last page}}
 \newcommand{\makecaption}[2]{\caption{\label{#1}#2}}
 \newcommand{\emb}[1]{\left(#1\right)}
@@ -132,8 +133,6 @@
 	\endgroup
 	\vfill
 }
-
-\newcommand\itemref[1]{{\renewcommand{\insertenumlabel}{\ref{#1}}\usebeamertemplate{enumerate item}}}
 
 \setbeamerfont{subsection in toc}{size = \scriptsize}
 
