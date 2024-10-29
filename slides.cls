@@ -107,7 +107,10 @@
 		\centering
 		\usebeamertemplate{title}
 		\vskip 1em \par
-		\usebeamertemplate{author}
+		\begin{tabular}[c]{r @{~:~} l}
+		\textbf{Autor}        & \fullauthor   \\
+		\textbf{Promotor}     & \fullpromoter \\
+		\end{tabular}
 		\usebeamertemplate{institute}
 		\usebeamertemplate{date}
 		\vskip 1em \par
@@ -126,7 +129,7 @@
 			\usebeamerfont{title}Dziękuję za uwagę
 		\end{beamercolorbox}
 		\vskip 3em \par
-		\usebeamertemplate{author}
+		\fullauthor\par
 		\usebeamertemplate{institute}
 		\vskip 1em \par
 		\usebeamertemplate{titlegraphic}
