@@ -55,7 +55,7 @@ w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Obszary zastosowań algorytmu}
+\begin{frame}{Przykłady zastosowań algorytmu}
 \begin{itemize}
 \item Przetwarzanie, kompresja oraz analiza obrazów i dźwięków.
 \item Pomiary termowizyjne.
@@ -77,14 +77,20 @@ w_{a,b} = \frac{1}{\sqrt{a}} \int _{-\infty} ^{\infty} x \emb{t} \psi \emb{\frac
 	\item zmiana rodzaju stosowanej falki-matki,
 	\item zmiana liczby iteracji procesu dekompozycji.
 	\end{itemize}
-\item Równanie falki matki $\psi(t)$ nie zawsze jest dostępne.
-\item Wyprowadzenie odpowiednich zależności jest czasochłonne.
-\item Zmiana parametrów stosowanego algorytmu wymusza ponowną analizę.
-\item Wymagana jest ekspercka wiedza na temat stosowanej rodziny falek.
-\item Metody analityczne są skomplikowane i nie są uniwersalne.
-\item Metoda Monte Carlo jest czasochłonna.
-\item Brak wskazówek w przewodniku JCGM.
-\item Analiza właściwości metrologicznych jest pomijana.
+\item Równanie falki matki $\psi(t)$ nie zawsze jest dostępne:
+	\begin{itemize}
+	\item wyprowadzenie odpowiednich zależności jest czasochłonne,
+	\item wymagana jest ekspercka wiedza na temat stosowanej rodziny falek.
+	\end{itemize}
+\item Zmiana parametrów stosowanego algorytmu wymusza ponowną analizę:
+	\begin{itemize}
+	\item metody analityczne są skomplikowane i nie są uniwersalne,
+	\item metoda Monte Carlo jest czasochłonna.
+	\end{itemize}
+\item Brak wskazówek w Przewodniku JCGM:
+	\begin{itemize}
+	\item analiza właściwości metrologicznych jest pomijana.
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -168,20 +174,6 @@ x _{N-1}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Właściwości metrologiczne algorytmu}
-\begin{itemize}
-\item Algorytm przetwarza sygnały błędów obecne w sygnale wejściowym zgodnie z charakterystyką banku filtrów.
-\item Rzeczywista implementacja algorytmu wprowadza błędy własne, związane z operacjami arytmetycznymi.
-\item Transmitancje obiektów związanych z kolejnymi wielkościami wyjściowymi są ściśle powiązane z macierzą transformacji algorytmu.
-\item Algorytm może tłumić lub wzmacniać sygnały błędów o określonym widmie.
-\item Konieczne jest określenie:
-	\begin{itemize}
-	\item parametrów sygnałów błędów na wejściu algorytmu,
-	\item parametrów sygnałów błędów własnych algorytmu.
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
 \begin{frame}{Geneza sygnałów błędów własnych}
 \begin{enumerate}
 \item \label{item:trans_err_group} Wynikające z niedoskonałości transmitancji algorytmu:
@@ -211,7 +203,7 @@ x _{N-1}
 	\end{equation}
 	\begin{figure}
 	\includegraphics[scale = 0.85]{obrazki/schemat_dwt_ew_min}
-	\caption{Proces identyfikacji parametrów sygnałów błędów własnych}
+	\caption{Proces identyfikacji parametrów sygnałów błędów własnych dla $j$-tej wielkości wyjściowej algorytmu}
 	\end{figure}
 \end{column}
 \begin{column}{0.4\textwidth}
@@ -249,17 +241,15 @@ x _{N-1}
 
 \begin{frame}{Wypadkowa niepewność rozszerzona}
 \begin{itemize}
-\item Analizowana wielkość $y(t)$ jest zakłócona wieloma sygnałami błędów, przy czym $\tilde{y}(t) = \dot{y}(t) + e_{y,\Sigma}(t)$ oraz $e_{y,\Sigma}(t) = e_{y,0}(t) + \hdots + e_{y,N-1}(t)$.
-\item Rozważane przypadki:
+\item Analizowana wielkość $s(t)$ jest zakłócona wieloma sygnałami błędów, przy czym $\tilde{s}(t) = \dot{s}(t) + e_{s,\Sigma}(t)$ oraz $e_{s,\Sigma}(t) = e_{s,0}(t) + \hdots + e_{s,N-1}(t)$.
+\item Rozważane przypadki dla zmiennej liczby i parametrów sygnałów błędów:
 	\begin{itemize}
-	\item warunki centralnego twierdzenia granicznego są spełnione,
-	\item warunki centralnego twierdzenia granicznego nie są spełnione,
-	\item parametry oraz liczba sygnałów błędów mogą się zmieniać.
+	\item warunki centralnego twierdzenia granicznego nie zawsze są spełnione.
 	\end{itemize}
 \item Właściwości algorytmu transformacji falkowej:
 	\begin{itemize}
 	\item wzmocnia/tłumi sygnały błędów o określonym widmie,
-	\item wiele grup wielkości wyjściowych -- wiele iteracji analizy.
+	\item osobna analiza dla każdej grupy wielkości wyjściowych.
 	\end{itemize}
 \item Problemy:
 	\begin{itemize}
@@ -287,6 +277,7 @@ U_{0} \\ U_{1} \\ \vdots \\ U_{N-1}
 \label{eq:unc_matrix}
 \end{equation}
 \begin{itemize}
+\item $U_{\Sigma}$ -- oszacowana wartość wypadkowej niepewności rozszerzonej.
 \item $U_{i}$ -- wartość niepewności rozszerzonej $i$-tego sygnału błędu.
 \item $h_{i,j} = h_{j,i}$ -- współczynnik koherencji dla pary sygnałów $e_{i}(t)$ oraz $e_{j}(t)$:
 	\begin{itemize}
@@ -340,13 +331,14 @@ h_{i,j} = h_{j,i} = s_{i,j} p_{i,j} k_{i,j} = s_{i,j} \sqrt{\frac{\min \emb{U_{i
 \begin{itemize}
 \item Metoda szacowania wartości wypadkowej niepewności rozszerzonej:
 	\begin{itemize}
-	\item badania symulacyjne przeprowadzone metodą Monte Carlo,
-	\item zmienna liczba oraz zmienne parametry sygnałów błędów.
+	\item badania symulacyjne przeprowadzone metodą Monte Carlo, 
+	\item uwzględnienie zmiennej liczby oraz zmiennych parametrów sygnałów błędów,
+	\item weryfikacja wpływu zaproponowanej korekty na dokładność wyników,
 	\end{itemize}
 \item Zaproponowany w pracy model błędów:
 	\begin{itemize}
-	\item symulacyjna weryfikacja przedstawionych zależności dla przykładowego toru pomiarowego metodą Monte Carlo,
-	\item pomiarowa weryfikacja przedstawionych zależności dla zbudowanego na potrzeby pracy toru pomiarowego.
+	\item weryfikacja symulacyjna metodą Monte Carlo,
+	\item weryfikacja pomiarowa na przykładzie prototypu toru pomiarowego.
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -354,7 +346,7 @@ h_{i,j} = h_{j,i} = s_{i,j} p_{i,j} k_{i,j} = s_{i,j} \sqrt{\frac{\min \emb{U_{i
 \begin{frame}{Wartość wypadkowej niepewności rozszerzonej}
 \begin{figure}
 \includegraphics[scale = 0.85]{obrazki/hist_rederr_all_2_5_1_20}
-\caption{Względny błąd oszacowania wartości wypadkowej niepewności rozszerzonej \textbf{a)}~stosując proponowaną metodę, \textbf{b)}~stosując oryginalną metodę (bez korekty), \textbf{c)}~stosując przewodnik JCGM, $N \in \interval{2}{5}$, $U_{i} \in \interval{1}{20}$, $1-\alpha = \qty{95}{\percent}$}
+\caption{Względny błąd oszacowania wartości wypadkowej niepewności rozszerzonej \textbf{a)}~stosując proponowaną metodę, \textbf{b)}~stosując oryginalną metodę (bez korekty), \textbf{c)}~stosując Przewodnik JCGM, $N \in \interval{2}{5}$, $U_{i} \in \interval{1}{20}$, $1-\alpha = \qty{95}{\percent}$}
 \end{figure}
 \end{frame}
 
@@ -373,7 +365,7 @@ h_{i,j} = h_{j,i} = s_{i,j} p_{i,j} k_{i,j} = s_{i,j} \sqrt{\frac{\min \emb{U_{i
 
 \begin{frame}{Wyniki eksperymentu symulacyjnego}
 \begin{table}
-\small\caption{Zestawienie wyników eksperymentu symulacyjnego \textbf{a)}~stosując proponowaną metodę, \textbf{b)}~stosując oryginalną metodę (bez korekty), \textbf{c)}~stosując przewodnik JCGM, \textbf{s)}~stosując symulację metodą Monte Carlo (średnia dotyczy wszystkich wielkości)}
+\small\caption{Zestawienie wyników eksperymentu symulacyjnego \textbf{a)}~stosując proponowaną metodę, \textbf{b)}~stosując oryginalną metodę (bez korekty), \textbf{c)}~stosując Przewodnik JCGM, \textbf{s)}~stosując symulację metodą Monte Carlo (średnia dotyczy wszystkich wielkości)}
 \begin{tabular}[c]{| c *{4}{|S[table-format = 3.3]} *{3}{|S[table-format = +1.2]} |} \hline
 \multirow{2}{*}{\textbf{Wielkość}} & \multicolumn{4}{c|}{\textbf{Niepewność, mV}} & \multicolumn{3}{c|}{\textbf{Błąd, \%}} \\ \cline{2-8}
           & $U_{c}$ & $U_{a}$ & $U_{b}$ & $U_{s}$ & $\delta_{c}$ & $\delta_{a}$ & $\delta_{b}$ \\ \hline
@@ -458,9 +450,9 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 \end{figure}
 \end{frame}
 
-\newsection{Podsumowanie}{Przedstawienie najważniejszych wniosków płynących z pracy}
+\newsection{Podsumowanie}{Przedstawienie najważniejszych osiągnięć i wniosków płynących z pracy}
 
-\begin{frame}{Najważniejsze osiągnięcia pracy}
+\begin{frame}{Najważniejsze osiągnięcia}
 \begin{itemize}
 \item Zaproponowanie jednolitego modelu błędów, opisującego właściwości toru pomiarowego, zarówno części cyfrowej oraz analogowej.
 \item Przedstawienie algorytmu transformacji falkowej w postaci macierzowej wraz z metodami identyfikacji wartości współczynników macierzy transformacji.
@@ -473,15 +465,14 @@ $T_{1,3}$ & 44.79 & 43.39 & 45.43 & 43.17 & +3.75 & +0.51 & +5.24 \\ \hline
 
 \begin{frame}{Wnioski}
 \begin{itemize}
-\item Zaproponowany model błędów jest zasadny w przypadku analizy torów pomiarowych wykorzystujących algorytmy transformacji falkowej.
+\item Zaproponowany model błędów jest zasadny w przypadku analizy torów pomiarowych wykorzystujących algorytmy transformacji falkowej, natomiast dokładność oszacowania wartości wypadkowej niepewności rozszerzonej zależy od dokładności określenia parametrów tego modelu.
 \item Zaproponowana metoda szacowania wartości wypadkowej niepewności rozszerzonej zapewnia wyniki zbliżone do uzyskiwanych metodą Monte Carlo, a niska złożoność obliczeniowa umożliwia jej aplikację w czasie rzeczywistym, również w przypadku zmiany parametrów modelu błędów.
-\item Stosowanie zaproponowanej metody uzasadnione jest wtedy, gdy nie są spełnione warunki centralnego twierdzenia granicznego.
+\item Stosowanie wskazanej metody możliwe jest zawsze, jednak uzasadnione jest wtedy, gdy warunki centralnego twierdzenia granicznego nie są spełnione.
 \item Mimo spełnienia warunków centralnego twierdzenia granicznego dla wielkości wejściowych, warunki te mogą nie być spełnione dla wielkości wyjściowych algorytmu transformacji falkowej.
-\item Dokładność oszacowania wartości wypadkowej niepewności rozszerzonej zależy od dokładności określenia parametrów modelu błędów.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Podsumowanie dorobku naukowego}
+\begin{frame}{Dorobek naukowy}
 \begin{itemize}
 \item 13 współautorskich artykułów naukowych w czasopismach:
 	\begin{itemize}
