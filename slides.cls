@@ -108,8 +108,8 @@
 		\usebeamertemplate{title}
 		\vskip 1em \par
 		\begin{tabular}[c]{r @{~:~} l}
-		\textbf{Autor}        & \fullauthor   \\
-		\textbf{Promotor}     & \fullpromoter \\
+		\small\textbf{Autor}        & \usebeamerfont{author}\fullauthor   \\
+		\small\textbf{Promotor}     & \usebeamerfont{author}\fullpromoter \\
 		\end{tabular}
 		\usebeamertemplate{institute}
 		\usebeamertemplate{date}
@@ -129,8 +129,9 @@
 			\usebeamerfont{title}Dziękuję za uwagę
 		\end{beamercolorbox}
 		\vskip 3em \par
-		\fullauthor\par
+		\usebeamerfont{author}\fullauthor\par
 		\usebeamertemplate{institute}
+		\usebeamerfont{institute}\fullcontact\par
 		\vskip 1em \par
 		\usebeamertemplate{titlegraphic}
 	\endgroup
