@@ -51,6 +51,18 @@ oraz dodatkowy plik:
 
 jeżeli wskazano wersję, dla której ma zostać wygenerowany plik opisujący różnicę.
 
+# Cytowanie
+
+``` bibtex
+@phdthesis{ldrozdz2024phd,
+	author = {Dróżdż, Łukasz},
+	title = {Analiza metrologiczna algorytmów dyskretnej transformacji falkowej},
+	school = {Politechnika Śląska, Wydział Elektryczny},
+	year = {2024},
+	url = {https://github.com/Kuszki/Phd}
+}
+```
+
 # Licencja
 
 Projekt dostępny jest na warunkach licencji [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0). Dozwolone jest rozpowszechnianie, modyfikowanie, dostosowywanie niniejszej pracy i tworzenie materiałów na dowolnym nośniku lub w dowolnym formacie, również w zastosowaniach komercyjnych, pod warunkiem wskazania twórcy oryginalnej pracy oraz zachowania identycznych warunków licencji na dzieło pochodne.
