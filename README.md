@@ -15,28 +15,27 @@ W pracy przedstawiono metodę wyznaczania wartości niepewności rozszerzonych w
 Do zbudowania dokumentu wymagane jest pakiet `TeX Live` (budowa projektu), program `GNU Octave` (generowanie wykresów), program `Inkscape` (konwersja wykresów) oraz pakiet `Libreoffice` (konwersja obrazków). Aby zbudować dokument, stosując gotowy skrypt, należy:
 
 ``` bash
-git clone https://github.com/Kuszki/Phd # skolonować repozytorium
-cd Phd                                  # przejść do katalogu projektu
-./build.sh                              # zbudować projekt
+git clone https://github.com/Kuszki/Phd   # skolonować repozytorium
+cd Phd && ./build.sh                      # zbudować projekt
 ```
 
 gdzie dodatkowo dla skryptu `build.sh`:
 
-```
--d, --draws        wymusza wygenerowanie wykresów i konwersję obrazów
--q, --quiet        wyłącza większość komunikatów podczas kompilacji
--r, --remove       usuwa wszystkie pliki w katalogu 'budowa'
--c, --convert      wymusza konwersję obrazków do pdf
--o, --octave       wymusza wygenerowanie wykresów
--s, --skip         pomija proces budowy pdfów
+``` bash
+-d, --draws       # wymusza wygenerowanie wykresów i konwersję obrazów
+-q, --quiet       # wyłącza większość komunikatów podczas kompilacji
+-r, --remove      # usuwa wszystkie pliki w katalogu 'budowa'
+-c, --convert     # wymusza konwersję obrazków do pdf
+-o, --octave      # wymusza wygenerowanie wykresów
+-s, --skip        # pomija proces budowy pdfów
 ```
 
 przy czym istnieje również możliwość wygenerowania pliku wskazującego różnicę pomiędzy podaną, a obecną gałęzią:
 
-```
--cd wersja, --comment-diff wersja   generuj różnicę w stylu komentarzy pdf
--dd wersja, --detail-diff wersja    generuj różnicę zanzaczając je w tekście
--sd wersja, --simple-diff wersja    generuj jak -dd tylko dla zmienionych stron
+``` bash
+-cd wersja, --comment-diff wersja  # generuj różnicę w stylu komentarzy pdf
+-dd wersja, --detail-diff wersja   # generuj różnicę zanzaczając je w tekście
+-sd wersja, --simple-diff wersja   # generuj jak -dd tylko dla zmienionych stron
 ```
 
 Wszystkie zawarte w projekcie wykresy są generowane przez program `GNU Octave` podczas kompilacji oraz konwertowane wraz z innymi rysunkami do formatu `PDF`. Efektem budowy projektu są trzy pliki:
