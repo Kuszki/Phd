@@ -12,7 +12,7 @@ W pracy przedstawiono metodę wyznaczania wartości niepewności rozszerzonych w
 
 # Budowa
 
-Do zbudowania dokumentu wymagane jest pakiet `TeX Live`, program `GNU Octave` oraz pakiet `Libreoffice`. Aby zbudować dokument należy:
+Do zbudowania dokumentu wymagane jest pakiet `TeX Live` (budowa projektu), program `GNU Octave` (generowanie wykresów), program `Inkscape` (konwersja wykresów) oraz pakiet `Libreoffice` (konwersja obrazków). Aby zbudować dokument, stosując gotowy skrypt, należy:
 
 ``` bash
 git clone https://github.com/Kuszki/Phd # skolonować repozytorium
@@ -20,7 +20,7 @@ cd Phd                                  # przejść do katalogu projektu
 ./build.sh                              # zbudować projekt
 ```
 
-gdzie dodatkowo:
+gdzie dodatkowo dla skryptu `build.sh`:
 
 ```
 -d, --draws        wymusza wygenerowanie wykresów i konwersję obrazów
