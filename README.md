@@ -70,3 +70,5 @@ Projekt dostępny jest na warunkach licencji [CC BY-SA 4.0](https://creativecomm
 
 - [Treść rozprawy oraz recenzji](https://bip.polsl.pl/nadania_dr/lukasz-drozdz)
 - [Informacje o publicznej obronie](https://bip.polsl.pl/termin_dok/lukasz-drozdz)
+- [Wersja cyfrowa w bibliotece PolSl](https://repolis.bg.polsl.pl/dlibra/publication/88015)
+- [Profil autora w bazie wiedzy PolSl](https://omega.polsl.pl/info/author/PSL7ef5bbfeebe6495c9202189b2a9840f3)
