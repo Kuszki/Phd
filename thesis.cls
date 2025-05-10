@@ -54,6 +54,11 @@
 \DeclareSIUnit[quantity-product=]\percent{\char"0025}
 \DeclareSIUnit\degreeCelsius{\char"2103}
 
+\DefineBibliographyStrings{polish}{
+	urlseen = {dostęp},
+	in      = {}
+}
+
 \babelprovide[transforms = oneletter.nobreak]{polish}
 \babelprovide[justification = unhyphenated]{polish}
 \hypersetup{hidelinks, breaklinks = true}
@@ -75,8 +80,6 @@
 \renewcommand\topfraction{0.85}
 \renewcommand\bottomfraction{0.35}
 \renewcommand\textfraction{0.25}
-
-\renewbibmacro{in:}{}
 
 \newcommand{\hugelinespacing}{\renewcommand{\baselinestretch}{1.60} \normalsize}
 
