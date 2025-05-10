@@ -78,10 +78,10 @@ done
 
 [ $DO_DIFF == true ] && CURR_REV="$(git describe --always --dirty --abbrev=8 || echo unknown)"
 
-[ "$VER_DIFF" == "" ] && VER_DIFF="HEAD" || VER_DIFF=${VER_DIFF:0:8}
+[ $VER_DIFF == "" ] && VER_DIFF="HEAD" || VER_DIFF=${VER_DIFF:0:8}
 
-[ "$VER_DIFF" == "HEAD" ] && VER_CMD="\\def\\DIFrevdesc{$CURR_REV}" \
-					 || VER_CMD="\\def\\DIFrevdesc{$VER_DIFF/$CURR_REV}"
+[ $VER_DIFF == "HEAD" ] && VER_CMD="\\def\\DIFrevdesc{$CURR_REV}" \
+				    || VER_CMD="\\def\\DIFrevdesc{$VER_DIFF/$CURR_REV}"
 
 [ $DO_REMOVE == true ] && rm budowa/* obrazki/*.svg obrazki/*.pdf &> /dev/null
 [ $DO_DIFF == true ] && rm budowa/thesis-diff* &> /dev/null
