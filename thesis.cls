@@ -37,6 +37,7 @@
 \RequirePackage{gensymb}
 \RequirePackage{comment}
 \RequirePackage{xpatch}
+\RequirePackage{minted}
 \RequirePackage{calc}
 \RequirePackage{xurl}
 
@@ -102,6 +103,11 @@
 \setlength{\tabcolsep}{6pt}
 \setlength{\itemsep}{6pt}
 \setlength{\jot}{6pt}
+
+\counterwithin{listing}{chapter}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+\counterwithin{equation}{chapter}
 
 \setlist{leftmargin = \parindent}
 \setenumerate{noitemsep}
