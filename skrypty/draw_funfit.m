@@ -19,7 +19,7 @@ set(h, "papersize", [16 5.65])
 set(h, "paperposition", [0, 0, [16 5.65]])
 
 set(0, "defaultaxesposition", [0.105, 0.155, 0.865, 0.825])
-set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
@@ -93,7 +93,8 @@ xlabel("Napięcie na wejściu toru pomiarowego, V");
 yticks(0 : 512 : 4096);
 xlim([0 1]);
 ylim([0 4096]);
-set_comma(gca, 'XY');
+set_format(gca, 'Title', true);
+set_format(gca, 'XY', true);
 grid on;
 box on;
 
@@ -105,7 +106,8 @@ xlabel("Wartość błędu, LSB");
 xticks([-3 -1.5 0 1.5 3]);
 xlim([-3 3]);
 ylim([0 5]);
-set_comma(gca, 'XY');
+set_format(gca, 'Title', true);
+set_format(gca, 'XY', true);
 grid on;
 box on;
 

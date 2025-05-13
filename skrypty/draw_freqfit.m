@@ -16,7 +16,7 @@ set(h, "papersize", [16 5.65])
 set(h, "paperposition", [0, 0, [16 5.65]])
 
 set(0, "defaultaxesposition", [0.105, 0.155, 0.865, 0.825])
-set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
@@ -58,8 +58,9 @@ legend("location", 'northwest');
 xlim([100 flim]);
 ylim([-0.03 0.03]+ks);
 yticks((-0.03 : 0.01 : 0.3)+ks);
-set_comma(gca, 'Y', '%0.2f');
-set_comma(gca, 'X');
+set_format(gca, 'Title', true);
+set_format(gca, 'Y', true, '%0.2f');
+set_format(gca, 'X', true);
 grid on;
 box on;
 
@@ -74,8 +75,9 @@ xlabel("Częstotliwość sygnału, Hz");
 legend("location", 'southwest', 'interpreter', 'tex');
 xlim([100 flim]);
 ylim([-0.12 0]);
-set_comma(gca, 'Y', '%0.2f');
-set_comma(gca, 'X');
+set_format(gca, 'Title', true);
+set_format(gca, 'Y', true, '%0.2f');
+set_format(gca, 'X', true);
 grid on;
 box on;
 

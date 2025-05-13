@@ -13,7 +13,7 @@ set(h, "papersize", [16 11.3*2/3])
 set(h, "paperposition", [0, 0, [16 11.3*2/3]])
 
 set(0, "defaultaxesposition", [0.095, 0.185, 0.870, 0.790])
-set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
@@ -102,5 +102,8 @@ xlim([100 21000]);
 ylim([-20 10]);
 grid on;
 box on;
+
+set_format(gca, 'Title', true);
+set_format(gca, 'XY', true);
 
 print("../obrazki/sinfit_error.svg");

@@ -1,4 +1,7 @@
 clear;
+
+graphics_toolkit qt
+
 h = figure('visible', ifelse(isguirunning(), 'on', 'off'));
 
 pkg load communications
@@ -16,7 +19,7 @@ set(h, "papersize", [16 11.3])
 set(h, "paperposition", [0, 0, [16 11.3]])
 
 set(0, "defaultaxesposition", [0.085, 0.11, 0.885, 0.865])
-set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
@@ -48,8 +51,9 @@ for i = 1 : length(list)
 	xlim([1 10]);
 	ylim([0 yl(i)]);
 	yticks(0 : 0.2 : yl(i));
-	set_comma(gca, 'Y', '%0.1f');
-	set_comma(gca, 'X');
+	set_format(gca, 'Title', true);
+	set_format(gca, 'Y', true, '%0.1f');
+	set_format(gca, 'X', true);
 	grid on;
 	box on;
 

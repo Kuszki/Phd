@@ -12,7 +12,7 @@ set(h, "papersize", [16 7])
 set(h, "paperposition", [0, 0, [16 7]])
 
 set(0, "defaultaxesposition", [0.125, 0.225, 0.850, 0.715])
-set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
@@ -45,8 +45,9 @@ ylabel("Wariancja błędów zaokrągleń");
 xlabel("Zakres wartości wielkości wejściowych \\pm\\itx");
 xlim([0 10]);
 ylim([0 2e-5]);
-set_comma(gca, 'Y', '%0.1g');
-set_comma(gca, 'X');
+set_format(gca, 'Title', true);
+set_format(gca, 'Y', true, '%0.1g');
+set_format(gca, 'X', true);
 grid on;
 grid minor off;
 box on;

@@ -11,7 +11,7 @@ set(h, "papersize", [16 11.3*2/3])
 set(h, "paperposition", [0, 0, [16 11.3*2/3]])
 
 set(0, "defaultaxesposition", [0.085, 0.125, 0.820, 0.835])
-set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
@@ -97,6 +97,11 @@ ylabel(ax(2), "Względny błąd oszacowania, %");
 legend("Wzmocnienie", "Błąd", "location", 'southwest', 'orientation', 'horizontal')
 grid on;
 box on;
+
+set_format(gca, 'Title', true);
+set_format(gca, 'X', true);
+set_format(ax(1), 'Y', true);
+set_format(ax(2), 'Y', true);
 
 set(ax, "ycolor", "black");
 set(h2, "marker", "x");

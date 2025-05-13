@@ -17,7 +17,7 @@ set(h, "papersize", [16 11.3])
 set(h, "paperposition", [0, 0, [16 11.3]])
 
 set(0, "defaultaxesposition", [0.085, 0.11, 0.885, 0.865])
-set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
@@ -33,8 +33,9 @@ ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 xlim([-10 10]);
 ylim([0 3]);
-set_comma(gca, 'Y', '%0.1f');
-set_comma(gca, 'X');
+set_format(gca, 'Title', true);
+set_format(gca, 'Y', true, '%0.1f');
+set_format(gca, 'X', true);
 grid on;
 box on;
 
@@ -48,8 +49,9 @@ ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 xlim([-10 10]);
 ylim([0 3]);
-set_comma(gca, 'Y', '%0.1f');
-set_comma(gca, 'X');
+set_format(gca, 'Title', true);
+set_format(gca, 'Y', true, '%0.1f');
+set_format(gca, 'X', true);
 grid on;
 box on;
 
@@ -63,8 +65,9 @@ ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 xlim([-10 10]);
 ylim([0 3]);
-set_comma(gca, 'Y', '%0.1f');
-set_comma(gca, 'X');
+set_format(gca, 'Title', true);
+set_format(gca, 'Y', true, '%0.1f');
+set_format(gca, 'X', true);
 grid on;
 box on;
 
@@ -78,8 +81,9 @@ ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 xlim([-10 10]);
 ylim([0 3]);
-set_comma(gca, 'Y', '%0.1f');
-set_comma(gca, 'X');
+set_format(gca, 'Title', true);
+set_format(gca, 'Y', true, '%0.1f');
+set_format(gca, 'X', true);
 grid on;
 box on;
 

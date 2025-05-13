@@ -16,8 +16,8 @@ set(h, "paperunits", "centimeters")
 set(h, "papersize", [16 8.3])
 set(h, "paperposition", [0, 0, [16 8.3]])
 
-set(0, "defaultaxesposition", [0.110, 0.155, 0.865, 0.825])
-set(0, "defaultaxesfontsize", 11)
+set(0, "defaultaxesposition", [0.125, 0.155, 0.845, 0.825])
+set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
@@ -58,7 +58,8 @@ xticks(2 .^ texp);
 xticklabels({lab});
 xlim([8 4096]);
 ylim([1e-15 3e-13]);
-set_comma(gca, 'XY');
+set_format(gca, 'Title', true);
+set_format(gca, 'XY', true);
 grid on;
 grid minor off;
 box on;

@@ -13,7 +13,7 @@ set(h, "papersize", [8 6])
 set(h, "paperposition", [0, 0, [8 6]])
 
 set(0, "defaultaxesposition", [0.185, 0.225, 0.755, 0.705])
-set(0, "defaultaxesfontsize", 11)
+set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
 set(0, "defaulttextfontname", "Latin Modern Roman")
 set(0, "defaultaxesfontname", "Latin Modern Roman")
@@ -59,6 +59,8 @@ line([-u -u], [3 0], "color", "black", "linestyle", "--")
 text(-u-0.25, 3.5, "−\\itU")
 line([u u], [3 0], "color", "black", "linestyle", "--")
 text(u-0.25, 3.5, "+\\itU");
+set_format(gca, 'Title', true);
+set_format(gca, 'XY', true);
 grid on
 box on
 
