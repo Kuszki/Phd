@@ -59,8 +59,8 @@ line([-u -u], [3 0], "color", "black", "linestyle", "--")
 text(-u-0.25, 3.5, "−\\itU")
 line([u u], [3 0], "color", "black", "linestyle", "--")
 text(u-0.25, 3.5, "+\\itU");
-set_format(gca, 'Title', true);
-set_format(gca, 'XY', true);
+set_format(gca, 'Title');
+set_format(gca, 'XY');
 grid on
 box on
 

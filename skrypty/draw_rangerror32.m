@@ -44,9 +44,9 @@ legend("location", 'northwest', 'orientation', 'horizontal')
 ylabel("Wariancja błędów zaokrągleń");
 xlabel("Zakres wartości wielkości wejściowych \\pm\\itx");
 xlim([0 10]);
-set_format(gca, 'Title', true);
-set_format(gca, 'Y', true, '%0.1g');
-set_format(gca, 'X', true);
+set_format(gca, 'Title');
+set_format(gca, 'Y', '%0.1g');
+set_format(gca, 'X');
 grid on;
 grid minor off;
 box on;

@@ -35,8 +35,8 @@ ylabel("Współczynnik koherencji");
 xlabel("Współczynnik korelacji");
 xlim([-1 1])
 ylim([-1 1])
-set_format(gca, 'Title', true);
-set_format(gca, 'XY', true);
+set_format(gca, 'Title');
+set_format(gca, 'XY');
 grid on
 box on
 

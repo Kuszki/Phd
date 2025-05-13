@@ -51,9 +51,9 @@ for i = 1 : length(list)
 	xlim([1 10]);
 	ylim([0 yl(i)]);
 	yticks(0 : 0.2 : yl(i));
-	set_format(gca, 'Title', true);
-	set_format(gca, 'Y', true, '%0.1f');
-	set_format(gca, 'X', true);
+	set_format(gca, 'Title');
+	set_format(gca, 'Y', '%0.1f');
+	set_format(gca, 'X');
 	grid on;
 	box on;
 

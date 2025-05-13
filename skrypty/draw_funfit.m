@@ -93,8 +93,8 @@ xlabel("Napięcie na wejściu toru pomiarowego, V");
 yticks(0 : 512 : 4096);
 xlim([0 1]);
 ylim([0 4096]);
-set_format(gca, 'Title', true);
-set_format(gca, 'XY', true);
+set_format(gca, 'Title');
+set_format(gca, 'XY');
 grid on;
 box on;
 
@@ -106,8 +106,8 @@ xlabel("Wartość błędu, LSB");
 xticks([-3 -1.5 0 1.5 3]);
 xlim([-3 3]);
 ylim([0 5]);
-set_format(gca, 'Title', true);
-set_format(gca, 'XY', true);
+set_format(gca, 'Title');
+set_format(gca, 'XY');
 grid on;
 box on;
 

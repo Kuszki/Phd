@@ -41,9 +41,9 @@ ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 #xlim([-10 10]);
 #ylim([0 3]);
-set_format(gca, 'Title', true);
-set_format(gca, 'Y', true, '%0.1f');
-set_format(gca, 'X', true);
+set_format(gca, 'Title');
+set_format(gca, 'Y', '%0.1f');
+set_format(gca, 'X');
 grid on;
 box on;
 
@@ -56,9 +56,9 @@ ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 #xlim([-10 10]);
 #ylim([0 3]);
-set_format(gca, 'Title', true);
-set_format(gca, 'Y', true, '%0.1f');
-set_format(gca, 'X', true);
+set_format(gca, 'Title');
+set_format(gca, 'Y', '%0.1f');
+set_format(gca, 'X');
 grid on;
 box on;
 
@@ -71,9 +71,9 @@ ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 #xlim([-10 10]);
 #ylim([0 3]);
-set_format(gca, 'Title', true);
-set_format(gca, 'Y', true, '%0.1f');
-set_format(gca, 'X', true);
+set_format(gca, 'Title');
+set_format(gca, 'Y', '%0.1f');
+set_format(gca, 'X');
 grid on;
 box on;
 

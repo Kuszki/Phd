@@ -98,10 +98,10 @@ legend("Wzmocnienie", "Błąd", "location", 'southwest', 'orientation', 'horizon
 grid on;
 box on;
 
-set_format(gca, 'Title', true);
-set_format(gca, 'X', true);
-set_format(ax(1), 'Y', true);
-set_format(ax(2), 'Y', true);
+set_format(gca, 'Title');
+set_format(gca, 'X');
+set_format(ax(1), 'Y');
+set_format(ax(2), 'Y');
 
 set(ax, "ycolor", "black");
 set(h2, "marker", "x");

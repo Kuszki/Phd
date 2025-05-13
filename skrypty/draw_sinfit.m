@@ -103,7 +103,7 @@ ylim([-20 10]);
 grid on;
 box on;
 
-set_format(gca, 'Title', true);
-set_format(gca, 'XY', true);
+set_format(gca, 'Title');
+set_format(gca, 'XY');
 
 print("../obrazki/sinfit_error.svg");

@@ -1,22 +1,18 @@
-function set_format(ahandle, aname, comma, varargin)
+function set_format(ahandle, aname, varargin)
 
 	fm_e = @(x) regexprep(x, '[Ee]([+-])0+(\d+)', 'E$1$2');
 	fm_m = @(x) strrep(x, '-', '−');
 	fm_c = @(x) strrep(x, '.', ',');
 
-	if comma
-		fm_f = @(x) fm_c(fm_m(fm_e(x)));
-	else
-		fm_f = @(x) fm_m(fm_e(x));
-	end
-
-	if (nargin < 3 || nargin > 4)
+	if (nargin < 2 || nargin > 3)
 		error('wrong number of input parameters');
 	end
 
 	switch aname
 
 		case 'Title'
+
+			fm_f = @(x) fm_c(fm_m(fm_e(x)));
 
 			htit = get(ahandle, 'Title');
 			stit = get(htit, 'string');
@@ -25,10 +21,12 @@ function set_format(ahandle, aname, comma, varargin)
 
 		case 'XY'
 
-			set_format(ahandle, 'X', comma, varargin{:});
-			set_format(ahandle, 'Y', comma, varargin{:});
+			set_format(ahandle, 'X', varargin{:});
+			set_format(ahandle, 'Y', varargin{:});
 
 		case {'X', 'Y'}
+
+			fm_f = @(x) fm_c(fm_e(x));
 
 			tick = get(ahandle, strcat(aname, 'Tick'));
 			n = length(tick);

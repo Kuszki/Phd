@@ -58,9 +58,9 @@ legend("location", 'northwest');
 xlim([100 flim]);
 ylim([-0.03 0.03]+ks);
 yticks((-0.03 : 0.01 : 0.3)+ks);
-set_format(gca, 'Title', true);
-set_format(gca, 'Y', true, '%0.2f');
-set_format(gca, 'X', true);
+set_format(gca, 'Title');
+set_format(gca, 'Y', '%0.2f');
+set_format(gca, 'X');
 grid on;
 box on;
 
@@ -75,9 +75,9 @@ xlabel("Częstotliwość sygnału, Hz");
 legend("location", 'southwest', 'interpreter', 'tex');
 xlim([100 flim]);
 ylim([-0.12 0]);
-set_format(gca, 'Title', true);
-set_format(gca, 'Y', true, '%0.2f');
-set_format(gca, 'X', true);
+set_format(gca, 'Title');
+set_format(gca, 'Y', '%0.2f');
+set_format(gca, 'X');
 grid on;
 box on;
 
