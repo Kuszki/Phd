@@ -19,8 +19,8 @@ set(h, "paperposition", [0, 0, [16 6]])
 set(0, "defaultaxesposition", [0.085, 0.11, 0.885, 0.865])
 set(0, "defaulttextfontsize", 11)
 set(0, "defaultaxesfontsize", 11)
-set(0, "defaulttextfontname", "Latin Modern Math")
-set(0, "defaultaxesfontname", "Latin Modern Math")
+set(0, "defaulttextfontname", "Latin Modern Roman")
+set(0, "defaultaxesfontname", "Latin Modern Roman")
 set(0, "defaulttextcolor", "black")
 
 files = glob('../archiwa/rederr_all_*_*_1_*.txt.gz');
@@ -32,11 +32,11 @@ for i = 1 : numel(files)
 
 load(files{i});
 
-[up, um, s, w, m] = get_uncertainty(errs_a, 95, false);
+[up, um, s, w, m] = get_uncertainty(errs_a, 95, false)
 
 subplot(1, 3, 1)
 hist(errs_a, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("{\\rm\\bfa)}\\rm {\\itU_{\\delta}} = [%0.2f; %0.2f] %%", um, up), '.', ','));
+title(strrep(sprintf("{\\bfa)}\\rm {\\itU_{\\delta}} = [%0.2f; %0.2f] %%", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 #xlim([-10 10]);
@@ -47,11 +47,11 @@ set_format(gca, 'X', true);
 grid on;
 box on;
 
-[up, um, s, w, m] = get_uncertainty(errs_b, 95, false);
+[up, um, s, w, m] = get_uncertainty(errs_b, 95, false)
 
 subplot(1, 3, 2)
 hist(errs_b, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("{\\rm\\bfb)}\\rm {\\itU_{\\delta}} = [%0.2f; %0.2f] %%", um, up), '.', ','));
+title(strrep(sprintf("{\\bfb)}\\rm {\\itU_{\\delta}} = [%0.2f; %0.2f] %%", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 #xlim([-10 10]);
@@ -62,11 +62,11 @@ set_format(gca, 'X', true);
 grid on;
 box on;
 
-[up, um, s, w, m] = get_uncertainty(errs_c, 95, false);
+[up, um, s, w, m] = get_uncertainty(errs_c, 95, false)
 
 subplot(1, 3, 3)
 hist(errs_c, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("{\\rm\\bfc)}\\rm {\\itU_{\\delta}} = [%0.2f; %0.2f] %%", um, up), '.', ','));
+title(strrep(sprintf("{\\bfc)}\\rm {\\itU_{\\delta}} = [%0.2f; %0.2f] %%", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 #xlim([-10 10]);
