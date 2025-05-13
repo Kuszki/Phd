@@ -1,6 +1,6 @@
 function set_format(ahandle, aname, varargin)
 
-	fm_e = @(x) regexprep(x, '[Ee]([+-])0+(\d+)', 'E$1$2');
+	fm_e = @(x) regexprep(x, '[Ee]([+-])0*(\d+)', 'E$1$2');
 	fm_m = @(x) strrep(x, '-', '−');
 	fm_c = @(x) strrep(x, '.', ',');
 
