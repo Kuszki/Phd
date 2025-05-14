@@ -28,7 +28,7 @@ load('../archiwa/rederr_org_1_3.txt.gz');
 
 subplot(2, 2, 1)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("a) \\rm {\\itU_{-}} = %1.2f, {\\itU_{+}} = %1.2f", um, up), '.', ','));
+title(strrep(sprintf("a) \\rm {\\itU_{\\rm-}} = %1.2f, {\\itU_{\\rm+}} = %1.2f", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 xlim([-10 10]);
@@ -44,7 +44,7 @@ load('../archiwa/rederr_org_1_6.txt.gz');
 
 subplot(2, 2, 2)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("b) \\rm {\\itU_{-}} = %1.2f, {\\itU_{+}} = %1.2f", um, up), '.', ','));
+title(strrep(sprintf("b) \\rm {\\itU_{\\rm-}} = %1.2f, {\\itU_{\\rm+}} = %1.2f", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 xlim([-10 10]);
@@ -60,7 +60,7 @@ load('../archiwa/rederr_org_1_10.txt.gz');
 
 subplot(2, 2, 3)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("\nc) \\rm {\\itU_{-}} = %1.2f, {\\itU_{+}} = %1.2f", um, up), '.', ','));
+title(strrep(sprintf("\nc) \\rm {\\itU_{\\rm-}} = %1.2f, {\\itU_{\\rm+}} = %1.2f", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 xlim([-10 10]);
@@ -76,7 +76,7 @@ load('../archiwa/rederr_org_1_20.txt.gz');
 
 subplot(2, 2, 4)
 hist(errs, nbins, 100, "facecolor", fcolor, "edgecolor", ecolor)
-title(strrep(sprintf("\nd) \\rm {\\itU_{-}} = %1.2f, {\\itU_{+}} = %1.2f", um, up), '.', ','));
+title(strrep(sprintf("\nd) \\rm {\\itU_{\\rm-}} = %1.2f, {\\itU_{\\rm+}} = %1.2f", um, up), '.', ','));
 ylabel("Udział wystąpień, %");
 xlabel("Wartość błędu, %");
 xlim([-10 10]);
