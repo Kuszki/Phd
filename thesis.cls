@@ -21,6 +21,7 @@
 \RequirePackage{indentfirst}
 \RequirePackage{longtable}
 \RequirePackage{emptypage}
+\RequirePackage{floatrow}
 \RequirePackage{interval}
 \RequirePackage{setspace}
 \RequirePackage{titlesec}
@@ -37,8 +38,6 @@
 \RequirePackage{gensymb}
 \RequirePackage{comment}
 \RequirePackage{xpatch}
-\RequirePackage{minted}
-\RequirePackage{calc}
 \RequirePackage{xurl}
 
 \DeclareSIUnit[quantity-product=-]\bitOwych{bitowych}
@@ -62,7 +61,11 @@
 
 \babelprovide[transforms = oneletter.nobreak]{polish}
 \babelprovide[justification = unhyphenated]{polish}
+
 \hypersetup{hidelinks, breaklinks = true}
+
+\floatsetup[table]{style = plain, position = top}
+\floatsetup[figure]{style = plain, position = bottom}
 
 \titleformat{name = \chapter, numberless}[block]{\normalfont\bfseries\huge}{}{0pt}{}
 \titleformat{name = \chapter}[block]{\normalfont\bfseries\huge}{}{0pt}{\thechapter.~}
@@ -104,7 +107,6 @@
 \setlength{\itemsep}{6pt}
 \setlength{\jot}{6pt}
 
-\counterwithin{listing}{chapter}
 \counterwithin{figure}{chapter}
 \counterwithin{table}{chapter}
 \counterwithin{equation}{chapter}

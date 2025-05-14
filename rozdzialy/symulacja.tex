@@ -5,10 +5,8 @@ Weryfikacja przedstawionego w pracy modelu błędów i wynikających z niego za�
 Przykładowy tor pomiarowy składa się z przetwornika pomiarowego, który przekształca ciągłą w czasie fizyczną wielkość mierzoną $s(t)$ na reprezentujący ją sygnał napięciowy $y_{a}(t)$, który następnie przetwarzany jest przez wzmacniacz pomiarowy, w celu dopasowania jego poziomu do zakresu napięcia wejściowego zintegrowanego z układem próbkująco-pamiętającym przetwornika analogowo-cyfrowego. Wzmocniony sygnał $y_{b}(t)$ stanowi wejście przetwornika analogowo-cyfrowego, którego wielkości wyjściowe wyrażone w jednostce wielkości $y_{b}(t)$ oznaczono symbolem $x_{c}(i)$. Ostatecznie sygnał wyjściowy przetwornika analogowo-cyfrowego trafia na wejście algorytmu dyskretnej transformacji falkowej, a na jego podstawie wyznaczany jest wektor wielkości wyjściowych, oznaczonych jako $\mathbfit{X}(k)$. Schemat blokowy opisanego toru pomiarowego przedstawiono na rysunku~\ref{fig:chain_symul}. Podczas eksperymentu przyjęto, że przetwarzany sygnał pomiarowy obarczony jest błędem związanym z szumem białym o stałej widmowej gęstości mocy. Przetwornik pomiarowy, zastosowany w celu przetworzenia analizowanego sygnału wejściowego na postać napięciową, cechuje się pewną częstotliwość graniczną, a jego charakterystyka nie jest idealnie liniowa. Zastosowany wzmacniacz pomiarowy również charakteryzuje się pewną częstotliwością graniczną, natomiast założono, że nieliniowość charakterystyki jest w jego przypadku pomijalnie mała. Przyjęto, że temperatura otoczenia miała wpływ na dryft zera przetwornika pomiarowego oraz wzmacniacza, przy czym temperatura ta nie była mierzona, zatem jej wpływ na wyniki pomiarów nie był korygowany. Przyjęto, że zastosowany przetwornik analogowo-cyfrowy wprowadzał do sygnału wyjściowego jedynie błąd związany z kwantowaniem przetwarzanej wielkości, natomiast algorytm transformacji falkowej wprowadzał do wielkości wyjściowych błąd własny związany z wykonywaniem operacji arytmetycznych.
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/schemat_symul}
 \makecaption{fig:chain_symul}{Schemat blokowy toru pomiarowego będącego obiektem eksperymentu symulacyjnego, gdzie symbol \enquote{A/A} oznacza przetwarzanie analogowo-analogowe, \enquote{A/C} przetwarzanie analogowo-cyfrowe, natomiast \enquote{DWT} algorytm dyskretnej transformacji falkowej}
-\end{center}
 \end{figure}
 
 W dalszej części rozdziału omówiono kolejne elementy toru pomiarowego, wskazano ich wpływ na przetwarzany sygnał oraz relacje pomiędzy sygnałami błędów na wejściu i wyjściu tych fragmentów. Przedstawiono również szczegółowe założenia odnośnie właściwości opisanych we wprowadzeniu fragmentów toru pomiarowego. Dla przeprowadzonego eksperymentu przyjęto, że przetwarzany sygnał $s(t)$ określony został w dziedzinie czasu jako:
@@ -19,7 +17,6 @@ W dalszej części rozdziału omówiono kolejne elementy toru pomiarowego, wskaz
 przy czym $f_{1} = \qty{1}{kHz}$ jest częstotliwością podstawowej harmonicznej tego sygnału, natomiast $\sigma_{s,r}^{2}(\omega) = \frac{2}{3} \cdot 10^{-5}$ wariancją sygnału szumu $e_{s,r}(t)$. Parametry kolejnych harmonicznych przetwarzanego sygnału zostały zestawione w tabeli~\ref{tab:sym_in_params_ideal}. Do wyznaczenia wektora wielkości wyjściowych algorytmu dyskretnej transformacji falkowej koniecznych było $N = 8$ próbek wielkości wejściowych $x_{c}(i)$ tego algorytmu, na podstawie których wyznaczano $M = 8$ próbek wektora wielkości wyjściowych $\mathbfit{X}(k)$ obiektu dla każdej $k$-tej realizacji pomiaru. Eksperyment zakładał stały dla każdej $i$-tej próbki przetwarzanego sygnału okres próbkowania $T_{p} = \frac{1}{f_{s}}$, gdzie $f_{s} = \qty{48}{kHz}$, natomiast okno pomiarowe usytuowane było losowo względem przebiegu przetwarzanego sygnału $s(t)$. Założono, że temperatura otoczenia $\vartheta(t)$ przyjmowała w funkcji czasu dowolną wartość z zakresu $\hat{\vartheta}(t) \in \interval{17}{23}~\unit{\degreeCelsius}$, wartością oczekiwaną temperatury była wartość~\qty{20}{\degreeCelsius} oraz w obrębie wskazanego przedziału rozkład wartości tej wielkości był rozkładem trójkątnym.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_in_params_ideal}{Parametry kolejnych harmonicznych przetwarzanego sygnału $s(t)$ dla sytuacji idealnej, przyjęte w przeprowadzanym eksperymencie symulacyjnym}
 \begin{tabular}[c]{| c | c | c | c |} \hline
 \textbf{$i$} & \textbf{Pulsacja $\omega_{s,i}$, rad/s} & \textbf{Amplituda $E_{s,o}(\omega_{s,i})$} & \textbf{Faza $\varphi_{s,o}(\omega_{s,i})$, rad} \\ \hline
@@ -27,7 +24,6 @@ przy czym $f_{1} = \qty{1}{kHz}$ jest częstotliwością podstawowej harmoniczne
 2 & $5000  \cdot 2\pi$ &  \num{0.3} & $\pi/8 + \pi$ \\ \hline
 3 & $15000 \cdot 2\pi$ &  \num{0.1} & $\pi/6$       \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 \section{Analiza przetwornika pomiarowego}
@@ -85,7 +81,6 @@ gdzie $E_{a,o}(\omega)$ jest idealną amplitudą oraz $\varphi_{a,o}(\omega)$ id
 przy czym $\omega_{a,i} = \omega_{s,i}$ jest pulsacją $i$-tej harmonicznej sygnału wyjściowego, której kolejne parametry zestawione zostały wcześniej w tabeli~\ref{tab:sym_in_params_ideal}. Parametry sygnału opisanego równaniem~\eqref{eq:sym_parta_out_ideal_sum} zestawiono w tabeli~\ref{tab:sym_outa_params_ideal}.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_outa_params_ideal}{Parametry kolejnych harmonicznych sygnału $y_{a}(t)$ przyjęte w przeprowadzanym eksperymencie symulacyjnym dla sytuacji idealnej}
 \begin{tabular}[c]{| c | c | c | c |} \hline
 \textbf{$i$} & \textbf{Pulsacja $\omega_{a,i}$, rad/s} & \textbf{Amplituda $E_{a,o}(\omega_{a,i})$, V} & \textbf{Faza $\varphi_{a,o}(\omega_{a,i})$, rad} \\ \hline
@@ -93,7 +88,6 @@ przy czym $\omega_{a,i} = \omega_{s,i}$ jest pulsacją $i$-tej harmonicznej sygn
 2 & $5000  \cdot 2\pi$ &  \num{0.3} & $\pi/8 + \pi$   \\ \hline
 3 & $15000 \cdot 2\pi$ &  \num{0.1} & $\pi/6$         \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Na podstawie równań~\eqref{eq:mid_cont_err_dyn_self} oraz~\eqref{eq:out_cont_err_dyn_self}, błąd własny dynamiczny w funkcji pulsacji wybranej harmonicznej sygnału opisać można następującą zależnością:
@@ -136,7 +130,6 @@ U_{a,dw,1} = c_{d} \sigma_{a,dw,1} = \qty{1.87}{mV} \label{eq:sym_parta_dyn_self
 przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla deklarowanego poziomu ufności $\gamma = \qty{95}{\percent}$ jest równy~\num{1.41}~\cite{jakubiec_system, jcgm_guide}.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_parta_params_dyn_list}{Parametry składowe kolejnych harmonicznych błędu dynamicznego własnego analizowanego w eksperymencie symulacyjnym przetwornika pomiarowego}
 \begin{tabular}[c]{| c | c | c | c | c |} \hline
 \textbf{$i$} & \textbf{$j$} & \textbf{Pulsacja $\omega_{a,i}$, rad/s} & \textbf{Amplituda $E_{a,e,j}(\omega_{a,i})$, V} & \textbf{Faza $\varphi_{a,e,j}(\omega_{a,i})$, rad} \\ \hline
@@ -147,11 +140,9 @@ przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla dek
 \multirow{2}{*}{$3$} & 1 & \multirow{2}{*}{$15000 \cdot 2\pi$} &  $\num{1.0} \cdot \num{0.1}$ & $\pi/6 - \num{4.69e-2}$        \\ \cline{2-2} \cline{4-5}
                      & 2 &                                     &  $\num{1.0} \cdot \num{0.1}$ & $\pi/6 + 0 + \pi$              \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_parta_params_dyn_summary}{Parametry wypadkowe kolejnych harmonicznych błędu dynamicznego własnego analizowanego w eksperymencie symulacyjnym przetwornika pomiarowego}
 \begin{tabular}[c]{| c | c | S[table-format = 1.2] | S[table-format = +1.2] |} \hline
 \textbf{$i$} & \textbf{Pulsacja $\omega_{a,i}$, rad/s} & \textbf{Amplituda $E_{a,e}(\omega_{a,i})$, mV} & \textbf{Faza $\varphi_{a,e}(\omega_{a,i})$, rad} \\ \hline
@@ -159,7 +150,6 @@ przy czym dla rozkładu dwumodalnego współczynnik rozszerzenia $c_{d}$ dla dek
 2 & $5000  \cdot 2\pi$  &  4.69  &  1.96  \\ \hline
 3 & $15000 \cdot 2\pi$  &  4.68  & -1.07  \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Wyprowadzone dotychczas zależności oraz dane zestawione w tabeli~\ref{tab:sym_parta_params_dyn_summary} pozwalają zgodnie z równaniem~\eqref{eq:mid_cont_err_dyn_self} zdefiniować wypadkowy sygnał błędu dynamicznego własnego w postaci sumy kolejnych harmonicznych tego sygnału:
@@ -185,7 +175,6 @@ e_{a,\Sigma} \emb{t} = e_{a,sw} \emb{t} + e_{a,rw} \emb{t} + e_{a,rp} \emb{t} + 
 Na podstawie parametrów wymienionych sygnałów określono budżet niepewności dla analizowanego fragmentu toru pomiarowego, który zestawiono w tabeli~\ref{tab:sym_parta_params_unc_list}. Należy zauważyć, że kolejne sygnały błędów w opisywanym przypadku nie są skorelowane.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_parta_params_unc_list}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika pomiarowego}
 \begin{tabular}[c]{| c | c | S[table-format = 1.2] | S[table-format = 2.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
@@ -196,7 +185,6 @@ Na podstawie parametrów wymienionych sygnałów określono budżet niepewności
 5 & ${a,dw,2}$     & 4.68  &  11.00  &                              &                                             \\ \cline{1-4}
 6 & ${a,dw,3}$     & 4.67  &  10.95  &                              &                                             \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Ostatnim możliwym krokiem pozostaje zatem określenie wartości wypadkowej niepewności rozszerzonej dla analizowanego fragmentu toru pomiarowego. Na obecnym etapie rozważań wyznaczanie tego parametru nie jest konieczne i nie będzie wykorzystywane w dalszym procesie analizy -- przeprowadzenie tej operacji jest jednak uzasadnione potrzebą weryfikacji skuteczności proponowanej metody wyznaczania wartości wypadkowej niepewności rozszerzonej, opisanej równaniem~\eqref{eq:unc_matrix}.
@@ -343,10 +331,8 @@ przy czym wyznaczona wartość jest zbliżona do wyznaczonej za pomocą równani
 Weryfikacja poprawności przeprowadzonych rozważań i zaproponowanego modelu błędów została przeprowadzona symulacyjnie, stosując metodę Monte Carlo. W ramach eksperymentu wykonano~\num{100000} powtórzeń procesu wyznaczenia wartości wielkości wyjściowej $y_{a}(t)$ analizowanego obiektu. Każdorazowo fazę początkową sygnału wejściowego $s(t+t_{0})$ losowano z przedziału $\hat{t}_{0} \in \interval{-\frac{1}{f_{1}}}{\frac{1}{f_{1}}}$, przy czym wylosowanie każdej z możliwych wartości było jednakowo prawdopodobne. Wypadkowy sygnał błędu na wyjściu analizowanego obiektu definiowany był zgodnie z równaniem~\eqref{eq:sym_parta_out_real}, przy czym na podstawie uzyskanych wartości realizacji tego sygnału wyznaczano jego wariancję oraz wartość niepewności rozszerzonej, zgodnie z równaniem~\eqref{eq:unc_summation}. Na rysunku~\ref{fig:symul_parta_hist} przedstawiono histogramy ilustrujące uzyskane realizacje sygnału błędu uwzględniając podział na błędy statyczne $e_{a,s}(t)$, dynamiczne $e_{a,d}(t)$ oraz losowe $e_{a,r}(t)$, a także histogram dla realizacji wypadkowego sygnału błędu $e_{a,\Sigma}(t)$.
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/hist_part_a}
 \makecaption{fig:symul_parta_hist}{Histogramy realizacji sygnałów błędów \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika pomiarowego uzyskane metodą Monte Carlo}
-\end{center}
 \end{figure}
 
 Wyznaczona na drodze eksperymentu wartość wielkości $U_{a,\Sigma}$ wyniosła~\qty{11.58}{mV}, przy czym wartość współczynnika rozszerzenia $c_{a,\Sigma}$ wyniosła~\num{1.90}. Wartość niepewności oszacowana na podstawie równania~\eqref{eq:sym_parta_uncert_value_a} jest zatem około~\qty{4.5}{\percent} większa od wartości uzyskanej na drodze eksperymentu. Należy zaznaczyć, że ta sama wartość wyznaczona za pomocą równania~\eqref{eq:sym_parta_uncert_sum} stosując współczynniki koherencji, których wartości zostały wyznaczone bez użycia zaproponowanej w pracy korekty opisanej równaniem~\eqref{eq:unc_cohercorra} wynosi~\qty{12.41}{mV}, a zatem jest ona o~\qty{7.3}{\percent} większa od wartości referencyjnej. W przypadku wartości oszacowanej na podstawie równania~\eqref{eq:sym_parta_uncert_value_b} rozbieżność jest nieco mniejsza i wynosi około~\qty{3.2}{\percent}, co dowodzi że w analizowanym przypadku spełnione zostały założenia związane z centralnym twierdzeniem granicznym, a przyjęte uproszczenia okazały się nie mieć znaczącego wpływu na wynik obliczeń. Uzyskana wartość wariancji sygnału błędu wypadkowego wielkości wyjściowej wyniosła w eksperymencie~\qty{37.1}{\micro V}, co pokrywa się z wartością wyznaczoną w równaniu~\eqref{eq:sym_parta_var_sum}. Wyznaczone w równaniach od~\eqref{eq:sym_parta_uncert_stat} do~\eqref{eq:sym_parta_factor_rand} parametry dla składowych sygnału błędu również w zadowalającym stopniu pokrywają się z uzyskanymi na drodze eksperymentu.
@@ -395,7 +381,6 @@ E_{b,o} \emb{\omega} = s_{b} \dot{K}_{b} \emb{\omega} E_{a,o} \emb{\omega} = \nu
 gdzie $E_{b,o}(\omega)$ jest amplitudą oraz $\varphi_{b,o}(\omega)$ fazą harmonicznej sygnału wyjściowego $y_{b}(t)$ o wybranej pulsacji w przypadku idealnym, natomiast $\omega_{a,i} = \omega_{b,i}$ jest pulsacją $i$-tej harmonicznej analizowanego sygnału. Na podstawie danych zestawionych w tabeli~\ref{tab:sym_outa_params_ideal} oraz zależności od~\eqref{eq:sym_partb_out_ideal_sum} do~\eqref{eq:sym_partb_phi_out_ideal} wyznaczono parametry sygnału $y_{b}(t)$ dla przypadku idealnego i zestawiono je w tabeli~\ref{tab:sym_outb_params_ideal}.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_outb_params_ideal}{Parametry kolejnych harmonicznych sygnału $y_{b}(t)$ przyjęte w przeprowadzanym eksperymencie symulacyjnym dla sytuacji idealnej}
 \begin{tabular}[c]{| c | c | c | c |} \hline
 \textbf{$i$} & \textbf{Pulsacja $\omega_{b,i}$, rad/s} & \textbf{Amplituda $E_{b,o}(\omega_{b,i})$, V} & \textbf{Faza $\varphi_{b,o}(\omega_{b,i})$, rad} \\ \hline
@@ -403,7 +388,6 @@ gdzie $E_{b,o}(\omega)$ jest amplitudą oraz $\varphi_{b,o}(\omega)$ fazą harmo
 2 & $5000  \cdot 2\pi$ &  \num{0.99} & $\pi/8 + \pi$ \\ \hline
 3 & $15000 \cdot 2\pi$ &  \num{0.33} & $\pi/6$       \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Pierwszą omawianą grupę sygnałów błędów stanowią błędy własne, wprowadzane przez analizowany obiekt. Przyjmuje się, że temperatura otoczenia $\vartheta(t)$ wpływa na dryft zera analizowanego wzmacniacza zgodnie z zależnością opisaną równaniem:
@@ -455,7 +439,6 @@ przy czym omówiony przypadek dotyczy założeń przyjętych w równaniu~\eqref{
 Parametry wypadkowe kolejnych harmonicznych sygnałów błędów dynamicznych własnych $e_{b,dw}(t)$ oraz propagowanych $e_{b,dp}(t)$ mogą być wyznaczone w sposób analogiczny, jak pokazano na przykładnie opisanym w równaniach od~\eqref{eq:sym_parta_dyn_self_example_sum} do~\eqref{eq:sym_parta_dyn_self_example_phi}. Wyznaczenie omawianych parametrów pozwoli na określenie wartości wariancji wymienionych sygnałów oraz wyznaczenie związanej z nimi wartości niepewności rozszerzonej. Wyznaczone zgodnie z metodą zaproponowaną w równaniach od~\eqref{eq:dyn_vect} do~\eqref{eq:dyn_vect_phi} wypadkowe amplitudy oraz fazy dla wskazanych sygnałów błędów dynamicznych przedstawiono w tabelach~\ref{tab:sym_partb_params_dyn_self} oraz~\ref{tab:sym_partb_params_dyn_prop}. Należy zauważyć, że wyznaczenie wypadkowych parametrów kolejnych harmonicznych analizowanych sygnałów nie jest konieczne z punktu widzenia stosowania zaproponowanego modelu błędów. Zabieg ten pozwala natomiast uprościć analizę poprzez redukcję liczby analizowanych sygnałów.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partb_params_dyn_self}{Parametry wypadkowe kolejnych harmonicznych sygnału błędu dynamicznego własnego analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = +1.2] |} \hline
 \textbf{$i$} & \textbf{Pulsacja $\omega_{b,i}$, rad/s} & \textbf{Amplituda $E_{b,ew}(\omega_{b,i})$, mV} & \textbf{Faza $\varphi_{b,ew}(\omega_{b,i})$, rad} \\ \hline
@@ -463,11 +446,9 @@ Parametry wypadkowe kolejnych harmonicznych sygnałów błędów dynamicznych w�
 2 & $5000  \cdot 2\pi$  &   7.62  &  1.96  \\ \hline
 3 & $15000 \cdot 2\pi$  &   7.61  & -1.06  \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partb_params_dyn_prop}{Parametry wypadkowe kolejnych harmonicznych sygnału błędu dynamicznego propagowanego analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = +1.2] |} \hline
 \textbf{$i$} & \textbf{Pulsacja $\omega_{b,i}$, rad/s} & \textbf{Amplituda $E_{b,ep}(\omega_{b,i})$, mV} & \textbf{Faza $\varphi_{b,ep}(\omega_{b,i})$, rad} \\ \hline
@@ -475,7 +456,6 @@ Parametry wypadkowe kolejnych harmonicznych sygnałów błędów dynamicznych w�
 2 & $5000  \cdot 2\pi$  &  15.47  &  1.95  \\ \hline
 3 & $15000 \cdot 2\pi$  &  15.46  & -1.09  \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Cel następnego etapu rozważań stanowi określenie parametrów wariancji oraz niepewności rozszerzonych dla opisanych dotychczas sygnałów błędów. Ze względu na liniowy charakter analizowanego obiektu, wynikający z przyjętych założeń, opisanych w równaniach~\eqref{eq:sym_partb_out_ideal} oraz~\eqref{eq:sym_partb_trans}, na wyjściu obiektu zachowane zostaną oryginalne kształty rozkładów wszystkich propagowanych sygnałów błędów~\cite{grimmett_probability, oppenheim_sns}. Wobec powyższych, znając wariancję tych sygnałów na wyjściu obiektu, wyznaczenie związanej z nimi wartości niepewności rozszerzonej odbywać się może zgodnie z zależnością~\eqref{eq:unc_sum}. Wpływ transmitancji obiektu na wartość wariancji propagowanych sygnałów błędów opisany został wcześniej równaniem~\eqref{eq:mid_cont_var_omega}, natomiast wpływ funkcji przetwarzania na tą wielkość, w przypadku liniowej funkcji przetwarzania, określa zależność~\eqref{eq:out_cont_var_sense}. Można zatem zapisać, w przypadku sygnału propagowanego błędu statycznego:
@@ -496,7 +476,6 @@ U_{b,rp,2} = c_{b,rp,2} \sigma_{b,rp,2} = \qty{16.70}{mV} \label{eq:sym_partb_un
 gdzie $c_{b,rp,1} = c_{a,rw} = c_{u} = \num{1.65}$ oraz $c_{b,rp,2} = c_{a,rp} = c_{n} = \num{1.96}$. Należy zauważyć, że w przypadku istnienia wpływu transmitancji obiektu na widmową gęstość mocy analizowanych sygnałów, w celu wyznaczenia wartości niepewności rozszerzonej związanej z tymi sygnałami należałoby określić średnią wartość wariancji tych sygnałów dla analizowanego zakresu częstotliwości, określoną równaniem~\eqref{eq:mid_cont_var_rand}. Tabela~\ref{tab:sym_partb_params_unc_list} przedstawia budżet niepewności wielkości wyjściowej analizowanego wzmacniacza pomiarowego z uwzględnieniem podziału na sygnały błędów własnych i propagowanych, sporządzony na podstawie przedstawionych rozważań.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partb_params_unc_list}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego, gdzie ($a$)~oznacza przetwornik pomiarowy oraz ($b$)~oznacza wzmacniacz pomiarowy}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
@@ -511,7 +490,6 @@ gdzie $c_{b,rp,1} = c_{a,rw} = c_{u} = \num{1.65}$ oraz $c_{b,rp,2} = c_{a,rp} =
 9  & ${b,dw,2}$     & 7.65  &  29.00  &                              &                                            \\ \cline{1-4}
 10 & ${b,dw,3}$     & 7.65  &  28.99  &                              &                                            \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Dla źródeł błędów wymienionych w budżecie niepewności, zestawionym w tabeli~\ref{tab:sym_partb_params_unc_list}, konieczne jest określenie wzajemnych korelacji pomiędzy sygnałami błędów. Należy zauważyć, że składowe związane z dryftem temperaturowym przetwornika pomiarowego oraz dryftem temperaturowym wzmacniacza zależą od tej samej wielkości fizycznej -- temperatury otoczenia. Jako że wymienione sygnały błędów nie zależą od żadnej innej wielkości, a dodatkowo równania~\eqref{eq:sym_parta_stat_err} oraz~\eqref{eq:sym_partb_temp_err} cechują się dodatnią czułością względem tej wielkości, można założyć pełną dodatnią korelacje analizowanych sygnałów błędów, zatem $r_{b,sw,b,sp} = r_{b,sp,b,sw} = 1$. W przypadku kolejnych harmonicznych sygnałów błędów dynamicznych wartość współczynnika korelacji tych składowych może być obliczona zgodnie z równaniem~\eqref{eq:dyn_corr}. Można zauważyć, że wartość tego współczynnika dla par składowych o różnej pulsacji każdorazowo wyniesie zero. W przypadku par harmonicznych sygnałów błędów dynamicznych o identycznej pulsacji, na podstawie danych zawartych w tabelach~\ref{tab:sym_partb_params_dyn_self} oraz~\ref{tab:sym_partb_params_dyn_prop}, zauważyć można, że współczynnik korelacji zbliżony będzie od jedności, ze względu na zbliżoną do zera różnicę w fazach tych sygnałów. W przypadku pozostałych par sygnałów wartości współczynników korelacji będą zerowe.
@@ -535,7 +513,6 @@ e_{b,d} \emb{t} = \sum _{i=1} ^{3} E_{b,e} \emb{\omega_{b,i}} \sin \emb{\omega t
 przy czym $E_{b,e}(\omega)$ jest wypadkową amplitudą, natomiast $\varphi_{b,e}(\omega)$ wypadkową fazą harmonicznej tego sygnału o wskazanej pulsacji. Wyznaczenie wypadkowych wartości amplitudy oraz fazy dla kolejnych harmonicznych sygnału błędu dynamicznego $e_{b,d}(t)$ przebiega zgodnie z metodą zaproponowaną w równaniach od~\eqref{eq:dyn_vect} do~\eqref{eq:dyn_vect_phi}, przy czym kolejne składniki tych harmonicznych wymienione zostały w równaniach~\eqref{eq:sym_partb_dyn_self_err} oraz~\eqref{eq:sym_partb_dyn_prop_err}. Przedstawiony proces odbywać się może również z wykorzystaniem parametrów opisanych w tabelach~\ref{tab:sym_partb_params_dyn_self} oraz~\ref{tab:sym_partb_params_dyn_prop}, przy czym niezależnie od stosowanej metody uzyskuje się identyczne wyniki obliczeń. Wartości omawianych parametrów, wyznaczone zgodnie z przedstawionymi zależnościami, zestawiono w tabeli~\ref{tab:sym_partb_params_dyn_summary}.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partb_params_dyn_summary}{Parametry wypadkowe kolejnych harmonicznych sygnału błędu dynamicznego analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = +1.2] |} \hline
 \textbf{$i$} & \textbf{Pulsacja $\omega_{b,i}$, rad/s} & \textbf{Amplituda $E_{b,e}(\omega_{b,i})$, mV} & \textbf{Faza $\varphi_{b,e}(\omega_{b,i})$, rad} \\ \hline
@@ -543,7 +520,6 @@ przy czym $E_{b,e}(\omega)$ jest wypadkową amplitudą, natomiast $\varphi_{b,e}
 2 & $5000  \cdot 2\pi$  &  23.08  &  1.96  \\ \hline
 3 & $15000 \cdot 2\pi$  &  23.07  & -1.07  \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Parametry wypadkowego sygnału błędu statycznego $e_{b,s}(t)$, zdefiniowanego zależnością~\eqref{eq:sym_partb_error_stat}, opisują równania~\eqref{eq:var_matrix} oraz~\eqref{eq:unc_matrix}, przy czym:
@@ -634,7 +610,6 @@ Dla kolejnych harmonicznych wypadkowego sygnału błędu dynamicznego, zestawion
 Stosując zależności przedstawione w równaniach od~\eqref{eq:sym_partb_stat_var} do~\eqref{eq:sym_partb_rand_uncert} oraz dane zawarte w tabeli~\ref{tab:sym_partb_params_dyn_summary} sporządzono budżet niepewności uwzględniający podział na zaproponowane w pracy kategorie sygnałów błędów, który zestawiono w tabeli~\ref{tab:sym_partb_params_unc_sum}. Ze względu na konieczność przeprowadzania dalszej analizy w dziedzinie pulsacji, nie wyznaczano wypadkowych parametrów błędu dynamicznego $e_{b,d}(t)$ oraz parametrów wypadkowego sygnału błędu $e_{b,\Sigma}(t)$ wielkości wyjściowej $y_{b}(t)$.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partb_params_unc_sum}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego uwzględniający wypadkowe parametry sygnałów błędów}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
@@ -644,16 +619,13 @@ Stosując zależności przedstawione w równaniach od~\eqref{eq:sym_partb_stat_v
 4 & ${b,d,2}$      & 23.01 &  266.34 &                              &                                            \\ \cline{1-4}
 5 & ${b,d,3}$      & 23.00 &  266.11 &                              &                                            \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 W celu weryfikacji poprawności założeń zastosowanego modelu błędów oraz przeprowadzonych obliczeń wykonano eksperyment metodą Monte Carlo, polegający na wyznaczeniu~\num{100000} razy wartości realizacji wielkości wyjściowej $y_{b}(t)$ analizowanego obiektu. Podczas eksperymentu fazę sygnału wejściowego $s(t+t_{0})$ losowano z przedziału $\hat{t}_{0} \in \interval{-\frac{1}{f_{1}}}{\frac{1}{f_{1}}}$ o jednakowym prawdopodobieństwie wystąpienia każdej z wartości. Uzyskiwaną wartość realizacji wielkości wyjściowej porównywano z wartością otrzymaną dla fragmentu toru pomiarowego w przypadku idealnym (tj. z taką, dla której nie występowały żadne źródła błędów), a następnie na podstawie równania~\eqref{eq:sym_partb_out_real} wyznaczano realizację błędu wielkości wyjściowej $y_{b}(t)$. Na podstawie uzyskanych wartości realizacji sygnału błędu, zgodnie z równaniem~\eqref{eq:unc_summation}, określono wartość niepewności rozszerzonej związanej z tym sygnałem. Eksperyment wykonano uwzględniając wszystkie źródła błędów oraz uwzględniając tylko źródła związane z sygnałami błędu statycznego $e_{b,s}(t)$, dynamicznego $e_{b,d}(t)$ oraz losowego $e_{b,r}(t)$. Uzyskane na drodze eksperymentu histogramy przedstawiono na rysunku~\ref{fig:symul_partb_hist}.
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/hist_part_b}
 \makecaption{fig:symul_partb_hist}{Histogramy realizacji sygnałów błędów \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego wielkości wyjściowej analizowanego w eksperymencie symulacyjnym wzmacniacza pomiarowego uzyskane metodą Monte Carlo}
-\end{center}
 \end{figure}
 
 Analizując wyniki eksperymentu zauważyć można, że uzyskane wartości dla sygnałów błędów losowego oraz statycznego są zbliżone do tych przedstawionych w tabeli~\ref{tab:sym_partb_params_unc_sum}. Pozwala to zakładać, że podobnie jak w przypadku analizy właściwości przetwornika pomiarowego, przyjęty model błędów oraz stosowane zależności poprawnie określają związki pomiędzy wskazanymi sygnałami błędów i umożliwiają poprawne oszacowanie ich parametrów. Na dotychczasowym etapie przeprowadzonej analizy nie wyznaczano wypadkowych parametrów sygnału błędu dynamicznego $e_{b,d}(t)$ oraz sygnału błędu wypadkowego $e_{b,\Sigma}(t)$ -- dane te, jak pokazano na obecnym przykładzie, nie są niezbędne podczas analizy kolejnych fragmentów toru pomiarowego, przy czym zostały one wyznaczone w ramach analizy poprzedniej części tego toru w celu weryfikacji zaproponowanej metody obliczeń.
@@ -682,10 +654,8 @@ gdzie zgodnie z założeniami opisanymi w~\cite{gray_quantization, widrow_quanti
 Aby zweryfikować poprawność przedstawionych zależności przeprowadzono eksperyment stosując metodę Monte Carlo. W ramach eksperymentu~\num{100000} razy wyznaczono wartość realizacji wielkości wyjściowej analizowanego obiektu, a następnie porównano ją z wartością idealną, uzyskaną dla fragmentu toru pomiarowego w którym nie występowały żadne źródła błędów. Działanie analizowanego przetwornika opisane było równaniem zgodnym z zależnością~\eqref{eq:adc_output}. Na podstawie uzyskanych zgodnie z równaniem~\eqref{eq:sym_partc_out_real} wartości realizacji sygnału błędu wyznaczono wariancję tego sygnału oraz niepewność rozszerzoną na podstawie równania~\eqref{eq:unc_summation}. Identyczny eksperyment przeprowadzono ponownie z tą różnicą, że jako jedyne źródło błędów uwzględniono w nim obecność procesu kwantowania w celu oszacowania parametrów sygnału błędu kwantowania. Rysunek~\ref{fig:symul_partc_hist} przedstawia uzyskane na drodze eksperymentu histogramy.
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/hist_part_c}
 \makecaption{fig:symul_partc_hist}{Histogramy realizacji sygnałów błędów \textbf{a)}~kwantowania, \textbf{b)}~wypadkowego wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego uzyskane metodą Monte Carlo}
-\end{center}
 \end{figure}
 
 Przedstawione na rysunkach~\ref{fig:symul_partb_hist} oraz~\ref{fig:symul_partc_hist} histogramy pozwalają stwierdzić, że przyjęte dla modelu błędu kwantowania założenia są poprawne. W poprzednim eksperymencie wartość wariancji $\sigma_{b,\Sigma}^{2}$ wypadkowego sygnału błędu wielkości wejściowej przetwornika analogowo-cyfrowego wyniosła~\qty{788.18}{\micro V}. W bieżącym eksperymencie wartość wariancji $\sigma_{c,\Sigma}^{2}$ wypadkowego sygnału błędu wielkości wyjściowej tego przetwornika wyniosła~\qty{835.18}{\micro V}. Oszacowana wartość wariancji $\sigma_{c,AC,q}^{2}$ sygnału błędu kwantowania dla założenia $\tilde{y}_{b}(i) = \dot{y}_{b}(i)$ wyniosła~\qty{46.88}{\micro V}, a związana z nią niepewność rozszerzona wyniosła~\qty{11.16}{mV}. Uzyskane wartości pokrywają się z tymi wyznaczonymi na podstawie równań~\eqref{eq:sym_partc_var_quant} oraz~\eqref{eq:sym_partc_uncert_quant} dla modelu błędu kwantowania $e_{c,rw,q}(i)$. Korelację pomiędzy wypadkowym sygnałem błędu $e_{c,\Sigma}(i)$ wielkości wejściowej analizowanego przetwornika oraz rzeczywistym sygnałem błędu kwantowania $e_{c,AC,q}(x)$ określić można na podstawie równania~\eqref{eq:var_corr}, przy czym jej wartość wynosi:
@@ -700,7 +670,6 @@ e_{c} \emb{i} \cong e_{b} \emb{iT_{p}} \label{eq:sym_partc_err_prop}, \\
 opisujące sygnały błędów na wyjściu analizowanego obiektu i związane z nimi wariancje. Na podstawie przedstawionych dotychczas zależności oraz danych zawartych w tabeli~\ref{tab:sym_partb_params_unc_list} sporządzono budżet niepewności wielkości wyjściowej $x_{c}(i)$ analizowanego przetwornika analogowo-cyfrowego, który zestawiono w tabeli~\ref{tab:sym_partc_params_unc_list}.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partc_params_unc_list}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego, gdzie ($a$) oznacza przetwornik pomiarowy, ($b$) oznacza wzmacniacz pomiarowy oraz ($c$) oznacza przetwornik analogowo-cyfrowy}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
@@ -716,7 +685,6 @@ opisujące sygnały błędów na wyjściu analizowanego obiektu i związane z ni
 10 & ${c,dp,b,2}$   & 7.65  &  29.00  &                              &                                            \\ \cline{1-4}
 11 & ${c,dp,b,3}$   & 7.65  &  28.99  &                              &                                            \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Przedstawiony w tabeli~\ref{tab:sym_partc_params_unc_list} budżet niepewności dobrze obrazuje źródła sygnałów błędów występujące w analizowanym torze pomiarowym oraz jednoznacznie wskazuje ich parametry. Na dalszym etapie analizy stosowanie przedstawionego zestawienia jest jednak kłopotliwe, ponieważ wiąże się z koniecznością analizy każdego ze wskazanych sygnałów błędów z osobna. Ze względu na fakt, że proponowany w pracy model błędów dotyczący kolejnego fragmentu toru pomiarowego, jakim jest algorytm transformacji falkowej, wymaga jedynie określenia parametrów wypadkowych sygnałów błędów statycznego i losowego oraz wypadkowych parametrów kolejnych harmonicznych sygnału błędu dynamicznego, proponuje się sporządzenie budżetu niepewności uwzględniającego opisywany podział, podobnie jak to miało miejsce w przypadku poprzedniego elementu analizowanego toru pomiarowego.
@@ -759,7 +727,6 @@ c_{c,r} = \frac{U_{c,r}}{\sigma_{c,r}} = \frac{\num{24.53e-3}}{\num{12.44e-3}} =
 Na podstawie wyznaczonej w równaniu~\eqref{eq:sym_partc_rand_factor} wartości współczynnika rozszerzenia oraz ze względu na spełnienie w analizowanym przypadku warunków centralnego twierdzenia granicznego, zakładać można normalny rozkład wypadkowego sygnału błędu losowego. Biorąc pod uwagę przedstawione dotychczas założenia, wyniki zawarte w tabelach~\ref{tab:sym_partb_params_unc_sum} oraz~\ref{tab:sym_partc_params_unc_list}, jak również wyniki obliczeń przedstawionych w równaniach~\eqref{eq:sym_partc_rand_var} oraz~\eqref{eq:sym_partc_rand_uncert}, sporządzono budżet niepewności z uwzględnieniem omawianego wcześniej podziału, który zestawiono w tabeli~\ref{tab:sym_partc_params_unc_sum}.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partc_params_unc_sum}{Budżet niepewności wielkości wyjściowej analizowanego w eksperymencie symulacyjnym przetwornika analogowo-cyfrowego z uwzględnieniem podziału na wypadkowe sygnały błędów statycznych, dynamicznych oraz losowych}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
@@ -769,7 +736,6 @@ Na podstawie wyznaczonej w równaniu~\eqref{eq:sym_partc_rand_factor} wartości 
 4 & ${c,d,2}$      & 23.01 &  266.34 &                              &                                            \\ \cline{1-4}
 5 & ${c,d,3}$      & 23.00 &  266.11 &                              &                                            \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 \section{Analiza algorytmu transformacji falkowej}
@@ -1070,7 +1036,6 @@ Porównując otrzymane wyniki zauważyć można, że oszacowana w równaniu~\eqr
 Na podstawie powyższych rozważań w tabelach~\ref{tab:sym_partd_params_unc_sum_S_2_0} oraz~\ref{tab:sym_partd_params_unc_sum_T_1_0} zestawiono budżety niepewności analizowanych w przedstawionych przykładach wielkości wyjściowych, uwzględniające sygnały błędów z podziałem na ich kategorie. Parametry wypadkowe sygnału błędu dynamicznego wyznaczono analogicznie, jak w przykładzie~\eqref{eq:sym_parta_uncert_dyn}. Symbolem \enquote{$*$} przy typie rozkładu oznaczono sytuacje, gdy kształt rozkładu przypomina ten określony w opisie, natomiast jego parametry odbiegają nieznacznie od standardowych parametrów tego rozkładu.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partd_params_unc_sum_S_2_0}{Budżet niepewności wielkości wyjściowej $S_{2,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego uwzględniający podział na błędy statyczne, dynamiczne i losowe}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 4.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
@@ -1080,11 +1045,9 @@ Na podstawie powyższych rozważań w tabelach~\ref{tab:sym_partd_params_unc_sum
 4 & ${d}$                      & 49.89 &  880.66  & nieokreślony & wypadkowa transmitancja        \\ \hline
 \multicolumn{2}{|c|}{$\Sigma$} & 74.00 &  1464.80 & normalny*    & błąd wypadkowy                 \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partd_params_unc_sum_T_1_0}{Budżet niepewności wielkości wyjściowej $T_{1,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego uwzględniający podział na błędy statyczne, dynamiczne i losowe}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
@@ -1094,7 +1057,6 @@ Na podstawie powyższych rozważań w tabelach~\ref{tab:sym_partd_params_unc_sum
 4 & ${d}$                      & 30.84 &  427.37  & nieokreślony & wypadkowa transmitancja        \\ \hline
 \multicolumn{2}{|c|}{$\Sigma$} & 43.61 &  582.68  & nieokreślony & błąd wypadkowy                 \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Parametry pozostałych wielkości wyjściowych wyznaczono analogicznie, jak miało to miejsce w przedstawionych wcześniej przykładach. Dodatkowo, w celu weryfikacji zaproponowanych w pracy zależności i przedstawionego modelu błędów, wykonano eksperyment metodą Monte Carlo, w którym~\num{100000} razy powtórzono proces wyznaczania wartości wielkości wyjściowych analizowanego toru pomiarowego. Każdorazowo z przedziału $\hat{t}_{0} \in \interval{-\frac{1}{f_{1}}}{\frac{1}{f_{1}}}$ losowano fazę początkową przetwarzanego sygnału $s(t+t_{0})$, przy czym uzyskanie każdej z możliwych wartości realizacji fazy początkowej było jednakowo prawdopodobne. Wartości uzyskanych realizacji wielkości wyjściowych porównywano z wartościami dla toru pomiarowego, w którym nie występowały żadne źródła błędów, a następnie zgodnie z równaniem~\eqref{eq:sym_partd_errvect} określano aktualną realizację wektora błędów wielkości wyjściowych. Na podstawie uzyskanych wartości realizacji sygnałów błędów wyznaczano ich wariancję, niepewność rozszerzoną oraz współczynnik rozszerzenia, zgodnie z równaniami~\eqref{eq:unc_summation} oraz~\eqref{eq:unc_sum}.
@@ -1102,7 +1064,6 @@ Parametry pozostałych wielkości wyjściowych wyznaczono analogicznie, jak mia�
 W tabeli~\ref{tab:sym_partd_params_unc_sum_a} zestawiono wyniki przeprowadzonego eksperymentu oraz wyniki uzyskane stosując zaproponowaną w pracy metodę analizy. Symbolem $\sigma_{ab}^{2}$ oznaczono wypadkową wartość wariancji sygnału błędu uzyskaną obliczeniowo, analogicznie do przykładów przedstawionych w równaniach~\eqref{eq:sym_partd_output_var_sum_S_2_0} oraz~\eqref{eq:sym_partd_output_var_sum_T_1_0}, natomiast symbolem $\sigma_{s}^{2}$ oznaczono wartość wariancji uzyskaną na drodze eksperymentu. Symbolem $U_{a}$ oznaczono wartość niepewności rozszerzonej wyznaczoną przy założeniu zbliżonego do normalnego kształtu rozkładu błędu wypadkowego analizowanej wielkości wyjściowej, która w przykładzie wyznaczana była w równaniach~\eqref{eq:sym_partd_output_unc_total_b_S_2_0} oraz~\eqref{eq:sym_partd_output_unc_total_a_T_1_0}. Symbolem $U_{b}$ oznaczono wartość niepewności rozszerzonej uzyskaną przy użyciu metody redukcyjnej arytmetyki interwałowej, stosowanej w równaniach~\eqref{eq:sym_partd_output_unc_total_a_S_2_0} oraz~\eqref{eq:sym_partd_output_unc_total_b_T_1_0}. Symbolem $U_{s}$ oznaczono wartość niepewności rozszerzonej uzyskaną na drodze eksperymentu. Symbole $c_{b}$ oraz $c_{s}$ oznaczają kolejno współczynnik rozszerzenia wyznaczony na podstawie równania~\eqref{eq:unc_sum} dla wielkości $U_{a}$ oraz ten uzyskany symulacyjnie dla wielkości $U_{s}$. Symbole $\delta_{a}$ oraz $\delta_{b}$ oznaczają błąd względny oszacowania wartości niepewności rozszerzonej w odniesieniu do wartości uzyskanej w eksperymencie, wyrażony w procentach i wyznaczany zgodnie z zależnością~\eqref{eq:unc_error}. Dodatkowo na rysunkach~\ref{fig:symul_partd_hist_S_2_0} oraz~\ref{fig:symul_partc_hist_T_1_0} przedstawiono histogramy dla realizacji sygnałów błędów analizowanych w przykładzie wielkości wyjściowych, wraz z podziałem na kategorie błędów składowych. Błędy własne zaokrągleń zostały uwzględnione na rysunkach jako składowe błędów losowych. Rysunek~\ref{fig:symul_partd_hist_S_2_0} przedstawia wyniki symulacji dla wielkości wyjściowej $S_{2,0}$ i nawiązuje do wartości zestawionych w tabeli~\ref{tab:sym_partd_params_unc_sum_S_2_0}, natomiast rysunek~\ref{fig:symul_partc_hist_T_1_0} dotyczy wielkości wyjściowej $T_{1,0}$ i stanowi weryfikacje danych zawartych w tabeli~\ref{tab:sym_partd_params_unc_sum_T_1_0}.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partd_params_unc_sum_a}{Zestawienie wyników eksperymentu mającego na celu weryfikacje poprawności zaproponowanej w pracy tezy w przypadku stosowania budżetu niepewności uwzględniającego wypadkowe parametry sygnałów błędów należących do wskazanych kategorii}
 \begin{tabular}[c]{| c *{2}{|S[table-format = 4.2]} *{3}{|S[table-format = 2.2]} *{2}{|S[table-format = 1.2]} *{2}{|S[table-format = +1.2]} |} \hline
 \multirow{2}{*}{\textbf{Wielkość}} & \multicolumn{2}{c|}{\textbf{Wariancja, \micro V}} & \multicolumn{3}{c|}{\textbf{Niepewność, mV}} & \multicolumn{2}{c|}{\textbf{Kształt}} & \multicolumn{2}{c|}{\textbf{Błąd, \%}} \\ \cline{2-10}
@@ -1116,25 +1077,20 @@ $T_{1,1}$ & 582.56  & 583.23  & 47.31 & 43.60 & 43.74 & 1.81 & 1.81 & +8.16 & -0
 $T_{1,2}$ & 582.56  & 582.96  & 47.31 & 43.60 & 43.76 & 1.81 & 1.81 & +8.11 & -0.37 \\ \hline
 $T_{1,3}$ & 522.10  & 522.10  & 44.79 & 43.64 & 43.17 & 1.91 & 1.89 & +3.75 & +1.09 \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Analizując wartości zestawione w tabeli~\ref{tab:sym_partd_params_unc_sum_a} zauważyć można, że wyniki uzyskane zgodnie z metodą opisaną równaniem~\eqref{eq:unc_matrix} w bardzo niewielkim stopniu odbiegają od wyników symulacji wykonanej metodą Monte Carlo. Maksymalna wartość względnego błędu oszacowania wartości niepewności rozszerzonej nie przekracza~\qty{\pm 5}{\percent}, co pokrywa się z przyjętymi założeniami. W przypadku metody przyjmującej założenie o zbliżonym do normalnego kształcie rozkładu wypadkowego sygnału błędu, oszacowane wartości niepewności rozszerzonej znacznie różnią się od tych uzyskanych symulacyjnie. Uproszczenie to można przyjąć tylko wtedy, gdy spełnione są warunki wynikające z centralnego twierdzenia granicznego~\cite{jcgm_guide, grimmett_probability}, co nie zawsze miało miejsce w przedstawionych przykładach. Na przykładzie wielkości wyjściowej $T_{1,0}$ można było zauważyć, że warunki te nie były spełnione, natomiast w przypadku wielkości wyjściowej $S_{2,0}$ przyjęte założenia okazały się właściwe. Stosowanie przedstawionej dla wielkości $U_{a}$ metody znacznie ułatwia obliczenia, a dodatkowo można zauważyć mniejsze rozbieżności dla przypadków, w których omawiane warunki stosowania tej metody były właściwe. Niestety, w przypadku przyjęcia błędnych założeń, uzyskiwane wartości obarczone są błędem przewyższającym~\qty{\pm 5}{\percent} wartości prawdziwej, a co za tym idzie nie można ich uznać za prawidłowe dla przyjętych w pracy założeń.
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/hist_part_S}
 \makecaption{fig:symul_partd_hist_S_2_0}{Histogramy realizacji sygnału błędu \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego wielkości wyjściowej $S_{2,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego uzyskane metodą Monte Carlo}
-\end{center}
 \end{figure}
 
 Na podstawie histogramów przedstawionych na rysunkach~\ref{fig:symul_partd_hist_S_2_0} oraz~\ref{fig:symul_partc_hist_T_1_0} zauważyć można, że oszacowane w równaniach od~\eqref{eq:sym_partd_output_unc_roun_S_2_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_S_2_0} oraz od~\eqref{eq:sym_partd_output_unc_roun_T_1_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_T_1_0} parametry sygnałów błędów pokrywają się z tymi uzyskanymi symulacyjnie. Współczynnik $A_{T_{1,0},s} $ określony w równaniu~\eqref{eq:sym_partd_output_as_T_1_0} wskazujący relacje pomiędzy wejściową i wyjściową wariancją błędów statycznych w przypadku wielkości wyjściowej $T_{1,0}$ jest w przybliżeniu równy zero. W rzeczywistości natomiast, ze względu na niewymierność kolejnych współczynników wiersza macierzy transformacji powiązanych z analizowaną wielkością wyjściową, współczynnik ten jest niezerowy. Fakt ten zauważyć można na podstawie rysunku~\ref{fig:symul_partc_hist_T_1_0}, gdzie teoretycznie wszystkie realizacje błędu statycznego powinny być zerowe. Omawiana rozbieżność jest jednak bardzo niewielka i nie wpływa zupełnie na uzyskane wyniki obliczeń.
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/hist_part_T}
 \makecaption{fig:symul_partc_hist_T_1_0}{Histogramy realizacji sygnału błędu \textbf{a)}~statycznego, \textbf{b)}~dynamicznego, \textbf{c)}~losowego, \textbf{d)}~wypadkowego wielkości wyjściowej $T_{1,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego uzyskane metodą Monte Carlo}
-\end{center}
 \end{figure}
 
 Ostatecznie wnioskować można, że przeprowadzony eksperyment potwierdził poprawność zaproponowanej metody analizy oraz stworzonego na potrzeby pracy modelu błędów. Oszacowana wartość wariancji dla analizowanych sygnałów błędów była każdorazowo zbieżna z wartością uzyskaną metodą symulacyjną. Uzyskane wartości niepewności rozszerzonych, wyznaczane z użyciem redukcyjnej arytmetyki interwałowej, cechowały się rozbieżnością na poziomie mniejszym, niż wymagany w założeniach pracy. Eksperyment wykazał możliwość stosowania uproszczenia obliczeń, które wynika bezpośrednio z warunków centralnego twierdzenia granicznego. Stosowanie omawianego uproszczenia dopuszczalne jest tylko i wyłącznie w określonych warunkach, natomiast w nieuzasadnionych przypadkach skutkować będzie przekraczającym~\qty{\pm 5}{\percent} błędem oszacowania wartości niepewności rozszerzonej.
@@ -1142,7 +1098,6 @@ Ostatecznie wnioskować można, że przeprowadzony eksperyment potwierdził popr
 Identyczną analizę wykonano wykorzystując budżet niepewności zestawiony w tabeli~\ref{tab:sym_partc_params_unc_list}. Parametry kolejnych składowych sygnałów błędów wyznaczono analogicznie, jak miało to miejsce w przykładach opisanych zależnościami od~\eqref{eq:sym_partd_output_var_stat_S_2_0} do~\eqref{eq:sym_partd_output_var_dyn_3_S_2_0} oraz od~\eqref{eq:sym_partd_output_unc_stat_S_2_0} do~\eqref{eq:sym_partd_output_unc_dyn_3_S_2_0}. W tabelach~\ref{tab:sym_partd_params_unc_list_S_2_0} oraz~\ref{tab:sym_partd_params_unc_list_T_1_0} zestawiono budżety niepewności dla analizowanych wielkości wyjściowych $S_{2,0}$ oraz $T_{1,0}$.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partd_params_unc_list_S_2_0}{Budżet niepewności wielkości wyjściowej $S_{2,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego obejmujący wszystkie źródła błędów}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
@@ -1159,11 +1114,9 @@ Identyczną analizę wykonano wykorzystując budżet niepewności zestawiony w t
 11 & ${dp,b,2}$   & 12.35 &  76.70  &                              &                                            \\ \cline{1-4}
 12 & ${dp,b,3}$   & 1.16  &  0.67   &                              &                                            \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partd_params_unc_list_T_1_0}{Budżet niepewności wielkości wyjściowej $T_{1,0}$ analizowanego w eksperymencie symulacyjnym toru pomiarowego obejmujący wszystkie źródła błędów}
 \begin{tabular}[c]{| c | c | S[table-format = 2.2] | S[table-format = 3.2] | c | c |} \hline
 \textbf{Lp.} & \textbf{Symbol} & \textbf{$U$, mV} & \textbf{$\sigma^{2}$, \micro V} & \textbf{Rozkład} & \textbf{Źródło błędu} \\ \hline
@@ -1180,7 +1133,6 @@ Identyczną analizę wykonano wykorzystując budżet niepewności zestawiony w t
 11 & ${dp,b,2}$   & 1.85  &  1.73   &                              &                                            \\ \cline{1-4}
 12 & ${dp,b,3}$   & 9.44  &  44.82  &                              &                                            \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Ze względu na korelacje wybranych sygnałów błędów wielkości wejściowych rozważanego algorytmu, wyznaczenie wypadkowych wartości wariancji sygnałów błędów dla kolejnych wielkości wyjściowych przeprowadzane jest zgodnie z zależnością~\eqref{eq:var_matrix}. W dalszej części rozważań przyjęto, że symbol $\mathbfit{\sigma}_{*}$ oznacza wektor złożony z odchyleń standardowych sygnałów błędów składowych wielkości wyjściowej algorytmu, przy czym \enquote{$*$} oznacza symbol analizowanej wielkości wyjściowej. Macierz korelacji oznaczona symbolem $\mathbfit{r}_{d}$ jest jednakowa dla wszystkich wielkości wyjściowych tego algorytmu i składa się z dwunastu wierszy i kolumn, co wynika z liczby analizowanych sygnałów błędów. Przyjmuje się, że kolejne wielkości zawarte w wektorze $\mathbfit{\sigma}_{*}$ oraz kolejne elementy macierzy $\mathbfit{r}_{d}$ są związane z sygnałami błędów zestawionymi w tabelach~\ref{tab:sym_partd_params_unc_list_S_2_0} oraz~\ref{tab:sym_partd_params_unc_list_T_1_0}, a dodatkowo kolejność wyrazów omawianych wielkości jest zgodna z tą daną w tabelach. Wobec powyższych, równanie~\eqref{eq:var_matrix} przyjmuje postać:
@@ -1430,7 +1382,6 @@ Przedstawione w równaniach~\eqref{eq:sym_partd_output_unc_totalmat_S_2_0} oraz~
 W tabeli~\ref{tab:sym_partd_params_unc_sum_b} zestawiono wyniki obliczeń dla pozostałych wielkości wyjściowych oraz te uzyskane w poprzednim eksperymencie, w celu umożliwienia ich porównania. Symbolem $U_{a}$ oznaczono wartości uzyskane przy założeniu normalnego rozkładu sygnału błędu wypadkowego, natomiast symbolem $U_{b}$ oznaczono wartości uzyskane z wykorzystaniem budżetu niepewności opisanego w tabeli~\ref{tab:sym_partc_params_unc_sum}. Wartości oznaczone symbolem $U_{c}$ dotyczą analizy z wykorzystaniem budżetu niepewności opisanego w tabeli~\ref{tab:sym_partc_params_unc_list}, przy czym wielkości oznaczone symbolem $U_{d}$ wyznaczono identycznie, jak $U_{c}$, z tą różnicą, że nie stosowano korekty opisanej równaniem~\eqref{eq:unc_cohercorra} w procesie wyznaczania wartości współczynników koherencji. Podobnie, jak w zestawieniu zawartym w tabeli~\ref{tab:sym_partd_params_unc_sum_a}, wielkości oznaczone symbolem $U_{s}$ dotyczą przeprowadzonego eksperymentu metodą Monte Carlo, natomiast symbolem $\delta_{*}$ oznaczono wyrażony w procentach błąd względny oszacowania wartości niepewności rozszerzonej $U_{*}$ w odniesieniu do wartości $U_{s}$, wyznaczany zgodnie z zależnością~\eqref{eq:unc_error}.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:sym_partd_params_unc_sum_b}{Porównanie uzyskanych przedstawionymi w pracy metodami wartości wypadkowych niepewności rozszerzonych kolejnych wielkości wyjściowych analizowanego w eksperymencie symulacyjnym toru pomiarowego}
 \begin{tabular}[c]{| c *{5}{|S[table-format = 2.2]} *{4}{|S[table-format = +1.2]} |} \hline
 \multirow{2}{*}{\textbf{Wielkość}} & \multicolumn{5}{c|}{\textbf{Niepewność, mV}} & \multicolumn{4}{c|}{\textbf{Błąd, \%}} \\ \cline{2-10}
@@ -1445,7 +1396,6 @@ $T_{1,2}$ & 47.31 & 43.60 & 43.37 & 46.08 & 43.76 & +8.11 & -0.37 & -0.89 & +5.3
 $T_{1,3}$ & 44.79 & 43.64 & 43.39 & 45.43 & 43.17 & +3.75 & +1.09 & +0.51 & +5.24 \\ \hline
 \multicolumn{6}{|c|}{Średnia wartości bezwzględnych wielkości $\delta_{*}$} & 5.77 & 1.41 & 1.48 & 6.13 \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Analizując wyniki przedstawione w tabeli~\ref{tab:sym_partd_params_unc_sum_b} zauważyć można, że zaproponowana w pracy metoda szacowania wartości wypadkowej niepewności rozszerzonej wraz z zastosowaniem proponowanego modelu błędów zapewniają wyniki zbieżne z tymi uzyskanymi symulacyjnie. Korekta wartości współczynników koherencji opisana równaniem~\eqref{eq:unc_cohercorra} pozwala na znaczne zmniejszenie rozbieżności pomiędzy szacowaną zgodnie z równaniem~\eqref{eq:unc_matrix} wartością, a wartością uzyskiwaną symulacyjnie, w stosunku do wartości uzyskanych bez stosowania opisanej korekty. Wartości uzyskane przy zastosowaniu budżetu niepewności zawierającego jedynie wypadkowe parametry sygnałów błędów z uwzględnieniem na wprowadzone kategorie błędów są zbieżne z wartościami uzyskanymi dla budżetu obejmującego charakterystykę każdego z sygnałów błędów. Rozbieżności pomiędzy wartościami oznaczonymi symbolami $U_{b}$ oraz $U_{c}$ wynikają z innego oszacowania wartości współczynników koherencji.

@@ -5,10 +5,8 @@ Aby określić, w jakim stopniu analizowany tor pomiarowy spełnia powierzone mu
 Analizując tor pomiarowy przedstawiony na rysunku~\ref{fig:chain_demo} zauważyć można, że proces wyznaczania wartości kolejnych wielkości wyjściowych tego toru obejmuje trzy najistotniejsze etapy: przetwarzanie analogowe, konwersję analogowo-cyfrową oraz przetwarzanie cyfrowe. Ze względu na możliwą zależność właściwości kolejnych części toru pomiarowego od widma przetwarzanego sygnału $s(t)$, analizę omawianych procesów należy rozpatrywać w dziedzinie częstotliwości~\cite{jakubiec_system}. Dla każdej wielkości wyjściowej właściwości zależne od widma przetwarzanego sygnału mogą być zatem opisane w przypadku części analogowej za pomocą transmitancji $G_{y}(j\omega)$ oraz w przypadku części cyfrowej za pomocą transmitancji $H_{X}(z)$. Każda z omawianych części, poza odpowiednio wyrażoną transmitancją, charakteryzuje się związaną z nią funkcją przetwarzania, oznaczoną w przypadku części analogowej symbolem $f_{y}(x)$ oraz symbolem $f_{X}(x)$ w przypadku cześć cyfrowej. Funkcje te opisują, w jaki sposób wyznaczana jest wartość wielkości wyjściowej fragmentu obiektu na podstawie wartości wielkości wejściowej, przy czym ich właściwości nie zależą od widma przetwarzanego sygnału. Pomiędzy częściami analogową i cyfrową znajduje się przetwornik analogowo-cyfrowy, którego zadaniem jest konwersja sygnału $y(t)$ na jego dyskretną reprezentację, oznaczoną symbolem $x(i)$. Schemat blokowy omawianego modelu toru pomiarowego dla pojedynczej wielkości wyjściowej $X(i)$ przedstawiono na rysunku~\ref{fig:chain_trans}.
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/schemat_trans}
 \makecaption{fig:chain_trans}{Schemat blokowy toru pomiarowego dla pojedynczej wielkości wyjściowej}
-\end{center}
 \end{figure}
 
 Dla przedstawionej na rysunku~\ref{fig:chain_trans} koncepcji przyjęto założenie, że przetwarzanie analogowo-cyfrowe przebiega w sposób idealny, tj. nie wprowadza do przetwarzanego sygnału żadnych błędów. Założenie to będzie oczywiście nieprawidłowe w rzeczywistym torze pomiarowym, dlatego sam przetwornik analogowo-cyfrowy również należy opisać za pomocą przedstawionego na rysunku~\ref{fig:chain_trans} modelu o parametrach odpowiednich dla zastosowanego przetwornika. Rzeczywisty tor pomiarowy składać się może z wielu elementów połączonych ze sobą kaskadowo, które odpowiednio przetwarzać będą sygnał ciągły w czasie lub przetwarzać będą jego dyskretną reprezentację. Należy zatem przedstawiać analizowany tor pomiarowy w postaci kaskadowego połączenia kolejnych elementów o odpowiednich dla nich parametrach lub za pomocą modelu opisującego wypadkowe parametry wszystkich analizowanych części tego toru. W przypadku, gdy dla analizowanego fragmentu toru pomiarowego jego właściwości nie są istotne z punktu analizy metrologicznej, właściwości te można pominąć podczas rozważań~\cite{jcgm_guide}.
@@ -61,10 +59,8 @@ Zaproponowany dotychczas podział sygnałów błędów, wynikający z charakteru
 Zgodnie z poprzednimi założeniami, aby ujednolicić analizę fragmentu części analogowej toru pomiarowego, element ten można przedstawić za pomocą transmitancji odpowiadającej właściwościom dynamicznym oraz odpowiedniej dla niego funkcji przetwarzania. Na rysunku~\ref{fig:chain_cont} przedstawiono schemat fragmentu części analogowej toru pomiarowego, którego kompletny schemat został przedstawiony na rysunku~\ref{fig:chain_trans}. W dalszej części podrozdziału zakłada się, że analizowany fragment toru pomiarowego przetwarza ciągły w czasie sygnał $s(t)$, opisany we wstępie rozdziału równaniami od~\eqref{eq:in_cont_sum_ideal} do~\eqref{eq:in_cont_omega_real}, na sygnał wyjściowy $y(t)$. Dodatkowo przyjmuje się, że funkcja $f_{y}(x)$ stanowi równanie przetwarzania opisywanego obiektu, natomiast transmitancja obiektu oznaczona symbolem $G_{y}(j\omega)$ jest liniowa i niezależna od czasu.
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/schemat_ciagly}
 \makecaption{fig:chain_cont}{Model fragmentu części analogowej toru pomiarowego}
-\end{center}
 \end{figure}
 
 Pierwszy etap rozważań obejmuje wpływ transmitancji $G_{y}(j\omega)$ analizowanego obiektu na sygnały błędów zawarte w przetwarzanym sygnale $s(t)$ oraz jej rolę we wprowadzaniu błędów własnych do sygnału $u(t)$. Na podstawie transmitancji obiektu wyznaczyć można wzmocnienie $K_{y}(\omega)$ oraz przesunięcie w fazie $\varphi_{y}(\omega)$ w funkcji pulsacji:
@@ -255,10 +251,8 @@ Analizę właściwości wybranych przetworników analogowo-cyfrowych przedstawia
 Opis właściwości metrologicznych części cyfrowej toru pomiarowego może być wykonany w sposób analogiczny, jak w przypadku części analogowej. Transmitancję części cyfrowej wyrazić można odpowiednią dla opisu dyskretnych obiektów transmitancją $H_{X}(z)$, przy czym zakłada się, że transmitancja ta jest liniowa oraz niezmienna w czasie. Związaną z właściwościami statycznymi funkcję przetwarzania oznaczyć można symbolem $f_{X}(x)$, natomiast ciągłą zmienną $t$ reprezentującą czas należy zastąpić zmienną $i$, oznaczającą numer próbki sygnału, przy czym $i \in \mathbb{N}$. Schemat blokowy cyfrowej części toru pomiarowego przedstawiono na rysunku~\ref{fig:chain_disc}. Przykładem omawianego obiektu może być filtr cyfrowy lub dowolny algorytm jednopunktowy realizujący odtwarzanie statyczne bądź dynamiczne, spełniający podane założenia.
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/schemat_dyskretny}
 \makecaption{fig:chain_disc}{Model fragmentu części cyfrowej toru pomiarowego}
-\end{center}
 \end{figure}
 
 Analizowana cześć toru pomiarowego przetwarza próbki sygnału wejściowego $x(i)$ na próbki sygnału wyjściowego $X(i)$. Przetwarzany sygnał $x(i)$ opisać można w sposób analogiczny, jak w przypadku opisu wielkości wejściowej dla części analogowej toru pomiarowego, w postaci sumy kolejnych harmonicznych tego sygnału. Przyjmując, że $\dot{x}(i, \omega)$ jest idealnym, natomiast $\tilde{x}(i, \omega)$ zakłóconym błędami przebiegiem wybranej harmonicznej sygnału $x(i)$, otrzymuje się zależności:
@@ -543,7 +537,6 @@ s_{a,b} = s_{b,a} = \frac{U_{a,b}^{2} - U_{a}^{2} - U_{b}^{2}}{2 U_{a} U_{b}} = 
 W tabeli~\ref{tab:unc_shapefac} przedstawiono zestawienie wyznaczonych przy użyciu metody Monte Carlo, zgodnie z równaniem~\eqref{eq:unc_shapertwo}, wartości współczynników kształtu dla par sygnałów o typowych rodzajach funkcji gęstości prawdopodobieństwa, gdzie założono $\gamma = \qty{95}{\percent}$.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:unc_shapefac}{Zestawienie wartości współczynnika kształtu dla par sygnałów o typowych funkcjach gęstości prawdopodobieństwa dla poziomu ufności~\qty{95}{\percent} wyznaczonych metodą Monte Carlo, gdzie kolejne symbole oznaczają rozkład: $(n)$~normalny, $(u)$~jednostajny, $(t)$~trójkątny, $(d)$~dwumodalny}
 \begin{tabular}[c]{| c *{4}{|S[table-format = 1.4]} |} \hline
 $s_{a,b}$ & \textbf{$n$} & \textbf{$u$} & \textbf{$t$} & \textbf{$d$} \\ \hline
@@ -552,7 +545,6 @@ $u$       & 0.1561       & 0.3356       & 0.1773       & 0.5337       \\ \hline
 $t$       & 0.0250       & 0.1773       & 0.0419       & 0.3504       \\ \hline
 $d$       & 0.2988       & 0.5337       & 0.3504       & 0.7136       \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 Dla wyznaczonej wartości współczynnika kształtu należy następnie uwzględnić, w jaki sposób zmienia się jego wartość w przypadku pojawienia się dysproporcji pomiędzy wartościami parametru niepewności rozszerzonej analizowanych sygnałów. Przeprowadzone w tym celu badania symulacyjne wykazały, że wraz ze wzrostem dysproporcji pomiędzy wartościami niepewności rozszerzonej sumowanych sygnałów, maleje wartość współczynnika koherencji uzyskiwana zgodnie z równaniem~\eqref{eq:unc_cohertwo}. Zależność wartości współczynnika koherencji w funkcji stosunku wartości niepewności rozszerzonych dla zestawionych w tabeli~\ref{tab:unc_shapefac} par sygnałów przedstawia rysunek~\ref{fig:unc_shapefac}. Proponuje się zatem wykorzystać omawianą właściwość w celu korekty wartości współczynnika kształtu wyznaczonego zgodnie z równaniem~\eqref{eq:unc_shapertwo}, przy czym opisany współczynnik korekcji będzie wyznaczany zgodnie z równaniem:
@@ -561,10 +553,8 @@ p_{a,b} = p_{b,a} = \sqrt{\frac{\min \emb{U_{a}, U_{b}}}{\max \emb{U_{a}, U_{b}}
 \end{equation}
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/shapes}
 \makecaption{fig:unc_shapefac}{Zależność wartości współczynnika koherencji w funkcji stosunku wartości niepewności rozszerzonej dla pary nieskorelowanych sygnałów błędów}
-\end{center}
 \end{figure}
 
 Drugim analizowanym aspektem jest założenie wynikające z centralnego twierdzenia granicznego, wobec którego wraz ze wzrostem liczby sumowanych sygnałów kształt rozkładu sygnału wypadkowego dążyć będzie do kształtu rozkładu normalnego, jeśli sygnały te nie są skorelowane i nie występuje w nich żaden sygnał dominujący. Korektę wynikającą z opisywanych założeń zaproponowano w pracy~\cite{jakubiec_system} jako:
@@ -596,21 +586,17 @@ Dla opisanego równaniem~\eqref{eq:unc_testsignal} sygnału $e_{\Sigma}(i)$, sk�
 Ze względu na dużą zmienność parametrów związanych z sumowanymi sygnałami, zaproponowany eksperyment powinien w sposób miarodajny określić typową rozbieżność pomiędzy rzeczywistą, a oszacowaną zgodnie z równaniem~\eqref{eq:unc_matrix} wartością niepewności rozszerzonej. Na rysunku~\ref{fig:hist_reductive} przedstawiono uzyskane histogramy względnego błędu oszacowania wartości wypadkowej niepewności rozszerzonej $\delta_{U}$, natomiast w tabeli~\ref{tab:comp_reductive} zestawiono porównanie uzyskanych wartości niepewności rozszerzonej błędu oszacowania wartości wypadkowej niepewności rozszerzonej $\delta_{U}$ w zależności od stosowania korekty zaproponowanej w równaniu~\eqref{eq:unc_cohercorra}, które wyznaczono zgodnie z~\cite{jcgm_guide, jcgm_montecarlo}. Na podstawie przedstawionych wyników wnioskować można, że stosowanie zaproponowanej korekty skutkuje zmniejszeniem wartości względnego błędu oszacowania wartości wypadkowej niepewności rozszerzonej oraz zmniejszeniem rozrzutu tego błędu. W efekcie, stosując omawianą korektę, możliwe jest oszacowanie wartości wypadkowej niepewności rozszerzonej z błędem względnym mieszczącym się w przedziale~\qty{\pm 5}{\percent}.
 
 \begin{table}[htb!]
-\begin{center}
 \makecaption{tab:comp_reductive}{Zestawienie uzyskanych metodą Monte Carlo przedziałów wartości realizacji względnego błędu oszacowania wartości wypadkowej niepewności rozszerzonej obejmujących~\qty{95}{\percent} wartości realizacji tej wielkości w zależności od stosowania zaproponowanej w pracy korekty współczynnika kształtu (wartości wyników wyrażone w procentach)}
 \begin{tabular}[c]{| c | c | c | c | c |} \hline
 \textbf{Przypadek}   & \textbf{a) $\hat{U}_{i} \in \interval{1}{3}$} & \textbf{b) $\hat{U}_{i} \in \interval{1}{6}$} & \textbf{c) $\hat{U}_{i} \in \interval{1}{10}$} & \textbf{d) $\hat{U}_{i} \in \interval{1}{20}$} \\ \hline
 \textbf{Z korektą}   & $\interval{-2.24}{+4.82}$ & $\interval{-2.44}{+4.60}$ & $\interval{-2.55}{+4.51}$ & $\interval{-2.63}{+4.42}$ \\ \hline
 \textbf{Bez korekty} & $\interval{-1.14}{+7.96}$ & $\interval{-1.13}{+8.69}$ & $\interval{-1.09}{+8.80}$ & $\interval{-1.13}{+8.86}$ \\ \hline
 \end{tabular}
-\end{center}
 \end{table}
 
 \begin{figure}[htb!]
-\begin{center}
 \includegraphics{obrazki/hist_reductive}
 \makecaption{fig:hist_reductive}{Histogramy wartości realizacji względnego błędu oszacowania wartości wypadkowej niepewności rozszerzonej dla zaproponowanej w pracy metody odpowiadające danym zestawionym w tabeli~\ref{tab:comp_reductive} dla przypadku stosowania zaproponowanej w pracy korekty}
-\end{center}
 \end{figure}
 
 Analizując przedstawione dotychczas zależności zauważyć można, że sposób opisu niedokładności wyniku pomiaru zależeć będzie w dużej mierze od potrzeb projektanta toru pomiarowego oraz od specyfiki zakłócających proces pomiaru zjawisk. Opis wykorzystujący wariancję sygnału błędu wydaje się bardziej przystępny i mniej skomplikowany, a dodatkowo wielkość ta może być utożsamiana z mocą sygnału~\cite{proakis_dsp}. Opis wykorzystujący niepewność rozszerzoną będzie jednak bardziej precyzyjny, ze względu na informacje odnośnie prawdopodobieństwa wystąpienia danej wartości realizacji sygnału błędu, natomiast wymaga on większego zaangażowania w proces wyznaczania ostatecznej wartości tej wielkości. W odpowiednich okolicznościach, jeżeli spełnione są warunki związane z centralnym twierdzeniem granicznym, opis bazujący na wariancji sygnału błędu może być w łatwy sposób przeniesiony na opis związany z niepewnością rozszerzoną~\cite{jcgm_guide}.
