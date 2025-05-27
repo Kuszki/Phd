@@ -171,9 +171,9 @@ e_{y,\Sigma} \emb{t} = ~
 
 Wpływ funkcji przetwarzania na wariancję sygnałów błędów wielkości $u(t)$, wymienionych w równaniu~\eqref{eq:mid_cont_err_sum}, może zostać opisany równaniem~\cite{oppenheim_sns}:
 \begin{equation}
-\sigma_{y}^{2} = \text{Var}\emb{f_{y} \emb{e_{u} \emb{t}}} = E \left[ \left( f_{y} \emb{e_{u} \emb{t}} - E \left[ f_{y} \emb{e_{u} \emb{t}} \right] \right)^2 \right] \label{eq:out_cont_var_function},
+\sigma_{y}^{2} = \text{Var}\emb{f_{y} \emb{e_{u} \emb{t}}} = \operatorname{E} \left[ \left( f_{y} \emb{e_{u} \emb{t}} - \operatorname{E} \left[ f_{y} \emb{e_{u} \emb{t}} \right] \right)^2 \right] \label{eq:out_cont_var_function},
 \end{equation}
-gdzie $E[e(t)]$ oznacza wartość oczekiwaną realizacji sygnału $e(t)$. Przedstawiona analiza upraszcza się w przypadku, gdy funkcję przetwarzania obiektu stanowi równanie liniowe w postaci $f(x) = ax + b$. Zakładając, że symbolem $s_{y}$ oznaczono współczynnik kierunkowy przedstawionego równania, który utożsamić można z czułością analizowanego obiektu, równanie~\eqref{eq:out_cont_var_function} przyjmuje postać~\cite{oppenheim_sns}:
+gdzie $\operatorname{E}[e(t)]$ oznacza wartość oczekiwaną realizacji sygnału $e(t)$. Przedstawiona analiza upraszcza się w przypadku, gdy funkcję przetwarzania obiektu stanowi równanie liniowe w postaci $f(x) = ax + b$. Zakładając, że symbolem $s_{y}$ oznaczono współczynnik kierunkowy przedstawionego równania, który utożsamić można z czułością analizowanego obiektu, równanie~\eqref{eq:out_cont_var_function} przyjmuje postać~\cite{oppenheim_sns}:
 \begin{equation}
 \sigma_{y}^{2} = s_{y}^{2} \sigma_{u}^{2} \label{eq:out_cont_var_sense}.
 \end{equation}
@@ -365,9 +365,9 @@ e_{X,\Sigma} \emb{i} =~
 
 Zależność wariancji sygnału na wyjściu fragmentu obiektu reprezentującego jego właściwości statyczne może w przypadku ogólnym zostać opisana równaniem:
 \begin{equation}
-\sigma_{X}^{2} = \text{Var}\emb{f_{X} \emb{e_{v} \emb{i}}} = E \left[ \left( f_{X} \emb{e_{v} \emb{i}} - E \left[ f_{X} \emb{e_{v} \emb{i}} \right] \right)^2 \right] \label{eq:out_disc_var_function},
+\sigma_{X}^{2} = \text{Var}\emb{f_{X} \emb{e_{v} \emb{i}}} = \operatorname{E} \left[ \left( f_{X} \emb{e_{v} \emb{i}} - \operatorname{E} \left[ f_{X} \emb{e_{v} \emb{i}} \right] \right)^2 \right] \label{eq:out_disc_var_function},
 \end{equation}
-gdzie $E[e(i)]$ oznacza wartość oczekiwaną realizacji sygnału $e(i)$. Dla funkcji przetwarzania obiektu danej w postaci $f(x) = ax+b$, zakładając że symbolem $s_{X}$ oznaczono współczynnik kierunkowy przedstawionego równania utożsamiany z czułością analizowanego obiektu, równanie~\eqref{eq:out_disc_var_function} upraszcza się do postaci:
+gdzie $\operatorname{E}[e(i)]$ oznacza wartość oczekiwaną realizacji sygnału $e(i)$. Dla funkcji przetwarzania obiektu danej w postaci $f(x) = ax+b$, zakładając że symbolem $s_{X}$ oznaczono współczynnik kierunkowy przedstawionego równania utożsamiany z czułością analizowanego obiektu, równanie~\eqref{eq:out_disc_var_function} upraszcza się do postaci:
 \begin{equation}
 \sigma_{X}^{2} = s_{X}^{2} \sigma_{v}^{2} \label{eq:out_disc_var_sense},
 \end{equation}
