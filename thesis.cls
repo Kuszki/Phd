@@ -203,7 +203,7 @@
 	tight-spacing        = true,
 	use-xspace           = true,
 	per-mode             = fraction,
-	inline-per-mode      = fraction,
+	inline-per-mode      = symbol,
 	list-exponents       = combine-bracket,
 	list-units           = single,
 	range-exponents      = combine-bracket,
