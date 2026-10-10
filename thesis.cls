@@ -6,9 +6,12 @@
 \RequirePackage[a-3u, allxmp, pdf17]{pdfx}
 \pdfminorversion=7
 
+\ifthenelse{\boolean{@twoside}}
+	{\RequirePackage[inner = 3.0cm, outer = 2.0cm, top = 2.5cm, bottom = 2.5cm]{geometry}}
+	{\RequirePackage[inner = 2.5cm, outer = 2.5cm, top = 2.5cm, bottom = 2.5cm]{geometry}}
+
 \RequirePackage[backend = biber, style = alphabetic, sorting = nyt, sortcites = true, maxnames = 9]{biblatex}
 \RequirePackage[font = small, labelfont = bf, textfont = it, singlelinecheck = false]{caption}
-\RequirePackage[inner = 2.5cm, outer = 2.5cm, top = 2.5cm, bottom = 2.5cm]{geometry}
 \RequirePackage[leftmargin = 12pt, rightmargin = 12pt, font = itshape]{quoting}
 \RequirePackage[locale = PL]{siunitx}
 
@@ -87,6 +90,8 @@
 
 \renewcommand{\bibsetup}{\flushbottom}
 
+\newcommand{\clearpagesif}{\ifthenelse{\boolean{@twoside}}{\cleardoublepage}{\clearpage}}
+
 \newcommand{\hugelinespacing}{\renewcommand{\baselinestretch}{1.60} \normalsize}
 
 \newcommand{\normallinespacing}{\renewcommand{\baselinestretch}{1.30} \normalsize}
@@ -100,7 +105,7 @@
 \setlength{\floatsep}{16pt plus 3pt minus 3pt}
 \setlength{\intextsep}{16pt plus 3pt minus 3pt}
 \setlength{\itemsep}{6pt plus 2pt minus 1pt}
-\setlength{\bibitemsep}{5pt plus 1pt minus 1pt}
+\setlength{\bibitemsep}{6pt plus 2pt minus 2pt}
 \setlength{\textfloatsep}{16pt plus 3pt minus 3pt}
 \setlength{\abovecaptionskip}{10pt plus 2pt minus 1pt}
 \setlength{\belowcaptionskip}{0pt plus 2pt minus 0pt}
@@ -164,7 +169,7 @@
 	\egroup
 	\vss
 	\egroup
-	\cleardoublepage
+	\clearpagesif
 	\normallinespacing
 }
 
@@ -179,7 +184,7 @@
 
 \def\appendix
 {
-	\cleardoublepage
+	\clearpagesif
 	\mediumlinespacing
 	\pagestyle{plain}
 	\printbibliography[heading = bibintoc]
@@ -187,7 +192,7 @@
 
 \def\body
 {
-	\cleardoublepage
+	\clearpagesif
 	\normallinespacing
 	\pagenumbering{arabic}
 	\pagestyle{fancy}

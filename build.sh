@@ -15,6 +15,8 @@ DO_BUILD=true
 DO_DIFF=false
 DO_QUIET=false
 
+OPTS=""
+
 while [ "$1" != "" ]; do
 
 	PARAM=`echo $1 | awk -F= '{print $1}'`
@@ -67,6 +69,10 @@ while [ "$1" != "" ]; do
 			DO_OCTAVE=true
 			;;
 
+		-p | --print)
+			OPTS='-usepretex=\def\print{1}'
+			;;
+
 		-s | --skip)
 			DO_BUILD=false
 			;;
@@ -96,7 +102,7 @@ if $DO_OCTAVE; then cd "skrypty"; run parallel octave {} ::: draw_*.m; cd ".."; 
 [ $DO_CONVERT == true ] && run inkscape -D obrazki/*.svg --export-type pdf
 
 [ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua -f slides.tex
-[ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua -f thesis.tex
+[ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua -f $OPTS thesis.tex
 [ $DO_BUILD == true ] && run latexmk --shell-escape -output-directory=budowa -pdflua -f answers.tex
 
 [ $DO_DIFF == true ] && run latexdiff-git --flatten --revision="$VER_DIFF" \

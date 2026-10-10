@@ -1,4 +1,8 @@
-\documentclass[a4paper, 12pt, twoside, polish]{thesis}
+\ifdefined \print
+	\documentclass[a4paper, 12pt, polish, twoside, openright]{thesis}
+\else
+	\documentclass[a4paper, 12pt, polish]{thesis}
+\fi
 
 \title{Analiza metrologiczna algorytmów dyskretnej transformacji falkowej}
 \author{Łukasz Dróżdż}
