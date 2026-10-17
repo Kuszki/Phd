@@ -6,7 +6,7 @@
 \RequirePackage[a-3u, allxmp, pdf17]{pdfx}
 \pdfminorversion=7
 
-\ifthenelse{\boolean{@twoside}}
+\ifthenelse{\boolean{@openright}}
 	{\RequirePackage[inner = 3.0cm, outer = 2.0cm, top = 2.5cm, bottom = 2.5cm]{geometry}}
 	{\RequirePackage[inner = 2.5cm, outer = 2.5cm, top = 2.5cm, bottom = 2.5cm]{geometry}}
 
@@ -90,7 +90,7 @@
 
 \renewcommand{\bibsetup}{\flushbottom}
 
-\newcommand{\clearpagesif}{\ifthenelse{\boolean{@twoside}}{\cleardoublepage}{\clearpage}}
+\newcommand{\clearpagesif}{\ifthenelse{\boolean{@openright}}{\cleardoublepage}{\clearpage}}
 
 \newcommand{\hugelinespacing}{\renewcommand{\baselinestretch}{1.60} \normalsize}
 
